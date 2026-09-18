@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12a · Interview Framework · AI Engineer Learning OS</title>
+<meta name="description" content="Skills matrix, answer structure, mock schedules, the 48-hour checklist.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html" class="active">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="12a-interview-framework">12a Interview Framework<a class="anchor" href="#12a-interview-framework" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium. Role expectations shift; the framework does not.</p>
+<p>This file owns the <strong>method</strong>. Concept questions live in the modules; this is how you answer them. <code>12b</code> owns cross-cutting questions, <code>12c</code> owns behavioral and project stories.</p>
+<hr />
+<h2 id="why-this-file-exists">Why this file exists<a class="anchor" href="#why-this-file-exists" aria-label="Link to this section">#</a></h2>
+<p>Explaining is a separate skill from understanding, and it is the one being tested.</p>
+<p>You can know why a LEFT JOIN hides failed ingestion, be able to compute a KV cache budget, and still lose the interview by rambling for four minutes, never stating a tradeoff, and answering a question you were not asked. That gap is not knowledge. It is structure, and structure is practisable.</p>
+<p><strong>Start this file at week 16, not week 24.</strong> The 60-second answers in each module are the reps; this is the form.</p>
+<hr />
+<h2 id="1-skills-matrix">1. Skills matrix<a class="anchor" href="#1-skills-matrix" aria-label="Link to this section">#</a></h2>
+<p>What the bar actually is, by role. Use this to decide where to spend remaining time.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Junior AI Engineer</th>
+<th>Mid AI Engineer</th>
+<th>Generative AI Engineer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python fluency under observation</td>
+<td>Required</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Git, testing, CI</td>
+<td>Required</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>SQL: joins, aggregation, windows</td>
+<td>Expected</td>
+<td>Required</td>
+<td>Expected</td>
+</tr>
+<tr>
+<td>Data leakage and honest evaluation</td>
+<td>Expected</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Classical ML metrics and thresholds</td>
+<td>Expected</td>
+<td>Required</td>
+<td>Expected</td>
+</tr>
+<tr>
+<td>Classical ML algorithms in depth</td>
+<td>Nice</td>
+<td>Expected</td>
+<td>Nice</td>
+</tr>
+<tr>
+<td>Deep learning fundamentals, backprop</td>
+<td>Expected</td>
+<td>Required</td>
+<td>Expected</td>
+</tr>
+<tr>
+<td>Training and fine-tuning</td>
+<td>Nice</td>
+<td>Expected</td>
+<td>Expected</td>
+</tr>
+<tr>
+<td>Transformer internals, attention, KV cache</td>
+<td>Expected</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>RAG architecture</td>
+<td>Expected</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Retrieval evaluation with numbers</td>
+<td>Expected</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Tool calling and agents</td>
+<td>Nice</td>
+<td>Expected</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>MCP specifically</td>
+<td>Nice</td>
+<td>Nice</td>
+<td>Expected</td>
+</tr>
+<tr>
+<td>Local inference, quantization, memory math</td>
+<td>Nice</td>
+<td>Expected</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Docker, FastAPI, deployment</td>
+<td>Expected</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Observability, SLOs, cost attribution</td>
+<td>Nice</td>
+<td>Required</td>
+<td>Expected</td>
+</tr>
+<tr>
+<td>System design</td>
+<td>Nice</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Prompt injection and AI security</td>
+<td>Nice</td>
+<td>Expected</td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
+<p><code>[VERIFY: this is a general shape, not a survey. Read 10 current postings for your target roles and re-score it against them.]</code></p>
+<p><strong>How to read it.</strong> The differences between columns are what the title means. A Generative AI Engineer is expected to be strong on agents, local inference and security, and is forgiven weakness on classical ML algorithms. A Mid AI Engineer is expected to be solid everywhere, which is a broader and shallower bar.</p>
+<p><strong>Where candidates most often fall short, in order:</strong></p>
+<ol>
+<li><strong>Engineering hygiene.</strong> Git, testing, CI. Penalized hardest because it is assumed rather than asked about, and its absence shows in a code exercise.</li>
+<li><strong>Evaluation.</strong> "How do you know it works" with no answer.</li>
+<li><strong>Production reasoning.</strong> What happens when it breaks, how you roll back, what it costs.</li>
+<li><strong>Explanation under time pressure.</strong> Knowing it and not being able to say it.</li>
+</ol>
+<hr />
+<h2 id="2-the-answer-framework">2. The answer framework<a class="anchor" href="#2-the-answer-framework" aria-label="Link to this section">#</a></h2>
+<p><strong>The shape of a good technical answer:</strong></p>
+<div class="highlight"><pre><span></span><code>1. Direct answer, one sentence.         (5 seconds)
+2. The mechanism or reason.             (20 seconds)
+3. A concrete example or number.        (20 seconds)
+4. The tradeoff or limitation.          (15 seconds)
+5. Stop. Let them ask.
+</code></pre></div>
+
+<p>That is the 60-second form. It is not a script to recite; it is a checklist to notice you have skipped.</p>
+<p><strong>Why each part earns its place:</strong></p>
+<p><strong>Direct answer first</strong> because interviewers are often taking notes and the first sentence is what gets written. Burying the answer at the end of a narrative means the note says "rambled".</p>
+<p><strong>The mechanism</strong>, because anyone can memorize a conclusion. "Sets are faster" is memorized; "a set hashes to a bucket and checks only that bucket, a list has no structure to exploit" is understood.</p>
+<p><strong>A concrete number or example</strong>, because it is the single strongest credibility signal available. "Quantization saves memory" versus "a 27B at Q3_K_M is 12.29 GB, which is why it did not fit on my 16 GB machine with a 12 GB GPU limit". The second cannot be faked.</p>
+<p><strong>The tradeoff</strong>, because every real decision costs something, and an answer with only benefits sounds like it came from a blog post rather than from having shipped it.</p>
+<p><strong>Then stop.</strong> Silence after a complete answer is fine. Filling it is how candidates talk themselves into wrong statements.</p>
+<h3 id="the-5-minute-expansion">The 5-minute expansion<a class="anchor" href="#the-5-minute-expansion" aria-label="Link to this section">#</a></h3>
+<p>When they say "tell me more", add in this order:</p>
+<ol>
+<li><strong>The failure mode.</strong> Where this breaks in production.</li>
+<li><strong>The alternative you rejected</strong>, and the condition under which you would have picked it instead.</li>
+<li><strong>What you would measure</strong> to know whether you were right.</li>
+<li><strong>What you would do differently</strong> with more time or information.</li>
+</ol>
+<p><strong>Do not expand by adding more mechanism.</strong> Depth in an interview means "I have operated this", not "I know more terminology".</p>
+<h3 id="worked-example-of-both-lengths">Worked example of both lengths<a class="anchor" href="#worked-example-of-both-lengths" aria-label="Link to this section">#</a></h3>
+<p><em>Question: "Why is your RAG system returning wrong answers?"</em></p>
+<p><strong>60 seconds:</strong></p>
+<blockquote>
+<p>"First I'd check whether the correct chunks were retrieved at all, because that splits the problem in two. If they were retrieved and are in the assembled prompt, it's a generation problem, so prompt structure or ordering. If they weren't retrieved, it's a ranking problem if they ranked below k, or a findability problem if they didn't rank at all, which usually means chunking. To do this I need the retrieved chunk ids with scores and the assembled prompt logged. Without that instrumentation I'd be guessing."</p>
+</blockquote>
+<p><strong>5 minutes adds:</strong></p>
+<blockquote>
+<p>"The most common case I've seen is the chunk existing but being unfindable, because fixed-size chunking put the heading in the previous chunk, so the chunk about parental leave doesn't contain the phrase 'parental leave'. I found one at rank 147 that way. The fix ladder is structure-aware chunking first because it fixes the cause, then putting the heading path into the embedded text, then parent-child retrieval.</p>
+<p>The alternative I'd reject early is jumping to prompt tuning, which is where people start, because it treats a retrieval problem with a generation fix and feels productive while changing nothing.</p>
+<p>To know I was right I'd add the failing question to the eval set, record recall@5 before and after, and check the aggregate didn't regress, because a change that fixes one question and breaks five isn't an improvement.</p>
+<p>What I'd do differently: build the instrumentation before I need it. Doing it during an incident costs a week."</p>
+</blockquote>
+<p>Notice the 5-minute version adds an anecdote, a rejected alternative, a measurement and a regret. It adds no new terminology.</p>
+<hr />
+<h2 id="3-how-to-handle-not-knowing">3. How to handle not knowing<a class="anchor" href="#3-how-to-handle-not-knowing" aria-label="Link to this section">#</a></h2>
+<p><strong>This is tested more than people realize</strong>, and it is one of the few places where a candidate can gain ground by being wrong.</p>
+<p><strong>The structure that works:</strong></p>
+<ol>
+<li>Say you do not know, plainly. No hedging.</li>
+<li>Say what you do know that is adjacent.</li>
+<li>Say how you would find out.</li>
+<li>Reason out loud toward an answer if you can.</li>
+</ol>
+<blockquote>
+<p>"I haven't used TensorRT-LLM, so I can't speak to its specifics. I know it's NVIDIA's compiled-kernel serving stack and that it trades operational complexity for throughput, which puts it in the same decision space as vLLM. I'd want to see whether the throughput gain justified the build complexity for our workload, and I'd measure both on our actual prompt lengths rather than trusting published numbers. Is it something your team uses?"</p>
+</blockquote>
+<p><strong>What that does.</strong> It is honest, demonstrates reasoning rather than recall, shows you know how to evaluate rather than adopt, and ends with genuine curiosity.</p>
+<p><strong>What loses ground:</strong></p>
+<ul>
+<li>Bluffing. Interviewers ask follow-ups, and being caught fabricating ends the loop.</li>
+<li>"I'd have to look it up" and stopping. True and it demonstrates nothing.</li>
+<li>Over-apologizing. One sentence, then move on.</li>
+<li>Pivoting to something unrelated you do know. Transparent, and it reads as evasive.</li>
+</ul>
+<p><strong>Being wrong is recoverable, and how you recover is the signal.</strong> If you state something and realize mid-answer it is wrong, say so: "Actually, I want to correct that." That is a strength. Defending a position you have realized is wrong is not.</p>
+<hr />
+<h2 id="4-question-types-and-what-each-tests">4. Question types and what each tests<a class="anchor" href="#4-question-types-and-what-each-tests" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Sounds like</th>
+<th>Actually testing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Definitional</strong></td>
+<td>"What is X?"</td>
+<td>Whether you understand the mechanism or memorized a phrase</td>
+</tr>
+<tr>
+<td><strong>Comparative</strong></td>
+<td>"X or Y?"</td>
+<td>Whether you can name conditions rather than pick a favorite</td>
+</tr>
+<tr>
+<td><strong>Diagnostic</strong></td>
+<td>"This is broken, what now?"</td>
+<td>Method. Do you have a procedure or do you guess?</td>
+</tr>
+<tr>
+<td><strong>Design</strong></td>
+<td>"How would you build X?"</td>
+<td>Requirements, arithmetic, tradeoffs</td>
+</tr>
+<tr>
+<td><strong>Experience</strong></td>
+<td>"Tell me about a time..."</td>
+<td><code>12c</code>. STAR, with a real specific</td>
+</tr>
+<tr>
+<td><strong>Depth probe</strong></td>
+<td>"Why?" three times</td>
+<td>Where your understanding stops</td>
+</tr>
+<tr>
+<td><strong>Disagreement</strong></td>
+<td>"I think you're wrong"</td>
+<td>Whether you fold or reason</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The comparative trap.</strong> "Would you use X or Y?" answered with "X" is a weak answer regardless of which you pick. The strong form names the condition: <em>"Y when there are many concurrent users on NVIDIA hardware, because PagedAttention eliminates the KV cache fragmentation that dominates the waste there. X for single-stream latency on diverse hardware. For one user on a MacBook, Y isn't an option at all."</em></p>
+<p><strong>The depth probe.</strong> They ask "why" repeatedly until you reach the edge. <strong>Reaching the edge is fine and expected.</strong> Saying "I don't know past this point, my understanding stops at X" is a good outcome. Fabricating a layer deeper is not, and it is obvious.</p>
+<p><strong>The disagreement probe.</strong> Sometimes they are testing whether you hold a position under pressure. Sometimes you are actually wrong. The response to both is the same: ask what they are seeing, reason about it, and update if the reasoning holds. <em>"That's interesting, I was assuming the filter was highly selective. If it matches most of the corpus, you're right that post-filtering with over-fetching would be fine."</em> Folding without reasoning is as bad as digging in.</p>
+<hr />
+<h2 id="5-the-technical-screen">5. The technical screen<a class="anchor" href="#5-the-technical-screen" aria-label="Link to this section">#</a></h2>
+<p>The first round. Usually live coding, often with someone watching.</p>
+<p><strong>What they are checking</strong>, roughly in order: can you write working Python without a reference, do you communicate while working, do you handle edge cases without being prompted, do you test, and can you take a hint.</p>
+<p><strong>How to run it:</strong></p>
+<ol>
+<li><strong>Restate the problem.</strong> Confirm you understood before writing anything. This catches misreadings early and costs 15 seconds.</li>
+<li><strong>State your approach before coding.</strong> "I'll use a dict keyed by id, which makes lookup constant time." Then they can redirect you before you write 30 lines.</li>
+<li><strong>Narrate.</strong> Silence for five minutes is the most common complaint interviewers have.</li>
+<li><strong>Handle edge cases unprompted.</strong> Empty input, one element, duplicates, None. Say "let me handle the empty case" and do it. This is a large share of the signal.</li>
+<li><strong>Test it.</strong> Run it on an example, out loud. If there is no runtime, trace through it.</li>
+<li><strong>Say what you would add with more time.</strong> "In real code I'd add type hints and a test for the malformed-row path."</li>
+</ol>
+<p><strong>The specific thing that loses points.</strong> Writing a correct solution silently, then saying "done". It gives the interviewer nothing to assess beyond the code, and the code is the smaller half.</p>
+<p><strong>Taking a hint well.</strong> If they say "what if the list is very large", they have told you the answer is a complexity problem. Say "that's a good point, the <code>in</code> check against a list is linear so this is quadratic; I'd convert to a set". Ignoring a hint is worse than the original mistake.</p>
+<hr />
+<h2 id="6-mock-interview-schedules">6. Mock interview schedules<a class="anchor" href="#6-mock-interview-schedules" aria-label="Link to this section">#</a></h2>
+<p>Mocks are the only thing that reliably improves interview performance, and the only thing everyone skips.</p>
+<p><strong>Record every one.</strong> Watching yourself is unpleasant and it is where the improvement comes from. You will find you say "um" constantly, answer a different question than was asked, and take 90 seconds to reach the point.</p>
+<h3 id="4-week-schedule-interview-imminent">4-week schedule, interview imminent<a class="anchor" href="#4-week-schedule-interview-imminent" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Sessions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Python live coding, plus the 60-second answers for your weakest module</td>
+<td>3 coding, 1 concept</td>
+</tr>
+<tr>
+<td>2</td>
+<td>LLM, RAG, evaluation concepts</td>
+<td>3 concept, 1 coding</td>
+</tr>
+<tr>
+<td>3</td>
+<td>System design, all four walkthroughs from <code>11</code></td>
+<td>4 design</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mixed, plus behavioral from <code>12c</code>, plus the 48-hour checklist</td>
+<td>2 mixed, 2 behavioral</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-week-schedule-standard">8-week schedule, standard<a class="anchor" href="#8-week-schedule-standard" aria-label="Link to this section">#</a></h3>
+<p>Weeks 1-2 Python and engineering hygiene. Weeks 3-4 ML and deep learning concepts. Weeks 5-6 LLM, RAG, agents. Week 7 system design. Week 8 mixed and behavioral. Two to three sessions per week, recorded.</p>
+<h3 id="12-week-schedule-building-depth-alongside">12-week schedule, building depth alongside<a class="anchor" href="#12-week-schedule-building-depth-alongside" aria-label="Link to this section">#</a></h3>
+<p>One session per week, rotating through topics, plus one project deep-dive practice per fortnight. Slower, and it interleaves with continued study, which is better for retention.</p>
+<p><strong>Running a mock alone.</strong> You can do most of this without a partner:</p>
+<ul>
+<li>Pick a question, start a timer, answer aloud, record. Then watch it against the section 2 checklist: did you answer directly, give a mechanism, give a number, state a tradeoff, stop.</li>
+<li>For system design, talk through a walkthrough to a whiteboard with a 45-minute timer. Score yourself on whether you reached evaluation.</li>
+<li>For coding, use a timer and narrate to an empty room. It feels absurd and it builds the habit.</li>
+</ul>
+<p><strong>Score every session</strong> in <code>tracker/progress-log.md</code> section 6, and fill the "what went wrong" column even on a good session. The patterns across sessions are the value: always running long, always forgetting to state assumptions, always reaching for a framework name instead of the concept.</p>
+<hr />
+<h2 id="7-the-48-hour-checklist">7. The 48-hour checklist<a class="anchor" href="#7-the-48-hour-checklist" aria-label="Link to this section">#</a></h2>
+<p>Do not learn anything new. Consolidate and rest.</p>
+<h3 id="two-days-before">Two days before<a class="anchor" href="#two-days-before" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>[ ] Re-read the mastery checklists for <code>07</code>, <code>06</code>, <code>11</code> only</li>
+<li>[ ] Read your own <code>eval/results/</code> files and memorize your three best numbers</li>
+<li>[ ] Re-read <code>docs/failure-analysis.md</code> from projects 2 and 3</li>
+<li>[ ] Say your 60-second project narratives aloud, timed</li>
+<li>[ ] Review the company: what they build, what their AI problems probably are</li>
+<li>[ ] Write your three questions for them</li>
+</ul>
+<h3 id="the-day-before">The day before<a class="anchor" href="#the-day-before" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>[ ] One 45-minute system design, aloud, timed</li>
+<li>[ ] Skim the interview angle sections of <code>06</code>, <code>07</code>, <code>08</code>, do not read them all</li>
+<li>[ ] Check your setup: camera, microphone, editor, screen share</li>
+<li>[ ] Have your repository open in a tab</li>
+<li>[ ] Stop by early evening. Cramming the night before measurably hurts.</li>
+</ul>
+<h3 id="the-morning-of">The morning of<a class="anchor" href="#the-morning-of" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>[ ] Re-read only your own numbers: recall improvements, cost figures, benchmark results</li>
+<li>[ ] One practice answer aloud to warm up your voice</li>
+<li>[ ] Nothing new</li>
+</ul>
+<h3 id="the-numbers-to-have-ready">The numbers to have ready<a class="anchor" href="#the-numbers-to-have-ready" aria-label="Link to this section">#</a></h3>
+<p>The single highest-leverage preparation. Fill these from your own repository:</p>
+<table>
+<thead>
+<tr>
+<th>Have ready</th>
+<th>Yours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recall@5 before and after your biggest retrieval change</td>
+<td></td>
+</tr>
+<tr>
+<td>The latency cost of that change</td>
+<td></td>
+</tr>
+<tr>
+<td>Your eval set size and composition</td>
+<td></td>
+</tr>
+<tr>
+<td>Tokens per second measured on your own hardware</td>
+<td></td>
+</tr>
+<tr>
+<td>Model size and quantization you ran, and why</td>
+<td></td>
+</tr>
+<tr>
+<td>Cost per request or per month for something you built</td>
+<td></td>
+</tr>
+<tr>
+<td>Injection attempts made and how many succeeded</td>
+<td></td>
+</tr>
+<tr>
+<td>Test count and coverage on project 1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Six specific numbers beat any amount of architectural vocabulary.</strong> They cannot be faked and almost no candidate has them.</p>
+<hr />
+<h2 id="8-questions-to-ask-them">8. Questions to ask them<a class="anchor" href="#8-questions-to-ask-them" aria-label="Link to this section">#</a></h2>
+<p>Ask three. They are assessed, and they are genuinely how you evaluate the job.</p>
+<p><strong>Good, because the answers tell you something:</strong></p>
+<ul>
+<li>"How do you currently evaluate whether an AI feature is working?" A team with no answer is a team you would be building that for, which may be good or bad, and you want to know.</li>
+<li>"What broke most recently, and what did you change?"</li>
+<li>"How do prompt changes get reviewed and deployed?"</li>
+<li>"What's the split between building new features and operating what exists?"</li>
+<li>"What would you want someone in this role to have shipped in six months?"</li>
+</ul>
+<p><strong>Avoid:</strong> anything answerable from the careers page, compensation in an early round, and "do you have work-life balance", which never gets an honest answer.</p>
+<p><strong>The best question is a specific follow-up to something they said earlier.</strong> It demonstrates you were listening, which is worth more than any prepared question.</p>
+<hr />
+<h2 id="9-question-index">9. Question index<a class="anchor" href="#9-question-index" aria-label="Link to this section">#</a></h2>
+<p>This file and <code>12b</code> do not restate module questions. Each module owns its own.</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Module</th>
+<th>Questions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python object model, collections, exceptions</td>
+<td><code>01a</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>OOP, decorators, typing, applied patterns</td>
+<td><code>01b</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>DSA patterns</td>
+<td><code>01c</code></td>
+<td>per-pattern</td>
+</tr>
+<tr>
+<td>Git, CI, review, debugging, HTTP, concurrency</td>
+<td><code>02</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>SQL, joins, statistics, experimentation</td>
+<td><code>03</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>Leakage, metrics, thresholds, calibration</td>
+<td><code>04</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>Backprop, gradients, training, fine-tuning</td>
+<td><code>05</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>Attention, KV cache, sampling, quantization, injection</td>
+<td><code>06</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>RAG, chunking, hybrid, evaluation, permissions</td>
+<td><code>07</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>Agents, tools, MCP, trajectories, security</td>
+<td><code>08</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>Local inference, memory math, serving</td>
+<td><code>09</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>Deployment, monitoring, rollback, cost</td>
+<td><code>10</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>System design, four walkthroughs</td>
+<td><code>11</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><strong>Cross-cutting, spanning modules</strong></td>
+<td><strong><code>12b</code></strong></td>
+<td><strong>45</strong></td>
+</tr>
+<tr>
+<td><strong>Behavioral and project stories</strong></td>
+<td><strong><code>12c</code></strong></td>
+<td><strong>20</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Roughly 165 questions with answer outlines. Do not attempt to review them all before an interview; use the mastery checklists to find gaps and read only those sections.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Every module's <code>## Interview angle</code> section is the content this file structures.</li>
+<li><code>12b-interview-question-bank.md</code> covers what no single module owns.</li>
+<li><code>12c-interview-behavioral-and-projects.md</code> covers experience questions.</li>
+<li><code>11-ai-system-design.md</code> section 1 has the design-specific framework, which is a specialization of section 2 here.</li>
+<li><code>tracker/progress-log.md</code> section 6 is where mock scores go.</li>
+<li><code>13-project-portfolio.md</code> is what the "have these numbers ready" table draws from.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The skills matrix</td>
+<td>Titles and bars shift, and vary by company</td>
+<td>10 current postings</td>
+</tr>
+<tr>
+<td>"Candidates most often fall short on X"</td>
+<td>A pattern, not a survey</td>
+<td>Your own post-interview notes</td>
+</tr>
+<tr>
+<td>Interview format assumptions</td>
+<td>Formats change</td>
+<td>The recruiter, who will tell you if you ask</td>
+</tr>
+</tbody>
+</table>
+<p>The answer framework, how to handle not knowing, and the mock discipline are stable.</p>
+<p><strong>Next review due:</strong> after your first five interviews, using your own notes.</p>
+      <nav class="pager">
+<a class="pager-prev" href="11-system-design.html"><span>Previous</span>11 · AI System Design</a>
+<a class="pager-next" href="12b-question-bank.html"><span>Next</span>12b · Question Bank</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-file-exists">Why this file exists</a></li>
+<li class="toc-l2"><a href="#1-skills-matrix">1. Skills matrix</a></li>
+<li class="toc-l2"><a href="#2-the-answer-framework">2. The answer framework</a></li>
+<li class="toc-l3"><a href="#the-5-minute-expansion">The 5-minute expansion</a></li>
+<li class="toc-l3"><a href="#worked-example-of-both-lengths">Worked example of both lengths</a></li>
+<li class="toc-l2"><a href="#3-how-to-handle-not-knowing">3. How to handle not knowing</a></li>
+<li class="toc-l2"><a href="#4-question-types-and-what-each-tests">4. Question types and what each tests</a></li>
+<li class="toc-l2"><a href="#5-the-technical-screen">5. The technical screen</a></li>
+<li class="toc-l2"><a href="#6-mock-interview-schedules">6. Mock interview schedules</a></li>
+<li class="toc-l3"><a href="#4-week-schedule-interview-imminent">4-week schedule, interview imminent</a></li>
+<li class="toc-l3"><a href="#8-week-schedule-standard">8-week schedule, standard</a></li>
+<li class="toc-l3"><a href="#12-week-schedule-building-depth-alongside">12-week schedule, building depth alongside</a></li>
+<li class="toc-l2"><a href="#7-the-48-hour-checklist">7. The 48-hour checklist</a></li>
+<li class="toc-l3"><a href="#two-days-before">Two days before</a></li>
+<li class="toc-l3"><a href="#the-day-before">The day before</a></li>
+<li class="toc-l3"><a href="#the-morning-of">The morning of</a></li>
+<li class="toc-l3"><a href="#the-numbers-to-have-ready">The numbers to have ready</a></li>
+<li class="toc-l2"><a href="#8-questions-to-ask-them">8. Questions to ask them</a></li>
+<li class="toc-l2"><a href="#9-question-index">9. Question index</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

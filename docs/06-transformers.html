@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 · Transformers &amp; LLMs · AI Engineer Learning OS</title>
+<meta name="description" content="Attention worked by hand, KV cache, sampling, quantization, hallucination.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html" class="active">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="06-transformers-and-llms">06 Transformers and LLMs<a class="anchor" href="#06-transformers-and-llms" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium; the architecture is stable, everything operational around it is not</p>
+<p>Every number in this module was computed, not recalled. The attention example is worked by hand and verified against numpy; the KV cache figures come from the formula, evaluated.</p>
+<hr />
+<h2 id="why-this-matters">Why this matters<a class="anchor" href="#why-this-matters" aria-label="Link to this section">#</a></h2>
+<p>You can build a working LLM application without knowing what happens inside the model. You cannot debug one.</p>
+<p>The questions that actually arrive are operational: why did latency spike at long context, why does the same prompt cost three times as much today, why did output quality fall off a cliff after quantization, why does the model confidently invent a citation. Each has an answer inside the architecture, and none is reachable from the API documentation.</p>
+<p>In interviews this module is where depth is tested. "Explain attention" is the warm-up. The real questions are "what is in the KV cache and why does it dominate your memory budget", "why does temperature not fix hallucination", and "walk me from a user's keystroke to the first token appearing". Those reward mechanism over vocabulary.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="anchor" href="#prerequisites" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>You need</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gradients, loss, training loops</td>
+<td><code>05</code> sections on backprop and optimization</td>
+</tr>
+<tr>
+<td>Neural network basics: layers, nonlinearity</td>
+<td><code>05</code></td>
+</tr>
+<tr>
+<td>Matrix multiplication and dot products</td>
+<td>High school linear algebra is enough</td>
+</tr>
+<tr>
+<td>Batching, caching, retries against an API</td>
+<td><code>01b</code> section 9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>On the fast path</strong>, you are reading this after <code>07</code> and without <code>05</code>. That works for everything except the training material in section 6, which will feel abstract. Read it anyway, and it will land properly when you circle back.</p>
+<p>For the linear algebra: you need to know that a dot product of two vectors is a single number measuring alignment, and that a matrix multiply is many dot products at once. That is genuinely all.</p>
+<hr />
+<h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Level</th>
+<th>Skip if you can...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Tokenization</td>
+<td>[CORE]</td>
+<td>...name three bugs that are actually tokenization bugs</td>
+</tr>
+<tr>
+<td>2. Embeddings and position</td>
+<td>[FOUNDATION]</td>
+<td>...say why position must be injected at all</td>
+</tr>
+<tr>
+<td>3. Attention, worked by hand</td>
+<td>[CORE]</td>
+<td>...compute a 3-token attention output with pencil and paper</td>
+</tr>
+<tr>
+<td>4. Multi-head and masking</td>
+<td>[CORE]</td>
+<td>...say what causal masking does and why training needs it</td>
+</tr>
+<tr>
+<td>5. Architecture families</td>
+<td>[FOUNDATION]</td>
+<td>...say when encoder-only beats decoder-only</td>
+</tr>
+<tr>
+<td>6. Training stages</td>
+<td>[CORE]</td>
+<td>...distinguish pretraining, SFT and preference optimization by what each fixes</td>
+</tr>
+<tr>
+<td>7. Inference, KV cache, sampling</td>
+<td>[CORE]</td>
+<td>...compute KV cache size from model dimensions</td>
+</tr>
+<tr>
+<td>8. Quantization</td>
+<td>[CORE]</td>
+<td>...say what you lose at Q4 and where it shows up</td>
+</tr>
+<tr>
+<td>9. Hallucination</td>
+<td>[CORE]</td>
+<td>...explain why prompting alone cannot fix it</td>
+</tr>
+<tr>
+<td>10. Tools and structured output</td>
+<td>[CORE]</td>
+<td>...explain how constrained decoding guarantees valid JSON</td>
+</tr>
+<tr>
+<td>11. Evaluation</td>
+<td>[CORE]</td>
+<td>...say why a benchmark score does not predict your task</td>
+</tr>
+<tr>
+<td>12. Security</td>
+<td>[CORE]</td>
+<td>...explain why prompt injection is architectural, not a bug</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="mental-model">Mental model<a class="anchor" href="#mental-model" aria-label="Link to this section">#</a></h2>
+<p><strong>A language model is a function from a sequence of tokens to a probability distribution over the next token. Everything else is engineering around that one operation.</strong></p>
+<p>Generation is that function applied repeatedly: predict a distribution, pick a token, append it, predict again. There is no plan, no draft, no internal representation of the finished answer. The apparent coherence comes from each token being conditioned on everything before it.</p>
+<p>Attention is how the model decides which earlier tokens matter for the current prediction. That is the entire idea. The rest of the architecture is plumbing that makes it trainable at scale.</p>
+<p><strong>Where the analogy breaks down</strong>, in two ways worth holding.</p>
+<p>It undersells the model. "Just predicting the next token" is technically accurate and misleading about capability: predicting the next token of a correct proof requires representing the proof. The objective is simple; what the model must learn to satisfy it is not.</p>
+<p>It also oversells determinism. The function is deterministic, but the <em>sampling</em> on top of it is not, and neither is the batching underneath it. Two identical requests can produce different outputs even at temperature 0, because floating-point reduction order varies with batch composition. Expecting bit-identical output from an API is a common and costly assumption.</p>
+<hr />
+<h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    TEXT[&quot;Input text&quot;]
+    TOK[&quot;Tokenizer, text to integer ids&quot;]
+    EMB[&quot;Embedding lookup, ids to vectors&quot;]
+    POS[&quot;Position information&quot;]
+
+    subgraph BLOCK[&quot;Transformer block, repeated N times&quot;]
+        ATTN[&quot;Self-attention, mix information across positions&quot;]
+        FFN[&quot;Feed-forward, process each position independently&quot;]
+        NORM[&quot;Normalization and residual connections&quot;]
+    end
+
+    LOGITS[&quot;Logits, one score per vocabulary token&quot;]
+    SAMPLE[&quot;Sampling: temperature, top-p, top-k&quot;]
+    NEXT[&quot;Next token&quot;]
+    KV[&quot;KV cache&quot;]
+
+    TEXT --&gt; TOK --&gt; EMB
+    POS --&gt; ATTN
+    EMB --&gt; ATTN
+    ATTN --&gt; NORM --&gt; FFN --&gt; NORM
+    NORM --&gt; LOGITS --&gt; SAMPLE --&gt; NEXT
+    NEXT --&gt;|&quot;appended, loop&quot;| TOK
+    ATTN --&gt;|&quot;keys and values stored&quot;| KV
+    KV --&gt;|&quot;reused next step&quot;| ATTN
+</pre></div>
+<hr />
+<h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
+<h3 id="1-tokenization-core">1. Tokenization [CORE]<a class="anchor" href="#1-tokenization-core" aria-label="Link to this section">#</a></h3>
+<p>Models do not see characters. They see integer ids from a fixed vocabulary, typically 30,000 to 200,000 entries, produced by a subword algorithm such as BPE.</p>
+<p>Common words get one token. Rare words split into pieces. <code>"tokenization"</code> might be <code>["token", "ization"]</code>; <code>"Lakshmidhar"</code> might be five pieces.</p>
+<p><strong>Why subword rather than words or characters.</strong> Word-level vocabularies cannot handle anything unseen and would need millions of entries. Character-level sequences are far too long, and attention cost grows with the square of sequence length. Subword is the compromise: a bounded vocabulary that can represent anything.</p>
+<p><strong>The bugs this causes, which is why the section exists:</strong></p>
+<p><strong>Character-level tasks fail bizarrely.</strong> "How many r's in strawberry" is hard because the model sees two or three opaque chunks, not ten letters. Reversing a string, counting characters, and simple ciphers all fail for this reason. Not a reasoning failure; an input representation failure.</p>
+<p><strong>Arithmetic is fragile.</strong> Numbers tokenize inconsistently: <code>1234</code> might be one token or <code>12</code>,<code>34</code> or <code>1</code>,<code>2</code>,<code>3</code>,<code>4</code> depending on the tokenizer and what surrounds it. Digits that are not aligned into consistent units make column arithmetic genuinely hard.</p>
+<p><strong>Non-English text costs more.</strong> English is heavily represented in tokenizer training, so English averages fewer tokens per word than most other languages. The same document translated can cost two or three times as much and consume proportionally more context. <code>[VERIFY: the specific ratios vary by tokenizer @ measure with your provider's tokenizer]</code></p>
+<p><strong>Trailing whitespace changes output.</strong> <code>"The answer is"</code> and <code>"The answer is "</code> tokenize differently, and the model has learned that a token beginning with a space is normal mid-sentence. A trailing space can measurably degrade output. If a prompt template behaves oddly, check its whitespace.</p>
+<p><strong>Token counts are not word counts.</strong> Roughly 0.75 words per token for English prose, much worse for code, JSON, and non-Latin scripts. Budget with an actual tokenizer, never with a word count.</p>
+<p><strong>The practical rule:</strong> when a model fails at something that seems trivially easy, ask whether the task is about characters. If so, it is a tokenization problem, and the fix is to do that part in code rather than to prompt harder.</p>
+<h3 id="2-embeddings-and-position-foundation">2. Embeddings and position [FOUNDATION]<a class="anchor" href="#2-embeddings-and-position-foundation" aria-label="Link to this section">#</a></h3>
+<p><strong>Token embeddings.</strong> Each vocabulary id indexes into a learned matrix of shape (vocab_size, d_model), giving a dense vector. These are learned during pretraining, and their geometry is what makes the vectors in module 07 meaningful.</p>
+<p>Note the distinction: these are <em>token</em> embeddings, one per subword. The sentence embeddings used in retrieval come from a different model trained specifically to put whole passages in a comparable space.</p>
+<p><strong>Why position must be injected.</strong> Attention, as defined in section 3, is permutation-invariant: it computes a weighted sum, and a sum does not care about order. Without position information, "dog bites man" and "man bites dog" produce identical outputs. This is not an implementation detail; it is a consequence of the operation.</p>
+<p>Approaches:</p>
+<ul>
+<li><strong>Learned absolute.</strong> A position vector per index, added to the token embedding. Simple, and cannot extrapolate past the trained maximum length.</li>
+<li><strong>Sinusoidal.</strong> Fixed functions of position, from the original paper. Extrapolates in principle, poorly in practice.</li>
+<li><strong>RoPE (rotary).</strong> Rotates query and key vectors by an angle proportional to position, so the dot product between two positions depends on their <em>relative</em> distance. Dominant in current models, because relative position is what matters for language and because it extends to longer contexts more gracefully.</li>
+</ul>
+<p><strong>Why you should care about RoPE specifically:</strong> context-length extension techniques work by manipulating RoPE's frequency scaling. When you see a model advertised with an extended context, that is usually what happened, and it usually degrades quality at the extended range compared to a model trained there natively. <code>[VERIFY: context extension methods and their quality cost @ current papers]</code></p>
+<h3 id="3-attention-worked-by-hand-core">3. Attention, worked by hand [CORE]<a class="anchor" href="#3-attention-worked-by-hand-core" aria-label="Link to this section">#</a></h3>
+<p>The central operation. Work through the arithmetic once and it stops being mysterious.</p>
+<p><strong>The idea in one sentence:</strong> every token asks a question, every token advertises what it offers, and each token builds its output as a weighted blend of what the others offer, weighted by how well its question matches their advertisement.</p>
+<p>Three projections of the same input:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Query</strong> (Q)</td>
+<td>What this position is looking for</td>
+</tr>
+<tr>
+<td><strong>Key</strong> (K)</td>
+<td>What this position offers</td>
+</tr>
+<tr>
+<td><strong>Value</strong> (V)</td>
+<td>What this position contributes if selected</td>
+</tr>
+</tbody>
+</table>
+<p>The formula:</p>
+<div class="highlight"><pre><span></span><code>Attention(Q, K, V) = softmax( (Q Kᵀ) / √d_k ) V
+</code></pre></div>
+
+<h4 id="the-worked-example">The worked example<a class="anchor" href="#the-worked-example" aria-label="Link to this section">#</a></h4>
+<p>Three tokens, <code>d_model = 4</code>, <code>d_k = 2</code>. Integers chosen so every step is checkable by hand.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;the&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;sat&quot;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>   <span class="c1"># the</span>
+    <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>   <span class="c1"># cat</span>
+    <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>   <span class="c1"># sat</span>
+<span class="p">])</span>
+<span class="n">W_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">]])</span>
+<span class="n">W_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]])</span>
+<span class="n">W_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">2.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]])</span>
+
+<span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_q</span><span class="p">,</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_k</span><span class="p">,</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_v</span>
+</code></pre></div>
+
+<p><strong>Step 1: project.</strong></p>
+<div class="highlight"><pre><span></span><code>Q = [[2, 0],     K = [[0, 2],     V = [[1, 1],
+     [0, 2],          [2, 0],          [2, 2],
+     [2, 1]]          [1, 2]]          [1, 3]]
+</code></pre></div>
+
+<p><strong>Step 2: score every query against every key.</strong> <code>S = Q Kᵀ</code>, so <code>S[i][j]</code> is how much token i's question matches token j's offer.</p>
+<div class="highlight"><pre><span></span><code>QKᵀ = [[0, 4, 2],
+       [4, 0, 4],
+       [2, 4, 4]]
+</code></pre></div>
+
+<p>Check one by hand: <code>S[2][1] = q₃ · k₂ = [2,1] · [2,0] = 4</code>. High, so "sat" is very interested in "cat".</p>
+<p><strong>Step 3: scale by √d_k.</strong> Here √2 ≈ 1.4142.</p>
+<div class="highlight"><pre><span></span><code>scaled = [[0.000, 2.828, 1.414],
+          [2.828, 0.000, 2.828],
+          [1.414, 2.828, 2.828]]
+</code></pre></div>
+
+<p><strong>Step 4: causal mask.</strong> A decoder predicting token 3 must not see tokens 4 onward. Set everything above the diagonal to −∞, so softmax gives it exactly zero weight.</p>
+<div class="highlight"><pre><span></span><code>masked = [[0.000,  -inf,  -inf],
+          [2.828, 0.000,  -inf],
+          [1.414, 2.828, 2.828]]
+</code></pre></div>
+
+<p><strong>Step 5: softmax each row</strong>, turning scores into weights summing to 1.</p>
+<div class="highlight"><pre><span></span><code>weights = [[1.000, 0.000, 0.000],
+           [0.944, 0.056, 0.000],
+           [0.108, 0.446, 0.446]]
+</code></pre></div>
+
+<p><strong>Step 6: weighted sum of values.</strong> <code>output = weights @ V</code>.</p>
+<div class="highlight"><pre><span></span><code>output = [[1.000, 1.000],
+          [1.056, 1.056],
+          [1.446, 2.337]]
+</code></pre></div>
+
+<h4 id="row-3-in-full-by-hand">Row 3 in full, by hand<a class="anchor" href="#row-3-in-full-by-hand" aria-label="Link to this section">#</a></h4>
+<div class="highlight"><pre><span></span><code>q₃ = [2, 1]
+
+q₃ · k₁ = [2,1]·[0,2] = 2   →  2/√2 = 1.4142
+q₃ · k₂ = [2,1]·[2,0] = 4   →  4/√2 = 2.8284
+q₃ · k₃ = [2,1]·[1,2] = 4   →  4/√2 = 2.8284
+
+softmax: subtract the max (2.8284), then exponentiate
+  exp(1.4142 - 2.8284) = exp(-1.4142) = 0.243
+  exp(2.8284 - 2.8284) = exp(0)       = 1.000
+  exp(2.8284 - 2.8284) = exp(0)       = 1.000
+  sum = 2.243
+
+weights = [0.243, 1.000, 1.000] / 2.243 = [0.108, 0.446, 0.446]
+
+output₃ = 0.108·[1,1] + 0.446·[2,2] + 0.446·[1,3] = [1.446, 2.337]
+</code></pre></div>
+
+<p>Verified against numpy. Two things to take from it.</p>
+<p><strong>Subtracting the max before exponentiating</strong> is not cosmetic. <code>exp(800)</code> overflows to infinity, and softmax is shift-invariant, so subtracting the row max is free and prevents it. Every real implementation does this, and it is a good thing to notice in an interview.</p>
+<p><strong>"sat" attends 0.446 to both "cat" and itself and only 0.108 to "the".</strong> With hand-picked weights this is arbitrary, but it is the mechanism: a learned model's W_q and W_k are trained so this weighting is linguistically meaningful.</p>
+<h4 id="why-divide-by-d_k">Why divide by √d_k<a class="anchor" href="#why-divide-by-d_k" aria-label="Link to this section">#</a></h4>
+<p>The most commonly hand-waved step, and it is empirically demonstrable.</p>
+<p>For random vectors with unit-variance components, the dot product's variance grows linearly with dimension, so its standard deviation grows as √d_k. Measured over 5,000 random pairs:</p>
+<table>
+<thead>
+<tr>
+<th>d_k</th>
+<th>std of q·k</th>
+<th>std after ÷√d_k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>1.41</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>64</td>
+<td>7.94</td>
+<td>0.99</td>
+</tr>
+<tr>
+<td>512</td>
+<td>22.43</td>
+<td>0.99</td>
+</tr>
+</tbody>
+</table>
+<p>Scaling holds the variance at roughly 1 regardless of dimension. Without it, at d_k = 512 you feed softmax values ranging over tens, and softmax saturates:</p>
+<div class="highlight"><pre><span></span><code>softmax([10, 2, 1])      = [1.000, 0.000, 0.000]     saturated
+softmax([3.1, 0.6, 0.3]) = [0.875, 0.072, 0.053]     informative
+</code></pre></div>
+
+<p>A saturated softmax has near-zero gradient everywhere, so the model cannot learn. <strong>The scaling is a training-stability fix, not an accuracy trick</strong>, which is the answer to "why √d_k".</p>
+<h3 id="4-multi-head-attention-and-masking-core">4. Multi-head attention and masking [CORE]<a class="anchor" href="#4-multi-head-attention-and-masking-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Multi-head.</strong> Rather than one attention operation over the full <code>d_model</code>, split into <code>h</code> heads each of size <code>d_model / h</code>, run attention independently in each, concatenate, project.</p>
+<p>Why: one attention operation produces one weighted average, and averaging destroys information. A single head must compromise between tracking syntactic agreement, coreference, and topical relevance. Several smaller heads can specialize, and it costs no extra computation because the dimensions are split rather than duplicated.</p>
+<p>Post-hoc interpretation of heads as "the syntax head" is appealing and largely unreliable. Some heads have identifiable roles; many do not.</p>
+<p><strong>Causal masking</strong>, from step 4 above, deserves more than a line.</p>
+<p>During <em>training</em>, the model processes an entire sequence at once and predicts every next-token in parallel. Without masking, predicting token 5 could attend to token 6, which is the answer. The model would learn to copy rather than predict, and generate nothing at inference when there is no future to look at. The mask enforces that position i sees only positions ≤ i.</p>
+<p>This is the whole reason training can be parallel while generation is sequential, and it is the source of the throughput asymmetry in section 7: you can score a 4,000-token document in one forward pass, but you cannot generate 4,000 tokens in fewer than 4,000 passes.</p>
+<p><strong>Grouped-query attention (GQA)</strong> matters operationally. Standard multi-head gives every head its own K and V. GQA shares one K/V pair across a group of query heads. Quality cost is small; KV cache memory drops by the grouping factor, which section 7 quantifies as 4x for a typical configuration. Nearly every current model of serving interest uses it.</p>
+<h3 id="5-architecture-families-foundation">5. Architecture families [FOUNDATION]<a class="anchor" href="#5-architecture-families-foundation" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Attention</th>
+<th>Trained to</th>
+<th>Good at</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Encoder-only</strong></td>
+<td>Bidirectional</td>
+<td>Fill in masked tokens</td>
+<td>Understanding a whole input: classification, embeddings, reranking</td>
+<td>BERT, and the embedding and reranker models in module 07</td>
+</tr>
+<tr>
+<td><strong>Decoder-only</strong></td>
+<td>Causal</td>
+<td>Predict the next token</td>
+<td>Generation</td>
+<td>The GPT, Llama, Claude and Qwen families</td>
+</tr>
+<tr>
+<td><strong>Encoder-decoder</strong></td>
+<td>Bidirectional then causal</td>
+<td>Map a sequence to a sequence</td>
+<td>Translation, summarization</td>
+<td>T5, original Transformer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When encoder-only is the right answer, which is the interview question.</strong> For classification, embedding or reranking, an encoder sees the entire input in both directions and produces one representation. A decoder-only model can do these by generating a label, but it is larger, slower, and its representations are built under a causal constraint it does not need.</p>
+<p>Concretely: the reranker in module 07 is an encoder. Using a large decoder-only model to rerank is enormously more expensive for worse latency and usually no better quality. Knowing when a 100M-parameter encoder beats a 70B decoder is a genuine engineering signal.</p>
+<p>Decoder-only dominates generation because it is simpler to scale and one objective, next-token prediction, turns out to subsume most tasks when the model is large enough.</p>
+<h3 id="6-training-stages-core">6. Training stages [CORE]<a class="anchor" href="#6-training-stages-core" aria-label="Link to this section">#</a></h3>
+<p>Four stages, each fixing something the previous one cannot.</p>
+<p><strong>Pretraining.</strong> Next-token prediction over a very large corpus. Produces a model with broad knowledge and no inclination to be useful: prompt a base model with a question and it may continue with more questions, because that is what the training distribution contains. Almost all capability comes from here, and almost all cost.</p>
+<p><strong>Supervised fine-tuning (SFT).</strong> Train on curated instruction-and-response pairs. Teaches the model to respond rather than continue. Small relative to pretraining, and this is where the model learns the <em>shape</em> of an answer.</p>
+<p><strong>Preference optimization</strong> (RLHF, DPO, and variants). Humans rank alternative responses; the model is trained toward the preferred ones. This is how helpfulness, tone, refusal behavior and format consistency are tuned, because those are things people can compare but cannot easily specify as a target output.</p>
+<p><strong>Reasoning training.</strong> Training the model to produce extended intermediate reasoning before answering, rewarded on final correctness. <code>[VERIFY: this area is moving very fast @ current papers and model cards]</code></p>
+<p><strong>What this means for you as an engineer:</strong></p>
+<table>
+<thead>
+<tr>
+<th>To change</th>
+<th>Use</th>
+<th>Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Facts the model states</td>
+<td>RAG</td>
+<td>Fine-tuning; it bakes in a snapshot</td>
+</tr>
+<tr>
+<td>Output format consistency</td>
+<td>SFT, or prompting with examples</td>
+<td>RAG; that is few-shot done expensively</td>
+</tr>
+<tr>
+<td>Tone and style</td>
+<td>Preference optimization or prompting</td>
+<td>RAG</td>
+</tr>
+<tr>
+<td>Domain vocabulary</td>
+<td>Continued pretraining or SFT</td>
+<td>Prompting alone</td>
+</tr>
+</tbody>
+</table>
+<p>This table is the same decision as module 07 section 1, from the training side.</p>
+<p><strong>Why fine-tuning for facts is specifically wrong:</strong> the facts land in weights with no provenance, no update path short of retraining, no way to cite a source, and no way to delete something on request. RAG gives you all four. This is worth stating crisply, because "just fine-tune it on our docs" is a common and expensive instinct.</p>
+<h3 id="7-inference-kv-cache-batching-sampling-core">7. Inference: KV cache, batching, sampling [CORE]<a class="anchor" href="#7-inference-kv-cache-batching-sampling-core" aria-label="Link to this section">#</a></h3>
+<p>Where architecture becomes an operations problem.</p>
+<h4 id="two-phases-with-different-bottlenecks">Two phases with different bottlenecks<a class="anchor" href="#two-phases-with-different-bottlenecks" aria-label="Link to this section">#</a></h4>
+<p><strong>Prefill</strong> processes the entire prompt in one parallel forward pass. Compute-bound: lots of arithmetic, high hardware utilization. Determines <strong>time to first token (TTFT)</strong>.</p>
+<p><strong>Decode</strong> generates one token at a time, each pass depending on the last. Memory-bandwidth-bound: little arithmetic per token, but the entire model's weights must be read from memory for every single token. Determines <strong>tokens per second</strong>.</p>
+<p><strong>This asymmetry explains most inference behavior.</strong> Decode cannot use your hardware's compute; it is waiting on memory. That is why batching helps throughput so much, since one weight read serves many sequences, and why a longer prompt raises TTFT while barely affecting tokens per second.</p>
+<h4 id="the-kv-cache">The KV cache<a class="anchor" href="#the-kv-cache" aria-label="Link to this section">#</a></h4>
+<p>Naive generation recomputes attention over the whole sequence for every new token: quadratic and wasteful, since the keys and values for earlier tokens do not change. So you cache them.</p>
+<p>The cost is memory, and it is substantial:</p>
+<div class="highlight"><pre><span></span><code>kv_bytes = 2 × layers × n_kv_heads × d_head × seq_len × batch × bytes_per_element
+</code></pre></div>
+
+<p>The leading 2 is for K and V. Evaluated for a 7B-class model, 32 layers, 32 KV heads, d_head 128, fp16:</p>
+<table>
+<thead>
+<tr>
+<th>Sequence length</th>
+<th>Batch 1</th>
+<th>Batch 8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2,048</td>
+<td>1.00 GB</td>
+<td>8.00 GB</td>
+</tr>
+<tr>
+<td>8,192</td>
+<td>4.00 GB</td>
+<td>32.00 GB</td>
+</tr>
+<tr>
+<td>32,768</td>
+<td>16.00 GB</td>
+<td>128.00 GB</td>
+</tr>
+</tbody>
+</table>
+<p>Per token: 524,288 bytes, exactly 0.5 MB.</p>
+<p>With grouped-query attention reducing 32 KV heads to 8:</p>
+<table>
+<thead>
+<tr>
+<th>Sequence length</th>
+<th>Batch 1</th>
+<th>Batch 8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2,048</td>
+<td>0.25 GB</td>
+<td>2.00 GB</td>
+</tr>
+<tr>
+<td>8,192</td>
+<td>1.00 GB</td>
+<td>8.00 GB</td>
+</tr>
+<tr>
+<td>32,768</td>
+<td>4.00 GB</td>
+<td>32.00 GB</td>
+</tr>
+</tbody>
+</table>
+<p>Per token: 131,072 bytes, 4x smaller. That factor is why GQA is universal.</p>
+<p><strong>Compare against the weights themselves</strong>, 7B parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Precision</th>
+<th>Weights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fp16</td>
+<td>13.04 GB</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>6.52 GB</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>3.26 GB</td>
+</tr>
+<tr>
+<td>~2.1 bits</td>
+<td>1.71 GB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The conclusion that surprises people: at long context with any batching, the KV cache exceeds the model.</strong> A Q4 7B model is 3.26 GB of weights and, without GQA, 32 GB of cache at 8k context and batch 8. This is why serving frameworks work so hard on cache management, why context length is priced the way it is, and why "just increase the context window" is an infrastructure decision rather than a configuration change.</p>
+<h4 id="batching">Batching<a class="anchor" href="#batching" aria-label="Link to this section">#</a></h4>
+<p><strong>Static batching</strong> groups requests, runs them together, returns when all finish. Simple, and a short request waits for the longest one in the batch.</p>
+<p><strong>Continuous batching</strong> adds and removes sequences from the batch as they start and finish, so a completed slot is refilled immediately. Large throughput improvement under mixed workloads, and the reason production serving frameworks exist. Module 09 covers the implementations.</p>
+<h4 id="sampling">Sampling<a class="anchor" href="#sampling" aria-label="Link to this section">#</a></h4>
+<p>The model outputs logits, one score per vocabulary token. Sampling turns them into a choice.</p>
+<p><strong>Temperature</strong> divides the logits before softmax. Below 1 sharpens toward the most likely token; above 1 flattens toward uniform. Temperature 0 means always take the maximum.</p>
+<p><strong>Top-k</strong> keeps the k highest-probability tokens and renormalizes. Fixed count, regardless of how confident the distribution is.</p>
+<p><strong>Top-p (nucleus)</strong> keeps the smallest set of tokens whose probability sums to p. Adaptive: when the model is confident, few tokens; when uncertain, many.</p>
+<p><strong>Why temperature and top-p are not the same knob</strong>, which is a common interview question. Temperature reshapes the whole distribution, including the long tail, so high temperature makes genuinely bad tokens reachable. Top-p truncates the tail first and then samples within it. They compose: top-p removes the nonsense, temperature controls variety among what remains. Using temperature alone to get creativity also buys you incoherence.</p>
+<p><strong>Practical settings:</strong> for extraction, classification and structured output, temperature 0 or near it. For conversation, moderate temperature with top-p around 0.9 to 0.95. <code>[UNVERIFIED: these are conventions, not measurements. Test on your task.]</code></p>
+<p><strong>Temperature 0 is not deterministic in practice.</strong> The sampling is, but floating-point reduction order varies with batch composition and hardware scheduling, so results can differ between identical calls. Anyone who has built a regression test asserting exact model output has learned this. Assert on properties, not on strings.</p>
+<h3 id="8-quantization-core">8. Quantization [CORE]<a class="anchor" href="#8-quantization-core" aria-label="Link to this section">#</a></h3>
+<p>Storing weights in fewer bits than the 16 they were trained in.</p>
+<p><strong>Why it works.</strong> Weights cluster in a narrow range and neural networks are robust to small perturbations. Rounding them costs less accuracy than the memory saving suggests.</p>
+<p><strong>Why it matters so much for inference.</strong> Decode is memory-bandwidth-bound, so halving the bytes read per token roughly doubles speed <em>and</em> halves memory. It is one of the few genuine two-for-one wins available.</p>
+<p><strong>The levels, as a rough map:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>Typical quality</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td>Reference</td>
+<td>Training; quality baseline</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Nearly indistinguishable</td>
+<td>Safe default for serving</td>
+</tr>
+<tr>
+<td>5-6</td>
+<td>Small degradation, rarely noticeable</td>
+<td>Common sweet spot</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Noticeable but usually acceptable</td>
+<td>The most common serving point</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>Significant, task-dependent</td>
+<td>Fitting a large model into small memory</td>
+</tr>
+</tbody>
+</table>
+<p><code>[UNVERIFIED: these characterizations are directional. Quantization quality depends on the method, the calibration data, and the task, and it has improved substantially over time. Measure on your own task.]</code></p>
+<p><strong>Where degradation shows up first</strong>, which is the useful part:</p>
+<ul>
+<li>Long-context coherence, before short-answer accuracy</li>
+<li>Instruction following and format adherence, before factual recall</li>
+<li>Code generation, before prose</li>
+<li>Rare knowledge, before common knowledge</li>
+<li>Multi-step reasoning, before single-step</li>
+</ul>
+<p>A quantized model that scores well on short factual benchmarks can still be noticeably worse at following a complex JSON schema across a long prompt. <strong>This is why benchmark scores are a poor guide to quantization choice</strong>, and why the memory saving looks free until it is not.</p>
+<p><strong>Methods worth knowing by name:</strong> round-to-nearest (simplest, worst); calibration-based methods that use sample data to choose per-group scales; importance-weighted methods that allocate more bits to weights that matter more; and mixed-precision schemes that keep sensitive layers at higher precision. Module 09 covers GGUF's taxonomy specifically, since that is what you will actually choose from.</p>
+<p><strong>The KV cache can be quantized too</strong>, separately from the weights, which matters at long context where the cache dominates. Quality cost is generally higher than for weights.</p>
+<h3 id="9-hallucination-core">9. Hallucination [CORE]<a class="anchor" href="#9-hallucination-core" aria-label="Link to this section">#</a></h3>
+<p><strong>What it is, mechanically.</strong> The model produces a distribution over next tokens and samples from it. Nothing in that process checks anything against the world. A fluent falsehood and a fluent truth are produced by identical machinery, and the model's confidence reflects the training distribution's statistics, not the claim's accuracy.</p>
+<p><strong>The specific pattern:</strong> plausible-shaped fabrication. Invented citations look like real citations: plausible authors, a real-sounding journal, a formatted year. Invented API methods follow the library's naming conventions. This is exactly what you would expect from a system trained to produce likely continuations, and it is what makes hallucination dangerous rather than merely wrong: the output has all the surface features of correctness.</p>
+<p><strong>Why prompting cannot fix it.</strong> "Do not make things up" adjusts the distribution slightly toward hedging. It does not install a verification step, because there is none to install. The model has no separate representation of "things I know" against which to check. Asking for confidence scores produces a number sampled from the same distribution as everything else, so an unreliable claim comes with an unreliable confidence.</p>
+<p>This is the answer to "how do you stop hallucination", and the honest one: <strong>you do not eliminate it, you build a system where it is caught or made irrelevant.</strong></p>
+<p><strong>The interventions that actually work</strong>, in order of effectiveness:</p>
+<ol>
+<li><strong>Supply the facts.</strong> RAG. A model with the right chunk in context does not need to recall it. Does not eliminate hallucination and moves it from "invented from nothing" to "unsupported by the provided sources", which is detectable.</li>
+<li><strong>Verify structurally.</strong> Every claim cites a source id; check each against the source. Module 07 section 9's faithfulness metric.</li>
+<li><strong>Enable refusal.</strong> An explicit refusal instruction with fixed wording, plus abstaining when retrieval scores are all low. Measurable, which is the point.</li>
+<li><strong>Validate outputs.</strong> Pydantic for structure, then check semantics: does the cited document exist, does the API method exist, does the arithmetic hold.</li>
+<li><strong>Use tools for facts that have an authority.</strong> Do not ask the model to recall a stock price or perform arithmetic; give it a tool.</li>
+<li><strong>Keep a human in the loop where the cost of being wrong is high.</strong></li>
+</ol>
+<p><strong>What does not work, and is commonly attempted:</strong> asking the model to rate its own confidence; asking "are you sure"; temperature 0, which makes the model deterministic and not correct; telling it to only use reliable information.</p>
+<h3 id="10-tools-and-structured-output-core">10. Tools and structured output [CORE]<a class="anchor" href="#10-tools-and-structured-output-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Structured output.</strong> You need JSON matching a schema. Three approaches, increasing in reliability:</p>
+<p><strong>Prompting.</strong> "Respond with JSON matching this schema." Works most of the time. Fails by adding prose around the JSON, using markdown fences, trailing commas, or omitting a field. Always parse defensively with a retry.</p>
+<p><strong>JSON mode.</strong> The provider constrains decoding to syntactically valid JSON. Guarantees parseability, not schema conformance.</p>
+<p><strong>Constrained decoding against a schema.</strong> At each step, the sampler masks out every token that could not continue a valid instance of the schema. <strong>This makes an invalid output impossible rather than unlikely</strong>, which is a categorical difference worth understanding: it is enforced at the sampling step, not checked afterwards. The cost is a slight quality reduction when the schema fights the model's natural output, and some latency.</p>
+<p>Even with constrained decoding, validate with Pydantic at the boundary (<code>01b</code> section 9.3). Schema-valid and semantically correct are different: a required <code>total</code> field will be present and may be nonsense.</p>
+<p><strong>Tool calling.</strong> You describe available functions with a name, description and parameter schema. The model emits a structured call; your code executes it and returns the result; the model continues.</p>
+<p><strong>The thing to be clear about: the model does not execute anything.</strong> It produces text saying a function should be called with certain arguments. Everything after that is your code, and therefore your responsibility, including authorization, validation and rate limiting. Candidates who describe the model as "using tools" without this distinction reveal they have not built one.</p>
+<p><strong>Quality of tool use depends mostly on the descriptions.</strong> The parameter descriptions are what the model reads to decide what to pass. Vague descriptions produce wrong arguments, and the fix is almost always better descriptions rather than a better model. Module 08 covers this in depth.</p>
+<h3 id="11-evaluation-core">11. Evaluation [CORE]<a class="anchor" href="#11-evaluation-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Why public benchmarks tell you little about your task.</strong></p>
+<p><strong>Contamination.</strong> Benchmarks are on the public internet, so they are in pretraining data. A model may have memorized the test set. Contamination is hard to measure and generally assumed to be present to some degree.</p>
+<p><strong>Benchmarks measure benchmark-shaped tasks.</strong> Multiple choice over general knowledge predicts very little about extracting fields from your vendor invoices.</p>
+<p><strong>Optimization pressure.</strong> Benchmarks are a marketing surface, so they receive attention disproportionate to their predictive value.</p>
+<p><strong>A one-point difference is noise.</strong> Without variance reporting, small gaps are not interpretable, and most leaderboards do not report variance.</p>
+<p><strong>What to do instead.</strong> Build a task-specific evaluation set, exactly as in module 07 section 9. Thirty to fifty real examples from your actual use case, with correct outputs, and a metric that reflects the decision being made. This is the single highest-return day of work available and almost nobody does it.</p>
+<p><strong>Evaluation approaches, and where each fits:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Good for</th>
+<th>Weakness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exact match</td>
+<td>Classification, extraction with a fixed answer</td>
+<td>Useless for open generation</td>
+</tr>
+<tr>
+<td>Structural checks</td>
+<td>Valid JSON, required fields, cited ids exist</td>
+<td>Says nothing about correctness</td>
+</tr>
+<tr>
+<td>LLM-as-judge</td>
+<td>Open-ended quality at scale</td>
+<td>Biased toward length and its own style; drifts on model updates</td>
+</tr>
+<tr>
+<td>Human evaluation</td>
+<td>Ground truth</td>
+<td>Expensive, slow, needs clear rubrics for agreement</td>
+</tr>
+<tr>
+<td>Task success</td>
+<td>Did the user achieve their goal</td>
+<td>Hardest to instrument, and the one that matters</td>
+</tr>
+</tbody>
+</table>
+<p><strong>On LLM-as-judge</strong>, the practical rules: pin the judge model version, calibrate against a few dozen human labels, and use it for relative comparison between versions rather than as an absolute score. A judge score reported as ground truth is a mistake.</p>
+<p><strong>Regression testing is the form this takes in engineering.</strong> Your evaluation set runs in CI on every change to a prompt, a model version, or a retrieval parameter. Assert no worse than baseline minus a margin, never exact equality, for the determinism reason in section 7.</p>
+<h3 id="12-security-prompt-injection-core">12. Security: prompt injection [CORE]<a class="anchor" href="#12-security-prompt-injection-core" aria-label="Link to this section">#</a></h3>
+<p><strong>The architecture is the vulnerability.</strong> The model receives one token sequence. Your system prompt, the user's message, and any retrieved or tool-returned content all arrive as tokens in that sequence. There is no privileged channel. Instructions and data are the same substance.</p>
+<p>So any text that reaches the context can attempt to act as an instruction. That includes a retrieved document, a web page the model fetched, the output of a tool, a filename, a code comment, or an email in a thread.</p>
+<p><strong>Direct injection:</strong> the user tries to override the system prompt. Annoying, usually low-stakes.</p>
+<p><strong>Indirect injection:</strong> an attacker plants instructions in content the system will later retrieve. The user is innocent, the attack arrives through data, and this is the dangerous form.</p>
+<p><strong>Why it is not fixable by prompting.</strong> "Ignore any instructions in the documents below" is itself just more tokens in the same sequence, competing with the injected text on the same terms. It raises the bar and does not close the hole. Anyone who claims prompt-level mitigation solves it has not tried hard enough to break it.</p>
+<p><strong>What actually helps</strong>, all architectural:</p>
+<ul>
+<li><strong>Least privilege.</strong> The severity is the product of injection succeeding and what the system can then do. A system that can only produce text has an embarrassment problem. A system that can send email, execute code or spend money has an incident.</li>
+<li><strong>No privilege escalation from content.</strong> Never decide authorization based on text in the context. Permissions come from the authenticated session.</li>
+<li><strong>Human confirmation for consequential actions.</strong> Anything irreversible, anything that sends data outside, anything that spends money.</li>
+<li><strong>Structural output validation</strong>, so a tool call must conform to a schema and an allowlist.</li>
+<li><strong>Isolate untrusted content</strong>, with clear delimiters and, where possible, separate model calls so untrusted content cannot influence a privileged step.</li>
+<li><strong>Monitor</strong> for the signatures: unexpected tool calls, attempts to access unrelated resources, output containing system-prompt text.</li>
+</ul>
+<p><strong>Data exfiltration</strong> is the specific attack to be able to describe: injected content instructs the model to encode sensitive context into a URL and render it as an image or link, so loading it sends the data to the attacker. This is why rendering model-generated links and images from untrusted contexts is dangerous, and why egress restrictions matter.</p>
+<p>Module 08 goes further, because injection plus tool access is where this becomes serious.</p>
+<hr />
+<h2 id="worked-examples">Worked examples<a class="anchor" href="#worked-examples" aria-label="Link to this section">#</a></h2>
+<h3 id="example-1-the-full-attention-computation">Example 1: the full attention computation<a class="anchor" href="#example-1-the-full-attention-computation" aria-label="Link to this section">#</a></h3>
+<p>Runnable, verified. See section 3 for the step-by-step reading.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>   <span class="c1"># shift for numerical stability</span>
+    <span class="k">return</span> <span class="n">e</span> <span class="o">/</span> <span class="n">e</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>   <span class="c1"># the</span>
+    <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>   <span class="c1"># cat</span>
+    <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>   <span class="c1"># sat</span>
+<span class="p">])</span>
+<span class="n">W_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
+<span class="n">W_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
+<span class="n">W_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
+
+<span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_q</span><span class="p">,</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_k</span><span class="p">,</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_v</span>
+
+<span class="n">d_k</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">Q</span> <span class="o">@</span> <span class="n">K</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d_k</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># causal mask</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">@</span> <span class="n">V</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weights:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;output:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;token 1 must not attend to the future&quot;</span>
+</code></pre></div>
+
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code>weights:
+ [[1.    0.    0.   ]
+  [0.944 0.056 0.   ]
+  [0.108 0.446 0.446]]
+output:
+ [[1.    1.   ]
+  [1.056 1.056]
+  [1.446 2.337]]
+</code></pre></div>
+
+<p>That is the entire mechanism. Real implementations add multiple heads, many layers, normalization and residual connections, and the arithmetic at the core is this.</p>
+<p><strong>The two assertions are the useful part.</strong> Rows summing to 1 confirms softmax did its job; the upper triangle being exactly zero confirms causality. If you implement attention yourself, those are the two tests to write first, because both failures are silent.</p>
+<h3 id="example-2-computing-a-memory-budget">Example 2: computing a memory budget<a class="anchor" href="#example-2-computing-a-memory-budget" aria-label="Link to this section">#</a></h3>
+<p>The calculation you will actually need, before deciding what you can serve.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">kv_cache_bytes</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="n">n_kv_heads</span><span class="p">,</span> <span class="n">d_head</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">batch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bytes_per</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;2 for K and V, times the per-token state, times sequence and batch.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">layers</span> <span class="o">*</span> <span class="n">n_kv_heads</span> <span class="o">*</span> <span class="n">d_head</span> <span class="o">*</span> <span class="n">seq_len</span> <span class="o">*</span> <span class="n">batch</span> <span class="o">*</span> <span class="n">bytes_per</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">weight_bytes</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">bits</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">params</span> <span class="o">*</span> <span class="n">bits</span> <span class="o">/</span> <span class="mi">8</span>
+
+
+<span class="n">GB</span> <span class="o">=</span> <span class="mi">1024</span> <span class="o">**</span> <span class="mi">3</span>
+
+<span class="c1"># 7B-class model: 32 layers, d_head 128, 32 query heads</span>
+<span class="k">for</span> <span class="n">n_kv</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>                       <span class="c1"># multi-head vs grouped-query</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;MHA&quot;</span> <span class="k">if</span> <span class="n">n_kv</span> <span class="o">==</span> <span class="mi">32</span> <span class="k">else</span> <span class="s2">&quot;GQA (8 kv heads)&quot;</span>
+    <span class="n">per_token</span> <span class="o">=</span> <span class="n">kv_cache_bytes</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_kv</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">per_token</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB per token&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">8192</span><span class="p">,</span> <span class="mi">32768</span><span class="p">):</span>
+        <span class="n">one</span> <span class="o">=</span> <span class="n">kv_cache_bytes</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_kv</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span> <span class="o">/</span> <span class="n">GB</span>
+        <span class="n">eight</span> <span class="o">=</span> <span class="n">kv_cache_bytes</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_kv</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">batch</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="n">GB</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   seq </span><span class="si">{</span><span class="n">seq</span><span class="si">:</span><span class="s2">6,</span><span class="si">}</span><span class="s2">:  batch 1 </span><span class="si">{</span><span class="n">one</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> GB   batch 8 </span><span class="si">{</span><span class="n">eight</span><span class="si">:</span><span class="s2">7.2f</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">bits</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">((</span><span class="mi">16</span><span class="p">,</span> <span class="s2">&quot;fp16&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;Q8&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;Q4&quot;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;weights </span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">5s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">weight_bytes</span><span class="p">(</span><span class="mf">7e9</span><span class="p">,</span><span class="w"> </span><span class="n">bits</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">GB</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Verified output:</p>
+<div class="highlight"><pre><span></span><code>MHA: 0.50 MB per token
+   seq  2,048:  batch 1   1.00 GB   batch 8    8.00 GB
+   seq  8,192:  batch 1   4.00 GB   batch 8   32.00 GB
+   seq 32,768:  batch 1  16.00 GB   batch 8  128.00 GB
+GQA (8 kv heads): 0.12 MB per token
+   seq  2,048:  batch 1   0.25 GB   batch 8    2.00 GB
+   seq  8,192:  batch 1   1.00 GB   batch 8    8.00 GB
+   seq 32,768:  batch 1   4.00 GB   batch 8   32.00 GB
+weights fp16 : 13.04 GB
+weights Q8   :  6.52 GB
+weights Q4   :  3.26 GB
+</code></pre></div>
+
+<p><strong>The engineering conclusion.</strong> A Q4 7B model weighs 3.26 GB. At 8k context with batch 8 and multi-head attention, its KV cache is 32 GB, ten times the model. With GQA it is 8 GB, which is the difference between serving and not serving on a given machine.</p>
+<p>This is why "what context length do you support" is a capacity question, not a feature flag, and why long-context pricing rises faster than linearly in practice.</p>
+<h3 id="example-3-tracing-a-request-end-to-end">Example 3: tracing a request end to end<a class="anchor" href="#example-3-tracing-a-request-end-to-end" aria-label="Link to this section">#</a></h3>
+<p>The lifecycle question, as a sequence.</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant U as User
+    participant API as Your API
+    participant R as Retriever
+    participant M as Model server
+    participant V as Validator
+
+    U-&gt;&gt;API: &quot;What is our parental leave policy?&quot;
+    Note over API: Auth, rate limit, trace id assigned
+    API-&gt;&gt;API: Rewrite query against conversation history
+    API-&gt;&gt;R: Retrieve top 50 candidates
+    R-&gt;&gt;R: Dense + BM25, fuse with RRF
+    R-&gt;&gt;R: Cross-encoder rerank to top 5
+    R-&gt;&gt;API: 5 chunks with scores and permissions checked
+    API-&gt;&gt;API: Assemble prompt, count tokens, enforce budget
+    API-&gt;&gt;M: Completion request, stream enabled
+    Note over M: Prefill: whole prompt, one pass → TTFT
+    M--&gt;&gt;API: First token
+    loop One forward pass per token
+        Note over M: Decode, reading KV cache
+        M--&gt;&gt;API: Next token
+        API--&gt;&gt;U: Streamed
+    end
+    API-&gt;&gt;V: Validate structure and citations
+    V-&gt;&gt;V: Do all cited ids exist in the retrieved set?
+    V--&gt;&gt;API: Pass, or flag unsupported claims
+    API-&gt;&gt;API: Log trace: query, chunks, scores, tokens, cost, latency
+</pre></div>
+<p><strong>Where the time actually goes</strong>, and this is the part worth internalizing: retrieval and reranking are typically tens to low hundreds of milliseconds; prefill scales with prompt length; decode dominates total latency for a long answer, at one forward pass per token.</p>
+<p>So the levers differ by symptom. High TTFT means a long prompt, so retrieve fewer chunks or shorten them. Slow overall generation means the decode phase, so a smaller or more quantized model, better batching, or simply a shorter answer. Confusing the two leads to optimizing the wrong stage, which is a common and expensive mistake.</p>
+<p><strong>Every arrow needs logging.</strong> The trace at the end is what makes module 07's decision tree usable. Without it, "the answer was wrong" has no path back to a cause.</p>
+<hr />
+<h2 id="common-mistakes-and-debugging">Common mistakes and debugging<a class="anchor" href="#common-mistakes-and-debugging" aria-label="Link to this section">#</a></h2>
+<h3 id="beginner-mistakes">Beginner mistakes<a class="anchor" href="#beginner-mistakes" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"How many r's in strawberry" fails</td>
+<td>Tokenization; the model sees chunks, not letters</td>
+<td>Do character work in code</td>
+</tr>
+<tr>
+<td>Prompt works, same prompt with trailing space is worse</td>
+<td>Different tokenization</td>
+<td>Strip trailing whitespace from templates</td>
+</tr>
+<tr>
+<td>Token count much higher than word count</td>
+<td>Code, JSON and non-English tokenize poorly</td>
+<td>Count with the real tokenizer</td>
+</tr>
+<tr>
+<td>Temperature 0 gives different outputs</td>
+<td>Batch-dependent floating-point reduction order</td>
+<td>Assert on properties, not exact strings</td>
+</tr>
+<tr>
+<td>Output has markdown fences around JSON</td>
+<td>Prompt-only structured output</td>
+<td>JSON mode or constrained decoding, plus defensive parsing</td>
+</tr>
+<tr>
+<td>Model invents an API method</td>
+<td>Hallucination, plausible-shaped</td>
+<td>Supply docs via RAG; validate against the real API</td>
+</tr>
+<tr>
+<td>Quality dropped after "just" quantizing</td>
+<td>Q4 degrades format-following and long-context first</td>
+<td>Evaluate on your task, not on a benchmark</td>
+</tr>
+<tr>
+<td>Context length exceeded, unclear why</td>
+<td>Chat history plus system prompt plus chunks</td>
+<td>Log token counts per component</td>
+</tr>
+</tbody>
+</table>
+<h3 id="production-failure-modes">Production failure modes<a class="anchor" href="#production-failure-modes" aria-label="Link to this section">#</a></h3>
+<p><strong>Silent model version change.</strong> A provider updates the model behind a stable alias. Outputs shift; no error, no deploy. <em>Diagnostic:</em> log the model version with every request and diff outputs over time. <em>Fix:</em> pin explicit versions; run your eval set on change.</p>
+<p><strong>Context exhaustion from accumulated history.</strong> A chat application appends every turn. Around turn 30 it silently truncates the system prompt, and the model stops following its instructions. <em>Diagnostic:</em> log token counts per component. <em>Fix:</em> a budget with explicit priority, so the system prompt is never the thing dropped.</p>
+<p><strong>Cost explosion from retrieval expansion.</strong> Someone raises top-k from 5 to 20 for quality. Prompt tokens quadruple, and prompt tokens are most of the bill. <em>Diagnostic:</em> token counts per request over time. <em>Fix:</em> attribute cost per request; require an eval-set improvement to justify a context increase.</p>
+<p><strong>Prefill latency at long context.</strong> TTFT degrades as prompts grow. Users perceive the system as slow even though tokens per second is unchanged. <em>Diagnostic:</em> measure TTFT separately from total latency. <em>Fix:</em> shorter prompts, prompt caching where the provider supports it, streaming so perceived latency drops.</p>
+<p><strong>Structured output that is valid and wrong.</strong> Constrained decoding guarantees the schema. A required <code>total</code> field is present, is a number, and is invented. <em>Diagnostic:</em> semantic validation, not just parsing. <em>Fix:</em> verify values against the source; check that cited ids exist.</p>
+<p><strong>Indirect prompt injection via ingested content.</strong> A support ticket containing instructions gets indexed, then retrieved. <em>Diagnostic:</em> monitor for unexpected tool calls and for output echoing system-prompt content. <em>Fix:</em> the architectural controls in section 12.</p>
+<p><strong>Quantization degrading only the hard cases.</strong> The model passes your spot checks and fails on long, complex, format-sensitive requests. <em>Diagnostic:</em> an eval set stratified by difficulty and length. <em>Fix:</em> evaluate at your actual context length and task complexity.</p>
+<h3 id="debugging-method-for-this-layer">Debugging method for this layer<a class="anchor" href="#debugging-method-for-this-layer" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Log the exact input.</strong> The assembled prompt, token count, model version, sampling parameters. Most "the model is wrong" reports are "the prompt was not what I thought".</li>
+<li><strong>Separate retrieval from generation.</strong> Module 07's tree. Do not tune prompts to fix a retrieval problem.</li>
+<li><strong>Separate TTFT from tokens per second.</strong> They have different causes and different fixes.</li>
+<li><strong>Check tokenization when a task seems trivially easy.</strong> Characters, digits, whitespace.</li>
+<li><strong>Test at temperature 0 to remove sampling variance</strong>, while remembering it is not fully deterministic.</li>
+<li><strong>Bisect the prompt.</strong> Remove sections until behavior changes. Long prompts contain contradictory instructions more often than anyone expects.</li>
+</ol>
+<hr />
+<h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
+<p><strong>1. Explain self-attention.</strong></p>
+<p><em>Strong outline:</em> Each token produces a query, a key and a value. Score every query against every key by dot product to get a relevance matrix, scale by √d_k, softmax each row into weights summing to one, and take the weighted sum of values. The output for each position is a blend of all positions weighted by relevance. Walk a 3-token example if there is a whiteboard. Then add depth: the √d_k scaling exists because dot-product variance grows with dimension, and unscaled scores saturate softmax to near-zero gradient, so it is a training-stability fix. And multi-head exists because a single weighted average destroys information that several specialized heads can preserve.</p>
+<p><em>Weak answer:</em> reciting "queries, keys and values" as a metaphor about databases without the computation.</p>
+<p><strong>2. What is the KV cache and why does it matter?</strong></p>
+<p><em>Strong outline:</em> During generation, attention for earlier tokens does not change, so their keys and values are cached rather than recomputed, turning quadratic work into linear. The cost is memory: 2 × layers × kv_heads × d_head × seq_len × batch × bytes. Give a number: a 7B model at 8k context and batch 8 is about 32 GB of cache with multi-head attention, against roughly 3 GB of Q4 weights, so the cache is ten times the model. That is why grouped-query attention exists, cutting it 4x by sharing K and V across query head groups, and why context length is a capacity decision rather than a config flag.</p>
+<p><em>Weak answer:</em> "It caches keys and values so generation is faster." True, and no sense of the memory consequence, which is the entire engineering point.</p>
+<p><strong>3. Why does temperature 0 not make output deterministic?</strong></p>
+<p><em>Strong outline:</em> Sampling becomes deterministic, argmax over logits. The logits themselves are not bit-identical across calls, because floating-point addition is not associative and reduction order varies with batch composition, kernel selection and hardware scheduling. Two identical requests batched with different neighbors can produce slightly different logits and, where two tokens are nearly tied, a different argmax. The engineering consequence: never write a regression test asserting exact model output; assert on structure, on properties, or on a metric with a tolerance.</p>
+<p><em>Weak answer:</em> "Temperature 0 is deterministic." Confidently wrong, and it is the kind of thing an interviewer asks precisely because the textbook answer is wrong.</p>
+<p><strong>4. Why does prompting not fix hallucination?</strong></p>
+<p><em>Strong outline:</em> The model samples from a distribution over next tokens; nothing in that process checks a claim against anything. Fluent falsehood and fluent truth come from identical machinery, and the characteristic pattern is plausible-shaped fabrication: invented citations with real-sounding journals, invented API methods following the library's conventions. "Do not make things up" nudges the distribution toward hedging without installing a verification step, because there is none to install; the model has no separate representation of what it knows. Then give the interventions in order: supply facts via RAG, verify claims against cited sources, enable and measure refusal, validate outputs structurally and semantically, use tools for facts with an authority. And name what does not work: self-reported confidence, "are you sure", temperature 0.</p>
+<p><em>Weak answer:</em> "Use better prompts and lower the temperature." Both are the common wrong instinct.</p>
+<p><strong>5. Walk me from a user's keystroke to the first token appearing.</strong></p>
+<p><em>Strong outline:</em> Auth and rate limit, query rewriting against history, retrieval with hybrid search and reranking, permission filtering, prompt assembly within a token budget, then the model call. Inside the model: tokenize, embed, prefill the whole prompt in one parallel pass, which is compute-bound and determines TTFT, then decode one token per forward pass, which is memory-bandwidth-bound and determines tokens per second. Then validation of structure and citations, and logging the full trace. The payoff is naming where time goes and which lever fixes which symptom: high TTFT means shorten the prompt, slow generation means the decode phase, and confusing them means optimizing the wrong stage.</p>
+<p><em>Weak answer:</em> "It sends the prompt to the API and gets a response." Accurate, and demonstrates nothing.</p>
+<p><strong>6. When would you use an encoder-only model?</strong></p>
+<p><em>Strong outline:</em> Classification, embeddings and reranking. An encoder sees the whole input bidirectionally and produces one representation, which is what those tasks need. A decoder-only model can do them by generating a label, at far greater cost, worse latency, and usually no better quality, because its representations are built under a causal constraint the task does not require. Concretely: the reranker in a RAG pipeline is an encoder cross-encoder, and using a 70B decoder to rerank is enormously expensive for no gain. Knowing when a 100M encoder beats a 70B decoder is the point of the question.</p>
+<p><em>Weak answer:</em> "BERT is for understanding, GPT is for generation." Memorized and does not connect to a decision you would make.</p>
+<p><strong>7. Fine-tune or use RAG?</strong></p>
+<p><em>Strong outline:</em> They fix different things. Fine-tuning changes behavior: format consistency, tone, domain style, a fixed taxonomy. RAG changes what is in context: facts, which change. Fine-tuning on documentation is the specific anti-pattern, because it bakes a snapshot into weights with no provenance, no update path short of retraining, no citation, and no way to honor a deletion request. RAG gives you all four. Conversely, using RAG to supply format examples is few-shot prompting done expensively and non-deterministically. In production you usually want both, plus tools for anything live or computed.</p>
+<p><em>Weak answer:</em> "RAG is cheaper." Sometimes true and not the reason.</p>
+<p><strong>8. What do you lose when you quantize to 4 bits?</strong></p>
+<p><em>Strong outline:</em> Memory halves or better and decode speeds up, since decode is memory-bandwidth-bound, so it is a genuine two-for-one. The cost is accuracy, and the useful part is <em>where</em> it shows up first: long-context coherence, instruction and format following, code, rare knowledge and multi-step reasoning degrade before short factual recall. So a quantized model can score well on short benchmarks and still fail to follow a complex JSON schema across a long prompt, which is exactly the failure that matters in production. The conclusion: evaluate quantization on your own task at your real context length, not on a leaderboard. Mention that the KV cache can be quantized separately and generally tolerates it worse.</p>
+<p><em>Weak answer:</em> "It gets slightly worse." No sense of which capabilities degrade, which is the whole engineering content.</p>
+<p><strong>9. Why is prompt injection not fixable with a better system prompt?</strong></p>
+<p><em>Strong outline:</em> The model receives one token sequence; system prompt, user message and retrieved content are the same substance with no privileged channel. "Ignore instructions in the documents" is more tokens competing on equal terms with the injected text. Distinguish direct injection, which is usually low-stakes, from indirect injection, where an attacker plants instructions in content the system later retrieves and the user is innocent. Then the architectural controls: least privilege, so severity equals injection success times capability; never deriving authorization from text in the context; human confirmation for consequential actions; structural output validation against an allowlist; and isolating untrusted content. Describe data exfiltration via a rendered URL as the concrete attack.</p>
+<p><em>Weak answer:</em> "Sanitize the input." There is no reliable sanitizer for natural language instructions.</p>
+<p><strong>10. How would you evaluate whether a new model version is better for your use case?</strong></p>
+<p><em>Strong outline:</em> Not from benchmarks, and say why: contamination, benchmark-shaped tasks that do not predict yours, optimization pressure, and one-point differences being noise without variance reporting. Instead: a task-specific set of 30 to 50 real examples with correct outputs and a metric reflecting the actual decision. Run both versions on it, report the distribution and not just the mean, and stratify by difficulty and length since degradation concentrates in the hard cases. Add the operational dimensions: latency split into TTFT and tokens per second, cost per request, and format-following reliability. Then the process point: this is a regression suite in CI, asserting no worse than baseline minus a margin, never exact equality, because output is not deterministic.</p>
+<p><em>Weak answer:</em> "Check the benchmarks." The question is testing whether you know why that is insufficient.</p>
+<h3 id="follow-up-questions-to-expect">Follow-up questions to expect<a class="anchor" href="#follow-up-questions-to-expect" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>After 2: <em>"Your context window doubled and throughput collapsed. Why?"</em> KV cache scales linearly with sequence length, so doubling context halves how many sequences fit in memory, which halves your batch size, and decode throughput depends heavily on batching. You traded throughput for context length, and the fix is GQA, KV quantization, paged attention, or accepting a smaller batch.</li>
+<li>After 4: <em>"Your RAG system still hallucinates. Now what?"</em> Separate the cases: unsupported by retrieved sources, which is a generation problem addressed by faithfulness checking and refusal instructions, versus the right sources not being retrieved, which is a retrieval problem. Measure refusal correctness on unanswerable cases; a refusal rate near zero on a corpus that cannot answer everything is the tell.</li>
+</ul>
+<h3 id="60-second-and-5-minute-answers">60-second and 5-minute answers<a class="anchor" href="#60-second-and-5-minute-answers" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>How attention works</li>
+<li>What the KV cache is and why it constrains serving</li>
+<li>Why hallucination is architectural</li>
+<li>The lifecycle of a request, and where time goes</li>
+<li>Why benchmarks do not predict your task</li>
+</ol>
+<hr />
+<h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
+<p>Solutions in <code>quizzes/06-transformers-practice.md</code>.</p>
+<h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Compute attention by hand for two tokens with <code>d_k = 2</code> and your own small integers. Verify against numpy. Do it on paper first.</li>
+<li>Take three sentences, one English prose, one JSON, one in a non-Latin script, and count tokens with a real tokenizer. Compute tokens per word for each and explain the spread.</li>
+<li>Compute the KV cache size for a model you actually use, at the context length you actually use. Compare it with the weight size. State whether the cache or the weights dominate.</li>
+<li>Show numerically that softmax is shift-invariant, then show that <code>exp(1000)</code> overflows and that subtracting the max fixes it.</li>
+<li>Take one prompt and run it at temperature 0, 0.7 and 1.5, ten times each. Describe how the variance changes, and what fails at 1.5.</li>
+</ol>
+<h3 id="three-realistic-coding-tasks">Three realistic coding tasks<a class="anchor" href="#three-realistic-coding-tasks" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Attention from scratch.</strong> Implement multi-head attention with causal masking in numpy. Assert rows sum to 1 and the upper triangle is zero. Then break the masking deliberately and show that the model could see the future, which is the bug the assertion catches.</li>
+<li><strong>Token budget manager.</strong> Write a class that assembles a prompt from a system prompt, chat history, retrieved chunks and a question, within a token budget, with explicit priority so the system prompt is never dropped. Log what was truncated. This is a real production component and it is where context-exhaustion bugs live.</li>
+<li><strong>Structured output with graceful degradation.</strong> Get a schema-conforming response using constrained decoding if available, JSON mode if not, prompting with defensive parsing and one retry as the fallback. Validate with Pydantic, then add a <em>semantic</em> check beyond the schema. Measure the failure rate of each tier on 50 real inputs.</li>
+</ol>
+<h3 id="one-mini-project">One mini-project<a class="anchor" href="#one-mini-project" aria-label="Link to this section">#</a></h3>
+<p><strong>Instrument a request end to end.</strong></p>
+<p>Take a working LLM call and add the observability the sequence diagram implies:</p>
+<ul>
+<li>Token counts per prompt component: system, history, retrieved, question</li>
+<li>Model version and sampling parameters, on every request</li>
+<li>TTFT and total latency, separately</li>
+<li>Tokens per second during decode</li>
+<li>Cost per request, split between prompt and completion</li>
+<li>Whether output passed structural and semantic validation</li>
+<li>A trace id linking everything</li>
+</ul>
+<p>Then use it: raise your context length and watch TTFT; change temperature and watch validation failures; switch to a smaller model and compare quality against speed on your own eval set.</p>
+<p>Success criterion: you can answer "why was that request slow" and "why did that request cost so much" from logs alone, without reproducing it. That is the difference between operating a system and hoping.</p>
+<hr />
+<h2 id="mastery-checklist">Mastery checklist<a class="anchor" href="#mastery-checklist" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>[ ] Compute attention for three tokens by hand and verify against code</li>
+<li>[ ] Explain why scores are divided by √d_k, in terms of variance and softmax saturation</li>
+<li>[ ] Explain why softmax subtracts the max before exponentiating</li>
+<li>[ ] Say what causal masking does and why training requires it</li>
+<li>[ ] Name three bugs that are actually tokenization bugs</li>
+<li>[ ] Explain why position must be injected into attention at all</li>
+<li>[ ] Say when an encoder-only model beats a decoder-only one, with a concrete case</li>
+<li>[ ] Distinguish pretraining, SFT and preference optimization by what each fixes</li>
+<li>[ ] Compute KV cache size from model dimensions, and compare against weight size</li>
+<li>[ ] Explain why decode is memory-bandwidth-bound and prefill is compute-bound</li>
+<li>[ ] Say why temperature and top-p are not the same knob</li>
+<li>[ ] Explain why temperature 0 is not fully deterministic, and what that means for tests</li>
+<li>[ ] Say where quantization degrades first, and why benchmarks hide it</li>
+<li>[ ] Explain why prompting cannot fix hallucination, and list what does help</li>
+<li>[ ] Explain how constrained decoding makes invalid output impossible rather than unlikely</li>
+<li>[ ] Say why the model never executes a tool, and what follows from that</li>
+<li>[ ] Explain why prompt injection is architectural, and name three structural mitigations</li>
+<li>[ ] Give four reasons a benchmark score does not predict your task</li>
+<li>[ ] Trace a request end to end and say where the time goes</li>
+</ul>
+<p>Fewer than sixteen of nineteen means go back. Modules 08 and 09 assume sections 7, 8 and 12.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<p><strong>Backward:</strong></p>
+<ul>
+<li><code>05</code>'s gradient and loss material is what section 6's training stages operate on, and why section 3's softmax saturation is a training problem rather than an accuracy one.</li>
+<li><code>01b</code> section 9.3's Pydantic validation is section 10's boundary check on model output.</li>
+<li><code>01b</code> section 9.4's batching is the client-side counterpart to section 7's server-side batching.</li>
+<li><code>02</code> section 11's HTTP idempotency governs whether a timed-out completion request may be retried.</li>
+</ul>
+<p><strong>Forward:</strong></p>
+<ul>
+<li><code>07-rag-and-vector-search.md</code> is built on sections 2, 7 and 9. Section 9's "supply the facts" is what RAG is, and section 12's injection problem is why untrusted corpora are dangerous.</li>
+<li><code>08-agents-tools-and-mcp.md</code> extends section 10 into agent loops, and section 12 into its serious form, where injection plus tool access produces real damage.</li>
+<li><code>09-local-llm-inference.md</code> is section 7 and section 8 applied to your own hardware: the KV cache formula becomes your memory budget, and the quantization table becomes your model choice.</li>
+<li><code>10-mlops-and-deployment.md</code> turns section 11's evaluation into a CI gate and section 7's latency split into monitored metrics.</li>
+<li><code>11-ai-system-design.md</code> uses section 7's capacity arithmetic for estimation questions.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quantization quality characterizations</td>
+<td>Methods improve; heavily dependent on calibration and task</td>
+<td>Your own eval set</td>
+</tr>
+<tr>
+<td>Sampling parameter conventions</td>
+<td>Folklore, not measurement</td>
+<td>Test on your task</td>
+</tr>
+<tr>
+<td>Tokens-per-word ratios</td>
+<td>Tokenizer-specific</td>
+<td>Measure with your provider's tokenizer</td>
+</tr>
+<tr>
+<td>Context extension quality cost</td>
+<td>Active research area</td>
+<td>Current papers</td>
+</tr>
+<tr>
+<td>Reasoning-training description</td>
+<td>Moving very fast</td>
+<td>Current model cards</td>
+</tr>
+<tr>
+<td>Benchmark contamination claims</td>
+<td>Measurement improving</td>
+<td>Current evaluation literature</td>
+</tr>
+<tr>
+<td>Model family examples in section 5</td>
+<td>Models are released constantly</td>
+<td>Current releases</td>
+</tr>
+</tbody>
+</table>
+<p>Sections 1 to 5, the attention arithmetic, and the KV cache formula are stable. Anything about specific models, quantization quality, or recommended settings is not.</p>
+<p><strong>Next review due:</strong> 2027-03-18, or before any interview where you will discuss model internals.</p>
+      <nav class="pager">
+<a class="pager-prev" href="05-deep-learning.html"><span>Previous</span>05 · Deep Learning</a>
+<a class="pager-next" href="07-rag.html"><span>Next</span>07 · RAG &amp; Vector Search</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
+<li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
+<li class="toc-l2"><a href="#mental-model">Mental model</a></li>
+<li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
+<li class="toc-l3"><a href="#1-tokenization-core">1. Tokenization [CORE]</a></li>
+<li class="toc-l3"><a href="#2-embeddings-and-position-foundation">2. Embeddings and position [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#3-attention-worked-by-hand-core">3. Attention, worked by hand [CORE]</a></li>
+<li class="toc-l3"><a href="#4-multi-head-attention-and-masking-core">4. Multi-head attention and masking [CORE]</a></li>
+<li class="toc-l3"><a href="#5-architecture-families-foundation">5. Architecture families [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#6-training-stages-core">6. Training stages [CORE]</a></li>
+<li class="toc-l3"><a href="#7-inference-kv-cache-batching-sampling-core">7. Inference: KV cache, batching, sampling [CORE]</a></li>
+<li class="toc-l3"><a href="#8-quantization-core">8. Quantization [CORE]</a></li>
+<li class="toc-l3"><a href="#9-hallucination-core">9. Hallucination [CORE]</a></li>
+<li class="toc-l3"><a href="#10-tools-and-structured-output-core">10. Tools and structured output [CORE]</a></li>
+<li class="toc-l3"><a href="#11-evaluation-core">11. Evaluation [CORE]</a></li>
+<li class="toc-l3"><a href="#12-security-prompt-injection-core">12. Security: prompt injection [CORE]</a></li>
+<li class="toc-l2"><a href="#worked-examples">Worked examples</a></li>
+<li class="toc-l3"><a href="#example-1-the-full-attention-computation">Example 1: the full attention computation</a></li>
+<li class="toc-l3"><a href="#example-2-computing-a-memory-budget">Example 2: computing a memory budget</a></li>
+<li class="toc-l3"><a href="#example-3-tracing-a-request-end-to-end">Example 3: tracing a request end to end</a></li>
+<li class="toc-l2"><a href="#common-mistakes-and-debugging">Common mistakes and debugging</a></li>
+<li class="toc-l3"><a href="#beginner-mistakes">Beginner mistakes</a></li>
+<li class="toc-l3"><a href="#production-failure-modes">Production failure modes</a></li>
+<li class="toc-l3"><a href="#debugging-method-for-this-layer">Debugging method for this layer</a></li>
+<li class="toc-l2"><a href="#interview-angle">Interview angle</a></li>
+<li class="toc-l3"><a href="#follow-up-questions-to-expect">Follow-up questions to expect</a></li>
+<li class="toc-l3"><a href="#60-second-and-5-minute-answers">60-second and 5-minute answers</a></li>
+<li class="toc-l2"><a href="#practice-tasks">Practice tasks</a></li>
+<li class="toc-l3"><a href="#five-tiny-exercises">Five tiny exercises</a></li>
+<li class="toc-l3"><a href="#three-realistic-coding-tasks">Three realistic coding tasks</a></li>
+<li class="toc-l3"><a href="#one-mini-project">One mini-project</a></li>
+<li class="toc-l2"><a href="#mastery-checklist">Mastery checklist</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

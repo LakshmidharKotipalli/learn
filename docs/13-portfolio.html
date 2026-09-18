@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 · Portfolio Strategy · AI Engineer Learning OS</title>
+<meta name="description" content="What makes a project credible, and a rubric to score yours.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html" class="active">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="13-project-portfolio-strategy">13 Project Portfolio Strategy<a class="anchor" href="#13-project-portfolio-strategy" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium</p>
+<p>Strategy, not a project specification. How to decide what to build, how to tell whether it is credible, and how to use it.</p>
+<hr />
+<h2 id="why-this-file-exists">Why this file exists<a class="anchor" href="#why-this-file-exists" aria-label="Link to this section">#</a></h2>
+<p>You are about to spend months building four projects. The difference between a portfolio that gets you interviews and one that gets ignored is not effort; it is a small number of properties that are cheap to add and almost never present.</p>
+<p><strong>The uncomfortable premise:</strong> a reviewer spends 30 to 90 seconds on your GitHub before deciding whether to read anything. In that time they see your repository list, one README, and possibly your commit history. Everything else is downstream of that impression.</p>
+<hr />
+<h2 id="1-what-a-reviewer-is-actually-checking">1. What a reviewer is actually checking<a class="anchor" href="#1-what-a-reviewer-is-actually-checking" aria-label="Link to this section">#</a></h2>
+<p>Not "is this impressive". They are checking three things, in this order:</p>
+<p><strong>Did this person build it, or follow it?</strong> The single most important signal, and the one candidates most underestimate. A tutorial follow-along is worse than no project, because it demonstrates you cannot tell the difference between building and copying.</p>
+<p><strong>Can they tell whether it works?</strong> Any evidence of measurement puts you in a small minority.</p>
+<p><strong>Would I want to review their pull requests?</strong> Commit messages, repository structure, README quality, test presence. This takes fifteen seconds to assess and is assessed every time.</p>
+<h3 id="the-tells-that-mark-a-project-as-a-tutorial">The tells that mark a project as a tutorial<a class="anchor" href="#the-tells-that-mark-a-project-as-a-tutorial" aria-label="Link to this section">#</a></h3>
+<p>Reviewers pattern-match on these without articulating them:</p>
+<table>
+<thead>
+<tr>
+<th>Tell</th>
+<th>Why it reads as copied</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The exact stack from a popular tutorial, with no stated reason</td>
+<td>Choices without reasons were not choices</td>
+</tr>
+<tr>
+<td>A README that explains what RAG is</td>
+<td>Written for a reader who does not exist; real READMEs explain <em>this</em> system</td>
+</tr>
+<tr>
+<td>No evaluation of any kind</td>
+<td>Nobody who built something measures nothing</td>
+</tr>
+<tr>
+<td>Commit history: three commits, or one hundred in one day</td>
+<td>Either imported wholesale or committed at the end</td>
+</tr>
+<tr>
+<td>No failure documented anywhere</td>
+<td>Nothing ever works first time</td>
+</tr>
+<tr>
+<td>The demo dataset is the tutorial's dataset</td>
+<td>The most obvious tell of all</td>
+</tr>
+<tr>
+<td>Perfect, uniform code style throughout, no evolution</td>
+<td>Real code shows where it was refactored</td>
+</tr>
+<tr>
+<td>A <code>.env</code> with a real key in the history</td>
+<td>Also a security problem</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-tells-that-mark-it-as-real">The tells that mark it as real<a class="anchor" href="#the-tells-that-mark-it-as-real" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tell</th>
+<th>Why it is hard to fake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A stated constraint that forced a decision</td>
+<td>You cannot invent a constraint you did not feel</td>
+</tr>
+<tr>
+<td>A measured baseline and a results table</td>
+<td>Requires having built the measurement</td>
+</tr>
+<tr>
+<td>A documented failure with a diagnosis</td>
+<td>Requires having had it</td>
+</tr>
+<tr>
+<td>A change that made things worse, left in the table</td>
+<td>Nobody fabricates a regression</td>
+</tr>
+<tr>
+<td>Commit history showing the order of construction</td>
+<td>Hard to forge convincingly</td>
+</tr>
+<tr>
+<td>A "known limitations" section in the README</td>
+<td>Requires knowing them</td>
+</tr>
+<tr>
+<td>Data that is obviously yours</td>
+<td>Your own notes, your own logs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The cheapest high-value item on that list is "a change that made things worse, left in the table".</strong> It costs nothing, it cannot be faked, and it signals honesty more strongly than any success.</p>
+<hr />
+<h2 id="2-how-many-and-at-what-depth">2. How many, and at what depth<a class="anchor" href="#2-how-many-and-at-what-depth" aria-label="Link to this section">#</a></h2>
+<p><strong>Three well-built projects beat eight shallow ones</strong>, and the reason is specific: a reviewer reads one, maybe two. Eight projects means the one they pick is probably mediocre.</p>
+<table>
+<thead>
+<tr>
+<th>Role level</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Junior</td>
+<td>2-3 projects, one with real depth</td>
+</tr>
+<tr>
+<td>Mid</td>
+<td>3-4, with one that demonstrates operating rather than building</td>
+</tr>
+<tr>
+<td>Generative AI Engineer</td>
+<td>3-4, at least two AI-specific with measurement</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pin the best one.</strong> Most people's GitHub shows their most recent repository first, which is often a half-finished experiment. Pin deliberately, and put the strongest README on the pinned one.</p>
+<p><strong>Archive or delete the rest.</strong> A profile with twenty repositories, eighteen of which are abandoned tutorials, dilutes the three that matter. This is not dishonest; it is editing.</p>
+<h3 id="the-ladder-in-this-repository">The ladder in this repository<a class="anchor" href="#the-ladder-in-this-repository" aria-label="Link to this section">#</a></h3>
+<p>The four projects are designed to ladder, and each adds something the previous one could not show:</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1: Learning Log Analyzer</strong></td>
+<td>Clean engineering. Pure core, tested, typed, defensive parsing. No AI at all, which is the point: it proves you can write software.</td>
+</tr>
+<tr>
+<td><strong>2: Grounded Answers</strong></td>
+<td>Retrieval engineering and measurement discipline. The evaluation-first inversion.</td>
+</tr>
+<tr>
+<td><strong>3: Agent Trajectory Evaluation</strong></td>
+<td>Adversarial thinking and evaluating something with no obvious ground truth.</td>
+</tr>
+<tr>
+<td><strong>Capstone: CareerAtlas</strong></td>
+<td>Integration, real use, and honest treatment of components you cannot fully verify.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Project 1 is the one people want to skip.</strong> Do not. A reviewer assessing "would I want to review their pull requests" gets the answer from project 1 faster than from anything else, and an AI portfolio with no evidence of ordinary software competence is a recognizable gap.</p>
+<hr />
+<h2 id="3-the-anatomy-of-a-project-worth-discussing">3. The anatomy of a project worth discussing<a class="anchor" href="#3-the-anatomy-of-a-project-worth-discussing" aria-label="Link to this section">#</a></h2>
+<p>Four elements. A project missing any one of them is hard to talk about for more than two minutes.</p>
+<p><strong>A real constraint.</strong> Not "I wanted to learn X" but something that forced a decision: everything runs locally, answers must cite or refuse, sub-second retrieval on a laptop, documents carry permissions. Without one, every technical choice is arbitrary and there is nothing to defend.</p>
+<p><strong>A decision with a genuine tradeoff.</strong> Two defensible options, you picked one, you can say why and what it cost. "I used numpy rather than a vector database because 5,000 chunks is 20 MB and an exhaustive scan is milliseconds; I'd revisit above 100,000 chunks or if I needed concurrent writers."</p>
+<p><strong>Something that failed.</strong> Documented: symptom, diagnosis, fix, measured effect. This is what makes a conversation possible, and it is what distinguishes you from a candidate who only has a description.</p>
+<p><strong>A measurement.</strong> Before and after, with the method stated. Any number you produced yourself beats any architecture you can describe.</p>
+<p><strong>The test:</strong> can you talk about it for five minutes without describing what it does? If everything you can say is descriptive, you have a demo. If you can discuss decisions, failures and measurements, you have a project.</p>
+<hr />
+<h2 id="4-scoping-so-it-finishes">4. Scoping so it finishes<a class="anchor" href="#4-scoping-so-it-finishes" aria-label="Link to this section">#</a></h2>
+<p><strong>The most common portfolio failure is not a bad project. It is an unfinished one.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Define the MVP as the smallest thing that is useful</td>
+<td>Useful, not complete</td>
+</tr>
+<tr>
+<td>Write the out-of-scope list first</td>
+<td>It is a judgment signal and it prevents drift</td>
+</tr>
+<tr>
+<td>Every week ends in something runnable</td>
+<td>Prevents the "90% done for two months" state</td>
+</tr>
+<tr>
+<td>Cut features, never the demo</td>
+<td>Half a feature that runs is evidence</td>
+</tr>
+<tr>
+<td>Ship at the MVP, then decide</td>
+<td>You will know more about what matters</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The out-of-scope list is worth writing even for yourself.</strong> "No multi-user, no mobile, no content generation, because the scope was chosen so it would finish and get used" is a sentence that reads as judgment rather than limitation.</p>
+<p><strong>Signs you have over-scoped</strong>: no runnable demo after three weeks, more time on infrastructure than on the thing itself, a features list that has grown since you started, or you have stopped using it.</p>
+<hr />
+<h2 id="5-repository-hygiene">5. Repository hygiene<a class="anchor" href="#5-repository-hygiene" aria-label="Link to this section">#</a></h2>
+<p>Fifteen seconds of assessment, and it is assessed every time.</p>
+<h3 id="the-readme">The README<a class="anchor" href="#the-readme" aria-label="Link to this section">#</a></h3>
+<p>The most-read file and the least-invested-in. Structure that works:</p>
+<div class="highlight"><pre><span></span><code>One sentence: what it is and who it is for
+The output, actually pasted or a screenshot
+Design decisions, with the alternative rejected
+Results, with real numbers
+Known limitations
+Install, in commands that work
+Not built, on purpose
+</code></pre></div>
+
+<p><strong>"Known limitations" is the section reviewers use to calibrate everything else.</strong> A README without one reads as either naive or dishonest. A specific one, "grading consistency is 0.78 on a 20-answer sample, which is enough to detect badly wrong and not enough for a confident figure", makes every other claim more credible.</p>
+<p><strong>Paste the actual output.</strong> Not a description of what it produces. The real terminal output, or a screenshot. This is the fastest way to show it works.</p>
+<h3 id="commits">Commits<a class="anchor" href="#commits" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Do</th>
+<th>Do not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small, focused, imperative messages</td>
+<td>"update", "fix", "wip"</td>
+</tr>
+<tr>
+<td>Explain <em>why</em> in the body when it is not obvious</td>
+<td>Restate the diff</td>
+</tr>
+<tr>
+<td>Commit as you go</td>
+<td>One hundred commits on one day</td>
+</tr>
+<tr>
+<td>Branch and merge for features</td>
+<td>Everything on main, always</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The commit history is a narrative of how you built it</strong>, and a reviewer who reads it learns things no README conveys: whether you tested as you went, whether you refactored, whether you fixed bugs or just added features.</p>
+<h3 id="the-rest">The rest<a class="anchor" href="#the-rest" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>Tests present and passing. CI badge green.</li>
+<li><code>.gitignore</code> covering <code>.env</code>, <code>.venv/</code>, data, models.</li>
+<li><strong>No secrets in history.</strong> Grep before pushing; rotate anything committed.</li>
+<li>No committed model weights or large data files.</li>
+<li>A license, which takes one click.</li>
+<li>Repository description and topics set, since they appear in search.</li>
+</ul>
+<hr />
+<h2 id="6-the-scoring-rubric">6. The scoring rubric<a class="anchor" href="#6-the-scoring-rubric" aria-label="Link to this section">#</a></h2>
+<p>Score each project 1 to 5 on each dimension. Be harsh; the point is to find what to fix.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>1</th>
+<th>3</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Originality</strong></td>
+<td>A tutorial's dataset and stack</td>
+<td>Own problem, conventional approach</td>
+<td>Own problem, a choice you can defend</td>
+</tr>
+<tr>
+<td><strong>Constraint</strong></td>
+<td>None stated</td>
+<td>A vague goal</td>
+<td>A specific constraint that forced decisions</td>
+</tr>
+<tr>
+<td><strong>Measurement</strong></td>
+<td>None</td>
+<td>It "works"</td>
+<td>Baseline, results table, method stated</td>
+</tr>
+<tr>
+<td><strong>Failure documentation</strong></td>
+<td>None</td>
+<td>Mentioned in passing</td>
+<td>Symptom, diagnosis, fix, measured effect</td>
+</tr>
+<tr>
+<td><strong>Code quality</strong></td>
+<td>Runs</td>
+<td>Organized, some tests</td>
+<td>Typed, tested, linted, CI green</td>
+</tr>
+<tr>
+<td><strong>README</strong></td>
+<td>What the technology is</td>
+<td>What the project does</td>
+<td>Decisions, results, limitations</td>
+</tr>
+<tr>
+<td><strong>Commit history</strong></td>
+<td>Under 5, or all one day</td>
+<td>Reasonable</td>
+<td>Narrates construction; small focused commits</td>
+</tr>
+<tr>
+<td><strong>Usability by a stranger</strong></td>
+<td>Needs you present</td>
+<td>Some instructions</td>
+<td>Clone, two commands, works</td>
+</tr>
+<tr>
+<td><strong>Interview material</strong></td>
+<td>Can describe it</td>
+<td>Can defend one decision</td>
+<td>Five minutes without describing what it does</td>
+</tr>
+<tr>
+<td><strong>Actually used</strong></td>
+<td>Never run since built</td>
+<td>Demoed a few times</td>
+<td>In real use, with resulting bug fixes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scoring:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Total (of 50)</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Under 25</td>
+<td>Not portfolio-ready. Fix measurement and README first, cheapest returns.</td>
+</tr>
+<tr>
+<td>25-34</td>
+<td>Presentable. Pick the two lowest dimensions and fix them.</td>
+</tr>
+<tr>
+<td>35-44</td>
+<td>Strong. This project can carry an interview.</td>
+</tr>
+<tr>
+<td>45+</td>
+<td>Rare. Pin it.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The two dimensions with the best return on effort are Measurement and Failure documentation.</strong> Both are cheap if you kept notes while building, both are nearly absent from other candidates' portfolios, and both directly enable the interview conversation.</p>
+<p><strong>The dimension people over-invest in is Code quality</strong> past a 3. Typed, tested and linted is enough; nobody is reading for elegance.</p>
+<hr />
+<h2 id="7-honest-presentation">7. Honest presentation<a class="anchor" href="#7-honest-presentation" aria-label="Link to this section">#</a></h2>
+<h3 id="using-this-repository-as-evidence">Using this repository as evidence<a class="anchor" href="#using-this-repository-as-evidence" aria-label="Link to this section">#</a></h3>
+<p>The modules, trackers and practice packs here are <strong>study artifacts, not projects</strong>. Present them honestly:</p>
+<p><strong>Fine:</strong> "I worked through a structured curriculum and kept the notes and evaluation sets in a repository." That is true and shows method.</p>
+<p><strong>Not fine:</strong> presenting generated learning material as something you wrote, or listing "AI Engineer Learning OS" on a CV as a project.</p>
+<p><strong>The genuinely useful framing:</strong> the repository is where your projects, evaluation sets and results live. The projects are the evidence; the curriculum is the scaffolding.</p>
+<h3 id="talking-about-ai-assisted-work">Talking about AI-assisted work<a class="anchor" href="#talking-about-ai-assisted-work" aria-label="Link to this section">#</a></h3>
+<p>Per <code>12c</code> section 5. Own the design decisions, the evaluation and the debugging, and say so specifically rather than claiming judgment in the abstract. The tell that you directed the work rather than accepted it is being able to name a decision the assistant would not have made.</p>
+<h3 id="what-never-to-do">What never to do<a class="anchor" href="#what-never-to-do" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>Claim a number you did not measure</li>
+<li>Describe a team's work as yours</li>
+<li>List a project you cannot discuss for five minutes</li>
+<li>Leave placeholder text in a CV or README</li>
+<li>Claim production use for something never deployed</li>
+</ul>
+<p><strong>The asymmetry is brutal:</strong> an unverifiable claim gains you a little and a discovered exaggeration ends the process. Under-claim.</p>
+<hr />
+<h2 id="8-resume-bullets-from-projects">8. Resume bullets from projects<a class="anchor" href="#8-resume-bullets-from-projects" aria-label="Link to this section">#</a></h2>
+<p>The pattern that works:</p>
+<div class="highlight"><pre><span></span><code>[Project] | [technologies]
+· [What you built, with scale]
+· [A decision, with the reason]
+· [A measured result, with method]
+· [Something hard or honest]
+</code></pre></div>
+
+<p><strong>The fourth bullet is where most people stop and where the signal is.</strong> "Measured grading consistency at 0.78 and recorded the limitation rather than shipping unverified feedback" says more than any improvement figure, because it demonstrates judgment rather than output.</p>
+<p><strong>Rules:</strong></p>
+<ul>
+<li>Every number from a file you can open</li>
+<li>No brackets in a submitted document, ever</li>
+<li>Remove a bullet you cannot substantiate</li>
+<li>"We did not measure this" belongs in conversation, not on a CV; omit the bullet instead</li>
+</ul>
+<hr />
+<h2 id="9-using-the-portfolio">9. Using the portfolio<a class="anchor" href="#9-using-the-portfolio" aria-label="Link to this section">#</a></h2>
+<p><strong>Link it everywhere</strong>: CV, LinkedIn, email signature, the first line of an application.</p>
+<p><strong>Reference it in answers.</strong> "In the RAG project I built, reranking moved recall@5 from X to Y and added N milliseconds" is better than any general statement about reranking. It is specific, measured and yours.</p>
+<p><strong>Bring it to the interview.</strong> Have the repository open. If they ask about a decision, showing them the results table is stronger than describing it.</p>
+<p><strong>The numbers to memorize</strong>, per <code>12a</code> section 7: your recall improvement and its latency cost, your eval set size and composition, your measured tokens per second, the model and quantization you ran and why, cost per request, injection attempts and how many succeeded, test count on project 1.</p>
+<p><strong>Six specific numbers beat any amount of architectural vocabulary</strong>, because they cannot be faked and almost nobody has them.</p>
+<hr />
+<h2 id="10-scoring-your-own-projects-now">10. Scoring your own projects now<a class="anchor" href="#10-scoring-your-own-projects-now" aria-label="Link to this section">#</a></h2>
+<p>Do this before your first application.</p>
+<ol>
+<li>Score all four projects on the section 6 rubric. Be harsh.</li>
+<li>Identify the two lowest dimensions across all of them.</li>
+<li>Fix those two. They will almost certainly be Measurement and Failure documentation.</li>
+<li>Rewrite the README of your highest-scoring project properly.</li>
+<li>Pin it.</li>
+<li>Have someone else clone the pinned one and follow the README. Fix every stumble.</li>
+</ol>
+<p><strong>Step 6 is the one people skip and the one that catches the most.</strong> You cannot see your own README's assumptions.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>projects/project-1-python-data-tool.md</code>, <code>project-2-rag-app.md</code>, <code>project-3-agent-evaluation.md</code> and <code>capstone/</code> are what you are scoring.</li>
+<li><code>12c-interview-behavioral-and-projects.md</code> section 4 covers the deep-dive round these projects feed.</li>
+<li><code>12a-interview-framework.md</code> section 7 has the numbers-to-memorize table.</li>
+<li><code>02-software-engineering-foundations.md</code> section 8 covers the repository hygiene assessed here.</li>
+<li><code>tracker/progress-log.md</code> links evidence to concepts.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"30 to 90 seconds of review"</td>
+<td>A pattern, not a measurement</td>
+<td>Ask anyone who screens candidates</td>
+</tr>
+<tr>
+<td>Project count by role level</td>
+<td>Varies by company and market</td>
+<td>Current postings and your own results</td>
+</tr>
+<tr>
+<td>The tutorial tells</td>
+<td>Reviewers adapt as norms shift</td>
+<td>Your own interview feedback</td>
+</tr>
+<tr>
+<td>AI-assistance framing</td>
+<td>Norms still forming</td>
+<td>Your own notes after five loops</td>
+</tr>
+</tbody>
+</table>
+<p>The rubric dimensions and the four anatomy elements are stable.</p>
+<p><strong>Next review due:</strong> after five applications, using whatever feedback you get.</p>
+      <nav class="pager">
+<a class="pager-prev" href="12c-behavioral.html"><span>Previous</span>12c · Behavioral &amp; Projects</a>
+<a class="pager-next" href="14-concept-map.html"><span>Next</span>14 · Concept Map</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-file-exists">Why this file exists</a></li>
+<li class="toc-l2"><a href="#1-what-a-reviewer-is-actually-checking">1. What a reviewer is actually checking</a></li>
+<li class="toc-l3"><a href="#the-tells-that-mark-a-project-as-a-tutorial">The tells that mark a project as a tutorial</a></li>
+<li class="toc-l3"><a href="#the-tells-that-mark-it-as-real">The tells that mark it as real</a></li>
+<li class="toc-l2"><a href="#2-how-many-and-at-what-depth">2. How many, and at what depth</a></li>
+<li class="toc-l3"><a href="#the-ladder-in-this-repository">The ladder in this repository</a></li>
+<li class="toc-l2"><a href="#3-the-anatomy-of-a-project-worth-discussing">3. The anatomy of a project worth discussing</a></li>
+<li class="toc-l2"><a href="#4-scoping-so-it-finishes">4. Scoping so it finishes</a></li>
+<li class="toc-l2"><a href="#5-repository-hygiene">5. Repository hygiene</a></li>
+<li class="toc-l3"><a href="#the-readme">The README</a></li>
+<li class="toc-l3"><a href="#commits">Commits</a></li>
+<li class="toc-l3"><a href="#the-rest">The rest</a></li>
+<li class="toc-l2"><a href="#6-the-scoring-rubric">6. The scoring rubric</a></li>
+<li class="toc-l2"><a href="#7-honest-presentation">7. Honest presentation</a></li>
+<li class="toc-l3"><a href="#using-this-repository-as-evidence">Using this repository as evidence</a></li>
+<li class="toc-l3"><a href="#talking-about-ai-assisted-work">Talking about AI-assisted work</a></li>
+<li class="toc-l3"><a href="#what-never-to-do">What never to do</a></li>
+<li class="toc-l2"><a href="#8-resume-bullets-from-projects">8. Resume bullets from projects</a></li>
+<li class="toc-l2"><a href="#9-using-the-portfolio">9. Using the portfolio</a></li>
+<li class="toc-l2"><a href="#10-scoring-your-own-projects-now">10. Scoring your own projects now</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>14 · Concept Map · AI Engineer Learning OS</title>
+<meta name="description" content="How the modules connect. The pre-interview skim file.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html" class="active">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="14-concept-map">14 Concept Map<a class="anchor" href="#14-concept-map" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low</p>
+<p>The consolidation file. Not a glossary of 200 terms, for the reason given in the review of the original prompt library: a generated glossary is a weak learning artifact you will not read, and terms learned in context inside a module stick far better.</p>
+<p>This file does one thing instead: <strong>shows how the modules connect</strong>, so that when you are asked a question spanning three of them you can see the path.</p>
+<p>Use it in two places. At week 24, to consolidate. And in the 48 hours before an interview, as the one file to skim.</p>
+<hr />
+<h2 id="1-the-whole-repository-in-one-diagram">1. The whole repository in one diagram<a class="anchor" href="#1-the-whole-repository-in-one-diagram" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    PY[&quot;01a-c Python&quot;]
+    SWE[&quot;02 Software engineering&quot;]
+    DATA[&quot;03 Data, SQL, statistics&quot;]
+    ML[&quot;04 Classical ML&quot;]
+    DL[&quot;05 Deep learning&quot;]
+    TF[&quot;06 Transformers and LLMs&quot;]
+    RAG[&quot;07 RAG and retrieval&quot;]
+    AG[&quot;08 Agents, tools, MCP&quot;]
+    LOC[&quot;09 Local inference&quot;]
+    OPS[&quot;10 MLOps and deployment&quot;]
+    SD[&quot;11 System design&quot;]
+
+    PY --&gt;|&quot;code you can ship&quot;| SWE
+    PY --&gt;|&quot;pandas, scripting&quot;| DATA
+    SWE --&gt;|&quot;CI, containers, testing&quot;| OPS
+    DATA --&gt;|&quot;evaluation is a data problem&quot;| ML
+    ML --&gt;|&quot;loss, overfitting, metrics&quot;| DL
+    DL --&gt;|&quot;attention, residuals, layer norm&quot;| TF
+    TF --&gt;|&quot;embeddings, context budget&quot;| RAG
+    TF --&gt;|&quot;tool calling, injection&quot;| AG
+    TF --&gt;|&quot;KV cache, quantization&quot;| LOC
+    RAG --&gt;|&quot;retrieval as a tool&quot;| AG
+    SWE --&gt;|&quot;idempotency, APIs&quot;| LOC
+    RAG --&gt; OPS
+    AG --&gt; OPS
+    LOC --&gt; OPS
+    OPS --&gt;|&quot;production constraints&quot;| SD
+    ML --&gt;|&quot;metrics, thresholds, drift&quot;| SD
+    DATA --&gt;|&quot;capacity arithmetic&quot;| SD
+</pre></div>
+<hr />
+<h2 id="2-the-six-ideas-that-appear-everywhere">2. The six ideas that appear everywhere<a class="anchor" href="#2-the-six-ideas-that-appear-everywhere" aria-label="Link to this section">#</a></h2>
+<p>If you internalize nothing else, internalize these. Each recurs in four or more modules under different names, and recognizing the recurrence is what makes cross-cutting interview questions easy.</p>
+<h3 id="idea-1-evaluate-before-you-optimize">Idea 1: Evaluate before you optimize<a class="anchor" href="#idea-1-evaluate-before-you-optimize" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>04</code> §2</td>
+<td>Split before touching the data; the test set is honest only while untouched</td>
+</tr>
+<tr>
+<td><code>07</code> §9</td>
+<td>Build the evaluation set before the retriever</td>
+</tr>
+<tr>
+<td><code>08</code> §10</td>
+<td>Trajectory cases before the agent</td>
+</tr>
+<tr>
+<td><code>10</code> §9</td>
+<td>The eval set becomes a CI gate</td>
+</tr>
+<tr>
+<td>Projects 2, 3, capstone</td>
+<td>Harness in week 1, baseline committed before any improvement</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why it recurs:</strong> without a baseline, every change is a feeling. This is the single most transferable discipline in the repository.</p>
+<h3 id="idea-2-information-leaking-into-your-evaluation">Idea 2: Information leaking into your evaluation<a class="anchor" href="#idea-2-information-leaking-into-your-evaluation" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>04</code> §2</td>
+<td>Preprocessing fit on all data: 0.845 AUC on pure noise</td>
+</tr>
+<tr>
+<td><code>07</code> §9</td>
+<td>Eval questions generated from the chunks they should retrieve</td>
+</tr>
+<tr>
+<td><code>03</code> §4-5</td>
+<td>A join that silently drops rows, so metrics cover a subset</td>
+</tr>
+<tr>
+<td><code>12b</code> X3</td>
+<td>The same mechanism, named</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The universal diagnostic:</strong> a result better than you expected is a bug report, not a success.</p>
+<h3 id="idea-3-fail-loudly-or-you-will-not-know">Idea 3: Fail loudly, or you will not know<a class="anchor" href="#idea-3-fail-loudly-or-you-will-not-know" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01a</code> §9</td>
+<td>A bad row is logged and skipped; a bad file raises</td>
+</tr>
+<tr>
+<td><code>03</code> §4</td>
+<td><code>INNER JOIN</code> hides failed ingestion; the anti-join finds it</td>
+</tr>
+<tr>
+<td><code>07</code> §11</td>
+<td>Ingestion lag alerts, because a stalled pipeline does not error</td>
+</tr>
+<tr>
+<td><code>08</code> §4</td>
+<td>Stop reasons must be distinguishable, or a step limit reads as an answer</td>
+</tr>
+<tr>
+<td><code>10</code> §8</td>
+<td>Alert on lag, not on failure</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why it recurs:</strong> silence is the most expensive failure mode. Every one of these is a case where nothing errors and the answer is wrong.</p>
+<h3 id="idea-4-prefer-immutable-prefer-new-objects">Idea 4: Prefer immutable, prefer new objects<a class="anchor" href="#idea-4-prefer-immutable-prefer-new-objects" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01a</code> §2</td>
+<td>Aliasing: assignment moves labels, it does not copy</td>
+</tr>
+<tr>
+<td><code>01b</code> §2</td>
+<td><code>frozen=True</code> makes the bug structurally impossible</td>
+</tr>
+<tr>
+<td><code>01a</code> §5</td>
+<td>Build a new list rather than mutating during iteration</td>
+</tr>
+<tr>
+<td><code>10</code> §12</td>
+<td>Expand-and-contract migrations; immutable image tags</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why it recurs:</strong> shared mutable state produces bugs that depend on order and disappear when you look at them.</p>
+<h3 id="idea-5-the-boundary-is-where-you-validate">Idea 5: The boundary is where you validate<a class="anchor" href="#idea-5-the-boundary-is-where-you-validate" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01b</code> §9.3</td>
+<td>Pydantic at trust boundaries, not internally</td>
+</tr>
+<tr>
+<td><code>06</code> §10</td>
+<td>Structured output validated after generation</td>
+</tr>
+<tr>
+<td><code>08</code> §3</td>
+<td>Tool arguments validated before execution; the registry is an allowlist</td>
+</tr>
+<tr>
+<td><code>10</code> §4</td>
+<td>Request validation with size limits before the model sees anything</td>
+</tr>
+<tr>
+<td><code>07</code> §8</td>
+<td>Citations validated against the retrieved set</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why it recurs:</strong> a precise error at the boundary costs seconds; a <code>KeyError</code> three functions downstream costs an afternoon.</p>
+<h3 id="idea-6-measure-the-thing-not-a-proxy-for-it">Idea 6: Measure the thing, not a proxy for it<a class="anchor" href="#idea-6-measure-the-thing-not-a-proxy-for-it" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>04</code> §9</td>
+<td>Accuracy at 1.42% positives is 98.58% for a model that does nothing</td>
+</tr>
+<tr>
+<td><code>06</code> §11</td>
+<td>Benchmarks do not predict your task</td>
+</tr>
+<tr>
+<td><code>07</code> §9</td>
+<td>Recall, MRR and nDCG diverge; report all three</td>
+</tr>
+<tr>
+<td><code>09</code> §12</td>
+<td>Never quote a throughput number you did not measure</td>
+</tr>
+<tr>
+<td><code>10</code> §7</td>
+<td>Never report mean latency</td>
+</tr>
+<tr>
+<td><code>13</code> §1</td>
+<td>"It works" is not a measurement</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-cross-module-chains">3. Cross-module chains<a class="anchor" href="#3-cross-module-chains" aria-label="Link to this section">#</a></h2>
+<p>Four chains that appear as interview questions. Being able to walk one is worth more than knowing all its parts separately.</p>
+<h3 id="chain-a-from-a-wrong-answer-to-its-cause">Chain A: from a wrong answer to its cause<a class="anchor" href="#chain-a-from-a-wrong-answer-to-its-cause" aria-label="Link to this section">#</a></h3>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart LR
+    A[&quot;User: the answer is wrong&quot;]
+    B[&quot;07 §10: was the chunk retrieved?&quot;]
+    C[&quot;07 §10: was it in the prompt?&quot;]
+    D[&quot;06 §9: generation problem&quot;]
+    E[&quot;07 §3: chunking problem&quot;]
+    F[&quot;07 §2: ingestion problem&quot;]
+    G[&quot;03 §4: the join hid it&quot;]
+
+    A --&gt; B
+    B --&gt;|yes| C
+    C --&gt;|yes| D
+    C --&gt;|no| H[&quot;06 §7: context truncation&quot;]
+    B --&gt;|&quot;not ranked&quot;| E
+    E --&gt;|&quot;not in index&quot;| F
+    F --&gt;|&quot;your dashboard said fine&quot;| G
+</pre></div>
+<p><strong>Modules touched:</strong> 07, 06, 03, 02. This is <code>12b</code> X1 and X16.</p>
+<h3 id="chain-b-from-context-length-to-your-bill">Chain B: from context length to your bill<a class="anchor" href="#chain-b-from-context-length-to-your-bill" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code>06 §7: KV cache = 2 × layers × kv_heads × d_head × seq_len × batch × bytes
+   ↓
+09 §8: that is your memory budget; it competes with the weights
+   ↓
+06 §7: more cache means smaller batch, which means lower decode throughput
+   ↓
+10 §13: prompt tokens dominate RAG cost, so top-k is a multiplier
+   ↓
+11 §3: 80,000 queries/day × 2,800 prompt tokens = most of $29k/month
+   ↓
+11 §9: model routing, because the tier gap is ~12x
+</code></pre></div>
+
+<p><strong>Modules:</strong> 06, 09, 10, 11. This is <code>12b</code> X6.</p>
+<h3 id="chain-c-from-a-document-to-a-hallucination">Chain C: from a document to a hallucination<a class="anchor" href="#chain-c-from-a-document-to-a-hallucination" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code>07 §2: PDF extracted in the wrong reading order
+   ↓
+07 §3: chunk has no heading, so it lacks its own topic vocabulary
+   ↓
+07 §5: unfindable by the obvious query
+   ↓
+07 §8: model has no supporting source
+   ↓
+06 §9: it generates a plausible answer anyway, because nothing checks
+   ↓
+07 §9: refusal rate did not rise, because there was no refusal instruction
+   ↓
+10 §8: no monitoring caught it, because quality metrics were not built
+</code></pre></div>
+
+<p><strong>Modules:</strong> 07, 06, 10. Seven stages, one ingestion decision at the top.</p>
+<h3 id="chain-d-from-injection-to-incident">Chain D: from injection to incident<a class="anchor" href="#chain-d-from-injection-to-incident" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code>06 §12: instructions and data are the same token sequence
+   ↓
+07 §11: your corpus contains documents you did not write
+   ↓
+08 §11: add tools and the lethal trifecta completes
+   ↓
+08 §9: the agent retries a non-idempotent call
+   ↓
+02 §11: idempotency was the control you needed
+   ↓
+10 §10: least privilege and an egress allowlist are the architectural fix
+</code></pre></div>
+
+<p><strong>Modules:</strong> 06, 07, 08, 02, 10.</p>
+<hr />
+<h2 id="4-concepts-by-module-with-the-one-line-version">4. Concepts by module, with the one-line version<a class="anchor" href="#4-concepts-by-module-with-the-one-line-version" aria-label="Link to this section">#</a></h2>
+<p>Compressed for skimming. Each line is the thing to be able to say.</p>
+<h3 id="python-01a-c">Python (01a-c)<a class="anchor" href="#python-01a-c" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Names are labels, not boxes.</strong> Assignment moves labels; mutation is visible through every label.</li>
+<li><strong><code>is</code> only for None, True, False.</strong> Identity elsewhere depends on interning and constant folding.</li>
+<li><strong><code>x in set</code> is O(1), <code>x in list</code> is O(n).</strong> The most valuable line in the complexity table.</li>
+<li><strong>Mutable defaults are evaluated once</strong>, at <code>def</code> time, and shared forever.</li>
+<li><strong>Catch what you can handle; let the rest crash.</strong> A silently wrong number is worse than downtime.</li>
+<li><strong>Generators are exhausted after one pass</strong>, silently.</li>
+<li><strong><code>functools.wraps</code> or your tracebacks lie.</strong></li>
+<li><strong>Type hints do not validate.</strong> Pydantic does.</li>
+</ul>
+<h3 id="software-engineering-02">Software engineering (02)<a class="anchor" href="#software-engineering-02" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>A commit is a snapshot, not a diff.</strong> Branching is cheap because a branch is a pointer.</li>
+<li><strong>Never rebase what others have pulled.</strong> Rebase creates new commits with new hashes.</li>
+<li><strong><code>reflog</code> recovers almost anything committed.</strong></li>
+<li><strong>A lockfile is what makes "works on my machine" falsifiable.</strong></li>
+<li><strong>Idempotency decides what you may retry.</strong></li>
+<li><strong>The GIL blocks pure-Python threads, not C extensions.</strong> Which is why an inference server can thread.</li>
+</ul>
+<h3 id="data-and-statistics-03">Data and statistics (03)<a class="anchor" href="#data-and-statistics-03" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong><code>INNER JOIN</code> deletes evidence silently.</strong></li>
+<li><strong><code>COUNT(*)</code> after a LEFT JOIN returns 1 for the rows you were looking for.</strong></li>
+<li><strong><code>100.0 *</code>, not <code>100 *</code>.</strong> Integer division reported 28.6% as 0.</li>
+<li><strong>A function on an indexed column defeats the index.</strong></li>
+<li><strong>Standard error scales as 1/√n.</strong> Halving uncertainty needs 4x the data.</li>
+<li><strong>A p-value is not the probability the null is true.</strong> Twenty tests of nothing find something 65% of the time.</li>
+</ul>
+<h3 id="classical-ml-04">Classical ML (04)<a class="anchor" href="#classical-ml-04" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Leakage produced 0.845 AUC on pure noise.</strong></li>
+<li><strong>98.58% accuracy from predicting the majority class.</strong></li>
+<li><strong>PR-AUC is the honest one on imbalanced data</strong>, and its baseline is the positive rate.</li>
+<li><strong>The threshold comes from costs, not from 0.5.</strong></li>
+<li><strong>Calibration: a forest said 0.576 where the truth was 0.952.</strong></li>
+<li><strong>Everything inside the pipeline</strong>, or cross-validation is a lie.</li>
+</ul>
+<h3 id="deep-learning-05">Deep learning (05)<a class="anchor" href="#deep-learning-05" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Without nonlinearity, 100 layers equal 1.</strong></li>
+<li><strong><code>delta</code> is the reusable quantity</strong>; the weight gradient is always <code>delta × input^T</code>.</li>
+<li><strong>12-layer sigmoid: layer 1 gets 7.5e-11 of layer 12's gradient.</strong></li>
+<li><strong>Residual connections gave the gradient a path that skips layers.</strong> That is why depth works.</li>
+<li><strong>A training loss of zero carries no information.</strong> Three runs reached it with validation at 0.82, 1.70 and 29,492.</li>
+<li><strong>Regularization makes training worse and validation better.</strong> That is the trade.</li>
+</ul>
+<h3 id="transformers-and-llms-06">Transformers and LLMs (06)<a class="anchor" href="#transformers-and-llms-06" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Attention: score, scale by √d_k, mask, softmax, weighted sum of values.</strong></li>
+<li><strong>√d_k because dot-product variance grows with dimension</strong> and saturated softmax has no gradient.</li>
+<li><strong>Subtract the max before exponentiating</strong>, or overflow.</li>
+<li><strong>KV cache = 2 × layers × kv_heads × d_head × seq × batch × bytes.</strong> At 8k and batch 8 it can be 10x the weights.</li>
+<li><strong>Prefill is compute-bound, decode is bandwidth-bound.</strong> Different symptoms, different fixes.</li>
+<li><strong>Temperature 0 is not deterministic.</strong> Floating-point reduction order varies with batching.</li>
+<li><strong>Quantization degrades format-following before factual recall.</strong> Which is why benchmarks hide it.</li>
+<li><strong>Prompting cannot fix hallucination.</strong> There is no verification step to install.</li>
+<li><strong>Injection is architectural.</strong> Instructions and data are the same substance.</li>
+</ul>
+<h3 id="rag-07">RAG (07)<a class="anchor" href="#rag-07" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>The search engine is the hard part.</strong> Most RAG problems are retrieval problems.</li>
+<li><strong>Bigger chunks retrieve worse.</strong> One vector averaging five topics is close to nothing.</li>
+<li><strong>Parent-child: embed small, return large.</strong> Usually the highest-value structural change.</li>
+<li><strong>The orphan problem: "It increased by 12%" is unretrievable and useless.</strong></li>
+<li><strong>Embeddings fail at identifiers, negation, numbers, rare terms.</strong> Which is what BM25 fixes.</li>
+<li><strong>RRF fuses ranks, not scores</strong>, because the scales are incomparable.</li>
+<li><strong>Recall@k is the ceiling.</strong> An unretrieved chunk cannot be used.</li>
+<li><strong>20% of your eval set must be unanswerable</strong>, or refusal is unmeasurable.</li>
+<li><strong>Post-filtering permissions under-returns silently.</strong></li>
+</ul>
+<h3 id="agents-08">Agents (08)<a class="anchor" href="#agents-08" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Can you draw the flowchart? Then build the flowchart.</strong></li>
+<li><strong>The model never executes anything.</strong> It emits a request; your code decides.</li>
+<li><strong>Descriptions matter more than the model.</strong></li>
+<li><strong>Four stopping conditions</strong>, and every stop reason must be distinguishable.</li>
+<li><strong>Five agents at 90% reliability give 59%.</strong></li>
+<li><strong>Final-answer accuracy is insufficient.</strong> Right answer, wrong route.</li>
+<li><strong>The lethal trifecta: private data, untrusted content, external communication.</strong> Break one leg.</li>
+</ul>
+<h3 id="local-inference-09">Local inference (09)<a class="anchor" href="#local-inference-09" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Your budget is not your RAM.</strong> Wired limit, minus weights, cache, buffers, headroom.</li>
+<li><strong>Q3_K_M 27B is 12.29 GB against a 12.0 GB limit.</strong> That is why it did not fit.</li>
+<li><strong>Q2_K is larger than IQ3_XXS.</strong> K-quant superblock overhead.</li>
+<li><strong>Quantization speeds up decode</strong> because decode is bandwidth-bound.</li>
+<li><strong>Smaller at higher precision usually beats larger at Q2.</strong></li>
+<li><strong>vLLM and llama.cpp are different products</strong>, not competitors.</li>
+<li><strong>Never quote a number you did not measure.</strong></li>
+</ul>
+<h3 id="mlops-10">MLOps (10)<a class="anchor" href="#mlops-10" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Legible and reversible.</strong> Every practice serves one or both.</li>
+<li><strong>Version prompts, model aliases, and the index-to-embedding-model binding.</strong> The three most missed.</li>
+<li><strong><code>/health</code> is not <code>/ready</code>.</strong></li>
+<li><strong>Never report mean latency.</strong></li>
+<li><strong>Alert on error budget burn rate</strong>, not individual failures.</li>
+<li><strong>An unbounded queue turns a partial outage into a total one.</strong></li>
+<li><strong>Define the rollback trigger before deploying, and practise it.</strong></li>
+<li><strong>Prompt tokens dominate RAG cost.</strong> top-k is a multiplier.</li>
+</ul>
+<h3 id="system-design-11">System design (11)<a class="anchor" href="#system-design-11" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Clarify, estimate, design, deep dive, failure, evaluation.</strong> Reach the last two.</li>
+<li><strong>Show the arithmetic.</strong> It is the clearest signal available.</li>
+<li><strong>Peak, not average.</strong> 3-5x.</li>
+<li><strong>76 GB versus 19 GB decides your index architecture.</strong></li>
+<li><strong>The concurrent-stream check QPS alone misses.</strong></li>
+<li><strong>Say what would change your design.</strong></li>
+</ul>
+<hr />
+<h2 id="5-the-48-hour-skim">5. The 48-hour skim<a class="anchor" href="#5-the-48-hour-skim" aria-label="Link to this section">#</a></h2>
+<p>If you have one hour before an interview, read only this.</p>
+<p><strong>The numbers you own</strong> (fill from your own repository):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recall@5 before and after your biggest change</td>
+<td></td>
+</tr>
+<tr>
+<td>Latency that change cost</td>
+<td></td>
+</tr>
+<tr>
+<td>Eval set size and composition</td>
+<td></td>
+</tr>
+<tr>
+<td>Tokens/sec measured on your hardware</td>
+<td></td>
+</tr>
+<tr>
+<td>Model and quantization you ran, and why</td>
+<td></td>
+</tr>
+<tr>
+<td>Cost per request or month</td>
+<td></td>
+</tr>
+<tr>
+<td>Injection attempts, and how many succeeded</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>The five answers to have ready cold:</strong></p>
+<ol>
+<li><strong>Attention:</strong> score, scale, mask, softmax, weighted sum. √d_k for gradient stability.</li>
+<li><strong>KV cache:</strong> the formula, and that it can exceed the weights at long context.</li>
+<li><strong>Diagnosing a wrong RAG answer:</strong> chain A, walked backward, and the logging it requires.</li>
+<li><strong>Why prompting cannot fix hallucination:</strong> no verification step exists; here is what does help.</li>
+<li><strong>When something should not be an agent:</strong> can you draw the flowchart?</li>
+</ol>
+<p><strong>The three sentences that signal seniority:</strong></p>
+<ul>
+<li>"I built the evaluation set before the retriever, because otherwise every decision is a guess."</li>
+<li>"That result was better than I expected, so I looked for leakage before celebrating."</li>
+<li>"Here is what would change my mind about this design."</li>
+</ul>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<p>Every module. This file is the index.</p>
+<ul>
+<li><code>12a-interview-framework.md</code> section 9 has the question index; this has the concept index.</li>
+<li><code>tracker/progress-log.md</code> section 3 lists the same concepts as trackable rows.</li>
+<li>The mastery checklists at the end of each module are the testable form of section 4 here.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<p>Every number quoted in section 4 came from a module where it was computed or measured, and each carries its own volatility note there. The two that decay fastest:</p>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Source</th>
+<th>Re-check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quantization sizes and behavior</td>
+<td><code>09</code></td>
+<td>Your own <code>.gguf</code> files</td>
+</tr>
+<tr>
+<td>Cost figures</td>
+<td><code>10</code>, <code>11</code></td>
+<td>Current provider pricing</td>
+</tr>
+</tbody>
+</table>
+<p>The six recurring ideas and the four chains are the durable content, and they will still be true when every tool named in this repository has been replaced.</p>
+<p><strong>Next review due:</strong> before your first interview, and then after your fifth.</p>
+      <nav class="pager">
+<a class="pager-prev" href="13-portfolio.html"><span>Previous</span>13 · Portfolio Strategy</a>
+<a class="pager-next" href="project-1.html"><span>Next</span>Project 1 · Learning Log Analyzer</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#1-the-whole-repository-in-one-diagram">1. The whole repository in one diagram</a></li>
+<li class="toc-l2"><a href="#2-the-six-ideas-that-appear-everywhere">2. The six ideas that appear everywhere</a></li>
+<li class="toc-l3"><a href="#idea-1-evaluate-before-you-optimize">Idea 1: Evaluate before you optimize</a></li>
+<li class="toc-l3"><a href="#idea-2-information-leaking-into-your-evaluation">Idea 2: Information leaking into your evaluation</a></li>
+<li class="toc-l3"><a href="#idea-3-fail-loudly-or-you-will-not-know">Idea 3: Fail loudly, or you will not know</a></li>
+<li class="toc-l3"><a href="#idea-4-prefer-immutable-prefer-new-objects">Idea 4: Prefer immutable, prefer new objects</a></li>
+<li class="toc-l3"><a href="#idea-5-the-boundary-is-where-you-validate">Idea 5: The boundary is where you validate</a></li>
+<li class="toc-l3"><a href="#idea-6-measure-the-thing-not-a-proxy-for-it">Idea 6: Measure the thing, not a proxy for it</a></li>
+<li class="toc-l2"><a href="#3-cross-module-chains">3. Cross-module chains</a></li>
+<li class="toc-l3"><a href="#chain-a-from-a-wrong-answer-to-its-cause">Chain A: from a wrong answer to its cause</a></li>
+<li class="toc-l3"><a href="#chain-b-from-context-length-to-your-bill">Chain B: from context length to your bill</a></li>
+<li class="toc-l3"><a href="#chain-c-from-a-document-to-a-hallucination">Chain C: from a document to a hallucination</a></li>
+<li class="toc-l3"><a href="#chain-d-from-injection-to-incident">Chain D: from injection to incident</a></li>
+<li class="toc-l2"><a href="#4-concepts-by-module-with-the-one-line-version">4. Concepts by module, with the one-line version</a></li>
+<li class="toc-l3"><a href="#python-01a-c">Python (01a-c)</a></li>
+<li class="toc-l3"><a href="#software-engineering-02">Software engineering (02)</a></li>
+<li class="toc-l3"><a href="#data-and-statistics-03">Data and statistics (03)</a></li>
+<li class="toc-l3"><a href="#classical-ml-04">Classical ML (04)</a></li>
+<li class="toc-l3"><a href="#deep-learning-05">Deep learning (05)</a></li>
+<li class="toc-l3"><a href="#transformers-and-llms-06">Transformers and LLMs (06)</a></li>
+<li class="toc-l3"><a href="#rag-07">RAG (07)</a></li>
+<li class="toc-l3"><a href="#agents-08">Agents (08)</a></li>
+<li class="toc-l3"><a href="#local-inference-09">Local inference (09)</a></li>
+<li class="toc-l3"><a href="#mlops-10">MLOps (10)</a></li>
+<li class="toc-l3"><a href="#system-design-11">System design (11)</a></li>
+<li class="toc-l2"><a href="#5-the-48-hour-skim">5. The 48-hour skim</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

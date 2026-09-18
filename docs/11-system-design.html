@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11 · AI System Design · AI Engineer Learning OS</title>
+<meta name="description" content="The answer framework, capacity arithmetic, four complete walkthroughs.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html" class="active">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="11-ai-system-design">11 AI System Design<a class="anchor" href="#11-ai-system-design" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low for the method, medium for the component landscape</p>
+<p>Every number in the walkthroughs was computed, so you can check the arithmetic and substitute your own assumptions.</p>
+<hr />
+<h2 id="why-this-matters">Why this matters<a class="anchor" href="#why-this-matters" aria-label="Link to this section">#</a></h2>
+<p>System design is the round that decides senior-level offers, and AI system design is a recent enough variant that most candidates have not practised it.</p>
+<p>The interviewer is not checking whether you know the components. They are checking whether you can take an underspecified problem, extract requirements, do arithmetic on the back of an envelope, make tradeoffs with reasons, and say what would falsify your design. Those are the skills, and they are separable from everything else in this repository.</p>
+<p><strong>The most common failure is not knowing the material.</strong> It is jumping to a diagram before establishing what the system must do, and then defending the diagram instead of the requirements.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="anchor" href="#prerequisites" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>You need</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG architecture and failure modes</td>
+<td><code>07</code> all</td>
+</tr>
+<tr>
+<td>KV cache, prefill/decode, context costs</td>
+<td><code>06</code> section 7</td>
+</tr>
+<tr>
+<td>Agent boundaries, tool safety, the trifecta</td>
+<td><code>08</code> sections 1, 11</td>
+</tr>
+<tr>
+<td>Backpressure, SLOs, rollback, cost attribution</td>
+<td><code>10</code> sections 7, 11, 13</td>
+</tr>
+<tr>
+<td>Local serving and memory budgets</td>
+<td><code>09</code></td>
+</tr>
+<tr>
+<td>Arithmetic discipline, sample sizes, denominators</td>
+<td><code>03</code> sections 9, 10</td>
+</tr>
+</tbody>
+</table>
+<p>This module assumes all of them. It is consolidation, not new material, which is why it comes last.</p>
+<hr />
+<h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Level</th>
+<th>Skip if you can...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. The answer framework</td>
+<td>[CORE]</td>
+<td>...run a 45-minute design to a timed structure</td>
+</tr>
+<tr>
+<td>2. Requirements</td>
+<td>[CORE]</td>
+<td>...name the five questions to ask before drawing anything</td>
+</tr>
+<tr>
+<td>3. Capacity estimation</td>
+<td>[CORE]</td>
+<td>...compute tokens per day and cost from user counts</td>
+</tr>
+<tr>
+<td>4. Component vocabulary</td>
+<td>[FOUNDATION]</td>
+<td>...place every box and say what it is for</td>
+</tr>
+<tr>
+<td>5. Patterns</td>
+<td>[CORE]</td>
+<td>...pick the right shape for eight problem types</td>
+</tr>
+<tr>
+<td>6. Reliability and scale</td>
+<td>[CORE]</td>
+<td>...say where your design fails first</td>
+</tr>
+<tr>
+<td>7. Evaluation and quality</td>
+<td>[CORE]</td>
+<td>...say how you would know the system works</td>
+</tr>
+<tr>
+<td>8. Security and privacy</td>
+<td>[CORE]</td>
+<td>...design tenant isolation and injection containment</td>
+</tr>
+<tr>
+<td>9. Cost</td>
+<td>[CORE]</td>
+<td>...name the biggest lever and quantify it</td>
+</tr>
+<tr>
+<td>10-13. Four walkthroughs</td>
+<td>[CORE]</td>
+<td>n/a, practise them aloud</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="mental-model">Mental model<a class="anchor" href="#mental-model" aria-label="Link to this section">#</a></h2>
+<p><strong>A system design answer is a sequence of decisions, each with a stated reason and a stated cost. The diagram is a by-product.</strong></p>
+<p>Interviewers are listening for the reasons. "I would use a vector database" is a box. "I would use a vector database rather than a linear scan because we have 20 million chunks, which at 1024 dimensions is 76 GB, so exhaustive search per query is not viable, and I accept losing a few percent of recall which I would measure" is a decision.</p>
+<p><strong>Where the analogy breaks down.</strong> "A sequence of decisions" implies you can proceed linearly. You cannot: capacity estimates change your component choices, which change your cost, which changes the requirements you negotiate. The real process loops, and <strong>saying so out loud is a strength.</strong> "That cost estimate changes my answer on the model tier, let me revise" is what a senior engineer sounds like.</p>
+<hr />
+<h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
+<h3 id="1-the-answer-framework-core">1. The answer framework [CORE]<a class="anchor" href="#1-the-answer-framework-core" aria-label="Link to this section">#</a></h3>
+<p>A repeatable structure for 45 minutes. Say the structure out loud at the start; it signals you have done this before and it stops you rambling.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Minutes</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Clarify</strong></td>
+<td>5-8</td>
+<td>Scope, users, constraints, what success means</td>
+</tr>
+<tr>
+<td><strong>2. Estimate</strong></td>
+<td>5</td>
+<td>QPS, tokens, storage, cost. Arithmetic shown.</td>
+</tr>
+<tr>
+<td><strong>3. High-level design</strong></td>
+<td>10</td>
+<td>The boxes and the data flow</td>
+</tr>
+<tr>
+<td><strong>4. Deep dive</strong></td>
+<td>10-15</td>
+<td>One or two components, in detail, where they ask</td>
+</tr>
+<tr>
+<td><strong>5. Bottlenecks and failure</strong></td>
+<td>5-8</td>
+<td>Where it breaks first, and what you would do</td>
+</tr>
+<tr>
+<td><strong>6. Evaluation and operations</strong></td>
+<td>5</td>
+<td>How you know it works; what you monitor</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rules that keep it on track:</strong></p>
+<p><strong>Do not draw until phase 3.</strong> Every minute of drawing before requirements is a minute defending an arbitrary choice.</p>
+<p><strong>Say your assumptions out loud and write them down.</strong> "I am assuming 20% daily active, tell me if that is wrong." If the interviewer corrects you, that is a gift, not a failure.</p>
+<p><strong>Do the arithmetic visibly.</strong> Not "that will be a lot of tokens" but "80,000 queries a day at 3,050 tokens each is 244 million tokens a day". The number is less important than showing you can produce one.</p>
+<p><strong>State tradeoffs as tradeoffs.</strong> Every decision costs something. A candidate who presents only benefits sounds like they have not built it.</p>
+<p><strong>Leave time for phases 5 and 6.</strong> Many candidates spend 40 minutes on the diagram and never reach failure modes or evaluation, which is where senior signal lives.</p>
+<h3 id="2-requirements-core">2. Requirements [CORE]<a class="anchor" href="#2-requirements-core" aria-label="Link to this section">#</a></h3>
+<p><strong>The five questions to ask before anything else:</strong></p>
+<ol>
+<li><strong>Who uses it and how many?</strong> Internal team of 50 or public product of 5 million are different systems.</li>
+<li><strong>What does a good answer look like, and what does a bad one cost?</strong> A wrong answer about a lunch menu and a wrong answer about a drug interaction need different designs.</li>
+<li><strong>What is the latency expectation?</strong> Interactive, or a report that arrives in ten minutes.</li>
+<li><strong>What are the data constraints?</strong> Where does it live, can it leave, who may see what, how often does it change.</li>
+<li><strong>What already exists?</strong> You are rarely building from nothing, and the existing search index or database changes the answer.</li>
+</ol>
+<p><strong>Functional requirements:</strong> what it does. Usually the easy part and where candidates over-invest.</p>
+<p><strong>Non-functional requirements:</strong> where the design actually lives.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Ask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency</td>
+<td>p50 and p95, separately for first token and completion</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>Peak QPS, not average</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>What downtime is acceptable, and what does degraded look like</td>
+</tr>
+<tr>
+<td>Freshness</td>
+<td>How stale may an answer be</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>What error rate is acceptable, in which direction</td>
+</tr>
+<tr>
+<td>Privacy</td>
+<td>Data residency, retention, who may see what</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Budget per month or per query</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Define success measurably</strong>, and this is the answer most candidates skip: "90% of questions answered with a correct citation, p95 under 3 seconds, no cross-tenant leakage, under $X per month". Without it you cannot evaluate the design you are about to propose.</p>
+<p><strong>Negotiate scope explicitly.</strong> "I will design for text documents and treat images and audio as out of scope, is that reasonable?" A system design question is always too large for the time available, and choosing what to exclude is part of the skill.</p>
+<h3 id="3-capacity-estimation-core">3. Capacity estimation [CORE]<a class="anchor" href="#3-capacity-estimation-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Show the arithmetic.</strong> The goal is not precision; it is demonstrating that you reason quantitatively and that your design is sized to something.</p>
+<p><strong>The chain to work through:</strong></p>
+<div class="highlight"><pre><span></span><code>users → daily active → queries per day → QPS → peak QPS
+      → tokens per query → tokens per day → cost per day
+      → documents → chunks → vector storage → index memory
+</code></pre></div>
+
+<p><strong>Worked, for the enterprise assistant in section 10:</strong></p>
+<div class="highlight"><pre><span></span><code>50,000 employees, 20% daily active, 8 queries each
+  = 10,000 DAU × 8 = 80,000 queries/day
+
+Concentrated in an 8-hour workday = 28,800 seconds
+  average QPS = 80,000 / 28,800 = 2.78
+  peak at 3×   = 8.3 QPS
+  peak at 5×   = 13.9 QPS
+</code></pre></div>
+
+<p><strong>Peak matters, average does not.</strong> You size for peak. A 3x to 5x daily peak is a reasonable default assumption for internal tools, and stating the multiplier as an assumption is the point.</p>
+<div class="highlight"><pre><span></span><code>Tokens per query:
+  5 chunks × 400 tokens  = 2,000
+  system prompt          =   500
+  conversation history   =   300
+  prompt total           = 2,800
+  output                 =   250
+
+Per day: 80,000 × 3,050 = 244M tokens/day
+Per month (30 days):     = 7.3B tokens
+</code></pre></div>
+
+<p><strong>Cost, at illustrative prices:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Input</th>
+<th>Output</th>
+<th>Per day</th>
+<th>Per month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mid</td>
+<td>$3.00/M</td>
+<td>$15.00/M</td>
+<td>$972</td>
+<td>$29,160</td>
+</tr>
+<tr>
+<td>Small</td>
+<td>$0.25/M</td>
+<td>$1.25/M</td>
+<td>$81</td>
+<td>$2,430</td>
+</tr>
+</tbody>
+</table>
+<p><code>[UNVERIFIED: prices are illustrative and change constantly. The arithmetic is the point, not the numbers.]</code></p>
+<p><strong>The twelve-fold gap between tiers is the most important thing in this table</strong>, because it makes model routing a first-class design decision rather than an optimization. If 70% of queries are simple lookups a small model handles, routing them saves most of the bill.</p>
+<p><strong>Cache impact, on the mid tier:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Hit rate</th>
+<th>Per day</th>
+<th>Per month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0%</td>
+<td>$972</td>
+<td>$29,160</td>
+</tr>
+<tr>
+<td>30%</td>
+<td>$680</td>
+<td>$20,412</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>$486</td>
+<td>$14,580</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Storage:</strong></p>
+<div class="highlight"><pre><span></span><code>2,000,000 documents × 8 pages × 500 tokens = 8.0B tokens
+Chunked at 400 tokens                       = 20M chunks
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Vector storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1024-dim, float32</td>
+<td>76 GB</td>
+</tr>
+<tr>
+<td>1024-dim, int8 quantized</td>
+<td>19 GB</td>
+</tr>
+<tr>
+<td>384-dim, float32</td>
+<td>29 GB</td>
+</tr>
+<tr>
+<td>Raw text, ~4 bytes/token</td>
+<td>30 GB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>76 GB does not fit in one machine's RAM comfortably, and 19 GB does.</strong> That single comparison decides your index architecture, and it is why vector quantization and embedding dimension are design decisions rather than tuning knobs.</p>
+<p><strong>The throughput check people forget:</strong></p>
+<div class="highlight"><pre><span></span><code>At 40 tokens/sec per stream, 250 output tokens = 6.2 seconds of generation
+At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
+</code></pre></div>
+
+<p>If you are self-hosting, 52 concurrent streams is your capacity requirement, and module 09's KV cache arithmetic tells you whether your hardware supports it. Candidates who compute QPS and stop have missed that generation occupies a stream for seconds, not milliseconds.</p>
+<p><strong>Numbers worth carrying in your head:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Rough value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tokens per English word</td>
+<td>~1.3</td>
+</tr>
+<tr>
+<td>Tokens per page of prose</td>
+<td>~500</td>
+</tr>
+<tr>
+<td>Seconds in a day</td>
+<td>86,400</td>
+</tr>
+<tr>
+<td>Seconds in an 8-hour workday</td>
+<td>28,800</td>
+</tr>
+<tr>
+<td>Peak-to-average ratio</td>
+<td>3-5x</td>
+</tr>
+<tr>
+<td>float32 vector, 1024-dim</td>
+<td>4 KB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-component-vocabulary-foundation">4. Component vocabulary [FOUNDATION]<a class="anchor" href="#4-component-vocabulary-foundation" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Does</th>
+<th>Chosen by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API gateway</strong></td>
+<td>Auth, rate limiting, routing</td>
+<td>Traffic, auth model</td>
+</tr>
+<tr>
+<td><strong>Application service</strong></td>
+<td>Orchestration</td>
+<td>Language, team</td>
+</tr>
+<tr>
+<td><strong>Queue</strong></td>
+<td>Decouples producers from consumers</td>
+<td>Whether work is async</td>
+</tr>
+<tr>
+<td><strong>Relational database</strong></td>
+<td>Metadata, permissions, transactions</td>
+<td>Always needed</td>
+</tr>
+<tr>
+<td><strong>Object storage</strong></td>
+<td>Documents, artifacts, models</td>
+<td>Size, cost</td>
+</tr>
+<tr>
+<td><strong>Vector index</strong></td>
+<td>Similarity search</td>
+<td>Scale, filtering needs</td>
+</tr>
+<tr>
+<td><strong>Lexical index</strong></td>
+<td>Keyword search</td>
+<td>Hybrid retrieval</td>
+</tr>
+<tr>
+<td><strong>Cache</strong></td>
+<td>Repeated results</td>
+<td>Hit rate</td>
+</tr>
+<tr>
+<td><strong>Model provider or inference server</strong></td>
+<td>Generation</td>
+<td>Privacy, cost, control</td>
+</tr>
+<tr>
+<td><strong>Observability stack</strong></td>
+<td>Logs, metrics, traces</td>
+<td>Always needed</td>
+</tr>
+<tr>
+<td><strong>Feature flags</strong></td>
+<td>Runtime config changes</td>
+<td>Always, for AI systems</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The two most commonly omitted from candidate diagrams</strong>, and noticing them is a signal:</p>
+<p><strong>The relational database.</strong> People draw a vector store and forget that chunk metadata, permissions, document provenance, ingestion state and audit logs all need somewhere structured to live. Module 03 section 11 and module 07 section 11: without it, you cannot filter by permission, honor a deletion request, or monitor ingestion lag.</p>
+<p><strong>The ingestion pipeline.</strong> Candidates draw the query path and skip how documents get in. That pipeline is where most quality problems originate (module 07 section 2), and it needs scheduling, incremental updates, failure handling and monitoring of its own.</p>
+<h3 id="5-patterns-core">5. Patterns [CORE]<a class="anchor" href="#5-patterns-core" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Shape</th>
+<th>Key decisions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Document Q&amp;A</strong></td>
+<td>RAG</td>
+<td>Chunking, hybrid retrieval, citation, refusal</td>
+</tr>
+<tr>
+<td><strong>Support chatbot</strong></td>
+<td>RAG + tools + escalation</td>
+<td>When to escalate; conversational rewriting</td>
+</tr>
+<tr>
+<td><strong>Semantic search</strong></td>
+<td>Retrieval only, no generation</td>
+<td>Ranking quality; latency budget</td>
+</tr>
+<tr>
+<td><strong>Recommendation</strong></td>
+<td>Candidate generation then ranking</td>
+<td>Cold start; feedback loops</td>
+</tr>
+<tr>
+<td><strong>Batch classification</strong></td>
+<td>Offline pipeline</td>
+<td>Throughput, not latency; cost per item</td>
+</tr>
+<tr>
+<td><strong>Real-time scoring</strong></td>
+<td>Low-latency model service</td>
+<td>Feature freshness; p99</td>
+</tr>
+<tr>
+<td><strong>Agentic workflow</strong></td>
+<td>Bounded loop with tools</td>
+<td>Stopping, permissions, trajectory evaluation</td>
+</tr>
+<tr>
+<td><strong>Document extraction</strong></td>
+<td>VLM or OCR then schema validation</td>
+<td>Layout variance; validation at the boundary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The pattern-level decision most often got wrong: using RAG where semantic search is enough.</strong> If the user wants to find the document, return the documents. Generation adds latency, cost and a hallucination surface to a problem that a ranked list already solves. Saying this in an interview is a strong signal.</p>
+<p><strong>The second: generation where retrieval failed.</strong> No architecture recovers from bad retrieval, so retrieval quality is where the design effort belongs.</p>
+<h3 id="6-reliability-and-scale-core">6. Reliability and scale [CORE]<a class="anchor" href="#6-reliability-and-scale-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Say where your design fails first.</strong> Interviewers ask this and it separates people who have operated systems from people who have drawn them.</p>
+<p>For a typical RAG system, in order:</p>
+<ol>
+<li><strong>The model provider.</strong> Rate limits, latency spikes, outages. Mitigations: caching, a fallback provider or model, graceful degradation to retrieval-only.</li>
+<li><strong>The ingestion pipeline.</strong> It stalls silently and answers go stale with no error. Mitigation: alert on lag, not on failure (module 10 section 8).</li>
+<li><strong>The vector index.</strong> Memory pressure at scale, and rebuild time after a change.</li>
+<li><strong>Context growth.</strong> Conversations grow until the system prompt is truncated (module 06's failure mode).</li>
+<li><strong>Cost.</strong> Not a failure but an outage of a different kind, when someone caps your spend mid-day.</li>
+</ol>
+<p><strong>Backpressure</strong>, from module 10 section 11, is the concept to name. An unbounded queue converts a partial outage into a total one. A bounded queue rejecting with <code>429</code> keeps the system up and tells the truth about capacity.</p>
+<p><strong>Multi-region</strong> only if the requirements demand it. It multiplies complexity: index replication, consistency, cross-region cost. Say "I would not do this unless availability or data residency requires it" rather than adding it for completeness.</p>
+<p><strong>Idempotency</strong> on anything that writes, per module 02 section 11, because clients will retry.</p>
+<h3 id="7-evaluation-and-quality-core">7. Evaluation and quality [CORE]<a class="anchor" href="#7-evaluation-and-quality-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Reach this phase.</strong> Many candidates never do, and it is where senior signal is concentrated.</p>
+<p>The answer is module 07 section 9, compressed:</p>
+<ul>
+<li>An evaluation set of real questions with labelled relevant chunks, including unanswerable cases</li>
+<li>Retrieval and generation measured <strong>separately</strong>, because an end-to-end score cannot tell you which broke</li>
+<li>A measured baseline, so every change is a delta</li>
+<li>A CI gate with a tolerance (module 10 section 9)</li>
+<li>Online metrics as leading indicators: refusal rate, retrieval score distribution, citation validity</li>
+<li>Sampled offline scoring for quality itself</li>
+</ul>
+<p><strong>The sentence that lands:</strong> <em>"I would build the evaluation set before the retriever, because otherwise every subsequent decision is a guess."</em></p>
+<h3 id="8-security-and-privacy-core">8. Security and privacy [CORE]<a class="anchor" href="#8-security-and-privacy-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Tenant isolation</strong> is the highest-severity bug class. Design choices: tenant id from the authenticated session and never the request body; filtering at the data layer rather than application code; separate indexes per tenant when the count is small, which is correct by construction; and a test that specifically attempts cross-tenant access.</p>
+<p><strong>Permission-aware retrieval</strong>, from module 07 section 6: never post-filter as the primary mechanism, because it under-returns silently and the result count can leak existence. Permissions evaluated at query time against current state, never baked in at ingestion.</p>
+<p><strong>Prompt injection</strong>, from module 08 section 11: state the lethal trifecta, private data plus untrusted content plus external communication, and say which leg you are breaking. Usually egress.</p>
+<p><strong>PII and retention:</strong> know what reaches the provider, what is logged, what the retention policy is, and that a deletion request must reach the document, its chunks, its vectors and any cached embeddings.</p>
+<h3 id="9-cost-core">9. Cost [CORE]<a class="anchor" href="#9-cost-core" aria-label="Link to this section">#</a></h3>
+<p>From module 10 section 13, with the arithmetic from section 3.</p>
+<p><strong>The levers, ordered by return:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>Effect on the $29k/month example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model routing: small model for simple queries</td>
+<td>Up to ~12x on the routed share</td>
+</tr>
+<tr>
+<td>Caching at 30-50% hit rate</td>
+<td>$29k → $20k or $15k</td>
+</tr>
+<tr>
+<td>Provider prompt caching for a stable prefix</td>
+<td>Large if the system prompt is long</td>
+</tr>
+<tr>
+<td>Reduce chunks from 5 to 3</td>
+<td>~26% of prompt tokens</td>
+</tr>
+<tr>
+<td>Shorter system prompt</td>
+<td>Paid on every request, forever</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The governing rule:</strong> require an evaluation-set improvement to justify any context increase, or "let's pass more chunks" happens repeatedly and multiplies the bill for an unmeasured quality change.</p>
+<hr />
+<h2 id="walkthrough-1-enterprise-rag-assistant">Walkthrough 1: Enterprise RAG assistant<a class="anchor" href="#walkthrough-1-enterprise-rag-assistant" aria-label="Link to this section">#</a></h2>
+<p><strong>Prompt:</strong> <em>"Design an internal assistant that answers employee questions from company documents."</em></p>
+<h3 id="requirements">Requirements<a class="anchor" href="#requirements" aria-label="Link to this section">#</a></h3>
+<p>Clarifying: 50,000 employees, documents in SharePoint and Confluence, roughly 2 million documents, permissions matter and vary per document, answers must cite sources, p95 under 3 seconds, data must stay within the corporate cloud tenancy.</p>
+<p>Success: 90% of answerable questions answered with a valid citation, no cross-permission leakage, under $30k/month.</p>
+<p>Out of scope, negotiated: images, audio, and write actions.</p>
+<h3 id="capacity">Capacity<a class="anchor" href="#capacity" aria-label="Link to this section">#</a></h3>
+<p>From section 3: <strong>80,000 queries/day, 2.78 average QPS, 8.3 peak, 244M tokens/day, ~$29k/month on a mid tier, 20M chunks at 76 GB float32 or 19 GB int8.</strong></p>
+<p><strong>The two decisions that fall straight out of the arithmetic:</strong> int8 quantized vectors, because 19 GB fits in memory and 76 GB does not; and model routing, because the 12x tier gap is larger than any other lever available.</p>
+<h3 id="design">Design<a class="anchor" href="#design" aria-label="Link to this section">#</a></h3>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    U[&quot;Employee&quot;]
+    GW[&quot;API gateway: auth, rate limit&quot;]
+    APP[&quot;Application service&quot;]
+    CACHE[&quot;Semantic cache&quot;]
+    RW[&quot;Query rewrite, conversational&quot;]
+    ROUTE[&quot;Complexity router&quot;]
+    RET[&quot;Hybrid retrieval&quot;]
+    VEC[&quot;Vector index, int8, 19 GB&quot;]
+    LEX[&quot;BM25 index&quot;]
+    RDB[&quot;Postgres: chunk metadata, permissions, audit&quot;]
+    RR[&quot;Cross-encoder reranker&quot;]
+    SMALL[&quot;Small model&quot;]
+    LARGE[&quot;Mid-tier model&quot;]
+    VAL[&quot;Citation validator&quot;]
+
+    ING[&quot;Ingestion pipeline&quot;]
+    SRC[&quot;SharePoint, Confluence&quot;]
+    OBJ[&quot;Object storage: raw documents&quot;]
+
+    SRC --&gt;|&quot;incremental sync&quot;| ING
+    ING --&gt; OBJ
+    ING --&gt; VEC
+    ING --&gt; LEX
+    ING --&gt; RDB
+
+    U --&gt; GW --&gt; APP
+    APP --&gt; CACHE
+    CACHE --&gt;|&quot;miss&quot;| RW --&gt; ROUTE
+    ROUTE --&gt;|&quot;simple&quot;| RET
+    ROUTE --&gt;|&quot;complex&quot;| RET
+    RET --&gt; VEC
+    RET --&gt; LEX
+    RDB --&gt;|&quot;permission filter&quot;| RET
+    RET --&gt; RR
+    RR --&gt;|&quot;simple&quot;| SMALL
+    RR --&gt;|&quot;complex&quot;| LARGE
+    SMALL --&gt; VAL
+    LARGE --&gt; VAL
+    VAL --&gt; U
+</pre></div>
+<h3 id="data-flow">Data flow<a class="anchor" href="#data-flow" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Authenticate; derive the user's permission set from the session, never the request.</li>
+<li>Check the semantic cache, scoped to the permission set, since a cached answer must not cross a permission boundary.</li>
+<li>Rewrite the query against conversation history.</li>
+<li>Route on complexity.</li>
+<li>Retrieve hybrid, with permissions as an indexed filter evaluated during traversal.</li>
+<li>Rerank to the top 5.</li>
+<li>Assemble the prompt within budget; refuse if all scores are below threshold.</li>
+<li>Generate with the routed model, streaming.</li>
+<li>Validate every cited id against the retrieved set.</li>
+<li>Log the full trace; write an audit record of which documents were surfaced to whom.</li>
+</ol>
+<h3 id="bottlenecks-in-order">Bottlenecks, in order<a class="anchor" href="#bottlenecks-in-order" aria-label="Link to this section">#</a></h3>
+<p><strong>Model provider rate limits at peak.</strong> 52 concurrent streams at peak. Mitigation: caching, routing, a bounded queue rejecting with 429, and degradation to retrieval-only.</p>
+<p><strong>Ingestion lag.</strong> 2 million documents with incremental sync. A stall means confidently stale answers with no error. Alert on lag.</p>
+<p><strong>Permission freshness.</strong> Someone loses access at 10am and must not receive that content at 10:01. Permissions at query time, never baked in.</p>
+<p><strong>Index rebuild.</strong> Changing the embedding model means re-embedding 20M chunks. Version the index, build alongside, switch atomically.</p>
+<h3 id="evaluation-and-operations">Evaluation and operations<a class="anchor" href="#evaluation-and-operations" aria-label="Link to this section">#</a></h3>
+<p>Evaluation set of 200 real questions from the helpdesk, with labelled chunks and at least 40 unanswerable. Retrieval and generation measured separately, CI gate with tolerance. Online: refusal rate, retrieval score distribution, citation validity, cost per request, ingestion lag. Audit log of document access, which is a compliance requirement here rather than a nice-to-have.</p>
+<h3 id="the-concise-interview-version">The concise interview version<a class="anchor" href="#the-concise-interview-version" aria-label="Link to this section">#</a></h3>
+<p><em>"50,000 employees, 20% active, 8 queries each gives 80,000 queries a day, about 2.8 QPS average and 8 to 14 at peak. At 2,800 prompt tokens and 250 output, that is 244 million tokens a day, roughly $29,000 a month on a mid-tier model, which makes routing the largest lever since the tier gap is about 12x. 2 million documents chunk to 20 million vectors, 76 GB at float32 and 19 GB at int8, so I would quantize because that is the difference between fitting in memory and not. Hybrid retrieval with permissions as an indexed filter evaluated at query time, never baked in at ingestion, and a cross-encoder reranker. The thing that breaks first is the ingestion pipeline stalling silently, so I alert on lag rather than on failure. And I would build the evaluation set before the retriever."</em></p>
+<hr />
+<h2 id="walkthrough-2-personalized-ai-learning-assistant">Walkthrough 2: Personalized AI learning assistant<a class="anchor" href="#walkthrough-2-personalized-ai-learning-assistant" aria-label="Link to this section">#</a></h2>
+<p><strong>Prompt:</strong> <em>"Design a system that helps someone learn a technical subject, adapting to their progress."</em></p>
+<h3 id="requirements-2">Requirements<a class="anchor" href="#requirements-2" aria-label="Link to this section">#</a></h3>
+<p>The interesting clarification: <strong>is this retrieval over content, or a model of the learner?</strong> Both, and the learner model is the hard part and the differentiator.</p>
+<p>Assume 100,000 users, 30% weekly active, 20 interactions per session, latency tolerant at 2-5 seconds, content is a fixed curriculum plus user-uploaded notes.</p>
+<p>Success: measurable learning gain on spaced-repetition performance, not engagement time, which is a metric that rewards the wrong thing.</p>
+<h3 id="the-design-point-that-matters">The design point that matters<a class="anchor" href="#the-design-point-that-matters" aria-label="Link to this section">#</a></h3>
+<p><strong>Most of this system is not the LLM.</strong> The learner model, which concepts are mastered, which are due for review, which prerequisites are missing, is a relational database and the spaced-repetition scheduling from <code>tracker/progress-log.md</code>. The model generates explanations and questions; it does not decide what to teach.</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    U[&quot;Learner&quot;]
+    APP[&quot;Application&quot;]
+    LM[&quot;Learner model: Postgres&quot;]
+    SCHED[&quot;Spaced-repetition scheduler&quot;]
+    GAP[&quot;Gap analysis&quot;]
+    CONTENT[&quot;Curriculum content + user notes&quot;]
+    RET[&quot;Retrieval&quot;]
+    GEN[&quot;Generation: explain, quiz, grade&quot;]
+    RUBRIC[&quot;Rubric-based grading&quot;]
+
+    U --&gt; APP
+    APP --&gt; LM
+    LM --&gt; SCHED --&gt; GAP --&gt; RET
+    CONTENT --&gt; RET
+    RET --&gt; GEN --&gt; U
+    U --&gt;|&quot;answers&quot;| RUBRIC --&gt; LM
+</pre></div>
+<p><strong>Why this shape.</strong> Putting scheduling in the model means it is non-deterministic, unauditable and expensive. Putting it in a database makes it correct, cheap, explainable to the user, and testable. <strong>Use the model for what only it can do</strong>, which is generating an explanation adapted to what the learner just got wrong.</p>
+<h3 id="capacity-briefly">Capacity, briefly<a class="anchor" href="#capacity-briefly" aria-label="Link to this section">#</a></h3>
+<p>30,000 weekly active × 20 interactions ≈ 600,000 interactions/week ≈ 86,000/day. Explanations are longer outputs than RAG answers, perhaps 600 tokens, and prompts are shorter. Roughly comparable token volume to walkthrough 1.</p>
+<p><strong>The cost structure differs</strong> in a way worth naming: grading free-text answers is a per-answer model call, so it scales with engagement rather than with questions asked. Rubric-based grading with a small model is the routing decision here.</p>
+<h3 id="failure-modes-specific-to-this-design">Failure modes specific to this design<a class="anchor" href="#failure-modes-specific-to-this-design" aria-label="Link to this section">#</a></h3>
+<p><strong>Grading disagreement.</strong> Two runs grade the same answer differently. Mitigation: a fixed rubric, temperature 0, and sampling for human review. Report grading consistency as a metric.</p>
+<p><strong>The learner model going stale or wrong.</strong> If mastery is overestimated, the system stops reviewing something the learner has forgotten. Mitigation: the failure rule from <code>tracker/progress-log.md</code>, where a failed review resets to the shortest interval rather than stepping back one.</p>
+<p><strong>Optimizing engagement instead of learning.</strong> A system that maximizes time spent is not the same as one that maximizes retention. Define success as review performance over time, and say so explicitly.</p>
+<hr />
+<h2 id="walkthrough-3-local-first-private-document-copilot">Walkthrough 3: Local-first private document copilot<a class="anchor" href="#walkthrough-3-local-first-private-document-copilot" aria-label="Link to this section">#</a></h2>
+<p><strong>Prompt:</strong> <em>"Design a document assistant where no data may leave the user's machine."</em></p>
+<h3 id="requirements-3">Requirements<a class="anchor" href="#requirements-3" aria-label="Link to this section">#</a></h3>
+<p>The constraint drives everything. Single user or small team, documents on the local machine, no network calls with document content, and the user's hardware is whatever they have.</p>
+<p>Success: useful answers within the hardware budget, with honest degradation when the hardware cannot support the request.</p>
+<h3 id="the-design">The design<a class="anchor" href="#the-design" aria-label="Link to this section">#</a></h3>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    U[&quot;User&quot;]
+    APP[&quot;Local application&quot;]
+    WATCH[&quot;Filesystem watcher&quot;]
+    PARSE[&quot;Parser&quot;]
+    EMB[&quot;Local embedding model&quot;]
+    IDX[&quot;Local vector index&quot;]
+    SQL[&quot;SQLite: metadata, state&quot;]
+    GEN[&quot;Local LLM, llama-server&quot;]
+    PROXY[&quot;Auth reverse proxy&quot;]
+    LAN[&quot;Other devices over VPN&quot;]
+
+    WATCH --&gt; PARSE --&gt; EMB --&gt; IDX
+    PARSE --&gt; SQL
+    U --&gt; APP --&gt; IDX
+    IDX --&gt; GEN --&gt; U
+    APP --&gt; PROXY --&gt; LAN
+</pre></div>
+<h3 id="the-memory-budget-is-the-design">The memory budget is the design<a class="anchor" href="#the-memory-budget-is-the-design" aria-label="Link to this section">#</a></h3>
+<p>This is module 09 applied. On a 32 GB machine with a 75% GPU wired limit:</p>
+<div class="highlight"><pre><span></span><code>usable                             ≈ 24 GB
+embedding model                    ≈  1 GB
+reranker                           ≈  0.5 GB
+vector index, 50k chunks, 1024-dim ≈  0.2 GB
+KV cache, 4k context, 2 streams    ≈  0.5 GB
+compute buffers                    ≈  1.5 GB
+headroom at 20%                    ≈  4.8 GB
+                                     -------
+available for the generator        ≈ 15.5 GB
+</code></pre></div>
+
+<p><strong>A 14B at Q5_K_M is 9.2 GB and fits with room. A 27B at Q3_K_M is 12.3 GB and fits with almost none.</strong> Module 09 section 7's argument applies: the smaller model at higher precision is very likely better, because sub-Q4 damage lands on instruction following and long-context coherence, which is exactly what a document assistant needs.</p>
+<p><strong>Say this out loud in an interview</strong>, because most candidates asked about local deployment name a model and stop.</p>
+<h3 id="tradeoffs-to-state-honestly">Tradeoffs to state honestly<a class="anchor" href="#tradeoffs-to-state-honestly" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Gained</th>
+<th>Given up</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Privacy, absolutely</td>
+<td>Frontier model quality</td>
+</tr>
+<tr>
+<td>No per-token cost</td>
+<td>Fixed hardware cost, and idle time is waste</td>
+</tr>
+<tr>
+<td>Offline operation</td>
+<td>Operational burden on the user</td>
+</tr>
+<tr>
+<td>Version stability</td>
+<td>Easy scaling</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Degradation, designed rather than accidental:</strong> if a document set is too large for the index budget, index the most recently accessed and say so. If a query needs more context than fits, retrieve fewer chunks and tell the user. <strong>Silent degradation is the failure mode to design against.</strong></p>
+<h3 id="multi-device">Multi-device<a class="anchor" href="#multi-device" aria-label="Link to this section">#</a></h3>
+<p>Module 09 section 11's pattern: the inference server bound to localhost, an authenticating reverse proxy in front, reachable over a private network such as Tailscale. Note explicitly that a private network is a perimeter, not authentication within it.</p>
+<hr />
+<h2 id="walkthrough-4-multi-tool-support-agent-with-human-escalation">Walkthrough 4: Multi-tool support agent with human escalation<a class="anchor" href="#walkthrough-4-multi-tool-support-agent-with-human-escalation" aria-label="Link to this section">#</a></h2>
+<p><strong>Prompt:</strong> <em>"Design a customer support agent that can look things up, take some actions, and escalate."</em></p>
+<h3 id="the-first-move-and-the-answer">The first move, and the answer<a class="anchor" href="#the-first-move-and-the-answer" aria-label="Link to this section">#</a></h3>
+<p><strong>Most of this should not be an agent.</strong> Module 08 section 1: "where is my order" is a workflow, look up the order then look up shipping. "Why was I charged twice" is an investigation whose path depends on what each lookup reveals.</p>
+<p><strong>So: a classifier routes to a workflow for the common cases and an agent for investigations.</strong> Saying this first is the strongest move available on this question, because the reflexive answer is to make everything an agent.</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    U[&quot;Customer&quot;]
+    CLS[&quot;Intent classifier, small model&quot;]
+    WF[&quot;Deterministic workflow&quot;]
+    AG[&quot;Bounded agent&quot;]
+    REG[&quot;Tool registry, allowlist&quot;]
+    GATE[&quot;Policy gate&quot;]
+    HUMAN[&quot;Human confirmation&quot;]
+    ESC[&quot;Escalation queue&quot;]
+    AUDIT[&quot;Audit log&quot;]
+
+    U --&gt; CLS
+    CLS --&gt;|&quot;common intents, ~70%&quot;| WF
+    CLS --&gt;|&quot;investigation&quot;| AG
+    WF --&gt; REG
+    AG --&gt; REG
+    REG --&gt; GATE
+    GATE --&gt;|&quot;consequential&quot;| HUMAN
+    GATE --&gt;|&quot;forbidden&quot;| ESC
+    GATE --&gt;|&quot;routine&quot;| AUDIT
+    AG --&gt;|&quot;cannot resolve&quot;| ESC
+    ESC --&gt; U
+</pre></div>
+<h3 id="tools-with-blast-radius-stated">Tools, with blast radius stated<a class="anchor" href="#tools-with-blast-radius-stated" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Writes</th>
+<th>Idempotent</th>
+<th>Gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get_order</code></td>
+<td>No</td>
+<td>Yes</td>
+<td>Scoped to session user</td>
+</tr>
+<tr>
+<td><code>get_shipping</code></td>
+<td>No</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>search_help_docs</code></td>
+<td>No</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>escalate</code></td>
+<td>Ticket</td>
+<td>No</td>
+<td>Idempotency key</td>
+</tr>
+<tr>
+<td><code>issue_refund</code></td>
+<td>Money</td>
+<td>No</td>
+<td><strong>Human confirmation</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Applying the lethal trifecta:</strong> private data yes, untrusted content yes since customer messages and editable help docs, so the third leg is the one to break. No general HTTP tool, <code>escalate</code> writes internally only, <code>issue_refund</code> requires human confirmation that shows amount and order, and there is an egress allowlist.</p>
+<p><strong>Authorization at the tool, never the prompt.</strong> <code>get_order</code> checks the order belongs to the authenticated session's user. "The model will only ask for the user's own orders" is not a control, because injected content can ask for anything.</p>
+<h3 id="capacity-and-cost">Capacity and cost<a class="anchor" href="#capacity-and-cost" aria-label="Link to this section">#</a></h3>
+<p>10,000 tickets/day, 70% routed to the workflow at roughly 1 model call each, 30% to the agent at an average of 4 steps with accumulating context.</p>
+<div class="highlight"><pre><span></span><code>workflow:  7,000 × 1 call  ×  1,500 tokens =  10.5M tokens/day
+agent:     3,000 × 4 calls × ~4,000 avg    =  48.0M tokens/day
+</code></pre></div>
+
+<p><strong>The agent is 30% of traffic and 82% of tokens.</strong> That is the argument for routing, quantified, and it is a much stronger statement than "agents are expensive".</p>
+<h3 id="evaluation">Evaluation<a class="anchor" href="#evaluation" aria-label="Link to this section">#</a></h3>
+<p>Project 3's harness. Trajectory cases including forbidden-tool attempts, injection payloads in help documents, a timing-out tool, and cases that must escalate. <strong><code>forbidden_tool_violations</code> must be zero</strong>, and any non-zero value alerts immediately because it means a bug or an attack.</p>
+<p>Operationally: escalation rate, which rising means the agent is degrading and falling too far means it is over-reaching; steps per task; cost per task; and human-confirmation approval rate, because a rate near 100% means confirmation fatigue and the control is theatre.</p>
+<hr />
+<h2 id="common-mistakes">Common mistakes<a class="anchor" href="#common-mistakes" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Why it costs you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drawing before clarifying</td>
+<td>You defend an arbitrary design for 40 minutes</td>
+</tr>
+<tr>
+<td>No arithmetic</td>
+<td>The single clearest signal of inexperience</td>
+</tr>
+<tr>
+<td>Averages instead of peaks</td>
+<td>Undersized by 3-5x</td>
+</tr>
+<tr>
+<td>Forgetting the relational database</td>
+<td>No permissions, no deletion, no audit</td>
+</tr>
+<tr>
+<td>Forgetting the ingestion pipeline</td>
+<td>Half the system, and where most quality problems start</td>
+</tr>
+<tr>
+<td>Never reaching evaluation</td>
+<td>Where senior signal lives</td>
+</tr>
+<tr>
+<td>Only stating benefits</td>
+<td>Sounds like you have not operated it</td>
+</tr>
+<tr>
+<td>Agent where a workflow fits</td>
+<td>The most common AI-specific design error</td>
+</tr>
+<tr>
+<td>RAG where search suffices</td>
+<td>Adds latency, cost and hallucination for nothing</td>
+</tr>
+<tr>
+<td>Post-filtering permissions</td>
+<td>Under-returns silently; leaks existence</td>
+</tr>
+<tr>
+<td>Unbounded queues</td>
+<td>Turns partial outages into total ones</td>
+</tr>
+<tr>
+<td>Prompts not versioned</td>
+<td>Behavior changes with no commit and no rollback</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
+<p><strong>1. Design a document Q&amp;A system for 50,000 employees.</strong></p>
+<p><em>Strong outline:</em> Walkthrough 1, structured. Clarify first, five questions. Then arithmetic out loud: 80,000 queries a day, 2.8 QPS average, 8 to 14 at peak, 244 million tokens a day, roughly $29k/month mid-tier, 20M chunks at 76 GB float32 or 19 GB int8. Let the arithmetic drive two decisions visibly: quantize the vectors because that is the difference between fitting in memory and not, and route by complexity because the model tier gap is about 12x. Then the design, with permissions as an indexed filter at query time. Then failure modes in order, leading with ingestion stalling silently. Then evaluation, built before the retriever.</p>
+<p><em>Weak answer:</em> Drawing the standard RAG diagram with no numbers, no permissions and no ingestion pipeline.</p>
+<p><strong>2. How do you estimate capacity for an LLM system?</strong></p>
+<p><em>Strong outline:</em> Work the chain out loud: users, daily active fraction, queries per user, queries per day, average QPS over the active window rather than 24 hours, then peak at 3 to 5x. Then tokens: chunks times chunk size, plus system prompt, plus history, plus output. Multiply for daily tokens, apply prices for cost. Then storage: documents to chunks to vectors, with dimension and precision, because that decides your index architecture. Then the check most candidates miss: generation occupies a stream for seconds, so at 40 tokens per second and 250 output tokens that is 6.2 seconds, and 8.3 QPS peak means about 52 concurrent streams. State every assumption aloud and invite correction.</p>
+<p><em>Weak answer:</em> "It depends on usage." The arithmetic is the skill being tested.</p>
+<p><strong>3. Your design works at 10,000 users. What breaks at a million?</strong></p>
+<p><em>Strong outline:</em> Name them in order with the reason. Model provider rate limits first, mitigated by caching, routing, a bounded queue and degradation to retrieval-only. Then the vector index, since 76 GB becomes 7.6 TB and exceeds single-machine memory, forcing sharding or disk-based indexing with a latency cost. Then ingestion throughput, and index rebuild time becoming days, which makes an embedding model change a migration project. Then cost, which at 100x is a different business. Then the relational database on the metadata path. Then say what does <em>not</em> break, because the stateless application tier scales horizontally and is the least interesting part.</p>
+<p><em>Weak answer:</em> "Add more servers." Does not identify which bottleneck, and the stateless tier is the one that scales trivially.</p>
+<p><strong>4. Design a support agent that can issue refunds.</strong></p>
+<p><em>Strong outline:</em> Start by saying most of it should not be an agent, and route: a classifier sends common intents to a deterministic workflow and investigations to a bounded agent. Quantify it: 70% of traffic to the workflow, and the agent is 30% of traffic but 82% of tokens because context accumulates across steps. Then tools with blast radius stated per tool, the lethal trifecta with egress named as the leg you break, authorization at the tool against the authenticated session rather than in the prompt, human confirmation that shows amount and recipient, idempotency keys so a retry cannot double-refund, and a full audit trail. Then evaluation with trajectory cases including forbidden-tool attempts and injection payloads, with forbidden-tool violations alerting immediately. Add the confirmation-fatigue point: an approval rate near 100% means the control is theatre.</p>
+<p><em>Weak answer:</em> Drawing an agent with five tools and adding "human in the loop" without specifying what the human sees or decides.</p>
+<p><strong>5. How would you know your system works?</strong></p>
+<p><em>Strong outline:</em> Evaluation set of real questions with labelled relevant chunks, including at least 20% unanswerable, built before the retriever because otherwise every decision is a guess. Retrieval and generation measured separately, since an end-to-end score cannot tell you which broke. A measured baseline so every change is a delta. A CI gate with a tolerance, failing with the specific case ids. Online, leading indicators that are cheap and exact: refusal rate, retrieval score distribution, citation validity, cost per request, ingestion lag. Quality itself sampled and scored offline on a schedule, because faithfulness checks on every request are not affordable. And be explicit that user thumbs-down is biased and useful for finding examples to read, not as a quality metric.</p>
+<p><em>Weak answer:</em> "User feedback and monitoring." Neither specified, and thumbs-down alone is a biased sample.</p>
+<p><strong>6. When would you not use RAG?</strong></p>
+<p><em>Strong outline:</em> When the user wants to find the document rather than an answer, in which case semantic search returns a ranked list and generation just adds latency, cost and a hallucination surface. When the answer needs a live value or an action, where tools are correct and RAG over a nightly snapshot confidently reports stale data. When the problem is behavior rather than knowledge, where fine-tuning or better prompting applies. And when the corpus fits comfortably in context, though cost at volume can still argue for retrieval. Then the anti-patterns: fine-tuning on documentation, which bakes a snapshot into weights with no provenance or update path, and using RAG to supply format examples, which is few-shot prompting done expensively.</p>
+<p><em>Weak answer:</em> "RAG is always good for private data." The question is testing whether you can decline your default tool.</p>
+<p><strong>7. Design for a hard privacy constraint: nothing leaves the machine.</strong></p>
+<p><em>Strong outline:</em> Walkthrough 3. The memory budget is the design, so do the arithmetic: on 32 GB with a 75% wired limit you have about 24 GB, minus embedding model, reranker, index, KV cache, compute buffers and 20% headroom leaves about 15.5 GB for the generator. A 14B at Q5_K_M is 9.2 GB and fits comfortably; a 27B at Q3_K_M is 12.3 GB and fits with nothing spare, and sub-Q4 damage lands on instruction following and long-context coherence, which is exactly what a document assistant needs, so the smaller model at higher precision is the better choice. Then state the tradeoffs honestly, including the frontier-quality ceiling you accept, and design the degradation explicitly so the system tells the user when it cannot index everything rather than silently truncating.</p>
+<p><em>Weak answer:</em> "Run a local model." No budget, no model choice reasoning, no degradation design.</p>
+<p><strong>8. How do you handle multi-tenancy?</strong></p>
+<p><em>Strong outline:</em> Tenant id from the authenticated session, never the request body, because that is the single highest-severity bug class. Filtering at the data layer rather than in application code, so a forgotten <code>where</code> clause cannot leak. For the vector index, separate indexes or namespaces per tenant when the count is small, which is correct by construction and makes deletion a dropped collection, versus indexed metadata filters when there are many tenants. Never post-filter as the primary mechanism, because it under-returns silently so restricted tenants get worse answers with no explanation, and the result count can leak the existence of matching content. Then the test nobody writes: one that specifically attempts cross-tenant access and asserts it fails.</p>
+<p><em>Weak answer:</em> "Filter results by tenant." The naive approach, with all three problems.</p>
+<p><strong>9. Where does most of your cost go, and what would you do about it?</strong></p>
+<p><em>Strong outline:</em> Prompt tokens, usually, because retrieved chunks are large and answers are short, so top-k is a lever with a multiplier on it. Quantify from a worked example: 2,800 prompt tokens against 250 output, so raising chunks from 5 to 20 roughly quadruples most of the bill. Levers by return: model routing, since the tier gap is around 12x and most queries are simple; caching, where 30 to 50% hit rate takes $29k to $20k or $15k; provider prompt caching for a stable prefix; fewer chunks; and a shorter system prompt, which is paid on every request forever. Then the governing rule: require an evaluation-set improvement to justify any context increase, and alert on the cost derivative rather than only the monthly cap, because a cap alert arrives after the money is spent.</p>
+<p><em>Weak answer:</em> "Use a cheaper model." One lever, and it skips the attribution that tells you which lever matters.</p>
+<p><strong>10. What would make you change this design?</strong></p>
+<p><em>Strong outline:</em> Treat it as an invitation to show judgment rather than defend. Name the assumptions the design rests on and what would falsify each: if the peak-to-average ratio is 10x rather than 3x, the capacity sizing changes; if permissions are coarse rather than per-document, the filtering design simplifies enormously; if documents change hourly rather than daily, the ingestion design dominates; if the corpus turns out to fit in context, the whole retrieval layer is unnecessary. Then the measurement that would change it after launch: if the evaluation set shows retrieval recall is already high and generation is the weak stage, effort moves from the retriever to the prompt and model.</p>
+<p><em>Weak answer:</em> "Nothing, I think it's solid." The question is checking whether you know where your own design is fragile.</p>
+<h3 id="follow-up-questions-to-expect">Follow-up questions to expect<a class="anchor" href="#follow-up-questions-to-expect" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><em>"Your latency budget is 3 seconds and generation alone takes 6. What now?"</em> State the arithmetic that creates the conflict, then the options: stream so time to first token is what users feel, shorten the answer, use a faster model for the routed share, or renegotiate the requirement. Be explicit that streaming changes perceived latency rather than actual, and that if the requirement is a hard 3-second completion then the answer length must come down.</li>
+<li><em>"The interviewer says budget is one tenth of your estimate."</em> Do not panic-redesign. Work the levers in order with numbers: route more aggressively to a small model, raise the cache hit rate, cut chunks from 5 to 3, shorten the system prompt. Then say what quality cost each carries and that you would measure it on the evaluation set, and if the gap is still 10x, name what scope you would cut rather than pretending the arithmetic works.</li>
+</ul>
+<h3 id="60-second-and-5-minute-answers">60-second and 5-minute answers<a class="anchor" href="#60-second-and-5-minute-answers" aria-label="Link to this section">#</a></h3>
+<p>Practise all four walkthroughs at both lengths, aloud and timed. The 60-second version of walkthrough 1 is written out above; write your own for the other three.</p>
+<hr />
+<h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
+<h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Estimate tokens per day and monthly cost for a product you use, stating every assumption.</li>
+<li>For a system you have built, name where it fails first and what you would do.</li>
+<li>Take walkthrough 1 and redo the arithmetic at 500,000 users. Which decisions change?</li>
+<li>Write the five clarifying questions for "design a system that summarizes meetings".</li>
+<li>Take any design and list the assumptions that would change it if wrong.</li>
+</ol>
+<h3 id="three-realistic-tasks">Three realistic tasks<a class="anchor" href="#three-realistic-tasks" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Do all four walkthroughs aloud, timed, recorded.</strong> Score yourself: did you clarify first, show arithmetic, state tradeoffs, reach evaluation? Most people fail the last one on the first attempt.</li>
+<li><strong>Design something you have actually built</strong>, then compare against what you built. The gap is the most instructive thing here, and "I would do X differently" is a strong interview answer with a real example behind it.</li>
+<li><strong>Cost-constrained redesign.</strong> Take walkthrough 1 and cut the budget to $5k/month. Work the levers with numbers, state the quality cost of each, and say what you would cut if it still does not fit.</li>
+</ol>
+<h3 id="one-mini-project">One mini-project<a class="anchor" href="#one-mini-project" aria-label="Link to this section">#</a></h3>
+<p><strong>Write a design document for your capstone.</strong></p>
+<p>Requirements with measurable success criteria, capacity estimation with arithmetic shown, architecture diagram, data flow, the technology choices with the alternative rejected and why, failure modes in order, evaluation plan, security analysis, and cost estimate with levers.</p>
+<p>Success criterion: someone who has not seen the system could implement it, and could tell you where they think you are wrong. That is the bar for a design document, and it is <code>capstone/01-architecture.md</code>.</p>
+<hr />
+<h2 id="mastery-checklist">Mastery checklist<a class="anchor" href="#mastery-checklist" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>[ ] Run a 45-minute design to a stated structure, reaching evaluation</li>
+<li>[ ] Ask the five clarifying questions before drawing anything</li>
+<li>[ ] Define success measurably before designing</li>
+<li>[ ] Compute QPS from users, using peak rather than average</li>
+<li>[ ] Compute tokens per day and cost, showing the arithmetic</li>
+<li>[ ] Compute vector storage and say what it decides</li>
+<li>[ ] Do the concurrent-stream check that QPS alone misses</li>
+<li>[ ] Name the two components candidates usually omit</li>
+<li>[ ] Pick the right pattern for eight problem types</li>
+<li>[ ] Say when semantic search beats RAG</li>
+<li>[ ] Say where your design fails first, in order</li>
+<li>[ ] Explain backpressure and why a bigger queue is wrong</li>
+<li>[ ] Describe permission-aware retrieval and why post-filtering fails</li>
+<li>[ ] State the lethal trifecta and which leg you break</li>
+<li>[ ] Quantify cost levers rather than naming them</li>
+<li>[ ] Say what would change your design</li>
+<li>[ ] Deliver all four walkthroughs at 60 seconds and 5 minutes</li>
+</ul>
+<p>Fewer than fourteen of seventeen means practise more. This module is practised, not read.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<p><strong>Backward:</strong> every technical module feeds one of the walkthroughs. <code>07</code> is walkthrough 1, <code>08</code> is walkthrough 4, <code>09</code> is walkthrough 3, <code>03</code> sections 9 and 10 are the arithmetic discipline, <code>10</code> is sections 6 and 9.</p>
+<p><strong>Forward:</strong> <code>12a-interview-framework.md</code> owns the general answer framework; this module owns the design-specific one. <code>12b</code> references these walkthroughs rather than duplicating them. <code>capstone/01-architecture.md</code> is the mini-project.</p>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Every price and cost figure</td>
+<td>Change constantly</td>
+<td>Current provider pricing</td>
+</tr>
+<tr>
+<td>Tokens-per-second assumptions</td>
+<td>Hardware and model dependent</td>
+<td>Your own benchmark</td>
+</tr>
+<tr>
+<td>Component landscape</td>
+<td>Tooling churn</td>
+<td>Current options</td>
+</tr>
+<tr>
+<td>"3-5x peak-to-average"</td>
+<td>A reasonable default, not a measurement</td>
+<td>Your own traffic</td>
+</tr>
+</tbody>
+</table>
+<p>The framework, the estimation chain, the failure-mode ordering and the security reasoning are stable. Every number is illustrative and should be recomputed with current prices before you rely on it.</p>
+<p><strong>Next review due:</strong> before your first system design interview, and recompute the prices then.</p>
+      <nav class="pager">
+<a class="pager-prev" href="10-mlops.html"><span>Previous</span>10 · MLOps &amp; Deployment</a>
+<a class="pager-next" href="12a-interview-framework.html"><span>Next</span>12a · Interview Framework</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
+<li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
+<li class="toc-l2"><a href="#mental-model">Mental model</a></li>
+<li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
+<li class="toc-l3"><a href="#1-the-answer-framework-core">1. The answer framework [CORE]</a></li>
+<li class="toc-l3"><a href="#2-requirements-core">2. Requirements [CORE]</a></li>
+<li class="toc-l3"><a href="#3-capacity-estimation-core">3. Capacity estimation [CORE]</a></li>
+<li class="toc-l3"><a href="#4-component-vocabulary-foundation">4. Component vocabulary [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#5-patterns-core">5. Patterns [CORE]</a></li>
+<li class="toc-l3"><a href="#6-reliability-and-scale-core">6. Reliability and scale [CORE]</a></li>
+<li class="toc-l3"><a href="#7-evaluation-and-quality-core">7. Evaluation and quality [CORE]</a></li>
+<li class="toc-l3"><a href="#8-security-and-privacy-core">8. Security and privacy [CORE]</a></li>
+<li class="toc-l3"><a href="#9-cost-core">9. Cost [CORE]</a></li>
+<li class="toc-l2"><a href="#walkthrough-1-enterprise-rag-assistant">Walkthrough 1: Enterprise RAG assistant</a></li>
+<li class="toc-l3"><a href="#requirements">Requirements</a></li>
+<li class="toc-l3"><a href="#capacity">Capacity</a></li>
+<li class="toc-l3"><a href="#design">Design</a></li>
+<li class="toc-l3"><a href="#data-flow">Data flow</a></li>
+<li class="toc-l3"><a href="#bottlenecks-in-order">Bottlenecks, in order</a></li>
+<li class="toc-l3"><a href="#evaluation-and-operations">Evaluation and operations</a></li>
+<li class="toc-l3"><a href="#the-concise-interview-version">The concise interview version</a></li>
+<li class="toc-l2"><a href="#walkthrough-2-personalized-ai-learning-assistant">Walkthrough 2: Personalized AI learning assistant</a></li>
+<li class="toc-l3"><a href="#requirements-2">Requirements</a></li>
+<li class="toc-l3"><a href="#the-design-point-that-matters">The design point that matters</a></li>
+<li class="toc-l3"><a href="#capacity-briefly">Capacity, briefly</a></li>
+<li class="toc-l3"><a href="#failure-modes-specific-to-this-design">Failure modes specific to this design</a></li>
+<li class="toc-l2"><a href="#walkthrough-3-local-first-private-document-copilot">Walkthrough 3: Local-first private document copilot</a></li>
+<li class="toc-l3"><a href="#requirements-3">Requirements</a></li>
+<li class="toc-l3"><a href="#the-design">The design</a></li>
+<li class="toc-l3"><a href="#the-memory-budget-is-the-design">The memory budget is the design</a></li>
+<li class="toc-l3"><a href="#tradeoffs-to-state-honestly">Tradeoffs to state honestly</a></li>
+<li class="toc-l3"><a href="#multi-device">Multi-device</a></li>
+<li class="toc-l2"><a href="#walkthrough-4-multi-tool-support-agent-with-human-escalation">Walkthrough 4: Multi-tool support agent with human escalation</a></li>
+<li class="toc-l3"><a href="#the-first-move-and-the-answer">The first move, and the answer</a></li>
+<li class="toc-l3"><a href="#tools-with-blast-radius-stated">Tools, with blast radius stated</a></li>
+<li class="toc-l3"><a href="#capacity-and-cost">Capacity and cost</a></li>
+<li class="toc-l3"><a href="#evaluation">Evaluation</a></li>
+<li class="toc-l2"><a href="#common-mistakes">Common mistakes</a></li>
+<li class="toc-l2"><a href="#interview-angle">Interview angle</a></li>
+<li class="toc-l3"><a href="#follow-up-questions-to-expect">Follow-up questions to expect</a></li>
+<li class="toc-l3"><a href="#60-second-and-5-minute-answers">60-second and 5-minute answers</a></li>
+<li class="toc-l2"><a href="#practice-tasks">Practice tasks</a></li>
+<li class="toc-l3"><a href="#five-tiny-exercises">Five tiny exercises</a></li>
+<li class="toc-l3"><a href="#three-realistic-tasks">Three realistic tasks</a></li>
+<li class="toc-l3"><a href="#one-mini-project">One mini-project</a></li>
+<li class="toc-l2"><a href="#mastery-checklist">Mastery checklist</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

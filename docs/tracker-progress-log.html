@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progress Log · AI Engineer Learning OS</title>
+<meta name="description" content="Mastery status, spaced repetition, mock scores, STAR bank.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html" class="active">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="progress-log">Progress Log<a class="anchor" href="#progress-log" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low</p>
+<p>This file is the single source of truth for mastery status and review scheduling. <code>00-north-star-roadmap.md</code> says when you first learn something. This file says when you revisit it, and whether you actually know it.</p>
+<p>Keep it in version control. The history is the point: six months from now the git log of this file is a record of what you did, which is worth more than the file itself.</p>
+<hr />
+<h2 id="1-how-to-use-this-file">1. How to use this file<a class="anchor" href="#1-how-to-use-this-file" aria-label="Link to this section">#</a></h2>
+<p><strong>Update it twice a week, not daily.</strong> Once mid-week after a study session, once at the end of the week during the retrospective. Daily updating turns into ceremony and then into abandonment.</p>
+<p><strong>Status is claimed by evidence, not by feeling.</strong> Each status has an entry requirement below. If you cannot point at the evidence, the status does not change. This is the entire value of the file: in month five you will want to know what you actually know, and a file full of optimistic self-assessment answers nothing.</p>
+<p><strong>The review schedule is not optional and not aspirational.</strong> If you are not going to do the reviews, delete section 4 rather than carrying a fiction.</p>
+<hr />
+<h2 id="2-status-ladder">2. Status ladder<a class="anchor" href="#2-status-ladder" aria-label="Link to this section">#</a></h2>
+<p>Six statuses. Each one has an entry requirement that someone else could verify.</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Entry requirement</th>
+<th>Typical time in status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Not Started</strong></td>
+<td>Default.</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td><strong>Learning</strong></td>
+<td>You have read the material once.</td>
+<td>Days</td>
+</tr>
+<tr>
+<td><strong>Practiced</strong></td>
+<td>You have completed at least one exercise without looking at the solution.</td>
+<td>1 to 2 weeks</td>
+</tr>
+<tr>
+<td><strong>Can Explain</strong></td>
+<td>You have given a 60-second explanation out loud, unscripted, and it was coherent. Record it; if you would not send the recording to anyone, you are not here yet.</td>
+<td>2 to 4 weeks</td>
+</tr>
+<tr>
+<td><strong>Can Build</strong></td>
+<td>You have used it in something that runs, in a repository, not in a notebook cell you have since closed. Link required.</td>
+<td>Weeks to months</td>
+</tr>
+<tr>
+<td><strong>Interview Ready</strong></td>
+<td>Can Explain plus Can Build, plus you have answered a question on it in a mock interview and scored 3 or better on the rubric in section 6.</td>
+<td>The goal state</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The honest failure mode this ladder is designed to prevent:</strong> reading a module, feeling like you understand it, marking it complete, and discovering in an interview that you cannot produce a sentence about it. "Can Explain" exists as a separate rung specifically because explanation is a distinct skill from comprehension, and it is the one being tested.</p>
+<p><strong>Regression is normal and should be recorded.</strong> If a review goes badly, drop the status. A concept that fell from Can Explain to Practiced is useful information. A file where status only ever increases is a file nobody is being honest in.</p>
+<hr />
+<h2 id="3-concept-mastery-tracker">3. Concept mastery tracker<a class="anchor" href="#3-concept-mastery-tracker" aria-label="Link to this section">#</a></h2>
+<p>Pre-populated with the concepts the roadmap says matter. Add rows as you go; do not remove rows you have not reached.</p>
+<p>Legend for priority: <strong>M</strong> = must know, <strong>S</strong> = should know, <strong>N</strong> = nice to know. Taken from <code>00-north-star-roadmap.md</code> section 8.</p>
+<h3 id="phase-1-python">Phase 1: Python<a class="anchor" href="#phase-1-python" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Names, objects, aliasing</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mutability and its consequences</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Shallow vs deep copy</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Truthiness and the <code>0</code> vs <code>None</code> trap</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Collection complexity, list vs set vs dict</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mutable default arguments</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Scope, closures</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Exception strategy, catch vs crash</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Files, encoding, pathlib</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>JSON and JSONL handling</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CSV and defensive loading</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Generators and iterators</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Decorators</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Context managers</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Dataclasses and OOP design</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Type hints</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pytest, fixtures, parametrization</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Logging vs printing</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Async basics</td>
+<td>N</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Pydantic models</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Retries and backoff</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-2-software-engineering">Phase 2: Software engineering<a class="anchor" href="#phase-2-software-engineering" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git model, branching, rebase vs merge</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Pull requests and code review</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Dependency management and lockfiles</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Testing strategy, what each level catches</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CI/CD basics</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Debugging as a method</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HTTP, REST, status codes, idempotency</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Concurrency vs parallelism</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-3-data-sql-statistics">Phase 3: Data, SQL, statistics<a class="anchor" href="#phase-3-data-sql-statistics" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relational modeling and keys</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Joins, with row-count intuition</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Aggregation and grouping traps</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Window functions</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Indexes and query plans</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pandas vs SQL, when each wins</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Distributions and sampling</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>What a p-value does not mean</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>A/B testing and sample size</td>
+<td>N</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-4-classical-ml">Phase 4: Classical ML<a class="anchor" href="#phase-4-classical-ml" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Problem framing</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Train/val/test and cross-validation</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Data leakage, the three main routes in</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bias-variance tradeoff</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Regularization L1, L2</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Precision, recall, F1, and which to use</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ROC-AUC vs PR-AUC</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Calibration</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Threshold selection as a business decision</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trees, forests, gradient boosting</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>k-means and PCA</td>
+<td>N</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sklearn pipelines and reproducibility</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Drift and monitoring</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-5-deep-learning">Phase 5: Deep learning<a class="anchor" href="#phase-5-deep-learning" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Forward pass and loss</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Backpropagation</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Gradient descent and optimizers</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Learning rate, batch size tradeoffs</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Activation functions</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Vanishing and exploding gradients</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Overfitting, dropout, early stopping</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PyTorch tensors and autograd</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Training loop written from scratch</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Reading learning curves</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Transfer learning and fine-tuning</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mixed precision and memory</td>
+<td>N</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-6-transformers-and-llms">Phase 6: Transformers and LLMs<a class="anchor" href="#phase-6-transformers-and-llms" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tokenization and its failure modes</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Embeddings</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Self-attention, worked by hand</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Multi-head attention</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Causal masking</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Encoder vs decoder vs encoder-decoder</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Context window and KV cache</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Temperature, top-p, top-k</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Structured outputs and constrained generation</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Pretraining vs SFT vs preference optimization</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Quantization and the quality tradeoff</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Why prompting does not fix hallucination</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Prompt injection</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LLM evaluation approaches</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-7-rag-and-retrieval">Phase 7: RAG and retrieval<a class="anchor" href="#phase-7-rag-and-retrieval" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG vs fine-tuning vs prompting vs tools</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Document parsing and messy formats</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chunking strategies and tradeoffs</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Similarity metrics</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Vector indexes and ANN recall loss</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Metadata filtering with ANN</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Hybrid search</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Rerankers</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Query rewriting</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Citation grounding</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Retrieval metrics, recall@k, MRR, nDCG</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Answer quality evaluation</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Building an evaluation set</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RAG failure taxonomy and diagnosis</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Permissions and multi-tenancy</td>
+<td>N</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Freshness and deletion</td>
+<td>N</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-8-agents-tools-mcp">Phase 8: Agents, tools, MCP<a class="anchor" href="#phase-8-agents-tools-mcp" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflow vs agent, when each is right</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tool schemas and validation</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Agent loop and stopping conditions</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>State, memory, checkpoints</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Human in the loop</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Multi-agent, and when not to</td>
+<td>N</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>MCP hosts, clients, servers</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Building an MCP server</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Retries, timeouts, idempotency</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Circuit breakers and fallbacks</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trajectory evaluation</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Injection via tool output</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tool permission boundaries</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-9-local-inference">Phase 9: Local inference<a class="anchor" href="#phase-9-local-inference" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model formats, GGUF, safetensors</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Quantization levels and quality cost</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>KV cache memory formula</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VRAM vs unified memory vs bandwidth</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Runtime tradeoffs, llama.cpp, vLLM, Ollama</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Continuous batching</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TTFT vs tokens per second</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Benchmarking methodology</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OpenAI-compatible serving</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Local vs hosted cost analysis</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OOM and quality-degradation troubleshooting</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-10-mlops-and-deployment">Phase 10: MLOps and deployment<a class="anchor" href="#phase-10-mlops-and-deployment" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker and containers</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FastAPI service design</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>API versioning and auth</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Rate limiting and queues</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Caching strategy</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Logs vs metrics vs traces</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>What to alert on</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SLOs and SLIs</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LLM-specific monitoring</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cost attribution per request</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Rollback and canary</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Secrets management</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Experiment and model tracking</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-11-system-design">Phase 11: System design<a class="anchor" href="#phase-11-system-design" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Pri</th>
+<th>Status</th>
+<th>Evidence link</th>
+<th>Quiz</th>
+<th>Last review</th>
+<th>Next review</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requirements clarification method</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Capacity estimation arithmetic</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Component vocabulary</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Enterprise RAG design</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Local-first private copilot design</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Multi-tool support agent design</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Backpressure and fault tolerance</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cost estimation and optimization</td>
+<td>S</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>The repeatable answer framework</td>
+<td>M</td>
+<td>Not Started</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-spaced-repetition">4. Spaced repetition<a class="anchor" href="#4-spaced-repetition" aria-label="Link to this section">#</a></h2>
+<h3 id="intervals">Intervals<a class="anchor" href="#intervals" aria-label="Link to this section">#</a></h3>
+<p><code>1 day → 3 days → 7 days → 14 days → 30 days → 60 days → retired to quarterly</code></p>
+<p>A concept enters the schedule when it reaches <strong>Practiced</strong>. Not before. Reviewing something you have only read is rereading, which does not produce retention.</p>
+<h3 id="the-rules">The rules<a class="anchor" href="#the-rules" aria-label="Link to this section">#</a></h3>
+<p><strong>Passing a review</strong> moves the concept to the next interval. Set <code>Next review</code> to today plus that interval.</p>
+<p><strong>Failing a review resets the concept to the 1-day interval.</strong> Not back one step, all the way to the start. This is the rule people quietly ignore and it is the one that makes the system work. If you could not retrieve it, the spacing was too long for that concept and the schedule needs to relearn where you actually are.</p>
+<p><strong>Two consecutive passes at the 60-day interval retires the concept to quarterly.</strong> Retired concepts still get reviewed, four times a year, because retired is not the same as permanent.</p>
+<p><strong>A failed review also drops the status</strong> by one rung. Failed a Can Explain concept? It goes back to Practiced. The tracker should reflect reality.</p>
+<h3 id="what-counts-as-a-pass">What counts as a pass<a class="anchor" href="#what-counts-as-a-pass" aria-label="Link to this section">#</a></h3>
+<p>Not "I read it and it looked familiar". A pass means you produced the thing from memory first, and then checked.</p>
+<table>
+<thead>
+<tr>
+<th>Status of the concept</th>
+<th>A pass means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Practiced</td>
+<td>You solved a related exercise without the solution open</td>
+</tr>
+<tr>
+<td>Can Explain</td>
+<td>You said the 60-second version aloud before looking, and it was right</td>
+</tr>
+<tr>
+<td>Can Build</td>
+<td>You answered a "how would you implement" question without your code open</td>
+</tr>
+<tr>
+<td>Interview Ready</td>
+<td>You answered a curveball on it, not the question you rehearsed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="review-queue">Review queue<a class="anchor" href="#review-queue" aria-label="Link to this section">#</a></h3>
+<p>Sort by <code>Next review</code> ascending. These are the only rows you touch on a review day.</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Due</th>
+<th>Interval</th>
+<th>Last result</th>
+<th>Consecutive passes at 60d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Keep this to the next 14 days. A queue showing four months of future reviews is noise.</p>
+<hr />
+<h2 id="5-anki-export">5. Anki export<a class="anchor" href="#5-anki-export" aria-label="Link to this section">#</a></h2>
+<p>A Markdown table cannot notify you. It is an audit trail, not a scheduler. Use Anki, or any SM-2 implementation, for the actual scheduling, and keep this file as the record of status and evidence.</p>
+<h3 id="column-specification">Column specification<a class="anchor" href="#column-specification" aria-label="Link to this section">#</a></h3>
+<p>Export a CSV with no header row, comma-separated, quoted fields, UTF-8:</p>
+<div class="highlight"><pre><span></span><code>&quot;Front&quot;,&quot;Back&quot;,&quot;Tags&quot;
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Front</strong></td>
+<td>The question. One concept. Never "explain RAG"; that is a chapter, not a card.</td>
+</tr>
+<tr>
+<td><strong>Back</strong></td>
+<td>The answer, under 60 words. If it needs more, it is two cards.</td>
+</tr>
+<tr>
+<td><strong>Tags</strong></td>
+<td>Space-separated: <code>phase07 rag must</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-rows">Example rows<a class="anchor" href="#example-rows" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code>&quot;Why is `x in my_list` O(n) but `x in my_set` O(1)?&quot;,&quot;A list has no structure to exploit, so membership is a linear scan. A set hashes the value to a bucket and checks only that bucket. Average case; adversarial collisions degrade it.&quot;,&quot;phase01 python must&quot;
+&quot;What resets a spaced-repetition interval?&quot;,&quot;A failed review, all the way to 1 day, not back one step.&quot;,&quot;meta&quot;
+&quot;In RAG, the answer is wrong but the retrieved chunks are correct. Where is the bug?&quot;,&quot;Generation, not retrieval: prompt construction, context ordering, or the model ignoring provided context. Check the prompt actually contains the chunks before blaming the model.&quot;,&quot;phase07 rag must&quot;
+&quot;What does the KV cache store, and why does it dominate memory at long context?&quot;,&quot;Previously computed attention keys and values per layer per token, so they are not recomputed each step. It grows linearly with sequence length and batch size.&quot;,&quot;phase06 llm must&quot;
+</code></pre></div>
+
+<h3 id="generating-cards">Generating cards<a class="anchor" href="#generating-cards" aria-label="Link to this section">#</a></h3>
+<p>Practice packs in <code>quizzes/</code> end with a ready-made CSV block. Append it to <code>anki_export.csv</code> as you finish each module. Do not write cards for concepts below <strong>Practiced</strong>.</p>
+<p><strong>Card quality rule:</strong> a card that can be answered by pattern-matching the question's wording teaches you the wording. Every card should require you to produce something, not recognize something. Prefer "here is a symptom, where is the bug" over "what is X".</p>
+<hr />
+<h2 id="6-mock-interview-log">6. Mock interview log<a class="anchor" href="#6-mock-interview-log" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Type</th>
+<th>Topics</th>
+<th>Score 1-5</th>
+<th>What went wrong</th>
+<th>Action taken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Types: <code>python-live</code>, <code>ml-concepts</code>, <code>llm-rag</code>, <code>system-design</code>, <code>project-deep-dive</code>, <code>behavioral</code>.</p>
+<h3 id="scoring-rubric">Scoring rubric<a class="anchor" href="#scoring-rubric" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Could not answer</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Answered with significant prompting, or was wrong in a way that mattered</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Correct but rambling, or missed the tradeoff</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Correct, structured, named the tradeoff</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Correct, structured, and I raised something the interviewer had not asked about</td>
+</tr>
+</tbody>
+</table>
+<p>A concept needs a 3 or better to reach <strong>Interview Ready</strong>. A 4 is the realistic target. A 5 is what happens occasionally on things you have built.</p>
+<p><strong>The <code>What went wrong</code> column is the valuable one.</strong> Fill it even on a 4. Patterns show up across entries that do not show up in any single one: always running long, always forgetting to state assumptions, always reaching for the framework name instead of the concept.</p>
+<hr />
+<h2 id="7-star-story-bank">7. STAR story bank<a class="anchor" href="#7-star-story-bank" aria-label="Link to this section">#</a></h2>
+<p>Behavioral and project questions are answered from a small set of prepared stories, reused across many questions. Six to eight good ones covers most loops.</p>
+<p><strong>Populate this from your own work only.</strong> An invented story collapses under a follow-up question, and follow-up questions are exactly what this format invites.</p>
+<h3 id="template">Template<a class="anchor" href="#template" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code>### Story: &lt;short name&gt;
+
+**Use for:** &lt;which question types this answers&gt;
+
+**Situation:** &lt;context, 2 sentences, enough to make the stakes clear&gt;
+
+**Task:** &lt;what you specifically were responsible for&gt;
+
+**Action:** &lt;what you did, in first person singular, with the decision and the
+alternative you rejected&gt;
+
+**Result:** &lt;outcome, with a number if you have one, honestly stated if you
+do not. &quot;We did not measure it&quot; is an acceptable and credible answer.&gt;
+
+**If they push:** &lt;the follow-up you expect, and your answer&gt;
+
+**What I would do differently:** &lt;required; this question is asked constantly
+and having no answer reads as having learned nothing&gt;
+</code></pre></div>
+
+<h3 id="stories-to-prepare">Stories to prepare<a class="anchor" href="#stories-to-prepare" aria-label="Link to this section">#</a></h3>
+<p>Aim for one per row. The left column is the question shape, not the question.</p>
+<table>
+<thead>
+<tr>
+<th>Story slot</th>
+<th>Question shapes it covers</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A technical decision with a real tradeoff</td>
+<td>"Tell me about a design decision you made"</td>
+<td>Not written</td>
+</tr>
+<tr>
+<td>Something that failed in production</td>
+<td>"Tell me about a time something broke"</td>
+<td>Not written</td>
+</tr>
+<tr>
+<td>A bug that took too long to find</td>
+<td>"Walk me through a hard debugging session"</td>
+<td>Not written</td>
+</tr>
+<tr>
+<td>Disagreeing with someone technical</td>
+<td>"Tell me about a conflict"</td>
+<td>Not written</td>
+</tr>
+<tr>
+<td>Scope you had to cut</td>
+<td>"Tell me about a deadline you missed"</td>
+<td>Not written</td>
+</tr>
+<tr>
+<td>Something you learned quickly under pressure</td>
+<td>"How do you handle unfamiliar tech"</td>
+<td>Not written</td>
+</tr>
+<tr>
+<td>A project you are proud of</td>
+<td>"Tell me about your favorite project"</td>
+<td>Not written</td>
+</tr>
+<tr>
+<td>Work you did with heavy AI assistance</td>
+<td>"How do you use AI tools in your work"</td>
+<td>Not written</td>
+</tr>
+</tbody>
+</table>
+<p>That last slot is increasingly asked and most candidates handle it badly, either overclaiming or apologizing. <code>12c-interview-behavioral-and-projects.md</code> covers how to answer it. Prepare it deliberately.</p>
+<hr />
+<h2 id="8-weekly-retrospective">8. Weekly retrospective<a class="anchor" href="#8-weekly-retrospective" aria-label="Link to this section">#</a></h2>
+<p>Append one block per week. Keep it short enough that you will actually write it.</p>
+<div class="highlight"><pre><span></span><code>## Week &lt;n&gt;, &lt;date&gt;
+
+**Artifact produced:** &lt;link, or &quot;none&quot; and why&gt;
+**Hours actually spent:** &lt;number, honest&gt;
+**Status changes:** &lt;concept: old -&gt; new&gt;
+**Reviews due / completed:** &lt;n / n&gt;
+**Failed reviews:** &lt;which concepts, and your read on why&gt;
+**Blocked on:** &lt;specific, or &quot;nothing&quot;&gt;
+**Next week&#39;s one priority:** &lt;one thing, not a list&gt;
+</code></pre></div>
+
+<p><strong>The two fields that matter most</strong> are hours actually spent and reviews completed versus due. Everything else is easy to write optimistically. Those two are countable, and after four weeks they tell you whether the plan you chose matches the life you have. If hours are consistently below plan, re-cut the schedule using the compression rules in <code>00-north-star-roadmap.md</code> section 7. Do not keep a plan you are failing and call it motivation.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>00-north-star-roadmap.md</code> owns the schedule of first exposure. This file owns everything after that.</li>
+<li><code>tracker/weekly-plan.md</code> is the working template for a single week. Its retrospective section feeds section 8 here.</li>
+<li><code>quizzes/*-practice.md</code> produce the quiz scores in section 3 and the Anki rows in section 5.</li>
+<li><code>12c-interview-behavioral-and-projects.md</code> expands section 7 into full templates and worked examples.</li>
+<li><code>13-project-portfolio.md</code> scores the artifacts linked in the Evidence column.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<p>Almost nothing here decays. The one exception:</p>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The 1/3/7/14/30/60 interval set</td>
+<td>A reasonable general-purpose schedule, not a personalized one</td>
+<td>Your own failure rate after two months. If you are failing more than about 20 percent of reviews, the intervals are too long for you; stretch them only once failures are rare.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next review due:</strong> after block 2, week 8. By then you will know whether you are actually using this file, which is the only question that matters about it.</p>
+      <nav class="pager">
+<a class="pager-prev" href="capstone-04-narrative.html"><span>Previous</span>Capstone 5 · Interview Narrative</a>
+<a class="pager-next" href="tracker-weekly-plan.html"><span>Next</span>Weekly Plan</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#1-how-to-use-this-file">1. How to use this file</a></li>
+<li class="toc-l2"><a href="#2-status-ladder">2. Status ladder</a></li>
+<li class="toc-l2"><a href="#3-concept-mastery-tracker">3. Concept mastery tracker</a></li>
+<li class="toc-l3"><a href="#phase-1-python">Phase 1: Python</a></li>
+<li class="toc-l3"><a href="#phase-2-software-engineering">Phase 2: Software engineering</a></li>
+<li class="toc-l3"><a href="#phase-3-data-sql-statistics">Phase 3: Data, SQL, statistics</a></li>
+<li class="toc-l3"><a href="#phase-4-classical-ml">Phase 4: Classical ML</a></li>
+<li class="toc-l3"><a href="#phase-5-deep-learning">Phase 5: Deep learning</a></li>
+<li class="toc-l3"><a href="#phase-6-transformers-and-llms">Phase 6: Transformers and LLMs</a></li>
+<li class="toc-l3"><a href="#phase-7-rag-and-retrieval">Phase 7: RAG and retrieval</a></li>
+<li class="toc-l3"><a href="#phase-8-agents-tools-mcp">Phase 8: Agents, tools, MCP</a></li>
+<li class="toc-l3"><a href="#phase-9-local-inference">Phase 9: Local inference</a></li>
+<li class="toc-l3"><a href="#phase-10-mlops-and-deployment">Phase 10: MLOps and deployment</a></li>
+<li class="toc-l3"><a href="#phase-11-system-design">Phase 11: System design</a></li>
+<li class="toc-l2"><a href="#4-spaced-repetition">4. Spaced repetition</a></li>
+<li class="toc-l3"><a href="#intervals">Intervals</a></li>
+<li class="toc-l3"><a href="#the-rules">The rules</a></li>
+<li class="toc-l3"><a href="#what-counts-as-a-pass">What counts as a pass</a></li>
+<li class="toc-l3"><a href="#review-queue">Review queue</a></li>
+<li class="toc-l2"><a href="#5-anki-export">5. Anki export</a></li>
+<li class="toc-l3"><a href="#column-specification">Column specification</a></li>
+<li class="toc-l3"><a href="#example-rows">Example rows</a></li>
+<li class="toc-l3"><a href="#generating-cards">Generating cards</a></li>
+<li class="toc-l2"><a href="#6-mock-interview-log">6. Mock interview log</a></li>
+<li class="toc-l3"><a href="#scoring-rubric">Scoring rubric</a></li>
+<li class="toc-l2"><a href="#7-star-story-bank">7. STAR story bank</a></li>
+<li class="toc-l3"><a href="#template">Template</a></li>
+<li class="toc-l3"><a href="#stories-to-prepare">Stories to prepare</a></li>
+<li class="toc-l2"><a href="#8-weekly-retrospective">8. Weekly retrospective</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

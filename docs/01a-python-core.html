@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01a · Python Core · AI Engineer Learning OS</title>
+<meta name="description" content="Execution model, objects, collections, control flow, functions, exceptions, files.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html" class="active">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="01a-python-core">01a Python Core<a class="anchor" href="#01a-python-core" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low (language fundamentals change slowly)</p>
+<p>Part 1 of 3. Covers Python from the execution model through files and structured data. <code>01b</code> covers OOP, generators, decorators, testing and the applied patterns. <code>01c</code> covers interview data structures and algorithms.</p>
+<hr />
+<h2 id="why-this-matters">Why this matters<a class="anchor" href="#why-this-matters" aria-label="Link to this section">#</a></h2>
+<p>Every AI system you will build is a Python program first and an AI system second. Retrieval pipelines are dictionary manipulation. Evaluation harnesses are loops over lists with careful bookkeeping. Inference servers are functions with types at the boundary. When a RAG pipeline silently returns the wrong chunks, the bug is far more often a mutated shared list or a shallow copy than anything to do with embeddings.</p>
+<p>In interviews this file is tested in two places: a live coding exercise where you write Python while someone watches, and the moment an interviewer asks "why does this happen?" about a short snippet. The second is where the object model earns its keep.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="anchor" href="#prerequisites" aria-label="Link to this section">#</a></h2>
+<p>None. This is the entry point of the curriculum.</p>
+<p>You need Python 3.11 or newer installed and a terminal you can run it in. Verify:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>--version
+</code></pre></div>
+
+<p>If that prints 3.11 or higher, you are ready. <code>[VERIFY: current stable Python version @ python.org/downloads]</code> Anything from 3.10 onward will run every example here.</p>
+<hr />
+<h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
+<p>Self-selection, not a test. If you can do the named task without looking anything up, skim that section and move on.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Level</th>
+<th>Skip if you can...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Execution and the object model</td>
+<td>[FOUNDATION]</td>
+<td>...explain why <code>a = [1]; b = a; b.append(2)</code> changes <code>a</code></td>
+</tr>
+<tr>
+<td>2. Names, objects, identity</td>
+<td>[FOUNDATION]</td>
+<td>...say what <code>a is b</code> asks that <code>a == b</code> does not</td>
+</tr>
+<tr>
+<td>3. Types, conversion, truthiness</td>
+<td>[FOUNDATION]</td>
+<td>...predict the output of <code>bool([]) or bool("0")</code> and say why</td>
+</tr>
+<tr>
+<td>4. Strings</td>
+<td>[FOUNDATION]</td>
+<td>...explain the difference between <code>str</code> and <code>bytes</code> and when you need <code>.encode()</code></td>
+</tr>
+<tr>
+<td>5. Control flow</td>
+<td>[FOUNDATION]</td>
+<td>...rewrite a <code>for</code> loop with an index counter using <code>enumerate</code> and <code>zip</code></td>
+</tr>
+<tr>
+<td>6. Collections</td>
+<td>[CORE]</td>
+<td>...say why <code>dict</code> lookup is O(1) and <code>list</code> membership testing is O(n)</td>
+</tr>
+<tr>
+<td>7. Functions</td>
+<td>[CORE]</td>
+<td>...explain the mutable default argument trap without hesitating</td>
+</tr>
+<tr>
+<td>8. Exceptions</td>
+<td>[CORE]</td>
+<td>...say what you should never put in a bare <code>except:</code></td>
+</tr>
+<tr>
+<td>9. Files and structured data</td>
+<td>[CORE]</td>
+<td>...read a CSV with a broken row and fail loudly rather than silently</td>
+</tr>
+</tbody>
+</table>
+<p>If you skipped five or more, go straight to <code>01b</code>.</p>
+<hr />
+<h2 id="mental-model">Mental model<a class="anchor" href="#mental-model" aria-label="Link to this section">#</a></h2>
+<p><strong>Python variables are name tags, not boxes.</strong></p>
+<p>Most people arrive with a mental model from spreadsheets or from languages like C: a variable is a container, and assignment puts a value inside it. Python does not work this way, and almost every confusing Python bug traces back to this mismatch.</p>
+<p>In Python, values are objects that live somewhere in memory. A name is a label you stick onto an object. Assignment moves the label. It does not copy the object.</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>   <span class="c1"># create a list object, stick the label &quot;a&quot; on it</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>           <span class="c1"># stick a second label &quot;b&quot; on the SAME object</span>
+<span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>     <span class="c1"># modify that one object</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>        <span class="c1"># [1, 2, 3, 4]</span>
+</code></pre></div>
+
+<p>There is one list. It has two names. Modifying through one name is visible through the other, because there was never a second list.</p>
+<p><strong>Where the analogy breaks down.</strong> Name tags suggest all objects behave the same way, and they do not. Some objects can be modified after creation (lists, dicts, sets) and some cannot (ints, strings, tuples). For the immutable ones, the distinction between "move the label" and "copy the value" is invisible, because you can never observe the difference. That is why beginners can go months without noticing, and then lose a day to a bug involving a list.</p>
+<p>Hold both halves: <strong>assignment always moves labels; whether that matters depends on whether the object can change.</strong></p>
+<hr />
+<h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    SRC[&quot;Your .py source file&quot;]
+    BC[&quot;Bytecode&quot;]
+    VM[&quot;The interpreter loop&quot;]
+    HEAP[&quot;Objects in memory&quot;]
+    NS[&quot;Namespace, name to object&quot;]
+
+    SRC --&gt;|&quot;compiled once at import&quot;| BC
+    BC --&gt;|&quot;executed instruction by instruction&quot;| VM
+    VM --&gt;|&quot;creates and mutates&quot;| HEAP
+    VM --&gt;|&quot;binds and rebinds&quot;| NS
+    NS --&gt;|&quot;points at&quot;| HEAP
+
+    MUT[&quot;Mutable: list, dict, set&quot;]
+    IMM[&quot;Immutable: int, str, tuple, frozenset&quot;]
+    HEAP --&gt; MUT
+    HEAP --&gt; IMM
+    MUT --&gt;|&quot;aliasing bugs live here&quot;| NS
+</pre></div>
+<hr />
+<h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
+<h3 id="1-how-python-executes-code-foundation">1. How Python executes code [FOUNDATION]<a class="anchor" href="#1-how-python-executes-code-foundation" aria-label="Link to this section">#</a></h3>
+<p>When you run <code>python3 script.py</code>, three things happen in order.</p>
+<p><strong>Compilation.</strong> Python parses your source into bytecode, a lower-level instruction set. This is not machine code and it is not a separate build step you manage. It happens automatically, and for imported modules the result is cached in <code>__pycache__/</code> so it is not repeated.</p>
+<p><strong>Execution.</strong> The interpreter walks the bytecode instruction by instruction, maintaining a stack of values.</p>
+<p><strong>Object management.</strong> Every value is an object with a type, an identity, and a reference count. When the count reaches zero, the memory is reclaimed.</p>
+<p>You can look at the bytecode directly, which is occasionally useful for settling an argument:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">dis</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">add_one</span><span class="p">)</span>
+</code></pre></div>
+
+<p>On Python 3.11 that prints:</p>
+<div class="highlight"><pre><span></span><code>  3           0 RESUME                   0
+
+  4           2 LOAD_FAST                0 (x)
+              4 LOAD_CONST               1 (1)
+              6 BINARY_OP                0 (+)
+             10 RETURN_VALUE
+</code></pre></div>
+
+<p><code>[VERIFY: exact bytecode output and column formatting vary by Python version @ run it yourself]</code> The point is not to read bytecode fluently. It is to internalize that <code>x + 1</code> is a sequence of operations on objects, not a mathematical statement.</p>
+<p><strong>Why this matters practically.</strong> Python is slower than compiled languages because of this loop, which is exactly why every performance-sensitive library you will use (NumPy, PyTorch, the tokenizers in every LLM stack) pushes the actual work into compiled C or Rust. When you write <code>for token in tokens: total += embedding[token]</code> in Python and it is slow, the fix is usually to express it as one array operation rather than to optimize the loop.</p>
+<h3 id="2-names-objects-and-identity-foundation">2. Names, objects, and identity [FOUNDATION]<a class="anchor" href="#2-names-objects-and-identity-foundation" aria-label="Link to this section">#</a></h3>
+<p>Three distinct questions you can ask about two names:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Operator</th>
+<th>Asks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Are these the same object?</td>
+<td><code>a is b</code></td>
+<td>Identity</td>
+</tr>
+<tr>
+<td>Do these have the same value?</td>
+<td><code>a == b</code></td>
+<td>Equality</td>
+</tr>
+<tr>
+<td>What kind of thing is this?</td>
+<td><code>type(a)</code></td>
+<td>Type</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>   <span class="c1"># True, same contents</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span><span class="p">)</span>   <span class="c1"># False, two separate list objects</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">is</span> <span class="n">c</span><span class="p">)</span>   <span class="c1"># True, one object with two names</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>  <span class="c1"># True, same memory identity</span>
+</code></pre></div>
+
+<p><strong>The rule for <code>is</code>:</strong> use it only for <code>None</code>, <code>True</code> and <code>False</code>. Everywhere else, use <code>==</code>. Writing <code>if x is 0</code> or <code>if name is "hello"</code> appears to work in small scripts because of an interpreter optimization called interning, and then fails unpredictably on larger values. This is a classic interview trap:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;256&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">256</span><span class="p">)</span>   <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;257&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">257</span><span class="p">)</span>   <span class="c1"># False</span>
+</code></pre></div>
+
+<p>CPython pre-creates and reuses the integer objects from -5 to 256, so every <code>256</code> is literally the same object. 257 gets a fresh object each time it is constructed, so identity fails while <code>==</code> still succeeds.</p>
+<p>Two things to notice when you run this. Python emits <code>SyntaxWarning: "is" with a literal. Did you mean "=="?</code>, which is the interpreter telling you the answer to the question. And the <code>int("...")</code> wrapper is doing real work: if you write the literals directly in a script,</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">257</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">257</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="ow">is</span> <span class="n">y</span><span class="p">)</span>   <span class="c1"># True in a script, False if typed as separate REPL lines</span>
+</code></pre></div>
+
+<p>the compiler folds the two identical constants in the same code block into one object and you get <code>True</code>. Typed as separate lines in the REPL, each line compiles separately and you get <code>False</code>.</p>
+<p>That instability is the entire lesson. The result depends on constant folding, on the interning range, and on whether two expressions landed in the same code block. All three are implementation details that are free to change between versions. <code>==</code> asks the question you actually meant and is stable across all of them.</p>
+<p><code>[VERIFY: the -5 to 256 caching range is a CPython implementation detail, not a language guarantee @ test on your own interpreter]</code></p>
+<p><strong>Mutability, restated as a table.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Mutable?</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code>, <code>float</code>, <code>bool</code></td>
+<td>No</td>
+<td>Safe to share freely</td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td>No</td>
+<td>Every "modification" creates a new string</td>
+</tr>
+<tr>
+<td><code>tuple</code></td>
+<td>No (shallowly)</td>
+<td>Can be a dict key; can still contain mutable things</td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>Yes</td>
+<td>Aliasing bugs live here</td>
+</tr>
+<tr>
+<td><code>dict</code></td>
+<td>Yes</td>
+<td>Aliasing bugs live here</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>Yes</td>
+<td>Aliasing bugs live here</td>
+</tr>
+<tr>
+<td><code>frozenset</code></td>
+<td>No</td>
+<td>Can be a dict key</td>
+</tr>
+</tbody>
+</table>
+<p>The tuple caveat is worth a line of its own. A tuple cannot be reassigned, but if it holds a list, that list can still change:</p>
+<div class="highlight"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>        <span class="c1"># (1, [2, 3, 4])</span>
+</code></pre></div>
+
+<p>The tuple is unchanged in the sense that it still points at the same two objects. One of those objects changed. This is also why <code>t</code> cannot be used as a dictionary key: hashing it fails because the list inside is unhashable.</p>
+<p><strong>Copying, and why shallow is the default.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+
+<span class="n">original</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;scores&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;run-1&quot;</span><span class="p">}</span>
+
+<span class="n">alias</span> <span class="o">=</span> <span class="n">original</span>                      <span class="c1"># not a copy at all</span>
+<span class="n">shallow</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>             <span class="c1"># new dict, SAME inner list</span>
+<span class="n">deep</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>        <span class="c1"># new dict, new inner list</span>
+
+<span class="n">shallow</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">original</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">])</span>   <span class="c1"># [1, 2, 3, 99]   surprise</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deep</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">])</span>       <span class="c1"># [1, 2, 3]</span>
+</code></pre></div>
+
+<p>This is the single most common source of silent data corruption in data pipelines. You "copy" a config dict, modify the copy, and mutate the original because the copy was one level deep.</p>
+<h3 id="3-types-conversion-and-truthiness-foundation">3. Types, conversion, and truthiness [FOUNDATION]<a class="anchor" href="#3-types-conversion-and-truthiness-foundation" aria-label="Link to this section">#</a></h3>
+<p>Python is <strong>dynamically typed</strong> (a name can point at any type, and the type is checked when you use it) and <strong>strongly typed</strong> (it will not silently convert between unrelated types).</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;3&quot;</span> <span class="o">+</span> <span class="mi">4</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>TypeError: can only concatenate str (not &quot;int&quot;) to str
+</code></pre></div>
+
+<p>That error is Python being strongly typed. JavaScript would produce <code>"34"</code>. Python refuses, which is a feature.</p>
+<p><strong>Conversion is explicit and can fail:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;42&quot;</span><span class="p">)</span>        <span class="c1"># 42</span>
+<span class="nb">int</span><span class="p">(</span><span class="s2">&quot;42.0&quot;</span><span class="p">)</span>      <span class="c1"># ValueError: invalid literal for int() with base 10: &#39;42.0&#39;</span>
+<span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;42.0&quot;</span><span class="p">))</span>  <span class="c1"># 42</span>
+<span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>     <span class="c1"># nan, a valid float that equals nothing, not even itself</span>
+</code></pre></div>
+
+<p>That last one bites in data work. <code>float("nan") == float("nan")</code> is <code>False</code>. Use <code>math.isnan()</code>.</p>
+<p><strong>Truthiness.</strong> Every object is either truthy or falsy in a boolean context. The falsy ones are worth memorizing, because the list is short and the consequences are large:</p>
+<div class="highlight"><pre><span></span><code>False, None, 0, 0.0, &quot;&quot;, [], {}, set(), ()
+</code></pre></div>
+
+<p>Everything else is truthy. Including <code>"0"</code>, <code>"False"</code>, <code>[0]</code>, and <code>{"": None}</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">))</span>     <span class="c1"># True, non-empty string</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">([]))</span>      <span class="c1"># False, empty list</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">([[]]))</span>    <span class="c1"># True, a list containing one thing</span>
+</code></pre></div>
+
+<p><strong>The trap this creates:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">threshold</span><span class="p">:</span>              <span class="c1"># BUG</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>The caller passes <code>threshold=0</code> meaning "no threshold", and gets <code>0.5</code>. <code>not 0</code> is <code>True</code>. The fix is to test for the thing you actually mean:</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
+</code></pre></div>
+
+<p>Use <code>is None</code> when you mean "was not provided". Use <code>not x</code> only when you genuinely mean "empty or zero or absent, all the same".</p>
+<h3 id="4-strings-foundation">4. Strings [FOUNDATION]<a class="anchor" href="#4-strings-foundation" aria-label="Link to this section">#</a></h3>
+<p>Strings are immutable sequences of Unicode characters.</p>
+<p><strong>Formatting: use f-strings.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;qwen&quot;</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="mi">1_432</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="mf">0.00341</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">tokens</span><span class="si">}</span><span class="s2"> tokens&quot;</span><span class="p">)</span>                 <span class="c1"># qwen: 1432 tokens</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">tokens</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> tokens&quot;</span><span class="p">)</span>               <span class="c1"># qwen: 1,432 tokens</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cost $</span><span class="si">{</span><span class="n">cost</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>                        <span class="c1"># cost $0.0034</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tokens</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">cost</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>                      <span class="c1"># tokens=1432, cost=0.00341</span>
+</code></pre></div>
+
+<p>That last form, with the <code>=</code>, prints the expression and its value. It is the fastest debugging tool in the language and it replaces most <code>print("tokens:", tokens)</code> calls.</p>
+<p><strong>Useful operations, the ones you will actually reach for:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;  Chunk 3: retrieval failed  &quot;</span>
+
+<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>                    <span class="c1"># &#39;Chunk 3: retrieval failed&#39;</span>
+<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>            <span class="c1"># &#39;chunk 3: retrieval failed&#39;</span>
+<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>        <span class="c1"># [&#39;Chunk 3&#39;, &#39;retrieval failed&#39;]</span>
+<span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>       <span class="c1"># &#39;a|b|c&#39;</span>
+<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Chunk&quot;</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;failed&quot;</span><span class="p">,</span> <span class="s2">&quot;ok&quot;</span><span class="p">)</span>    <span class="c1"># returns a NEW string</span>
+</code></pre></div>
+
+<p>Every one of these returns a new string. None of them modify <code>text</code>. Forgetting this produces:</p>
+<div class="highlight"><pre><span></span><code><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>          <span class="c1"># result thrown away</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>           <span class="c1"># still has the spaces</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>   <span class="c1"># correct</span>
+</code></pre></div>
+
+<p><strong>Immutability has a performance consequence.</strong> Building a string in a loop with <code>+=</code> creates a new string every iteration, which is quadratic:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Slow for large n</span>
+<span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+    <span class="n">out</span> <span class="o">+=</span> <span class="n">chunk</span>
+
+<span class="c1"># Fast, linear</span>
+<span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+</code></pre></div>
+
+<p>For a few dozen items the difference is irrelevant. For the document chunks in an ingestion pipeline it is not.</p>
+<p><strong>Bytes versus strings.</strong> A <code>str</code> is text. A <code>bytes</code> object is raw data. Files, network responses and tokenizer internals deal in bytes.</p>
+<div class="highlight"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;café&quot;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>    <span class="c1"># 4 characters</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>    <span class="c1"># 5 bytes, é takes two</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>         <span class="c1"># b&#39;caf\xc3\xa9&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>   <span class="c1"># &#39;café&#39;</span>
+</code></pre></div>
+
+<p><code>str.encode()</code> goes to bytes. <code>bytes.decode()</code> comes back. The classic failure is decoding with the wrong codec:</p>
+<div class="highlight"><pre><span></span><code><span class="n">b</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xc3 in position 3: ordinal not in range(128)
+</code></pre></div>
+
+<p>You will meet this exact error the first time you ingest a document produced on a Windows machine. The fix is usually <code>encoding="utf-8"</code> explicitly, or <code>errors="replace"</code> when you would rather have a mangled character than a crash.</p>
+<h3 id="5-control-flow-foundation">5. Control flow [FOUNDATION]<a class="anchor" href="#5-control-flow-foundation" aria-label="Link to this section">#</a></h3>
+<p>Conditionals and loops are the least interesting part of Python and the place where beginner code is most recognizable as beginner code. The mechanics take five minutes. The idioms are what matter.</p>
+<p><strong>Conditionals.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mf">0.9</span><span class="p">:</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;high&quot;</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;medium&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;low&quot;</span>
+</code></pre></div>
+
+<p>The ternary form, for when a conditional is producing one value:</p>
+<div class="highlight"><pre><span></span><code><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;high&quot;</span> <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mf">0.9</span> <span class="k">else</span> <span class="s2">&quot;low&quot;</span>
+</code></pre></div>
+
+<p>Use it for a single simple choice. Nesting ternaries is a readability crime; use a real <code>if</code> block.</p>
+<p><strong>Loops: iterate over the thing, not over its indices.</strong> This is the single largest difference between Python that looks written by a Python programmer and Python that looks translated from another language.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># What people write when arriving from C or Java</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># What Python wants</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+
+<p>When you genuinely need the index, <code>enumerate</code> gives you both:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chunks</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>   <span class="c1"># count from 1, for humans</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">line_no</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>That <code>start=1</code> is why the loader in example 3 reports line numbers matching your text editor.</p>
+<p><strong>Iterating two sequences together: <code>zip</code>.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p><code>zip</code> stops at the shorter sequence, silently. If the two lists having different lengths means something is wrong, say so:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>ValueError: zip() argument 2 is shorter than argument 1
+</code></pre></div>
+
+<p><code>strict=True</code> requires Python 3.10 or newer. Use it whenever the lengths should match, which in evaluation code is always. A silent truncation of your evaluation set is exactly the class of bug that produces confidently wrong metrics.</p>
+<p><strong><code>while</code> for "until a condition changes".</strong> Use <code>for</code> when you know the collection, <code>while</code> when you do not:</p>
+<div class="highlight"><pre><span></span><code><span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">attempts</span> <span class="o">&lt;</span> <span class="n">MAX_RETRIES</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">call_api</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempts</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Every <code>while</code> loop needs a reason it will terminate. If you cannot say what that reason is, you have written an infinite loop that has not happened yet.</p>
+<p><strong><code>break</code>, <code>continue</code>, and the <code>else</code> nobody knows about.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">chunk</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">chunk</span>
+        <span class="k">break</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no chunk from source </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>A loop's <code>else</code> runs only if the loop finished without hitting <code>break</code>. It reads strangely at first and it removes the <code>found = False</code> flag variable that otherwise appears in this pattern. Worth knowing because you will meet it, and worth using sparingly because many readers will not know it.</p>
+<p><strong><code>any</code> and <code>all</code> replace the flag-variable loop entirely.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># The loop</span>
+<span class="n">has_empty</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="n">has_empty</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">break</span>
+
+<span class="c1"># The idiom</span>
+<span class="n">has_empty</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">)</span>
+<span class="n">all_scored</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">score</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Both short-circuit, so they stop at the first decisive element rather than scanning everything.</p>
+<p><strong>Unpacking.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">pair</span>
+<span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="n">items</span>          <span class="c1"># head is one item, rest is a list</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>                  <span class="c1"># swap, no temporary variable</span>
+
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>The <code>*rest</code> form is useful and the swap idiom is one of the small pleasures of the language.</p>
+<p><strong>The patterns that replace manual loops</strong>, collected in one place because reaching for the right one is most of writing fluent Python:</p>
+<table>
+<thead>
+<tr>
+<th>Instead of</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A loop building a new list</td>
+<td>A list comprehension</td>
+</tr>
+<tr>
+<td>A loop with a manual index counter</td>
+<td><code>enumerate</code></td>
+</tr>
+<tr>
+<td>Two loops over parallel lists</td>
+<td><code>zip(..., strict=True)</code></td>
+</tr>
+<tr>
+<td>A loop with a found/not-found flag</td>
+<td><code>any</code>, <code>all</code>, or <code>next</code> with a default</td>
+</tr>
+<tr>
+<td>A loop summing or counting</td>
+<td><code>sum</code>, <code>len</code>, <code>collections.Counter</code></td>
+</tr>
+<tr>
+<td>A loop finding the biggest</td>
+<td><code>max(items, key=...)</code></td>
+</tr>
+<tr>
+<td>A loop appending to a per-key list</td>
+<td><code>collections.defaultdict(list)</code></td>
+</tr>
+<tr>
+<td>A loop that filters then transforms</td>
+<td>One comprehension with a condition</td>
+</tr>
+</tbody>
+</table>
+<p><code>next</code> with a default deserves its own line, because it is the clean answer to "find the first match or None":</p>
+<div class="highlight"><pre><span></span><code><span class="n">match</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">target</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>Without the second argument, <code>next</code> raises <code>StopIteration</code> when nothing matches, which is rarely what you want.</p>
+<p><strong>The bug this section exists to prevent: modifying a collection while iterating over it.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">chunk</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span>
+        <span class="n">chunks</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>      <span class="c1"># BUG</span>
+</code></pre></div>
+
+<p>Removing an item shifts everything after it down by one while the loop's internal position keeps advancing, so the loop skips elements. No exception is raised for a list; you just silently keep some empty chunks. For a dict or set, Python does catch it:</p>
+<div class="highlight"><pre><span></span><code>RuntimeError: dictionary changed size during iteration
+</code></pre></div>
+
+<p>The fix is to build a new collection rather than mutating the one you are reading:</p>
+<div class="highlight"><pre><span></span><code><span class="n">chunks</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">is_empty</span><span class="p">]</span>
+</code></pre></div>
+
+<p>This is the same lesson as section 2 from a different angle: prefer producing new objects over mutating shared ones.</p>
+<h3 id="6-collections-and-their-tradeoffs-core">6. Collections and their tradeoffs [CORE]<a class="anchor" href="#6-collections-and-their-tradeoffs-core" aria-label="Link to this section">#</a></h3>
+<p>Four built-in collections. Choosing the wrong one is the most common cause of accidentally quadratic code.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>list</code></th>
+<th><code>tuple</code></th>
+<th><code>set</code></th>
+<th><code>dict</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ordered</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes (insertion order)</td>
+</tr>
+<tr>
+<td>Mutable</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Duplicates</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Keys no, values yes</td>
+</tr>
+<tr>
+<td>Indexable</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>By key</td>
+</tr>
+<tr>
+<td>Use when</td>
+<td>A sequence you will change</td>
+<td>A fixed record</td>
+<td>Membership and uniqueness</td>
+<td>Lookup by key</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Complexity table.</strong> This is the table to memorize; it answers a surprising share of "why is this slow" questions.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th><code>list</code></th>
+<th><code>set</code></th>
+<th><code>dict</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Index / key lookup</td>
+<td>O(1)</td>
+<td>n/a</td>
+<td>O(1) average</td>
+</tr>
+<tr>
+<td><code>x in collection</code></td>
+<td><strong>O(n)</strong></td>
+<td><strong>O(1)</strong> average</td>
+<td><strong>O(1)</strong> average</td>
+</tr>
+<tr>
+<td>Append / add</td>
+<td>O(1) amortized</td>
+<td>O(1) average</td>
+<td>O(1) average</td>
+</tr>
+<tr>
+<td>Insert at front</td>
+<td>O(n)</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Delete by value</td>
+<td>O(n)</td>
+<td>O(1) average</td>
+<td>O(1) average</td>
+</tr>
+<tr>
+<td>Iterate</td>
+<td>O(n)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>O(n log n)</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<p>"Average" means these degrade to O(n) in pathological hash-collision cases, which you will not encounter with ordinary data.</p>
+<p><strong>The single most valuable line in this table</strong> is membership testing. This pattern appears constantly in data work:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># O(n*m). With 10,000 seen ids and 10,000 documents: 100,000,000 comparisons.</span>
+<span class="n">seen</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">doc</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+        <span class="n">seen</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+
+<span class="c1"># O(n). Same logic, one character of type difference, thousands of times faster.</span>
+<span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">doc</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+        <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Dictionaries.</strong> The workhorse. Keys must be hashable, which in practice means immutable.</p>
+<div class="highlight"><pre><span></span><code><span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="mf">0.81</span><span class="p">,</span> <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="mf">0.64</span><span class="p">}</span>
+
+<span class="n">scores</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.71</span>                   <span class="c1"># add or overwrite</span>
+<span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;mrr&quot;</span><span class="p">)</span>                     <span class="c1"># None, no error</span>
+<span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;mrr&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>                <span class="c1"># 0.0, a default</span>
+<span class="n">scores</span><span class="p">[</span><span class="s2">&quot;mrr&quot;</span><span class="p">]</span>                         <span class="c1"># KeyError: &#39;mrr&#39;</span>
+
+<span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="s2">&quot;precision&quot;</span> <span class="ow">in</span> <span class="n">scores</span>                 <span class="c1"># True, checks KEYS not values</span>
+</code></pre></div>
+
+<p><code>.get()</code> versus <code>[]</code> is a real decision, not a style preference. Use <code>[]</code> when a missing key means your program is wrong and should stop. Use <code>.get()</code> with a default when a missing key is expected. Reaching for <code>.get()</code> everywhere hides bugs; reaching for <code>[]</code> everywhere produces crashes on ordinary input.</p>
+<p><strong>Two patterns worth knowing now:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+
+<span class="c1"># Grouping without checking whether the key exists first</span>
+<span class="n">by_source</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+    <span class="n">by_source</span><span class="p">[</span><span class="n">chunk</span><span class="o">.</span><span class="n">source</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+<span class="c1"># Counting</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">language</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Comprehensions.</strong> The idiomatic way to build a collection from another collection.</p>
+<div class="highlight"><pre><span></span><code><span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span>
+<span class="n">long_chunks</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">]</span>
+<span class="n">by_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">}</span>
+<span class="n">sources</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="o">.</span><span class="n">source</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">}</span>
+</code></pre></div>
+
+<p>Read them outward: the expression first, then the loop, then the filter. Keep them to one loop and one condition. A comprehension with two <code>for</code> clauses and a nested conditional is a loop wearing a disguise, and a plain loop will be clearer.</p>
+<p><strong>Slicing.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>     <span class="c1"># [1, 2, 3]     start inclusive, stop exclusive</span>
+<span class="n">items</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>      <span class="c1"># [0, 1, 2]</span>
+<span class="n">items</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>     <span class="c1"># [4, 5]</span>
+<span class="n">items</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># [0, 2, 4]     every second</span>
+<span class="n">items</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    <span class="c1"># [5, 4, 3, 2, 1, 0]   reversed</span>
+</code></pre></div>
+
+<p>Slicing a list returns a <strong>new shallow list</strong>. This is the cheapest correct way to copy one level:</p>
+<div class="highlight"><pre><span></span><code><span class="n">copy_of_items</span> <span class="o">=</span> <span class="n">items</span><span class="p">[:]</span>
+</code></pre></div>
+
+<h3 id="7-functions-core">7. Functions [CORE]<a class="anchor" href="#7-functions-core" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return accuracy at a decision threshold.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;length mismatch: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">correct</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">p</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">correct</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2"> correct&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Points worth naming in that signature:</p>
+<ul>
+<li><code>threshold=0.5</code> is a default. Callers may omit it.</li>
+<li><code>*</code> marks everything after it <strong>keyword-only</strong>. <code>score(p, l, 0.5, True)</code> is now an error; you must write <code>verbose=True</code>. For any boolean parameter this is worth doing, because <code>score(p, l, 0.5, True)</code> is unreadable at the call site.</li>
+<li>Raising early on bad input beats returning a wrong number.</li>
+</ul>
+<p><strong>The mutable default argument trap.</strong> This is asked in interviews constantly and it catches people who have written Python for years.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">collected</span><span class="o">=</span><span class="p">[]):</span>    <span class="c1"># BUG</span>
+    <span class="n">collected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">collected</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">add_chunk</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>   <span class="c1"># [&#39;a&#39;]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">add_chunk</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>   <span class="c1"># [&#39;a&#39;, &#39;b&#39;]   expected [&#39;b&#39;]</span>
+</code></pre></div>
+
+<p>The default value is evaluated <strong>once</strong>, when the <code>def</code> statement runs, not on each call. Every call without an explicit argument shares one list.</p>
+<p>The fix:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">collected</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">collected</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">collected</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">collected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">collected</span>
+</code></pre></div>
+
+<p><strong>Scope.</strong> Python resolves names local, then enclosing, then global, then built-in. Assignment inside a function creates a local name unless you say otherwise:</p>
+<div class="highlight"><pre><span></span><code><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">increment</span><span class="p">():</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>      <span class="c1"># UnboundLocalError</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>UnboundLocalError: cannot access local variable &#39;count&#39; where it is not associated with a value
+</code></pre></div>
+
+<p>Because <code>count</code> is assigned inside the function, Python treats it as local throughout the function, including on the right-hand side where it does not yet exist. <code>global count</code> fixes it, and needing <code>global</code> is usually a sign the function should take an argument and return a value instead.</p>
+<p><strong>Closures.</strong> A function defined inside another function captures the enclosing names.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">make_threshold_filter</span><span class="p">(</span><span class="n">threshold</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">keep</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="n">threshold</span>
+    <span class="k">return</span> <span class="n">keep</span>
+
+<span class="n">strict</span> <span class="o">=</span> <span class="n">make_threshold_filter</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">loose</span> <span class="o">=</span> <span class="n">make_threshold_filter</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">strict</span><span class="p">(</span><span class="mf">0.85</span><span class="p">))</span>   <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loose</span><span class="p">(</span><span class="mf">0.85</span><span class="p">))</span>    <span class="c1"># True</span>
+</code></pre></div>
+
+<p><code>keep</code> remembers <code>threshold</code> after <code>make_threshold_filter</code> has returned. This is the mechanism behind decorators, covered in <code>01b</code>.</p>
+<p><strong>Lambdas.</strong> Anonymous single-expression functions. Use them only as arguments to something else:</p>
+<div class="highlight"><pre><span></span><code><span class="n">chunks</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Assigning a lambda to a name (<code>f = lambda x: x + 1</code>) is worse than <code>def</code> in every respect, including the traceback you get when it fails.</p>
+<p><strong>Arguments are passed by assignment.</strong> This follows from section 2 and explains a common surprise:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>          <span class="c1"># rebinds the LOCAL name, caller unaffected</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+    <span class="n">scores</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>       <span class="c1"># mutates the shared object, caller affected</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">reset</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>   <span class="c1"># [1, 2, 3]</span>
+<span class="n">clear</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>   <span class="c1"># []</span>
+</code></pre></div>
+
+<p>A function receives labels on the caller's objects. Rebinding a parameter is invisible outside. Mutating the object is not.</p>
+<h3 id="8-exceptions-and-defensive-programming-core">8. Exceptions and defensive programming [CORE]<a class="anchor" href="#8-exceptions-and-defensive-programming-core" aria-label="Link to this section">#</a></h3>
+<p>The governing principle: <strong>catch what you can handle, let everything else crash.</strong> A crash with a traceback is a good outcome. A silently wrong number that reaches a report is not.</p>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">DEFAULT_CONFIG</span>          <span class="c1"># a real recovery</span>
+<span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;config at </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is not valid JSON: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+</code></pre></div>
+
+<p>Two different strategies in one block. A missing file has a sensible fallback. Malformed JSON does not, so it is re-raised with more context. <code>from e</code> preserves the original traceback, which you will want at 2am.</p>
+<p><strong>Never write this:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+<p>A bare <code>except:</code> catches <code>KeyboardInterrupt</code> and <code>SystemExit</code>, so your process ignores Ctrl-C. It catches typos in your own code, so a <code>NameError</code> becomes a silent <code>None</code>. And it discards the information that would tell you what went wrong. If you must catch broadly, catch <code>Exception</code> and log it:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;pipeline failed for </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+<p><code>logging.exception</code> records the full traceback. This is the only acceptable broad catch, and it belongs at the top of a loop that must survive one bad item, not scattered through your code.</p>
+<p><strong>The full shape:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">risky</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="o">...</span>          <span class="c1"># runs only on ValueError</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="o">...</span>          <span class="c1"># runs only if NO exception; keeps the try block small</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="o">...</span>          <span class="c1"># always runs, exception or not; cleanup goes here</span>
+</code></pre></div>
+
+<p><strong>Raise your own.</strong> Failing early with a clear message is cheaper than debugging a wrong result:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">chunk_document</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">overlap</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overlap (</span><span class="si">{</span><span class="n">overlap</span><span class="si">}</span><span class="s2">) must be smaller than size (</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>Include the actual values in the message. <code>"invalid overlap"</code> sends you looking; <code>"overlap (512) must be smaller than size (512)"</code> tells you.</p>
+<h3 id="9-files-paths-and-structured-data-core">9. Files, paths, and structured data [CORE]<a class="anchor" href="#9-files-paths-and-structured-data-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Paths: use <code>pathlib</code>, not string concatenation.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="s2">&quot;documents.csv&quot;</span>
+
+<span class="n">file</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+<span class="n">file</span><span class="o">.</span><span class="n">suffix</span>          <span class="c1"># &#39;.csv&#39;</span>
+<span class="n">file</span><span class="o">.</span><span class="n">stem</span>            <span class="c1"># &#39;documents&#39;</span>
+<span class="n">data_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.csv&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>/</code> operator joins path segments correctly on every platform. String concatenation with <code>"/"</code> breaks on Windows and produces <code>data//raw</code> when a trailing slash sneaks in.</p>
+<p><strong>Files: always use <code>with</code>.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre></div>
+
+<p><code>with</code> closes the file even if an exception is raised inside the block. Always pass <code>encoding="utf-8"</code> explicitly. The default depends on the operating system, so code that works on your machine fails on a colleague's with a <code>UnicodeDecodeError</code>.</p>
+<p>For large files, iterate rather than reading everything into memory:</p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>              <span class="c1"># one line at a time</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>JSON.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="c1"># Read</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.json&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>        <span class="c1"># load, from a file object</span>
+
+<span class="c1"># Write</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;out.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># From and to strings</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>        <span class="c1"># loads, with an s, from a string</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>load</code>/<code>dump</code> take file objects. <code>loads</code>/<code>dumps</code> take strings. The <code>s</code> stands for string, and mixing them up is a rite of passage.</p>
+<p><code>ensure_ascii=False</code> keeps non-English text readable in the output file rather than escaping it to <code>é</code>.</p>
+<p>JSON cannot represent everything Python can. Tuples become lists. Dictionary keys become strings. <code>datetime</code> and <code>set</code> fail outright:</p>
+<div class="highlight"><pre><span></span><code><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;seen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}})</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>TypeError: Object of type set is not JSON serializable
+</code></pre></div>
+
+<p>Convert before serializing: <code>list(my_set)</code>, <code>dt.isoformat()</code>.</p>
+<p><strong>JSON Lines</strong>, one JSON object per line, is the right format for logs and datasets. It streams, appends, and survives a truncated file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;eval.jsonl&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;eval.jsonl&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+</code></pre></div>
+
+<p><strong>CSV.</strong> Use the <code>csv</code> module, never <code>line.split(",")</code>. A single quoted comma inside a field breaks the naive version silently.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;documents.csv&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;out.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">])</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>newline=""</code> is required, not optional. Without it you get blank lines between rows on some platforms.</p>
+<p><strong>Failing loudly on bad rows</strong>, which is the point of doing this by hand rather than with pandas:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_scores</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read id,score rows. Skip malformed rows loudly, raise if the file is unusable.&quot;&quot;&quot;</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">skipped</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is empty&quot;</span><span class="p">)</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">}</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> missing columns: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">])})</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+                <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;line </span><span class="si">%d</span><span class="s2">: bad score </span><span class="si">%r</span><span class="s2">, skipped&quot;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">skipped</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;skipped </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2"> rows in </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> produced no usable rows&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rows</span>
+</code></pre></div>
+
+<p>Note the choices: header validated before the loop, <code>start=2</code> so the line number matches what a text editor shows, bad rows logged with their content, and an empty result treated as an error rather than returned as an empty list. A function that silently returns <code>[]</code> when a file is malformed will cost you an afternoon.</p>
+<p><strong>Environment variables</strong>, for anything secret:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>        <span class="c1"># KeyError if absent, usually correct</span>
+<span class="n">log_level</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;LOG_LEVEL&quot;</span><span class="p">,</span> <span class="s2">&quot;INFO&quot;</span><span class="p">)</span>  <span class="c1"># optional with a default</span>
+</code></pre></div>
+
+<p>Use <code>os.environ[...]</code> for things your program cannot run without. Failing at startup with <code>KeyError: 'OPENAI_API_KEY'</code> is better than failing at request time with a confusing authentication error.</p>
+<p>Never put a key in source code. Not in a file you plan to gitignore, not "temporarily". Keys committed to git stay in the history after you delete them.</p>
+<hr />
+<h2 id="worked-examples">Worked examples<a class="anchor" href="#worked-examples" aria-label="Link to this section">#</a></h2>
+<h3 id="example-1-aliasing-from-confusion-to-understanding">Example 1: aliasing, from confusion to understanding<a class="anchor" href="#example-1-aliasing-from-confusion-to-understanding" aria-label="Link to this section">#</a></h3>
+<p><strong>The bug, as it appears in real code:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">DEFAULT_CONFIG</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">DEFAULT_CONFIG</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">config</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">make_config</span><span class="p">(</span><span class="s2">&quot;docs&quot;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">make_config</span><span class="p">(</span><span class="s2">&quot;wiki&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {&#39;chunk_size&#39;: 512, &#39;sources&#39;: [&#39;docs&#39;, &#39;wiki&#39;]}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>   <span class="c1"># {&#39;chunk_size&#39;: 512, &#39;sources&#39;: [&#39;docs&#39;, &#39;wiki&#39;]}</span>
+</code></pre></div>
+
+<p>Both configs list both sources, and <code>DEFAULT_CONFIG</code> has been corrupted permanently.</p>
+<p><strong>Line by line.</strong> <code>.copy()</code> creates a new dictionary. That new dictionary contains the same two values: the integer <code>512</code> and the <em>same list object</em>. Copying one level deep copied the reference to the list, not the list. <code>config["sources"].append(...)</code> reaches through the copy into the shared list.</p>
+<p><strong>Three fixes, with the tradeoff for each:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+
+<span class="c1"># 1. Deep copy. Simple, correct, slowest.</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_CONFIG</span><span class="p">)</span>
+
+<span class="c1"># 2. Build fresh each time. Fastest and clearest for small configs.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">source</span><span class="p">]}</span>
+
+<span class="c1"># 3. Make the default immutable so the bug cannot happen.</span>
+<span class="n">DEFAULT_CONFIG</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">()}</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">DEFAULT_CONFIG</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">],</span> <span class="n">source</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">config</span>
+</code></pre></div>
+
+<p>Option 3 is worth noticing. Making shared state immutable turns a silent bug into a <code>AttributeError: 'tuple' object has no attribute 'append'</code> at the moment of the mistake. Preferring immutable defaults is a habit that prevents a whole class of bug.</p>
+<h3 id="example-2-making-a-slow-pipeline-fast-without-changing-what-it-does">Example 2: making a slow pipeline fast without changing what it does<a class="anchor" href="#example-2-making-a-slow-pipeline-fast-without-changing-what-it-does" aria-label="Link to this section">#</a></h3>
+<p><strong>The slow version:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">deduplicate</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;already_indexed is a list of ids already in the vector store.&quot;&quot;&quot;</span>
+    <span class="n">new_docs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">doc</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">already_indexed</span><span class="p">:</span>
+            <span class="n">new_docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_docs</span>
+</code></pre></div>
+
+<p>With 50,000 indexed ids and 50,000 incoming documents this performs up to 2.5 billion comparisons.</p>
+<p><strong>The diagnosis.</strong> <code>in</code> on a list scans the list. <code>in</code> on a set hashes once. The loop itself is fine; the data structure is wrong.</p>
+<p><strong>The fast version:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">deduplicate</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
+    <span class="n">indexed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">already_indexed</span><span class="p">)</span>          <span class="c1"># O(n) once</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">doc</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span> <span class="k">if</span> <span class="n">doc</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed</span><span class="p">]</span>   <span class="c1"># O(1) each</span>
+</code></pre></div>
+
+<p>Building the set costs one pass. Every subsequent lookup is constant. Same inputs, same outputs, several orders of magnitude faster on real data.</p>
+<p><strong>The measurement, because you should never claim this without checking:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">indexed_list</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;doc-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50_000</span><span class="p">)]</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;doc-</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">99_999</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20_000</span><span class="p">)]</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">slow</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed_list</span><span class="p">]</span>
+<span class="n">slow_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="n">indexed_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">indexed_list</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">fast</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed_set</span><span class="p">]</span>
+<span class="n">fast_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="k">assert</span> <span class="n">slow</span> <span class="o">==</span> <span class="n">fast</span><span class="p">,</span> <span class="s2">&quot;results must match&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;list: </span><span class="si">{</span><span class="n">slow_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s   set: </span><span class="si">{</span><span class="n">fast_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s   speedup: </span><span class="si">{</span><span class="n">slow_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fast_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>[UNVERIFIED: the speedup you observe depends on your machine and data]</code> Run it. The <code>assert</code> matters as much as the timing: a performance fix that changes the output is not a fix.</p>
+<h3 id="example-3-a-small-complete-defensive-loader">Example 3: a small, complete, defensive loader<a class="anchor" href="#example-3-a-small-complete-defensive-loader" aria-label="Link to this section">#</a></h3>
+<p>Combining everything above into something you would actually ship. This is the shape of code that survives contact with real data.</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Load evaluation records from JSONL, validating as we go.&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">REQUIRED</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">,</span> <span class="s2">&quot;expected&quot;</span><span class="p">,</span> <span class="s2">&quot;source_id&quot;</span><span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_eval_set</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a JSONL evaluation set.</span>
+
+<span class="sd">    Raises ValueError if the file is missing, empty, or has no valid records.</span>
+<span class="sd">    Logs and skips individual malformed records.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;evaluation set not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">records</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">skipped</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">record</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;line </span><span class="si">%d</span><span class="s2">: invalid JSON (</span><span class="si">%s</span><span class="s2">), skipped&quot;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;line </span><span class="si">%d</span><span class="s2">: expected an object, got </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+                <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">continue</span>
+
+            <span class="n">missing</span> <span class="o">=</span> <span class="n">REQUIRED</span> <span class="o">-</span> <span class="n">record</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;line </span><span class="si">%d</span><span class="s2">: missing keys </span><span class="si">%s</span><span class="s2">, skipped&quot;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">missing</span><span class="p">))</span>
+                <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">continue</span>
+
+            <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span> <span class="o">+</span> <span class="n">skipped</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">records</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no valid records out of </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> lines&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">skipped</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: kept </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2"> records&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">),</span> <span class="n">total</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: loaded </span><span class="si">%d</span><span class="s2"> records&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">records</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;sample_eval.jsonl&quot;</span><span class="p">)</span>
+    <span class="n">sample</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
+        <span class="s1">&#39;{&quot;question&quot;: &quot;what is RAG?&quot;, &quot;expected&quot;: &quot;retrieval augmented generation&quot;, &quot;source_id&quot;: &quot;d1&quot;}</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;{not json}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s1">&#39;{&quot;question&quot;: &quot;incomplete&quot;}</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;{&quot;question&quot;: &quot;what is a KV cache?&quot;, &quot;expected&quot;: &quot;cached attention keys and values&quot;, &quot;source_id&quot;: &quot;d2&quot;}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">load_eval_set</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">])</span>
+    <span class="n">sample</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Run it. It prints two warnings, loads two records, and the warnings tell you exactly which lines to fix. Compare that to a version that returns <code>[]</code> and says nothing.</p>
+<p>Three decisions worth naming: <code>line_no</code> starts at 1 and counts every line including blanks, so it matches your editor. <code>REQUIRED - record.keys()</code> uses set difference on dictionary keys, which works directly without converting. The final <code>if not records</code> turns "everything was broken" into an error rather than an empty success.</p>
+<hr />
+<h2 id="common-mistakes-and-debugging">Common mistakes and debugging<a class="anchor" href="#common-mistakes-and-debugging" aria-label="Link to this section">#</a></h2>
+<p>Organized by the symptom you would actually observe, because that is how you meet them.</p>
+<h3 id="beginner-mistakes">Beginner mistakes<a class="anchor" href="#beginner-mistakes" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TypeError: can only concatenate str (not "int") to str</code></td>
+<td>Mixing types in <code>+</code></td>
+<td><code>f"{a}{b}"</code> or <code>str(b)</code></td>
+</tr>
+<tr>
+<td><code>IndentationError: unexpected indent</code></td>
+<td>Mixed tabs and spaces</td>
+<td>Configure your editor for 4 spaces, never tabs</td>
+</tr>
+<tr>
+<td>Modifying a string appears to do nothing</td>
+<td>Strings are immutable; the method returned a new one</td>
+<td>Assign the result: <code>s = s.strip()</code></td>
+</tr>
+<tr>
+<td><code>KeyError: 'foo'</code></td>
+<td>Key absent</td>
+<td>Use <code>.get(key, default)</code> if absent is expected, otherwise fix the data</td>
+</tr>
+<tr>
+<td><code>IndexError: list index out of range</code></td>
+<td>Off-by-one, or empty list</td>
+<td>Check <code>if items:</code> first; prefer iteration over indexing</td>
+</tr>
+<tr>
+<td><code>UnboundLocalError</code></td>
+<td>Assigned to a global inside a function</td>
+<td>Pass it in and return it out</td>
+</tr>
+<tr>
+<td>Loop produces only the last result</td>
+<td>Reassigning instead of appending</td>
+<td><code>results.append(x)</code>, not <code>results = x</code></td>
+</tr>
+<tr>
+<td><code>ValueError: too many values to unpack</code></td>
+<td>Shape mismatch in unpacking</td>
+<td>Print the thing you are unpacking first</td>
+</tr>
+</tbody>
+</table>
+<h3 id="production-failure-modes">Production failure modes<a class="anchor" href="#production-failure-modes" aria-label="Link to this section">#</a></h3>
+<p>These are the ones that cost real time, because none of them raise an exception.</p>
+<p><strong>Silent data corruption through aliasing.</strong> A config or record is "copied", modified, and the original changes. No error. The symptom is a result that is wrong in a way that depends on processing order. <em>Diagnostic:</em> if a bug disappears when you process items in a different order, or only affects items after the first, suspect a shared mutable object. Check every <code>.copy()</code> and every default argument.</p>
+<p><strong>Accidentally quadratic code.</strong> Works on 100 test documents, times out on 100,000. <em>Diagnostic:</em> if runtime grows much faster than input size, look for <code>in</code> against a list inside a loop, string concatenation with <code>+=</code> in a loop, or <code>list.insert(0, ...)</code>.</p>
+<p><strong>Encoding failures on real-world documents.</strong> The pipeline runs for months, then one PDF from a European client crashes ingestion. <em>Diagnostic:</em> <code>UnicodeDecodeError</code> naming a byte position. Pass <code>encoding="utf-8"</code> explicitly everywhere, and decide deliberately between <code>errors="strict"</code> (crash, know about it) and <code>errors="replace"</code> (continue, log it).</p>
+<p><strong>Silent truncation on bad rows.</strong> A loader catches exceptions per row, returns what it got, and the evaluation set quietly has 400 records instead of 500. Every downstream number is subtly wrong. <em>Diagnostic:</em> count what you read and compare it to what you expected, every time, and log the difference. This is exactly what example 3 does.</p>
+<p><strong><code>float("nan")</code> propagating through a metric.</strong> One bad value turns an average into <code>nan</code>. <em>Diagnostic:</em> <code>nan != nan</code>, so <code>x != x</code> detects it. Validate on ingestion, not after aggregation.</p>
+<p><strong>Mutable default accumulating across requests.</strong> The trap from section 7, in a long-running server. Memory grows and results bleed between users. <em>Diagnostic:</em> any parameter defaulting to <code>[]</code>, <code>{}</code> or <code>set()</code> is the bug. Grep for it.</p>
+<h3 id="how-to-debug-as-a-method">How to debug, as a method<a class="anchor" href="#how-to-debug-as-a-method" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Read the traceback bottom-up.</strong> The last line is the error. The line above it is where it happened. Everything above that is how you got there.</li>
+<li><strong>Reproduce it smaller.</strong> Cut the input until it is the smallest thing that still fails. This usually reveals the cause on its own.</li>
+<li><strong>Print the type, not just the value.</strong> <code>print(f"{x=} {type(x)=}")</code>. Half of Python bugs are the right value in the wrong type.</li>
+<li><strong>Check identity when things change unexpectedly.</strong> <code>print(id(a), id(b))</code> answers "is this the same object?" definitively.</li>
+<li><strong>Use the debugger instead of adding prints.</strong> <code>breakpoint()</code> on any line drops you into an interactive prompt at that moment, where you can inspect everything. <code>n</code> steps, <code>c</code> continues, <code>p expr</code> prints, <code>q</code> quits.</li>
+<li><strong>Predict before running.</strong> Before you execute, say what you expect. When the prediction is wrong, you have learned something. When you skip the prediction, you have only learned what the output is.</li>
+</ol>
+<hr />
+<h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
+<p>Ten questions, roughly ordered by difficulty.</p>
+<p><strong>1. What is the difference between a list and a tuple?</strong></p>
+<p><em>Strong outline:</em> Mutability is the headline: lists can be modified after creation, tuples cannot. Consequences follow from that. Tuples can be dictionary keys and set members because they are hashable; lists cannot. Tuples signal a fixed record with positional meaning, lists signal a homogeneous sequence. Then the caveat that shows depth: a tuple containing a list is not truly immutable and is not hashable.</p>
+<p><em>Weak answer:</em> "Tuples use parentheses and lists use brackets." True and irrelevant. It describes syntax when the question is about semantics.</p>
+<p><strong>2. Explain mutable versus immutable, and why it matters.</strong></p>
+<p><em>Strong outline:</em> Assignment binds names to objects; it does not copy. Two names can point at one object. If that object is mutable, a change through one name is visible through the other. Give the two-line example. Then name the practical consequences: shallow copies, mutable default arguments, and passing a list into a function that modifies it.</p>
+<p><em>Weak answer:</em> Reciting which types are which without explaining what follows. The list of types is memorization; the consequence is understanding.</p>
+<p><strong>3. Why is <code>x in my_list</code> slower than <code>x in my_set</code>?</strong></p>
+<p><em>Strong outline:</em> A list has no structure to exploit, so membership is a linear scan, O(n). A set is a hash table: the value is hashed to a bucket and only that bucket is checked, O(1) on average. The cost is that set elements must be hashable and order is not preserved. Mention the average qualifier, since adversarial hash collisions degrade it.</p>
+<p><em>Weak answer:</em> "Sets are faster." Correct and content-free.</p>
+<p><strong>4. What does this print, and why?</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">acc</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">acc</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+
+<p><em>Strong outline:</em> <code>[1]</code> then <code>[1, 2]</code>. The default is evaluated once when the <code>def</code> executes, so every call without an explicit second argument shares one list. Fix with <code>acc=None</code> and create inside. Then the extension that shows you have met it in production: in a long-running service this leaks memory and bleeds state between requests.</p>
+<p><em>Weak answer:</em> Getting the output right by guessing, without the "evaluated once at definition time" mechanism.</p>
+<p><strong>5. When would you use <code>is</code> instead of <code>==</code>?</strong></p>
+<p><em>Strong outline:</em> <code>is</code> compares identity, <code>==</code> compares value. Use <code>is</code> only for singletons: <code>None</code>, <code>True</code>, <code>False</code>. Everywhere else use <code>==</code>. Explain why <code>int("256") is 256</code> is <code>True</code> while <code>int("257") is 257</code> is <code>False</code>: CPython caches small integers from -5 to 256. The answer to a <code>is</code> comparison on non-singletons can also change depending on whether the compiler folded two constants in the same code block, which is why the behavior differs between a script and the REPL. All of that is implementation detail you must never depend on.</p>
+<p><em>Weak answer:</em> "<code>is</code> is faster." It is, marginally, and that is not why you choose it.</p>
+<p><strong>6. What is wrong with <code>except:</code> and what should you write instead?</strong></p>
+<p><em>Strong outline:</em> Bare <code>except</code> catches <code>BaseException</code>, including <code>KeyboardInterrupt</code> and <code>SystemExit</code>, so it breaks Ctrl-C and swallows shutdown. It also catches your own typos, turning a <code>NameError</code> into a silent wrong answer. Use <code>except SomeSpecificError</code> when you can handle it, or <code>except Exception</code> with <code>logging.exception()</code> when you must survive a bad item in a loop. Governing principle: catch what you can handle, let the rest crash.</p>
+<p><em>Weak answer:</em> "It's bad practice." Why it is bad practice is the whole question.</p>
+<p><strong>7. How would you copy a nested dictionary safely?</strong></p>
+<p><em>Strong outline:</em> <code>.copy()</code> and <code>dict(d)</code> are shallow: the new dict points at the same inner objects. <code>copy.deepcopy()</code> recurses. Deep copy is slower and fails on objects that cannot be copied, so prefer restructuring: build fresh, or make the shared parts immutable. Name the real-world version, a config dict corrupted by a "copy".</p>
+<p><em>Weak answer:</em> "Use deepcopy." Right tool, no understanding of when it is unnecessary or harmful.</p>
+<p><strong>8. What is truthiness, and where does it bite?</strong></p>
+<p><em>Strong outline:</em> Objects have a boolean value in conditions. Falsy: <code>False</code>, <code>None</code>, <code>0</code>, <code>0.0</code>, <code>""</code>, <code>[]</code>, <code>{}</code>, <code>set()</code>, <code>()</code>. The trap is conflating "absent" with "empty or zero": <code>if not threshold</code> is <code>True</code> when the caller deliberately passed <code>0</code>. Use <code>is None</code> for absence.</p>
+<p><em>Weak answer:</em> Listing falsy values without the <code>0</code> versus <code>None</code> distinction, which is the only part with consequences.</p>
+<p><strong>9. You have a pipeline that works on 1,000 documents and times out on 1,000,000. How do you find out why?</strong></p>
+<p><em>Strong outline:</em> First establish how runtime scales: run at 1k, 10k, 100k and look at the shape. Linear growth that is simply too slow is a different problem from superlinear growth. Superlinear points at a nested scan, most often <code>in</code> against a list inside a loop, string <code>+=</code> accumulation, or repeated <code>list.insert(0, ...)</code>. Then profile with <code>cProfile</code> to confirm rather than guessing. Fix the data structure, then re-measure, and assert the output is unchanged. Mention memory as the other candidate: loading everything into a list instead of streaming.</p>
+<p><em>Weak answer:</em> Jumping straight to multiprocessing. Parallelizing an accidentally quadratic algorithm buys you a constant factor against an exponent.</p>
+<p><strong>10. How do you decide what to catch and what to let crash?</strong></p>
+<p><em>Strong outline:</em> Catch when there is a genuine recovery: a missing optional config file has a default, a rate limit has a retry, one malformed row in ten thousand can be logged and skipped. Let it crash when there is no correct action: a missing API key, a malformed schema, an empty result where data is required. The test is "does my program still produce a correct answer after this?" If no, crashing is the correct behavior. A silently wrong number is the worst outcome available, worse than downtime, because nobody knows to investigate it.</p>
+<p><em>Weak answer:</em> "Catch everything so the program doesn't crash." This is the instinct that produces the worst production incidents.</p>
+<h3 id="follow-up-questions-to-expect">Follow-up questions to expect<a class="anchor" href="#follow-up-questions-to-expect" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>After question 3: <em>"When would a set be the wrong choice despite being faster?"</em> When you need order, duplicates, indexing, or when elements are unhashable. Also when the collection is tiny and built once, where building the set costs more than the scans it saves.</li>
+<li>After question 9: <em>"You fixed it and it's still slow. Now what?"</em> Measure before optimizing further. Check whether the bottleneck moved to I/O or to an external API. Consider streaming instead of materializing, batching network calls, and only then parallelism, being specific about whether the work is CPU-bound or I/O-bound, because that determines whether threads or processes are the right tool.</li>
+</ul>
+<h3 id="60-second-and-5-minute-answers">60-second and 5-minute answers<a class="anchor" href="#60-second-and-5-minute-answers" aria-label="Link to this section">#</a></h3>
+<p>For each of these, write both versions in your own words and say them aloud, timed. The 60-second version is what you give first; the 5-minute version is what you give when they say "tell me more."</p>
+<ol>
+<li>Mutability and aliasing</li>
+<li>Why dictionary lookup is constant time</li>
+<li>Exception handling philosophy</li>
+<li>How you would debug a performance regression</li>
+</ol>
+<p>Record yourself. The gap between "I understand this" and "I can say this clearly in 60 seconds" is larger than anyone expects, and it is the gap that loses interviews.</p>
+<hr />
+<h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
+<p>No solutions here. They live in <code>quizzes/01a-python-core-practice.md</code>.</p>
+<h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Write a function that takes a list of dicts and returns a dict keyed by each item's <code>"id"</code>. Handle duplicate ids by keeping the last one, then write a second version that raises on duplicates. Say which you would use in an ingestion pipeline and why.</li>
+<li>Given a string of comma-separated numbers with inconsistent whitespace and some empty fields, return a list of floats, skipping empties. Do it in one comprehension, then again as a loop with logging for anything unparseable. Compare readability.</li>
+<li>Write <code>is_nan(x)</code> without importing <code>math</code>, using only the property that <code>nan</code> is not equal to itself. Then explain why the <code>math</code> version is still the right one to use.</li>
+<li>Predict the output before running, then run it:
+   <code>python
+   a = [1, 2, 3]
+   b = a[:]
+   c = a
+   b.append(4)
+   c.append(5)
+   print(a, b, c)</code>
+   Write down <em>why</em> before you check.</li>
+<li>Write a function that reads a text file and returns the 10 most common words, ignoring case and punctuation. Use <code>collections.Counter</code>.</li>
+</ol>
+<h3 id="three-realistic-coding-tasks">Three realistic coding tasks<a class="anchor" href="#three-realistic-coding-tasks" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Chunker.</strong> Write <code>chunk_text(text, size, overlap)</code> returning a list of overlapping string chunks. Validate that <code>overlap &lt; size</code> and that both are positive. Handle text shorter than one chunk, text exactly one chunk long, and empty text. Write down what you decided each edge case should do before you implement it. This function is the foundation of module 07, so get it right.</li>
+<li><strong>Resilient loader.</strong> Extend example 3 to accept either JSONL or CSV based on the file suffix, with the same validation and logging contract for both. Return the same shape from both paths.</li>
+<li><strong>Config merger.</strong> Write <code>merge_config(base, override)</code> that deep-merges two nested dictionaries: nested dicts merge recursively, all other types are replaced by the override. Neither input may be modified. Write the test that would have caught the aliasing bug from example 1.</li>
+</ol>
+<h3 id="one-mini-project">One mini-project<a class="anchor" href="#one-mini-project" aria-label="Link to this section">#</a></h3>
+<p><strong>Document inventory tool.</strong></p>
+<p>A command-line script that walks a directory, finds every <code>.txt</code>, <code>.md</code>, <code>.json</code> and <code>.csv</code> file, and produces a report.</p>
+<p>Requirements:
+- Walk recursively with <code>pathlib</code>
+- Per file: path, size in bytes, line count, and detected encoding problems
+- Per type: count and total size
+- Flag files that are empty, that fail to decode as UTF-8, or that are unusually large relative to the median
+- Output as a readable table to the terminal and as JSON to a file
+- Accept the directory and output path as command-line arguments using <code>sys.argv</code>, with a usage message when arguments are missing
+- Never crash on a single bad file: log it and continue, then report how many failed
+- No third-party dependencies</p>
+<p>Success criterion: point it at a directory containing at least one deliberately broken file and get a useful report plus a clear warning, not a traceback.</p>
+<p>This is the seed of <code>projects/project-1-python-data-tool.md</code>. Keep the code.</p>
+<hr />
+<h2 id="mastery-checklist">Mastery checklist<a class="anchor" href="#mastery-checklist" aria-label="Link to this section">#</a></h2>
+<p>Observable, not topical. You are ready for <code>01b</code> when you can do each of these without a reference.</p>
+<ul>
+<li>[ ] Predict the output of any snippet involving two names pointing at one list, and explain it in terms of objects and labels</li>
+<li>[ ] State the falsy values from memory and explain why <code>if not x</code> is wrong for a numeric parameter</li>
+<li>[ ] Rewrite an index-counter loop using <code>enumerate</code>, and a flag-variable loop using <code>any</code> or <code>next</code></li>
+<li>[ ] Explain why removing items from a list while iterating over it skips elements, and give the fix</li>
+<li>[ ] Choose between list, set, dict and tuple for a given task and justify it with a complexity argument</li>
+<li>[ ] Write the mutable default argument bug and its fix from memory, and explain the "evaluated once" mechanism</li>
+<li>[ ] Take a function that mutates its argument and rewrite it to return a new object instead</li>
+<li>[ ] Write a <code>try</code>/<code>except</code> block where one branch recovers and another re-raises with context using <code>from e</code></li>
+<li>[ ] Read a CSV with a malformed row and produce a loud, useful warning rather than silent truncation</li>
+<li>[ ] Read a traceback and name the exact line and the exact cause without running anything</li>
+<li>[ ] Use <code>breakpoint()</code> to inspect state mid-execution</li>
+<li>[ ] Explain why <code>"".join(parts)</code> beats <code>+=</code> in a loop, in terms of immutability</li>
+<li>[ ] Complete the mini-project, with it surviving a deliberately broken input file</li>
+</ul>
+<p>Fewer than eleven of thirteen checked means go back rather than forward. The next file assumes all of this.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<p><strong>Backward:</strong> none. This is the first module.</p>
+<p><strong>Forward:</strong></p>
+<ul>
+<li><code>01b-python-patterns-and-oop.md</code> builds directly on section 7. Closures become decorators, and the iteration in sections 5 and 6 becomes generators. The dataclasses there replace the raw dicts used throughout this file.</li>
+<li><code>01c-python-interview-dsa.md</code> depends on the complexity table in section 6. Every algorithm pattern there is a choice about data structures made under time pressure.</li>
+<li><code>02-software-engineering-foundations.md</code> takes the defensive loader from example 3 and adds the tests, typing and CI that make it shippable.</li>
+<li><code>03-data-and-sql.md</code> assumes the CSV and JSON handling in section 9. The evaluation sets you build there are JSONL files read by exactly the loader in example 3.</li>
+<li><code>07-rag-and-vector-search.md</code> is where this file pays off most directly. The chunker from practice task 1 becomes real. The deduplication from worked example 2 is how you avoid re-embedding documents. The aliasing bug from example 1 is, specifically, how retrieval configs get silently corrupted between experiments.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python 3.11-plus assumed</td>
+<td>New releases roughly annually</td>
+<td><code>python.org/downloads</code></td>
+</tr>
+<tr>
+<td>Bytecode output in section 1</td>
+<td>Changes between minor versions</td>
+<td>Run <code>dis.dis</code> yourself</td>
+</tr>
+<tr>
+<td>Small integer caching range</td>
+<td>CPython implementation detail, not a language guarantee</td>
+<td>Test on your interpreter; never depend on it</td>
+</tr>
+<tr>
+<td>Timing speedups in example 2</td>
+<td>Entirely hardware dependent</td>
+<td>Run the benchmark yourself</td>
+</tr>
+</tbody>
+</table>
+<p>Everything else here is language semantics and has been stable for a decade.</p>
+<p><strong>Next review due:</strong> 2027-09-18, or when you upgrade major Python versions.</p>
+      <nav class="pager">
+<a class="pager-prev" href="00-roadmap.html"><span>Previous</span>00 · Roadmap</a>
+<a class="pager-next" href="01b-python-patterns.html"><span>Next</span>01b · Python Patterns &amp; OOP</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
+<li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
+<li class="toc-l2"><a href="#mental-model">Mental model</a></li>
+<li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
+<li class="toc-l3"><a href="#1-how-python-executes-code-foundation">1. How Python executes code [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#2-names-objects-and-identity-foundation">2. Names, objects, and identity [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#3-types-conversion-and-truthiness-foundation">3. Types, conversion, and truthiness [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#4-strings-foundation">4. Strings [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#5-control-flow-foundation">5. Control flow [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#6-collections-and-their-tradeoffs-core">6. Collections and their tradeoffs [CORE]</a></li>
+<li class="toc-l3"><a href="#7-functions-core">7. Functions [CORE]</a></li>
+<li class="toc-l3"><a href="#8-exceptions-and-defensive-programming-core">8. Exceptions and defensive programming [CORE]</a></li>
+<li class="toc-l3"><a href="#9-files-paths-and-structured-data-core">9. Files, paths, and structured data [CORE]</a></li>
+<li class="toc-l2"><a href="#worked-examples">Worked examples</a></li>
+<li class="toc-l3"><a href="#example-1-aliasing-from-confusion-to-understanding">Example 1: aliasing, from confusion to understanding</a></li>
+<li class="toc-l3"><a href="#example-2-making-a-slow-pipeline-fast-without-changing-what-it-does">Example 2: making a slow pipeline fast without changing what it does</a></li>
+<li class="toc-l3"><a href="#example-3-a-small-complete-defensive-loader">Example 3: a small, complete, defensive loader</a></li>
+<li class="toc-l2"><a href="#common-mistakes-and-debugging">Common mistakes and debugging</a></li>
+<li class="toc-l3"><a href="#beginner-mistakes">Beginner mistakes</a></li>
+<li class="toc-l3"><a href="#production-failure-modes">Production failure modes</a></li>
+<li class="toc-l3"><a href="#how-to-debug-as-a-method">How to debug, as a method</a></li>
+<li class="toc-l2"><a href="#interview-angle">Interview angle</a></li>
+<li class="toc-l3"><a href="#follow-up-questions-to-expect">Follow-up questions to expect</a></li>
+<li class="toc-l3"><a href="#60-second-and-5-minute-answers">60-second and 5-minute answers</a></li>
+<li class="toc-l2"><a href="#practice-tasks">Practice tasks</a></li>
+<li class="toc-l3"><a href="#five-tiny-exercises">Five tiny exercises</a></li>
+<li class="toc-l3"><a href="#three-realistic-coding-tasks">Three realistic coding tasks</a></li>
+<li class="toc-l3"><a href="#one-mini-project">One mini-project</a></li>
+<li class="toc-l2"><a href="#mastery-checklist">Mastery checklist</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01b · Python Patterns &amp; OOP · AI Engineer Learning OS</title>
+<meta name="description" content="OOP, generators, decorators, typing, pytest, and the applied patterns for LLM code.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html" class="active">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="01b-python-patterns-and-oop">01b Python Patterns and OOP<a class="anchor" href="#01b-python-patterns-and-oop" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low, except the applied patterns in section 9</p>
+<p>Part 2 of 3. <code>01a</code> covered the execution model through files and structured data. This file covers the constructs you use to organize code, and the patterns that appear in every LLM application you will write. <code>01c</code> covers interview data structures and algorithms.</p>
+<hr />
+<h2 id="why-this-matters">Why this matters<a class="anchor" href="#why-this-matters" aria-label="Link to this section">#</a></h2>
+<p><code>01a</code> taught you to write Python that works. This file teaches you to write Python that someone else can change six months later without breaking it, which is the actual bar in a job.</p>
+<p>Two specific payoffs. First, every applied pattern in section 9 appears in production LLM code: you will write retries with backoff against a rate-limited API, you will validate model output with Pydantic, you will cache embeddings, and you will batch requests. Second, the OOP and typing material is what makes the difference in a code review, where the question is not "does it run" but "what happens when the requirements change".</p>
+<p>In interviews this file shows up as the "explain this design" question, and as the moment an interviewer looks at your GitHub and forms an opinion in fifteen seconds.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="anchor" href="#prerequisites" aria-label="Link to this section">#</a></h2>
+<p>All of <code>01a</code>, specifically:</p>
+<table>
+<thead>
+<tr>
+<th>You need</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Names, objects, mutability, aliasing</td>
+<td><code>01a</code> section 2</td>
+</tr>
+<tr>
+<td>Truthiness and <code>is None</code></td>
+<td><code>01a</code> section 3</td>
+</tr>
+<tr>
+<td>Collection complexity</td>
+<td><code>01a</code> section 6</td>
+</tr>
+<tr>
+<td>Functions, closures, mutable defaults</td>
+<td><code>01a</code> section 7</td>
+</tr>
+<tr>
+<td>Exception strategy</td>
+<td><code>01a</code> section 8</td>
+</tr>
+<tr>
+<td>Files, JSON, pathlib</td>
+<td><code>01a</code> section 9</td>
+</tr>
+</tbody>
+</table>
+<p>Closures in particular. Decorators in section 4 are closures with syntax, and if closures are shaky, decorators will feel like magic instead of like a mechanism.</p>
+<hr />
+<h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Level</th>
+<th>Skip if you can...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Classes and instances</td>
+<td>[FOUNDATION]</td>
+<td>...explain what <code>self</code> is and why it is a parameter</td>
+</tr>
+<tr>
+<td>2. Composition, inheritance, dataclasses</td>
+<td>[CORE]</td>
+<td>...state a case where inheritance is the wrong tool</td>
+</tr>
+<tr>
+<td>3. Iterators and generators</td>
+<td>[CORE]</td>
+<td>...explain what <code>yield</code> does to a function's return type</td>
+</tr>
+<tr>
+<td>4. Decorators</td>
+<td>[CORE]</td>
+<td>...write a decorator that takes arguments, from memory</td>
+</tr>
+<tr>
+<td>5. Context managers</td>
+<td>[CORE]</td>
+<td>...write one with <code>@contextmanager</code> and say what <code>finally</code> guarantees</td>
+</tr>
+<tr>
+<td>6. Type hints</td>
+<td>[CORE]</td>
+<td>...say what mypy checks that Python does not</td>
+</tr>
+<tr>
+<td>7. Testing with pytest</td>
+<td>[CORE]</td>
+<td>...write a parametrized test with a fixture</td>
+</tr>
+<tr>
+<td>8. Logging, packaging, organization</td>
+<td>[CORE]</td>
+<td>...explain why <code>print</code> is wrong in a library</td>
+</tr>
+<tr>
+<td>9. Applied patterns</td>
+<td>[DEPTH]</td>
+<td>...write retry-with-backoff that does not retry a 400</td>
+</tr>
+</tbody>
+</table>
+<p>Section 9 is the one to read even if you skip everything else.</p>
+<hr />
+<h2 id="mental-model">Mental model<a class="anchor" href="#mental-model" aria-label="Link to this section">#</a></h2>
+<p><strong>A class is a factory for objects that carry their own state, and a decorator is a function that returns a modified function.</strong></p>
+<p>Two ideas, and almost everything in this file is one of them wearing different clothes.</p>
+<p>The first: in <code>01a</code> you passed data into functions. A class bundles data with the functions that operate on it, so <code>retriever.search(query)</code> carries the index, the model and the config without you threading them through every call.</p>
+<p>The second: functions are objects. You can pass them around, store them, and write functions that take a function and return a new one. Decorators, context managers and most of the applied patterns are this idea.</p>
+<p><strong>Where the analogy breaks down.</strong> "A class bundles data and behavior" makes classes sound universally good, and they are not. A class with one method and no state is a function with extra ceremony. A class hierarchy five levels deep is harder to follow than the duplication it removed. The genuine decision in section 2 is when <em>not</em> to reach for a class, which is more often than most codebases suggest.</p>
+<hr />
+<h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    FN[&quot;Functions are objects&quot;]
+    CL[&quot;Closures capture enclosing names&quot;]
+    DEC[&quot;Decorators&quot;]
+    CM[&quot;Context managers&quot;]
+    GEN[&quot;Generators&quot;]
+    ITER[&quot;The iterator protocol&quot;]
+    CLS[&quot;Classes bundle state and behavior&quot;]
+    DC[&quot;Dataclasses&quot;]
+    TH[&quot;Type hints&quot;]
+    PYD[&quot;Pydantic validation&quot;]
+    TEST[&quot;pytest&quot;]
+
+    FN --&gt; CL
+    CL --&gt;|&quot;a function returning a function&quot;| DEC
+    DEC --&gt;|&quot;retry, cache, timing&quot;| APPLIED[&quot;Applied patterns&quot;]
+    CLS --&gt; DC
+    DC --&gt;|&quot;add runtime validation&quot;| PYD
+    TH --&gt; PYD
+    TH --&gt;|&quot;makes tests easier to write&quot;| TEST
+    ITER --&gt; GEN
+    GEN --&gt;|&quot;lazy, constant memory&quot;| APPLIED
+    CM --&gt;|&quot;guaranteed cleanup&quot;| APPLIED
+    CLS --&gt;|&quot;__enter__ and __exit__&quot;| CM
+</pre></div>
+<hr />
+<h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
+<h3 id="1-classes-and-instances-foundation">1. Classes and instances [FOUNDATION]<a class="anchor" href="#1-classes-and-instances-foundation" aria-label="Link to this section">#</a></h3>
+<p>A class defines what its instances know and what they can do.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Retriever</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Holds an index and searches it.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_k</span> <span class="o">=</span> <span class="n">top_k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_query_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_query_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_k</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_count</span>
+</code></pre></div>
+
+<p><strong><code>__init__</code> is not a constructor</strong>, it is an initializer. The object already exists when <code>__init__</code> runs; its job is to set up state. The distinction matters once you meet <code>__new__</code>, which you rarely will.</p>
+<p><strong><code>self</code> is an ordinary parameter.</strong> When you write <code>retriever.search(q)</code>, Python calls <code>Retriever.search(retriever, q)</code>. It is not a keyword and there is nothing magic about the name; it is a convention so strong that breaking it is hostile, but it is still just the first parameter.</p>
+<p><strong>The underscore convention.</strong> <code>_query_count</code> signals "internal, do not touch from outside". Python does not enforce this. A single underscore is a message to humans, and that is genuinely all it is. A double underscore prefix triggers name mangling, which exists to avoid collisions in inheritance, not to provide privacy. Use a single underscore; you will almost never want the double.</p>
+<p><strong><code>@property</code> turns a method into an attribute access.</strong> <code>retriever.query_count</code> looks like a field and runs code. Use it for computed values and read-only access. Do not use it for anything expensive, because callers reasonably assume attribute access is cheap, and a property that makes a network call is a trap.</p>
+<p><strong>The methods worth knowing early:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Chunk(source=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="si">!r}</span><span class="s2">, len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Chunk</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>__repr__</code> is the highest-value method on this list by a wide margin. Without it, debugging shows you <code>&lt;__main__.Chunk object at 0x7f8b1c0d5f40&gt;</code>, which tells you nothing. With it, every print, every traceback and every debugger view is readable. Write <code>__repr__</code> on every class you define; the <code>!r</code> in the f-string calls <code>repr</code> on the field, which quotes strings and makes whitespace visible.</p>
+<p><code>__eq__</code> and <code>__hash__</code> travel together. If you define <code>__eq__</code> without <code>__hash__</code>, Python sets <code>__hash__</code> to <code>None</code> and your objects can no longer go in a set or be dict keys. Two objects that compare equal must hash equal, or dictionaries break in ways that are extremely hard to diagnose. Returning <code>NotImplemented</code> (not <code>False</code>) for an unknown type lets Python try the reflected operation, which is the correct protocol.</p>
+<p>The good news is that section 2 makes most of this unnecessary.</p>
+<h3 id="2-composition-inheritance-and-dataclasses-core">2. Composition, inheritance, and dataclasses [CORE]<a class="anchor" href="#2-composition-inheritance-and-dataclasses-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Dataclasses first, because they remove most of the boilerplate above.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">Chunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;doc1&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>          <span class="c1"># Chunk(text=&#39;hello&#39;, source=&#39;doc1&#39;, score=0.0, metadata={})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">Chunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;doc1&quot;</span><span class="p">))</span>   <span class="c1"># True</span>
+</code></pre></div>
+
+<p>You get <code>__init__</code>, <code>__repr__</code> and <code>__eq__</code> generated from the field declarations. For the data-carrying classes that make up most of a codebase, this is what you want.</p>
+<p><strong><code>field(default_factory=dict)</code> is the mutable default trap from <code>01a</code> section 7, in a new costume.</strong> Writing <code>metadata: dict = {}</code> in a dataclass raises an error at class definition time, because the language learned from that mistake:</p>
+<div class="highlight"><pre><span></span><code>ValueError: mutable default &lt;class &#39;dict&#39;&gt; for field metadata is not allowed: use default_factory
+</code></pre></div>
+
+<p>A rare case of a language catching the bug for you. <code>default_factory</code> is called once per instance, producing a fresh dict each time.</p>
+<p><strong>Useful variants:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>          <span class="c1"># immutable, and hashable, so it can be a dict key</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DocumentId</span><span class="p">:</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">page</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>           <span class="c1"># generates &lt;, &lt;=, &gt;, &gt;= from field order</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Score</span><span class="p">:</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>           <span class="c1"># lower memory, faster attribute access, no dynamic attributes</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Embedding</span><span class="p">:</span>
+    <span class="n">vector</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p><code>frozen=True</code> is worth reaching for by default on value objects. It makes the aliasing bugs from <code>01a</code> impossible: nobody can mutate your object out from under you, and you get hashability for free. Use <code>dataclasses.replace(obj, field=new)</code> to produce a modified copy.</p>
+<p><strong>Inheritance versus composition.</strong> The rule that survives contact with real code:</p>
+<blockquote>
+<p>Inheritance says "is a". Composition says "has a". When you are unsure, you want composition.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="c1"># Inheritance, used correctly: a genuine is-a relationship with shared behavior</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Retriever</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DenseRetriever</span><span class="p">(</span><span class="n">Retriever</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="o">...</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BM25Retriever</span><span class="p">(</span><span class="n">Retriever</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="o">...</span>
+
+<span class="c1"># Composition: the hybrid HAS retrievers, it is not one of them</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HybridRetriever</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dense</span><span class="p">,</span> <span class="n">sparse</span><span class="p">,</span> <span class="n">reranker</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dense</span> <span class="o">=</span> <span class="n">dense</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span> <span class="o">=</span> <span class="n">sparse</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reranker</span> <span class="o">=</span> <span class="n">reranker</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dense</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reranker</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">candidates</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Why composition usually wins.</strong> Inheritance couples the subclass to the parent's internals permanently. Change the parent and every subclass may break, including ones you have forgotten about. Composition lets you swap a component without touching anything else, and it makes testing trivial, because you pass in a fake reranker instead of subclassing your way around one.</p>
+<p>The specific smell: if you find yourself inheriting to reuse one method, or overriding a parent method to do something unrelated to what the parent did, you wanted composition.</p>
+<p><strong>Protocols, for when you want the interface without the hierarchy:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Reranker</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">]:</span> <span class="o">...</span>
+</code></pre></div>
+
+<p>Any class with a matching <code>rank</code> method satisfies <code>Reranker</code>. No inheritance, no import, no registration. This is Python's structural typing, and it is how you express "anything that behaves like this" without forcing a base class on code you do not own. Type checkers verify it; at runtime nothing happens, which is the point.</p>
+<h3 id="3-iterators-and-generators-core">3. Iterators and generators [CORE]<a class="anchor" href="#3-iterators-and-generators-core" aria-label="Link to this section">#</a></h3>
+<p><strong>The iterator protocol</strong> is what <code>for</code> actually uses. An iterable has <code>__iter__</code> returning an iterator; an iterator has <code>__next__</code> returning the next value or raising <code>StopIteration</code>.</p>
+<p>You rarely implement this by hand, because generators do it for you.</p>
+<p><strong>A generator is a function containing <code>yield</code>.</strong> Calling it does not run the body; it returns a generator object. The body runs one <code>yield</code> at a time, pausing and resuming.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">chunk_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield overlapping chunks without building the whole list.&quot;&quot;&quot;</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">overlap</span>
+    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="n">step</span><span class="p">):</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span> <span class="o">+</span> <span class="n">size</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">chunk</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunk_text</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+    <span class="n">embed</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Why this matters for the work you will do.</strong> The list version holds every chunk in memory at once. For one document that is irrelevant. For an ingestion pipeline over ten thousand documents it is the difference between running and being killed by the OOM reaper. Generators are the default answer to "this pipeline uses too much memory".</p>
+<p><strong>The tradeoffs, which are real and get people:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">gen</span> <span class="o">=</span> <span class="n">chunk_text</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>          <span class="c1"># TypeError: object of type &#39;generator&#39; has no len()</span>
+<span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>            <span class="c1"># TypeError: &#39;generator&#39; object is not subscriptable</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>         <span class="c1"># works, and now you have the whole thing in memory again</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">:</span> <span class="o">...</span>  <span class="c1"># consumes it</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">:</span> <span class="o">...</span>  <span class="c1"># runs zero times, silently</span>
+</code></pre></div>
+
+<p>That last one is the dangerous one. A generator is exhausted after one pass and iterating again produces nothing, with no error. If a function receives an iterable and loops over it twice, it will work when passed a list and silently produce wrong results when passed a generator. If you need to iterate more than once, materialize it: <code>chunks = list(chunk_text(...))</code>.</p>
+<p><strong>Generator expressions</strong> are comprehensions with parentheses, and they are lazy:</p>
+<div class="highlight"><pre><span></span><code><span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunk_text</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>   <span class="c1"># never builds a list</span>
+</code></pre></div>
+
+<p><strong><code>yield from</code></strong> delegates to another iterable:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">all_chunks</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+        <span class="k">yield from</span> <span class="n">chunk_text</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong><code>itertools</code>, the three that earn their keep:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">chain</span><span class="p">,</span> <span class="n">groupby</span>
+
+<span class="n">first_ten</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">generator</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>        <span class="c1"># take n without consuming the rest</span>
+<span class="n">everything</span> <span class="o">=</span> <span class="n">chain</span><span class="p">(</span><span class="n">list_a</span><span class="p">,</span> <span class="n">list_b</span><span class="p">)</span>             <span class="c1"># iterate several iterables as one</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">batched</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield lists of at most n items. Python 3.12 has itertools.batched.&quot;&quot;&quot;</span>
+    <span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">batch</span> <span class="o">:=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">n</span><span class="p">)):</span>
+        <span class="k">yield</span> <span class="n">batch</span>
+</code></pre></div>
+
+<p><code>batched</code> is worth typing out because you will need it constantly: embedding APIs take batches, and sending one document per request is slow and expensive. The <code>:=</code> walrus operator assigns and tests in one expression; here it means "take the next batch, and stop when it comes back empty".</p>
+<h3 id="4-decorators-core">4. Decorators [CORE]<a class="anchor" href="#4-decorators-core" aria-label="Link to this section">#</a></h3>
+<p>A decorator is a function that takes a function and returns a replacement.</p>
+<p><strong>Building one from scratch</strong>, because the syntax makes sense only once you have seen the mechanism:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">timed</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> took </span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@timed</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">embed_batch</span><span class="p">(</span><span class="n">texts</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>Line by line:</p>
+<ul>
+<li><code>timed</code> takes the function being decorated.</li>
+<li><code>wrapper</code> replaces it. <code>*args, **kwargs</code> means it accepts whatever the original accepted, without needing to know the signature.</li>
+<li><code>try/finally</code> means the timing prints even when the function raises, which is when you most want to know.</li>
+<li><code>return wrapper</code> is the substitution. After decoration, the name <code>embed_batch</code> points at <code>wrapper</code>.</li>
+<li><code>@timed</code> above the <code>def</code> is exactly <code>embed_batch = timed(embed_batch)</code>.</li>
+</ul>
+<p><strong><code>functools.wraps</code> is not optional.</strong> Without it, the wrapper's name, docstring and signature replace the original's. Your tracebacks say <code>wrapper</code>, <code>help()</code> shows nothing useful, and any tool that inspects signatures (FastAPI, pytest, Pydantic) breaks. It is one line and forgetting it causes confusing bugs much later.</p>
+<p><strong>A decorator with arguments needs one more layer:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">last_error</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">last_error</span> <span class="o">=</span> <span class="n">e</span>
+                    <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">times</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">last_error</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+
+<span class="nd">@retry</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">call_api</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>Three levels: <code>retry(...)</code> returns <code>decorator</code>, which receives the function and returns <code>wrapper</code>. <code>@retry(times=5)</code> calls <code>retry</code> first, then applies the result. This is the layer that confuses people, and writing it once from memory is the fastest way past the confusion.</p>
+<p>Note this version is deliberately naive. Section 9 has the one you should actually use, and the difference is the interview answer.</p>
+<p><strong><code>functools.lru_cache</code></strong>, the decorator you will use most:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">embed_query</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>Caveats that matter. Arguments must be hashable, so no lists or dicts. The cache holds references, so it keeps its entries alive, and an unbounded <code>maxsize=None</code> on a long-running service is a memory leak with good manners. And caching a function whose result depends on anything other than its arguments, such as the current time or a database, will serve stale results forever.</p>
+<p><strong><code>@staticmethod</code> and <code>@classmethod</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Alternative constructor. cls is the class, so subclasses get the right type.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_overlap</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Related to the class, uses no instance or class state.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">overlap</span> <span class="o">&lt;</span> <span class="n">size</span>
+</code></pre></div>
+
+<p><code>@classmethod</code> for alternative constructors, which is its dominant use. <code>@staticmethod</code> for functions that belong to the class conceptually but touch no state, and be aware that a module-level function is often the better answer.</p>
+<h3 id="5-context-managers-core">5. Context managers [CORE]<a class="anchor" href="#5-context-managers-core" aria-label="Link to this section">#</a></h3>
+<p><code>with</code> guarantees cleanup. You met it for files in <code>01a</code>; this is how to write your own.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s2">&quot;ingestion&quot;</span><span class="p">):</span>
+    <span class="n">ingest</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Everything before <code>yield</code> is setup, everything after is teardown, and <code>finally</code> is what makes it a guarantee rather than a hope. Without <code>finally</code>, an exception inside the block skips your cleanup entirely.</p>
+<p><strong>Yielding a value:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@contextmanager</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">temporary_index</span><span class="p">(</span><span class="n">chunks</span><span class="p">):</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">build_index</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">index</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">index</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">temporary_index</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span> <span class="k">as</span> <span class="n">index</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>The class form</strong>, which you should recognize even if you write the decorator form:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Timer</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+        <span class="k">return</span> <span class="kc">False</span>     <span class="c1"># False propagates the exception; True swallows it</span>
+</code></pre></div>
+
+<p>Returning <code>True</code> from <code>__exit__</code> suppresses the exception. This is almost always wrong and is worth knowing mostly so you recognize it when a library does it to you.</p>
+<p><strong>Where you will actually use this:</strong> database connections and transactions, temporary directories, acquiring a lock, opening a model and freeing its memory, patching config during a test. Anything with a matching "undo" step.</p>
+<p><code>contextlib.suppress</code> is the readable form of a deliberate ignore:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">suppress</span>
+
+<span class="k">with</span> <span class="n">suppress</span><span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">):</span>
+    <span class="n">cache_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Clearer than <code>try/except/pass</code>, and unlike a bare except it names exactly what you are ignoring.</p>
+<h3 id="6-type-hints-core">6. Type hints [CORE]<a class="anchor" href="#6-type-hints-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Python does not check types at runtime.</strong> Hints are annotations that tools read. This is the single most important fact about them:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<span class="n">embed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>     <span class="c1"># runs; no error from Python itself</span>
+</code></pre></div>
+
+<p>A type checker (mypy, pyright) flags it before you run. The interpreter does not care. People expect hints to validate, and when they need runtime validation the answer is Pydantic, in section 9.</p>
+<p><strong>The syntax you need:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Protocol</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">filters</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">rerank</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p><code>X | None</code> is the modern spelling of <code>Optional[X]</code> and reads better. <code>dict[str, str]</code> and <code>list[float]</code> work directly as of Python 3.9; <code>Dict</code> and <code>List</code> from <code>typing</code> are legacy.</p>
+<p><strong>Where hints pay off most:</strong> function signatures at module boundaries, dataclass fields, and anything returning a container whose contents are not obvious. <code>-&gt; list[tuple[str, float]]</code> tells a reader what they are getting without running anything.</p>
+<p><strong>Where they do not pay off:</strong> local variables with obvious types. <code>count: int = 0</code> is noise.</p>
+<p><strong><code>Any</code> is an escape hatch that disables checking.</strong> Using it everywhere gives you the annotation ceremony with none of the benefit. Prefer a real type, a union, or a Protocol.</p>
+<p><strong>Running the checker:</strong></p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mypy
+mypy<span class="w"> </span>src/
+</code></pre></div>
+
+<p>Start permissive and tighten. Adding <code>--strict</code> to an existing untyped codebase produces hundreds of errors and teaches you to ignore them, which is worse than not running it.</p>
+<h3 id="7-testing-with-pytest-core">7. Testing with pytest [CORE]<a class="anchor" href="#7-testing-with-pytest-core" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/test_chunking.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mypackage.chunking</span><span class="w"> </span><span class="kn">import</span> <span class="n">chunk_text</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_chunks_cover_the_whole_text</span><span class="p">():</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">(</span><span class="s2">&quot;abcdefghij&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;abcdefghij&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_overlap_repeats_content</span><span class="p">():</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">(</span><span class="s2">&quot;abcdefghij&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="o">==</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_overlap_must_be_smaller_than_size</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;overlap&quot;</span><span class="p">):</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+
+<p><code>pytest</code> needs no class, no <code>self</code>, no special assert method. Plain <code>assert</code>, and when it fails pytest shows you both sides of the comparison.</p>
+<p><strong>Parametrization</strong>, which removes the copy-pasted test:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;text,size,overlap,expected_count&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;abcdefgh&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;abcdefgh&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_chunk_counts</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">,</span> <span class="n">expected_count</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">)))</span> <span class="o">==</span> <span class="n">expected_count</span>
+</code></pre></div>
+
+<p>Four separate tests with four separate names in the output. When one fails you know which case.</p>
+<p><strong>Fixtures</strong>, for shared setup:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_chunks</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">Chunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;python is a language&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">),</span>
+        <span class="n">Chunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;attention is all you need&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">temp_index</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;tmp_path is a built-in fixture giving a fresh directory per test.&quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;index.json&quot;</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_search_returns_matches</span><span class="p">(</span><span class="n">sample_chunks</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">search</span><span class="p">(</span><span class="n">sample_chunks</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
+</code></pre></div>
+
+<p><code>tmp_path</code> is built in and removes an entire category of test flakiness, where tests share files and pass or fail depending on order.</p>
+<p><strong>What is actually worth testing</strong>, since coverage percentage is a poor guide:</p>
+<table>
+<thead>
+<tr>
+<th>Worth testing</th>
+<th>Not worth testing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edge cases: empty, one element, exactly at a boundary</td>
+<td>Whether a getter returns what you set</td>
+</tr>
+<tr>
+<td>Error paths: does it raise the right thing</td>
+<td>Third-party library behavior</td>
+</tr>
+<tr>
+<td>The bug you just fixed, as a regression test</td>
+<td>Trivial glue with no logic</td>
+</tr>
+<tr>
+<td>Anything with arithmetic in it</td>
+<td>Exact log message wording</td>
+</tr>
+<tr>
+<td>The contract at module boundaries</td>
+<td>Private helpers, indirectly covered</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The highest-value habit:</strong> when you fix a bug, write the test that would have caught it, before the fix. It fails, you fix, it passes. This is how a test suite becomes a record of everything that has ever gone wrong, which is the version that actually prevents regressions.</p>
+<p><strong>Coverage tells you what was executed, not what was verified.</strong> A test that calls a function and asserts nothing produces coverage. Treat it as a tool for finding untested regions, never as a target to hit.</p>
+<h3 id="8-logging-packaging-and-organization-core">8. Logging, packaging, and organization [CORE]<a class="anchor" href="#8-logging-packaging-and-organization-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Logging, not printing.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ingest</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ingesting </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="o">...</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;ingestion failed for </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">raise</span>
+</code></pre></div>
+
+<p>Four reasons this beats <code>print</code>. You can change the level without editing code. Output can go to a file, a service, or several places. Each record carries a timestamp, level and module name. And <code>logger.exception</code> captures the full traceback.</p>
+<p><strong>Use <code>%s</code> placeholders, not f-strings, in log calls.</strong> <code>logger.debug("state: %s", expensive())</code> skips the formatting entirely when debug is disabled. With an f-string, the work happens whether or not anything is logged.</p>
+<p><strong>Configure once, at the entry point</strong>, never in a library:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># main.py, not in your package modules</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(name)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>A library that calls <code>basicConfig</code> hijacks the application's logging. Libraries get a logger and log; applications decide where it goes.</p>
+<p><strong>Levels, used consistently:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DEBUG</code></td>
+<td>Detail you want while diagnosing, off in production</td>
+</tr>
+<tr>
+<td><code>INFO</code></td>
+<td>Normal milestones: started, finished, processed n items</td>
+</tr>
+<tr>
+<td><code>WARNING</code></td>
+<td>Something unexpected that was handled: a skipped row, a retry</td>
+</tr>
+<tr>
+<td><code>ERROR</code></td>
+<td>An operation failed</td>
+</tr>
+<tr>
+<td><code>CRITICAL</code></td>
+<td>The process cannot continue</td>
+</tr>
+</tbody>
+</table>
+<p>The common failure is logging everything at INFO, which produces a stream nobody reads, so nothing is noticed.</p>
+<p><strong>Project layout.</strong> The <code>src</code> layout, because it prevents a real problem:</p>
+<div class="highlight"><pre><span></span><code>myproject/
+├── pyproject.toml
+├── README.md
+├── src/
+│   └── mypackage/
+│       ├── __init__.py
+│       ├── chunking.py
+│       ├── retrieval.py
+│       └── config.py
+└── tests/
+    ├── conftest.py
+    └── test_chunking.py
+</code></pre></div>
+
+<p>With <code>src/</code>, your tests cannot accidentally import the local source directory instead of the installed package, which means you are testing what you would ship rather than what happens to be lying around. <code>conftest.py</code> holds fixtures shared across test files; pytest finds it automatically.</p>
+<p><strong><code>pyproject.toml</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">[project]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mypackage&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.11&quot;</span>
+<span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;pydantic&gt;=2.0,&lt;3.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;httpx&gt;=0.27,&lt;1.0&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="k">[project.optional-dependencies]</span>
+<span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pytest&gt;=8.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mypy&gt;=1.10&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ruff&gt;=0.5&quot;</span><span class="p">]</span>
+
+<span class="k">[build-system]</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hatchling&quot;</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hatchling.build&quot;</span>
+
+<span class="k">[tool.ruff]</span>
+<span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+
+<span class="k">[tool.pytest.ini_options]</span>
+<span class="n">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tests&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p><code>[VERIFY: current versions of these tools @ PyPI]</code> The version ranges matter more than the exact numbers: an upper bound protects you from a breaking major release, a lower bound documents what you actually need.</p>
+<p><strong>Virtual environments</strong>, one per project, always:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">        </span><span class="c1"># Windows: .venv\Scripts\activate</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+</code></pre></div>
+
+<p><code>-e</code> installs your package in editable mode, so your source changes take effect without reinstalling. Add <code>.venv/</code> to <code>.gitignore</code>.</p>
+<p><strong>When to split a module.</strong> Not by line count. Split when a file has two distinct reasons to change, or when you find yourself scrolling past one concern to reach another. <code>retrieval.py</code> holding search and reranking is fine. <code>utils.py</code> holding eleven unrelated functions is a sign you have been avoiding the naming decision.</p>
+<p><code>__init__.py</code> exists to mark the package and to define its public surface:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/mypackage/__init__.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mypackage.chunking</span><span class="w"> </span><span class="kn">import</span> <span class="n">chunk_text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mypackage.retrieval</span><span class="w"> </span><span class="kn">import</span> <span class="n">Retriever</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chunk_text&quot;</span><span class="p">,</span> <span class="s2">&quot;Retriever&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Keep it thin. Import side effects in <code>__init__.py</code> make your package slow to import and hard to test.</p>
+<h3 id="9-applied-patterns-for-ai-and-llm-code-depth">9. Applied patterns for AI and LLM code [DEPTH]<a class="anchor" href="#9-applied-patterns-for-ai-and-llm-code-depth" aria-label="Link to this section">#</a></h3>
+<p>The rest of this file is background. This section is the part you will use every week.</p>
+<p>For each pattern: the naive version, what broke, and the version that survives.</p>
+<h4 id="91-calling-an-http-api">9.1 Calling an HTTP API<a class="anchor" href="#91-calling-an-http-api" aria-label="Link to this section">#</a></h4>
+<p><strong>Naive:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;embedding&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p><strong>What breaks.</strong> No timeout, so a hung connection hangs your process forever, and the default is no timeout at all. No status check, so a 429 or 500 returns an HTML error page and you get a <code>KeyError: 'data'</code> that tells you nothing about what went wrong. A new connection per call, throwing away TLS handshakes.</p>
+<p><strong>Better:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingClient</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span>
+            <span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/embeddings&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">texts</span><span class="p">})</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;embedding&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">]]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div>
+
+<p>A reused client pools connections. An explicit timeout. <code>raise_for_status()</code> turns a bad response into an exception at the point of failure. It takes a list, so batching is natural. And it is a context manager, so the connection pool is closed.</p>
+<h4 id="92-retries-with-backoff">9.2 Retries with backoff<a class="anchor" href="#92-retries-with-backoff" aria-label="Link to this section">#</a></h4>
+<p>The naive decorator in section 4 has three bugs, and naming them is a good interview answer.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+
+<span class="n">RETRIABLE_STATUS</span> <span class="o">=</span> <span class="p">{</span><span class="mi">408</span><span class="p">,</span> <span class="mi">429</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">503</span><span class="p">,</span> <span class="mi">504</span><span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">call_with_retry</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">base_delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="mf">30.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retry only what is worth retrying, with exponential backoff and jitter.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">attempts</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">httpx</span><span class="o">.</span><span class="n">HTTPStatusError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+            <span class="k">if</span> <span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">RETRIABLE_STATUS</span><span class="p">:</span>
+                <span class="k">raise</span>                                    <span class="c1"># 400 and 401 will never succeed</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">attempts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span>
+
+            <span class="n">retry_after</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Retry-After&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">retry_after</span> <span class="ow">and</span> <span class="n">retry_after</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">retry_after</span><span class="p">)</span>               <span class="c1"># the server told us; obey it</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">base_delay</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">),</span> <span class="n">max_delay</span><span class="p">)</span>
+                <span class="n">delay</span> <span class="o">*=</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>           <span class="c1"># jitter</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;attempt </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2"> failed with </span><span class="si">%s</span><span class="s2">, retrying in </span><span class="si">%.1f</span><span class="s2">s&quot;</span><span class="p">,</span>
+                <span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">attempts</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">httpx</span><span class="o">.</span><span class="n">TimeoutException</span><span class="p">,</span> <span class="n">httpx</span><span class="o">.</span><span class="n">ConnectError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">attempts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">base_delay</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">),</span> <span class="n">max_delay</span><span class="p">))</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;unreachable&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The three fixes:</p>
+<ol>
+<li><strong>Do not retry what cannot succeed.</strong> A 400 means your request is malformed. Retrying it four times turns one fast failure into four slow ones. A 401 will not fix itself either.</li>
+<li><strong>Honor <code>Retry-After</code>.</strong> When a rate limiter tells you when to come back, ignoring it and using your own backoff gets you rate limited again.</li>
+<li><strong>Jitter.</strong> Without it, a hundred clients that failed together retry together, and the retry storm is worse than the original spike. Randomizing the delay spreads them out. This is the detail that signals you have run something in production.</li>
+</ol>
+<h4 id="93-validating-with-pydantic">9.3 Validating with Pydantic<a class="anchor" href="#93-validating-with-pydantic" aria-label="Link to this section">#</a></h4>
+<p>Type hints do not validate. Pydantic does, using the same syntax.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">ValidationError</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RetrievalConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">8192</span><span class="p">)</span>
+    <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;bge-large-en-v1.5&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">model_post_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">__context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overlap </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">overlap</span><span class="si">}</span><span class="s2"> must be &lt; chunk_size </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">RetrievalConfig</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Validation happens at construction, so bad config fails at startup rather than in the middle of an ingestion run.</p>
+<p><strong>The place this matters most in LLM work: parsing model output.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ExtractedInvoice</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">invoice_number</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">total</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">line_items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract</span><span class="p">(</span><span class="n">response_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedInvoice</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ExtractedInvoice</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">response_text</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;model returned invalid structure: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">errors</span><span class="p">())</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+
+<p>A language model will eventually return a total as <code>"$1,240.00"</code>, or omit a field, or emit prose before the JSON. Parsing with <code>json.loads</code> and indexing gives you a <code>KeyError</code> three functions away from the cause. Validating at the boundary gives you a precise error at the point of entry, and a place to put the retry.</p>
+<p><code>[VERIFY: Pydantic v2 API, model_validate_json and model_post_init @ current Pydantic docs]</code> v1 used different method names, and much of the code you will find online is v1. Every example in this section was run against Pydantic 2.13.3 and httpx 0.28.1.</p>
+<h4 id="94-batching">9.4 Batching<a class="anchor" href="#94-batching" aria-label="Link to this section">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">embed_all</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">EmbeddingClient</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+    <span class="n">vectors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">batched</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="n">vectors</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">call_with_retry</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">batch</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">vectors</span>
+</code></pre></div>
+
+<p>One request per document means one round trip per document. Batching amortizes that, and most providers price and rate limit per request as well as per token.</p>
+<p><strong>Choosing the batch size is empirical, not theoretical.</strong> Too small wastes round trips; too large risks a token limit, a timeout, or losing the whole batch to one bad item. Start at 32 or 64, measure, and adjust. Note the failure-granularity tradeoff: with batch size 256, one malformed document fails 256 documents.</p>
+<h4 id="95-caching">9.5 Caching<a class="anchor" href="#95-caching" aria-label="Link to this section">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingCache</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Disk cache keyed by content hash. Survives restarts, unlike lru_cache.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="n">directory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">::</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="s2">.json&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;corrupt cache entry </span><span class="si">%s</span><span class="s2">, ignoring&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vector</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="s2">.json&quot;</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.tmp&quot;</span><span class="p">)</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>                <span class="c1"># atomic; a crash cannot leave a half-written file</span>
+</code></pre></div>
+
+<p>Three decisions worth naming. <strong>The model is part of the key</strong>, because the same text embedded with a different model is a different vector, and a cache that ignores this returns silently wrong results after you switch models. <strong>A corrupt entry is a miss, not a crash</strong>, because a cache should never be able to take down the thing it is accelerating. <strong>Writes are atomic</strong> via write-then-rename, so an interrupted process cannot leave a truncated file that parses as valid JSON.</p>
+<h4 id="96-configuration">9.6 Configuration<a class="anchor" href="#96-configuration" aria-label="Link to this section">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">SettingsConfigDict</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">env_prefix</span><span class="o">=</span><span class="s2">&quot;APP_&quot;</span><span class="p">,</span> <span class="n">env_file</span><span class="o">=</span><span class="s2">&quot;.env&quot;</span><span class="p">)</span>
+
+    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>                                  <span class="c1"># required; no default, so startup fails without it</span>
+    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://api.example.com&quot;</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span>
+    <span class="n">log_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span>
+
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Reads <code>APP_API_KEY</code> from the environment or a <code>.env</code> file, validates types, and fails at import time if something required is missing. Fail at startup, not at request time, is the whole principle.</p>
+<p><code>.env</code> goes in <code>.gitignore</code>. Commit a <code>.env.example</code> listing the names with dummy values, so someone cloning the repo knows what to set.</p>
+<h4 id="97-async-briefly">9.7 Async, briefly<a class="anchor" href="#97-async-briefly" aria-label="Link to this section">#</a></h4>
+<p>Use async when you are waiting on many network calls at once. It does not make CPU-bound work faster.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">embed_many</span><span class="p">(</span><span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">concurrency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+    <span class="n">limiter</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="n">concurrency</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">30.0</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">one</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="n">limiter</span><span class="p">:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">})</span>
+                <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;embedding&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">one</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">))</span>
+</code></pre></div>
+
+<p>The <code>Semaphore</code> is the part beginners omit. Without it, <code>gather</code> over ten thousand texts opens ten thousand connections at once, and you will be rate limited, run out of file descriptors, or both.</p>
+<p><strong>The rule:</strong> async for I/O-bound concurrency, threads for blocking libraries you cannot make async, processes for CPU-bound work. Mixing blocking calls into async code silently blocks the whole event loop, which is the most common async bug and produces code that is slower than the synchronous version.</p>
+<hr />
+<h2 id="worked-examples">Worked examples<a class="anchor" href="#worked-examples" aria-label="Link to this section">#</a></h2>
+<h3 id="example-1-refactoring-a-script-into-a-testable-module">Example 1: refactoring a script into a testable module<a class="anchor" href="#example-1-refactoring-a-script-into-a-testable-module" aria-label="Link to this section">#</a></h3>
+<p><strong>Before</strong>, which is what a working script looks like before anyone has to maintain it:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">docs</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;docs.json&quot;</span><span class="p">))</span>
+<span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="mi">500</span><span class="p">):</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">500</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;http://localhost:8080/embed&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">chunk</span><span class="p">})</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;chunk&quot;</span><span class="p">:</span> <span class="n">chunk</span><span class="p">,</span> <span class="s2">&quot;vec&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;embedding&quot;</span><span class="p">],</span> <span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]})</span>
+<span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;out.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>It works. Every concern is welded to every other: you cannot test chunking without a network, cannot change the embedding backend without editing the loop, cannot process a different input without editing the file, and a failure on document 900 loses all previous work.</p>
+<p><strong>After:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/ingest/chunking.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">index</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">chunk_document</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield overlapping chunks. Pure: no I/O, trivially testable.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;size must be positive, got </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">overlap</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overlap </span><span class="si">{</span><span class="n">overlap</span><span class="si">}</span><span class="s2"> must be in [0, </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+    <span class="n">step</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">overlap</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="n">step</span><span class="p">)):</span>
+        <span class="n">piece</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span> <span class="o">+</span> <span class="n">size</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">piece</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">Chunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">piece</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># src/ingest/pipeline.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Embedder</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span> <span class="o">...</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">embed_chunks</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="n">embedder</span><span class="p">:</span> <span class="n">Embedder</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Embed chunks in batches. Survives a bad batch; reports what was lost.&quot;&quot;&quot;</span>
+    <span class="n">results</span><span class="p">,</span> <span class="n">failed</span> <span class="o">=</span> <span class="p">[],</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">batched</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">vectors</span> <span class="o">=</span> <span class="n">embedder</span><span class="o">.</span><span class="n">embed</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;batch of </span><span class="si">%d</span><span class="s2"> failed, skipping&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">))</span>
+            <span class="n">failed</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">vectors</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">failed</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;embedded </span><span class="si">%d</span><span class="s2"> chunks, </span><span class="si">%d</span><span class="s2"> failed&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">),</span> <span class="n">failed</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/test_chunking.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_chunks_are_contiguous_without_overlap</span><span class="p">():</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunk_document</span><span class="p">(</span><span class="s2">&quot;abcdefghij&quot;</span><span class="p">,</span> <span class="s2">&quot;d1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;abcde&quot;</span><span class="p">,</span> <span class="s2">&quot;fghij&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_rejects_overlap_equal_to_size</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;overlap&quot;</span><span class="p">):</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">chunk_document</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;d1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_embed_chunks_survives_a_failing_batch</span><span class="p">(</span><span class="n">caplog</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Flaky</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">calls</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">calls</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calls</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;boom&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+
+    <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunk_document</span><span class="p">(</span><span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;d1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">embed_chunks</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="n">Flaky</span><span class="p">(),</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;failed&quot;</span> <span class="ow">in</span> <span class="n">caplog</span><span class="o">.</span><span class="n">text</span>
+</code></pre></div>
+
+<p>What each change bought. <code>chunk_document</code> is pure, so its tests need no network and run in microseconds. <code>Embedder</code> as a Protocol means the test passes a fake with no mocking library and no inheritance. <code>strict=True</code> in the <code>zip</code> catches a backend returning the wrong number of vectors, which is a real failure that would otherwise silently misalign every chunk with the wrong vector. And one bad batch costs one batch instead of the whole run.</p>
+<p>The <code>caplog</code> fixture is built into pytest and captures log output, which is how you test that a failure was reported rather than swallowed.</p>
+<h3 id="example-2-a-decorator-you-would-actually-ship">Example 2: a decorator you would actually ship<a class="anchor" href="#example-2-a-decorator-you-would-actually-ship" aria-label="Link to this section">#</a></h3>
+<p>Combining sections 4 and 9 into something with real behavior.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">instrumented</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">slow_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Log duration and failures. Warn when a call exceeds slow_threshold seconds.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span>
+
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> failed after </span><span class="si">%.3f</span><span class="s2">s&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+                <span class="k">raise</span>
+            <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+            <span class="k">if</span> <span class="n">elapsed</span> <span class="o">&gt;</span> <span class="n">slow_threshold</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> took </span><span class="si">%.3f</span><span class="s2">s (threshold </span><span class="si">%.1f</span><span class="s2">s)&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">,</span> <span class="n">slow_threshold</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> took </span><span class="si">%.3f</span><span class="s2">s&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="k">return</span> <span class="n">decorator</span>
+
+
+<span class="nd">@instrumented</span><span class="p">(</span><span class="s2">&quot;retrieval.search&quot;</span><span class="p">,</span> <span class="n">slow_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>Design decisions worth defending in a review. It <strong>re-raises after logging</strong>, because swallowing an exception in a decorator is how errors disappear. It uses <strong><code>func.__qualname__</code></strong> rather than <code>__name__</code>, so a method shows as <code>Retriever.search</code> rather than <code>search</code>. It <strong>logs slow calls at WARNING and normal ones at DEBUG</strong>, so production logs contain only the interesting ones. And the timing is computed in the <code>except</code> branch too, because how long something took before it failed is often the diagnostic.</p>
+<h3 id="example-3-from-dict-to-dataclass-to-pydantic-and-when-to-stop">Example 3: from dict to dataclass to Pydantic, and when to stop<a class="anchor" href="#example-3-from-dict-to-dataclass-to-pydantic-and-when-to-stop" aria-label="Link to this section">#</a></h3>
+<p>Three versions of the same idea, each appropriate somewhere.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Dict. Fine for something local and short-lived.</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;overlap&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">]</span>         <span class="c1"># KeyError at 2am if a caller spelled it &quot;chunksize&quot;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># 2. Dataclass. The right default for internal structures.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ChunkConfig</span><span class="p">:</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span>
+    <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overlap </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">overlap</span><span class="si">}</span><span class="s2"> &gt;= chunk_size </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Typos become <code>AttributeError</code> at the point of use, the editor autocompletes fields, and <code>frozen=True</code> means nothing downstream can mutate it. Note that type hints still do not check: <code>ChunkConfig(chunk_size="512")</code> constructs happily and fails later during arithmetic.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 3. Pydantic. For anything crossing a trust boundary.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ChunkConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">8192</span><span class="p">)</span>
+    <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Now <code>ChunkConfig(chunk_size="512")</code> coerces to the integer 512, and <code>chunk_size="abc"</code> raises a <code>ValidationError</code> naming the field.</p>
+<p><strong>The rule:</strong> dict for throwaway, dataclass for internal, Pydantic at the boundaries. Boundaries means anything you did not construct yourself: user input, API responses, config files, environment variables, and language model output. Pydantic everywhere adds validation cost and a dependency to code that already knows its own types.</p>
+<hr />
+<h2 id="common-mistakes-and-debugging">Common mistakes and debugging<a class="anchor" href="#common-mistakes-and-debugging" aria-label="Link to this section">#</a></h2>
+<h3 id="beginner-mistakes">Beginner mistakes<a class="anchor" href="#beginner-mistakes" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TypeError: method() takes 1 positional argument but 2 were given</code></td>
+<td>Forgot <code>self</code> in the method definition</td>
+<td>Add <code>self</code> as the first parameter</td>
+</tr>
+<tr>
+<td><code>AttributeError: 'Foo' object has no attribute 'bar'</code></td>
+<td>Set in a method that never ran, or a typo</td>
+<td>Initialize every attribute in <code>__init__</code></td>
+</tr>
+<tr>
+<td><code>ValueError: mutable default ... use default_factory</code></td>
+<td><code>= []</code> in a dataclass field</td>
+<td><code>field(default_factory=list)</code></td>
+</tr>
+<tr>
+<td>Second loop over a generator does nothing</td>
+<td>It was exhausted by the first</td>
+<td><code>list(...)</code> if you need it twice</td>
+</tr>
+<tr>
+<td><code>TypeError: object of type 'generator' has no len()</code></td>
+<td>Generators are lazy and have no length</td>
+<td>Materialize, or track a count while iterating</td>
+</tr>
+<tr>
+<td>Decorated function's name is <code>wrapper</code> in tracebacks</td>
+<td>Missing <code>functools.wraps</code></td>
+<td>Add it</td>
+</tr>
+<tr>
+<td><code>TypeError: unhashable type: 'list'</code> in <code>lru_cache</code></td>
+<td>Cache arguments must be hashable</td>
+<td>Pass a tuple, or key on a string</td>
+</tr>
+<tr>
+<td>Tests pass alone, fail together</td>
+<td>Shared mutable state between tests</td>
+<td>Use fixtures and <code>tmp_path</code>, not module globals</td>
+</tr>
+<tr>
+<td><code>unhashable type</code> after adding <code>__eq__</code></td>
+<td>Defining <code>__eq__</code> sets <code>__hash__</code> to None</td>
+<td>Define <code>__hash__</code> too, or use <code>@dataclass(frozen=True)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="production-failure-modes">Production failure modes<a class="anchor" href="#production-failure-modes" aria-label="Link to this section">#</a></h3>
+<p><strong><code>lru_cache</code> on a method leaks memory.</strong> <code>@lru_cache</code> on an instance method keys on <code>self</code>, so the cache holds a reference to every instance it has ever seen, and they are never garbage collected. In a long-running service this is an unbounded leak. <em>Diagnostic:</em> memory grows with distinct object count rather than request count. <em>Fix:</em> cache a module-level function keyed on the values you actually depend on.</p>
+<p><strong>A generator consumed twice, silently.</strong> A function takes an iterable, loops over it to validate, then loops again to process. Passed a list it works. Passed a generator the second loop sees nothing, so it "processes" zero items and reports success. <em>Diagnostic:</em> a pipeline that reports success and produces an empty output, and works in tests where fixtures return lists. <em>Fix:</em> materialize at the boundary, or document that you consume the iterable once.</p>
+<p><strong>Exceptions swallowed by a decorator or context manager.</strong> A decorator catches and logs, but does not re-raise; or <code>__exit__</code> returns a truthy value. Callers see success. <em>Diagnostic:</em> errors in logs with no corresponding failure upstream. <em>Fix:</em> re-raise unless you have a specific reason, and never <code>return True</code> from <code>__exit__</code> by accident.</p>
+<p><strong>Cache key omits something that matters.</strong> An embedding cache keyed only on text returns vectors from the old model after a model swap. Nothing errors; retrieval quality just quietly degrades. <em>Diagnostic:</em> quality drops after a config change with no code change. <em>Fix:</em> include every input that affects the output in the key, and version the cache directory.</p>
+<p><strong>Config validated too late.</strong> A missing API key surfaces as a 401 inside a worker on the thousandth document. <em>Diagnostic:</em> failures that appear well after startup and depend on which code path ran. <em>Fix:</em> validate all config at process start.</p>
+<p><strong>Retrying non-retriable errors.</strong> A 400 retried four times with backoff turns a 50ms failure into a 15-second one, and multiplies load during an incident. <em>Diagnostic:</em> latency spikes and identical repeated 4xx in logs. <em>Fix:</em> the allowlist in section 9.2.</p>
+<p><strong>Blocking calls inside async code.</strong> One <code>time.sleep</code> or <code>requests.get</code> in a coroutine blocks the entire event loop, so all concurrency stops. <em>Diagnostic:</em> async code no faster than sync, or worse. <em>Fix:</em> async libraries throughout, or <code>asyncio.to_thread</code> for the blocking call.</p>
+<h3 id="how-to-debug-the-constructs-in-this-file">How to debug the constructs in this file<a class="anchor" href="#how-to-debug-the-constructs-in-this-file" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>A decorator misbehaving:</strong> check <code>func.__wrapped__</code> to reach the original, and confirm <code>functools.wraps</code> is present. Temporarily comment out the decorator to isolate whether the bug is in it or under it.</li>
+<li><strong>A generator producing nothing:</strong> wrap it in <code>list()</code> at the point of creation. If that fixes it, it was exhausted somewhere.</li>
+<li><strong>A class with confusing state:</strong> write <code>__repr__</code> first. Most "I don't understand what this object is doing" problems dissolve once you can see it.</li>
+<li><strong>A test that passes alone and fails in the suite:</strong> run with <code>-p no:randomly</code> if ordering plugins are installed, then look for module-level mutable state.</li>
+<li><strong>Pydantic rejecting valid-looking input:</strong> print <code>e.errors()</code>, not <code>str(e)</code>. It gives you the field path, the rule that failed, and the value received.</li>
+</ol>
+<hr />
+<h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
+<p><strong>1. When would you use composition instead of inheritance?</strong></p>
+<p><em>Strong outline:</em> Inheritance for a genuine is-a relationship with shared behavior; composition for has-a, which is most cases. Composition keeps components swappable and makes testing trivial because you inject a fake instead of subclassing. Inheritance couples the subclass to the parent's internals permanently. Give the concrete smell: inheriting to reuse one method, or overriding a parent method to do something unrelated. Mention Protocols as the way to get an interface contract without a hierarchy.</p>
+<p><em>Weak answer:</em> "Favor composition over inheritance." Correct slogan, no reasoning. The follow-up will ask when inheritance <em>is</em> right and the slogan has no answer.</p>
+<p><strong>2. What does <code>yield</code> do, and when is a generator the wrong choice?</strong></p>
+<p><em>Strong outline:</em> <code>yield</code> turns a function into a generator function; calling it returns a generator rather than running the body, and the body advances one <code>yield</code> at a time. Benefit is constant memory over an arbitrarily long sequence. Wrong when you need <code>len</code>, indexing, or more than one pass, and the sharp edge is that a second iteration silently yields nothing rather than raising.</p>
+<p><em>Weak answer:</em> "It's like return but it keeps going." Gets the shape, misses that nothing runs until you iterate, which is the part that causes bugs.</p>
+<p><strong>3. Write a decorator that retries on failure. Now tell me what's wrong with it.</strong></p>
+<p><em>Strong outline:</em> Write the three-layer version, then critique it: it retries non-retriable errors like 400 and 401, it ignores <code>Retry-After</code>, it has no jitter so clients synchronize into a retry storm, it has no cap on total delay, and a bare <code>except Exception</code> catches <code>KeyboardInterrupt</code>'s siblings and programming errors. The critique is the answer being tested for.</p>
+<p><em>Weak answer:</em> Producing a working retry decorator and stopping. Many candidates can write one. Far fewer can say why theirs is not production-ready.</p>
+<p><strong>4. Do type hints make Python safer at runtime?</strong></p>
+<p><em>Strong outline:</em> No. They are annotations, ignored by the interpreter; <code>def f(x: int)</code> accepts a string without complaint. They are checked by external tools, mypy or pyright, usually in CI. For runtime validation you need Pydantic or explicit checks. Note what hints do buy: editor support, refactoring safety, and documentation that cannot drift from the signature.</p>
+<p><em>Weak answer:</em> "They make the code type-safe." This is the single most common misconception about Python typing.</p>
+<p><strong>5. What does <code>functools.wraps</code> do and what breaks without it?</strong></p>
+<p><em>Strong outline:</em> Copies <code>__name__</code>, <code>__doc__</code>, <code>__module__</code>, <code>__qualname__</code> and <code>__wrapped__</code> from the wrapped function to the wrapper. Without it, tracebacks show <code>wrapper</code>, <code>help()</code> is useless, and any framework introspecting signatures breaks: FastAPI cannot build the route, pytest cannot collect the fixture, Pydantic cannot infer the model.</p>
+<p><em>Weak answer:</em> "It preserves metadata." True but weightless; the consequences are the answer.</p>
+<p><strong>6. How would you test a function that calls an external API?</strong></p>
+<p><em>Strong outline:</em> Do not call the API. Depend on an interface, a Protocol or an injected client, and pass a fake in tests. Test the pure logic separately from the I/O; most of the bugs live in the pure part. Use <code>httpx.MockTransport</code> or <code>responses</code> for testing the client layer itself. Keep a small number of real integration tests, run separately and not on every commit, to catch contract drift. Note the tradeoff: heavy mocking tests your mock rather than your code, which is why the boundary should be thin.</p>
+<p><em>Weak answer:</em> "Mock it with <code>unittest.mock.patch</code>." Works, and patching by string path is brittle and couples tests to import structure. A candidate who reaches for dependency injection first has designed more testable systems.</p>
+<p><strong>7. What is a context manager and when would you write one?</strong></p>
+<p><em>Strong outline:</em> An object implementing <code>__enter__</code> and <code>__exit__</code>, used with <code>with</code>, guaranteeing cleanup even when the block raises. Write one whenever an operation has a matching undo: connections, transactions, locks, temporary files, loading and freeing a model, patching config in tests. <code>@contextlib.contextmanager</code> is the concise form, and the <code>finally</code> is what makes it a guarantee. Mention that returning <code>True</code> from <code>__exit__</code> suppresses the exception and is almost always wrong.</p>
+<p><em>Weak answer:</em> "It's for opening files." Describes one use, not the concept.</p>
+<p><strong>8. Your service's memory grows over hours and never comes back down. Where do you look?</strong></p>
+<p><em>Strong outline:</em> Ask whether it grows with request count or with distinct-object count, which separates a leak from a cache doing its job. Then the usual suspects: an unbounded <code>lru_cache</code>, <code>lru_cache</code> on a method pinning every instance, a module-level list or dict appended to per request, a mutable default argument accumulating, and objects held alive by a logging handler or a closure. Confirm rather than guess: <code>tracemalloc</code> for allocation sites, <code>objgraph</code> for reference chains. Then a specific fix and a re-measurement.</p>
+<p><em>Weak answer:</em> "Python has garbage collection, so it isn't a leak." Reference cycles and, far more often, live references you forgot about, produce the same symptom.</p>
+<p><strong>9. What is the difference between a dataclass and a Pydantic model? When do you use each?</strong></p>
+<p><em>Strong outline:</em> Dataclasses generate boilerplate from annotations but do not validate; <code>ChunkConfig(chunk_size="512")</code> constructs fine. Pydantic validates and coerces at construction and raises a structured <code>ValidationError</code>. Use dataclasses for internal structures you construct yourself, Pydantic at trust boundaries: API input and output, config, files, and language model output. The LLM case is the one worth naming, since a model will eventually return a malformed structure and you want that caught at the boundary with a precise error rather than as a <code>KeyError</code> three functions later. Pydantic everywhere costs validation time and a dependency.</p>
+<p><em>Weak answer:</em> "Pydantic is a better dataclass." Misses that the cost is real and the choice is about trust boundaries.</p>
+<p><strong>10. Walk me through how you would structure a new Python project.</strong></p>
+<p><em>Strong outline:</em> <code>src/</code> layout so tests import the installed package rather than the local directory. <code>pyproject.toml</code> with pinned ranges and a dev extra. A virtual environment per project. <code>tests/</code> mirroring <code>src/</code> with a <code>conftest.py</code> for shared fixtures. Ruff and mypy configured in <code>pyproject.toml</code> and run in pre-commit and CI. Logging configured at the entry point only, never in library modules. A README stating what it does and how to run it. Then the reasoning: each choice exists to prevent a specific failure, and say which.</p>
+<p><em>Weak answer:</em> Listing files without the reasons. The reasons are what distinguishes someone who set this up from someone who copied a template.</p>
+<h3 id="follow-up-questions-to-expect">Follow-up questions to expect<a class="anchor" href="#follow-up-questions-to-expect" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>After 3: <em>"Your retry made an outage worse. How?"</em> Retries amplify load on a struggling service. Without jitter, clients synchronize. Without a circuit breaker, you keep hammering something that is down. The answer is to stop retrying when failure rates are high, shed load, and fail fast.</li>
+<li>After 6: <em>"When is mocking actively harmful?"</em> When the mock encodes your assumption about the dependency rather than its real behavior. The test then passes while production breaks, and it passes more confidently after the real API changes.</li>
+</ul>
+<h3 id="60-second-and-5-minute-answers">60-second and 5-minute answers<a class="anchor" href="#60-second-and-5-minute-answers" aria-label="Link to this section">#</a></h3>
+<p>Write and time both versions for each:</p>
+<ol>
+<li>Composition versus inheritance</li>
+<li>What a decorator is, mechanically</li>
+<li>Why type hints do not validate, and what does</li>
+<li>How you would make an API client production-ready</li>
+</ol>
+<hr />
+<h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
+<p>Solutions in <code>quizzes/01b-python-patterns-practice.md</code>.</p>
+<h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Write a <code>@dataclass(frozen=True)</code> for a search result with a document id, score and snippet. Add a <code>__post_init__</code> that rejects scores outside <code>[0, 1]</code>. Then show what <code>dataclasses.replace</code> does and why you need it.</li>
+<li>Convert a function returning a list of chunks into a generator. Then write the test that catches someone iterating it twice.</li>
+<li>Write a decorator <code>@deprecated(reason)</code> that logs a warning on first call only, not every call. The "first call only" part is the exercise.</li>
+<li>Write a context manager that changes the working directory and restores it, including when the block raises. Test both paths.</li>
+<li>Given <code>@lru_cache</code> on a method, explain in writing why it leaks, then rewrite it so it does not.</li>
+</ol>
+<h3 id="three-realistic-coding-tasks">Three realistic coding tasks<a class="anchor" href="#three-realistic-coding-tasks" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Embedding client.</strong> Build the client from section 9.1 with the retry logic from 9.2 and the cache from 9.5. Write tests using a fake transport, with no network. Include a test proving a 400 is not retried and a 429 is.</li>
+<li><strong>Pipeline with a Protocol seam.</strong> Take a chunk-embed-store pipeline and define Protocols for the embedder and the store. Write an in-memory implementation of each for tests, and a real one for one of them. The test suite must run with no external services.</li>
+<li><strong>Config layering.</strong> Build a <code>Settings</code> class merging defaults, a config file, and environment variables with environment winning. Validate with Pydantic. Fail at startup with a message naming every missing or invalid field at once, not just the first.</li>
+</ol>
+<h3 id="one-mini-project">One mini-project<a class="anchor" href="#one-mini-project" aria-label="Link to this section">#</a></h3>
+<p><strong>Turn <code>01a</code>'s document inventory tool into a package.</strong></p>
+<ul>
+<li><code>src/</code> layout, installable with <code>pip install -e ".[dev]"</code></li>
+<li>Dataclasses for the file record and the report, frozen where sensible</li>
+<li>A generator for the directory walk, so it does not build a list of every file first</li>
+<li>A Protocol for the output formatter, with table and JSON implementations</li>
+<li>A <code>@instrumented</code> decorator on the slow operations</li>
+<li>Type hints throughout, passing <code>mypy src/</code></li>
+<li>Logging instead of printing, configured only at the entry point</li>
+<li>pytest suite with fixtures and <code>tmp_path</code>, including a test for a file that fails to decode</li>
+<li><code>pyproject.toml</code> with pinned ranges, ruff and mypy configured</li>
+<li>Ruff clean</li>
+</ul>
+<p>Success criterion: someone clones it, runs <code>pip install -e ".[dev]"</code> and <code>pytest</code>, and everything passes with no further instructions.</p>
+<hr />
+<h2 id="mastery-checklist">Mastery checklist<a class="anchor" href="#mastery-checklist" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>[ ] Write <code>__repr__</code> and explain why it is the highest-value dunder method</li>
+<li>[ ] State a case where inheritance is correct and a case where it is the wrong tool, with reasons</li>
+<li>[ ] Use <code>@dataclass(frozen=True)</code> and explain what it prevents in terms of <code>01a</code>'s aliasing</li>
+<li>[ ] Explain <code>field(default_factory=list)</code> by reference to the mutable default trap</li>
+<li>[ ] Convert a list-returning function to a generator and name what you gave up</li>
+<li>[ ] Write a decorator with arguments from memory, including <code>functools.wraps</code></li>
+<li>[ ] Explain what breaks without <code>functools.wraps</code>, specifically</li>
+<li>[ ] Write a context manager with <code>@contextmanager</code> and say what <code>finally</code> guarantees</li>
+<li>[ ] Explain why type hints do not validate at runtime, and name what does</li>
+<li>[ ] Write a parametrized pytest test with a fixture</li>
+<li>[ ] Say what is worth testing and what is not, with reasons</li>
+<li>[ ] Explain why <code>logger.debug("x: %s", val)</code> beats an f-string in a log call</li>
+<li>[ ] Write retry-with-backoff that does not retry a 400, honors <code>Retry-After</code>, and jitters</li>
+<li>[ ] Name three things that must be in an embedding cache key and why</li>
+<li>[ ] Explain when to use a dict, a dataclass, and a Pydantic model</li>
+<li>[ ] Complete the mini-project, clean under both <code>pytest</code> and <code>mypy</code></li>
+</ul>
+<p>Fewer than thirteen of sixteen means go back. <code>01c</code> and every module after this assume section 9.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<p><strong>Backward:</strong></p>
+<ul>
+<li><code>01a</code> section 7's closures are the mechanism behind every decorator here.</li>
+<li><code>01a</code> section 7's mutable default trap reappears as <code>field(default_factory=...)</code>.</li>
+<li><code>01a</code> section 6's complexity table is why the cache in 9.5 is a dict lookup and not a scan.</li>
+<li><code>01a</code> section 8's "catch what you can handle" is the principle behind 9.2's retriable allowlist.</li>
+</ul>
+<p><strong>Forward:</strong></p>
+<ul>
+<li><code>01c-python-interview-dsa.md</code> uses the generators here for iterative tree and graph traversal.</li>
+<li><code>02-software-engineering-foundations.md</code> takes the packaging and pytest material and adds git, CI and code review.</li>
+<li><code>07-rag-and-vector-search.md</code> is where section 9 becomes the actual work: the chunker, the batched embedder, the cache and the retry logic are the ingestion pipeline.</li>
+<li><code>08-agents-tools-and-mcp.md</code> builds tool schemas on the Pydantic models in 9.3. A typed tool schema is a Pydantic model with a description.</li>
+<li><code>10-mlops-and-deployment.md</code> takes the logging in section 8 and the config in 9.6 into production, adding structured output and secrets management.</li>
+<li><code>projects/project-1-python-data-tool.md</code> is the mini-project above, specified properly.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pydantic v2 API: <code>model_validate_json</code>, <code>model_post_init</code>, <code>pydantic_settings</code></td>
+<td>v1 to v2 renamed most of this; most online examples are still v1</td>
+<td>Current Pydantic docs</td>
+</tr>
+<tr>
+<td><code>pyproject.toml</code> tool versions and ruff config keys</td>
+<td>Ruff moves quickly and has renamed config sections</td>
+<td>Current ruff and hatchling docs</td>
+</tr>
+<tr>
+<td><code>itertools.batched</code> availability</td>
+<td>Added in 3.12; the hand-rolled version above is the compatible one</td>
+<td>Python changelog</td>
+</tr>
+<tr>
+<td>httpx API surface</td>
+<td>Stable but pre-1.0</td>
+<td>Current httpx docs</td>
+</tr>
+<tr>
+<td>"Most online examples are Pydantic v1"</td>
+<td>Will stop being true over time</td>
+<td>Spot-check when you next search</td>
+</tr>
+</tbody>
+</table>
+<p>Sections 1 through 8 are language semantics and stable. Section 9 is the volatile one, which is also why it is the valuable one.</p>
+<p><strong>Next review due:</strong> 2027-03-18, or when you next upgrade Pydantic.</p>
+      <nav class="pager">
+<a class="pager-prev" href="01a-python-core.html"><span>Previous</span>01a · Python Core</a>
+<a class="pager-next" href="01c-python-dsa.html"><span>Next</span>01c · Interview DSA</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
+<li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
+<li class="toc-l2"><a href="#mental-model">Mental model</a></li>
+<li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
+<li class="toc-l3"><a href="#1-classes-and-instances-foundation">1. Classes and instances [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#2-composition-inheritance-and-dataclasses-core">2. Composition, inheritance, and dataclasses [CORE]</a></li>
+<li class="toc-l3"><a href="#3-iterators-and-generators-core">3. Iterators and generators [CORE]</a></li>
+<li class="toc-l3"><a href="#4-decorators-core">4. Decorators [CORE]</a></li>
+<li class="toc-l3"><a href="#5-context-managers-core">5. Context managers [CORE]</a></li>
+<li class="toc-l3"><a href="#6-type-hints-core">6. Type hints [CORE]</a></li>
+<li class="toc-l3"><a href="#7-testing-with-pytest-core">7. Testing with pytest [CORE]</a></li>
+<li class="toc-l3"><a href="#8-logging-packaging-and-organization-core">8. Logging, packaging, and organization [CORE]</a></li>
+<li class="toc-l3"><a href="#9-applied-patterns-for-ai-and-llm-code-depth">9. Applied patterns for AI and LLM code [DEPTH]</a></li>
+<li class="toc-l2"><a href="#worked-examples">Worked examples</a></li>
+<li class="toc-l3"><a href="#example-1-refactoring-a-script-into-a-testable-module">Example 1: refactoring a script into a testable module</a></li>
+<li class="toc-l3"><a href="#example-2-a-decorator-you-would-actually-ship">Example 2: a decorator you would actually ship</a></li>
+<li class="toc-l3"><a href="#example-3-from-dict-to-dataclass-to-pydantic-and-when-to-stop">Example 3: from dict to dataclass to Pydantic, and when to stop</a></li>
+<li class="toc-l2"><a href="#common-mistakes-and-debugging">Common mistakes and debugging</a></li>
+<li class="toc-l3"><a href="#beginner-mistakes">Beginner mistakes</a></li>
+<li class="toc-l3"><a href="#production-failure-modes">Production failure modes</a></li>
+<li class="toc-l3"><a href="#how-to-debug-the-constructs-in-this-file">How to debug the constructs in this file</a></li>
+<li class="toc-l2"><a href="#interview-angle">Interview angle</a></li>
+<li class="toc-l3"><a href="#follow-up-questions-to-expect">Follow-up questions to expect</a></li>
+<li class="toc-l3"><a href="#60-second-and-5-minute-answers">60-second and 5-minute answers</a></li>
+<li class="toc-l2"><a href="#practice-tasks">Practice tasks</a></li>
+<li class="toc-l3"><a href="#five-tiny-exercises">Five tiny exercises</a></li>
+<li class="toc-l3"><a href="#three-realistic-coding-tasks">Three realistic coding tasks</a></li>
+<li class="toc-l3"><a href="#one-mini-project">One mini-project</a></li>
+<li class="toc-l2"><a href="#mastery-checklist">Mastery checklist</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

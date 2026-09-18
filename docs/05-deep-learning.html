@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 · Deep Learning · AI Engineer Learning OS</title>
+<meta name="description" content="Backprop by hand, optimizers, vanishing gradients, PyTorch, diagnosing training.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html" class="active">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="05-deep-learning">05 Deep Learning<a class="anchor" href="#05-deep-learning" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low for fundamentals, medium for tooling</p>
+<p>Every number here was produced by running the code, on PyTorch 2.14 and scikit-learn 1.8. The backpropagation example is worked by hand and then checked against autograd; the gradients match to floating-point precision.</p>
+<hr />
+<h2 id="why-this-matters">Why this matters<a class="anchor" href="#why-this-matters" aria-label="Link to this section">#</a></h2>
+<p>You are not going to train a foundation model. You need this module anyway, for three reasons.</p>
+<p><strong>To reason about the models you do use.</strong> Quantization, fine-tuning, inference cost, why a model degrades at long context: all of it is easier once you know what a gradient is doing and why the architecture is shaped the way it is.</p>
+<p><strong>To debug training when you do it.</strong> Fine-tuning an embedding model, training a reranker, training a small classifier for query routing. These are real AI engineer tasks and they fail in the ways this module describes.</p>
+<p><strong>Because it is asked.</strong> "Explain backpropagation" and "why do gradients vanish" appear in most AI engineer loops. They are checking whether you understand the machinery or only the API.</p>
+<p><strong>Timebox this module.</strong> You need enough to reason about fine-tuning and inference. You do not need to derive Adam. Two weeks in the 24-week plan, and the plan means it.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="anchor" href="#prerequisites" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>You need</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loss functions, overfitting, bias-variance</td>
+<td><code>04</code> sections 5, 9</td>
+</tr>
+<tr>
+<td>Learning curve diagnosis</td>
+<td><code>04</code> section 5</td>
+</tr>
+<tr>
+<td>Metrics and why accuracy misleads</td>
+<td><code>04</code> section 9</td>
+</tr>
+<tr>
+<td>Leakage and honest evaluation</td>
+<td><code>04</code> section 2</td>
+</tr>
+<tr>
+<td>numpy, pipelines, seeds</td>
+<td><code>01a</code>, <code>04</code> section 12</td>
+</tr>
+</tbody>
+</table>
+<p>Module <code>04</code> is a hard prerequisite. Every diagnostic here is that module's diagnostic applied to a different model family.</p>
+<p>Mathematically: you need the chain rule. If <code>y</code> depends on <code>u</code> and <code>u</code> depends on <code>x</code>, then <code>dy/dx = dy/du × du/dx</code>. That is the whole of backpropagation.</p>
+<hr />
+<h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Level</th>
+<th>Skip if you can...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. What a network is</td>
+<td>[FOUNDATION]</td>
+<td>...say why nonlinearity is the entire point</td>
+</tr>
+<tr>
+<td>2. Forward pass and loss</td>
+<td>[FOUNDATION]</td>
+<td>...write the forward pass of a 2-layer net from memory</td>
+</tr>
+<tr>
+<td>3. Backpropagation by hand</td>
+<td>[CORE]</td>
+<td>...compute all gradients for a 2-layer net on paper</td>
+</tr>
+<tr>
+<td>4. Gradient descent and optimizers</td>
+<td>[CORE]</td>
+<td>...say what momentum and Adam each add</td>
+</tr>
+<tr>
+<td>5. Learning rate, batch size, epochs</td>
+<td>[CORE]</td>
+<td>...say what batch size trades against</td>
+</tr>
+<tr>
+<td>6. Initialization and normalization</td>
+<td>[CORE]</td>
+<td>...say why initialization scale matters at depth</td>
+</tr>
+<tr>
+<td>7. Activations</td>
+<td>[FOUNDATION]</td>
+<td>...say why ReLU displaced sigmoid</td>
+</tr>
+<tr>
+<td>8. Losses</td>
+<td>[FOUNDATION]</td>
+<td>...say why BCEWithLogits beats sigmoid plus BCE</td>
+</tr>
+<tr>
+<td>9. Vanishing and exploding gradients</td>
+<td>[CORE]</td>
+<td>...show the problem numerically</td>
+</tr>
+<tr>
+<td>10. Regularization</td>
+<td>[CORE]</td>
+<td>...name four and say when each helps</td>
+</tr>
+<tr>
+<td>11. Architectures</td>
+<td>[FOUNDATION]</td>
+<td>...say why transformers displaced recurrence</td>
+</tr>
+<tr>
+<td>12. PyTorch</td>
+<td>[CORE]</td>
+<td>...write a training loop without a reference</td>
+</tr>
+<tr>
+<td>13. Diagnosing a training run</td>
+<td>[CORE]</td>
+<td>...name the four curve shapes and their fixes</td>
+</tr>
+<tr>
+<td>14. Transfer learning</td>
+<td>[CORE]</td>
+<td>...say when to fine-tune and when not to</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="mental-model">Mental model<a class="anchor" href="#mental-model" aria-label="Link to this section">#</a></h2>
+<p><strong>A neural network is a stack of adjustable linear transformations with a nonlinearity between each pair, and training is repeatedly asking "which way should each number move to make the error smaller".</strong></p>
+<p>The chain rule answers that question efficiently. Backpropagation is the chain rule applied in reverse through the network, reusing intermediate results so you compute every gradient in roughly the cost of one forward pass rather than one pass per parameter.</p>
+<p><strong>Where the analogy breaks down.</strong> "Which way should each number move" suggests a search over a landscape with a bottom you are trying to reach. In high dimensions the picture is different: local minima are rarely the problem, saddle points and flat regions are, and the surprising empirical fact is that many different minima give similar performance. Training is less like descending into a valley and more like drifting through a vast, mostly-flat space until you land somewhere good enough.</p>
+<hr />
+<h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    X[&quot;Input x&quot;]
+    Z1[&quot;z1 = W1 x + b1&quot;]
+    A1[&quot;a1 = activation(z1)&quot;]
+    Z2[&quot;z2 = W2 a1 + b2&quot;]
+    YH[&quot;prediction&quot;]
+    L[&quot;Loss&quot;]
+
+    X --&gt; Z1 --&gt; A1 --&gt; Z2 --&gt; YH --&gt; L
+
+    D2[&quot;delta2 = dL/dz2&quot;]
+    D1[&quot;delta1 = dL/dz1&quot;]
+    GW2[&quot;dL/dW2 = delta2 a1^T&quot;]
+    GW1[&quot;dL/dW1 = delta1 x^T&quot;]
+    UPD[&quot;Optimizer step&quot;]
+
+    L --&gt;|&quot;backward&quot;| D2
+    D2 --&gt; GW2
+    D2 --&gt;|&quot;W2^T delta2, times activation slope&quot;| D1
+    D1 --&gt; GW1
+    GW2 --&gt; UPD
+    GW1 --&gt; UPD
+    UPD --&gt;|&quot;next iteration&quot;| Z1
+</pre></div>
+<hr />
+<h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
+<h3 id="1-what-a-network-is-foundation">1. What a network is [FOUNDATION]<a class="anchor" href="#1-what-a-network-is-foundation" aria-label="Link to this section">#</a></h3>
+<p>A layer computes <code>z = Wx + b</code>, a matrix multiply plus an offset. Then an activation function applies a nonlinearity elementwise.</p>
+<p><strong>Why the nonlinearity is the entire point.</strong> Stack two linear layers and you get <code>W₂(W₁x + b₁) + b₂</code>, which simplifies to <code>(W₂W₁)x + (W₂b₁ + b₂)</code>, a single linear transformation. <strong>Without nonlinearity, a hundred layers have exactly the same expressive power as one.</strong> Depth buys you nothing at all.</p>
+<p>The nonlinearity breaks that collapse, and then depth lets the network build representations: early layers learn simple features, later layers combine them into complex ones. That compositional structure is what "deep" means.</p>
+<p><strong>Width versus depth.</strong> A wide enough single hidden layer can approximate any continuous function, which sounds like depth is unnecessary. In practice depth is dramatically more parameter-efficient for the structured functions that appear in real problems, because composition reuses features rather than enumerating cases.</p>
+<h3 id="2-forward-pass-and-loss-foundation">2. Forward pass and loss [FOUNDATION]<a class="anchor" href="#2-forward-pass-and-loss-foundation" aria-label="Link to this section">#</a></h3>
+<p>The forward pass for a 2-layer network:</p>
+<div class="highlight"><pre><span></span><code>z1 = W1 x + b1
+a1 = σ(z1)
+z2 = W2 a1 + b2
+a2 = σ(z2)
+L  = loss(a2, y)
+</code></pre></div>
+
+<p>That is the whole thing. Everything after is about adjusting <code>W1, b1, W2, b2</code>.</p>
+<p><strong>The loss must be differentiable</strong>, because training needs its gradient. This is why accuracy is not a loss function: it is a step function, so its gradient is zero almost everywhere and tells you nothing about which direction to move. You train on a differentiable surrogate such as cross-entropy and <em>evaluate</em> on accuracy or whatever module <code>04</code> section 9 says the decision needs.</p>
+<h3 id="3-backpropagation-by-hand-core">3. Backpropagation by hand [CORE]<a class="anchor" href="#3-backpropagation-by-hand-core" aria-label="Link to this section">#</a></h3>
+<p>Work it once with real numbers and it stops being mysterious.</p>
+<p><strong>The network:</strong> 2 inputs, 2 hidden units with sigmoid, 1 output with sigmoid, squared-error loss.</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+<span class="n">y</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">])</span>
+<span class="n">W1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]])</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">W2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]])</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.3</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Forward:</strong></p>
+<div class="highlight"><pre><span></span><code>z1 = W1@x + b1    = [0.19   0.33  ]
+a1 = sigmoid(z1)  = [0.5474 0.5818]
+z2 = W2@a1 + b2   = [0.9227]
+a2 = sigmoid(z2)  = [0.7156]
+L  = 0.5*(a2-y)^2 = 0.040442
+</code></pre></div>
+
+<p>Check one by hand: <code>z1[0] = 0.1×0.5 + 0.4×0.1 + 0.1 = 0.05 + 0.04 + 0.1 = 0.19</code>. ✓</p>
+<p><strong>Backward.</strong> Work from the loss toward the inputs, and note that each step is one chain-rule factor.</p>
+<div class="highlight"><pre><span></span><code>dL/da2  = a2 - y        = [-0.2844]
+da2/dz2 = a2(1 - a2)    = [ 0.2035]      sigmoid&#39;s derivative
+delta2  = dL/dz2        = [-0.0579]      the two multiplied
+
+dL/dW2  = delta2 · a1ᵀ  = [[-0.0317, -0.0337]]
+dL/db2  = delta2        = [-0.0579]
+
+dL/da1  = W2ᵀ · delta2  = [-0.0289, -0.0347]      the error, propagated back
+delta1  = dL/da1 · a1(1-a1) = [-0.0072, -0.0084]  times this layer&#39;s slope
+
+dL/dW1  = delta1 · xᵀ   = [[-0.0036, -0.0007],
+                           [-0.0042, -0.0008]]
+dL/db1  = delta1        = [-0.0072, -0.0084]
+</code></pre></div>
+
+<p><strong>Verified against PyTorch autograd:</strong></p>
+<div class="highlight"><pre><span></span><code>torch loss   = 0.040442   (hand: 0.040442)
+torch dL/dW2 = [[-0.0317 -0.0337]]   (hand: [[-0.0317 -0.0337]])
+torch dL/dW1 = [[-0.0036 -0.0007]
+                [-0.0042 -0.0008]]   (hand: same)
+ALL GRADIENTS MATCH
+</code></pre></div>
+
+<p><strong>The three things to take from this.</strong></p>
+<p><strong><code>delta</code> is the reusable quantity.</strong> Once you have <code>delta</code> for a layer, the weight gradient is <code>delta · (that layer's input)ᵀ</code>, always. This is why backpropagation is efficient: you compute each <code>delta</code> once and reuse it, rather than recomputing paths for every parameter.</p>
+<p><strong>Backward propagation of error is literally <code>Wᵀ delta</code>.</strong> The same weights that carried activations forward carry error backward, transposed. That symmetry is the algorithm.</p>
+<p><strong>Notice the gradient magnitudes.</strong> <code>dL/dW2</code> is around 0.03; <code>dL/dW1</code> is around 0.004, roughly ten times smaller after one layer. Two layers, ten-fold shrinkage. Section 9 shows what happens at twelve layers.</p>
+<h3 id="4-gradient-descent-and-optimizers-core">4. Gradient descent and optimizers [CORE]<a class="anchor" href="#4-gradient-descent-and-optimizers-core" aria-label="Link to this section">#</a></h3>
+<p>The update rule: <code>parameter ← parameter − learning_rate × gradient</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Uses</th>
+<th>Tradeoff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Batch GD</strong></td>
+<td>The whole dataset per step</td>
+<td>Stable, slow, needs all data in memory</td>
+</tr>
+<tr>
+<td><strong>SGD</strong></td>
+<td>One sample per step</td>
+<td>Fast, very noisy</td>
+</tr>
+<tr>
+<td><strong>Mini-batch</strong></td>
+<td>A batch per step</td>
+<td>The practical default</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Momentum</strong> accumulates a moving average of past gradients, so the update has inertia. This damps oscillation across a narrow ravine and accelerates along its floor, and it helps escape flat regions where the gradient is small but consistently pointing the same way.</p>
+<p><strong>Adam</strong> combines momentum with per-parameter learning rates scaled by a running estimate of each gradient's magnitude. Parameters with consistently small gradients get larger effective steps. It works well out of the box, which is why it is the default.</p>
+<p><strong>What to use:</strong> Adam or AdamW, learning rate around 1e-3, and only investigate further if training misbehaves. <code>[UNVERIFIED: this is a convention, not a measurement; the right value depends on architecture and scale]</code> SGD with momentum and a tuned schedule sometimes generalizes slightly better on vision tasks, which is a detail worth knowing and not worth starting with.</p>
+<p><strong>AdamW</strong> decouples weight decay from the gradient update. In plain Adam, weight decay gets scaled by the per-parameter learning rate, which weakens it inconsistently. AdamW applies it directly and is the correct default for transformers.</p>
+<h3 id="5-learning-rate-batch-size-epochs-core">5. Learning rate, batch size, epochs [CORE]<a class="anchor" href="#5-learning-rate-batch-size-epochs-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Learning rate is the hyperparameter that matters most.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Too high</th>
+<th>Too low</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loss oscillates, spikes, or becomes NaN</td>
+<td>Loss decreases very slowly</td>
+</tr>
+<tr>
+<td>Diverges</td>
+<td>Gets stuck in a poor region</td>
+</tr>
+</tbody>
+</table>
+<p>Measured, with everything else held constant:</p>
+<div class="highlight"><pre><span></span><code>healthy setup           train=0.0001  val=0.8169
+lr far too high (5.0)   train=0.0000  val=29492.0723
+</code></pre></div>
+
+<p>The training loss looks perfect in both cases. The validation loss at lr=5.0 is four orders of magnitude worse. <strong>A training loss that goes to zero is not evidence of anything</strong>, which is section 13's whole point.</p>
+<p><strong>Schedules</strong> reduce the learning rate over training: large steps early to cover ground, small steps late to settle. Warmup does the reverse at the very start, ramping up from near zero, which prevents early instability when gradients are large and the parameters are random. Warmup plus cosine decay is the standard transformer recipe.</p>
+<p><strong>Batch size</strong> trades several things at once:</p>
+<table>
+<thead>
+<tr>
+<th>Larger batch</th>
+<th>Smaller batch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Less gradient noise, more stable</td>
+<td>Noisier, which acts as regularization</td>
+</tr>
+<tr>
+<td>Better hardware utilization</td>
+<td>Poor utilization</td>
+</tr>
+<tr>
+<td>More memory</td>
+<td>Less memory</td>
+</tr>
+<tr>
+<td>Fewer updates per epoch</td>
+<td>More updates per epoch</td>
+</tr>
+</tbody>
+</table>
+<p>The noise in small-batch training is not purely a cost: it helps escape sharp minima and often generalizes slightly better. <strong>The common rule: when you increase batch size, increase the learning rate roughly proportionally</strong>, since you are averaging over more samples and the gradient estimate is correspondingly more reliable. <code>[VERIFY: the linear scaling rule holds over a range and breaks down at extremes @ current literature]</code></p>
+<p><strong>Epochs</strong> are passes over the data. The right number is "until validation loss stops improving", which is what early stopping automates.</p>
+<h3 id="6-initialization-and-normalization-core">6. Initialization and normalization [CORE]<a class="anchor" href="#6-initialization-and-normalization-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Initialization is not arbitrary.</strong> All zeros means every unit in a layer computes the same thing and receives the same gradient forever, so the layer has one effective unit. Too large and activations explode through depth; too small and they vanish.</p>
+<p><strong>Xavier/Glorot</strong> scales the initial weights by the number of inputs and outputs, keeping activation variance roughly constant through the network for sigmoid and tanh. <strong>He initialization</strong> does the same for ReLU, which zeroes half its inputs and therefore needs a factor-of-two larger scale to compensate. Frameworks default to something reasonable; knowing why it matters is the point.</p>
+<p><strong>Batch normalization</strong> normalizes each feature across the batch, then applies a learned scale and shift. It stabilizes training, allows higher learning rates, and acts as a mild regularizer through batch noise. Its problems: behavior differs between training and inference, since inference uses running statistics, and it is unreliable with very small batches.</p>
+<p><strong>Layer normalization</strong> normalizes across features within each sample instead. Independent of batch size, identical at training and inference, and therefore the choice for transformers and anything with variable-length sequences.</p>
+<p><strong>Which and why:</strong> batch norm for convolutional vision models, layer norm for transformers. If a model behaves differently in <code>eval()</code> mode than in <code>train()</code>, batch norm's running statistics are the first suspect, along with dropout.</p>
+<h3 id="7-activations-foundation">7. Activations [FOUNDATION]<a class="anchor" href="#7-activations-foundation" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>Range</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sigmoid</strong></td>
+<td>(0, 1)</td>
+<td>Saturates at both ends; derivative peaks at 0.25. Output layer for binary classification only.</td>
+</tr>
+<tr>
+<td><strong>Tanh</strong></td>
+<td>(-1, 1)</td>
+<td>Zero-centered, still saturates</td>
+</tr>
+<tr>
+<td><strong>ReLU</strong></td>
+<td>[0, ∞)</td>
+<td><code>max(0, x)</code>. Cheap, no saturation for positive inputs. The default.</td>
+</tr>
+<tr>
+<td><strong>Leaky ReLU</strong></td>
+<td>(-∞, ∞)</td>
+<td>Small negative slope; avoids dead units</td>
+</tr>
+<tr>
+<td><strong>GELU</strong></td>
+<td>≈(-0.17, ∞)</td>
+<td>Smooth, standard in transformers</td>
+</tr>
+<tr>
+<td><strong>Softmax</strong></td>
+<td>Sums to 1</td>
+<td>Output layer for multiclass</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why ReLU displaced sigmoid</strong>, which is the interview question. Sigmoid's derivative is <code>σ(1-σ)</code>, with a maximum of 0.25 at the centre and near zero at either extreme. Every layer multiplies the backward signal by that derivative, so a deep sigmoid network multiplies by numbers at most 0.25 repeatedly, and the gradient vanishes exponentially with depth. ReLU's derivative is exactly 1 for positive inputs, so the signal passes through undiminished.</p>
+<p><strong>Dying ReLU:</strong> a unit whose input is always negative outputs zero, so its gradient is zero and it never recovers. Leaky ReLU and GELU avoid this by having a nonzero slope for negative inputs. It is mostly a problem with a too-high learning rate.</p>
+<h3 id="8-losses-foundation">8. Losses [FOUNDATION]<a class="anchor" href="#8-losses-foundation" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Loss</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Binary classification</td>
+<td>Binary cross-entropy</td>
+</tr>
+<tr>
+<td>Multiclass</td>
+<td>Cross-entropy</td>
+</tr>
+<tr>
+<td>Regression</td>
+<td>MSE, or MAE when outliers matter</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>Pairwise or listwise ranking losses</td>
+</tr>
+<tr>
+<td>Language modeling</td>
+<td>Cross-entropy over the vocabulary</td>
+</tr>
+<tr>
+<td>Embeddings</td>
+<td>Contrastive or triplet loss</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why cross-entropy rather than MSE for classification.</strong> MSE combined with a sigmoid produces a gradient that includes the sigmoid's derivative, which is near zero when the model is confidently wrong. So the more wrong it is, the less it learns. Cross-entropy's gradient with a sigmoid output simplifies to <code>(prediction − target)</code>, which is large exactly when the model is badly wrong. That cancellation is why the pairing is standard.</p>
+<p><strong><code>BCEWithLogitsLoss</code> beats <code>Sigmoid</code> then <code>BCELoss</code></strong> for numerical stability. Computing the sigmoid and then its logarithm separately loses precision, and can produce <code>inf</code> or <code>NaN</code> for confident predictions. The combined version uses the log-sum-exp trick internally, exactly as in module 06 section 3's softmax. Same principle, different place. Always use the combined form.</p>
+<p><strong>Contrastive and triplet losses</strong> matter directly for AI engineering: they are how the embedding models in module 07 are trained. Pull similar pairs together, push dissimilar ones apart. Fine-tuning an embedding model on your own domain means training with one of these.</p>
+<h3 id="9-vanishing-and-exploding-gradients-core">9. Vanishing and exploding gradients [CORE]<a class="anchor" href="#9-vanishing-and-exploding-gradients-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Measured.</strong> Twelve-layer networks, 64 units wide, gradient magnitude at each layer after one backward pass:</p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>Layer 1</th>
+<th>Layer 6</th>
+<th>Layer 12</th>
+<th>Ratio L1/L12</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sigmoid</td>
+<td>1.65e-13</td>
+<td>1.56e-08</td>
+<td>2.21e-03</td>
+<td><strong>7.48e-11</strong></td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>2.74e-07</td>
+<td>4.81e-06</td>
+<td>1.63e-04</td>
+<td>1.68e-03</td>
+</tr>
+<tr>
+<td>relu</td>
+<td>3.76e-08</td>
+<td>6.66e-07</td>
+<td>2.93e-04</td>
+<td>1.28e-04</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The sigmoid network's first layer receives a gradient one hundred billion times smaller than its last layer.</strong> With any sane learning rate, the early layers do not move at all. The network is effectively a one-layer model with eleven frozen layers of noise in front of it, and it will train, slowly, to a bad solution, with no error to tell you why.</p>
+<p>Tanh is eight orders of magnitude better and ReLU seven, and both still shrink substantially. Depth is genuinely hard.</p>
+<p><strong>The cause:</strong> each backward step multiplies by the activation's derivative and by <code>Wᵀ</code>. Repeated multiplication by numbers consistently below one shrinks exponentially; consistently above one explodes.</p>
+<p><strong>The fixes, and what each addresses:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Fix</th>
+<th>Addresses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU-family activations</td>
+<td>The derivative-below-one problem</td>
+</tr>
+<tr>
+<td>Careful initialization (He, Xavier)</td>
+<td>Keeps the weight factor near one initially</td>
+</tr>
+<tr>
+<td>Normalization layers</td>
+<td>Rescales activations so the product stays controlled</td>
+</tr>
+<tr>
+<td><strong>Residual connections</strong></td>
+<td>Gives the gradient a path that skips layers entirely</td>
+</tr>
+<tr>
+<td>Gradient clipping</td>
+<td>Caps explosion; does nothing for vanishing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Residual connections are the one that made very deep networks possible.</strong> A layer computing <code>x + f(x)</code> rather than <code>f(x)</code> means the gradient flows through the <code>x</code> term unchanged, no matter what <code>f</code> does. The gradient has a direct route to every earlier layer. Every transformer is built from residual blocks for exactly this reason, and this is the answer to "how do modern networks get to be 100 layers deep".</p>
+<h3 id="10-regularization-core">10. Regularization [CORE]<a class="anchor" href="#10-regularization-core" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Weight decay (L2)</strong></td>
+<td>Penalizes large weights</td>
+</tr>
+<tr>
+<td><strong>Dropout</strong></td>
+<td>Randomly zeroes units during training, so no unit can rely on a specific other one</td>
+</tr>
+<tr>
+<td><strong>Early stopping</strong></td>
+<td>Stop when validation loss stops improving</td>
+</tr>
+<tr>
+<td><strong>Data augmentation</strong></td>
+<td>Transform inputs so the model sees more variation</td>
+</tr>
+<tr>
+<td><strong>Batch norm</strong></td>
+<td>Incidentally regularizes through batch noise</td>
+</tr>
+<tr>
+<td><strong>Label smoothing</strong></td>
+<td>Softens targets from 1.0 to 0.9, discouraging overconfidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Measured, on 60 training samples:</strong></p>
+<div class="highlight"><pre><span></span><code>high variance (only 60 samples)      train=0.0000  val=1.7041  gap=+1.7041
+high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
+</code></pre></div>
+
+<p>Weight decay raised the training loss from 0.0000 to 0.1227, which looks like making the model worse, and cut validation loss from 1.70 to 0.29, a six-fold improvement. <strong>That is regularization in one table: fit the training data deliberately worse to generalize better.</strong></p>
+<p><strong>Dropout is only active during training.</strong> <code>model.eval()</code> disables it. Forgetting to call <code>eval()</code> before validation is a classic bug that makes validation metrics noisy and pessimistic, and it is why the training loop in section 12 calls <code>train()</code> and <code>eval()</code> explicitly.</p>
+<p><strong>Early stopping needs patience.</strong> Validation loss is noisy, so stopping at the first uptick stops too early. Wait N epochs without improvement, and keep the best checkpoint rather than the last.</p>
+<h3 id="11-architectures-foundation">11. Architectures [FOUNDATION]<a class="anchor" href="#11-architectures-foundation" aria-label="Link to this section">#</a></h3>
+<p><strong>CNNs</strong> apply small learned filters across an input, sharing weights across positions. This encodes two assumptions: locality, meaning nearby pixels are related, and translation invariance, meaning a feature means the same thing anywhere. Both are true for images and mostly false for tabular data, which is why CNNs dominate vision and do not help on a spreadsheet.</p>
+<p><strong>RNNs</strong> process sequences one step at a time, carrying a hidden state. <strong>LSTMs and GRUs</strong> add gates that control what is remembered and forgotten, which mitigates vanishing gradients over time steps.</p>
+<p><strong>Why transformers displaced recurrence</strong>, which is the question that gets asked:</p>
+<table>
+<thead>
+<tr>
+<th>Problem with RNNs</th>
+<th>Transformers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sequential by construction, so training cannot parallelize over sequence length</td>
+<td>All positions processed at once during training</td>
+</tr>
+<tr>
+<td>Information must survive many steps to reach a distant position</td>
+<td>Attention connects any two positions directly, in one step</td>
+</tr>
+<tr>
+<td>Gradients vanish over long sequences even with gates</td>
+<td>Residual connections plus direct paths</td>
+</tr>
+</tbody>
+</table>
+<p>The first row is the practical one: transformers could be trained on far more data with the same hardware, and scale turned out to matter enormously. The second is the representational one. Both are true and the parallelism argument is the one people underweight.</p>
+<p>The cost is that attention is quadratic in sequence length, which is why context windows are expensive and why module 06 section 7's KV cache exists.</p>
+<h3 id="12-pytorch-core">12. PyTorch [CORE]<a class="anchor" href="#12-pytorch-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Tensors and autograd.</strong> A tensor with <code>requires_grad=True</code> records the operations applied to it, building a graph; <code>.backward()</code> walks it in reverse and accumulates gradients into <code>.grad</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>     <span class="c1"># tensor([12.]) because dy/dx = 3x² = 12</span>
+</code></pre></div>
+
+<p><strong>The training loop</strong>, which you should be able to write from memory:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>          <span class="c1"># gradients accumulate; clear them first</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">yb</span><span class="p">)</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>                <span class="c1"># populate .grad</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>               <span class="c1"># apply the update</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>              <span class="c1"># no graph, less memory, faster</span>
+        <span class="n">val_loss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">xb</span><span class="p">),</span> <span class="n">yb</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="ow">in</span> <span class="n">val_loader</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>The four lines people get wrong:</strong></p>
+<p><code>optimizer.zero_grad()</code>. PyTorch <em>accumulates</em> gradients rather than replacing them, which is deliberate so you can split a large batch across several forward passes. Forget it and your gradients are the sum of every batch so far, and training quietly diverges.</p>
+<p><code>model.train()</code> and <code>model.eval()</code>. These switch dropout and batch norm behavior. Forgetting <code>eval()</code> makes validation noisy and pessimistic; forgetting <code>train()</code> afterwards silently disables your regularization.</p>
+<p><code>torch.no_grad()</code>. This skips graph construction during evaluation. Without it you build a graph you never use, wasting memory and time, and on a large validation set this can cause an out-of-memory error that looks mysterious.</p>
+<p><code>.item()</code>. This extracts a Python float. Accumulating tensors instead keeps the whole computation graph alive, which is a memory leak that grows across epochs.</p>
+<p><strong><code>Dataset</code> and <code>DataLoader</code>.</strong> <code>Dataset</code> implements <code>__len__</code> and <code>__getitem__</code>; <code>DataLoader</code> handles batching, shuffling and parallel loading. Shuffle the training set, never the validation set.</p>
+<p><strong>Checkpointing:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">({</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+            <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+            <span class="s2">&quot;epoch&quot;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">},</span> <span class="s2">&quot;ckpt.pt&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Save the optimizer state too, or resuming restarts Adam's moment estimates from zero and your training visibly stumbles.</p>
+<p><strong>Device handling:</strong> model and data must be on the same device. <code>RuntimeError: Expected all tensors to be on the same device</code> is the most common PyTorch error and always means one <code>.to(device)</code> is missing.</p>
+<p><strong>Mixed precision</strong> computes in 16-bit while keeping a 32-bit copy of the weights. Roughly halves memory and speeds up training on modern hardware. This is module 06 section 8's quantization idea applied to training rather than inference.</p>
+<h3 id="13-diagnosing-a-training-run-core">13. Diagnosing a training run [CORE]<a class="anchor" href="#13-diagnosing-a-training-run-core" aria-label="Link to this section">#</a></h3>
+<p><strong>The single most useful skill in this module.</strong> Measured examples, all on the same data with one variable changed:</p>
+<table>
+<thead>
+<tr>
+<th>Run</th>
+<th>Train loss</th>
+<th>Val loss</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full data, 200 epochs</td>
+<td>0.0001</td>
+<td>0.8169</td>
+<td>+0.8168</td>
+</tr>
+<tr>
+<td>Only 60 training samples</td>
+<td>0.0000</td>
+<td>1.7041</td>
+<td>+1.7041</td>
+</tr>
+<tr>
+<td>1 hidden unit</td>
+<td>0.2704</td>
+<td>0.2828</td>
+<td>+0.0123</td>
+</tr>
+<tr>
+<td>Learning rate 5.0</td>
+<td>0.0000</td>
+<td>29492.07</td>
+<td>+29492</td>
+</tr>
+<tr>
+<td>60 samples + weight decay</td>
+<td>0.1227</td>
+<td>0.2905</td>
+<td>+0.1678</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading them:</strong></p>
+<p><strong>Rows 1 and 2: high variance.</strong> Training loss near zero, validation loss high and much worse. The model memorized. Row 2 is the extreme case: 60 samples and a 64-unit network can memorize perfectly and learn nothing. Fixes: more data, regularization, less capacity.</p>
+<p><strong>Row 3: high bias.</strong> Training loss is high (0.27) and validation is <em>close to it</em> (gap 0.012). The model is not overfitting; it cannot fit at all. One hidden unit cannot represent the function. Fixes: more capacity, more features, less regularization. <strong>The small gap is the signature</strong>, and it is the case people misread most often, because the validation number looks respectable next to row 1's 0.82.</p>
+<p><strong>Row 4: divergence.</strong> Training loss zero, validation loss 29,492. Absurd values are the tell. Fix the learning rate before anything else.</p>
+<p><strong>Row 5: regularization working.</strong> Compared with row 2, weight decay made training loss worse (0.0000 → 0.1227) and validation six times better (1.70 → 0.29). This is what you want to see.</p>
+<p><strong>An honest note on row 1.</strong> I initially labelled this run "healthy". It is not: a gap of 0.82 is substantial overfitting, produced by training full-batch for 200 epochs on 1,000 samples with no regularization. That mislabeling is itself the lesson: a run that trains smoothly and reaches near-zero training loss <em>feels</em> healthy, and the validation gap is the only thing that tells you otherwise. Always look at the gap, never at the training curve alone.</p>
+<p><strong>The diagnostic order:</strong></p>
+<ol>
+<li>Is the loss decreasing at all? No means learning rate, or a bug: check that <code>zero_grad</code> is called and that the loss connects to the parameters.</li>
+<li>Is it NaN or absurd? Learning rate too high, or a numerical issue such as a log of zero.</li>
+<li>Is training loss high and validation close to it? High bias.</li>
+<li>Is training loss low and validation much higher? High variance.</li>
+<li>Is validation <em>below</em> training? A bug, usually dropout still active during validation, or a leak, exactly as in <code>04</code> section 5.</li>
+<li>Does it look healthy and still perform badly in production? Module <code>04</code> section 2. Leakage.</li>
+</ol>
+<h3 id="14-transfer-learning-and-fine-tuning-core">14. Transfer learning and fine-tuning [CORE]<a class="anchor" href="#14-transfer-learning-and-fine-tuning-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Take a model trained on a large general task, adapt it to your specific one.</strong> The pretrained model has learned representations that transfer, so you need far less data.</p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>What changes</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Feature extraction</strong></td>
+<td>Freeze everything, train a new head</td>
+<td>Small dataset, similar domain</td>
+</tr>
+<tr>
+<td><strong>Full fine-tuning</strong></td>
+<td>All weights</td>
+<td>Larger dataset, or a different domain</td>
+</tr>
+<tr>
+<td><strong>Partial</strong></td>
+<td>Unfreeze the last N layers</td>
+<td>The middle case</td>
+</tr>
+<tr>
+<td><strong>Parameter-efficient (LoRA and relatives)</strong></td>
+<td>Small added matrices; base frozen</td>
+<td>Large models, limited memory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>LoRA</strong> deserves a sentence because it dominates LLM fine-tuning: instead of updating a large weight matrix, learn a low-rank decomposition added alongside it. Orders of magnitude fewer trainable parameters, far less memory, and you can swap adapters for different tasks against one base model.</p>
+<p><strong>When not to fine-tune</strong>, which is the more useful half for an AI engineer and echoes module 06 section 6:</p>
+<ul>
+<li>To add facts. Use RAG. Fine-tuning bakes in a snapshot with no provenance, no update path, no citation and no way to delete something on request.</li>
+<li>When you have very few examples. Prompting with examples will usually do better.</li>
+<li>When the base model already does it. Test first.</li>
+</ul>
+<p>Fine-tune for <em>behavior</em>: a consistent output format, a domain style, a fixed taxonomy. And for AI engineering specifically, the most common genuinely useful case is <strong>fine-tuning an embedding model or reranker on your own domain</strong>, using the contrastive losses from section 8, which can meaningfully improve module 07's retrieval.</p>
+<hr />
+<h2 id="worked-example-three-broken-runs-diagnosed">Worked example: three broken runs, diagnosed<a class="anchor" href="#worked-example-three-broken-runs-diagnosed" aria-label="Link to this section">#</a></h2>
+<p>The exercise that builds the skill. One network, one dataset, one variable changed each time.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">hidden</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_train</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">xt</span><span class="p">,</span> <span class="n">yt</span> <span class="o">=</span> <span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">ytr</span><span class="p">)</span> <span class="k">if</span> <span class="n">n_train</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">Xtr</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">ytr</span><span class="p">[:</span><span class="n">n_train</span><span class="p">])</span>
+    <span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">hidden</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+                        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="n">hidden</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+                        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="n">wd</span><span class="p">)</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">train</span><span class="p">();</span> <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss_fn</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">xt</span><span class="p">),</span> <span class="n">yt</span><span class="p">)</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span> <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="n">net</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">xt</span><span class="p">),</span> <span class="n">yt</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">Xte</span><span class="p">),</span> <span class="n">yte</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Break 1: starve it of data.</strong> <code>n_train=60</code>. Train 0.0000, validation 1.7041.</p>
+<p><em>Diagnosis from the numbers alone:</em> training loss is zero, validation is terrible. High variance. <em>Confirmation:</em> the gap is 1.70, the largest of any run. <em>Fix:</em> more data, or regularization. Applying weight decay at 1e-1 brought validation to 0.2905, which confirms the diagnosis was right.</p>
+<p><strong>Break 2: starve it of capacity.</strong> <code>hidden=1</code>. Train 0.2704, validation 0.2828.</p>
+<p><em>Diagnosis:</em> training loss is high and validation is nearly equal to it. High bias. The model is not memorizing; it cannot represent the function at all. <em>The trap:</em> validation loss of 0.28 is much better than run 1's 0.82, so if you looked only at validation you would conclude this was the better model. On this dataset it might even be, and it is still underfitting, and knowing that tells you more capacity is the next thing to try. <em>Fix:</em> more hidden units.</p>
+<p><strong>Break 3: set the learning rate absurdly.</strong> <code>lr=5.0</code>. Train 0.0000, validation 29492.07.</p>
+<p><em>Diagnosis:</em> the absurd magnitude is the tell. The optimizer took enormous steps and landed somewhere that happens to classify the training set while being nonsense everywhere else. <em>Fix:</em> reduce the learning rate by orders of magnitude and add warmup.</p>
+<p><strong>The transferable point.</strong> Every diagnosis came from two numbers and their relationship. Not from staring at a loss curve, not from intuition. Training loss alone told you nothing in any of the three cases; in two of them it was <em>zero</em>, the most impressive-looking number available.</p>
+<hr />
+<h2 id="common-mistakes-and-debugging">Common mistakes and debugging<a class="anchor" href="#common-mistakes-and-debugging" aria-label="Link to this section">#</a></h2>
+<h3 id="beginner-mistakes">Beginner mistakes<a class="anchor" href="#beginner-mistakes" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loss does not move</td>
+<td>Missing <code>optimizer.step()</code>, or lr far too small</td>
+<td>Check the loop; print gradient norms</td>
+</tr>
+<tr>
+<td>Loss increases steadily</td>
+<td>Learning rate too high</td>
+<td>Reduce by 10x</td>
+</tr>
+<tr>
+<td>Loss becomes NaN</td>
+<td>Exploding gradients, or log of zero</td>
+<td>Clip gradients; use <code>BCEWithLogitsLoss</code></td>
+</tr>
+<tr>
+<td>Gradients grow every epoch</td>
+<td>Missing <code>optimizer.zero_grad()</code></td>
+<td>Add it at the top of the loop</td>
+</tr>
+<tr>
+<td>Validation noisy and worse than expected</td>
+<td>Dropout active during validation</td>
+<td><code>model.eval()</code></td>
+</tr>
+<tr>
+<td>Memory grows across epochs</td>
+<td>Accumulating tensors instead of floats</td>
+<td><code>.item()</code></td>
+</tr>
+<tr>
+<td>OOM during validation</td>
+<td>Building a graph you never use</td>
+<td><code>with torch.no_grad()</code></td>
+</tr>
+<tr>
+<td><code>Expected all tensors on the same device</code></td>
+<td>A missing <code>.to(device)</code></td>
+<td>Move both model and batch</td>
+</tr>
+<tr>
+<td>Results change every run</td>
+<td>No seed</td>
+<td>Seed torch, numpy and Python</td>
+</tr>
+<tr>
+<td>Deep sigmoid network will not learn</td>
+<td>Vanishing gradients</td>
+<td>ReLU, residuals, normalization</td>
+</tr>
+</tbody>
+</table>
+<h3 id="production-failure-modes">Production failure modes<a class="anchor" href="#production-failure-modes" aria-label="Link to this section">#</a></h3>
+<p><strong>Train and inference preprocessing diverge.</strong> Normalization statistics computed differently in the serving path. Quality degrades silently. <em>Fix:</em> one preprocessing implementation, shared, tested.</p>
+<p><strong>Checkpoint without optimizer state.</strong> Resuming restarts Adam's moment estimates from zero; the loss visibly jumps. <em>Fix:</em> save the full state dict.</p>
+<p><strong><code>eval()</code> never called in the serving path.</strong> Dropout active in production, so predictions are randomly degraded and non-deterministic. <em>Diagnostic:</em> the same input gives different outputs. <em>Fix:</em> <code>model.eval()</code> at load.</p>
+<p><strong>Silent class imbalance in batches.</strong> With a rare positive class, many batches contain none, so gradients are dominated by negatives. <em>Fix:</em> stratified sampling or class weights, which is module <code>04</code> section 3.</p>
+<p><strong>Mixed precision numerical instability.</strong> Loss becomes NaN only with autocast enabled. <em>Fix:</em> gradient scaling, and keeping sensitive operations in fp32.</p>
+<h3 id="debugging-method">Debugging method<a class="anchor" href="#debugging-method" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Overfit a single batch first.</strong> Take 8 samples and train until the loss is near zero. If it cannot, the bug is in the model, the loss or the loop, not in the data or hyperparameters. This is the single most valuable debugging technique here, and it takes thirty seconds.</li>
+<li><strong>Print gradient norms per layer.</strong> Section 9's table is how you find vanishing gradients.</li>
+<li><strong>Check shapes at every step.</strong> Silent broadcasting produces wrong losses without any error.</li>
+<li><strong>Compare against a linear baseline.</strong> If logistic regression matches your network, the network is not learning anything extra.</li>
+<li><strong>Seed everything</strong> before concluding a change helped.</li>
+</ol>
+<hr />
+<h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
+<p><strong>1. Explain backpropagation.</strong></p>
+<p><em>Strong outline:</em> It is the chain rule applied in reverse through the network, reusing intermediates so all gradients cost about one forward pass rather than one pass per parameter. Walk the 2-layer example: <code>delta2 = (a2 − y) × a2(1 − a2)</code>, then <code>dL/dW2 = delta2 · a1ᵀ</code>, then propagate with <code>W2ᵀ delta2</code> times this layer's activation slope to get <code>delta1</code>, then <code>dL/dW1 = delta1 · xᵀ</code>. The structural insight is that <code>delta</code> is the reusable quantity and the weight gradient is always <code>delta</code> times that layer's input transposed. Note the symmetry: the same weights that carried activations forward carry error backward, transposed.</p>
+<p><em>Weak answer:</em> "It propagates the error backwards to update weights." A restatement of the name.</p>
+<p><strong>2. Why do gradients vanish, and what fixes it?</strong></p>
+<p><em>Strong outline:</em> Each backward step multiplies by the activation's derivative and by <code>Wᵀ</code>; repeated multiplication by factors below one shrinks exponentially with depth. Give the measurement: in a 12-layer sigmoid network, layer 1's gradient is 1.65e-13 while layer 12's is 2.21e-03, a ratio of 7.5e-11, so the early layers never move. Sigmoid is the worst because its derivative peaks at 0.25. Fixes, in order of importance: ReLU-family activations, since the derivative is 1 for positive inputs; careful initialization; normalization layers; and above all residual connections, where a layer computing <code>x + f(x)</code> gives the gradient a path that skips the layer entirely. That last one is why 100-layer networks are possible and why every transformer block is residual.</p>
+<p><em>Weak answer:</em> "Use ReLU." Correct and incomplete, and it misses residuals, which are the actual answer to depth.</p>
+<p><strong>3. What does batch size trade against?</strong></p>
+<p><em>Strong outline:</em> Larger batches mean less gradient noise and better hardware utilization, at the cost of memory and fewer updates per epoch. Smaller batches are noisier, which acts as a regularizer and often generalizes slightly better by escaping sharp minima. The practical coupling: when you increase batch size, increase the learning rate roughly proportionally, because the gradient estimate is more reliable. Then the honest caveat: the linear scaling rule holds over a range and breaks at extremes, so very large batches need warmup and careful tuning.</p>
+<p><em>Weak answer:</em> "Bigger batches are faster." Per epoch, sometimes, and it misses every other axis.</p>
+<p><strong>4. Your training loss is going down nicely. Is the model good?</strong></p>
+<p><em>Strong outline:</em> No information either way. Give the numbers: three separate runs reached a training loss of 0.0000, and their validation losses were 0.82, 1.70 and 29,492. Training loss alone is compatible with a healthy model, severe overfitting, and complete divergence. What you look at is the <em>relationship</em> between train and validation: both high and close is high bias; train low and validation much higher is high variance; validation below training is a bug, usually dropout still active or a leak. Add the anecdote that a run reaching near-zero training loss feels healthy, which is exactly why the gap is the thing to check.</p>
+<p><em>Weak answer:</em> "Yes, decreasing loss means it's learning." The question is testing precisely this reflex.</p>
+<p><strong>5. Why did transformers replace RNNs?</strong></p>
+<p><em>Strong outline:</em> Two reasons, and the practical one is underweighted. Representationally, attention connects any two positions in one step, whereas an RNN must carry information through many sequential steps where it degrades. Practically, RNNs are sequential by construction so training cannot parallelize over sequence length, while a transformer processes all positions at once. That parallelism meant transformers could be trained on vastly more data with the same hardware, and scale turned out to matter enormously. The cost is that attention is quadratic in sequence length, which is why long context is expensive and why the KV cache exists.</p>
+<p><em>Weak answer:</em> "Attention is better than recurrence." No mechanism, and it misses the training-parallelism argument.</p>
+<p><strong>6. When would you fine-tune rather than use RAG?</strong></p>
+<p><em>Strong outline:</em> They fix different things. Fine-tune for behavior: consistent output format, domain style, a fixed taxonomy. Use RAG for facts, because they change. Fine-tuning on documentation bakes a snapshot into the weights with no provenance, no update path short of retraining, no citation, and no way to honor a deletion request; RAG gives all four. Then the AI-engineer-specific case that is genuinely useful: fine-tuning an embedding model or reranker on your own domain, with a contrastive or triplet loss, which can meaningfully improve retrieval. Mention LoRA as what makes fine-tuning large models practical: learn a low-rank addition rather than updating the full matrix, so you get far fewer trainable parameters and swappable adapters.</p>
+<p><em>Weak answer:</em> "Fine-tuning is more accurate." Not for facts, and accuracy is not the axis.</p>
+<p><strong>7. How would you debug a model that will not learn?</strong></p>
+<p><em>Strong outline:</em> Overfit a single batch first. Take eight samples and train until the loss is near zero; if it cannot, the bug is in the model, the loss or the loop rather than in the data or hyperparameters, and this takes thirty seconds. Then the checklist in order: is <code>optimizer.zero_grad()</code> called, does the loss actually connect to the parameters, are the shapes right since silent broadcasting produces wrong losses with no error, is the learning rate sane, and are per-layer gradient norms reasonable or vanishing. Then compare against a linear baseline: if logistic regression matches your network, the network is not contributing anything.</p>
+<p><em>Weak answer:</em> "Try a different learning rate." One item from a list, and it skips the technique that isolates the bug.</p>
+<p><strong>8. What is the difference between batch norm and layer norm, and when do you use each?</strong></p>
+<p><em>Strong outline:</em> Batch norm normalizes each feature across the batch; layer norm normalizes across features within each sample. Batch norm's consequences: it depends on batch composition, behaves differently at training and inference since inference uses running statistics, and is unreliable with small batches. Layer norm is independent of batch size and identical in both modes, which is why transformers and variable-length sequence models use it. Practical note: if a model behaves differently in <code>eval()</code> than in <code>train()</code>, batch norm's running statistics and dropout are the first two suspects.</p>
+<p><em>Weak answer:</em> "Both normalize activations to stabilize training." True of both and does not distinguish them or say when to choose.</p>
+<p><strong>9. Why cross-entropy rather than MSE for classification?</strong></p>
+<p><em>Strong outline:</em> With a sigmoid output, MSE's gradient includes the sigmoid's derivative, which is near zero when the model is confidently wrong, so the more wrong it is the less it learns. Cross-entropy's gradient with a sigmoid simplifies to <code>(prediction − target)</code>, which is large exactly when the model is badly wrong. That cancellation is why the pairing is standard. Then the implementation point: use <code>BCEWithLogitsLoss</code> rather than sigmoid followed by BCE, because computing the sigmoid then its log separately loses precision and can produce NaN on confident predictions; the combined form uses log-sum-exp internally, the same numerical-stability trick as subtracting the max in softmax.</p>
+<p><em>Weak answer:</em> "Cross-entropy is for classification." True by convention, and the question is why.</p>
+<p><strong>10. Walk me through a PyTorch training loop and the parts people get wrong.</strong></p>
+<p><em>Strong outline:</em> Write it, then annotate the four lines. <code>optimizer.zero_grad()</code> because PyTorch accumulates gradients rather than replacing them, deliberately, so you can split a large batch across passes, and forgetting it means your gradient is the sum of everything so far. <code>model.train()</code> and <code>model.eval()</code> because they switch dropout and batch norm, and forgetting <code>eval()</code> makes validation noisy and pessimistic while forgetting <code>train()</code> silently disables regularization. <code>torch.no_grad()</code> during evaluation, because otherwise you build a graph you never use, which wastes memory and causes mysterious OOM on large validation sets. And <code>.item()</code> when accumulating metrics, because keeping tensors holds the whole computation graph alive, which is a leak that grows across epochs. Add checkpointing: save the optimizer state too, or resuming restarts Adam's moments from zero.</p>
+<p><em>Weak answer:</em> Reciting the loop without the failure modes, which is what is being asked.</p>
+<h3 id="follow-up-questions-to-expect">Follow-up questions to expect<a class="anchor" href="#follow-up-questions-to-expect" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>After 2: <em>"Residuals fix the gradient path. Why do we still need normalization?"</em> Residuals give the gradient a route back, and they do not control the <em>scale</em> of activations flowing forward, which can still drift through depth and cause saturation or numerical problems. Normalization keeps the forward pass in a reasonable range so the residual path stays useful. The two solve different halves.</li>
+<li>After 4: <em>"You fixed the overfitting and production is still bad. Now what?"</em> Module <code>04</code> section 2. Your validation set is not representative: temporal leakage, group leakage, or a training population that was filtered differently from production. Compare input distributions between training and production, and check the base rate in every split.</li>
+</ul>
+<h3 id="60-second-and-5-minute-answers">60-second and 5-minute answers<a class="anchor" href="#60-second-and-5-minute-answers" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Backpropagation</li>
+<li>Vanishing gradients and residual connections</li>
+<li>Reading a learning curve</li>
+<li>When to fine-tune and when not to</li>
+</ol>
+<hr />
+<h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
+<p>Solutions in <code>quizzes/05-deep-learning-practice.md</code>.</p>
+<h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Do the section 3 backprop by hand on paper with different numbers, then verify against autograd. Do not skip the paper step.</li>
+<li>Build a network with no activation functions and confirm it cannot learn XOR. Add one nonlinearity and confirm it can.</li>
+<li>Reproduce the section 9 gradient table. Then add residual connections to the sigmoid network and measure the ratio again.</li>
+<li>Take a working training loop and remove <code>optimizer.zero_grad()</code>. Plot what happens, and explain why.</li>
+<li>Verify that <code>BCEWithLogitsLoss</code> and <code>Sigmoid</code> plus <code>BCELoss</code> agree on normal inputs and diverge on extreme logits such as ±50.</li>
+</ol>
+<h3 id="three-realistic-coding-tasks">Three realistic coding tasks<a class="anchor" href="#three-realistic-coding-tasks" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Training loop from scratch.</strong> No <code>nn.Sequential</code>. Implement forward, backward and the update with numpy for a 2-layer network, verify gradients against <code>torch.autograd</code>, and train it on a real dataset. This is the single most educational exercise in the module.</li>
+<li><strong>Diagnostic suite.</strong> Take one dataset and produce five runs: healthy, high bias, high variance, diverged, and regularized. Record train and validation loss for each. Then hand the numbers to someone else and see if they can diagnose each run without the labels.</li>
+<li><strong>Fine-tune an embedding model.</strong> Take a small sentence embedding model, build a contrastive dataset from your own notes, fine-tune it, and measure retrieval recall before and after on module 07's evaluation set. This is directly useful work and a strong portfolio item.</li>
+</ol>
+<h3 id="one-mini-project">One mini-project<a class="anchor" href="#one-mini-project" aria-label="Link to this section">#</a></h3>
+<p><strong>Train a query classifier for your RAG system.</strong></p>
+<p>A genuinely useful component: classify incoming queries as factual lookup, multi-document comparison, or unanswerable, so you can route them differently.</p>
+<ul>
+<li>Build a labelled set from your project 2 evaluation questions, extended</li>
+<li>Baseline with logistic regression on embeddings, per <code>04</code> section 12</li>
+<li>Then a small neural network, and measure whether it is actually better</li>
+<li>Diagnose the curves and document the diagnosis</li>
+<li>Choose the threshold from costs, per <code>04</code> section 10</li>
+<li>Check calibration, per <code>04</code> section 11</li>
+<li>Deploy it and measure whether routing improves end-to-end quality</li>
+</ul>
+<p>Success criterion: you can state whether the neural network beat logistic regression, by how much, and whether the difference exceeded the noise of your test set size. Often it will not, and reporting that honestly is the valuable outcome.</p>
+<hr />
+<h2 id="mastery-checklist">Mastery checklist<a class="anchor" href="#mastery-checklist" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>[ ] Explain why stacked linear layers collapse to one</li>
+<li>[ ] Compute all gradients for a 2-layer network by hand and verify against autograd</li>
+<li>[ ] Explain why <code>delta</code> is the reusable quantity in backpropagation</li>
+<li>[ ] Say what momentum and Adam each add to plain gradient descent</li>
+<li>[ ] Say what batch size trades against, on at least three axes</li>
+<li>[ ] Explain why initialization scale matters at depth</li>
+<li>[ ] Distinguish batch norm from layer norm and say when each is right</li>
+<li>[ ] Explain why ReLU displaced sigmoid, in terms of derivatives</li>
+<li>[ ] Explain why cross-entropy pairs with sigmoid better than MSE does</li>
+<li>[ ] Say why <code>BCEWithLogitsLoss</code> is preferred, and connect it to softmax stability</li>
+<li>[ ] Reproduce the vanishing-gradient measurement and explain the ratio</li>
+<li>[ ] Explain why residual connections made very deep networks possible</li>
+<li>[ ] Show that regularization makes training loss worse and validation better</li>
+<li>[ ] Diagnose high bias, high variance, divergence and a bug from train and validation loss alone</li>
+<li>[ ] Say why a training loss of zero carries no information</li>
+<li>[ ] Write a PyTorch training loop from memory, with the four easily-missed lines</li>
+<li>[ ] Say when to fine-tune, when to use RAG, and what LoRA changes</li>
+<li>[ ] Use the overfit-one-batch technique to isolate a bug</li>
+</ul>
+<p>Fewer than fourteen of eighteen means go back. Module 06 assumes sections 9, 11 and 12.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<p><strong>Backward:</strong></p>
+<ul>
+<li><code>04</code> section 5's bias-variance is section 13's diagnosis, in a different model family.</li>
+<li><code>04</code> section 9's metric selection applies unchanged; you still train on a differentiable surrogate and evaluate on what the decision needs.</li>
+<li><code>04</code> section 2's leakage is why a healthy-looking training run can still fail in production.</li>
+<li><code>01b</code> section 7's testing discipline is how the overfit-one-batch check becomes a test.</li>
+</ul>
+<p><strong>Forward:</strong></p>
+<ul>
+<li><code>06-transformers-and-llms.md</code> is built on sections 9 and 11. Residual connections and layer norm are why transformer blocks look as they do, and the softmax stability trick in section 3 of that module is section 8's log-sum-exp argument.</li>
+<li><code>07-rag-and-vector-search.md</code>'s embedding models are trained with section 8's contrastive losses; fine-tuning one is section 14.</li>
+<li><code>09-local-llm-inference.md</code>'s quantization is section 12's mixed precision applied to inference.</li>
+<li><code>10-mlops-and-deployment.md</code> turns checkpointing and experiment tracking into infrastructure.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Adam at 1e-3" as a default</td>
+<td>A convention, not a measurement</td>
+<td>Your own sweep</td>
+</tr>
+<tr>
+<td>Linear batch-size scaling rule</td>
+<td>Holds over a range, breaks at extremes</td>
+<td>Current literature</td>
+</tr>
+<tr>
+<td>PyTorch API details</td>
+<td>Stable, with periodic deprecations</td>
+<td>Current PyTorch docs</td>
+</tr>
+<tr>
+<td>LoRA as the dominant PEFT method</td>
+<td>Moving area</td>
+<td>Current papers</td>
+</tr>
+<tr>
+<td>Every number in the tables</td>
+<td>Seed and hardware dependent</td>
+<td>Rerun them</td>
+</tr>
+</tbody>
+</table>
+<p>Backpropagation, the vanishing gradient mechanism, residual connections, and learning-curve diagnosis are stable and will not change.</p>
+<p><strong>Next review due:</strong> 2027-03-18.</p>
+      <nav class="pager">
+<a class="pager-prev" href="04-machine-learning.html"><span>Previous</span>04 · Classical ML</a>
+<a class="pager-next" href="06-transformers.html"><span>Next</span>06 · Transformers &amp; LLMs</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
+<li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
+<li class="toc-l2"><a href="#mental-model">Mental model</a></li>
+<li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
+<li class="toc-l3"><a href="#1-what-a-network-is-foundation">1. What a network is [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#2-forward-pass-and-loss-foundation">2. Forward pass and loss [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#3-backpropagation-by-hand-core">3. Backpropagation by hand [CORE]</a></li>
+<li class="toc-l3"><a href="#4-gradient-descent-and-optimizers-core">4. Gradient descent and optimizers [CORE]</a></li>
+<li class="toc-l3"><a href="#5-learning-rate-batch-size-epochs-core">5. Learning rate, batch size, epochs [CORE]</a></li>
+<li class="toc-l3"><a href="#6-initialization-and-normalization-core">6. Initialization and normalization [CORE]</a></li>
+<li class="toc-l3"><a href="#7-activations-foundation">7. Activations [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#8-losses-foundation">8. Losses [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#9-vanishing-and-exploding-gradients-core">9. Vanishing and exploding gradients [CORE]</a></li>
+<li class="toc-l3"><a href="#10-regularization-core">10. Regularization [CORE]</a></li>
+<li class="toc-l3"><a href="#11-architectures-foundation">11. Architectures [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#12-pytorch-core">12. PyTorch [CORE]</a></li>
+<li class="toc-l3"><a href="#13-diagnosing-a-training-run-core">13. Diagnosing a training run [CORE]</a></li>
+<li class="toc-l3"><a href="#14-transfer-learning-and-fine-tuning-core">14. Transfer learning and fine-tuning [CORE]</a></li>
+<li class="toc-l2"><a href="#worked-example-three-broken-runs-diagnosed">Worked example: three broken runs, diagnosed</a></li>
+<li class="toc-l2"><a href="#common-mistakes-and-debugging">Common mistakes and debugging</a></li>
+<li class="toc-l3"><a href="#beginner-mistakes">Beginner mistakes</a></li>
+<li class="toc-l3"><a href="#production-failure-modes">Production failure modes</a></li>
+<li class="toc-l3"><a href="#debugging-method">Debugging method</a></li>
+<li class="toc-l2"><a href="#interview-angle">Interview angle</a></li>
+<li class="toc-l3"><a href="#follow-up-questions-to-expect">Follow-up questions to expect</a></li>
+<li class="toc-l3"><a href="#60-second-and-5-minute-answers">60-second and 5-minute answers</a></li>
+<li class="toc-l2"><a href="#practice-tasks">Practice tasks</a></li>
+<li class="toc-l3"><a href="#five-tiny-exercises">Five tiny exercises</a></li>
+<li class="toc-l3"><a href="#three-realistic-coding-tasks">Three realistic coding tasks</a></li>
+<li class="toc-l3"><a href="#one-mini-project">One mini-project</a></li>
+<li class="toc-l2"><a href="#mastery-checklist">Mastery checklist</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

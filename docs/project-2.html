@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project 2 · Grounded Answers · AI Engineer Learning OS</title>
+<meta name="description" content="A RAG system, evaluation harness first.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html" class="active">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="project-2-grounded-answers-over-messy-documents">Project 2: Grounded Answers Over Messy Documents<a class="anchor" href="#project-2-grounded-answers-over-messy-documents" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium</p>
+<p>Your second portfolio project, and the one that will carry most of your interview conversations.</p>
+<p><strong>The rule that defines it: the evaluation harness is built before the retriever.</strong> Not alongside, not after. This inverts how almost everyone builds RAG, and it is the single thing that makes this project credible rather than another tutorial clone.</p>
+<hr />
+<h2 id="why-this-project-and-why-this-shape">Why this project, and why this shape<a class="anchor" href="#why-this-project-and-why-this-shape" aria-label="Link to this section">#</a></h2>
+<p><strong>The problem with most RAG portfolio projects.</strong> Chunk some markdown, embed it, stuff the top 5 into a prompt, ship a Streamlit app. It works on the demo query. A reviewer asks "how do you know it works" and there is no answer, because there was never a way to know.</p>
+<p>That question ends more AI engineer interviews than any other. This project exists to make you the candidate who has an answer.</p>
+<p><strong>Three design constraints that make it credible:</strong></p>
+<ol>
+<li><strong>A real constraint forcing a design decision.</strong> Without one, every choice is arbitrary and you have nothing to discuss.</li>
+<li><strong>An evaluation set before any retrieval code</strong>, with a measured baseline. Every subsequent change is a number, not a feeling.</li>
+<li><strong>Documented failures.</strong> What broke, what you tried, what did not help. Interviewers trust a project with a failure analysis far more than one without.</li>
+</ol>
+<p><strong>What it demonstrates:</strong> retrieval engineering rather than API plumbing, measurement discipline, the ability to diagnose a pipeline you cannot see inside, and honest reporting. That is the whole junior-to-mid AI engineer bar.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="anchor" href="#prerequisites" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>You need</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The whole of module 07, especially section 9</td>
+<td><code>07-rag-and-vector-search.md</code></td>
+</tr>
+<tr>
+<td>Embeddings, context windows, structured output</td>
+<td><code>06</code> sections 2, 7, 10</td>
+</tr>
+<tr>
+<td>Batching, caching, retries, Pydantic</td>
+<td><code>01b</code> section 9</td>
+</tr>
+<tr>
+<td>Project structure, CI, testing strategy</td>
+<td><code>02</code>, and project 1</td>
+</tr>
+<tr>
+<td>Local serving, if you use your own model</td>
+<td><code>09</code> Part 1</td>
+</tr>
+</tbody>
+</table>
+<p>Do not start before finishing module 07. The evaluation material in section 9 of that module is the spine of this project.</p>
+<hr />
+<h2 id="choosing-your-corpus">Choosing your corpus<a class="anchor" href="#choosing-your-corpus" aria-label="Link to this section">#</a></h2>
+<p><strong>The corpus determines the project's credibility</strong>, so choose deliberately.</p>
+<p><strong>Good choices</strong> share three properties: you know the content well enough to judge answers, it is genuinely messy, and it is legitimately yours to use.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Messiness</th>
+<th>Why it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Your own study notes plus PDFs from this curriculum</td>
+<td>Mixed formats, inconsistent structure</td>
+<td>You know it cold, so you can label relevance fast</td>
+</tr>
+<tr>
+<td>Public sector documents: council minutes, regulations</td>
+<td>Scanned PDFs, tables, multi-column</td>
+<td>Genuinely hard, and publicly available</td>
+</tr>
+<tr>
+<td>A large open-source project's docs plus issues plus changelog</td>
+<td>Markdown, HTML, threaded discussion</td>
+<td>Cross-document questions arise naturally</td>
+</tr>
+<tr>
+<td>Academic papers in one narrow area</td>
+<td>Two-column PDFs, equations, references</td>
+<td>The two-column extraction problem is real and instructive</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Avoid:</strong> a single clean markdown file, anything you cannot legally process, and any corpus you do not know well enough to label relevance by hand. That last one is the killer, because it makes step 1 impossible.</p>
+<p><strong>The constraint you must state</strong>, because it is what forces every design decision. Pick one and commit:</p>
+<ul>
+<li><em>Everything runs locally.</em> No data leaves the machine. Now you are choosing an embedding model against a memory budget and module 09 becomes load-bearing.</li>
+<li><em>Answers must cite, or refuse.</em> An uncited claim is a bug. Forces citation verification and refusal measurement.</li>
+<li><em>Sub-second retrieval on a laptop.</em> Forces real thinking about index choice and reranker cost.</li>
+<li><em>Documents carry permissions.</em> Forces the section 6 filtering problem to be solved properly.</li>
+</ul>
+<p>The local-only constraint pairs naturally with your existing llama.cpp setup and makes the project genuinely yours rather than a wrapper around someone's API.</p>
+<hr />
+<h2 id="architecture">Architecture<a class="anchor" href="#architecture" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    SRC[&quot;Source documents&quot;]
+    PARSE[&quot;Parser, structure preserved&quot;]
+    CHUNK[&quot;Chunker&quot;]
+    EMBED[&quot;Embedder, batched and cached&quot;]
+    VEC[&quot;Vector index&quot;]
+    LEX[&quot;BM25 index&quot;]
+    DOCS[&quot;Document store, parent lookup&quot;]
+
+    Q[&quot;Query&quot;]
+    RW[&quot;Rewrite against history&quot;]
+    RET[&quot;Dense + sparse retrieval&quot;]
+    FUSE[&quot;RRF fusion&quot;]
+    RR[&quot;Cross-encoder rerank&quot;]
+    THRESH[&quot;Score threshold&quot;]
+    ASM[&quot;Prompt assembly, token budget&quot;]
+    GEN[&quot;Generation&quot;]
+    VAL[&quot;Citation validator&quot;]
+    ANS[&quot;Cited answer, or refusal&quot;]
+
+    SRC --&gt; PARSE --&gt; CHUNK
+    CHUNK --&gt; EMBED --&gt; VEC
+    CHUNK --&gt; LEX
+    CHUNK --&gt; DOCS
+
+    Q --&gt; RW --&gt; RET
+    VEC --&gt; RET
+    LEX --&gt; RET
+    RET --&gt; FUSE --&gt; RR --&gt; THRESH --&gt; ASM --&gt; GEN --&gt; VAL --&gt; ANS
+    DOCS --&gt;|&quot;parent text&quot;| ASM
+
+    EVAL[&quot;Evaluation harness&quot;]
+    EVAL -.-&gt;|&quot;recall, MRR, nDCG&quot;| FUSE
+    EVAL -.-&gt;|&quot;recall, MRR, nDCG&quot;| RR
+    EVAL -.-&gt;|&quot;faithfulness, refusal&quot;| ANS
+</pre></div>
+<p>The dotted lines are the point of the project. Evaluation attaches at three places, so when a number moves you know which stage moved it.</p>
+<h3 id="folder-structure">Folder structure<a class="anchor" href="#folder-structure" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code>grounded-answers/
+├── pyproject.toml
+├── README.md
+├── .github/workflows/ci.yml
+├── eval/
+│   ├── questions.jsonl          # built FIRST
+│   ├── corpus_manifest.json
+│   └── results/                 # one file per run, committed
+├── src/grounded/
+│   ├── models.py
+│   ├── ingest/
+│   │   ├── parse.py
+│   │   ├── chunk.py
+│   │   └── embed.py
+│   ├── retrieve/
+│   │   ├── dense.py
+│   │   ├── sparse.py
+│   │   ├── fuse.py
+│   │   └── rerank.py
+│   ├── generate/
+│   │   ├── prompt.py
+│   │   └── validate.py
+│   ├── evaluate/
+│   │   ├── metrics.py
+│   │   ├── harness.py
+│   │   └── report.py
+│   ├── api.py
+│   └── config.py
+└── tests/
+</code></pre></div>
+
+<p><strong><code>eval/</code> sits above <code>src/</code> in the tree on purpose.</strong> It is built first and it is the thing you show people.</p>
+<hr />
+<h2 id="build-plan">Build plan<a class="anchor" href="#build-plan" aria-label="Link to this section">#</a></h2>
+<p>Six milestones. Each ends in something demonstrable, and the order is deliberate.</p>
+<h3 id="milestone-1-the-evaluation-set-before-any-retrieval-code">Milestone 1: the evaluation set, before any retrieval code<a class="anchor" href="#milestone-1-the-evaluation-set-before-any-retrieval-code" aria-label="Link to this section">#</a></h3>
+<p><strong>This is the milestone people skip and it is the project.</strong></p>
+<p>Build <code>eval/questions.jsonl</code>, 30 to 50 entries:</p>
+<div class="highlight"><pre><span></span><code>{&quot;id&quot;: &quot;q001&quot;, &quot;question&quot;: &quot;What notice period applies to parental leave?&quot;, &quot;relevant_chunks&quot;: [], &quot;expected_answer&quot;: &quot;30 days&quot;, &quot;answerable&quot;: true, &quot;category&quot;: &quot;single_doc&quot;, &quot;source&quot;: &quot;real_user&quot;}
+{&quot;id&quot;: &quot;q002&quot;, &quot;question&quot;: &quot;How does our parental leave compare to sick leave?&quot;, &quot;relevant_chunks&quot;: [], &quot;expected_answer&quot;: &quot;...&quot;, &quot;answerable&quot;: true, &quot;category&quot;: &quot;multi_doc&quot;, &quot;source&quot;: &quot;authored&quot;}
+{&quot;id&quot;: &quot;q003&quot;, &quot;question&quot;: &quot;What is the policy on sabbaticals?&quot;, &quot;relevant_chunks&quot;: [], &quot;expected_answer&quot;: null, &quot;answerable&quot;: false, &quot;category&quot;: &quot;unanswerable&quot;, &quot;source&quot;: &quot;authored&quot;}
+{&quot;id&quot;: &quot;q004&quot;, &quot;question&quot;: &quot;What does error code ERR_2032 mean?&quot;, &quot;relevant_chunks&quot;: [], &quot;expected_answer&quot;: &quot;...&quot;, &quot;answerable&quot;: true, &quot;category&quot;: &quot;exact_identifier&quot;, &quot;source&quot;: &quot;real_user&quot;}
+</code></pre></div>
+
+<p><strong>Required composition</strong>, and hold yourself to it:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Minimum</th>
+<th>Why it exists</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>single_doc</code></td>
+<td>12</td>
+<td>The baseline case</td>
+</tr>
+<tr>
+<td><code>multi_doc</code></td>
+<td>5</td>
+<td>Answer spans documents; breaks naive top-k</td>
+</tr>
+<tr>
+<td><code>unanswerable</code></td>
+<td>8</td>
+<td>Measures refusal. <strong>The category everyone omits.</strong></td>
+</tr>
+<tr>
+<td><code>exact_identifier</code></td>
+<td>3</td>
+<td>Part numbers, error codes. Where dense retrieval fails.</td>
+</tr>
+<tr>
+<td><code>negation</code></td>
+<td>2</td>
+<td>"documents that do not mention X"</td>
+</tr>
+<tr>
+<td><code>conflicting</code></td>
+<td>2</td>
+<td>Two documents disagree. Tests conflict surfacing.</td>
+</tr>
+</tbody>
+</table>
+<p><code>relevant_chunks</code> starts empty. You fill it in milestone 2, once chunks exist and have ids. <strong>Write the questions before you have seen the chunks</strong>, or you will unconsciously write questions your chunker happens to handle.</p>
+<p><strong>On <code>source</code>.</strong> Tag each question <code>real_user</code> or <code>authored</code>. Report metrics on both slices separately. Authored questions flatter your system; real ones do not. The gap between the two slices is itself a finding worth writing up.</p>
+<p><strong>On generating questions with a model:</strong> acceptable as a starting point for the <code>authored</code> slice, with one rule. Rewrite every generated question in your own words before saving it, because a question generated from a chunk shares that chunk's vocabulary and makes retrieval look better than it is.</p>
+<p><strong>Milestone 1 is done when</strong> you have 30-plus questions committed, meeting the composition table, with no retrieval code written.</p>
+<h3 id="milestone-2-ingestion-and-the-baseline-you-must-beat">Milestone 2: ingestion, and the baseline you must beat<a class="anchor" href="#milestone-2-ingestion-and-the-baseline-you-must-beat" aria-label="Link to this section">#</a></h3>
+<p>Parse, chunk naively, embed, index. Deliberately unsophisticated: fixed-size chunks, no overlap, dense retrieval only, top 5.</p>
+<p>Then label <code>relevant_chunks</code> in your eval set by reading the chunks. Tedious, three to four hours, and unavoidable. You will learn more about your corpus in this pass than from anything else in the project.</p>
+<p><strong>Then measure and commit the numbers:</strong></p>
+<div class="highlight"><pre><span></span><code>eval/results/001-baseline.json
+{
+  &quot;run_id&quot;: &quot;001-baseline&quot;,
+  &quot;config&quot;: {&quot;chunk_size&quot;: 512, &quot;overlap&quot;: 0, &quot;retriever&quot;: &quot;dense&quot;, &quot;top_k&quot;: 5,
+             &quot;embed_model&quot;: &quot;...&quot;, &quot;embed_model_version&quot;: &quot;...&quot;},
+  &quot;retrieval&quot;: {&quot;recall@5&quot;: 0.00, &quot;mrr&quot;: 0.00, &quot;ndcg@5&quot;: 0.00},
+  &quot;by_category&quot;: {&quot;single_doc&quot;: {...}, &quot;unanswerable&quot;: {...}, ...},
+  &quot;by_source&quot;: {&quot;real_user&quot;: {...}, &quot;authored&quot;: {...}},
+  &quot;latency_ms&quot;: {&quot;p50&quot;: 0, &quot;p95&quot;: 0}
+}
+</code></pre></div>
+
+<p><strong>This file is the most important artifact in the project.</strong> Every later run is compared against it, and the sequence of these files is what you show an interviewer.</p>
+<h3 id="milestone-3-generation-with-enforced-grounding">Milestone 3: generation with enforced grounding<a class="anchor" href="#milestone-3-generation-with-enforced-grounding" aria-label="Link to this section">#</a></h3>
+<p>Add prompt assembly, generation and citation validation. Use the structure from module 07 section 8: sources before question, explicit refusal wording, structured <code>[S1]</code> citations.</p>
+<p><strong>The validator is not optional.</strong> Every cited id must exist in the retrieved set. An answer citing <code>[S7]</code> when only five sources were supplied is a hallucination you can catch programmatically, and catching it is a demonstrable capability.</p>
+<p>Now measure generation metrics: faithfulness, refusal correctness on your unanswerable slice, and citation validity rate.</p>
+<p><strong>Expect the refusal number to be bad.</strong> A baseline system typically answers unanswerable questions confidently. That number improving is one of your best before-and-after stories.</p>
+<h3 id="milestone-4-improve-one-change-at-a-time">Milestone 4: improve, one change at a time<a class="anchor" href="#milestone-4-improve-one-change-at-a-time" aria-label="Link to this section">#</a></h3>
+<p>Each change gets a run file and a row in your results table. <strong>One change per run</strong>, or you cannot attribute the difference.</p>
+<p>In the order most likely to pay off:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Change</th>
+<th>Fixes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Structure-aware chunking</td>
+<td>Orphaned chunks, split facts</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Heading path in <code>embed_text</code></td>
+<td>Chunks lacking their own topic vocabulary</td>
+</tr>
+<tr>
+<td>3</td>
+<td>BM25 + RRF fusion</td>
+<td>Exact identifiers, rare terms, negation</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Cross-encoder reranking</td>
+<td>Ranking quality; usually the largest single win</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Parent-child retrieval</td>
+<td>Precision and completeness together</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Conversational query rewriting</td>
+<td>Follow-up questions</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Score threshold and refusal</td>
+<td>Over-answering</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Record changes that did not help.</strong> A run where semantic chunking cost 40 minutes and moved recall by 0.01 is a genuinely good thing to have in your results table, and it is the kind of honesty interviewers notice.</p>
+<h3 id="milestone-5-serve-it">Milestone 5: serve it<a class="anchor" href="#milestone-5-serve-it" aria-label="Link to this section">#</a></h3>
+<p>FastAPI, Pydantic request and response models, streaming, structured logging with a trace id carrying every field from module 07's instrumentation block, health endpoint, Docker.</p>
+<p>The API returns the answer <em>and</em> the sources with scores, because a RAG API that returns only prose cannot be debugged by its callers.</p>
+<h3 id="milestone-6-write-up-the-failures">Milestone 6: write up the failures<a class="anchor" href="#milestone-6-write-up-the-failures" aria-label="Link to this section">#</a></h3>
+<p>A <code>docs/failure-analysis.md</code> with, for each failure mode you hit: the symptom as a user would report it, the diagnosis and how you reached it, the fix, and the measured effect.</p>
+<p><strong>Three to five real entries beat a perfect system.</strong> This document is what makes the project interesting to talk about.</p>
+<hr />
+<h2 id="the-evaluation-harness">The evaluation harness<a class="anchor" href="#the-evaluation-harness" aria-label="Link to this section">#</a></h2>
+<p>The core of the project. This is what you build in milestone 1.</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Run the eval set against a retrieval pipeline and produce a comparable report.&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">grounded.evaluate.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mrr</span><span class="p">,</span> <span class="n">ndcg_at_k</span><span class="p">,</span> <span class="n">recall_at_k</span>
+
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">EvalCase</span><span class="p">:</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">relevant_chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">expected_answer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">answerable</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">category</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CaseResult</span><span class="p">:</span>
+    <span class="n">case_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">category</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">recall</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">mrr</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">ndcg</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">latency_ms</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">answered</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">citations_valid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RunReport</span><span class="p">:</span>
+    <span class="n">run_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">cases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CaseResult</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">cases</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cases</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">key</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cases</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">cases</span><span class="p">),</span>
+            <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">recall</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
+            <span class="s2">&quot;mrr&quot;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">mrr</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
+            <span class="s2">&quot;ndcg&quot;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ndcg</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
+            <span class="s2">&quot;p50_latency_ms&quot;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">latency_ms</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
+        <span class="p">}</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Retriever</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_eval_set</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvalCase</span><span class="p">]:</span>
+    <span class="n">cases</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EvalCase</span><span class="p">(</span><span class="o">**</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">line_no</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">cases</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no cases&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cases</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_retrieval_eval</span><span class="p">(</span>
+    <span class="n">cases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvalCase</span><span class="p">],</span> <span class="n">retriever</span><span class="p">:</span> <span class="n">Retriever</span><span class="p">,</span> <span class="n">run_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RunReport</span><span class="p">:</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">RunReport</span><span class="p">(</span>
+        <span class="n">run_id</span><span class="o">=</span><span class="n">run_id</span><span class="p">,</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+        <span class="n">timestamp</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">case</span><span class="o">.</span><span class="n">answerable</span><span class="p">:</span>
+            <span class="k">continue</span>                     <span class="c1"># retrieval metrics are meaningless without a target</span>
+
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+        <span class="n">retrieved</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">case</span><span class="o">.</span><span class="n">question</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">elapsed_ms</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+
+        <span class="n">relevant</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">case</span><span class="o">.</span><span class="n">relevant_chunks</span><span class="p">)</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">CaseResult</span><span class="p">(</span>
+                <span class="n">case_id</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">category</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">category</span><span class="p">,</span>
+                <span class="n">source</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">source</span><span class="p">,</span>
+                <span class="n">retrieved</span><span class="o">=</span><span class="n">retrieved</span><span class="p">,</span>
+                <span class="n">recall</span><span class="o">=</span><span class="n">recall_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span> <span class="n">relevant</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span>
+                <span class="n">mrr</span><span class="o">=</span><span class="n">mrr</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span> <span class="n">relevant</span><span class="p">),</span>
+                <span class="n">ndcg</span><span class="o">=</span><span class="n">ndcg_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span> <span class="n">relevant</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span>
+                <span class="n">latency_ms</span><span class="o">=</span><span class="n">elapsed_ms</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">report</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">write_report</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">RunReport</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="n">directory</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">.json&quot;</span>
+
+    <span class="n">categories</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">c</span><span class="o">.</span><span class="n">category</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="p">})</span>
+    <span class="n">sources</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">c</span><span class="o">.</span><span class="n">source</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="p">})</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;run_id&quot;</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
+        <span class="s2">&quot;overall&quot;</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(),</span>
+        <span class="s2">&quot;by_category&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">},</span>
+        <span class="s2">&quot;by_source&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">},</span>
+        <span class="s2">&quot;cases&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">asdict</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+</code></pre></div>
+
+<p><strong>Four design decisions worth defending in a review:</strong></p>
+<p><strong>Unanswerable cases are excluded from retrieval metrics.</strong> Recall against an empty relevant set is meaningless; those cases are scored on refusal instead. Including them would silently drag your recall toward zero and hide real regressions. This is a genuine subtlety and a good thing to have noticed.</p>
+<p><strong>Per-case results are stored, not just aggregates.</strong> When recall drops 0.05 you need to know <em>which five questions</em> broke. An aggregate tells you something moved; the cases tell you what to fix.</p>
+<p><strong>Segmented by category and source.</strong> An improvement to <code>exact_identifier</code> at the cost of <code>multi_doc</code> is invisible in the mean. And the <code>real_user</code> versus <code>authored</code> gap is a standing check on whether your eval set is flattering you.</p>
+<p><strong><code>config</code> is stored with every run.</strong> Six weeks later, "run 004 was better" is useless without knowing what run 004 was. The default-argument binding in the lambdas (<code>c=c</code>) is the <code>01a</code> closure trap, and omitting it makes every category report identical, which is a bug that looks like working code.</p>
+<h3 id="the-regression-test">The regression test<a class="anchor" href="#the-regression-test" aria-label="Link to this section">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">BASELINE_RECALL</span> <span class="o">=</span> <span class="mf">0.71</span>      <span class="c1"># from eval/results/001-baseline.json</span>
+<span class="n">TOLERANCE</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">run_retrieval_eval</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">&quot;ci&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{},</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()[</span><span class="s2">&quot;recall&quot;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">recall</span> <span class="o">&gt;=</span> <span class="n">BASELINE_RECALL</span> <span class="o">-</span> <span class="n">TOLERANCE</span><span class="p">,</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;recall@5 fell to </span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, baseline </span><span class="si">{</span><span class="n">BASELINE_RECALL</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">. &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Failing cases: </span><span class="si">{</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">case_id</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">c</span><span class="o">.</span><span class="n">recall</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+<p>Tolerance rather than equality, for the flakiness reason in <code>02</code> section 6. And the failure message names the broken cases, because a CI failure saying "0.69 &lt; 0.71" sends you hunting.</p>
+<hr />
+<h2 id="results-table">Results table<a class="anchor" href="#results-table" aria-label="Link to this section">#</a></h2>
+<p>The artifact you show people. Keep it in the README, updated per run.</p>
+<table>
+<thead>
+<tr>
+<th>Run</th>
+<th>Change</th>
+<th>recall@5</th>
+<th>MRR</th>
+<th>nDCG@5</th>
+<th>Refusal acc.</th>
+<th>p50 latency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>Baseline: fixed 512, dense, top 5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>002</td>
+<td>+ structure-aware chunking</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>003</td>
+<td>+ heading path in embed_text</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>004</td>
+<td>+ BM25 and RRF</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>005</td>
+<td>+ cross-encoder rerank</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>006</td>
+<td>+ parent-child retrieval</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>007</td>
+<td>+ score threshold and refusal</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>[VERIFY: leave every cell blank until you have measured it. Do not fill this in with plausible numbers; a fabricated results table is worse than none, and an interviewer who probes one will find out.]</code></p>
+<p>Add a column for what each change cost in latency. "Reranking improved recall@5 by 0.13 and added 180ms at p50" is a complete engineering statement. Half of it is not.</p>
+<hr />
+<h2 id="failure-modes-to-expect">Failure modes to expect<a class="anchor" href="#failure-modes-to-expect" aria-label="Link to this section">#</a></h2>
+<p>You will hit most of these. Each one is material for the write-up.</p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Where to look</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Baseline recall near zero</td>
+<td>Chunk ids unstable between runs</td>
+<td>Make chunk ids deterministic from content hash and position</td>
+</tr>
+<tr>
+<td>Metrics suspiciously perfect</td>
+<td>Eval questions generated from chunks</td>
+<td>Compare <code>real_user</code> against <code>authored</code> slices</td>
+</tr>
+<tr>
+<td>Great recall, bad answers</td>
+<td>Generation, not retrieval</td>
+<td>Confirm chunks are in the assembled prompt</td>
+</tr>
+<tr>
+<td>Refusal accuracy near zero</td>
+<td>No refusal instruction, or no threshold</td>
+<td>Module 07 section 8</td>
+</tr>
+<tr>
+<td>Reranking made it worse</td>
+<td>Reranker input pool too small</td>
+<td>Retrieve 50 before reranking to 5, not 10</td>
+</tr>
+<tr>
+<td>Exact identifiers never found</td>
+<td>Dense-only</td>
+<td>BM25</td>
+</tr>
+<tr>
+<td>Follow-ups nonsense</td>
+<td>No conversational rewriting</td>
+<td>Log the actual query sent to the retriever</td>
+</tr>
+<tr>
+<td>Quality changed with no code change</td>
+<td>Embedding model version moved</td>
+<td>Pin and assert the version</td>
+</tr>
+<tr>
+<td>Latency spiked after reranking</td>
+<td>Cross-encoder on too many candidates</td>
+<td>Measure each stage separately</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="interview-narrative">Interview narrative<a class="anchor" href="#interview-narrative" aria-label="Link to this section">#</a></h2>
+<p><strong>60 seconds.</strong> <em>"A grounded question-answering system over [corpus], built evaluation-first. I wrote a 40-question evaluation set with labelled relevant chunks before writing any retrieval code, including 8 unanswerable questions to measure refusal. That gave me a baseline, and then every change was a measured delta rather than a guess. The biggest win was [X], which moved recall@5 from [A] to [B] and cost [N]ms. The most interesting failure was [Y]."</em></p>
+<p><strong>5 minutes</strong> adds:</p>
+<ul>
+<li><strong>The constraint and what it forced.</strong> Local-only meant choosing an embedding model against a memory budget; citations-or-refusal meant building a validator.</li>
+<li><strong>The evaluation design.</strong> Why retrieval and generation are measured separately, why unanswerable cases are excluded from recall, why results are segmented by category and source.</li>
+<li><strong>One failure in depth.</strong> Walk the module 07 decision tree on a real case from your own project. This is the single most valuable thing you can do in a RAG interview.</li>
+<li><strong>A change that did not work</strong>, and what you learned. Candidates who only report wins read as either lucky or dishonest.</li>
+<li><strong>What you would do differently.</strong> Larger eval set; labelling relevance earlier; measuring latency per stage from day one.</li>
+</ul>
+<p><strong>Resume bullets.</strong> Every bracket comes from your own results files.</p>
+<div class="highlight"><pre><span></span><code>Grounded Answers | Python, FastAPI, [vector store], [embedding model]
+· Built a retrieval-augmented QA system over [N] documents with an
+  evaluation-first workflow: a [N]-question labelled eval set and measured
+  baseline preceded any retrieval implementation.
+· Improved recall@5 from [X] to [Y] through [specific changes], measuring
+  each change independently against the baseline.
+· Implemented hybrid dense and BM25 retrieval with reciprocal rank fusion
+  and cross-encoder reranking, and citation validation rejecting
+  unsupported claims.
+· Documented [N] production failure modes with diagnosis and measured fixes.
+</code></pre></div>
+
+<p><code>[VERIFY: replace every bracket from your own eval/results/ files. If you cannot fill one in, remove the bullet.]</code></p>
+<hr />
+<h2 id="success-criteria">Success criteria<a class="anchor" href="#success-criteria" aria-label="Link to this section">#</a></h2>
+<p>The project is done when:</p>
+<ul>
+<li>[ ] <code>eval/questions.jsonl</code> has 30-plus questions meeting the composition table</li>
+<li>[ ] <code>eval/results/001-baseline.json</code> exists and predates every other run</li>
+<li>[ ] The results table has at least five runs with real numbers</li>
+<li>[ ] At least one run made something worse, and is still in the table</li>
+<li>[ ] <code>docs/failure-analysis.md</code> has three-plus real entries</li>
+<li>[ ] The regression test runs in CI and has caught at least one regression</li>
+<li>[ ] A stranger can clone, install and run the eval harness from the README</li>
+<li>[ ] You can walk the module 07 decision tree on a real failure from your own logs</li>
+</ul>
+<p>The fourth and eighth are the ones that distinguish this from a tutorial.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<p><strong>Backward:</strong> module 07 entirely, especially section 9. Module 06 sections 7 and 10 for context budget and structured output. <code>01b</code> section 9 for the client, cache and batching. <code>02</code> for CI and testing strategy. Project 1 for structure and defensive parsing. Module 09 if you serve locally.</p>
+<p><strong>Forward:</strong> <code>projects/project-3-agent-evaluation.md</code> applies the same evaluation-first discipline to agent trajectories. <code>capstone/</code> reuses this retrieval layer. <code>10-mlops-and-deployment.md</code> turns the regression test into a deployment gate. <code>11-ai-system-design.md</code>'s enterprise RAG walkthrough is this project at scale. <code>13-project-portfolio.md</code> has the rubric.</p>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Improvement ordering in milestone 4</td>
+<td>A reasonable prior, not a result; your corpus decides</td>
+<td>Your own results table</td>
+</tr>
+<tr>
+<td>Eval set size guidance (30-50)</td>
+<td>A pragmatic floor for a solo project</td>
+<td>Statistical power for the differences you care about</td>
+</tr>
+<tr>
+<td>Tooling named in the folder structure</td>
+<td>Ecosystem churn</td>
+<td>Current docs</td>
+</tr>
+</tbody>
+</table>
+<p>The evaluation-first discipline and the measurement design are stable. Everything about specific tools is not.</p>
+<p><strong>Next review due:</strong> when you start the capstone.</p>
+      <nav class="pager">
+<a class="pager-prev" href="project-1.html"><span>Previous</span>Project 1 · Learning Log Analyzer</a>
+<a class="pager-next" href="project-3.html"><span>Next</span>Project 3 · Agent Evaluation</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-project-and-why-this-shape">Why this project, and why this shape</a></li>
+<li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#choosing-your-corpus">Choosing your corpus</a></li>
+<li class="toc-l2"><a href="#architecture">Architecture</a></li>
+<li class="toc-l3"><a href="#folder-structure">Folder structure</a></li>
+<li class="toc-l2"><a href="#build-plan">Build plan</a></li>
+<li class="toc-l3"><a href="#milestone-1-the-evaluation-set-before-any-retrieval-code">Milestone 1: the evaluation set, before any retrieval code</a></li>
+<li class="toc-l3"><a href="#milestone-2-ingestion-and-the-baseline-you-must-beat">Milestone 2: ingestion, and the baseline you must beat</a></li>
+<li class="toc-l3"><a href="#milestone-3-generation-with-enforced-grounding">Milestone 3: generation with enforced grounding</a></li>
+<li class="toc-l3"><a href="#milestone-4-improve-one-change-at-a-time">Milestone 4: improve, one change at a time</a></li>
+<li class="toc-l3"><a href="#milestone-5-serve-it">Milestone 5: serve it</a></li>
+<li class="toc-l3"><a href="#milestone-6-write-up-the-failures">Milestone 6: write up the failures</a></li>
+<li class="toc-l2"><a href="#the-evaluation-harness">The evaluation harness</a></li>
+<li class="toc-l3"><a href="#the-regression-test">The regression test</a></li>
+<li class="toc-l2"><a href="#results-table">Results table</a></li>
+<li class="toc-l2"><a href="#failure-modes-to-expect">Failure modes to expect</a></li>
+<li class="toc-l2"><a href="#interview-narrative">Interview narrative</a></li>
+<li class="toc-l2"><a href="#success-criteria">Success criteria</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
