@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capstone 2 · Architecture · AI Engineer Learning OS</title>
+<meta name="description" content="Technology decisions with the alternative rejected, schema, API, memory budget.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html" class="active">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="careeratlas-architecture">CareerAtlas: Architecture<a class="anchor" href="#careeratlas-architecture" aria-label="Link to this section">#</a></h1>
+<p><strong>Capstone 2 of 5</strong> · Last reviewed: 2026-09-18</p>
+<p>Design decisions with the alternative rejected and why, per <code>11</code> section 1. This is the document <code>11</code>'s mini-project asks for.</p>
+<hr />
+<h2 id="constraints-that-drive-the-design">Constraints that drive the design<a class="anchor" href="#constraints-that-drive-the-design" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single user, local-first</td>
+<td>No horizontal scaling; SQLite is sufficient; the memory budget is real</td>
+</tr>
+<tr>
+<td>Corpus is your own notes, a few thousand chunks</td>
+<td>Exhaustive vector search is viable; no vector database needed</td>
+</tr>
+<tr>
+<td>Every answer cites or refuses</td>
+<td>Citation validation is a required component, not a feature</td>
+</tr>
+<tr>
+<td>Mastery must be evidence-backed</td>
+<td>The learner model is relational, not inferred</td>
+</tr>
+<tr>
+<td>You will use it while studying</td>
+<td>It must be usable in week 3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The most consequential: the corpus is small.</strong> A few thousand chunks means a numpy matrix multiply per query is a few milliseconds. This removes an entire category of infrastructure, and saying so is the first architectural decision.</p>
+<hr />
+<h2 id="system-diagram">System diagram<a class="anchor" href="#system-diagram" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    FILES[&quot;Notes, PDFs, docs&quot;]
+    WATCH[&quot;Ingestion: hash, parse, chunk, embed&quot;]
+    EMB[&quot;Embedding model&quot;]
+
+    SQL[&quot;SQLite: chunks, concepts, mastery, reviews, grades, runs&quot;]
+    VEC[&quot;Vector matrix, numpy, in memory&quot;]
+    LEX[&quot;BM25 index, in memory&quot;]
+
+    API[&quot;FastAPI service&quot;]
+    RET[&quot;Hybrid retrieval, RRF&quot;]
+    RR[&quot;Cross-encoder reranker&quot;]
+    ASM[&quot;Prompt assembly, token budget&quot;]
+    GEN[&quot;Generator: hosted or local&quot;]
+    VAL[&quot;Citation validator&quot;]
+
+    SCHED[&quot;Review scheduler, pure functions&quot;]
+    GRADE[&quot;Rubric grader&quot;]
+    GAP[&quot;Gap analysis&quot;]
+
+    UI[&quot;Streamlit&quot;]
+
+    FILES --&gt; WATCH --&gt; EMB --&gt; VEC
+    WATCH --&gt; LEX
+    WATCH --&gt; SQL
+
+    UI --&gt; API
+    API --&gt; RET
+    VEC --&gt; RET
+    LEX --&gt; RET
+    RET --&gt; RR --&gt; ASM --&gt; GEN --&gt; VAL --&gt; API
+    SQL --&gt;|&quot;chunk text, metadata&quot;| ASM
+
+    API --&gt; SCHED
+    SQL &lt;--&gt; SCHED
+    API --&gt; GRADE --&gt; SQL
+    API --&gt; GAP
+    RET --&gt; GAP
+
+    EVAL[&quot;Evaluation harness&quot;]
+    EVAL -.-&gt;|&quot;recall, MRR, nDCG&quot;| RET
+    EVAL -.-&gt;|&quot;refusal, citation validity&quot;| VAL
+    EVAL -.-&gt;|&quot;grading consistency&quot;| GRADE
+</pre></div>
+<hr />
+<h2 id="technology-decisions">Technology decisions<a class="anchor" href="#technology-decisions" aria-label="Link to this section">#</a></h2>
+<p>Each with the alternative rejected, per <code>11</code> section 1.</p>
+<h3 id="vector-search-numpy-matrix-not-a-vector-database">Vector search: numpy matrix, not a vector database<a class="anchor" href="#vector-search-numpy-matrix-not-a-vector-database" aria-label="Link to this section">#</a></h3>
+<p><strong>Chosen:</strong> vectors in a numpy array, loaded at startup, cosine via one matrix multiply.</p>
+<p><strong>Rejected:</strong> Chroma, Qdrant, FAISS, pgvector.</p>
+<p><strong>Why.</strong> At 5,000 chunks and 1,024 dimensions the matrix is 20 MB at float32, and an exhaustive scan is a few milliseconds. A vector database buys approximate search you do not need, filtering you can do in SQLite, and an operational dependency for a local tool.</p>
+<p><strong>What would change it.</strong> Above roughly 100,000 chunks (<code>07</code> section 5), or if you needed persistence across processes without a reload, or concurrent writers. Say this: a decision without a reversal condition is a preference.</p>
+<p><strong>The cost accepted:</strong> startup loads the whole matrix, so a 500,000-chunk corpus would be slow to start. Not a concern at this scale, and it is the thing that breaks first if the corpus grows.</p>
+<h3 id="storage-sqlite-not-postgres">Storage: SQLite, not Postgres<a class="anchor" href="#storage-sqlite-not-postgres" aria-label="Link to this section">#</a></h3>
+<p><strong>Chosen:</strong> SQLite, one file.</p>
+<p><strong>Rejected:</strong> Postgres, or JSON files.</p>
+<p><strong>Why.</strong> Single user, single writer, no network. SQLite gives real transactions, foreign keys and the <code>03</code> section 6 window functions the scheduler needs, with zero operational burden. JSON files would mean reimplementing joins and losing atomicity, which is the mistake that makes spaced-repetition state corrupt on a crash.</p>
+<p><strong>What would change it.</strong> Multi-user, which is the stretch goal, or if you wanted pgvector to collapse the vector and relational stores into one.</p>
+<h3 id="retrieval-hybrid-with-reranking">Retrieval: hybrid with reranking<a class="anchor" href="#retrieval-hybrid-with-reranking" aria-label="Link to this section">#</a></h3>
+<p><strong>Chosen:</strong> dense plus BM25, fused with RRF, then a cross-encoder reranker.</p>
+<p><strong>Rejected:</strong> dense only.</p>
+<p><strong>Why.</strong> <code>07</code> section 4: embeddings are bad at exact identifiers and rare terms, and study notes are full of both, such as <code>IQ2_XXS</code>, <code>ef_search</code>, <code>BCEWithLogitsLoss</code>. Dense-only retrieval on technical notes fails on exactly the terms you most want to look up.</p>
+<p><strong>The cost accepted:</strong> the reranker adds latency and a second model in memory. Budget it explicitly (below), and make it toggleable so you can measure its contribution rather than assuming it.</p>
+<h3 id="generation-pluggable-hosted-by-default">Generation: pluggable, hosted by default<a class="anchor" href="#generation-pluggable-hosted-by-default" aria-label="Link to this section">#</a></h3>
+<p><strong>Chosen:</strong> an interface with hosted and local implementations, hosted as the default.</p>
+<p><strong>Rejected:</strong> committing to either.</p>
+<p><strong>Why.</strong> Hosted gets the MVP working in week 3. Local is the stretch goal that makes the privacy property real. A <code>Protocol</code> seam (<code>01b</code> section 2) costs nothing and means swapping is a config change rather than a refactor.</p>
+<p><strong>What this forces:</strong> the prompt must work with both, so no provider-specific features in the MVP path.</p>
+<h3 id="the-learner-model-relational-not-inferred">The learner model: relational, not inferred<a class="anchor" href="#the-learner-model-relational-not-inferred" aria-label="Link to this section">#</a></h3>
+<p><strong>Chosen:</strong> mastery, review schedule and grades in SQLite tables, with the scheduler as pure functions.</p>
+<p><strong>Rejected:</strong> asking the model what you should review.</p>
+<p><strong>Why.</strong> This is the most important decision in the system. Scheduling is deterministic arithmetic over dates and outcomes. Putting it in a model makes it non-deterministic, unauditable, expensive and impossible to unit-test. Putting it in a database makes it correct, free, explainable to the user, and covered by tests.</p>
+<p><strong>The principle, worth stating in your README:</strong> <em>use the model only for what only it can do.</em> It generates explanations and grades free text. It does not decide what is due.</p>
+<hr />
+<h2 id="data-schema">Data schema<a class="anchor" href="#data-schema" aria-label="Link to this section">#</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Corpus</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">doc_id</span><span class="w">        </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">path</span><span class="w">          </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">kind</span><span class="w">          </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">kind</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;notes&#39;</span><span class="p">,</span><span class="s1">&#39;job_description&#39;</span><span class="p">,</span><span class="s1">&#39;project&#39;</span><span class="p">,</span><span class="s1">&#39;interview&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">content_hash</span><span class="w">  </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">parsed_at</span><span class="w">     </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">parser_version</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">warnings</span><span class="w">      </span><span class="nb">TEXT</span><span class="w">                      </span><span class="c1">-- JSON array; lossy extraction recorded</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">chunks</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">chunk_id</span><span class="w">      </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">doc_id</span><span class="w">        </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">documents</span><span class="p">(</span><span class="n">doc_id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">position</span><span class="w">      </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">heading_path</span><span class="w">  </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">            </span><span class="c1">-- JSON array</span>
+<span class="w">    </span><span class="nb">text</span><span class="w">          </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">            </span><span class="c1">-- shown to the user and the model</span>
+<span class="w">    </span><span class="n">embed_text</span><span class="w">    </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">            </span><span class="c1">-- may carry a context prefix</span>
+<span class="w">    </span><span class="n">token_count</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">embed_model</span><span class="w">   </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">            </span><span class="c1">-- 07 section 4: vectors are model-specific</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">doc_id</span><span class="p">,</span><span class="w"> </span><span class="k">position</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">-- Learner model</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">concepts</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">concept_id</span><span class="w">    </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w">          </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">module</span><span class="w">        </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">                     </span><span class="c1">-- e.g. &#39;07&#39;</span>
+<span class="w">    </span><span class="n">priority</span><span class="w">      </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">priority</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;must&#39;</span><span class="p">,</span><span class="s1">&#39;should&#39;</span><span class="p">,</span><span class="s1">&#39;nice&#39;</span><span class="p">))</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">mastery</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">concept_id</span><span class="w">    </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">concepts</span><span class="p">(</span><span class="n">concept_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">status</span><span class="w">        </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="k">IN</span>
+<span class="w">                    </span><span class="p">(</span><span class="s1">&#39;not_started&#39;</span><span class="p">,</span><span class="s1">&#39;learning&#39;</span><span class="p">,</span><span class="s1">&#39;practiced&#39;</span><span class="p">,</span><span class="s1">&#39;can_explain&#39;</span><span class="p">,</span><span class="s1">&#39;can_build&#39;</span><span class="p">,</span><span class="s1">&#39;interview_ready&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">    </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">evidence_kind</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">                     </span><span class="c1">-- &#39;graded_answer&#39; | &#39;exercise&#39; | &#39;link&#39;</span>
+<span class="w">    </span><span class="n">evidence_ref</span><span class="w">  </span><span class="nb">TEXT</span><span class="w">                      </span><span class="c1">-- U7: you can always see why</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">reviews</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">review_id</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">concept_id</span><span class="w">    </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">concepts</span><span class="p">(</span><span class="n">concept_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">scheduled_for</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">completed_at</span><span class="w">  </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">outcome</span><span class="w">       </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">outcome</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;pass&#39;</span><span class="p">,</span><span class="s1">&#39;fail&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">interval_days</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">grades</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">grade_id</span><span class="w">      </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">concept_id</span><span class="w">    </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">concepts</span><span class="p">(</span><span class="n">concept_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">question</span><span class="w">      </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">answer</span><span class="w">        </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rubric_version</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">score</span><span class="w">         </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">score</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span>
+<span class="w">    </span><span class="n">rationale</span><span class="w">     </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">user_disagreed</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="c1">-- U10: the honesty mechanism</span>
+<span class="w">    </span><span class="n">graded_at</span><span class="w">     </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">model_version</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+
+<span class="c1">-- Operations</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">interactions</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">interaction_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">trace_id</span><span class="w">      </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">kind</span><span class="w">          </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">question</span><span class="w">      </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">refused</span><span class="w">       </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">prompt_tokens</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">completion_tokens</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cost_usd</span><span class="w">      </span><span class="nb">REAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">latency_ms</span><span class="w">    </span><span class="nb">REAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ttft_ms</span><span class="w">       </span><span class="nb">REAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">model_version</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w">    </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">retrievals</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">interaction_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">interactions</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">chunk_id</span><span class="w">      </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">chunks</span><span class="p">(</span><span class="n">chunk_id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">rank</span><span class="w">          </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">score</span><span class="w">         </span><span class="nb">REAL</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">used_in_prompt</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_chunks_doc</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">chunks</span><span class="p">(</span><span class="n">doc_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_reviews_due</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">reviews</span><span class="p">(</span><span class="n">scheduled_for</span><span class="p">)</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">completed_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_retrievals_interaction</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">retrievals</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Five schema decisions worth defending:</strong></p>
+<p><strong><code>embed_model</code> on every chunk.</strong> <code>07</code> section 4's operational rule. Changing the embedding model invalidates every vector, and this column turns a silent quality collapse into a detectable mismatch.</p>
+<p><strong><code>text</code> and <code>embed_text</code> separate.</strong> With contextual retrieval you embed an augmented version and show the original. Conflating them puts generated text into your citations, which is a subtle correctness bug.</p>
+<p><strong><code>evidence_kind</code> and <code>evidence_ref</code> on mastery.</strong> U7 requires that you can see why a concept has its status. Without these columns, mastery is an unexplained number and the tool is doing exactly what it is supposed to prevent.</p>
+<p><strong><code>user_disagreed</code> on grades.</strong> U10. This one column is how you find out your grader is unreliable, and it is the difference between a learning tool and a slot machine.</p>
+<p><strong><code>used_in_prompt</code> on retrievals.</strong> <code>07</code> section 10's decision tree needs to distinguish "retrieved but truncated out" from "not retrieved at all". Without this column you cannot walk the tree.</p>
+<hr />
+<h2 id="api-specification">API specification<a class="anchor" href="#api-specification" aria-label="Link to this section">#</a></h2>
+<div class="highlight"><pre><span></span><code>GET  /health                      liveness
+GET  /ready                       the index is loaded and the model matches
+
+POST /v1/ask                      grounded question
+GET  /v1/chunks/{chunk_id}        resolve a citation
+
+POST /v1/ingest                   index a path; returns per-file results
+GET  /v1/ingest/status            last run, lag, failures
+
+GET  /v1/reviews/due              what is due today
+POST /v1/reviews/{id}/complete    record pass or fail; reschedules
+
+POST /v1/practice/question        generate a question for a concept
+POST /v1/practice/grade           grade an answer against the rubric
+POST /v1/grades/{id}/disagree     record disagreement
+
+GET  /v1/mastery                  all concepts with status and evidence
+POST /v1/gaps                     compare a job description against the corpus
+</code></pre></div>
+
+<p><strong>Request and response for the core endpoint:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AskRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+    <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">concept_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>          <span class="c1"># scopes retrieval when practising</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Citation</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span>                            <span class="c1"># &quot;S1&quot;</span>
+    <span class="n">chunk_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">doc_path</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">heading_path</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">excerpt</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AskResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">refused</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">refusal_reason</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>             <span class="c1"># &quot;no sources above threshold&quot;</span>
+    <span class="n">citations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Citation</span><span class="p">]</span>
+    <span class="n">trace_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">model_version</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">prompt_tokens</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">completion_tokens</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">cost_usd</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div>
+
+<p><strong>Why the response is shaped this way.</strong> <code>refused</code> and <code>refusal_reason</code> separately, because "I could not find it" and "I found it and could not answer" are different. Citations carry the score and the heading path, so you can judge retrieval quality yourself. <code>trace_id</code> and <code>model_version</code> because <code>10</code> section 4: a bad-answer report becomes a lookup instead of an investigation. Token counts and cost in the response because you are the operator as well as the user.</p>
+<hr />
+<h2 id="memory-budget">Memory budget<a class="anchor" href="#memory-budget" aria-label="Link to this section">#</a></h2>
+<p>If you run the local option (<code>09</code> Part 1). On a 32 GB machine with the default 75% wired limit:</p>
+<div class="highlight"><pre><span></span><code>usable                                ≈ 24.0 GB
+embedding model                       ≈  1.0 GB
+cross-encoder reranker                ≈  0.5 GB
+vector matrix, 5k chunks, 1024-dim f32 ≈  0.02 GB
+BM25 index                            ≈  0.05 GB
+KV cache, 8k context, 1 stream, GQA   ≈  2.0 GB
+compute buffers                       ≈  1.5 GB
+headroom at 20%                       ≈  4.8 GB
+                                        --------
+available for the generator           ≈ 14.1 GB
+</code></pre></div>
+
+<p><strong>A 14B at Q5_K_M is 9.24 GB and fits comfortably. A 27B at Q3_K_M is 12.29 GB and fits with 1.8 GB spare.</strong> Per <code>09</code> section 7, the 14B at higher precision is the better choice, because sub-Q4 damage lands on instruction following and long-context coherence, which is exactly what citation-constrained generation depends on.</p>
+<p><strong>Note the vector matrix is 20 MB</strong>, which is 0.1% of the budget. That is the arithmetic justifying the numpy decision, and it is the kind of sentence that makes an architecture decision credible.</p>
+<hr />
+<h2 id="failure-modes">Failure modes<a class="anchor" href="#failure-modes" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Symptom</th>
+<th>Design response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Notes too sparse</td>
+<td>High refusal rate</td>
+<td>Refusal log becomes a study list; report corpus coverage</td>
+</tr>
+<tr>
+<td>PDF parses badly</td>
+<td>Garbage chunks retrieved</td>
+<td><code>warnings</code> column; extraction validation at ingest</td>
+</tr>
+<tr>
+<td>Embedding model changed</td>
+<td>Quality collapse, no error</td>
+<td><code>embed_model</code> per chunk, asserted at startup</td>
+</tr>
+<tr>
+<td>Grader inconsistent</td>
+<td>Feedback is noise</td>
+<td>Consistency measured; <code>user_disagreed</code> recorded</td>
+</tr>
+<tr>
+<td>Mastery overstated</td>
+<td>False confidence</td>
+<td>Evidence required; failed reviews reset to 1 day</td>
+</tr>
+<tr>
+<td>Review queue overwhelming</td>
+<td>Avoidance, then abandonment</td>
+<td>Cap and prioritize the daily list</td>
+</tr>
+<tr>
+<td>Citations misaligned</td>
+<td>Cites the wrong source</td>
+<td>Validator checks every id against the retrieved set</td>
+</tr>
+<tr>
+<td>Context exhausted</td>
+<td>System prompt truncated</td>
+<td>Token budget with explicit priority</td>
+</tr>
+<tr>
+<td>Cost creeps</td>
+<td>Surprise bill</td>
+<td>Cost per interaction recorded; a local option exists</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The one to design against hardest is mastery overstatement</strong>, because it is the failure where the tool is actively harmful rather than merely unhelpful. Evidence-required advancement and the reset rule are the mechanisms.</p>
+<hr />
+<h2 id="what-would-change-this-design">What would change this design<a class="anchor" href="#what-would-change-this-design" aria-label="Link to this section">#</a></h2>
+<p>Stated so the document is honest about its own fragility, per <code>11</code> section 10's answer.</p>
+<ul>
+<li><strong>Corpus above ~100k chunks:</strong> the numpy matrix becomes a real index, and startup time becomes a problem first.</li>
+<li><strong>Multi-user:</strong> SQLite becomes Postgres, and permission-aware retrieval (<code>07</code> section 6) becomes necessary rather than optional.</li>
+<li><strong>Grading consistency measured below ~70%:</strong> the grader is not trustworthy and the practice feature should be cut rather than shipped, because unreliable feedback is worse than none.</li>
+<li><strong>Evaluation shows retrieval recall is already high:</strong> effort moves from the retriever to prompt assembly and generation, which is where the remaining error would be.</li>
+</ul>
+<p><strong>Next:</strong> <code>capstone/02-build-plan.md</code>.</p>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The ~100k chunk threshold for exhaustive search</td>
+<td>Hardware dependent</td>
+<td>Benchmark on your machine</td>
+</tr>
+<tr>
+<td>Model sizes in the memory budget</td>
+<td>Model-specific</td>
+<td>Your own <code>.gguf</code> file sizes</td>
+</tr>
+<tr>
+<td>"numpy is enough"</td>
+<td>True at this scale only</td>
+<td>Your actual chunk count</td>
+</tr>
+</tbody>
+</table>
+<p>The schema decisions and the failure-mode reasoning are stable.</p>
+<p><strong>Next review due:</strong> week 3 of the build.</p>
+      <nav class="pager">
+<a class="pager-prev" href="capstone-00-prd.html"><span>Previous</span>Capstone 1 · Requirements</a>
+<a class="pager-next" href="capstone-02-build-plan.html"><span>Next</span>Capstone 3 · Build Plan</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#constraints-that-drive-the-design">Constraints that drive the design</a></li>
+<li class="toc-l2"><a href="#system-diagram">System diagram</a></li>
+<li class="toc-l2"><a href="#technology-decisions">Technology decisions</a></li>
+<li class="toc-l3"><a href="#vector-search-numpy-matrix-not-a-vector-database">Vector search: numpy matrix, not a vector database</a></li>
+<li class="toc-l3"><a href="#storage-sqlite-not-postgres">Storage: SQLite, not Postgres</a></li>
+<li class="toc-l3"><a href="#retrieval-hybrid-with-reranking">Retrieval: hybrid with reranking</a></li>
+<li class="toc-l3"><a href="#generation-pluggable-hosted-by-default">Generation: pluggable, hosted by default</a></li>
+<li class="toc-l3"><a href="#the-learner-model-relational-not-inferred">The learner model: relational, not inferred</a></li>
+<li class="toc-l2"><a href="#data-schema">Data schema</a></li>
+<li class="toc-l2"><a href="#api-specification">API specification</a></li>
+<li class="toc-l2"><a href="#memory-budget">Memory budget</a></li>
+<li class="toc-l2"><a href="#failure-modes">Failure modes</a></li>
+<li class="toc-l2"><a href="#what-would-change-this-design">What would change this design</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

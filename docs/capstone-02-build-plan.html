@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capstone 3 · Build Plan · AI Engineer Learning OS</title>
+<meta name="description" content="Six weeks, each ending in a demo.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html" class="active">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="careeratlas-build-plan">CareerAtlas: Build Plan<a class="anchor" href="#careeratlas-build-plan" aria-label="Link to this section">#</a></h1>
+<p><strong>Capstone 3 of 5</strong> · Last reviewed: 2026-09-18</p>
+<p>Six weeks, each ending in a demo you could actually show someone. The ordering is chosen so the system is usable in week 3, because a capstone you do not use is one you cannot talk about convincingly.</p>
+<hr />
+<h2 id="the-rules">The rules<a class="anchor" href="#the-rules" aria-label="Link to this section">#</a></h2>
+<p><strong>Every week ends with something runnable.</strong> Not "the ingestion module is complete" but "I indexed my notes and asked it three questions".</p>
+<p><strong>The evaluation set is built in week 1</strong>, before the retriever. Same inversion as project 2, same reason.</p>
+<p><strong>Cut features, never the demo.</strong> If week 4 is going badly, ship a smaller version of week 4's demo. A half-built feature that runs is evidence; a fully-designed feature that does not is not.</p>
+<p><strong>Use it from week 3 onward.</strong> Real usage finds bugs that testing does not, and it generates the screenshots and anecdotes that make the interview narrative concrete.</p>
+<hr />
+<h2 id="week-1-evaluation-and-skeleton">Week 1: evaluation and skeleton<a class="anchor" href="#week-1-evaluation-and-skeleton" aria-label="Link to this section">#</a></h2>
+<p><strong>Goal:</strong> the harness exists and the project runs, before any retrieval code.</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Repository skeleton per <code>02</code> example 1: src layout, pyproject with the hatch wheel block, pre-commit, CI</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SQLite schema from <code>01-architecture.md</code>, with migration applied by a script</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td><strong>Write 50 evaluation questions over your own notes, before seeing the chunks</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ingestion: hash, parse markdown and text only, fixed chunking, store in SQLite</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Label <code>relevant_chunks</code> in the eval set by reading your own chunks</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Embed with a hosted model, store the matrix, dense-only retrieval, top 5</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Measure the baseline. Commit <code>eval/results/001-baseline.json</code>.</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Demo:</strong> "Here are 50 questions over my notes. Here is the naive retriever's recall@5, MRR and nDCG. This number is what everything else gets compared against."</p>
+<p><strong>Composition requirement</strong>, matching project 2's:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Minimum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-note factual</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Spanning two notes</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>Unanswerable</strong></td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>Exact identifier (<code>IQ2_XXS</code>, <code>ef_search</code>)</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Conflicting notes</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Conceptual, no single chunk</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Twelve unanswerable is a quarter of the set</strong>, and it is the category that makes refusal measurable. Do not reduce it.</p>
+<p><strong>Week 1 is done when</strong> <code>eval/results/001-baseline.json</code> exists and no retrieval improvement has been attempted.</p>
+<hr />
+<h2 id="week-2-retrieval-and-grounded-answering">Week 2: retrieval and grounded answering<a class="anchor" href="#week-2-retrieval-and-grounded-answering" aria-label="Link to this section">#</a></h2>
+<p><strong>Goal:</strong> it answers questions from your notes with citations, or refuses.</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>PDF and DOCX parsing, with the <code>warnings</code> column populated on lossy extraction</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Extraction validation: character count against file size, non-alphanumeric ratio, heading count</td>
+</tr>
+<tr>
+<td>2</td>
+<td>BM25 index, RRF fusion. <strong>Measure. Commit run 002.</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Structure-aware chunking, heading path into <code>embed_text</code>. <strong>Measure. Commit run 003.</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Prompt assembly with token budget and explicit priority; generation with citations</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Citation validator: every <code>[Sn]</code> resolves to a chunk in the retrieved set</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Refusal: fixed wording, score threshold, <code>refusal_reason</code> populated</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Measure refusal correctness on the 12 unanswerable questions. Commit run 004.</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Demo:</strong> ask it five questions from your own notes. Three answer with citations you can click through to the source. Two refuse, correctly, and the refusal names what it searched.</p>
+<p><strong>The thing that will surprise you:</strong> refusal correctness on the baseline will be poor. Systems answer unanswerable questions confidently by default. That number improving is one of your best before-and-after stories.</p>
+<p><strong>Cut first if behind:</strong> DOCX parsing. Markdown and PDF cover most of a study corpus.</p>
+<hr />
+<h2 id="week-3-mastery-scheduling-and-first-real-use">Week 3: mastery, scheduling, and first real use<a class="anchor" href="#week-3-mastery-scheduling-and-first-real-use" aria-label="Link to this section">#</a></h2>
+<p><strong>Goal:</strong> you start using it.</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Concepts table, seeded from the mastery checklists in this repository's modules</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>Review scheduler as pure functions: intervals, the reset rule, the retirement rule</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Unit tests for the scheduler</strong>, including the reset-on-fail rule and the boundary days</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Mastery status with <code>evidence_kind</code> and <code>evidence_ref</code> required for advancement</td>
+</tr>
+<tr>
+<td>3-4</td>
+<td>Streamlit: ask, view sources, see what is due, mark a review pass or fail</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ingest your real notes. Use it. Write down what breaks.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Demo:</strong> ask a question, get a cited answer, mark a concept reviewed, see the next review date change correctly.</p>
+<p><strong>The scheduler tests matter disproportionately.</strong> It is pure arithmetic over dates, which means it is fully testable and there is no excuse for it being wrong. It is also the component whose bugs are invisible: a wrong interval just quietly schedules the wrong day. Test the boundaries: due exactly today, one day early, one day late, failed at the 60-day interval, two consecutive passes at 60.</p>
+<p><strong>From this week on, you are a user.</strong> Keep a running <code>docs/observed-issues.md</code>. This becomes the raw material for <code>docs/failure-analysis.md</code>.</p>
+<p><strong>Cut first if behind:</strong> the Streamlit interface. A CLI is a legitimate interface and faster to build.</p>
+<hr />
+<h2 id="week-4-reranking-interview-practice-and-the-grader">Week 4: reranking, interview practice, and the grader<a class="anchor" href="#week-4-reranking-interview-practice-and-the-grader" aria-label="Link to this section">#</a></h2>
+<p><strong>Goal:</strong> the differentiating features, with the grader's honesty mechanism.</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Cross-encoder reranking, toggleable. <strong>Measure. Commit run 005.</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rubric definition: explicit criteria, 1-5, versioned</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>Question generation, scoped to concepts at Practiced or above</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Grading against the rubric at temperature 0, storing <code>rationale</code> and <code>model_version</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Grading consistency measurement:</strong> grade 20 stored answers twice, report agreement</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Disagreement recording, and a view of grades you disagreed with</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Grades feed mastery and rescheduling</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Demo:</strong> practise a question, get a rubric-scored answer with named gaps, disagree with one grade, and show the consistency number.</p>
+<p><strong>The consistency measurement is the point of this week.</strong> Per the PRD's U10, a grader nobody checks is a random number generator with good manners. Measure it, report it, and be willing to conclude the feature is not trustworthy.</p>
+<p><strong>The honest outcome to be prepared for:</strong> if consistency is poor, say so in the write-up and either fix it, with a tighter rubric and fewer criteria, or cut the feature. Shipping unreliable feedback in a learning tool is the harmful failure the PRD names.</p>
+<p><strong>Cut first if behind:</strong> question generation. Grade answers to questions from the module interview sections instead, which are already written.</p>
+<hr />
+<h2 id="week-5-gap-analysis-and-operations">Week 5: gap analysis and operations<a class="anchor" href="#week-5-gap-analysis-and-operations" aria-label="Link to this section">#</a></h2>
+<p><strong>Goal:</strong> the second differentiator, plus production shape.</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-2</td>
+<td>Gap analysis: extract concepts from a job description, probe corpus coverage for each</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Every gap claim backed by a retrieval score</strong>, never an unexplained assertion</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Structured logging with trace ids; the <code>interactions</code> and <code>retrievals</code> tables populated</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Cost per interaction recorded; a daily cost view</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ingestion health check per <code>03</code>'s worked example, with defined expectations</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>/health</code> and <code>/ready</code>, with the embed-model assertion at startup</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Docker, and the eval gate in CI with a tolerance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Demo:</strong> paste a real job description, get a ranked gap list where each gap shows the best retrieval score found. Then show the cost of everything you did this week.</p>
+<p><strong>The gap analysis has no ground truth</strong>, which makes it the hardest thing here to evaluate. The honest approach: judge 20 surfaced gaps yourself as real or spurious, report precision, and say the sample is small. That is a better answer than a confident number.</p>
+<p><strong>Cut first if behind:</strong> Docker. A documented local run is acceptable for a single-user tool.</p>
+<hr />
+<h2 id="week-6-hardening-evaluation-write-up">Week 6: hardening, evaluation, write-up<a class="anchor" href="#week-6-hardening-evaluation-write-up" aria-label="Link to this section">#</a></h2>
+<p><strong>Goal:</strong> it is finished, measured and explainable.</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Full evaluation run; complete the results table</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Run one change that made something worse, and leave it in the table</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>docs/failure-analysis.md</code> from <code>observed-issues.md</code>: 5-plus entries with measured fixes</td>
+</tr>
+<tr>
+<td>3</td>
+<td>README: what it is, how to run it, design decisions, what is out of scope</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Screenshots from your own real usage</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Interview narrative: 60-second and 5-minute, practised aloud and timed</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Resume bullets with real numbers from <code>eval/results/</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>A stranger test: fresh clone, follow the README, note every point of confusion, fix them</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Demo:</strong> the whole thing, to someone who has not seen it.</p>
+<p><strong>The stranger test is not optional.</strong> Clone into a clean directory, follow your own README literally, and do not use knowledge you have that is not written down. Every stumble is a README bug.</p>
+<hr />
+<h2 id="results-table">Results table<a class="anchor" href="#results-table" aria-label="Link to this section">#</a></h2>
+<p>Committed in the README, updated per run.</p>
+<table>
+<thead>
+<tr>
+<th>Run</th>
+<th>Change</th>
+<th>recall@5</th>
+<th>MRR</th>
+<th>nDCG@5</th>
+<th>Refusal acc.</th>
+<th>Citation valid.</th>
+<th>p50 latency</th>
+<th>Cost/query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>Baseline: fixed chunks, dense, top 5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>002</td>
+<td>+ BM25 and RRF</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>003</td>
+<td>+ structure-aware chunking, heading context</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>004</td>
+<td>+ refusal threshold</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>005</td>
+<td>+ cross-encoder rerank</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>006</td>
+<td>+ parent-child retrieval</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>[VERIFY: every cell blank until measured. A fabricated table is worse than none.]</code></p>
+<hr />
+<h2 id="weekly-demo-checklist">Weekly demo checklist<a class="anchor" href="#weekly-demo-checklist" aria-label="Link to this section">#</a></h2>
+<p>Before calling a week done:</p>
+<ul>
+<li>[ ] Something runs end to end that did not run last week</li>
+<li>[ ] The results file for this week's changes is committed</li>
+<li>[ ] <code>observed-issues.md</code> updated from real use</li>
+<li>[ ] Tests pass, ruff and mypy clean</li>
+<li>[ ] You could show this week's demo to someone in three minutes</li>
+</ul>
+<hr />
+<h2 id="recovery-rules">Recovery rules<a class="anchor" href="#recovery-rules" aria-label="Link to this section">#</a></h2>
+<p>You will fall behind. From <code>00-north-star-roadmap.md</code> section 9, adapted.</p>
+<p><strong>Rule 1: never skip the measurement.</strong> A week's feature shipped without measuring it is a week with no evidence, and evidence is the deliverable.</p>
+<p><strong>Rule 2: cut scope inside a week, never the demo.</strong> Half a feature that runs beats a whole one that does not.</p>
+<p><strong>Rule 3: one week behind is normal; three weeks behind means re-cut.</strong> Drop weeks 4 and 5's differentiators, ship the MVP well, and say in the write-up that you scoped down deliberately. That reads better than an unfinished sprawl.</p>
+<p><strong>Rule 4: if you have stopped using it, stop building and find out why.</strong> Usually it is friction in the daily path: too many clicks to review, or the review queue is overwhelming. Fix that before adding anything.</p>
+<hr />
+<h2 id="success-criteria-for-the-whole-build">Success criteria for the whole build<a class="anchor" href="#success-criteria-for-the-whole-build" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>[ ] <code>eval/questions.jsonl</code> has 50-plus questions, 12-plus unanswerable, committed in week 1</li>
+<li>[ ] <code>eval/results/001-baseline.json</code> predates every other run</li>
+<li>[ ] Six runs with real numbers, at least one a regression, left in the table</li>
+<li>[ ] Citation validity is 100%, enforced by the validator</li>
+<li>[ ] Refusal correctness meets the PRD target, measured</li>
+<li>[ ] Scheduler unit tests cover the reset rule and the interval boundaries</li>
+<li>[ ] Grading consistency measured and reported, whatever the number</li>
+<li>[ ] <code>docs/failure-analysis.md</code> has 5-plus entries with measured fixes</li>
+<li>[ ] A stranger can run it from the README</li>
+<li>[ ] <strong>You have used it for at least three weeks of real study</strong></li>
+</ul>
+<p>The last one is the one that makes the rest credible.</p>
+<p><strong>Next:</strong> <code>capstone/03-evaluation.md</code>.</p>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Six weeks</td>
+<td>Depends entirely on your hours per week</td>
+<td>Your own week 1</td>
+</tr>
+<tr>
+<td>The improvement ordering in weeks 2 and 4</td>
+<td>A prior, not a result</td>
+<td>Your results table</td>
+</tr>
+</tbody>
+</table>
+<p>The build-order principle, evaluation first and usable by week 3, is the durable part.</p>
+<p><strong>Next review due:</strong> end of week 3, when you will know whether the scoping was right.</p>
+      <nav class="pager">
+<a class="pager-prev" href="capstone-01-architecture.html"><span>Previous</span>Capstone 2 · Architecture</a>
+<a class="pager-next" href="capstone-03-evaluation.html"><span>Next</span>Capstone 4 · Evaluation &amp; Safety</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#the-rules">The rules</a></li>
+<li class="toc-l2"><a href="#week-1-evaluation-and-skeleton">Week 1: evaluation and skeleton</a></li>
+<li class="toc-l2"><a href="#week-2-retrieval-and-grounded-answering">Week 2: retrieval and grounded answering</a></li>
+<li class="toc-l2"><a href="#week-3-mastery-scheduling-and-first-real-use">Week 3: mastery, scheduling, and first real use</a></li>
+<li class="toc-l2"><a href="#week-4-reranking-interview-practice-and-the-grader">Week 4: reranking, interview practice, and the grader</a></li>
+<li class="toc-l2"><a href="#week-5-gap-analysis-and-operations">Week 5: gap analysis and operations</a></li>
+<li class="toc-l2"><a href="#week-6-hardening-evaluation-write-up">Week 6: hardening, evaluation, write-up</a></li>
+<li class="toc-l2"><a href="#results-table">Results table</a></li>
+<li class="toc-l2"><a href="#weekly-demo-checklist">Weekly demo checklist</a></li>
+<li class="toc-l2"><a href="#recovery-rules">Recovery rules</a></li>
+<li class="toc-l2"><a href="#success-criteria-for-the-whole-build">Success criteria for the whole build</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

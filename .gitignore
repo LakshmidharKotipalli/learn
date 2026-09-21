@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Environment and secrets
+.env
+.env.local
+
+# Data and models, never committed
+data/
+models/
+*.gguf
+*.safetensors
+*.bin
+
+# Local study artifacts
+tracker/weeks/
+eval/results/local-*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

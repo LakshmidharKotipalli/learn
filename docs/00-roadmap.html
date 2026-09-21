@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>00 · Roadmap · AI Engineer Learning OS</title>
+<meta name="description" content="The 24-week plan, two orderings, compression rules. The only schedule.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html" class="active">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="00-north-star-roadmap">00 North Star Roadmap<a class="anchor" href="#00-north-star-roadmap" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium (phases 6 to 9 date fastest)</p>
+<p>This file is the single source of truth for scheduling. No other file in this repository defines its own plan. <code>tracker/weekly-plan.md</code> derives from the 24-week plan below. <code>tracker/progress-log.md</code> owns review intervals only.</p>
+<hr />
+<h2 id="table-of-contents">Table of contents<a class="anchor" href="#table-of-contents" aria-label="Link to this section">#</a></h2>
+<ol>
+<li><a href="#1-how-to-read-this-file">How to read this file</a></li>
+<li><a href="#2-the-honest-shape-of-the-goal">The honest shape of the goal</a></li>
+<li><a href="#3-phase-dependency-graph">Phase dependency graph</a></li>
+<li><a href="#4-the-eleven-phases">The eleven phases</a></li>
+<li><a href="#5-the-canonical-24-week-plan">The canonical 24-week plan</a></li>
+<li><a href="#6-two-orderings">Two orderings</a></li>
+<li><a href="#7-compression-rules">Compression rules</a></li>
+<li><a href="#8-priority-markers-by-role-level">Priority markers by role level</a></li>
+<li><a href="#9-recovery-rules">Recovery rules</a></li>
+<li><a href="#10-volatile-claims">Volatile claims</a></li>
+</ol>
+<hr />
+<h2 id="1-how-to-read-this-file">1. How to read this file<a class="anchor" href="#1-how-to-read-this-file" aria-label="Link to this section">#</a></h2>
+<p>Each phase answers six questions: what you will learn, what you must already know, what you will produce, what you will be able to build, what you will be able to say in an interview, and what usually goes wrong.</p>
+<p>Three priority markers appear throughout:</p>
+<table>
+<thead>
+<tr>
+<th>Marker</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>[MUST]</strong></td>
+<td>You will be asked about this in most interviews. Not knowing it is disqualifying.</td>
+</tr>
+<tr>
+<td><strong>[SHOULD]</strong></td>
+<td>Expected at mid level. Absence is noticed but survivable if the rest is strong.</td>
+</tr>
+<tr>
+<td><strong>[NICE]</strong></td>
+<td>Differentiator. Skip it if time is short; return to it later.</td>
+</tr>
+</tbody>
+</table>
+<p>One rule governs everything below: <strong>a phase is not complete when you have read it, it is complete when you have produced the artifact.</strong> The mastery checklists in each module define this precisely.</p>
+<hr />
+<h2 id="2-the-honest-shape-of-the-goal">2. The honest shape of the goal<a class="anchor" href="#2-the-honest-shape-of-the-goal" aria-label="Link to this section">#</a></h2>
+<p>Before the plan, three things worth being clear about, because plans that hide them fail in week nine.</p>
+<p><strong>24 weeks at 10 hours per week is roughly 240 hours.</strong> That is enough to become a competent junior-to-mid AI engineer who can build real systems and explain them credibly. It is not enough to become strong at classical machine learning theory, and it is not enough to become a deep learning researcher. The plan below deliberately trades ML depth for engineering depth, because the roles you are targeting hire for the second.</p>
+<p><strong>The weakest link is not knowledge, it is shipped evidence.</strong> Candidates who fail AI engineer loops usually fail on one of three things: they cannot write clean Python under observation, they cannot explain why their system fails, or they have nothing they actually built. Every block in this plan ends in a repository artifact for this reason.</p>
+<p><strong>Two phases will be partly stale by the time you finish.</strong> Phases 8 and 9, agents and local inference, move faster than any written curriculum. Treat those modules as scaffolding plus a list of things to verify, never as a reference.</p>
+<hr />
+<h2 id="3-phase-dependency-graph">3. Phase dependency graph<a class="anchor" href="#3-phase-dependency-graph" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    P1[&quot;P1 Python foundations&quot;]
+    P2[&quot;P2 Software engineering&quot;]
+    P3[&quot;P3 Data, SQL, statistics&quot;]
+    P4[&quot;P4 Classical ML&quot;]
+    P5[&quot;P5 Deep learning&quot;]
+    P6[&quot;P6 Transformers and LLMs&quot;]
+    P7[&quot;P7 RAG and retrieval&quot;]
+    P8[&quot;P8 Agents, tools, MCP&quot;]
+    P9[&quot;P9 Local inference and serving&quot;]
+    P10[&quot;P10 MLOps and deployment&quot;]
+    P11[&quot;P11 System design and interviews&quot;]
+
+    P1 --&gt;|&quot;syntax and data structures&quot;| P2
+    P1 --&gt;|&quot;pandas and scripting&quot;| P3
+    P2 --&gt;|&quot;testing and packaging&quot;| P10
+    P3 --&gt;|&quot;evaluation and metrics&quot;| P4
+    P4 --&gt;|&quot;loss, overfitting, metrics&quot;| P5
+    P5 --&gt;|&quot;attention, training&quot;| P6
+    P6 --&gt;|&quot;embeddings and context&quot;| P7
+    P6 --&gt;|&quot;tool calling&quot;| P8
+    P6 --&gt;|&quot;quantization and KV cache&quot;| P9
+    P7 --&gt;|&quot;retrieval as a tool&quot;| P8
+    P2 --&gt;|&quot;APIs and containers&quot;| P9
+    P7 --&gt; P10
+    P8 --&gt; P10
+    P9 --&gt; P10
+    P10 --&gt;|&quot;production constraints&quot;| P11
+    P7 --&gt; P11
+    P8 --&gt; P11
+
+    P1 -.-&gt;|&quot;fast path, skips P4 and P5&quot;| P6
+</pre></div>
+<p>The dotted edge is the fast path discussed in section 6. It is a real shortcut with a real cost, not a shorter route to the same place.</p>
+<hr />
+<h2 id="4-the-eleven-phases">4. The eleven phases<a class="anchor" href="#4-the-eleven-phases" aria-label="Link to this section">#</a></h2>
+<h3 id="phase-1-python-and-programming-foundations">Phase 1: Python and programming foundations<a class="anchor" href="#phase-1-python-and-programming-foundations" aria-label="Link to this section">#</a></h3>
+<p><strong>Modules:</strong> <code>01a-python-core.md</code>, <code>01b-python-patterns-and-oop.md</code>, <code>01c-python-interview-dsa.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Read and write Python without reaching for a reference every line. Understand the object model well enough to predict behavior rather than test for it.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>None. This is the entry point.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>Roughly 40 small scripts, a test suite you wrote yourself, <code>projects/project-1-python-data-tool.md</code> built and running.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>A command-line tool that reads messy input, transforms it, writes structured output, and has tests.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>Mutability and why it causes bugs <strong>[MUST]</strong>. Why <code>dict</code> lookup is constant time <strong>[MUST]</strong>. When a generator beats a list <strong>[SHOULD]</strong>. What a decorator actually does to a function object <strong>[SHOULD]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Learning syntax without learning the object model, so every bug involving a shared mutable object is a mystery. Skipping tests because the scripts are small. Treating "I followed a tutorial" as knowing it.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-2-software-engineering-and-developer-tools">Phase 2: Software engineering and developer tools<a class="anchor" href="#phase-2-software-engineering-and-developer-tools" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>02-software-engineering-foundations.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Work in a repository the way a team does. Debug as a method rather than by guessing.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phase 1 through <code>01b</code>.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>A repository with branches, pull requests to yourself, CI running tests, pre-commit hooks, and a README someone else could follow.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>Nothing new. This phase makes everything you build afterwards credible.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>Merge versus rebase and when each is wrong <strong>[MUST]</strong>. What your tests do and do not prove <strong>[MUST]</strong>. Why the code works on your machine and not in CI <strong>[MUST]</strong>. HTTP status codes and idempotency <strong>[SHOULD]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Skipping this phase because it is not AI. This is the most commonly skipped and most frequently penalized phase for candidates coming from a data background. Interviewers probe it specifically to distinguish engineers from notebook users.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-3-data-sql-statistics-and-experimentation">Phase 3: Data, SQL, statistics, and experimentation<a class="anchor" href="#phase-3-data-sql-statistics-and-experimentation" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>03-data-and-sql.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Get data out of a database correctly, know when a number is meaningful, and know when a comparison is invalid.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phase 1 through <code>01a</code>.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>25 solved SQL exercises, one analysis notebook where you state an uncertainty honestly rather than reporting a point estimate.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>A query layer over a real schema, and an evaluation table you trust.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>The difference between the join types, with row counts <strong>[MUST]</strong>. Why a query is slow and what an index changes <strong>[SHOULD]</strong>. What a p-value does not mean <strong>[SHOULD]</strong>. Sample size intuition for an A/B test <strong>[NICE]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Assuming SQL is beneath you. Retrieval evaluation in phase 7 is a data problem, and people who skipped this phase produce evaluation sets that measure nothing.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-4-classical-machine-learning">Phase 4: Classical machine learning<a class="anchor" href="#phase-4-classical-machine-learning" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>04-machine-learning.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Frame a problem, avoid leakage, choose a metric that matches the decision being made, and read a result honestly.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phase 3.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>A reproducible scikit-learn pipeline with an evaluation report, plus a deliberately leaky version you diagnosed.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>A baseline model that is honest about its own uncertainty.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>Bias and variance as a tradeoff you can point at in a learning curve <strong>[MUST]</strong>. Precision versus recall and which one the business cares about <strong>[MUST]</strong>. Three ways leakage enters a pipeline <strong>[MUST]</strong>. Why accuracy is usually the wrong metric <strong>[MUST]</strong>. Calibration <strong>[SHOULD]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Learning algorithms instead of learning evaluation. Nobody will ask you to implement gradient boosting. Many people will ask why your model looked good offline and failed in production.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-5-deep-learning">Phase 5: Deep learning<a class="anchor" href="#phase-5-deep-learning" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>05-deep-learning.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Understand what a gradient is doing, train something end to end in PyTorch, and diagnose a training run from its curves.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phase 4.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>One trained model, plus three deliberately broken training runs you diagnosed from the curves alone.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>A training loop you wrote rather than copied.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>Backpropagation in plain language without hand-waving the chain rule <strong>[MUST]</strong>. Why gradients vanish and what fixes it <strong>[MUST]</strong>. What batch size trades against <strong>[SHOULD]</strong>. Why transformers displaced recurrence <strong>[MUST]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Going too deep. You need enough to reason about fine-tuning, quantization, and inference cost. You do not need to derive Adam. Timebox this phase hard.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-6-transformers-and-llm-engineering">Phase 6: Transformers and LLM engineering<a class="anchor" href="#phase-6-transformers-and-llm-engineering" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>06-transformers-and-llms.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Know what happens between a user's keystroke and a token appearing, at every layer.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phase 5 on the dependency path. Phase 1 only on the fast path, with the cost noted in section 6.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>Attention worked by hand on a toy example. A written lifecycle trace of one request through a production LLM app.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>An LLM application with structured outputs, streaming, and sensible sampling settings.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>Self-attention without reciting the paper <strong>[MUST]</strong>. What the KV cache is and why it dominates memory <strong>[MUST]</strong>. Why temperature and top-p are not the same knob <strong>[MUST]</strong>. Why prompting does not fix hallucination <strong>[MUST]</strong>. Tokenization failure modes <strong>[SHOULD]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Learning the architecture diagram and not the operational consequences. Interviewers care more about "why did latency spike at long context" than about the positional encoding formula.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-7-rag-and-retrieval-systems">Phase 7: RAG and retrieval systems<a class="anchor" href="#phase-7-rag-and-retrieval-systems" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>07-rag-and-vector-search.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Build retrieval that works on real documents, and be able to say why it failed when it fails.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phase 6, plus phase 3 for the evaluation work.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td><code>projects/project-2-rag-app.md</code> built, with an evaluation set of at least 30 pairs and a measured baseline.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>A cited, grounded question-answering system over messy documents, with numbers attached.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>RAG versus fine-tuning as a decision with conditions <strong>[MUST]</strong>. Chunking tradeoffs <strong>[MUST]</strong>. Why the retriever, not the model, is usually the problem <strong>[MUST]</strong>. What a reranker buys you <strong>[SHOULD]</strong>. Recall loss in approximate nearest-neighbor search <strong>[SHOULD]</strong>. Multi-tenancy and deletion <strong>[NICE]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Building without evaluation, then having no answer to "how do you know it works". This is the single highest-value phase for the roles you want. Spend extra time here, not less.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-8-agents-tools-mcp-and-orchestration">Phase 8: Agents, tools, MCP, and orchestration<a class="anchor" href="#phase-8-agents-tools-mcp-and-orchestration" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>08-agents-tools-and-mcp.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Know when an agent is the right shape and, more often, when a deterministic workflow is.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phases 6 and 7.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td><code>projects/project-3-agent-evaluation.md</code>, which evaluates agent behavior rather than demonstrating it.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>A tool-using system with typed schemas, validation, retries, and a trajectory evaluation harness.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>Why most "agent" problems are workflow problems <strong>[MUST]</strong>. Prompt injection through tool output <strong>[MUST]</strong>. How you would evaluate an agent that got the right answer by the wrong route <strong>[SHOULD]</strong>. MCP's client/server/host split <strong>[SHOULD]</strong>. When multi-agent is worse than single-agent <strong>[NICE]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Framework knowledge substituting for engineering knowledge. Being fluent in LangGraph and unable to explain retries, idempotency, or circuit breakers is a recognizable and penalized pattern.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-9-local-inference-serving-performance-and-cost">Phase 9: Local inference, serving, performance, and cost<a class="anchor" href="#phase-9-local-inference-serving-performance-and-cost" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>09-local-llm-inference.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Run models on your own hardware, measure what they actually do, and reason about the cost of the alternatives.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phase 6, plus phase 2 for containers and APIs.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>A benchmark you ran yourself, with your own numbers, on your own machine.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>An OpenAI-compatible local serving setup behind a proxy, containerized.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>The KV-cache memory formula <strong>[MUST]</strong>. What quantization costs you and where it shows up <strong>[MUST]</strong>. Time-to-first-token versus tokens per second, and which one users feel <strong>[MUST]</strong>. Continuous batching <strong>[SHOULD]</strong>. When local beats hosted on cost <strong>[SHOULD]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Repeating throughput numbers you read instead of numbers you measured. In an interview, "I measured X on my machine under these conditions" is worth more than any benchmark you can cite.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-10-mlops-deployment-observability-and-evaluation">Phase 10: MLOps, deployment, observability, and evaluation<a class="anchor" href="#phase-10-mlops-deployment-observability-and-evaluation" aria-label="Link to this section">#</a></h3>
+<p><strong>Module:</strong> <code>10-mlops-and-deployment.md</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Put a system somewhere other people can reach it, and know when it breaks before they tell you.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phase 2, plus at least one of phases 7, 8, 9 to have something to deploy.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>One deployed service with health checks, structured logs, a metrics dashboard, and a rollback you have actually practiced.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>A production-shaped service, not a demo.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>What you log, what you alert on, and why those differ <strong>[MUST]</strong>. How you would roll back <strong>[MUST]</strong>. What drift means for an LLM system specifically <strong>[SHOULD]</strong>. SLOs <strong>[SHOULD]</strong>. Cost attribution per request <strong>[SHOULD]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Treating deployment as the last 5 percent. It is where most of the interview questions about "production experience" actually live.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-11-ai-system-design-and-interview-preparation">Phase 11: AI system design and interview preparation<a class="anchor" href="#phase-11-ai-system-design-and-interview-preparation" aria-label="Link to this section">#</a></h3>
+<p><strong>Modules:</strong> <code>11-ai-system-design.md</code>, <code>12a</code>, <code>12b</code>, <code>12c</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objectives</strong></td>
+<td>Structure an answer under time pressure, and turn everything above into things you can say out loud.</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Phases 7, 8, 10.</td>
+</tr>
+<tr>
+<td><strong>Deliverables</strong></td>
+<td>Four system design walkthroughs practiced aloud and timed. A STAR story bank with real entries from your own work.</td>
+</tr>
+<tr>
+<td><strong>You can build</strong></td>
+<td>A coherent narrative about what you have built.</td>
+</tr>
+<tr>
+<td><strong>You can explain</strong></td>
+<td>Any system in this repository, in 60 seconds and in 5 minutes <strong>[MUST]</strong>. Capacity estimates with the arithmetic shown <strong>[MUST]</strong>. What you would do differently <strong>[MUST]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Common traps</strong></td>
+<td>Starting this in the last two weeks. Explanation is a separate skill from construction and it needs its own reps. Begin the 60-second answers from phase 6 onward, not at the end.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-the-canonical-24-week-plan">5. The canonical 24-week plan<a class="anchor" href="#5-the-canonical-24-week-plan" aria-label="Link to this section">#</a></h2>
+<p>Structure: six blocks of four weeks. Three learning weeks, then one review week. The review week is not optional and it is not a buffer for falling behind, it is where retention actually happens.</p>
+<p>Every week names an artifact. If the artifact does not exist, the week is not done, regardless of how much you read.</p>
+<h3 id="block-1-weeks-1-to-4-python-becomes-fluent">Block 1, weeks 1 to 4: Python becomes fluent<a class="anchor" href="#block-1-weeks-1-to-4-python-becomes-fluent" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Artifact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>01a</code> sections 1 to 5: execution model, objects and identity, types, strings, control flow</td>
+<td>12 scripts in <code>practice/week01/</code>, each demonstrating one behavior you predicted before running</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>01a</code> sections 6 to 9: collections, functions, exceptions, files and structured data</td>
+<td>A script that reads a messy CSV, validates rows, writes clean JSON, and fails loudly on bad input. This is the mini-project at the end of <code>01a</code>.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>01b</code>: OOP, dataclasses, comprehensions, generators</td>
+<td>Refactor week 2's script into classes with dataclasses, plus 10 pytest tests</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Review</strong></td>
+<td>Practice pack for <code>01a</code> scored. Every concept below "Can Explain" in the tracker gets one focused hour.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="block-2-weeks-5-to-8-engineer-not-scripter">Block 2, weeks 5 to 8: engineer, not scripter<a class="anchor" href="#block-2-weeks-5-to-8-engineer-not-scripter" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Artifact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td><code>01b</code> remainder: decorators, context managers, type hints, logging</td>
+<td>Your week 3 code with type hints throughout, structured logging, and a custom context manager that does something real</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>02</code>: git, repo structure, CI, pre-commit, code review</td>
+<td>A GitHub repository with CI green, hooks installed, and three pull requests you reviewed against your own checklist</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>projects/project-1-python-data-tool.md</code></td>
+<td>Learning Log Analyzer MVP: CLI, JSON and CSV output, tests passing, README</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Review</strong></td>
+<td>Project 1 README rewritten as if for a stranger. <code>01b</code> practice pack scored.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="block-3-weeks-9-to-12-data-and-the-discipline-of-evaluation">Block 3, weeks 9 to 12: data and the discipline of evaluation<a class="anchor" href="#block-3-weeks-9-to-12-data-and-the-discipline-of-evaluation" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Artifact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td><code>03</code> SQL: modeling through window functions</td>
+<td>25 exercises solved, with your query plans for the three slowest</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>03</code> statistics and experimentation</td>
+<td>One analysis where you report an interval and state what would change your conclusion</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>04</code>: problem framing, splitting, leakage, metrics</td>
+<td>The leaky pipeline, diagnosed and documented. This is the artifact, not the working one.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Review</strong></td>
+<td><code>04</code> practice pack. Write the 60-second answers for bias-variance, precision-recall, and leakage. Say them aloud, timed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="block-4-weeks-13-to-16-how-the-models-actually-work">Block 4, weeks 13 to 16: how the models actually work<a class="anchor" href="#block-4-weeks-13-to-16-how-the-models-actually-work" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Artifact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13</td>
+<td><code>04</code> remainder plus <code>05</code> fundamentals: gradients, backprop by hand</td>
+<td>Backpropagation worked by hand on a 2-layer network, numbers shown, checked against PyTorch autograd</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>05</code>: PyTorch training loop, diagnosing curves</td>
+<td>One trained model plus three broken runs with written diagnoses</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>06</code>: tokenization, attention, KV cache, sampling</td>
+<td>Attention computed by hand on a toy example. A written trace of one request through a production LLM app.</td>
+</tr>
+<tr>
+<td>16</td>
+<td><strong>Review</strong></td>
+<td><code>06</code> practice pack. First full mock explanation: "how does a transformer work", 60 seconds and 5 minutes, recorded.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="block-5-weeks-17-to-20-the-part-the-job-is-actually-about">Block 5, weeks 17 to 20: the part the job is actually about<a class="anchor" href="#block-5-weeks-17-to-20-the-part-the-job-is-actually-about" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Artifact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>17</td>
+<td><code>07</code>: ingestion, chunking, embeddings, indexes</td>
+<td>Ingestion pipeline handling one genuinely messy format, with the parser failures logged</td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>07</code>: hybrid search, reranking, evaluation</td>
+<td>Evaluation set of 30-plus pairs, plus a measured naive baseline. Numbers in the repository.</td>
+</tr>
+<tr>
+<td>19</td>
+<td><code>projects/project-2-rag-app.md</code></td>
+<td>RAG service running, cited answers, retrieval metrics beating the baseline, or a written explanation of why it does not</td>
+</tr>
+<tr>
+<td>20</td>
+<td><strong>Review</strong></td>
+<td>Project 2 failure-mode analysis written. <code>07</code> practice pack scored.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="block-6-weeks-21-to-24-production-and-articulation">Block 6, weeks 21 to 24: production and articulation<a class="anchor" href="#block-6-weeks-21-to-24-production-and-articulation" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Artifact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21</td>
+<td><code>08</code>: tool calling, agent loops, injection, trajectory evaluation</td>
+<td><code>projects/project-3-agent-evaluation.md</code> harness running against 3 tools, adversarial cases included</td>
+</tr>
+<tr>
+<td>22</td>
+<td><code>09</code> plus <code>10</code>: local serving, containers, deployment, observability</td>
+<td>Project 2 containerized, deployed, with logs, metrics, and a rollback you performed on purpose</td>
+</tr>
+<tr>
+<td>23</td>
+<td><code>11</code>: system design, four walkthroughs</td>
+<td>Each walkthrough practiced aloud and timed. Capacity arithmetic written out.</td>
+</tr>
+<tr>
+<td>24</td>
+<td><strong>Review and consolidation</strong></td>
+<td><code>12a</code> framework internalized. STAR bank populated from your own three projects. Full mock interview, recorded and scored.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-this-plan-deliberately-defers">What this plan deliberately defers<a class="anchor" href="#what-this-plan-deliberately-defers" aria-label="Link to this section">#</a></h3>
+<p>Stated plainly so you are not surprised in an interview:</p>
+<ul>
+<li><strong>The capstone does not fit in 24 weeks.</strong> CareerAtlas is a 6-week project on top of this. Start it at week 25, or replace project 2 with it and accept that blocks 5 and 6 slip by three weeks.</li>
+<li><strong><code>01c-python-interview-dsa.md</code> is not scheduled.</strong> Data structures and algorithms practice runs as a parallel track of two or three problems per week from week 5 onward, not as a block. Cramming it does not work.</li>
+<li><strong>Deep learning gets two weeks.</strong> That is enough to reason about fine-tuning and inference, not enough to discuss architecture research. Accept this or extend the plan.</li>
+<li><strong><code>13-project-portfolio.md</code> and <code>14-concept-map.md</code></strong> are week 25-plus. They are consolidation, and consolidating nothing is pointless.</li>
+</ul>
+<hr />
+<h2 id="6-two-orderings">6. Two orderings<a class="anchor" href="#6-two-orderings" aria-label="Link to this section">#</a></h2>
+<h3 id="6a-dependency-order-the-plan-above">6a. Dependency order (the plan above)<a class="anchor" href="#6a-dependency-order-the-plan-above" aria-label="Link to this section">#</a></h3>
+<p><code>P1 → P2 → P3 → P4 → P5 → P6 → P7 → P8 → P9 → P10 → P11</code></p>
+<p>Nothing is encountered before its prerequisites. Slower to reach the material you care about, but no gaps.</p>
+<h3 id="6b-llm-first-fast-path">6b. LLM-first fast path<a class="anchor" href="#6b-llm-first-fast-path" aria-label="Link to this section">#</a></h3>
+<p><code>00 → 01a → 01b → 07 → 06 → 08 → 09</code>, deferring <code>04</code> and <code>05</code>.</p>
+<p>Note the ordering inside it: <code>07</code> before <code>06</code>. Building RAG first gives you a concrete artifact to hang the transformer concepts on, and RAG is mostly a retrieval and data problem rather than a modeling one. It works without the deep learning background. Attention is easier to care about once you have watched a retriever fail.</p>
+<p><strong>This is a real shortcut with a real cost.</strong> Here is the bill, stated specifically so you can decide.</p>
+<p>Questions you will not be able to answer well until you go back for <code>04</code> and <code>05</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Phase that covers it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Explain the bias-variance tradeoff."</td>
+<td>P4</td>
+</tr>
+<tr>
+<td>"Your model does well offline and badly in production. Walk me through the causes."</td>
+<td>P4</td>
+</tr>
+<tr>
+<td>"When would you pick gradient boosting over a neural network?"</td>
+<td>P4</td>
+</tr>
+<tr>
+<td>"What is calibration and why might you need it?"</td>
+<td>P4</td>
+</tr>
+<tr>
+<td>"Why does accuracy mislead on imbalanced data?"</td>
+<td>P4</td>
+</tr>
+<tr>
+<td>"Walk me through backpropagation."</td>
+<td>P5</td>
+</tr>
+<tr>
+<td>"Why do gradients vanish, and what fixes it?"</td>
+<td>P5</td>
+</tr>
+<tr>
+<td>"What does batch size trade against?"</td>
+<td>P5</td>
+</tr>
+<tr>
+<td>"Why did transformers replace RNNs?"</td>
+<td>P5 partially, P6 partially</td>
+</tr>
+<tr>
+<td>"How would you fine-tune this, and when would you not?"</td>
+<td>P5 plus P6</td>
+</tr>
+</tbody>
+</table>
+<p>That is roughly a third of a standard ML-leaning interview loop. Some AI engineer roles never ask any of it. Some ask all of it in the first screen. The fast path is a bet on which kind of company you are interviewing at.</p>
+<p><strong>Recommended use:</strong> take the fast path to reach <code>07</code> and <code>08</code> quickly, build project 2, then return to <code>04</code> and <code>05</code> before you start applying. Not instead of them.</p>
+<hr />
+<h2 id="7-compression-rules">7. Compression rules<a class="anchor" href="#7-compression-rules" aria-label="Link to this section">#</a></h2>
+<p>Do not generate a second schedule. Apply these rules to the 24-week plan above.</p>
+<h3 id="to-compress-24-weeks-into-12">To compress 24 weeks into 12<a class="anchor" href="#to-compress-24-weeks-into-12" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Drop every <strong>[NICE]</strong> item.</li>
+<li>Halve the review weeks: one review week per two blocks instead of per block, placed after blocks 2, 4 and 6.</li>
+<li>Merge phases 2 and 3 into one week: git and CI only, SQL joins and window functions only.</li>
+<li>Compress phases 4 and 5 into two weeks total, covering only what phase 6 depends on: loss functions, overfitting, gradients conceptually, why attention replaced recurrence. Accept the section 6b cost list.</li>
+<li>Cut project 1 entirely. Project 2 becomes your Python evidence as well as your RAG evidence.</li>
+<li>Keep blocks 5 and 6 at full length. This is where the compression must not happen.</li>
+</ol>
+<h3 id="to-expand-to-36-weeks">To expand to 36 weeks<a class="anchor" href="#to-expand-to-36-weeks" aria-label="Link to this section">#</a></h3>
+<p>Add a fourth learning week to blocks 3, 4, 5 and 6, and run the capstone as weeks 31 to 36. This is the version to choose if you are working full time.</p>
+<h3 id="time-budget-variants">Time-budget variants<a class="anchor" href="#time-budget-variants" aria-label="Link to this section">#</a></h3>
+<p>The 24-week plan assumes 10 hours per week. At other budgets, change scope rather than the calendar:</p>
+<table>
+<thead>
+<tr>
+<th>Budget</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>5 h/week</strong></td>
+<td>Drop <strong>[NICE]</strong> and <strong>[SHOULD]</strong>. Do the artifact, skip the practice packs, keep the review weeks. Expect 36 weeks of calendar time for 24 weeks of plan.</td>
+</tr>
+<tr>
+<td><strong>10 h/week</strong></td>
+<td>The plan as written.</td>
+</tr>
+<tr>
+<td><strong>15 h/week</strong></td>
+<td>Add <code>01c</code> as a scheduled block rather than a parallel track, and start the capstone at week 19 in parallel with block 5.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-priority-markers-by-role-level">8. Priority markers by role level<a class="anchor" href="#8-priority-markers-by-role-level" aria-label="Link to this section">#</a></h2>
+<p>Where the bar actually sits, by the role you are targeting.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Junior AI Engineer</th>
+<th>Mid AI Engineer</th>
+<th>Generative AI Engineer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python fluency</td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>Git, testing, CI</td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>SQL</td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+</tr>
+<tr>
+<td>Classical ML metrics and leakage</td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+</tr>
+<tr>
+<td>Classical ML algorithms in depth</td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[NICE]</strong></td>
+</tr>
+<tr>
+<td>Deep learning fundamentals</td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+</tr>
+<tr>
+<td>Training and fine-tuning models</td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+</tr>
+<tr>
+<td>Transformer internals</td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>RAG and retrieval</td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>Retrieval evaluation</td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>Tool calling and agents</td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>MCP specifically</td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+</tr>
+<tr>
+<td>Local inference and quantization</td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>Docker and deployment</td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>Observability and cost</td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+</tr>
+<tr>
+<td>System design</td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[MUST]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+<tr>
+<td>Prompt injection and AI security</td>
+<td><strong>[NICE]</strong></td>
+<td><strong>[SHOULD]</strong></td>
+<td><strong>[MUST]</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>[VERIFY: role expectations vary considerably by company @ read 10 current job postings for your target roles and re-score this table against them]</code> This table is a reasonable general shape, not a survey result.</p>
+<hr />
+<h2 id="9-recovery-rules">9. Recovery rules<a class="anchor" href="#9-recovery-rules" aria-label="Link to this section">#</a></h2>
+<p>You will fall behind. The plan is designed to absorb it. Apply these in order.</p>
+<p><strong>Rule 1: never skip a review week to catch up.</strong> This is the most tempting and most damaging move. Review weeks are where the previous three weeks become retrievable. Skipping one converts three weeks of work into three weeks of exposure.</p>
+<p><strong>Rule 2: cut scope inside a week, never cut the artifact.</strong> If week 18 is going badly, build the evaluation set with 15 pairs instead of 30. Half an artifact is evidence. No artifact is nothing.</p>
+<p><strong>Rule 3: one week behind is normal, three weeks behind is a signal.</strong> At three weeks, do not accelerate. Re-cut the plan using the compression rules in section 7 and accept the shorter version honestly.</p>
+<p><strong>Rule 4: a missed week gets absorbed by the next review week, once.</strong> If you miss week 17, week 20 covers it and you drop that review week's practice pack. If you miss two weeks in one block, shift the whole calendar by a week instead of compressing.</p>
+<p><strong>Rule 5: if a module is not landing after two attempts, the prerequisite is missing.</strong> Go back one phase rather than rereading. Most "I cannot understand attention" problems are actually "I never understood what a gradient does" problems.</p>
+<p><strong>Rule 6: log the recovery in <code>tracker/progress-log.md</code>.</strong> Not for discipline, for diagnosis. Three recoveries clustered in one phase tells you something about that phase, or about the hours you claimed you had.</p>
+<hr />
+<h2 id="10-volatile-claims">10. Volatile claims<a class="anchor" href="#10-volatile-claims" aria-label="Link to this section">#</a></h2>
+<p>Re-check these before relying on them.</p>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Role-level expectations in section 8</td>
+<td>Titles and bars shift yearly and vary by company</td>
+<td>10 current postings for your target roles</td>
+</tr>
+<tr>
+<td>Phase 8 content, MCP specifically</td>
+<td>Specification and ecosystem moving quickly</td>
+<td>The official MCP specification</td>
+</tr>
+<tr>
+<td>Phase 9 runtimes and quantization guidance</td>
+<td>Tooling changes release to release</td>
+<td>Current llama.cpp and vLLM documentation</td>
+</tr>
+<tr>
+<td>"Interviewers ask X" claims throughout</td>
+<td>Based on general patterns, not a survey</td>
+<td>Your own post-interview notes, logged in the tracker</td>
+</tr>
+<tr>
+<td>The 240-hour estimate</td>
+<td>Depends entirely on your starting point</td>
+<td>Your own logged hours after block 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next review due:</strong> 2027-03-18, or after your first five interviews, whichever comes first.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>tracker/weekly-plan.md</code> turns the section 5 table into a week-by-week working template. It adds no schedule of its own.</li>
+<li><code>tracker/progress-log.md</code> owns spaced repetition and mastery status. Section 5 says when you learn something; the tracker says when you revisit it.</li>
+<li><code>13-project-portfolio.md</code> scores the artifacts this plan produces.</li>
+<li>Every module's <code>## Prerequisites</code> section should agree with section 3. If one does not, this file wins and the module is wrong.</li>
+</ul>
+      <nav class="pager">
+<a class="pager-prev" href="index.html"><span>Previous</span>Overview</a>
+<a class="pager-next" href="01a-python-core.html"><span>Next</span>01a · Python Core</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#table-of-contents">Table of contents</a></li>
+<li class="toc-l2"><a href="#1-how-to-read-this-file">1. How to read this file</a></li>
+<li class="toc-l2"><a href="#2-the-honest-shape-of-the-goal">2. The honest shape of the goal</a></li>
+<li class="toc-l2"><a href="#3-phase-dependency-graph">3. Phase dependency graph</a></li>
+<li class="toc-l2"><a href="#4-the-eleven-phases">4. The eleven phases</a></li>
+<li class="toc-l3"><a href="#phase-1-python-and-programming-foundations">Phase 1: Python and programming foundations</a></li>
+<li class="toc-l3"><a href="#phase-2-software-engineering-and-developer-tools">Phase 2: Software engineering and developer tools</a></li>
+<li class="toc-l3"><a href="#phase-3-data-sql-statistics-and-experimentation">Phase 3: Data, SQL, statistics, and experimentation</a></li>
+<li class="toc-l3"><a href="#phase-4-classical-machine-learning">Phase 4: Classical machine learning</a></li>
+<li class="toc-l3"><a href="#phase-5-deep-learning">Phase 5: Deep learning</a></li>
+<li class="toc-l3"><a href="#phase-6-transformers-and-llm-engineering">Phase 6: Transformers and LLM engineering</a></li>
+<li class="toc-l3"><a href="#phase-7-rag-and-retrieval-systems">Phase 7: RAG and retrieval systems</a></li>
+<li class="toc-l3"><a href="#phase-8-agents-tools-mcp-and-orchestration">Phase 8: Agents, tools, MCP, and orchestration</a></li>
+<li class="toc-l3"><a href="#phase-9-local-inference-serving-performance-and-cost">Phase 9: Local inference, serving, performance, and cost</a></li>
+<li class="toc-l3"><a href="#phase-10-mlops-deployment-observability-and-evaluation">Phase 10: MLOps, deployment, observability, and evaluation</a></li>
+<li class="toc-l3"><a href="#phase-11-ai-system-design-and-interview-preparation">Phase 11: AI system design and interview preparation</a></li>
+<li class="toc-l2"><a href="#5-the-canonical-24-week-plan">5. The canonical 24-week plan</a></li>
+<li class="toc-l3"><a href="#block-1-weeks-1-to-4-python-becomes-fluent">Block 1, weeks 1 to 4: Python becomes fluent</a></li>
+<li class="toc-l3"><a href="#block-2-weeks-5-to-8-engineer-not-scripter">Block 2, weeks 5 to 8: engineer, not scripter</a></li>
+<li class="toc-l3"><a href="#block-3-weeks-9-to-12-data-and-the-discipline-of-evaluation">Block 3, weeks 9 to 12: data and the discipline of evaluation</a></li>
+<li class="toc-l3"><a href="#block-4-weeks-13-to-16-how-the-models-actually-work">Block 4, weeks 13 to 16: how the models actually work</a></li>
+<li class="toc-l3"><a href="#block-5-weeks-17-to-20-the-part-the-job-is-actually-about">Block 5, weeks 17 to 20: the part the job is actually about</a></li>
+<li class="toc-l3"><a href="#block-6-weeks-21-to-24-production-and-articulation">Block 6, weeks 21 to 24: production and articulation</a></li>
+<li class="toc-l3"><a href="#what-this-plan-deliberately-defers">What this plan deliberately defers</a></li>
+<li class="toc-l2"><a href="#6-two-orderings">6. Two orderings</a></li>
+<li class="toc-l3"><a href="#6a-dependency-order-the-plan-above">6a. Dependency order (the plan above)</a></li>
+<li class="toc-l3"><a href="#6b-llm-first-fast-path">6b. LLM-first fast path</a></li>
+<li class="toc-l2"><a href="#7-compression-rules">7. Compression rules</a></li>
+<li class="toc-l3"><a href="#to-compress-24-weeks-into-12">To compress 24 weeks into 12</a></li>
+<li class="toc-l3"><a href="#to-expand-to-36-weeks">To expand to 36 weeks</a></li>
+<li class="toc-l3"><a href="#time-budget-variants">Time-budget variants</a></li>
+<li class="toc-l2"><a href="#8-priority-markers-by-role-level">8. Priority markers by role level</a></li>
+<li class="toc-l2"><a href="#9-recovery-rules">9. Recovery rules</a></li>
+<li class="toc-l2"><a href="#10-volatile-claims">10. Volatile claims</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

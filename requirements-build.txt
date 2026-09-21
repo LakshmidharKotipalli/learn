@@ -1,0 +1,4 @@
+# Only needed to regenerate the HTML site in docs/.
+# The curriculum itself is plain Markdown and needs nothing.
+markdown>=3.5
+pygments>=2.17

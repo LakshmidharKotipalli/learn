@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Plan · AI Engineer Learning OS</title>
+<meta name="description" content="The weekly working template, derived from the roadmap.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html" class="active">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="weekly-plan">Weekly Plan<a class="anchor" href="#weekly-plan" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low</p>
+<p>The working template for one week. <strong>This file defines no schedule.</strong> <code>00-north-star-roadmap.md</code> section 5 owns the 24-week plan; this turns one of its rows into a week you can actually execute.</p>
+<p>Review intervals belong to <code>tracker/progress-log.md</code>.</p>
+<hr />
+<h2 id="1-how-the-three-files-divide">1. How the three files divide<a class="anchor" href="#1-how-the-three-files-divide" aria-label="Link to this section">#</a></h2>
+<p>A deliberate split, because the original version of this curriculum had three overlapping plans that contradicted each other.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Owns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>00-north-star-roadmap.md</code> §5</td>
+<td><strong>The schedule.</strong> Which week covers what, and what artifact it produces.</td>
+</tr>
+<tr>
+<td><code>tracker/weekly-plan.md</code> (this file)</td>
+<td><strong>The template.</strong> How to run one week, and the time-budget scope rules.</td>
+</tr>
+<tr>
+<td><code>tracker/progress-log.md</code></td>
+<td><strong>Review scheduling and mastery.</strong> What is due, and what you actually know.</td>
+</tr>
+</tbody>
+</table>
+<p>If any two disagree, the roadmap wins and the other is wrong.</p>
+<hr />
+<h2 id="2-time-budget-rules">2. Time-budget rules<a class="anchor" href="#2-time-budget-rules" aria-label="Link to this section">#</a></h2>
+<p>The roadmap's 24-week plan assumes 10 hours per week. At other budgets, <strong>change the scope, not the calendar.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Budget</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>5 h/week</strong></td>
+<td>Drop <code>[NICE]</code> and <code>[SHOULD]</code> items. Do the artifact, skip the practice packs, keep the review weeks. Expect 36 calendar weeks for 24 weeks of plan.</td>
+</tr>
+<tr>
+<td><strong>10 h/week</strong></td>
+<td>The plan as written.</td>
+</tr>
+<tr>
+<td><strong>15 h/week</strong></td>
+<td>Add <code>01c</code> as a scheduled block rather than a parallel drip, and start the capstone at week 19 alongside block 5.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The rule that matters more than the budget:</strong> if you are consistently below your stated hours for three weeks, re-cut the plan using the roadmap's compression rules rather than carrying a schedule you are failing. A plan you are behind on generates avoidance; a shorter plan you are meeting generates momentum.</p>
+<hr />
+<h2 id="3-the-weekly-shape">3. The weekly shape<a class="anchor" href="#3-the-weekly-shape" aria-label="Link to this section">#</a></h2>
+<p>At 10 hours, roughly:</p>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Hours</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Learning</strong></td>
+<td>4</td>
+<td>New material, worked rather than read</td>
+</tr>
+<tr>
+<td><strong>Building</strong></td>
+<td>3</td>
+<td>The week's artifact</td>
+</tr>
+<tr>
+<td><strong>Review</strong></td>
+<td>1.5</td>
+<td>Whatever <code>progress-log.md</code> says is due</td>
+</tr>
+<tr>
+<td><strong>Articulation</strong></td>
+<td>1</td>
+<td>60-second answers, aloud, recorded</td>
+</tr>
+<tr>
+<td><strong>Retrospective</strong></td>
+<td>0.5</td>
+<td>The block in section 5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Four rules that make the shape work:</strong></p>
+<p><strong>Build before you finish reading.</strong> Start the artifact partway through the learning, not after. You will discover what you did not understand, which is the point.</p>
+<p><strong>Review is not optional, and it is not the same as learning.</strong> The 1.5 hours goes to concepts already at Practiced or above. Spending it on new material is how the schedule quietly becomes exposure rather than retention.</p>
+<p><strong>Articulation starts from module 06, not week 24.</strong> One hour a week, recorded. Explanation is a separate skill and it needs its own reps.</p>
+<p><strong>Every week produces a visible artifact.</strong> Code, a test, a written explanation, a diagram, a project update, a recorded answer. A week with no artifact did not happen, however much you read.</p>
+<hr />
+<h2 id="4-the-weekly-template">4. The weekly template<a class="anchor" href="#4-the-weekly-template" aria-label="Link to this section">#</a></h2>
+<p>Copy this per week into <code>tracker/weeks/week-NN.md</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Week NN: &lt;focus from the roadmap&gt;</span>
+
+<span class="gs">**Dates:**</span> &lt;start&gt; to &lt;end&gt;
+<span class="gs">**Budget:**</span> &lt;5 | 10 | 15&gt; hours
+<span class="gs">**Roadmap row:**</span> &lt;block N, week NN&gt;
+<span class="gs">**Artifact this week produces:**</span> &lt;the specific thing&gt;
+
+<span class="gu">## Plan</span>
+
+<span class="k">- [ ]</span> Learning: &lt;module and sections&gt;
+<span class="k">- [ ]</span> Building: &lt;what, specifically&gt;
+<span class="k">- [ ]</span> Review: &lt;concepts due, from progress-log.md&gt;
+<span class="k">- [ ]</span> Articulation: &lt;which 60-second answers&gt;
+
+<span class="gu">## Daily log</span>
+
+| Day | Hours | What | Artifact |
+|---|---|---|---|
+| Mon | | | |
+| Tue | | | |
+| Wed | | | |
+| Thu | | | |
+| Fri | | | |
+| Sat | | | |
+| Sun | | | |
+
+<span class="gu">## Retrospective</span>
+
+<span class="gs">**Artifact produced:**</span> &lt;link, or &quot;none&quot; and why&gt;
+<span class="gs">**Hours actually spent:**</span> &lt;honest number&gt;
+<span class="gs">**Status changes:**</span> &lt;concept: old -&gt; new, with evidence&gt;
+<span class="gs">**Reviews due / completed:**</span> &lt;n / n&gt;
+<span class="gs">**Failed reviews:**</span> &lt;which, and your read on why&gt;
+<span class="gs">**What I did not understand:**</span> &lt;specific&gt;
+<span class="gs">**Blocked on:**</span> &lt;specific, or &quot;nothing&quot;&gt;
+<span class="gs">**Next week&#39;s one priority:**</span> &lt;one thing&gt;
+</code></pre></div>
+
+<p><strong>The two fields that matter most</strong> are <em>hours actually spent</em> and <em>reviews completed versus due</em>. Everything else is easy to write optimistically; those two are countable. After four weeks they tell you whether the plan you chose matches the life you have.</p>
+<p><strong>"What I did not understand" is the second most useful field.</strong> Written specifically, it becomes next week's first hour. Written as "the chapter on attention", it becomes nothing.</p>
+<hr />
+<h2 id="5-review-weeks">5. Review weeks<a class="anchor" href="#5-review-weeks" aria-label="Link to this section">#</a></h2>
+<p>Every fourth week, per the roadmap. <strong>A review week is not a buffer for falling behind</strong>, and using it that way converts three weeks of work into three weeks of exposure.</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Week NN: Review</span>
+
+<span class="gu">## Plan</span>
+
+<span class="k">- [ ]</span> Score the practice packs for the last three weeks&#39; modules
+<span class="k">- [ ]</span> Every concept below &quot;Can Explain&quot; in progress-log.md gets one focused hour
+<span class="k">- [ ]</span> Record the 60-second answers for this block&#39;s [MUST] concepts
+<span class="k">- [ ]</span> Re-read the mastery checklists for the last three modules; check honestly
+<span class="k">- [ ]</span> Clear the review queue in progress-log.md
+<span class="k">- [ ]</span> Update the concept mastery table with evidence
+
+<span class="gu">## Outcome</span>
+
+<span class="gs">**Practice pack scores:**</span> &lt;module: %&gt;
+<span class="gs">**Concepts advanced:**</span> &lt;with evidence&gt;
+<span class="gs">**Concepts regressed:**</span> &lt;and why, this is normal and worth recording&gt;
+<span class="gs">**Still weak:**</span> &lt;specific, carried into next block&gt;
+</code></pre></div>
+
+<p><strong>Recording regressions is the point.</strong> A tracker where status only ever increases is one nobody is being honest in, and the honest one is the one that is useful in month five.</p>
+<hr />
+<h2 id="6-the-parallel-track">6. The parallel track<a class="anchor" href="#6-the-parallel-track" aria-label="Link to this section">#</a></h2>
+<p><code>01c</code> runs as a drip, not a block, from week 5 onward.</p>
+<ul>
+<li>Two or three problems per week, rotating patterns rather than grinding one</li>
+<li>One narrated and recorded per week</li>
+<li>Re-solve one problem from a month ago, from memory</li>
+</ul>
+<p><strong>Why a drip.</strong> Pattern recognition is built by spaced exposure. Cramming DSA produces the ability to recall a solution you saw, which is not what is being tested.</p>
+<p>Log it in the weekly template's daily table as ordinary hours. At the 15-hour budget it becomes a scheduled block instead.</p>
+<hr />
+<h2 id="7-recovery">7. Recovery<a class="anchor" href="#7-recovery" aria-label="Link to this section">#</a></h2>
+<p>From the roadmap section 9, in the form you apply during a week.</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Behind by two days</td>
+<td>Cut scope inside the week. Half an artifact beats none.</td>
+</tr>
+<tr>
+<td>Missed a whole week</td>
+<td>The next review week absorbs it, once. Drop that week's practice pack.</td>
+</tr>
+<tr>
+<td>Missed two weeks in a block</td>
+<td>Shift the calendar by a week rather than compressing.</td>
+</tr>
+<tr>
+<td>Three weeks behind overall</td>
+<td>Re-cut with the compression rules. Do not accelerate.</td>
+</tr>
+<tr>
+<td>A module is not landing after two attempts</td>
+<td>Go back one phase. It is a prerequisite gap, not a comprehension problem.</td>
+</tr>
+<tr>
+<td>Tempted to skip a review week</td>
+<td>Do not. This is rule 1 for a reason.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Log every recovery in the retrospective.</strong> Three recoveries clustered in one phase tells you something about that phase, or about the hours you claimed you had.</p>
+<hr />
+<h2 id="8-worked-example">8. Worked example<a class="anchor" href="#8-worked-example" aria-label="Link to this section">#</a></h2>
+<p>What week 18 looks like filled in. From the roadmap: block 5, RAG evaluation.</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Week 18: Hybrid search, reranking, evaluation</span>
+
+<span class="gs">**Dates:**</span> 2027-01-11 to 2027-01-17
+<span class="gs">**Budget:**</span> 10 hours
+<span class="gs">**Roadmap row:**</span> block 5, week 18
+<span class="gs">**Artifact this week produces:**</span> eval set of 30+ pairs, plus a measured naive
+baseline committed to eval/results/001-baseline.json
+
+<span class="gu">## Plan</span>
+
+<span class="k">- [ ]</span> Learning: 07 sections 7, 9 (hybrid, reranking, evaluation), 4h
+<span class="k">- [ ]</span> Building: the eval set and baseline measurement, 3h
+<span class="k">- [ ]</span> Review: due from progress-log.md: chunking tradeoffs, cosine vs dot
+      product, KV cache formula, 1.5h
+<span class="k">- [ ]</span> Articulation: &quot;how do you evaluate a RAG system&quot;, 60s and 5min, 1h
+<span class="k">- [ ]</span> Retrospective, 0.5h
+<span class="k">- [ ]</span> Parallel: 3 DSA problems (sliding window), 1 narrated
+
+<span class="gu">## Retrospective</span>
+
+<span class="gs">**Artifact produced:**</span> eval/questions.jsonl (34 pairs, 9 unanswerable),
+eval/results/001-baseline.json: recall@5 0.62, MRR 0.48
+<span class="gs">**Hours actually spent:**</span> 8.5 (planned 10)
+<span class="gs">**Status changes:**</span> &quot;Retrieval metrics&quot; Learning -&gt; Practiced (built and ran
+the harness); &quot;Building an evaluation set&quot; Not Started -&gt; Can Build
+<span class="gs">**Reviews due / completed:**</span> 5 / 5
+<span class="gs">**Failed reviews:**</span> KV cache formula. I could state it and not derive the
+memory number. Reset to 1 day.
+<span class="gs">**What I did not understand:**</span> why nDCG&#39;s ideal denominator uses
+min(len(relevant), k) rather than k. Worked it out Thursday; noted in the
+module.
+<span class="gs">**Blocked on:**</span> nothing
+<span class="gs">**Next week&#39;s one priority:**</span> get project 2&#39;s retriever beating the 0.62
+baseline, one change at a time
+</code></pre></div>
+
+<p><strong>What makes this a good retrospective:</strong> the hours are honest and below plan, the status changes cite evidence, the failed review is specific and was reset rather than quietly passed, and the thing not understood is named precisely enough to act on.</p>
+<hr />
+<h2 id="9-monthly-check">9. Monthly check<a class="anchor" href="#9-monthly-check" aria-label="Link to this section">#</a></h2>
+<p>Every four weeks, five minutes:</p>
+<ul>
+<li>[ ] Average hours per week over the last four. Does it match your stated budget?</li>
+<li>[ ] Reviews completed versus due. Below 80% means the schedule is fiction.</li>
+<li>[ ] Artifacts produced. One per week, or which weeks did not happen?</li>
+<li>[ ] Concepts at Can Explain or above. Growing?</li>
+<li>[ ] Are you still using the tracker, honestly?</li>
+</ul>
+<p><strong>If hours are consistently below plan, re-cut now.</strong> Not next month. The compression rules exist for this.</p>
+<p><strong>If reviews are being skipped, either do them or delete section 4 of the progress log.</strong> Carrying a review schedule you ignore is worse than not having one, because it makes the whole tracker untrustworthy.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>00-north-star-roadmap.md</code> §5 supplies the week's focus and artifact; §7 supplies the compression rules; §9 supplies the recovery rules this file applies.</li>
+<li><code>tracker/progress-log.md</code> §4 supplies what is due for review; §8's retrospective block is the one templated here.</li>
+<li><code>01c-python-interview-dsa.md</code> is the parallel track in section 6.</li>
+<li>Each module's practice pack is what a review week scores.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The 4/3/1.5/1/0.5 hour split</td>
+<td>A starting point, not a measurement</td>
+<td>Your own four-week average</td>
+</tr>
+<tr>
+<td>"36 weeks at 5 h/week"</td>
+<td>Depends on your starting point</td>
+<td>Your own block 1</td>
+</tr>
+</tbody>
+</table>
+<p>The template and the ownership split between the three files are stable.</p>
+<p><strong>Next review due:</strong> after block 2, week 8, when you will know whether the shape fits your week.</p>
+      <nav class="pager">
+<a class="pager-prev" href="tracker-progress-log.html"><span>Previous</span>Progress Log</a>
+<a class="pager-next" href="quiz-01a-python-core.html"><span>Next</span>01a Practice Pack</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#1-how-the-three-files-divide">1. How the three files divide</a></li>
+<li class="toc-l2"><a href="#2-time-budget-rules">2. Time-budget rules</a></li>
+<li class="toc-l2"><a href="#3-the-weekly-shape">3. The weekly shape</a></li>
+<li class="toc-l2"><a href="#4-the-weekly-template">4. The weekly template</a></li>
+<li class="toc-l2"><a href="#5-review-weeks">5. Review weeks</a></li>
+<li class="toc-l2"><a href="#6-the-parallel-track">6. The parallel track</a></li>
+<li class="toc-l2"><a href="#7-recovery">7. Recovery</a></li>
+<li class="toc-l2"><a href="#8-worked-example">8. Worked example</a></li>
+<li class="toc-l2"><a href="#9-monthly-check">9. Monthly check</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

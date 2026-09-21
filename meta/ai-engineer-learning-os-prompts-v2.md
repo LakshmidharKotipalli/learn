@@ -1,0 +1,1064 @@
+# Claude Prompts: AI Engineer Learning OS (v2)
+
+Revised prompt library. Fixes the issues found in review: output budgeting, missing files, duplicated interview content, conflicting schedules, and unbounded accuracy risk.
+
+---
+
+## How to use this document
+
+1. **One module per fresh chat.** Quality degrades as context fills. Start a new chat for each major file.
+2. **Re-paste the Master Prompt at the top of every new chat**, followed by the Context Block (below), updated with which files already exist.
+3. Run prompts in the order in **Generation order**, not the order they appear here.
+4. Save each output verbatim to your repo before moving on.
+5. Run the **Quality Control prompt** on anything you intend to study from more than once.
+
+### Context Block
+
+Paste directly after the Master Prompt in each new chat. Keep it current.
+
+```
+## Files already generated
+
+00-north-star-roadmap.md: complete
+01a-python-core.md: complete
+(list the rest; write "not yet generated" for the others)
+
+When you reference another module, reference it by filename and state the
+specific concept you are relying on. If that module does not exist yet,
+say so inline rather than assuming its contents.
+```
+
+### Repository layout
+
+```
+ai-engineer-learning-os/
+├── README.md
+├── 00-north-star-roadmap.md
+├── 01a-python-core.md
+├── 01b-python-patterns-and-oop.md
+├── 01c-python-interview-dsa.md
+├── 02-software-engineering-foundations.md
+├── 03-data-and-sql.md
+├── 04-machine-learning.md
+├── 05-deep-learning.md
+├── 06-transformers-and-llms.md
+├── 07-rag-and-vector-search.md
+├── 08-agents-tools-and-mcp.md
+├── 09-local-llm-inference.md
+├── 10-mlops-and-deployment.md
+├── 11-ai-system-design.md
+├── 12a-interview-framework.md
+├── 12b-interview-question-bank.md
+├── 12c-interview-behavioral-and-projects.md
+├── 13-project-portfolio.md
+├── 14-concept-map.md
+├── quizzes/
+│   └── <module>-practice.md
+├── projects/
+│   ├── project-1-python-data-tool.md
+│   ├── project-2-rag-app.md
+│   └── project-3-agent-evaluation.md
+├── capstone/
+│   ├── 00-prd.md
+│   ├── 01-architecture.md
+│   ├── 02-build-plan.md
+│   ├── 03-evaluation.md
+│   └── 04-interview-narrative.md
+└── tracker/
+    ├── weekly-plan.md
+    └── progress-log.md
+```
+
+---
+
+## 1. Master Prompt
+
+Paste this first in every chat.
+
+````
+You are my senior AI Engineering mentor, curriculum architect, technical
+interviewer, and learning-material designer. Default to curriculum architect.
+Switch to interviewer only inside "Interview angle" and mock-interview sections.
+
+## My background
+
+I am building toward AI/ML Engineer, Generative AI Engineer, and
+software-oriented ML roles.
+
+- I have only minimal, rusty Python knowledge.
+- Teach me from the basics. Do not test or assess me at the beginning.
+- I want to become strong enough for practical AI engineering and technical
+  interviews.
+- I learn best through structured explanations, visual mental models, small
+  examples, repeated connections between concepts, and hands-on projects.
+- I am interested in Python, software engineering, machine learning, deep
+  learning, transformers, LLMs, RAG, vector databases, agents, MCP and tool
+  calling, local LLM deployment, inference optimization, MLOps, Docker, APIs,
+  cloud deployment, evaluation, and AI system design.
+- I have experimented with Ollama, LM Studio, llama.cpp, vLLM, LangChain,
+  LangGraph, RAG, and API-based AI applications.
+- My long-term goal is credible portfolio projects and readiness for AI/ML
+  engineering interviews.
+
+## Your task
+
+Help me build a permanent personal knowledge base called
+"AI Engineer Learning OS."
+
+No generic motivational advice. Produce detailed, practical, reusable learning
+documents in Markdown.
+
+## Module structure
+
+For every learning module, use this exact structure:
+
+# Module Title
+
+**Last reviewed:** <date> · **Volatility:** low | medium | high
+
+## Why this matters
+How this topic appears in real AI engineering work and in interviews.
+
+## Prerequisites
+Exactly what I should understand first, each with the module that covers it.
+
+## Skip-ahead map
+A short table: section, level tag, and a named task. If I can already do the
+task, I can skim that section. Tag every section [FOUNDATION], [CORE] or
+[DEPTH]. This is self-selection, not a test.
+
+## Mental model
+Plain English with an analogy. Do not oversimplify technical truth. State
+where the analogy breaks down.
+
+## Concept map
+A Mermaid diagram, only if it shows a mechanism, sequence, or decision that
+prose handles badly. Label every edge with the relationship. If a diagram
+would only restate the heading list, write a table instead.
+
+## Core concepts
+Every important subtopic in a logical sequence. Define technical terms on
+first use. State assumptions. Distinguish theory from production practice.
+
+## Worked examples
+At least 3, progressively harder. Python where appropriate. Explain code
+line by line when it introduces a new concept.
+
+## Common mistakes and debugging
+Beginner mistakes, real production failure modes, and how to diagnose each.
+For each: the symptom I would actually observe, then the cause.
+
+## Interview angle
+- 10 questions, basic to advanced
+- strong answer outlines
+- common weak answers and why they are weak
+- 2 follow-up questions an interviewer may ask
+- for each major concept: a 60-second answer and a 3-to-5-minute answer
+
+## Practice tasks
+5 tiny exercises, 3 realistic coding tasks, 1 mini-project.
+No solutions inline. Solutions go in the separate practice pack.
+
+## Mastery checklist
+Observable criteria for knowing I am ready to move on. Each one a task I can
+perform, not a topic I have read.
+
+## Connections
+How this module connects to specific earlier and later modules, by filename
+and concept.
+
+## Volatile claims
+Everything in this module likely to be wrong within 12 months, and what to
+re-check it against.
+
+## Output rules
+
+Format
+- Markdown headings, tables, checklists, Mermaid diagrams, code blocks.
+- Produce the complete contents of the requested file as a single fenced
+  Markdown block I can save verbatim.
+- Mermaid must render on GitHub: use `flowchart TD`, quote any label
+  containing `()`, `,` or `:`, no HTML except `<br/>`, under 20 nodes.
+
+Depth
+- Depth beats coverage. If the full scope will not fit, cover fewer subtopics
+  completely rather than all subtopics shallowly. Say which you deferred.
+- When you approach your output limit, stop at a clean `##` or `###`
+  boundary, print `<!-- CONTINUE FROM: <exact heading> -->` and a one-line
+  list of what remains. Do not compress to fit.
+
+Accuracy
+- Be technically accurate. Be explicit where genuine uncertainty exists.
+- Never state a benchmark number, price, throughput figure, VRAM requirement,
+  or model-capability claim as settled fact. Give the method for measuring it,
+  or mark it `[UNVERIFIED]`.
+- Mark version-sensitive claims `[VERIFY: what to check @ where]`.
+- Do not invent citations, achievements, metrics, or project results.
+- Never describe me as having built or achieved something I have not.
+
+Code
+- All code must be complete and runnable as written: real imports, pinned
+  versions in the requirements block, no `...` or `# TODO: implement`.
+- If you cannot produce working code for a component, say so and give the
+  interface plus a test instead of a plausible-looking stub.
+
+Teaching
+- Do not assume I know vocabulary.
+- Do not skip fundamentals because the final topic is advanced.
+- Teach for both building real systems and explaining them in interviews.
+- Where a choice exists, explain tradeoffs. Never claim one tool is always
+  best. Name the conditions under which each option wins.
+
+Interaction
+- If a spec is genuinely ambiguous in a way that changes the output
+  substantially, ask before generating. Otherwise take the most reasonable
+  reading, state it in one line at the top, and proceed.
+
+Do not generate any module yet. Start by designing the complete roadmap and
+wait for my next instruction.
+````
+
+---
+
+## 2. Roadmap
+
+```
+Produce the complete contents of 00-north-star-roadmap.md.
+
+This file is the single source of truth for scheduling. No other file
+defines a schedule; they all derive from this one.
+
+1. Build a dependency-based roadmap from Python basics to job-ready
+   AI Engineer, in these phases:
+   - Python and programming foundations
+   - Software engineering and developer tools
+   - Data, SQL, statistics, and experimentation
+   - Classical machine learning
+   - Deep learning
+   - Transformers and LLM engineering
+   - RAG and retrieval systems
+   - Agents, tools, MCP, and workflow orchestration
+   - Local inference, serving, performance, and cost
+   - MLOps, deployment, observability, safety, and evaluation
+   - AI system design and interview preparation
+
+2. For each phase: learning objectives, prerequisites, practice deliverables,
+   what I should be able to build, what I should be able to explain in an
+   interview, and the most common traps.
+
+3. A Mermaid dependency graph of the full roadmap.
+
+4. ONE canonical 24-week plan with weekly outcomes, not just topics. Every
+   week names a visible artifact.
+
+5. Two orderings, both explicit:
+   a. Dependency order: the strict prerequisite-respecting sequence.
+   b. LLM-first fast path: 00 → 01a → 01b → 07 → 06 → 08 → 09, deferring
+      04 and 05. For this path, list the specific interview questions I will
+      NOT be able to answer until I circle back, so I know the cost I am
+      taking on.
+
+6. Compression rules rather than a second plan: state exactly what to cut to
+   compress 24 weeks into 12 (for example: drop all "nice to know", halve
+   review weeks, merge phases 2 and 3). One rule set, not a new schedule.
+
+7. Mark every topic "must know", "should know", or "nice to know", with the
+   role level each maps to.
+
+8. A recovery rule set for weeks I fall behind, and one review week after
+   every three learning weeks.
+
+Do not define review intervals here. tracker/progress-log.md owns those.
+```
+
+---
+
+## 3. Python foundations (three files)
+
+Generate one at a time. Do not ask for all three in one turn.
+
+### 3.1
+
+```
+Produce the complete contents of 01a-python-core.md.
+
+Assume I am rusty with minimal current Python knowledge. Do not begin with
+an assessment.
+
+Cover, in this order:
+- How Python executes code: source, bytecode, interpreter, the object model,
+  names versus objects, mutability, identity versus equality
+- Variables, values, types, type conversion, truthiness
+- Strings and string operations, including formatting and encoding
+- Lists, tuples, sets, dictionaries: behavior, complexity, and when each wins
+- Conditionals and loops, including the patterns that replace manual loops
+- Functions: parameters, defaults and the mutable-default trap, return
+  values, scope, closures, lambdas
+- Exceptions and defensive programming: what to catch, what to let crash
+- Files, JSON, CSV, pathlib, environment variables
+
+Requirements:
+- Intuition before mechanics for every topic
+- Small runnable examples, complete and copy-pasteable
+- The specific bug each feature tends to produce, with the error message I
+  would actually see
+- A time-and-space complexity table for the built-in data structures
+- Interview questions and exercises per major topic, no solutions inline
+
+End with: a 10-day study plan covering only this file, and a
+"you are ready for 01b when you can..." checklist.
+```
+
+### 3.2
+
+```
+Produce the complete contents of 01b-python-patterns-and-oop.md.
+Prerequisite: 01a-python-core.md.
+
+Cover:
+- Object-oriented programming: classes, instances, inheritance, composition,
+  when composition beats inheritance, dataclasses
+- Iterators, generators, comprehensions, decorators, context managers
+- Type hints and what they do and do not check at runtime
+- Testing with pytest: fixtures, parametrization, what is worth testing
+- Logging versus printing, structured logging, debugging with pdb
+- Modules, packages, imports, virtual environments, pip, pyproject basics
+- Code organization: when to split a file, what belongs in __init__.py
+- Patterns used in ML, data, and LLM applications: calling APIs, async
+  basics, Pydantic models, request retries with backoff, batching, caching,
+  configuration management
+
+For the applied patterns, show the naive version first, then the version
+that survives production, and name what specifically broke.
+
+End with a 10-day plan and a readiness checklist for 01c.
+```
+
+### 3.3
+
+```
+Produce the complete contents of 01c-python-interview-dsa.md.
+Prerequisites: 01a and 01b.
+
+Cover the interview patterns: hashing, two pointers, sliding window, stack,
+queue, recursion, binary search, trees, graphs, heaps, dynamic programming.
+
+For each pattern:
+- the signal in a problem statement that tells me to reach for it
+- the template in Python
+- complexity
+- 3 problems, easy to hard, with approach outlines only
+- the Python-specific pitfalls (mutable default arguments in recursion,
+  shallow copies, integer division, sort stability, recursion limits)
+
+End with a mock interview section: 5 problems, a suggested time budget, and
+a self-scoring rubric. Solutions go in quizzes/python-practice.md, not here.
+```
+
+---
+
+## 4. New modules the original library omitted
+
+### 4.1 Software engineering foundations
+
+```
+Produce the complete contents of 02-software-engineering-foundations.md.
+Prerequisites: 01a, 01b.
+
+This is the module that separates a script writer from an engineer. Cover:
+- Git: the mental model of commits as snapshots, branching, merge versus
+  rebase, resolving conflicts, what to do when you have broken something
+- Reading code you did not write, and navigating an unfamiliar repository
+- Code review: what to look for, how to give and receive it
+- Project structure, dependency management, lockfiles, reproducible envs
+- Linting, formatting, type checking, pre-commit hooks
+- Testing strategy: unit, integration, end-to-end, what each catches, what
+  test coverage does and does not tell you
+- Debugging as a discipline: reproduce, isolate, hypothesize, verify
+- The command line: the 20 commands that carry most of the weight
+- HTTP, REST, JSON, status codes, auth basics, reading API docs
+- Concurrency versus parallelism, and why it matters for inference serving
+
+Include the interview angle: engineering-hygiene questions appear in every
+AI engineer loop and candidates from a data-science background lose points
+here specifically.
+```
+
+### 4.2 Data and SQL
+
+```
+Produce the complete contents of 03-data-and-sql.md.
+Prerequisites: 01a.
+
+Cover:
+- Relational modeling: tables, keys, normalization, when to denormalize
+- SQL: SELECT through window functions, in dependency order, each with a
+  worked query against a small schema you define once and reuse
+- Query plans, indexes, why a query is slow, N+1 patterns
+- Joins, including the ones people get wrong, with row-count intuition
+- Aggregation, grouping, and the common silent-wrong-answer mistakes
+- pandas: the operations that matter, and where pandas and SQL each win
+- Data quality: nulls, duplicates, type drift, silent truncation
+- Statistics an AI engineer actually needs: distributions, sampling,
+  variance, correlation versus causation, confidence intervals, p-values
+  and what they do not mean
+- Experimentation: A/B tests, sample size intuition, common invalidities
+- Vector data alongside relational data, as a bridge to module 07
+
+Include 25 SQL exercises against your defined schema, ordered by difficulty.
+Solutions go in quizzes/, not here.
+```
+
+### 4.3 Project portfolio strategy
+
+```
+Produce the complete contents of 13-project-portfolio.md.
+
+This file is strategy, not a project spec.
+
+Cover:
+- What makes a portfolio project credible to a hiring engineer versus what
+  makes it look like a tutorial follow-along
+- The specific tells reviewers use to spot a copied project
+- How many projects, at what depth, for which role level
+- The anatomy of a project that generates good interview conversation:
+  a real constraint, a decision with a tradeoff, something that failed,
+  and a measurement
+- How to scope a project so it finishes
+- README, demo, and repo hygiene as evidence
+- How to talk about a project you built with heavy AI assistance, honestly
+- A rubric I can score my own projects against, 1 to 5 on each dimension
+- How the three projects and the capstone in this repo ladder together
+
+Do not claim I have completed any project. Write the rubric so I can apply it.
+```
+
+---
+
+## 5. Core AI engineering modules
+
+Orchestration prompt, then one module per chat.
+
+```
+Produce the following standalone modules one at a time, following the module
+structure in the Master Prompt. Start with the one I name. After completing
+it, stop and ask whether to continue.
+
+- 04-machine-learning.md
+- 05-deep-learning.md
+- 06-transformers-and-llms.md
+- 07-rag-and-vector-search.md
+- 08-agents-tools-and-mcp.md
+- 09-local-llm-inference.md
+- 10-mlops-and-deployment.md
+- 11-ai-system-design.md
+
+Quality bar:
+- Explain what each technology is, why it exists, what fails in production,
+  and what the alternatives are.
+- Equations in readable Markdown, every symbol defined.
+- Link concepts across modules explicitly, by filename.
+- Use real AI product constraints: latency, cost, privacy, hallucinations,
+  evaluation, retries, caching, observability, security, scale.
+- Every file ends with its mini-project and its Volatile claims section.
+```
+
+### 5.1 Classical machine learning
+
+```
+Now produce 04-machine-learning.md.
+
+Cover:
+- Problem framing: classification, regression, ranking, clustering, anomaly
+  detection, recommendation, and how to recognize which you have
+- Data splitting: train/validation/test, cross-validation, time-based
+  splitting, and every way leakage sneaks in
+- Data quality, missing values, outliers, class imbalance, label quality,
+  feature engineering
+- Linear and logistic regression, from the loss function up
+- Regularization: L1, L2, elastic net; the bias-variance tradeoff
+- Decision trees, random forests, gradient boosting, XGBoost and LightGBM
+  concepts and where they differ
+- kNN, naive Bayes, SVMs
+- Unsupervised: k-means, PCA, dimensionality reduction
+- Metrics: accuracy, precision, recall, F1, ROC-AUC, PR-AUC, log loss, MAE,
+  MSE, RMSE, R-squared, calibration, and when each metric misleads
+- Threshold selection, business metrics, A/B testing basics
+- Interpretation, fairness, drift, monitoring, reproducibility
+- scikit-learn: pipelines, preprocessing, tuning, baselines, comparison
+
+For each topic separate intuition, math, code, real-world tradeoffs, failure
+modes, and interview explanation.
+
+Mini-project: a reproducible scikit-learn pipeline with an evaluation report,
+including a deliberately leaky version to diagnose.
+```
+
+### 5.2 Deep learning
+
+```
+Now produce 05-deep-learning.md.
+
+Cover:
+- Neural network intuition: neurons, layers, learned representations,
+  why nonlinearity is the whole point
+- Forward propagation, loss functions, backpropagation, gradient descent,
+  worked by hand on a tiny network with actual numbers
+- Learning rate, batch size, epochs, optimizers, initialization,
+  normalization, regularization, dropout, early stopping
+- Activation functions and their tradeoffs
+- Losses for classification, regression, ranking, language modeling
+- CNNs, RNNs, LSTMs, GRUs, attention, and specifically why transformers
+  displaced recurrence
+- Overfitting, underfitting, vanishing and exploding gradients, augmentation
+- PyTorch: tensors, autograd, Dataset, DataLoader, nn.Module, training and
+  eval loops, checkpointing
+- GPU concepts, mixed precision, batch sizing, memory limits, reproducibility
+- Debugging a training run and reading learning curves, with example curves
+  and the diagnosis for each shape
+- Transfer learning and fine-tuning
+
+Mini-project: train a small model end to end, then break it three ways and
+diagnose each from the curves alone.
+```
+
+### 5.3 Transformers and LLMs
+
+```
+Now produce 06-transformers-and-llms.md.
+
+Cover:
+- Tokenization, and the failure modes it causes
+- Embeddings
+- Positional information
+- Self-attention and multi-head attention, with a numerical toy example
+  worked through by hand
+- Encoder-only, decoder-only, encoder-decoder
+- Causal masking
+- Pretraining, supervised fine-tuning, instruction tuning, preference
+  optimization, reinforcement learning concepts
+- Context windows, KV cache, batching, streaming, temperature, top-p, top-k,
+  structured outputs
+- Quantization, model size, VRAM, throughput, latency, quality tradeoffs
+- Hallucinations, and why prompting alone does not solve them
+- Tool use, function calling, constrained and structured generation
+- Evaluation: benchmarks, human eval, task-based eval, regression testing
+- Privacy and prompt-injection risk
+
+Show the end-to-end lifecycle of one user prompt through a production LLM
+application, as a sequence diagram.
+
+Include a decision table for local versus API-hosted inference. Mark every
+cost, latency, and capability figure [UNVERIFIED] and give me the method to
+measure it on my own setup instead.
+```
+
+### 5.4 RAG and vector search
+
+```
+Now produce 07-rag-and-vector-search.md.
+
+A full engineering guide, not a tutorial.
+
+Cover:
+- RAG versus fine-tuning versus prompting versus tools, as a decision, with
+  the conditions under which each wins
+- Document ingestion and parsing, including the formats that break parsers
+- Chunking strategies and their tradeoffs
+- Embeddings and similarity metrics
+- Vector indexes and approximate nearest-neighbor search: what the index
+  actually does, and what recall you give up for speed
+- Metadata filters, and why filtering plus ANN is harder than it looks
+- Hybrid search, rerankers, query rewriting, contextual retrieval,
+  parent-child retrieval
+- Prompt construction and citation grounding
+- Failure analysis: bad documents, bad chunks, retrieval misses, irrelevant
+  retrieval, weak ranking, context overload, unsupported generation.
+  For each: the symptom in the output, the diagnostic, the fix.
+- Evaluation: retrieval metrics, answer-quality metrics, human eval, test
+  set construction, regression suites
+- Security, permissions, multi-tenancy, data freshness, deletion,
+  observability
+- A reference architecture: Python, FastAPI, a vector store, an LLM provider
+  or local model
+
+Include an end-to-end Mermaid architecture diagram, a runnable minimal
+Python example, and a troubleshooting decision tree keyed on the symptom I
+would observe.
+```
+
+### 5.5 Agents, tools, and MCP
+
+```
+Now produce 08-agents-tools-and-mcp.md.
+
+Cover:
+- What an agent is and, more usefully, what it is not
+- Workflows versus agents: when deterministic orchestration is better,
+  which is most of the time
+- Tool calling, function calling, schemas, validation, structured outputs
+- Agent loops: plan, act, observe, revise, stop. Especially stop.
+- ReAct-style patterns, conceptually
+- State, memory, checkpoints, human-in-the-loop controls
+- Multi-agent systems: benefits, coordination overhead, failure modes, and
+  the conditions under which a single agent is strictly better
+- MCP: hosts, clients, servers, tools, resources, prompts, permissions,
+  security considerations. Include what building an MCP server involves,
+  not only consuming one.
+- LangChain and LangGraph concepts, separating framework knowledge from the
+  durable engineering concepts underneath
+- Reliability: retries, timeouts, idempotency, rate limits, fallback models,
+  circuit breakers, observability
+- Evaluating tool use and agent trajectories, not just final answers
+- Prompt injection, data exfiltration, excessive tool permissions, safe
+  execution boundaries
+
+Include a reference architecture for an agent using retrieval and tools
+safely, a small Python example with typed tool schemas and validation, and a
+decision table for "simple prompt vs RAG vs workflow vs agent."
+
+Mark all MCP specification details [VERIFY: current MCP spec @ the official
+specification] since this is moving quickly.
+```
+
+### 5.6 Local LLM inference
+
+```
+Now produce 09-local-llm-inference.md.
+
+My actual hardware, so the numbers mean something:
+<describe your machine: chip, unified memory or VRAM, OS>
+
+Structure this file in two parts.
+
+Part 1, specific to my hardware: what model sizes and quantization levels
+actually fit, the memory math shown step by step, what to expect for
+time-to-first-token and tokens per second, and how to measure it myself
+rather than trusting your estimate. Mark every performance figure
+[UNVERIFIED] and give the benchmark command.
+
+Part 2, the general framework, hardware-agnostic:
+- Why local: privacy, cost, offline, control, latency, constraints
+- Model formats: checkpoints, safetensors, GGUF, quantization levels,
+  tokenizer compatibility
+- CPU, GPU, unified memory, RAM, VRAM, bandwidth, context length, and the
+  KV-cache memory formula
+- Runtime tradeoffs: Ollama, LM Studio, llama.cpp, vLLM, containerized
+  serving. Name the conditions where each wins, not a ranking.
+- Batching, continuous batching, concurrency, throughput, time-to-first-
+  token, tokens per second, latency
+- Model selection for chat, coding, embeddings, reranking, vision, tool use
+- Sampling settings and reproducibility
+- API serving, OpenAI-compatible APIs, auth, reverse proxies, rate limits
+- Docker deployment basics
+- Benchmarking methodology and honest cost comparison with hosted APIs
+- Logging, monitoring, prompt and response privacy, secure LAN deployment
+- Troubleshooting: OOM, slow generation, poor context handling, broken chat
+  templates, quality degradation after quantization
+
+Mark which commands are platform-specific.
+This module is high volatility. Be explicit about that.
+```
+
+### 5.7 MLOps and deployment
+
+```
+Now produce 10-mlops-and-deployment.md.
+
+Cover:
+- The ML and LLM application lifecycle from data to production
+- Git, branching, code review, environments, dependency management, linting,
+  type checking, tests, CI/CD
+- Data versioning, model versioning, artifact tracking, experiment tracking,
+  reproducibility, model registries
+- Docker and containers, from the mental model up
+- FastAPI service design: validation, API versioning, auth, rate limiting,
+  retries, queues, background jobs, caching
+- Cloud concepts for AWS, GCP, Azure at a provider-neutral level, with the
+  three-way naming table so I can translate between them
+- Deploying batch pipelines, real-time inference APIs, async workflows
+- Observability: logs, metrics, traces, dashboards, alerts, SLOs and SLIs
+- LLM-specific monitoring: quality, drift, retrieval quality, hallucination
+  rate, tool failures, latency, token and cost usage
+- Evaluation pipelines and regression testing
+- Security, privacy, secrets management, RBAC, tenant isolation, compliance
+  awareness, incident response
+- Scaling, load testing, reliability, rollback, canary releases, feature
+  flags, cost optimization
+
+Include a production reference architecture and a deployment checklist I can
+run down before shipping.
+```
+
+### 5.8 AI system design
+
+```
+Now produce 11-ai-system-design.md.
+
+Cover:
+- Clarifying requirements and defining success metrics
+- Functional and non-functional requirements
+- Capacity estimation: users, requests, tokens, storage, throughput,
+  latency, cost. Show the arithmetic, do not just assert the numbers.
+- Components: clients, APIs, orchestration, queues, databases, object
+  storage, vector stores, model providers, inference servers, caches,
+  observability
+- Patterns for document Q&A, RAG, support chatbot, recommendation, semantic
+  search, batch ML, real-time ML, agentic workflows
+- Scaling, availability, fault tolerance, retries, idempotency, backpressure,
+  circuit breakers, disaster recovery
+- Evaluation and quality measurement
+- Security, permissions, privacy, prompt injection, PII, audit logs,
+  data retention
+- Managed APIs versus self-hosted versus hybrid
+- Cost estimation and optimization
+- A repeatable interview answer framework, as a timed structure
+
+Include four complete walkthroughs:
+1. Enterprise RAG assistant
+2. Personalized AI learning assistant
+3. Local-first private document copilot
+4. Multi-tool support agent with human escalation
+
+Each with requirements, diagram, data flow, bottlenecks, tradeoffs, metrics,
+failure modes, and a concise interview explanation.
+
+This file owns system design questions. 12b does not duplicate them.
+```
+
+---
+
+## 6. Projects
+
+### 6.1 Project 1
+
+```
+Produce the complete contents of projects/project-1-python-data-tool.md.
+
+A beginner-friendly but portfolio-quality Python project, "Learning Log
+Analyzer." It ingests my study notes or CSV logs and produces study-time
+summaries, topic coverage, weak-area flags, spaced-repetition review
+reminders, a CLI, JSON and CSV output, unit tests, a clean README, and an
+optional Streamlit dashboard.
+
+Provide: architecture diagram, folder structure, implementation milestones,
+pyproject.toml with pinned versions, complete runnable MVP code, test cases,
+debugging guide, README template, and stretch goals including embeddings-
+based note search.
+
+The code must run as written. No stubs.
+```
+
+### 6.2 Project 2
+
+```
+Produce the complete contents of projects/project-2-rag-app.md.
+Prerequisite: 07-rag-and-vector-search.md.
+
+A RAG application that is credible rather than a tutorial clone. It must have
+a real constraint that forces a design decision, and an evaluation harness
+from day one rather than bolted on.
+
+Specify:
+- The problem and why RAG is the right tool for it, including what you
+  considered and rejected
+- Architecture diagram and folder structure
+- Ingestion pipeline handling at least one genuinely messy format
+- Chunking and retrieval strategy, with the alternative you did not pick
+  and why
+- An evaluation set of at least 30 question-answer pairs, how to build it,
+  and the retrieval and answer metrics to track
+- A baseline to beat: naive chunk-and-embed, measured
+- FastAPI service with pinned dependencies
+- Failure-mode analysis with the observable symptom for each
+- A build plan in milestones, each ending in something demonstrable
+- README template and honest resume bullets with placeholders for numbers
+  I must measure myself
+
+Do not state performance numbers. Give me the harness that produces them.
+```
+
+### 6.3 Project 3
+
+```
+Produce the complete contents of projects/project-3-agent-evaluation.md.
+Prerequisite: 08-agents-tools-and-mcp.md.
+
+A project that evaluates agent behavior rather than building yet another
+agent. This is deliberately contrarian and makes better interview material
+than a demo agent.
+
+Specify:
+- A small agent with 3 to 5 typed tools, one of which can fail
+- A trajectory evaluation harness: did it call the right tool, in the right
+  order, with valid arguments, and did it stop appropriately
+- Test cases including adversarial ones: prompt injection in tool output,
+  a tool that times out, a tool returning malformed data, an unanswerable
+  request
+- Metrics for tool-call precision, trajectory validity, and cost per task
+- A report the harness generates
+- What this project demonstrates that a demo agent does not
+- Build plan, README, honest resume bullets with measurement placeholders
+```
+
+### 6.4 Capstone (five files, one at a time)
+
+```
+I am building a capstone named CareerAtlas: an evidence-grounded AI learning
+and interview copilot for an aspiring AI Engineer.
+
+The user can upload learning notes, course notes, job descriptions, project
+documents and interview notes; ask questions grounded in those materials;
+receive a learning gap analysis; generate an adaptive weekly study plan;
+practice interview questions; receive rubric-based feedback; track concept
+mastery and spaced repetition; and see citations, including when the system
+lacks evidence to answer.
+
+It must demonstrate: Python, FastAPI, Pydantic, document ingestion, embeddings
+and vector retrieval, RAG with citations, evaluation datasets and automated
+evaluation, Streamlit then React, Docker, logging and tracing, error handling,
+retries, rate limits, caching, auth and user-data isolation, prompt-injection
+defenses, a local-model option, a cloud deployment design, tests, CI/CD,
+observability, cost tracking.
+
+Produce ONE file per turn, in this order. Stop after each and wait.
+
+1. capstone/00-prd.md: product requirements, user stories, MVP versus
+   stretch, non-goals, success metrics with measurement methods
+2. capstone/01-architecture.md: architecture diagram, data schema, folder
+   structure, API endpoint specification, technology choices each with the
+   alternative rejected and why
+3. capstone/02-build-plan.md: a 6-week plan, weekly demos, each week
+   ending in something runnable
+4. capstone/03-evaluation.md: evaluation plan, example test cases,
+   failure-mode and safety analysis, prompt-injection test suite
+5. capstone/04-interview-narrative.md: interview-ready explanation, system
+   design walkthrough for an interviewer, README, and resume bullets written
+   honestly with explicit placeholders for measurements I must produce
+
+Do not claim performance figures. Label every placeholder requiring my own
+testing.
+```
+
+---
+
+## 7. Trackers
+
+```
+Produce tracker/weekly-plan.md and tracker/progress-log.md. One at a time.
+
+weekly-plan.md derives from the 24-week plan in 00-north-star-roadmap.md.
+It does NOT define its own schedule.
+- A reusable weekly template: learning, implementation, review, interview
+  practice
+- Time-budget variants for 5, 10 and 15 hours per week, as scope rules
+  applied to the canonical plan, not as separate schedules
+- A weekly retrospective section
+- Every week produces a visible artifact: code, test, explanation, diagram,
+  project update, or mock answer
+
+progress-log.md is the single source of truth for review scheduling.
+- A concept-mastery tracker with statuses: Not Started, Learning, Practiced,
+  Can Explain, Can Build, Interview Ready
+- Evidence fields per concept: GitHub link, project evidence, notes, quiz
+  score, mock feedback, next review date
+- Spaced repetition at 1, 3, 7, 14, 30, 60 days, with an explicit failure
+  rule: a failed review resets that concept to the 1-day interval; two
+  consecutive passes at 60 days retires it to quarterly
+- An Anki-importable CSV export block, with the column spec, because a
+  Markdown table cannot schedule anything. The Markdown file is the audit
+  trail; Anki does the scheduling.
+- A STAR-format interview story bank
+```
+
+---
+
+## 8. Interview preparation (three files)
+
+These own only what no module owns. They index module questions rather than
+restating them.
+
+```
+Produce 12a-interview-framework.md.
+
+- A skills matrix: foundational, intermediate, advanced expectations for
+  AI Engineer, Generative AI Engineer, and ML Engineer roles, with the
+  differences between them
+- The repeatable answer framework: how to structure a technical answer under
+  time pressure, the 60-second and 3-to-5-minute forms, and how to signal
+  depth without rambling
+- How to handle not knowing something, which is tested more than people think
+- Mock interview schedules for 4, 8 and 12 weeks
+- The final 48-hour rapid revision checklist
+- An index table: topic, which module owns its questions, question count
+```
+
+```
+Produce 12b-interview-question-bank.md.
+
+This file contains ONLY cross-cutting questions that span two or more
+modules, plus anything the modules do not own. Do not restate module
+questions; reference them by module and number.
+
+Include:
+- 20 questions that span modules, for example "walk me from a user typing a
+  question to a cited answer, naming every component and failure point"
+- 15 questions on tradeoff judgment with no single right answer, and what a
+  strong answer demonstrates
+- 10 "you have a production problem" diagnostic scenarios
+- For each: strong answer outline, weak answer and why it is weak, two
+  follow-ups
+
+System design prompts live in 11-ai-system-design.md. Reference, do not copy.
+```
+
+```
+Produce 12c-interview-behavioral-and-projects.md.
+
+- 20 behavioral questions in STAR format, with what the interviewer is
+  actually testing for in each
+- A project-story framework: architecture, tradeoffs, failures, results,
+  and specifically what I personally did
+- How to describe work done with heavy AI assistance honestly and without
+  undermining myself
+- How to talk about a project that did not work
+- How to describe a career transition without apologizing for it
+
+Do not fabricate experience. Every template has placeholders I fill from my
+own work.
+```
+
+---
+
+## 9. Practice pack generator
+
+Context-free. Run in any chat.
+
+```
+Build a standalone active-recall practice pack named
+quizzes/<module>-practice.md from the module below.
+
+If the module is not in this conversation, ask me to paste it before
+generating anything.
+
+<paste the module, or name the file if it is already in context>
+
+Include:
+- 40 flashcards, each as:
+  **Q:** question
+  <details><summary>Answer</summary>
+  answer
+  </details>
+- 20 multiple-choice questions, each explaining why every option is right
+  or wrong, not just the correct one
+- 15 short-answer questions
+- 10 debugging scenarios based on realistic mistakes, each giving the
+  symptom and asking for the diagnosis
+- 5 interview-style questions
+- 3 implementation exercises
+- A scoring guide mapping results to: Review Fundamentals, Practice More,
+  Can Explain, Can Build, Interview Ready
+- An Anki CSV export block for the flashcards
+
+Do not write questions that copy definitions back. Force me to explain
+tradeoffs, identify failure modes, interpret results, and make engineering
+decisions. A good question has a plausible wrong answer.
+```
+
+---
+
+## 10. README
+
+```
+Produce the complete contents of README.md for "AI Engineer Learning OS."
+
+Cover: the purpose, the roadmap and how to navigate it, the contents of every
+module, the recommended study workflow, how the project path works, how
+progress and spaced repetition are tracked, how to render Mermaid diagrams,
+how to use this repository honestly as evidence of learning, and a
+contribution section for my future self including the content-refresh policy.
+
+Clean table of contents, a Mermaid roadmap overview, checklists, plain
+professional language.
+
+Do not state that I have completed projects or achieved metrics. Mark future
+targets clearly as targets.
+```
+
+---
+
+## 11. Quality control
+
+Run before saving anything you will study from more than once.
+
+```
+Act as a rigorous technical editor and curriculum reviewer. Review the
+document you just generated.
+
+Check for:
+- Missing prerequisites or unexplained jargon
+- Incorrect technical claims
+- Oversimplifications that would hurt me in an interview
+- Gaps between theory and real production practice
+- Missing failure modes, tradeoffs, evaluation, security or cost
+  considerations where relevant
+- Mermaid that will not render on GitHub
+- Code that is incomplete, unpinned, or unlikely to run
+- Any benchmark, cost, latency or capability figure stated as fact rather
+  than marked [UNVERIFIED]
+- Any version-sensitive claim missing a [VERIFY] marker
+- Repetition that should be condensed
+- Missing practice tasks or weak answer explanations
+- Sections that are present but too thin to learn from, which matters more
+  than sections that are missing
+
+Return:
+1. A concise issue list, prioritized by impact on my learning
+2. A corrected replacement version of only the affected sections
+3. A checklist confirming what the document now covers
+4. A one-line honest verdict: is this good enough to study from, or should
+   it be regenerated
+
+Do not invent citations, achievements, metrics, or project results.
+```
+
+---
+
+## Generation order
+
+Revised toward generating less and studying sooner. The original order front-loads roughly 1,500 pages before your first study session.
+
+**Stage 1, generate now and actually use it**
+
+1. `00-north-star-roadmap.md`
+2. `01a-python-core.md`
+3. `tracker/progress-log.md`
+
+Then stop and study for two to three weeks.
+
+**Stage 2, when stage 1 is genuinely consumed**
+
+4. `01b-python-patterns-and-oop.md`
+5. `02-software-engineering-foundations.md`
+6. `projects/project-1-python-data-tool.md`
+7. Practice packs for whatever you finished
+
+**Stage 3, the part you actually care about**
+
+8. `07-rag-and-vector-search.md`
+9. `06-transformers-and-llms.md`
+10. `09-local-llm-inference.md`
+11. `projects/project-2-rag-app.md`
+
+**Stage 4, filling in**
+
+12. `03-data-and-sql.md`, `04-machine-learning.md`, `05-deep-learning.md`
+13. `08-agents-tools-and-mcp.md`, `10-mlops-and-deployment.md`, `11-ai-system-design.md`
+
+**Stage 5, when interviews are near**
+
+14. `12a`, `12b`, `12c`
+15. Capstone files
+16. `13-project-portfolio.md`, `14-concept-map.md`, `README.md`
+
+Generate stage N+1 only when stage N has produced code in your repository. A module you have not studied is not an asset.

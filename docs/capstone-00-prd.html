@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capstone 1 · Requirements · AI Engineer Learning OS</title>
+<meta name="description" content="CareerAtlas: users, scope, user stories, success criteria.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html" class="active">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="careeratlas-product-requirements">CareerAtlas: Product Requirements<a class="anchor" href="#careeratlas-product-requirements" aria-label="Link to this section">#</a></h1>
+<p><strong>Capstone 1 of 5</strong> · Last reviewed: 2026-09-18</p>
+<p>An evidence-grounded AI learning and interview copilot. It answers questions from your own study materials, finds gaps between what you know and what a role requires, and helps you practise explaining things.</p>
+<hr />
+<h2 id="why-this-project">Why this project<a class="anchor" href="#why-this-project" aria-label="Link to this section">#</a></h2>
+<p><strong>It is the only project in this repository whose user is definitely real.</strong> You are the user, you are using it during the thing it supports, and that means you will find the bugs a demo never surfaces and you will know immediately when an answer is wrong.</p>
+<p><strong>It combines every module</strong>, which is the point of a capstone: retrieval from <code>07</code>, structured output and context budgeting from <code>06</code>, evaluation discipline from <code>04</code> and <code>07</code>, deployment and observability from <code>10</code>, and optionally local inference from <code>09</code>.</p>
+<p><strong>It has a built-in honesty test.</strong> A learning tool that overstates your mastery is worse than useless, and designing against that is a genuine product problem with a technical answer.</p>
+<h3 id="what-makes-it-credible-rather-than-a-portfolio-exercise">What makes it credible rather than a portfolio exercise<a class="anchor" href="#what-makes-it-credible-rather-than-a-portfolio-exercise" aria-label="Link to this section">#</a></h3>
+<p>A reviewer's default assumption is that a capstone is a tutorial with extra steps. Three things defeat that:</p>
+<ol>
+<li><strong>Evidence-grounded by construction.</strong> Every answer cites the note it came from, or refuses. An uncited claim is a bug, not a degradation.</li>
+<li><strong>Evaluation before features</strong>, as in project 2, with a measured baseline and a results table.</li>
+<li><strong>It is used.</strong> Screenshots of your own real study log, real gaps it found, real questions it got wrong.</li>
+</ol>
+<hr />
+<h2 id="users-and-scope">Users and scope<a class="anchor" href="#users-and-scope" aria-label="Link to this section">#</a></h2>
+<p><strong>Primary user: you.</strong> A single-user local-first tool. Multi-user is a stretch goal and mostly exists to force the permission and isolation design.</p>
+<p><strong>Secondary consideration: someone else in the same position.</strong> Designing for a second user prevents the shortcuts that make a tool unshareable, such as hardcoded paths and assumptions about your own file layout.</p>
+<h3 id="in-scope-for-the-mvp">In scope for the MVP<a class="anchor" href="#in-scope-for-the-mvp" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ingest notes, PDFs, job descriptions, project docs</td>
+<td>The corpus</td>
+</tr>
+<tr>
+<td>Answer questions grounded in them, with citations or refusal</td>
+<td>The core</td>
+</tr>
+<tr>
+<td>Gap analysis: what a job description requires that your notes do not cover</td>
+<td>The differentiator</td>
+</tr>
+<tr>
+<td>Concept mastery tracking, fed by review outcomes</td>
+<td>Makes it a learning tool rather than a search box</td>
+</tr>
+<tr>
+<td>Spaced-repetition scheduling</td>
+<td>The thing that produces retention</td>
+</tr>
+<tr>
+<td>Interview practice: generate questions, grade answers against a rubric</td>
+<td>The other differentiator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="explicitly-out-of-scope">Explicitly out of scope<a class="anchor" href="#explicitly-out-of-scope" aria-label="Link to this section">#</a></h3>
+<p>State this in your README; it is a judgment signal.</p>
+<ul>
+<li><strong>No content generation for the corpus.</strong> It works with your notes, it does not write them. A tool that generates its own knowledge base and then answers from it is measuring nothing.</li>
+<li><strong>No model fine-tuning.</strong> Module <code>06</code> section 6: this is a facts problem, so it is RAG.</li>
+<li><strong>No mobile app.</strong> Web or CLI.</li>
+<li><strong>No collaborative features.</strong> Multi-user is about isolation, not collaboration.</li>
+<li><strong>No calendar or notification integration.</strong> The scheduler outputs dates; something else can act on them.</li>
+</ul>
+<h3 id="non-goals-worth-naming">Non-goals worth naming<a class="anchor" href="#non-goals-worth-naming" aria-label="Link to this section">#</a></h3>
+<p><strong>It does not decide what you should learn.</strong> It surfaces gaps and schedules reviews; you decide. A system that prescribes a curriculum from an LLM's opinion is the thing this repository's roadmap already does better, deliberately and reviewably.</p>
+<p><strong>It does not grade you kindly.</strong> A learning tool biased toward encouragement produces false confidence, which is the expensive failure. The rubric is explicit and the grading is calibrated against your own judgment.</p>
+<hr />
+<h2 id="user-stories">User stories<a class="anchor" href="#user-stories" aria-label="Link to this section">#</a></h2>
+<p>Written as behaviors with acceptance criteria, because that is what makes them testable.</p>
+<h3 id="ingestion">Ingestion<a class="anchor" href="#ingestion" aria-label="Link to this section">#</a></h3>
+<p><strong>U1.</strong> <em>As a learner, I add a folder of notes and the system indexes them.</em>
+- Accepts <code>.md</code>, <code>.txt</code>, <code>.pdf</code>, <code>.docx</code>
+- Reports per-file: success, chunk count, or the specific parse failure
+- Re-running is incremental: unchanged files by content hash are skipped
+- A file that fails to parse does not stop the run and appears in a failures list</p>
+<p><strong>U2.</strong> <em>As a learner, I add a job description and it is treated differently from study material.</em>
+- Tagged as a requirements document, not a knowledge document
+- Not retrieved when answering study questions
+- Used only for gap analysis</p>
+<h3 id="grounded-answering">Grounded answering<a class="anchor" href="#grounded-answering" aria-label="Link to this section">#</a></h3>
+<p><strong>U3.</strong> <em>As a learner, I ask a question and get an answer citing my own notes.</em>
+- Every factual claim carries a <code>[S1]</code> style citation
+- Citations resolve to a viewable chunk with its source file and heading path
+- Sources shown with retrieval scores, so I can see how confident the retrieval was</p>
+<p><strong>U4.</strong> <em>As a learner, I ask something my notes do not cover and the system says so.</em>
+- Refuses with fixed wording when all retrieval scores are below threshold
+- The refusal names what it searched, so I know it is a coverage gap and not a bug
+- Refusals are logged, and the log is a reading list of what to study next</p>
+<p><strong>U5.</strong> <em>As a learner, my notes contradict each other and the system tells me.</em>
+- Surfaces both sources rather than silently choosing
+- This is common in study notes written months apart</p>
+<h3 id="gap-analysis">Gap analysis<a class="anchor" href="#gap-analysis" aria-label="Link to this section">#</a></h3>
+<p><strong>U6.</strong> <em>As a learner, I compare a job description against my notes and see what is missing.</em>
+- Extracts required concepts from the job description
+- For each, reports whether the corpus covers it and at what depth, by chunk count and retrieval score
+- Output is a ranked list of gaps, not prose
+- <strong>Every gap claim is itself evidence-backed</strong>: "no chunk above 0.6 for this concept", not an unexplained assertion</p>
+<h3 id="mastery-and-review">Mastery and review<a class="anchor" href="#mastery-and-review" aria-label="Link to this section">#</a></h3>
+<p><strong>U7.</strong> <em>As a learner, my concept mastery is tracked from evidence, not self-report.</em>
+- Statuses from <code>tracker/progress-log.md</code>: Not Started through Interview Ready
+- Advancement requires evidence: a graded answer, a completed exercise, a link
+- <strong>I can see why a concept has its current status</strong></p>
+<p><strong>U8.</strong> <em>As a learner, I see what is due for review today.</em>
+- Intervals 1, 3, 7, 14, 30, 60 days
+- A failed review resets to 1 day, not back one step
+- The list is capped and prioritized, because forty due items produces avoidance</p>
+<h3 id="interview-practice">Interview practice<a class="anchor" href="#interview-practice" aria-label="Link to this section">#</a></h3>
+<p><strong>U9.</strong> <em>As a learner, I practise a question and get rubric-based feedback.</em>
+- Questions generated from concepts I have marked at least Practiced
+- Grading against an explicit rubric with named criteria
+- Feedback names what was missing, with a citation to my own notes
+- A grade updates the mastery record and the review schedule</p>
+<p><strong>U10.</strong> <em>As a learner, I can see whether the grading is trustworthy.</em>
+- I can disagree with a grade and record my disagreement
+- Grading consistency is measured: the same answer graded twice should agree
+- <strong>This is the honesty mechanism.</strong> A grader nobody checks is a random number generator with good manners.</p>
+<hr />
+<h2 id="success-criteria">Success criteria<a class="anchor" href="#success-criteria" aria-label="Link to this section">#</a></h2>
+<p>Measurable, because <code>11</code> section 2 says a design without them cannot be evaluated.</p>
+<h3 id="must-have-for-the-mvp-to-be-done">Must have for the MVP to be done<a class="anchor" href="#must-have-for-the-mvp-to-be-done" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Target</th>
+<th>Measured by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Citation validity</td>
+<td>100% of cited ids exist in the retrieved set</td>
+<td>Automated validator</td>
+</tr>
+<tr>
+<td>Refusal correctness</td>
+<td>≥90% on the unanswerable eval slice</td>
+<td>Eval set</td>
+</tr>
+<tr>
+<td>Retrieval recall@5</td>
+<td>Beats the naive baseline by a measured margin</td>
+<td>Eval set</td>
+</tr>
+<tr>
+<td>Ingestion visibility</td>
+<td>100% of parse failures reported</td>
+<td>Health check</td>
+</tr>
+<tr>
+<td>Review scheduling</td>
+<td>Correct intervals including the reset rule</td>
+<td>Unit tests</td>
+</tr>
+<tr>
+<td>p95 latency</td>
+<td>Under 5 seconds for a grounded answer</td>
+<td>Instrumentation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="should-have">Should have<a class="anchor" href="#should-have" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grading consistency</td>
+<td>Same answer, two runs, agree within one rubric point ≥85% of the time</td>
+</tr>
+<tr>
+<td>Gap analysis precision</td>
+<td>≥80% of surfaced gaps are real, judged by you</td>
+</tr>
+<tr>
+<td>Cost per interaction</td>
+<td>Under a stated budget</td>
+</tr>
+</tbody>
+</table>
+<h3 id="explicitly-not-a-success-criterion">Explicitly not a success criterion<a class="anchor" href="#explicitly-not-a-success-criterion" aria-label="Link to this section">#</a></h3>
+<p><strong>Engagement time.</strong> A learning tool that maximizes time spent is optimizing against the user. Time spent is a cost, not a benefit, and naming this is a product-judgment signal.</p>
+<p><strong>Number of questions answered.</strong> Same reason.</p>
+<h3 id="how-you-will-know-it-works">How you will know it works<a class="anchor" href="#how-you-will-know-it-works" aria-label="Link to this section">#</a></h3>
+<p>An evaluation set of at least 50 questions over your own corpus, built before the retriever, with at least 12 unanswerable, plus a separate set of 20 graded answers with your own rubric scores to calibrate the grader against.</p>
+<hr />
+<h2 id="mvp-versus-stretch">MVP versus stretch<a class="anchor" href="#mvp-versus-stretch" aria-label="Link to this section">#</a></h2>
+<p><strong>MVP, six weeks:</strong> U1, U3, U4, U7, U8. Ingest, answer with citations or refuse, track mastery, schedule reviews. A Streamlit interface.</p>
+<p><strong>Stretch, in value order:</strong></p>
+<ol>
+<li><strong>U9 and U10</strong>, interview practice with measured grading consistency. The most valuable stretch because it is the hardest to do honestly.</li>
+<li><strong>U6</strong>, gap analysis. Genuinely useful and technically interesting, because "is this concept covered" is a retrieval question with no ground truth.</li>
+<li><strong>U5</strong>, conflict detection.</li>
+<li><strong>U2</strong>, job description handling as a separate document type.</li>
+<li>Local model option, per <code>09</code>. Turns a privacy property into a real memory-budget constraint.</li>
+<li>React frontend.</li>
+<li>Multi-user, which is really an isolation exercise.</li>
+</ol>
+<p><strong>Cut ruthlessly.</strong> A finished MVP with three stretch goals beats an unfinished system with ten half-built features, and <code>13-project-portfolio.md</code> says why.</p>
+<hr />
+<h2 id="risks">Risks<a class="anchor" href="#risks" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Your notes are too sparse to retrieve from</td>
+<td>The system has nothing to ground on</td>
+<td>Measure corpus coverage first; if it is thin, say so rather than papering over it</td>
+</tr>
+<tr>
+<td>Grading is inconsistent</td>
+<td>The feedback is noise</td>
+<td>Measure consistency explicitly; a fixed rubric; temperature 0</td>
+</tr>
+<tr>
+<td>Mastery tracking overstates</td>
+<td>False confidence, the expensive failure</td>
+<td>Evidence-required advancement; failed reviews reset</td>
+</tr>
+<tr>
+<td>Gap analysis hallucinates requirements</td>
+<td>Studying the wrong things</td>
+<td>Every gap claim backed by a retrieval score</td>
+</tr>
+<tr>
+<td>Scope grows</td>
+<td>Never finished</td>
+<td>The MVP list above, and nothing else until it works</td>
+</tr>
+<tr>
+<td>You stop using it</td>
+<td>No real feedback, so it stays a demo</td>
+<td>Build the MVP small enough to be usable in week 3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The last one is the real risk.</strong> A capstone you do not use is a capstone you cannot talk about convincingly.</p>
+<hr />
+<h2 id="what-this-document-commits-to">What this document commits to<a class="anchor" href="#what-this-document-commits-to" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>The MVP is five user stories, not eleven</li>
+<li>Evaluation exists before the retriever</li>
+<li>Every claim the system makes is backed by evidence it can show</li>
+<li>The system is honest about what it does not know, and that honesty is measured</li>
+<li>Engagement is not a success metric</li>
+</ul>
+<p><strong>Next:</strong> <code>capstone/01-architecture.md</code>.</p>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<p>None. This is a requirements document; the only thing that should change it is your own judgment about scope, and if it does, update it here rather than drifting.</p>
+<p><strong>Next review due:</strong> at the end of week 3 of the build, when you will know whether the MVP was correctly scoped.</p>
+      <nav class="pager">
+<a class="pager-prev" href="project-3.html"><span>Previous</span>Project 3 · Agent Evaluation</a>
+<a class="pager-next" href="capstone-01-architecture.html"><span>Next</span>Capstone 2 · Architecture</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-project">Why this project</a></li>
+<li class="toc-l3"><a href="#what-makes-it-credible-rather-than-a-portfolio-exercise">What makes it credible rather than a portfolio exercise</a></li>
+<li class="toc-l2"><a href="#users-and-scope">Users and scope</a></li>
+<li class="toc-l3"><a href="#in-scope-for-the-mvp">In scope for the MVP</a></li>
+<li class="toc-l3"><a href="#explicitly-out-of-scope">Explicitly out of scope</a></li>
+<li class="toc-l3"><a href="#non-goals-worth-naming">Non-goals worth naming</a></li>
+<li class="toc-l2"><a href="#user-stories">User stories</a></li>
+<li class="toc-l3"><a href="#ingestion">Ingestion</a></li>
+<li class="toc-l3"><a href="#grounded-answering">Grounded answering</a></li>
+<li class="toc-l3"><a href="#gap-analysis">Gap analysis</a></li>
+<li class="toc-l3"><a href="#mastery-and-review">Mastery and review</a></li>
+<li class="toc-l3"><a href="#interview-practice">Interview practice</a></li>
+<li class="toc-l2"><a href="#success-criteria">Success criteria</a></li>
+<li class="toc-l3"><a href="#must-have-for-the-mvp-to-be-done">Must have for the MVP to be done</a></li>
+<li class="toc-l3"><a href="#should-have">Should have</a></li>
+<li class="toc-l3"><a href="#explicitly-not-a-success-criterion">Explicitly not a success criterion</a></li>
+<li class="toc-l3"><a href="#how-you-will-know-it-works">How you will know it works</a></li>
+<li class="toc-l2"><a href="#mvp-versus-stretch">MVP versus stretch</a></li>
+<li class="toc-l2"><a href="#risks">Risks</a></li>
+<li class="toc-l2"><a href="#what-this-document-commits-to">What this document commits to</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

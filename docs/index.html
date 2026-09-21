@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview · AI Engineer Learning OS</title>
+<meta name="description" content="What this is, how to study, and the conventions used throughout.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html" class="active">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc"><div class="hero">
+  <h1>AI Engineer Learning OS</h1>
+  <p class="tagline">A structured, project-based curriculum for AI engineering</p>
+  <p class="hero-meta">13 modules · 4 projects · ~174,000 words · every code example executed</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="00-roadmap.html">Start with the roadmap</a>
+    <a class="btn" href="01a-python-core.html">Jump to Python Core</a>
+  </div>
+</div>
+<section class="cards"><h2 class="cards-heading">Start here</h2><div class="card-grid"><a class="card" href="00-roadmap.html"><h3>00 · Roadmap</h3><p>The 24-week plan, two orderings, compression rules. The only schedule.</p></a></div><h2 class="cards-heading">Foundations</h2><div class="card-grid"><a class="card" href="01a-python-core.html"><h3>01a · Python Core</h3><p>Execution model, objects, collections, control flow, functions, exceptions, files.</p></a><a class="card" href="01b-python-patterns.html"><h3>01b · Python Patterns &amp; OOP</h3><p>OOP, generators, decorators, typing, pytest, and the applied patterns for LLM code.</p></a><a class="card" href="01c-python-dsa.html"><h3>01c · Interview DSA</h3><p>The algorithm patterns that appear in live coding rounds.</p></a><a class="card" href="02-software-engineering.html"><h3>02 · Software Engineering</h3><p>Git, CI, testing strategy, code review, debugging, HTTP, concurrency.</p></a><a class="card" href="03-data-and-sql.html"><h3>03 · Data, SQL &amp; Statistics</h3><p>SQL against a real schema, joins, aggregation traps, indexes, statistics.</p></a></div><h2 class="cards-heading">Machine learning</h2><div class="card-grid"><a class="card" href="04-machine-learning.html"><h3>04 · Classical ML</h3><p>Leakage, metrics, thresholds, calibration, pipelines, drift.</p></a><a class="card" href="05-deep-learning.html"><h3>05 · Deep Learning</h3><p>Backprop by hand, optimizers, vanishing gradients, PyTorch, diagnosing training.</p></a></div><h2 class="cards-heading">AI engineering</h2><div class="card-grid"><a class="card" href="06-transformers.html"><h3>06 · Transformers &amp; LLMs</h3><p>Attention worked by hand, KV cache, sampling, quantization, hallucination.</p></a><a class="card" href="07-rag.html"><h3>07 · RAG &amp; Vector Search</h3><p>Chunking, hybrid retrieval, reranking, evaluation, failure taxonomy.</p></a><a class="card" href="08-agents.html"><h3>08 · Agents, Tools &amp; MCP</h3><p>Workflow versus agent, tool schemas, stopping, MCP, trajectory evaluation.</p></a><a class="card" href="09-local-inference.html"><h3>09 · Local Inference</h3><p>Memory budgets, GGUF quantization, runtimes, serving, benchmarking.</p></a></div><h2 class="cards-heading">Production</h2><div class="card-grid"><a class="card" href="10-mlops.html"><h3>10 · MLOps &amp; Deployment</h3><p>Versioning, containers, observability, LLM monitoring, rollback, cost.</p></a><a class="card" href="11-system-design.html"><h3>11 · AI System Design</h3><p>The answer framework, capacity arithmetic, four complete walkthroughs.</p></a></div><h2 class="cards-heading">Interview prep</h2><div class="card-grid"><a class="card" href="12a-interview-framework.html"><h3>12a · Interview Framework</h3><p>Skills matrix, answer structure, mock schedules, the 48-hour checklist.</p></a><a class="card" href="12b-question-bank.html"><h3>12b · Question Bank</h3><p>45 cross-cutting questions spanning modules.</p></a><a class="card" href="12c-behavioral.html"><h3>12c · Behavioral &amp; Projects</h3><p>STAR, the story bank, project deep dives, the transition narrative.</p></a><a class="card" href="13-portfolio.html"><h3>13 · Portfolio Strategy</h3><p>What makes a project credible, and a rubric to score yours.</p></a><a class="card" href="14-concept-map.html"><h3>14 · Concept Map</h3><p>How the modules connect. The pre-interview skim file.</p></a></div><h2 class="cards-heading">Projects</h2><div class="card-grid"><a class="card" href="project-1.html"><h3>Project 1 · Learning Log Analyzer</h3><p>Clean engineering, no AI. Complete tested MVP source included.</p></a><a class="card" href="project-2.html"><h3>Project 2 · Grounded Answers</h3><p>A RAG system, evaluation harness first.</p></a><a class="card" href="project-3.html"><h3>Project 3 · Agent Evaluation</h3><p>A trajectory evaluation harness, with adversarial cases.</p></a></div><h2 class="cards-heading">Capstone</h2><div class="card-grid"><a class="card" href="capstone-00-prd.html"><h3>Capstone 1 · Requirements</h3><p>CareerAtlas: users, scope, user stories, success criteria.</p></a><a class="card" href="capstone-01-architecture.html"><h3>Capstone 2 · Architecture</h3><p>Technology decisions with the alternative rejected, schema, API, memory budget.</p></a><a class="card" href="capstone-02-build-plan.html"><h3>Capstone 3 · Build Plan</h3><p>Six weeks, each ending in a demo.</p></a><a class="card" href="capstone-03-evaluation.html"><h3>Capstone 4 · Evaluation &amp; Safety</h3><p>Four things to evaluate, and the safety analysis.</p></a><a class="card" href="capstone-04-narrative.html"><h3>Capstone 5 · Interview Narrative</h3><p>How to talk about it, the README, honest resume bullets.</p></a></div><h2 class="cards-heading">Trackers</h2><div class="card-grid"><a class="card" href="tracker-progress-log.html"><h3>Progress Log</h3><p>Mastery status, spaced repetition, mock scores, STAR bank.</p></a><a class="card" href="tracker-weekly-plan.html"><h3>Weekly Plan</h3><p>The weekly working template, derived from the roadmap.</p></a><a class="card" href="quiz-01a-python-core.html"><h3>01a Practice Pack</h3><p>Flashcards, MCQs, debugging scenarios, Anki export.</p></a></div><h2 class="cards-heading">Meta</h2><div class="card-grid"><a class="card" href="meta-review.html"><h3>Prompt Library Review</h3><p>The critique of the original prompt library this curriculum was built from.</p></a><a class="card" href="meta-prompts-v2.html"><h3>Prompt Library v2</h3><p>The corrected prompt library used to generate these modules.</p></a></div></section>
+<hr class="divider">
+
+      <h1 id="ai-engineer-learning-os">AI Engineer Learning OS<a class="anchor" href="#ai-engineer-learning-os" aria-label="Link to this section">#</a></h1>
+<p>A structured, project-based learning and interview-preparation system for AI engineering. Twelve technical modules, four projects, and the trackers and practice material that make them stick.</p>
+<p><strong>Status:</strong> generated and not yet studied. See <a href="#how-to-use-this-honestly">How to use this honestly</a>.</p>
+<hr />
+<h2 id="contents">Contents<a class="anchor" href="#contents" aria-label="Link to this section">#</a></h2>
+<ol>
+<li><a href="#what-this-is">What this is</a></li>
+<li><a href="#start-here">Start here</a></li>
+<li><a href="#the-map">The map</a></li>
+<li><a href="#every-file">Every file</a></li>
+<li><a href="#how-to-study">How to study</a></li>
+<li><a href="#the-projects">The projects</a></li>
+<li><a href="#tracking-progress">Tracking progress</a></li>
+<li><a href="#conventions-used-throughout">Conventions used throughout</a></li>
+<li><a href="#reading-it-as-a-website">Reading it as a website</a></li>
+<li><a href="#rendering-the-diagrams">Rendering the diagrams</a></li>
+<li><a href="#how-to-use-this-honestly">How to use this honestly</a></li>
+<li><a href="#maintenance">Maintenance</a></li>
+</ol>
+<hr />
+<h2 id="what-this-is">What this is<a class="anchor" href="#what-this-is" aria-label="Link to this section">#</a></h2>
+<p>A curriculum that takes you from rusty Python to being able to build, evaluate and defend AI systems in an interview. It assumes no prior AI knowledge and it does not skip fundamentals.</p>
+<p><strong>What makes it different from a reading list:</strong></p>
+<p><strong>Every module ends in something you can do</strong>, not something you have read. The mastery checklists are observable tasks.</p>
+<p><strong>Every claim that can be checked was checked.</strong> Code in these modules was executed; numbers were computed rather than recalled. Where a figure could not be verified it is marked <code>[UNVERIFIED]</code> with the method to measure it yourself, and where something will go stale it is marked <code>[VERIFY: what to check @ where]</code>.</p>
+<p><strong>Evaluation comes before building</strong>, everywhere. Projects 2, 3 and the capstone all build their measurement harness before the thing being measured. This is the single most transferable discipline here.</p>
+<p><strong>The failures are documented.</strong> Modules record what breaks and how you diagnose it, not only how things work.</p>
+<hr />
+<h2 id="start-here">Start here<a class="anchor" href="#start-here" aria-label="Link to this section">#</a></h2>
+<p><strong>If you are starting from the beginning:</strong></p>
+<ol>
+<li>Read <a href="00-roadmap.html"><code>00-north-star-roadmap.md</code></a>. It has the 24-week plan and two orderings.</li>
+<li>Set up <a href="tracker-progress-log.html"><code>tracker/progress-log.md</code></a>.</li>
+<li>Begin <a href="01a-python-core.html"><code>01a-python-core.md</code></a>.</li>
+</ol>
+<p><strong>Do not read everything first.</strong> The roadmap's generation order is also a study order, and a module you have not worked through is not an asset.</p>
+<p><strong>If you are preparing for an interview in under two weeks:</strong> <a href="12a-interview-framework.html"><code>12a-interview-framework.md</code></a> section 7, then <a href="14-concept-map.html"><code>14-concept-map.md</code></a> section 5. Nothing else.</p>
+<hr />
+<h2 id="the-map">The map<a class="anchor" href="#the-map" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    P1[&quot;01a-c Python foundations&quot;]
+    P2[&quot;02 Software engineering&quot;]
+    P3[&quot;03 Data, SQL, statistics&quot;]
+    P4[&quot;04 Classical ML&quot;]
+    P5[&quot;05 Deep learning&quot;]
+    P6[&quot;06 Transformers and LLMs&quot;]
+    P7[&quot;07 RAG and retrieval&quot;]
+    P8[&quot;08 Agents, tools, MCP&quot;]
+    P9[&quot;09 Local inference&quot;]
+    P10[&quot;10 MLOps and deployment&quot;]
+    P11[&quot;11 AI system design&quot;]
+    P12[&quot;12a-c Interview preparation&quot;]
+
+    P1 --&gt; P2
+    P1 --&gt; P3
+    P2 --&gt; P10
+    P3 --&gt; P4
+    P4 --&gt; P5
+    P5 --&gt; P6
+    P6 --&gt; P7
+    P6 --&gt; P8
+    P6 --&gt; P9
+    P7 --&gt; P8
+    P2 --&gt; P9
+    P7 --&gt; P10
+    P8 --&gt; P10
+    P9 --&gt; P10
+    P10 --&gt; P11
+    P11 --&gt; P12
+
+    P1 -.-&gt;|&quot;fast path, defers P4 and P5&quot;| P7
+</pre></div>
+<p>The dotted edge is the LLM-first fast path. It reaches the material you probably care about sooner, at a cost the roadmap lists explicitly.</p>
+<hr />
+<h2 id="every-file">Every file<a class="anchor" href="#every-file" aria-label="Link to this section">#</a></h2>
+<h3 id="modules">Modules<a class="anchor" href="#modules" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="00-roadmap.html"><code>00-north-star-roadmap.md</code></a></td>
+<td>The 24-week plan, two orderings, compression rules. <strong>The only schedule.</strong></td>
+</tr>
+<tr>
+<td><a href="01a-python-core.html"><code>01a-python-core.md</code></a></td>
+<td>Execution model, objects, collections, control flow, functions, exceptions, files</td>
+</tr>
+<tr>
+<td><a href="01b-python-patterns.html"><code>01b-python-patterns-and-oop.md</code></a></td>
+<td>OOP, generators, decorators, typing, pytest, and the applied patterns for LLM code</td>
+</tr>
+<tr>
+<td><a href="01c-python-dsa.html"><code>01c-python-interview-dsa.md</code></a></td>
+<td>Interview data structures and algorithms</td>
+</tr>
+<tr>
+<td><a href="02-software-engineering.html"><code>02-software-engineering-foundations.md</code></a></td>
+<td>Git, CI, testing strategy, code review, debugging, HTTP, concurrency</td>
+</tr>
+<tr>
+<td><a href="03-data-and-sql.html"><code>03-data-and-sql.md</code></a></td>
+<td>SQL against a real schema, joins, aggregation traps, indexes, statistics, experimentation</td>
+</tr>
+<tr>
+<td><a href="04-machine-learning.html"><code>04-machine-learning.md</code></a></td>
+<td>Leakage, metrics, thresholds, calibration, pipelines, drift</td>
+</tr>
+<tr>
+<td><a href="05-deep-learning.html"><code>05-deep-learning.md</code></a></td>
+<td>Backprop by hand, optimizers, vanishing gradients, PyTorch, diagnosing training</td>
+</tr>
+<tr>
+<td><a href="06-transformers.html"><code>06-transformers-and-llms.md</code></a></td>
+<td>Attention worked by hand, KV cache, sampling, quantization, hallucination, injection</td>
+</tr>
+<tr>
+<td><a href="07-rag.html"><code>07-rag-and-vector-search.md</code></a></td>
+<td>Chunking, hybrid retrieval, reranking, evaluation, failure taxonomy, permissions</td>
+</tr>
+<tr>
+<td><a href="08-agents.html"><code>08-agents-tools-and-mcp.md</code></a></td>
+<td>Workflow versus agent, tool schemas, stopping, MCP, trajectory evaluation, the trifecta</td>
+</tr>
+<tr>
+<td><a href="09-local-inference.html"><code>09-local-llm-inference.md</code></a></td>
+<td>Memory budgets, GGUF quantization, runtimes, serving, benchmarking</td>
+</tr>
+<tr>
+<td><a href="10-mlops.html"><code>10-mlops-and-deployment.md</code></a></td>
+<td>Versioning, containers, observability, LLM-specific monitoring, rollback, cost</td>
+</tr>
+<tr>
+<td><a href="11-system-design.html"><code>11-ai-system-design.md</code></a></td>
+<td>The answer framework, capacity arithmetic, four complete walkthroughs</td>
+</tr>
+<tr>
+<td><a href="12a-interview-framework.html"><code>12a-interview-framework.md</code></a></td>
+<td>Skills matrix, answer structure, mock schedules, the 48-hour checklist</td>
+</tr>
+<tr>
+<td><a href="12b-question-bank.html"><code>12b-interview-question-bank.md</code></a></td>
+<td>45 cross-cutting questions. Module questions stay in their modules.</td>
+</tr>
+<tr>
+<td><a href="12c-behavioral.html"><code>12c-interview-behavioral-and-projects.md</code></a></td>
+<td>STAR, the story bank, project deep dives, the transition narrative</td>
+</tr>
+<tr>
+<td><a href="13-portfolio.html"><code>13-project-portfolio.md</code></a></td>
+<td>What makes a project credible, and a rubric to score yours</td>
+</tr>
+<tr>
+<td><a href="14-concept-map.html"><code>14-concept-map.md</code></a></td>
+<td>How the modules connect. The consolidation and pre-interview skim file.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="projects">Projects<a class="anchor" href="#projects" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Builds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="project-1.html"><code>projects/project-1-python-data-tool.md</code></a></td>
+<td>Learning Log Analyzer. Clean engineering, no AI. Complete tested MVP source included.</td>
+</tr>
+<tr>
+<td><a href="project-2.html"><code>projects/project-2-rag-app.md</code></a></td>
+<td>A grounded QA system, evaluation harness first</td>
+</tr>
+<tr>
+<td><a href="project-3.html"><code>projects/project-3-agent-evaluation.md</code></a></td>
+<td>A trajectory evaluation harness, with adversarial cases</td>
+</tr>
+<tr>
+<td><a href="capstone/"><code>capstone/</code></a></td>
+<td>CareerAtlas, in five documents: PRD, architecture, build plan, evaluation, narrative</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trackers-and-practice">Trackers and practice<a class="anchor" href="#trackers-and-practice" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="tracker-progress-log.html"><code>tracker/progress-log.md</code></a></td>
+<td>Mastery status, spaced repetition, mock scores, STAR bank. <strong>The only review schedule.</strong></td>
+</tr>
+<tr>
+<td><a href="tracker-weekly-plan.html"><code>tracker/weekly-plan.md</code></a></td>
+<td>The weekly working template, derived from the roadmap</td>
+</tr>
+<tr>
+<td><a href="quiz-01a-python-core.html"><code>quizzes/01a-python-core-practice.md</code></a></td>
+<td>Flashcards, MCQs, debugging scenarios, Anki export</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a-note-on-the-practice-packs">A note on the practice packs<a class="anchor" href="#a-note-on-the-practice-packs" aria-label="Link to this section">#</a></h3>
+<p><strong>Only <code>01a</code>'s practice pack is included.</strong> Every module references one in
+<code>quizzes/</code>, and the rest do not exist yet. This is deliberate rather than an
+oversight.</p>
+<p>A practice pack is worth building <strong>when you finish the module</strong>, not before,
+for two reasons. Generated ahead of time it is material you skim rather than
+work. And the questions worth having are partly the ones <em>you</em> got wrong,
+which you cannot know in advance.</p>
+<p><code>01a</code>'s pack is the worked example of the format: 40 flashcards in collapsible
+blocks, 20 multiple-choice with every wrong option explained, 15 short answer,
+10 debugging scenarios keyed on symptoms, 5 interview questions, a scoring
+guide that maps to tracker statuses, and an Anki CSV export. Use it as the
+template and generate the others as you go, adding the items you personally
+missed.</p>
+<hr />
+<h2 id="how-to-study">How to study<a class="anchor" href="#how-to-study" aria-label="Link to this section">#</a></h2>
+<h3 id="the-loop">The loop<a class="anchor" href="#the-loop" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Read the module's skip-ahead map.</strong> Skim what you can already do.</li>
+<li><strong>Work the core concepts</strong>, running every example rather than reading it.</li>
+<li><strong>Do the practice tasks.</strong> The exercises, not just the reading.</li>
+<li><strong>Build the mini-project.</strong> This is the exit condition, not the reading.</li>
+<li><strong>Score the practice pack</strong> at least a day later.</li>
+<li><strong>Update the tracker</strong> with evidence, not with a feeling.</li>
+<li><strong>Say the 60-second answers aloud</strong>, recorded.</li>
+</ol>
+<h3 id="what-actually-produces-retention">What actually produces retention<a class="anchor" href="#what-actually-produces-retention" aria-label="Link to this section">#</a></h3>
+<p><strong>Predict before running.</strong> Before executing any example, say what it will print. When you are wrong, you have learned something. When you skip the prediction, you have only learned what the output is.</p>
+<p><strong>Say it aloud.</strong> Explanation is a separate skill from understanding, and it is the one being tested. Start the 60-second answers from module 06 onward, not at week 24.</p>
+<p><strong>Do the reviews.</strong> The intervals in the tracker are the mechanism. A failed review resets to one day, not back one step, and that rule is what makes the schedule work.</p>
+<p><strong>Build the projects.</strong> A module read without its project is half-learned. The projects are also the only thing you can talk about in an interview.</p>
+<h3 id="what-to-skip-when-time-is-short">What to skip when time is short<a class="anchor" href="#what-to-skip-when-time-is-short" aria-label="Link to this section">#</a></h3>
+<p>In order: the <code>[NICE]</code> items, the practice packs, <code>01c</code> as a scheduled block since DSA works better as a parallel drip, and depth in <code>04</code> and <code>05</code> beyond what <code>06</code> depends on. The roadmap's compression rules have the full list.</p>
+<p><strong>What never to skip:</strong> the evaluation material in <code>07</code> section 9, the projects, and the review weeks.</p>
+<hr />
+<h2 id="the-projects">The projects<a class="anchor" href="#the-projects" aria-label="Link to this section">#</a></h2>
+<p>They ladder deliberately.</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Demonstrates</th>
+<th>Why it exists</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Clean Python, tested and typed</td>
+<td>Proves you can write software. The one people skip, and the fastest signal a reviewer reads.</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Retrieval engineering and measurement</td>
+<td>The evaluation-first inversion. Most candidates cannot say how they know their RAG works.</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Adversarial thinking, evaluating without ground truth</td>
+<td>Almost nobody evaluates agents. This is the gap.</td>
+</tr>
+<tr>
+<td><strong>Capstone</strong></td>
+<td>Integration, real use, honesty about unverifiable components</td>
+<td>The one you actually use while studying.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The property that makes any of them credible</strong> is a measured before-and-after, and a documented failure. <code>13-project-portfolio.md</code> has the rubric.</p>
+<hr />
+<h2 id="tracking-progress">Tracking progress<a class="anchor" href="#tracking-progress" aria-label="Link to this section">#</a></h2>
+<p><a href="tracker-progress-log.html"><code>tracker/progress-log.md</code></a> is the single source of truth for what you know and when you revisit it.</p>
+<p><strong>The status ladder</strong> requires evidence to advance:</p>
+<p><code>Not Started → Learning → Practiced → Can Explain → Can Build → Interview Ready</code></p>
+<p><strong>"Can Explain" is a separate rung on purpose.</strong> Explanation is a distinct skill, and it is the gap that loses interviews.</p>
+<p><strong>Spaced repetition:</strong> 1, 3, 7, 14, 30, 60 days, then quarterly. <strong>A failed review resets to 1 day</strong>, not back one step. That rule is the one people quietly ignore and the one that makes the system work.</p>
+<p>A Markdown table cannot notify you, so the tracker includes an Anki CSV export spec. The Markdown file is the audit trail; Anki does the scheduling.</p>
+<hr />
+<h2 id="conventions-used-throughout">Conventions used throughout<a class="anchor" href="#conventions-used-throughout" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Convention</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[VERIFY: what @ where]</code></td>
+<td>Version-sensitive; check before relying on it</td>
+</tr>
+<tr>
+<td><code>[UNVERIFIED]</code></td>
+<td>A figure not measured here, with the method to measure it yourself</td>
+</tr>
+<tr>
+<td><code>[FOUNDATION] [CORE] [DEPTH]</code></td>
+<td>Section difficulty, used by the skip-ahead maps</td>
+</tr>
+<tr>
+<td><strong>[MUST] [SHOULD] [NICE]</strong></td>
+<td>Interview priority, from the roadmap</td>
+</tr>
+<tr>
+<td><code>## Volatile claims</code></td>
+<td>Every module ends with what will go stale and when</td>
+</tr>
+<tr>
+<td><code>## Mastery checklist</code></td>
+<td>Observable tasks, not topics. The exit condition.</td>
+</tr>
+<tr>
+<td><code>## Connections</code></td>
+<td>Explicit links backward and forward, by filename and section</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Every module has the same structure</strong>, so once you have read one you know where to find things in all of them.</p>
+<hr />
+<h2 id="reading-it-as-a-website">Reading it as a website<a class="anchor" href="#reading-it-as-a-website" aria-label="Link to this section">#</a></h2>
+<p>The repository ships a browsable HTML version in <a href="docs/"><code>docs/</code></a>: one page per
+document, sidebar navigation, client-side search across the whole curriculum,
+rendered Mermaid diagrams, syntax highlighting, and a light/dark theme that
+follows your system and can be toggled.</p>
+<p><strong>Offline:</strong></p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--directory<span class="w"> </span>docs
+<span class="c1"># then open http://localhost:8000</span>
+</code></pre></div>
+
+<p>A local server is needed because search fetches a JSON index, and most browsers
+block <code>fetch</code> from <code>file://</code>. Everything else works if you just open
+<code>docs/index.html</code> directly.</p>
+<p><strong>On GitHub Pages:</strong> Settings → Pages → source <code>main</code> / <code>/docs</code>. Nothing else to
+configure; <code>.nojekyll</code> is already present.</p>
+<p><strong>Rebuilding after you edit a module:</strong></p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-build.txt
+python3<span class="w"> </span>build_site.py
+</code></pre></div>
+
+<p><code>build_site.py</code> is the generator. The navigation structure, page titles and
+groupings are the <code>NAV</code> list at the top of it; add a module there and it appears
+in the sidebar, the search index and the previous/next pager.</p>
+<p>Mermaid is vendored (<code>docs/assets/mermaid.min.js</code>, 3.5 MB) rather than loaded
+from a CDN, so the site works with no network.</p>
+<h2 id="rendering-the-diagrams">Rendering the diagrams<a class="anchor" href="#rendering-the-diagrams" aria-label="Link to this section">#</a></h2>
+<p>Mermaid diagrams render natively on GitHub, and in the HTML site above. All
+diagrams here were validated against Mermaid 11 before inclusion.</p>
+<p>Elsewhere:</p>
+<ul>
+<li><strong>VS Code:</strong> the Markdown Preview Mermaid Support extension</li>
+<li><strong>Obsidian:</strong> built in</li>
+<li><strong>Locally:</strong> <code>npx @mermaid-js/mermaid-cli -i file.md -o out.pdf</code></li>
+<li><strong>In a browser:</strong> paste into <a href="https://mermaid.live">mermaid.live</a></li>
+</ul>
+<p>Diagrams stay within the GitHub-safe subset: <code>flowchart TD</code>, quoted labels containing punctuation, no HTML beyond <code>&lt;br/&gt;</code>, under 20 nodes.</p>
+<hr />
+<h2 id="how-to-use-this-honestly">How to use this honestly<a class="anchor" href="#how-to-use-this-honestly" aria-label="Link to this section">#</a></h2>
+<p><strong>This is study material, not a project.</strong></p>
+<p><strong>Accurate:</strong> "I worked through a structured curriculum and kept my notes, evaluation sets and results in a repository."</p>
+<p><strong>Not accurate:</strong> listing "AI Engineer Learning OS" as a project on a CV, or presenting these modules as something you wrote.</p>
+<p><strong>The projects are your evidence.</strong> The curriculum is scaffolding. When an interviewer asks what you have built, the answer is projects 1 through 3 and the capstone, with their results tables and failure analyses.</p>
+<p><strong>Nothing here is completed until you have done it.</strong> A repository of modules is not learning. <code>13-project-portfolio.md</code> section 7 covers this in more detail, including how to talk about AI-assisted work honestly.</p>
+<p><strong>Claim no number you have not measured.</strong> Every metric in the project specifications is a bracket for you to fill from your own results files. A bracketed placeholder on a submitted CV is a disqualifying error.</p>
+<hr />
+<h2 id="maintenance">Maintenance<a class="anchor" href="#maintenance" aria-label="Link to this section">#</a></h2>
+<p><strong>This repository decays.</strong> Every module ends with a <code>## Volatile claims</code> table naming what will go stale and what to check it against.</p>
+<p><strong>Review cadence, fastest first:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Next review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>09</code> local inference</td>
+<td>Every 3 months, or when llama.cpp is upgraded</td>
+</tr>
+<tr>
+<td><code>08</code> agents and MCP</td>
+<td>Every 3 months</td>
+</tr>
+<tr>
+<td><code>06</code>, <code>07</code>, <code>10</code>, <code>11</code></td>
+<td>Every 6 months, and before any interview</td>
+</tr>
+<tr>
+<td><code>12a-c</code></td>
+<td>After every five interviews, from your own notes</td>
+</tr>
+<tr>
+<td><code>01</code>-<code>05</code></td>
+<td>Annually. Language and statistics fundamentals barely move.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When you find something wrong, fix it here.</strong> A curriculum you correct is one you are engaging with; one you read passively is one you are not.</p>
+<p><strong>What to add as you go:</strong></p>
+<ul>
+<li>Your own failure notes into the relevant module's debugging section</li>
+<li>Interview questions you were actually asked, into <code>12b</code></li>
+<li>Numbers you measured, into the modules that assert them</li>
+<li>Practice packs for modules that do not have one yet</li>
+</ul>
+<p><strong>The one thing not to add: more modules.</strong> The scope here already exceeds what most people finish. Depth in what exists beats breadth.</p>
+<hr />
+<h2 id="contributing-to-your-future-self">Contributing, to your future self<a class="anchor" href="#contributing-to-your-future-self" aria-label="Link to this section">#</a></h2>
+<p>Six months from now you will not remember why you made a decision. When you correct or extend a file:</p>
+<ul>
+<li>Say <strong>why</strong>, not just what. The diff shows what.</li>
+<li>Update the <code>## Volatile claims</code> table if you changed something version-sensitive.</li>
+<li>Update the <code>## Connections</code> section if you changed what a module depends on.</li>
+<li>Keep the module structure. Consistency is why you can find things.</li>
+<li>Add a date to anything time-sensitive.</li>
+</ul>
+<hr />
+<h2 id="license">License<a class="anchor" href="#license" aria-label="Link to this section">#</a></h2>
+<p>The curriculum structure and your own notes are yours. Verify any factual claim marked <code>[VERIFY]</code> before relying on it professionally.</p>
+      <nav class="pager">
+<span></span>
+<a class="pager-next" href="00-roadmap.html"><span>Next</span>00 · Roadmap</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#contents">Contents</a></li>
+<li class="toc-l2"><a href="#what-this-is">What this is</a></li>
+<li class="toc-l2"><a href="#start-here">Start here</a></li>
+<li class="toc-l2"><a href="#the-map">The map</a></li>
+<li class="toc-l2"><a href="#every-file">Every file</a></li>
+<li class="toc-l3"><a href="#modules">Modules</a></li>
+<li class="toc-l3"><a href="#projects">Projects</a></li>
+<li class="toc-l3"><a href="#trackers-and-practice">Trackers and practice</a></li>
+<li class="toc-l3"><a href="#a-note-on-the-practice-packs">A note on the practice packs</a></li>
+<li class="toc-l2"><a href="#how-to-study">How to study</a></li>
+<li class="toc-l3"><a href="#the-loop">The loop</a></li>
+<li class="toc-l3"><a href="#what-actually-produces-retention">What actually produces retention</a></li>
+<li class="toc-l3"><a href="#what-to-skip-when-time-is-short">What to skip when time is short</a></li>
+<li class="toc-l2"><a href="#the-projects">The projects</a></li>
+<li class="toc-l2"><a href="#tracking-progress">Tracking progress</a></li>
+<li class="toc-l2"><a href="#conventions-used-throughout">Conventions used throughout</a></li>
+<li class="toc-l2"><a href="#reading-it-as-a-website">Reading it as a website</a></li>
+<li class="toc-l2"><a href="#rendering-the-diagrams">Rendering the diagrams</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-honestly">How to use this honestly</a></li>
+<li class="toc-l2"><a href="#maintenance">Maintenance</a></li>
+<li class="toc-l2"><a href="#contributing-to-your-future-self">Contributing, to your future self</a></li>
+<li class="toc-l2"><a href="#license">License</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

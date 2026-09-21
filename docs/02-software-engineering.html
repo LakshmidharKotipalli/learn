@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 · Software Engineering · AI Engineer Learning OS</title>
+<meta name="description" content="Git, CI, testing strategy, code review, debugging, HTTP, concurrency.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html" class="active">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <h1 id="02-software-engineering-foundations">02 Software Engineering Foundations<a class="anchor" href="#02-software-engineering-foundations" aria-label="Link to this section">#</a></h1>
+<p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low, except tooling specifics in section 4</p>
+<hr />
+<h2 id="why-this-matters">Why this matters<a class="anchor" href="#why-this-matters" aria-label="Link to this section">#</a></h2>
+<p>This is the most commonly skipped module in any AI curriculum and the most frequently penalized gap in an AI engineer interview loop.</p>
+<p>The reason is structural. Most people arrive at AI engineering from data science or from self-taught model work, where the unit of work is a notebook and the audience is yourself. The job is different: the unit of work is a pull request, the audience is three other engineers plus a future version of you who has forgotten everything, and the code has to run somewhere other than your machine.</p>
+<p>Interviewers probe this deliberately, because it separates people who can build a demo from people who can ship. The probes are not subtle: "walk me through your git workflow", "how do you know your change didn't break anything", "your code works locally and fails in CI, what now". A candidate strong on transformers and weak here reads as someone who has not worked on a team.</p>
+<p>There is also a selfish reason. Everything in modules 7 through 11 is easier if this is solid. You cannot debug a retrieval pipeline you cannot reproduce.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="anchor" href="#prerequisites" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>You need</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Writing and running Python</td>
+<td><code>01a</code> all sections</td>
+</tr>
+<tr>
+<td>Packaging, <code>pyproject.toml</code>, virtual environments</td>
+<td><code>01b</code> section 8</td>
+</tr>
+<tr>
+<td>pytest, fixtures, parametrization</td>
+<td><code>01b</code> section 7</td>
+</tr>
+<tr>
+<td>Logging</td>
+<td><code>01b</code> section 8</td>
+</tr>
+<tr>
+<td>Exception strategy</td>
+<td><code>01a</code> section 8</td>
+</tr>
+</tbody>
+</table>
+<p>You do not need <code>01c</code>. This module and DSA practice are independent.</p>
+<hr />
+<h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Level</th>
+<th>Skip if you can...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Git as a model</td>
+<td>[FOUNDATION]</td>
+<td>...explain what a commit actually contains</td>
+</tr>
+<tr>
+<td>2. Branching, merging, rebasing</td>
+<td>[CORE]</td>
+<td>...say when rebasing is dangerous and why</td>
+</tr>
+<tr>
+<td>3. Recovering from git mistakes</td>
+<td>[CORE]</td>
+<td>...recover a commit you deleted with <code>reset --hard</code></td>
+</tr>
+<tr>
+<td>4. Environments and dependencies</td>
+<td>[CORE]</td>
+<td>...explain what a lockfile gives you that a requirements file does not</td>
+</tr>
+<tr>
+<td>5. Linting, formatting, type checking</td>
+<td>[FOUNDATION]</td>
+<td>...say what ruff does that mypy does not</td>
+</tr>
+<tr>
+<td>6. Testing strategy</td>
+<td>[CORE]</td>
+<td>...say what an integration test catches that unit tests cannot</td>
+</tr>
+<tr>
+<td>7. CI/CD</td>
+<td>[CORE]</td>
+<td>...write a GitHub Actions workflow from memory</td>
+</tr>
+<tr>
+<td>8. Code review</td>
+<td>[CORE]</td>
+<td>...list what you look for in a review, in priority order</td>
+</tr>
+<tr>
+<td>9. Debugging as a method</td>
+<td>[CORE]</td>
+<td>...describe how you isolate a bug without guessing</td>
+</tr>
+<tr>
+<td>10. The command line</td>
+<td>[FOUNDATION]</td>
+<td>...find every file containing a string, excluding a directory</td>
+</tr>
+<tr>
+<td>11. HTTP and APIs</td>
+<td>[CORE]</td>
+<td>...explain idempotency and which methods have it</td>
+</tr>
+<tr>
+<td>12. Concurrency and parallelism</td>
+<td>[DEPTH]</td>
+<td>...say why threads do not speed up CPU-bound Python</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="mental-model">Mental model<a class="anchor" href="#mental-model" aria-label="Link to this section">#</a></h2>
+<p><strong>Engineering practice is a set of devices for surviving your own forgetfulness and other people's changes.</strong></p>
+<p>Every practice in this module exists because of one of two failures.</p>
+<p><em>You will forget.</em> Not maybe. In three months you will not remember why that retry limit is 4, what that regex matches, or which of two similar functions is the one still in use. Tests, types, commit messages and code review comments are notes to a future person who happens to be you.</p>
+<p><em>Someone will change something under you.</em> A dependency releases a breaking version. A colleague renames a function you call. You yourself change a shared helper and forget the second caller. Lockfiles, CI, type checking and tests exist to make those changes announce themselves rather than surface as a production incident.</p>
+<p><strong>Where the analogy breaks down.</strong> It makes these practices sound purely defensive, and the good ones are not. Good tests let you refactor aggressively because you will find out immediately if you broke something. Good CI lets you merge on a Friday. The practices buy confidence to move faster, and treating them as pure overhead is exactly why people skip them and then move slowly.</p>
+<hr />
+<h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    WT[&quot;Working tree, your files&quot;]
+    IDX[&quot;Index, the staging area&quot;]
+    REPO[&quot;Repository, the commit graph&quot;]
+    REM[&quot;Remote, GitHub&quot;]
+
+    WT --&gt;|&quot;git add&quot;| IDX
+    IDX --&gt;|&quot;git commit&quot;| REPO
+    REPO --&gt;|&quot;git push&quot;| REM
+    REM --&gt;|&quot;git fetch&quot;| REPO
+    REPO --&gt;|&quot;git checkout, git restore&quot;| WT
+
+    PR[&quot;Pull request&quot;]
+    CI[&quot;CI: lint, types, tests&quot;]
+    REV[&quot;Human review&quot;]
+    MAIN[&quot;main branch&quot;]
+
+    REM --&gt; PR
+    PR --&gt; CI
+    PR --&gt; REV
+    CI --&gt;|&quot;must pass&quot;| MAIN
+    REV --&gt;|&quot;must approve&quot;| MAIN
+    MAIN --&gt;|&quot;deploy&quot;| PROD[&quot;Production&quot;]
+</pre></div>
+<hr />
+<h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
+<h3 id="1-git-as-a-model-foundation">1. Git as a model [FOUNDATION]<a class="anchor" href="#1-git-as-a-model-foundation" aria-label="Link to this section">#</a></h3>
+<p>Most git confusion comes from learning commands before the model. Learn the model and the commands become obvious.</p>
+<p><strong>A commit is a snapshot, not a diff.</strong> This is the single fact that makes git make sense. Each commit stores the complete state of every tracked file, plus a pointer to its parent commit. Git shows you diffs because diffs are what humans want to read, but it stores snapshots. This is why checking out an old commit is instant and why git can never "lose" your changes once committed.</p>
+<p>A commit contains: the full tree of files, the parent commit or commits, author and timestamp, a message, and a hash of all of it. The hash is the commit's identity, which is why changing anything about a commit produces a different commit.</p>
+<p><strong>Three places your work lives:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Place</th>
+<th>What it is</th>
+<th>How work gets there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Working tree</td>
+<td>The files you edit</td>
+<td>You edit them</td>
+</tr>
+<tr>
+<td>Index (staging area)</td>
+<td>What the next commit will contain</td>
+<td><code>git add</code></td>
+</tr>
+<tr>
+<td>Repository</td>
+<td>The committed history</td>
+<td><code>git commit</code></td>
+</tr>
+</tbody>
+</table>
+<p>The index confuses people because most tools hide it. Its purpose is letting you commit some of your changes and not others, which matters when you notice a typo fix mixed into a feature.</p>
+<p><strong>A branch is a movable pointer to a commit.</strong> Not a copy of anything. Creating a branch writes a 41-byte file containing a hash. This is why branching is instant and why you should branch constantly.</p>
+<p><code>HEAD</code> is a pointer to the branch you are on. "Detached HEAD" means <code>HEAD</code> points directly at a commit rather than a branch, which happens when you check out a commit hash. Commits you make there belong to no branch and are hard to find later.</p>
+<p><strong>The daily loop:</strong></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status<span class="w">                       </span><span class="c1"># run this constantly; it tells you the truth</span>
+git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>feature/chunking<span class="w">   </span><span class="c1"># create and switch to a branch</span>
+<span class="c1"># ... edit files ...</span>
+git<span class="w"> </span>diff<span class="w">                         </span><span class="c1"># what changed but is not staged</span>
+git<span class="w"> </span>add<span class="w"> </span>src/chunking.py
+git<span class="w"> </span>diff<span class="w"> </span>--staged<span class="w">                </span><span class="c1"># what will be committed</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add overlap validation to chunker&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>feature/chunking
+</code></pre></div>
+
+<p><code>git switch</code> and <code>git restore</code> are the modern replacements for the overloaded <code>git checkout</code>, which did both branch switching and file restoration and caused endless confusion. Use the new ones.</p>
+<p><strong>Commit messages.</strong> The format that survives:</p>
+<div class="highlight"><pre><span></span><code>Short summary in the imperative, under 50 characters
+
+Why this change was necessary, and what approach you took.
+Not what the diff says; the diff says that. What it cannot
+say is why.
+
+Fixes #123
+</code></pre></div>
+
+<p>The imperative mood ("Add", "Fix", "Remove", not "Added" or "Adds") reads as "applying this commit will Add X", which is what a commit is. The body matters far more than people think: six months later the question is never "what did this change" but "why on earth did we do it this way".</p>
+<p><strong>What not to commit.</strong> A <code>.gitignore</code> for a Python AI project:</p>
+<div class="highlight"><pre><span></span><code>.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env
+*.log
+data/
+models/
+*.gguf
+*.safetensors
+.DS_Store
+</code></pre></div>
+
+<p>Two of these are load-bearing. <code>.env</code> keeps secrets out of history, and once a secret is committed it is in the history permanently even after you delete it, so the only real remedy is rotating the key. Model weights and data files are the other: a single <code>.gguf</code> can be tens of gigabytes, git stores every version forever, and a repository with a committed model is effectively unclonable. Use Git LFS or, better, keep artifacts out of git entirely.</p>
+<h3 id="2-branching-merging-rebasing-core">2. Branching, merging, rebasing [CORE]<a class="anchor" href="#2-branching-merging-rebasing-core" aria-label="Link to this section">#</a></h3>
+<p><strong>Merge</strong> creates a new commit with two parents, preserving exactly what happened.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>main
+git<span class="w"> </span>pull
+git<span class="w"> </span>merge<span class="w"> </span>feature/chunking
+</code></pre></div>
+
+<p><strong>Rebase</strong> replays your commits on top of another branch, producing a linear history.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>feature/chunking
+git<span class="w"> </span>rebase<span class="w"> </span>main
+</code></pre></div>
+
+<p>Rebase does not move your commits. It creates new commits with the same changes and different parents and hashes. The originals become unreferenced. This is the source of every rebase disaster.</p>
+<p><strong>The rule: never rebase commits that others have pulled.</strong> If your branch is public and someone has based work on it, rebasing rewrites history under them, and their next pull produces a mess that has to be untangled by hand. Rebase your own unpushed or unshared work freely; leave shared history alone.</p>
+<table>
+<thead>
+<tr>
+<th>Use</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git rebase main</code> on your feature branch</td>
+<td>Before opening a PR, to get a clean linear history and resolve conflicts on your own time</td>
+</tr>
+<tr>
+<td><code>git merge</code> into main</td>
+<td>Integrating a finished feature, preserving the branch's shape</td>
+</tr>
+<tr>
+<td><code>git rebase -i</code></td>
+<td>Cleaning up your own messy commits before review</td>
+</tr>
+<tr>
+<td>Nothing</td>
+<td>On a branch someone else has pulled</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interactive rebase</strong> is how you turn eight commits of "wip", "fix", "actually fix" into two meaningful ones. <code>git rebase -i</code> is unavailable in some environments, including this one, but you should know it exists and what it does: it opens an editor listing your commits with actions (<code>pick</code>, <code>squash</code>, <code>reword</code>, <code>drop</code>) you can change.</p>
+<p><strong>Conflicts.</strong> A conflict means git cannot decide, so it asks you:</p>
+<div class="highlight"><pre><span></span><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    chunk_size = 512
+=======
+    chunk_size = 1024
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/chunking
+</code></pre></div>
+
+<p>Above <code>=======</code> is the branch you are on, below is the branch coming in. Edit to what it should be, delete all three markers, <code>git add</code> the file, then <code>git rebase --continue</code> or <code>git commit</code>.</p>
+<p>Two things that reduce conflicts more than any technique: small branches merged often, and not reformatting files you are not changing. A pull request that reformats a whole file to fix one line is a conflict generator and an unreviewable diff.</p>
+<p><strong><code>git pull</code> is <code>fetch</code> plus <code>merge</code></strong>, and the merge is often not what you want. Prefer:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull<span class="w"> </span>--rebase
+</code></pre></div>
+
+<p>or configure it as the default:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>pull.rebase<span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+
+<p>This replays your local commits on top of the remote's, avoiding the "Merge branch 'main' of github.com..." commits that clutter history with no information.</p>
+<h3 id="3-recovering-from-git-mistakes-core">3. Recovering from git mistakes [CORE]<a class="anchor" href="#3-recovering-from-git-mistakes-core" aria-label="Link to this section">#</a></h3>
+<p>Worth its own section, because fear of git is mostly fear of losing work, and once you know the recovery moves the fear goes.</p>
+<p><strong>The most important thing to know: committed work is almost never lost.</strong> Git keeps a log of everywhere <code>HEAD</code> has been, for about 90 days.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>reflog
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>a3f1c2d HEAD@{0}: reset: moving to HEAD~3
+9b2e4f1 HEAD@{1}: commit: Add reranking
+7c8d3a0 HEAD@{2}: commit: Add hybrid search
+</code></pre></div>
+
+<p>Anything in that list is recoverable:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>9b2e4f1<span class="w">        </span><span class="c1"># back to where you were</span>
+</code></pre></div>
+
+<p><strong>The recovery table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wrong message on the last commit</td>
+<td><code>git commit --amend</code></td>
+</tr>
+<tr>
+<td>Forgot a file in the last commit</td>
+<td><code>git add file &amp;&amp; git commit --amend --no-edit</code></td>
+</tr>
+<tr>
+<td>Committed to main instead of a branch</td>
+<td><code>git switch -c feature/x &amp;&amp; git switch main &amp;&amp; git reset --hard origin/main</code></td>
+</tr>
+<tr>
+<td>Want to undo a commit but keep the changes</td>
+<td><code>git reset --soft HEAD~1</code></td>
+</tr>
+<tr>
+<td>Want to undo a commit and the changes</td>
+<td><code>git reset --hard HEAD~1</code> (then reflog if you regret it)</td>
+</tr>
+<tr>
+<td>Undo a commit that is already pushed</td>
+<td><code>git revert &lt;hash&gt;</code>, which adds an inverse commit</td>
+</tr>
+<tr>
+<td>Discard changes to one file</td>
+<td><code>git restore path/to/file</code></td>
+</tr>
+<tr>
+<td>Unstage a file, keep the edits</td>
+<td><code>git restore --staged path/to/file</code></td>
+</tr>
+<tr>
+<td>Need to switch branches mid-change</td>
+<td><code>git stash</code>, then <code>git stash pop</code></td>
+</tr>
+<tr>
+<td>Deleted a branch you needed</td>
+<td><code>git reflog</code> to find its tip, then <code>git switch -c name &lt;hash&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>reset</code> versus <code>revert</code>.</strong> <code>reset</code> rewrites history and is for local work. <code>revert</code> adds a new commit that undoes an old one, preserving history, and is the only safe choice for anything pushed. Resetting a pushed branch and force-pushing breaks everyone who has pulled it.</p>
+<p><strong>The one thing that does lose work:</strong> uncommitted changes destroyed by <code>git reset --hard</code> or <code>git checkout .</code>. Those were never in git, so git cannot help. This is the argument for committing often, even messy commits, since you can clean them up later with interactive rebase.</p>
+<h3 id="4-environments-and-dependencies-core">4. Environments and dependencies [CORE]<a class="anchor" href="#4-environments-and-dependencies-core" aria-label="Link to this section">#</a></h3>
+<p><strong>The problem.</strong> Your code imports <code>httpx</code>. Which version? If the answer is "whatever was installed", your code works today and breaks on a colleague's machine, in CI, or next Tuesday when a maintainer ships a breaking change.</p>
+<p><strong>A virtual environment per project</strong>, always:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+</code></pre></div>
+
+<p>Installing into the system Python eventually produces two projects needing incompatible versions of the same library, with no way out.</p>
+<p><strong>Declared versus locked dependencies</strong>, which is the distinction people miss:</p>
+<p><em>Declared</em> dependencies are what your code needs, with ranges, in <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&gt;=0.27,&lt;1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pydantic&gt;=2.0,&lt;3.0&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p><em>Locked</em> dependencies are the exact versions of everything, including transitive dependencies you never named:</p>
+<div class="highlight"><pre><span></span><code>httpx==0.28.1
+httpcore==1.0.9
+h11==0.16.0
+certifi==2025.8.3
+...
+</code></pre></div>
+
+<p>You need both. Ranges say what is acceptable; the lock says what was actually tested. Without a lock, "it works on my machine" is unfalsifiable because no two machines have the same versions.</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.lock
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.lock<span class="w">      </span><span class="c1"># exact reproduction</span>
+</code></pre></div>
+
+<p><code>[VERIFY: uv and Poetry both handle this better than pip, and uv has been moving quickly @ current uv docs]</code> The concept is what matters and it is stable; the tool is not.</p>
+<p><strong>Pinning strategy:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A library others import</td>
+<td>Wide ranges, upper bound at the next major</td>
+</tr>
+<tr>
+<td>An application you deploy</td>
+<td>Ranges in <code>pyproject.toml</code>, exact pins in a lockfile, lockfile committed</td>
+</tr>
+<tr>
+<td>A Docker image</td>
+<td>Install from the lockfile, never from ranges</td>
+</tr>
+<tr>
+<td>Anything with a model</td>
+<td>Pin the model version too; "latest" is not reproducible</td>
+</tr>
+</tbody>
+</table>
+<p>That last row is the AI-specific one. A pipeline pinned to <code>gpt-4</code> or <code>latest</code> silently changes behavior when the provider updates it, and your evaluation results from last month become meaningless. Pin the model string, record it in your evaluation output, and treat a model change like a dependency upgrade.</p>
+<h3 id="5-linting-formatting-type-checking-foundation">5. Linting, formatting, type checking [FOUNDATION]<a class="anchor" href="#5-linting-formatting-type-checking-foundation" aria-label="Link to this section">#</a></h3>
+<p>Three different jobs, often confused:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Formatter</strong> (ruff format, black)</td>
+<td>Is it laid out consistently?</td>
+</tr>
+<tr>
+<td><strong>Linter</strong> (ruff)</td>
+<td>Is anything suspicious or dead?</td>
+</tr>
+<tr>
+<td><strong>Type checker</strong> (mypy, pyright)</td>
+<td>Do the types line up?</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>ruff<span class="w"> </span>mypy
+
+ruff<span class="w"> </span>format<span class="w"> </span>.<span class="w">          </span><span class="c1"># rewrite formatting</span>
+ruff<span class="w"> </span>check<span class="w"> </span>.<span class="w"> </span>--fix<span class="w">     </span><span class="c1"># find and auto-fix lint issues</span>
+mypy<span class="w"> </span>src/
+</code></pre></div>
+
+<p><strong>Formatting is not worth an opinion.</strong> Pick a formatter, run it automatically, and never discuss it again. Every minute spent on line length in code review is a minute not spent on whether the logic is right. The value is that all diffs become semantic, because no diff ever contains a whitespace change.</p>
+<p><strong>Linting catches real bugs</strong>, not just style: unused imports, variables assigned and never read, mutable default arguments, bare <code>except</code>, comparisons to <code>None</code> with <code>==</code>, f-strings with no placeholders. These are exactly the <code>01a</code> and <code>01b</code> mistakes, caught automatically.</p>
+<p><strong>Pre-commit hooks</strong> run these before a commit exists:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># .pre-commit-config.yaml</span>
+<span class="nt">repos</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/ruff-pre-commit</span>
+<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.5.0</span>
+<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">--fix</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff-format</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pre-commit/pre-commit-hooks</span>
+<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v4.6.0</span>
+<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trailing-whitespace</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">end-of-file-fixer</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">check-added-large-files</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">--maxkb=5000</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detect-private-key</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pre-commit<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pre-commit<span class="w"> </span>install
+</code></pre></div>
+
+<p><code>[VERIFY: hook revisions @ the pre-commit hook repositories]</code> Two of these hooks earn their place immediately in AI work: <code>check-added-large-files</code> stops you committing a model checkpoint, and <code>detect-private-key</code> stops a category of credential leak.</p>
+<h3 id="6-testing-strategy-core">6. Testing strategy [CORE]<a class="anchor" href="#6-testing-strategy-core" aria-label="Link to this section">#</a></h3>
+<p><code>01b</code> covered writing tests. This is about deciding which to write.</p>
+<p><strong>The levels, and what each actually catches:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Tests</th>
+<th>Catches</th>
+<th>Misses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unit</td>
+<td>One function, no I/O</td>
+<td>Logic errors, edge cases, off-by-one</td>
+<td>Anything about how pieces connect</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>Several components together</td>
+<td>Wrong interfaces, bad assumptions between modules, config errors</td>
+<td>Real-world data weirdness</td>
+</tr>
+<tr>
+<td>End-to-end</td>
+<td>The whole system through its real entry point</td>
+<td>Deployment and wiring problems</td>
+<td>Almost nothing cheaply; these are slow and flaky</td>
+</tr>
+<tr>
+<td>Contract</td>
+<td>Your assumptions about an external service</td>
+<td>Provider API changes</td>
+<td>Anything internal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The shape that works:</strong> many unit tests, a meaningful number of integration tests, very few end-to-end tests. The ratio is not sacred; the reasoning is. Unit tests are fast and precise, so a failure names the broken function. End-to-end tests are slow and vague, so a failure says "something is wrong somewhere".</p>
+<p>The common anti-pattern is the inverse: almost no unit tests and a handful of end-to-end tests that take twenty minutes, fail intermittently, and get disabled after the third false alarm.</p>
+<p><strong>What to test in an AI pipeline</strong>, specifically, since this trips people up:</p>
+<table>
+<thead>
+<tr>
+<th>Testable deterministically</th>
+<th>Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chunking boundaries and overlap</td>
+<td>Whether the LLM's answer is good</td>
+</tr>
+<tr>
+<td>Parsing and schema validation</td>
+<td>Embedding values</td>
+</tr>
+<tr>
+<td>Retrieval given a fixed index and fixed query</td>
+<td>Generation quality</td>
+</tr>
+<tr>
+<td>Prompt template rendering</td>
+<td>Model behavior across versions</td>
+</tr>
+<tr>
+<td>Retry and error handling</td>
+<td>Latency under real load</td>
+</tr>
+<tr>
+<td>Cost and token accounting</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The right-hand column is not untestable, it is <em>evaluated</em> rather than asserted: measured against a dataset, tracked over time, with thresholds. That is module 07's evaluation material, and conflating the two is a common mistake. Do not write a unit test asserting an LLM returns a specific string; it will pass today and fail next week for reasons unrelated to your code.</p>
+<p><strong>Test naming.</strong> The name is read far more often than the body, usually in a CI failure at speed:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_chunk_overlap_repeats_trailing_content</span><span class="p">():</span> <span class="o">...</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_loader_raises_when_all_rows_malformed</span><span class="p">():</span> <span class="o">...</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_retry_does_not_retry_client_errors</span><span class="p">():</span> <span class="o">...</span>
+</code></pre></div>
+
+<p>Each says what is being tested and what the expected behavior is. <code>test_chunking_2</code> says nothing.</p>
+<p><strong>Flaky tests are worse than no tests.</strong> A test that fails 1 in 20 runs trains everyone to re-run CI instead of reading the failure, which means real failures get re-run too. Fix it or delete it. The usual causes: time dependence, network calls, shared state between tests, and dictionary or set ordering assumptions.</p>
+<h3 id="7-continuous-integration-core">7. Continuous integration [CORE]<a class="anchor" href="#7-continuous-integration-core" aria-label="Link to this section">#</a></h3>
+<p>CI runs your checks on every push, on a machine that is not yours. That last part is the point: it is the first honest answer to "does this work anywhere else".</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># .github/workflows/ci.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span><span class="p p-Indicator">]</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+<span class="w">          </span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -e &quot;.[dev]&quot;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lint</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff check .</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Format check</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff format --check .</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type check</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypy src/</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest -v --cov=src --cov-report=term-missing</span>
+</code></pre></div>
+
+<p><code>[VERIFY: action versions @ the GitHub Marketplace listings]</code></p>
+<p><strong>Design principles that matter more than the YAML:</strong></p>
+<p><em>Fast feedback first.</em> Lint before tests. A 5-second lint failure beats waiting 4 minutes for tests to reach the same conclusion.</p>
+<p><em>CI must be reproducible.</em> If it passes locally and fails in CI, CI is right and your machine is lying. The usual culprits are unpinned dependencies, environment variables set in your shell and not in CI, files present locally and gitignored, and tests depending on run order.</p>
+<p><em>Never let main go red.</em> A broken main blocks everyone. Require CI to pass before merge, as a branch protection rule, not as a social convention.</p>
+<p><em>Secrets go in repository secrets</em>, referenced as <code>${{ secrets.NAME }}</code>, never in the YAML. And be aware that workflows from forked pull requests should not receive secrets, because a PR can modify the workflow that reads them.</p>
+<p><strong>CD is deployment on top of this</strong>, and belongs in module 10. The prerequisite is that CI is trustworthy: nobody should automatically deploy the output of a test suite they do not believe.</p>
+<h3 id="8-code-review-core">8. Code review [CORE]<a class="anchor" href="#8-code-review-core" aria-label="Link to this section">#</a></h3>
+<p><strong>What to look for, in priority order.</strong> The order matters, because a review that opens with naming nitpicks and never reaches the logic is worse than no review.</p>
+<ol>
+<li><strong>Is it correct?</strong> Does it do what the description says? Edge cases: empty, null, one element, very large, concurrent.</li>
+<li><strong>Is it safe?</strong> Injection, secrets in code, unvalidated input, over-broad permissions, PII in logs.</li>
+<li><strong>Will it fail well?</strong> What happens when the dependency is down, the input is malformed, the call times out. Is the error message useful?</li>
+<li><strong>Is it tested?</strong> Not coverage percentage; do the tests cover the risky paths and would they catch a plausible regression?</li>
+<li><strong>Can the next person understand it?</strong> Names, structure, comments where the code cannot explain itself.</li>
+<li><strong>Is it consistent with the codebase?</strong> Following existing patterns, or deliberately and visibly deviating.</li>
+<li><strong>Style.</strong> Last, and mostly automated away by section 5.</li>
+</ol>
+<p><strong>How to give a review.</strong></p>
+<p>Distinguish severity explicitly, because a reviewer who flags everything at the same volume gets ignored:</p>
+<div class="highlight"><pre><span></span><code>blocking: this retries 4xx errors, which will amplify load during an outage
+question: is the 0.7 threshold measured, or a guess? worth a comment either way
+nit: `cs` could be `chunk_size`
+</code></pre></div>
+
+<p>Ask rather than assert when you are not certain. "What happens if <code>chunks</code> is empty here?" beats "this crashes on empty input", because half the time the answer is "it can't be, see line 12" and you have learned something.</p>
+<p>Review your own PR before requesting review. You will find a third of the issues yourself, which is the cheapest review there is.</p>
+<p><strong>How to receive a review.</strong> The code is not you. A reviewer finding three bugs did you a favor. Respond to every comment, even with "good catch, fixed". If you disagree, say why; a review is a conversation, not a verdict. And if you cannot explain your reasoning clearly, that is evidence the reviewer is right.</p>
+<p><strong>PR hygiene</strong>, which determines whether you get a good review at all:</p>
+<ul>
+<li><strong>Small.</strong> Under 400 lines of change. Review quality falls off a cliff past that; big PRs get "LGTM" and nothing else.</li>
+<li><strong>One concern.</strong> A bug fix plus a refactor plus a rename is three PRs.</li>
+<li><strong>Described.</strong> What changed, why, how you tested it, what you are unsure about.</li>
+<li><strong>Self-reviewed first.</strong></li>
+<li><strong>Green before requesting review.</strong> Do not make a human find what CI would have.</li>
+</ul>
+<p><strong>Reviewing your own work solo</strong>, because you may not have a team right now. Open the PR against your own repo, leave it for at least an hour, then read the full diff in GitHub's interface rather than in your editor. The different presentation and the delay reproduce a surprising amount of the value. Keep a written checklist, the seven points above, and actually run down it.</p>
+<h3 id="9-debugging-as-a-method-core">9. Debugging as a method [CORE]<a class="anchor" href="#9-debugging-as-a-method-core" aria-label="Link to this section">#</a></h3>
+<p>Most people debug by changing things until the symptom goes away. That works often enough to be a habit and it fails exactly when the problem is hard.</p>
+<p><strong>The method:</strong></p>
+<ol>
+<li><strong>Reproduce it reliably.</strong> A bug you cannot reproduce cannot be verified as fixed. If it is intermittent, find what varies: input, timing, order, environment.</li>
+<li><strong>Reduce it.</strong> Cut the input and the code path until it is the smallest thing that still fails. This alone solves a large fraction of bugs, because the reduction is where you notice the cause.</li>
+<li><strong>Read the error properly.</strong> Bottom of the traceback is the error; the line above it is where. Read the whole message, including the part after the colon that people skip.</li>
+<li><strong>Form one hypothesis and state it.</strong> "The chunks are misaligned because <code>zip</code> is silently truncating." A hypothesis is falsifiable; "something's wrong with the chunking" is not.</li>
+<li><strong>Test the hypothesis specifically.</strong> One change that distinguishes true from false. Not three changes at once.</li>
+<li><strong>Confirm you fixed the cause</strong>, not a symptom. If you do not understand why the fix works, you have not fixed it.</li>
+<li><strong>Write the regression test.</strong> Before you forget what the bug was.</li>
+</ol>
+<p><strong>Bisecting, which is the technique people know least and need most:</strong></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>bisect<span class="w"> </span>start
+git<span class="w"> </span>bisect<span class="w"> </span>bad<span class="w">                  </span><span class="c1"># current commit is broken</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good<span class="w"> </span>v0.3.0<span class="w">          </span><span class="c1"># this tag worked</span>
+<span class="c1"># git checks out a midpoint; test it, then:</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good<span class="w">    </span><span class="c1"># or: git bisect bad</span>
+<span class="c1"># repeat; git narrows by binary search</span>
+git<span class="w"> </span>bisect<span class="w"> </span>reset
+</code></pre></div>
+
+<p>Finds the exact commit that introduced a bug in about log2(n) steps: roughly 10 tests across a thousand commits. When you have a regression and no idea where it came from, this beats reading code every time. It can be automated with <code>git bisect run pytest tests/test_thing.py</code>.</p>
+<p><strong>Tools, in order of when to reach for them:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>print(f"{x=}")</code></td>
+<td>Quick checks. Honest and fine.</td>
+</tr>
+<tr>
+<td><code>breakpoint()</code></td>
+<td>Inspecting state interactively, when prints are multiplying</td>
+</tr>
+<tr>
+<td><code>logging.debug</code></td>
+<td>Bugs that only appear in long runs or production</td>
+</tr>
+<tr>
+<td><code>pytest --pdb</code></td>
+<td>Dropping into a debugger at the point of test failure</td>
+</tr>
+<tr>
+<td><code>git bisect</code></td>
+<td>"This used to work"</td>
+</tr>
+<tr>
+<td><code>cProfile</code></td>
+<td>"This is slow", before guessing why</td>
+</tr>
+<tr>
+<td><code>tracemalloc</code></td>
+<td>"Memory grows", to find allocation sites</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The AI-specific debugging problem</strong> is that pipelines fail silently and probabilistically. A retriever returning poor chunks does not raise. The technique is to make each stage observable: log what was retrieved with scores, log the assembled prompt, log the raw model output before parsing. Most "the model is bad" reports turn out to be a retrieval or prompt-assembly problem that was invisible because nobody logged the intermediate stage. Build that visibility in from the start; module 07 treats it as a first-class concern.</p>
+<h3 id="10-the-command-line-foundation">10. The command line [FOUNDATION]<a class="anchor" href="#10-the-command-line-foundation" aria-label="Link to this section">#</a></h3>
+<p>The commands that carry most of the weight.</p>
+<p><strong>Navigating and finding:</strong></p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lah<span class="w">                              </span><span class="c1"># long, all, human-readable sizes</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.gguf&quot;</span><span class="w"> </span>-size<span class="w"> </span>+1G<span class="w">      </span><span class="c1"># large model files</span>
+du<span class="w"> </span>-sh<span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-h<span class="w">                   </span><span class="c1"># what is taking up space</span>
+tree<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span><span class="w"> </span>-I<span class="w"> </span><span class="s1">&#39;__pycache__|.venv&#39;</span><span class="w">     </span><span class="c1"># structure, two levels</span>
+</code></pre></div>
+
+<p><strong>Searching, with ripgrep, which is worth installing:</strong></p>
+<div class="highlight"><pre><span></span><code>rg<span class="w"> </span><span class="s2">&quot;chunk_size&quot;</span><span class="w">                      </span><span class="c1"># respects .gitignore automatically</span>
+rg<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;todo|fixme&quot;</span><span class="w">                   </span><span class="c1"># case-insensitive alternation</span>
+rg<span class="w"> </span>-t<span class="w"> </span>py<span class="w"> </span><span class="s2">&quot;def embed&quot;</span><span class="w">                 </span><span class="c1"># Python files only</span>
+rg<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="w">               </span><span class="c1"># filenames only; run this before every push</span>
+rg<span class="w"> </span>-C<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="s2">&quot;raise ValueError&quot;</span><span class="w">           </span><span class="c1"># three lines of context</span>
+</code></pre></div>
+
+<p>That fourth one is a habit worth forming. Grepping your own repository for key-shaped strings before pushing catches the leak that <code>detect-private-key</code> misses.</p>
+<p><strong>Pipes and inspection:</strong></p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>eval.jsonl<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.score&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5<span class="w">      </span><span class="c1"># five highest scores</span>
+wc<span class="w"> </span>-l<span class="w"> </span>data/*.csv<span class="w">                                      </span><span class="c1"># line counts</span>
+head<span class="w"> </span>-3<span class="w"> </span>big.csv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tail<span class="w"> </span>-3<span class="w"> </span>big.csv<span class="w">                    </span><span class="c1"># both ends</span>
+ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>llama-server<span class="w">                            </span><span class="c1"># is it running</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:8080<span class="w">                                         </span><span class="c1"># what holds this port</span>
+</code></pre></div>
+
+<p><strong>Processes and long runs:</strong></p>
+<div class="highlight"><pre><span></span><code>nohup<span class="w"> </span>python<span class="w"> </span>ingest.py<span class="w"> </span>&gt;<span class="w"> </span>ingest.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span><span class="w">   </span><span class="c1"># survives logout</span>
+tail<span class="w"> </span>-f<span class="w"> </span>ingest.log<span class="w">                           </span><span class="c1"># follow output live</span>
+<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>&lt;pid&gt;<span class="w">                                </span><span class="c1"># last resort</span>
+</code></pre></div>
+
+<p><code>2&gt;&amp;1</code> sends stderr to the same place as stdout. Without it, your tracebacks go to the terminal and vanish while your log file looks clean, which is a genuinely confusing failure.</p>
+<p><strong>Environment:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">APP_API_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="w">     </span><span class="c1"># this session only</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+which<span class="w"> </span>python3<span class="w">                </span><span class="c1"># which one is actually running</span>
+env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>APP_
+</code></pre></div>
+
+<p><code>which python3</code> after activating a virtualenv, to confirm it points inside <code>.venv</code>, resolves a large share of "it says the package isn't installed but I installed it".</p>
+<h3 id="11-http-and-apis-core">11. HTTP and APIs [CORE]<a class="anchor" href="#11-http-and-apis-core" aria-label="Link to this section">#</a></h3>
+<p>Everything you build talks HTTP: model providers, vector databases, your own service.</p>
+<p><strong>A request:</strong></p>
+<div class="highlight"><pre><span></span><code>POST /v1/embeddings HTTP/1.1
+Host: api.example.com
+Authorization: Bearer sk-...
+Content-Type: application/json
+
+{&quot;input&quot;: [&quot;hello&quot;], &quot;model&quot;: &quot;text-embedding-3-small&quot;}
+</code></pre></div>
+
+<p>Method, path, headers, body. That is all.</p>
+<p><strong>Methods and the property that matters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+<th>Idempotent</th>
+<th>Safe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>Read</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>Create, or anything else</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>Replace</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>Partial update</td>
+<td>Not necessarily</td>
+<td>No</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Remove</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Idempotent means doing it twice has the same effect as doing it once.</strong> This is not trivia; it determines what you may safely retry. Section 9.2 of <code>01b</code> retries on timeout, and a timeout means you do not know whether the server processed your request. Retrying a GET is free. Retrying a POST that charges a card may charge twice.</p>
+<p>The production answer is an idempotency key: the client generates a unique id per logical operation and sends it as a header; the server records it and returns the original result on a repeat. If you are designing an API that clients will retry, this is the mechanism, and knowing it is a strong signal in a system design interview.</p>
+<p><strong>Status codes, by the decision they imply:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Range</th>
+<th>Meaning</th>
+<th>Should you retry?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2xx</td>
+<td>Success</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>301, 302, 307</td>
+<td>Redirect</td>
+<td>Follow it</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Your request is malformed</td>
+<td>No. It will never work.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Not authenticated</td>
+<td>No. Fix credentials.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Authenticated, not allowed</td>
+<td>No.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not found</td>
+<td>No.</td>
+</tr>
+<tr>
+<td>408</td>
+<td>Request timeout</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td>Sometimes, after resolving</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Semantically invalid</td>
+<td>No</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Rate limited</td>
+<td>Yes, after <code>Retry-After</code></td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>Server problem</td>
+<td>Yes, with backoff</td>
+</tr>
+</tbody>
+</table>
+<p>This table is the retriable allowlist from <code>01b</code> section 9.2, and now you know why each entry is where it is.</p>
+<p><strong>Authentication</strong>, briefly: API keys in an <code>Authorization</code> header are the common case for model providers. OAuth for acting on a user's behalf. JWTs for stateless sessions in your own service. Keys go in environment variables, never in code, never in a URL, because URLs land in server logs and browser history.</p>
+<p><strong>Designing your own endpoints</strong>, which module 10 expands:</p>
+<div class="highlight"><pre><span></span><code>GET    /v1/documents           list
+POST   /v1/documents           create
+GET    /v1/documents/{id}      read one
+DELETE /v1/documents/{id}      delete one
+POST   /v1/search              search (POST because the query is a body, not a path)
+</code></pre></div>
+
+<p>Version from the first day. <code>/v1/</code> costs nothing now and is nearly impossible to retrofit once clients exist.</p>
+<h3 id="12-concurrency-and-parallelism-depth">12. Concurrency and parallelism [DEPTH]<a class="anchor" href="#12-concurrency-and-parallelism-depth" aria-label="Link to this section">#</a></h3>
+<p>Included because it determines how you serve models, and because the question is common.</p>
+<p><strong>They are different things.</strong> Concurrency is dealing with many things at once, by interleaving. Parallelism is doing many things at once, on multiple cores. Concurrency is a structure; parallelism is an execution property.</p>
+<p><strong>The GIL.</strong> CPython's Global Interpreter Lock means only one thread executes Python bytecode at a time. Consequences:</p>
+<table>
+<thead>
+<tr>
+<th>Work is</th>
+<th>Use</th>
+<th>Because</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I/O-bound (network, disk)</td>
+<td><code>asyncio</code> or threads</td>
+<td>The GIL is released while waiting</td>
+</tr>
+<tr>
+<td>CPU-bound in pure Python</td>
+<td><code>multiprocessing</code></td>
+<td>Threads cannot use multiple cores</td>
+</tr>
+<tr>
+<td>CPU-bound in NumPy, PyTorch, tokenizers</td>
+<td>Threads are fine</td>
+<td>Those libraries release the GIL in their C code</td>
+</tr>
+</tbody>
+</table>
+<p>That third row is the one people get wrong in both directions. Pure Python number crunching does not speed up with threads. But a PyTorch forward pass or a Rust tokenizer does run in parallel across threads, because the heavy work happens with the GIL released. This is why an inference server can serve concurrent requests from a thread pool.</p>
+<p><code>[VERIFY: free-threaded CPython, PEP 703, is progressing and changes this picture @ current Python release notes]</code> The optional no-GIL build changes the first two rows for code that opts in. Know it exists; the guidance above still describes what you will deploy.</p>
+<p><strong>Choosing:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># I/O-bound: many API calls. See 01b section 9.7.</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fetch_all</span><span class="p">(</span><span class="n">urls</span><span class="p">):</span> <span class="o">...</span>
+
+<span class="c1"># CPU-bound: parse 10,000 PDFs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">parse_pdf</span><span class="p">,</span> <span class="n">paths</span><span class="p">))</span>
+
+<span class="c1"># A blocking library inside async code</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="n">blocking_call</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Where this bites in AI work.</strong> Embedding 100,000 documents is I/O-bound against a hosted API, so async with a semaphore is right. The same job against a local model is CPU or GPU-bound, so batching matters and concurrency does not. Parsing documents before embedding is CPU-bound, so processes. One pipeline, three different answers, and choosing by habit rather than by measuring is how pipelines end up slower after being "optimized".</p>
+<hr />
+<h2 id="worked-examples">Worked examples<a class="anchor" href="#worked-examples" aria-label="Link to this section">#</a></h2>
+<h3 id="example-1-a-repository-set-up-from-scratch">Example 1: a repository set up from scratch<a class="anchor" href="#example-1-a-repository-set-up-from-scratch" aria-label="Link to this section">#</a></h3>
+<p>The full sequence, because doing this once deliberately makes it permanent.</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>learning-log-analyzer<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>learning-log-analyzer
+git<span class="w"> </span>init
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+mkdir<span class="w"> </span>-p<span class="w"> </span>src/analyzer<span class="w"> </span>tests
+touch<span class="w"> </span>src/analyzer/__init__.py<span class="w"> </span>tests/__init__.py
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># pyproject.toml</span>
+<span class="k">[project]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;learning-log-analyzer&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.11&quot;</span>
+<span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+
+<span class="k">[project.optional-dependencies]</span>
+<span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pytest&gt;=8.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pytest-cov&gt;=5.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mypy&gt;=1.10&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ruff&gt;=0.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pre-commit&gt;=3.7&quot;</span><span class="p">]</span>
+
+<span class="k">[project.scripts]</span>
+<span class="n">analyze</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;analyzer.cli:main&quot;</span>
+
+<span class="k">[build-system]</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hatchling&quot;</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hatchling.build&quot;</span>
+
+<span class="c1"># Required whenever the distribution name differs from the package directory.</span>
+<span class="c1"># Without this, `pip install -e .` fails with &quot;Unable to determine which files</span>
+<span class="c1"># to ship inside the wheel&quot;, because hatchling looks for a directory matching</span>
+<span class="c1"># the normalized project name (learning_log_analyzer) and finds `analyzer`.</span>
+<span class="k">[tool.hatch.build.targets.wheel]</span>
+<span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src/analyzer&quot;</span><span class="p">]</span>
+
+<span class="k">[tool.ruff]</span>
+<span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;py311&quot;</span>
+
+<span class="k">[tool.ruff.lint]</span>
+<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;UP&quot;</span><span class="p">]</span>
+
+<span class="k">[tool.mypy]</span>
+<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.11&quot;</span>
+<span class="n">warn_return_any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="n">warn_unused_ignores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+
+<span class="k">[tool.pytest.ini_options]</span>
+<span class="n">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tests&quot;</span><span class="p">]</span>
+<span class="n">addopts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;-v&quot;</span>
+</code></pre></div>
+
+<p>The ruff <code>select</code> list is worth understanding rather than copying: <code>E</code> and <code>F</code> are pycodestyle and pyflakes basics, <code>I</code> sorts imports, <code>B</code> is flake8-bugbear which catches real bug patterns including mutable default arguments, and <code>UP</code> modernizes syntax to your target version. <code>B</code> is the one that earns its place.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;.venv/\n__pycache__/\n*.py[cod]\n.pytest_cache/\n.mypy_cache/\n.ruff_cache/\n.env\n*.log\ndata/\n&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>.gitignore
+
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+pre-commit<span class="w"> </span>install
+
+git<span class="w"> </span>add<span class="w"> </span>-A
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initialize project structure and tooling&quot;</span>
+git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>feature/first-analyzer
+</code></pre></div>
+
+<p>Now every commit is linted and formatted, every push is tested by CI once you add the workflow from section 7, and a fresh clone reproduces the environment in two commands.</p>
+<h3 id="example-2-debugging-a-ci-only-failure">Example 2: debugging a CI-only failure<a class="anchor" href="#example-2-debugging-a-ci-only-failure" aria-label="Link to this section">#</a></h3>
+<p>The scenario, which will happen to you: tests pass locally, fail in CI with <code>FileNotFoundError: data/sample.csv</code>.</p>
+<p><strong>Bad approach:</strong> add the file to git and move on. The test passes, the underlying bug stays, and it reappears differently in three weeks.</p>
+<p><strong>The method applied:</strong></p>
+<p><em>Reproduce.</em> Cannot locally, which is itself the clue. What is different about CI? It is a fresh clone with nothing untracked.</p>
+<p><em>Hypothesis.</em> The test depends on a file that exists on my machine but is not in the repository.</p>
+<p><em>Test the hypothesis.</em> Clone into a fresh directory and run the tests there:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>.<span class="w"> </span>/tmp/fresh-clone<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/tmp/fresh-clone
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pytest
+</code></pre></div>
+
+<p>It fails identically. Hypothesis confirmed in one step, and you now have a local reproduction.</p>
+<p><em>Find the cause.</em> <code>data/</code> is gitignored, which is correct, and the test reads from it, which is not.</p>
+<p><em>Fix the cause, not the symptom.</em> Do not commit the data file. Make the test generate what it needs:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_log</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;sample.csv&quot;</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-01-01,python,45</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_summarize_reads_a_log</span><span class="p">(</span><span class="n">sample_log</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">summarize</span><span class="p">(</span><span class="n">sample_log</span><span class="p">)[</span><span class="s2">&quot;total_minutes&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">45</span>
+</code></pre></div>
+
+<p><em>Confirm.</em> Tests pass in the fresh clone.</p>
+<p><em>Generalize.</em> The same class of bug exists wherever a test touches a real path. Grep for it: <code>rg "data/" tests/</code>.</p>
+<p><strong>The transferable lesson.</strong> "Fresh clone into a temporary directory" reproduces most CI-only failures in under a minute, because the difference is almost always something present locally and not committed: a data file, a <code>.env</code>, an installed package, an environment variable. Reach for it before reading the CI logs a fourth time.</p>
+<h3 id="example-3-a-pull-request-reviewed">Example 3: a pull request, reviewed<a class="anchor" href="#example-3-a-pull-request-reviewed" aria-label="Link to this section">#</a></h3>
+<p>The diff, which looks reasonable:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">]</span>
+</code></pre></div>
+
+<p>A review of seven lines, in priority order:</p>
+<div class="highlight"><pre><span></span><code>blocking: filtering after top_k means we can return fewer than top_k results,
+  sometimes zero, with no signal to the caller that anything was filtered. Was
+  that intended? If so the return type should carry it; if not, filter before
+  taking top_k.
+
+blocking: no error handling around embed() or index.query(). Both are network
+  calls. What should a caller see when the index is down, an empty list or an
+  exception? Right now it is an exception from somewhere inside a library,
+  which is the worst of both.
+
+question: where does 0.7 come from? If it was measured, a comment with the
+  dataset would be worth more than the number. If it was picked by feel,
+  that is fine, but it should be a named constant or a parameter so it can be
+  tuned without editing this function.
+
+question: we drop the scores on return. Callers that want to show confidence
+  or debug a bad result cannot. Is there a reason not to return the results
+  themselves?
+
+nit: type hints would help here, `-&gt; list[str]` in particular, since the
+  return type is not obvious from the name.
+</code></pre></div>
+
+<p><strong>What makes this a good review.</strong> The blocking issues are correctness and failure behavior, not style. The questions are genuine questions, and the 0.7 one may well have an answer. The nit is labeled as a nit so it does not compete with the real issues. And nothing in it is about the author.</p>
+<p><strong>The revised version:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">DEFAULT_SCORE_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.7</span>   <span class="c1"># measured on eval-set-v2, see docs/retrieval-tuning.md</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">min_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_SCORE_THRESHOLD</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SearchResult</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return up to top_k results scoring at least min_score.</span>
+
+<span class="sd">    Raises RetrievalError if the index or embedding service is unavailable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">embedding</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">top_k</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># over-fetch to survive filtering</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">EmbeddingError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">RetrievalError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;search failed for query </span><span class="si">{</span><span class="n">query</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+    <span class="n">kept</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="n">min_score</span><span class="p">][:</span><span class="n">top_k</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">kept</span> <span class="ow">and</span> <span class="n">results</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;all </span><span class="si">%d</span><span class="s2"> results below threshold </span><span class="si">%.2f</span><span class="s2"> (best </span><span class="si">%.3f</span><span class="s2">) for query </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">),</span> <span class="n">min_score</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">kept</span>
+</code></pre></div>
+
+<p>Every change traces to a review comment. Over-fetching addresses the filtering issue. The log line means "no results" is diagnosable rather than mysterious, and it records the best score, which is the number you want when tuning the threshold. <code>from e</code> preserves the original traceback.</p>
+<hr />
+<h2 id="common-mistakes-and-debugging">Common mistakes and debugging<a class="anchor" href="#common-mistakes-and-debugging" aria-label="Link to this section">#</a></h2>
+<h3 id="beginner-mistakes">Beginner mistakes<a class="anchor" href="#beginner-mistakes" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fatal: not a git repository</code></td>
+<td>Wrong directory, or never ran <code>git init</code></td>
+<td><code>git status</code> to orient</td>
+</tr>
+<tr>
+<td>Committed to main by accident</td>
+<td>Forgot to branch</td>
+<td>Branch from here, reset main to origin</td>
+</tr>
+<tr>
+<td><code>Your branch is ahead by 3 commits</code></td>
+<td>Not pushed</td>
+<td><code>git push</code></td>
+</tr>
+<tr>
+<td>Merge conflict markers in a running file</td>
+<td>Committed without resolving</td>
+<td><code>rg "&lt;&lt;&lt;&lt;&lt;&lt;&lt;"</code> before committing</td>
+</tr>
+<tr>
+<td><code>ModuleNotFoundError</code> for your own package</td>
+<td>Not installed in editable mode</td>
+<td><code>pip install -e .</code></td>
+</tr>
+<tr>
+<td>Package installed but not found</td>
+<td>Wrong virtualenv</td>
+<td><code>which python3</code></td>
+</tr>
+<tr>
+<td><code>pytest</code> collects nothing</td>
+<td>Files not named <code>test_*.py</code></td>
+<td>Rename, check <code>testpaths</code></td>
+</tr>
+<tr>
+<td>CI fails, local passes</td>
+<td>Something local and uncommitted</td>
+<td>Fresh clone (example 2)</td>
+</tr>
+<tr>
+<td>Pre-commit blocks a commit</td>
+<td>It found something</td>
+<td>Read it; <code>--no-verify</code> is not a fix</td>
+</tr>
+</tbody>
+</table>
+<h3 id="production-failure-modes">Production failure modes<a class="anchor" href="#production-failure-modes" aria-label="Link to this section">#</a></h3>
+<p><strong>A secret in git history.</strong> Committed once, deleted in the next commit, still present in every clone forever. <em>Diagnostic:</em> <code>git log -p -S"sk-"</code> searches history for a string. <em>Fix:</em> rotate the key immediately. History rewriting with <code>git filter-repo</code> is secondary; assume it is compromised.</p>
+<p><strong>Unpinned dependency breaks a build weeks later.</strong> Nothing changed in your code; a transitive dependency shipped a major version. <em>Diagnostic:</em> CI fails on a commit that previously passed. <em>Fix:</em> lockfile, committed, used in CI and Docker.</p>
+<p><strong>Flaky test disabled, real bug ships.</strong> The test caught a genuine race condition, failed intermittently, was marked <code>skip</code>, and the race reached production. <em>Diagnostic:</em> grep for <code>skip</code> and <code>xfail</code> and ask when each was added. <em>Fix:</em> treat flakiness as a bug in the test or the code, never as background noise.</p>
+<p><strong>Large file committed, repository becomes unusable.</strong> A 4GB <code>.gguf</code> makes every clone a 4GB download, permanently, even after deletion. <em>Fix:</em> <code>check-added-large-files</code> in pre-commit, before it happens.</p>
+<p><strong>Long-running rebase of a shared branch.</strong> Someone rebases a branch two colleagues have pulled. Their next pull produces duplicated commits and confusing conflicts. <em>Fix:</em> the rule from section 2. Recovery is <code>git reset --hard origin/branch</code> after saving local work.</p>
+<p><strong>Silent test ordering dependence.</strong> Tests pass in the order you wrote them and fail when the suite is parallelized, because one leaves state behind. <em>Diagnostic:</em> run a subset, or in reverse. <em>Fix:</em> fixtures and <code>tmp_path</code>, no module-level mutable state.</p>
+<h3 id="the-debugging-checklist">The debugging checklist<a class="anchor" href="#the-debugging-checklist" aria-label="Link to this section">#</a></h3>
+<p>When stuck for more than thirty minutes:</p>
+<ol>
+<li>Have I actually read the whole error message, including after the colon?</li>
+<li>Can I reproduce it reliably? If not, what varies?</li>
+<li>What is the smallest input that still fails?</li>
+<li>What is my hypothesis, stated as a falsifiable sentence?</li>
+<li>When did it last work? (<code>git bisect</code>)</li>
+<li>Am I debugging the code I think I am? (<code>which python3</code>, check the import path, add a print at the top)</li>
+<li>Have I explained it out loud to someone or something? The rubber duck works because forcing a linear explanation exposes the assumption you skipped.</li>
+</ol>
+<p>Point 6 catches more than its share: editing one file and running another, or an installed copy shadowing your source.</p>
+<hr />
+<h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
+<p><strong>1. Walk me through your git workflow.</strong></p>
+<p><em>Strong outline:</em> Branch per change from an up-to-date main, small focused commits with imperative messages explaining why, rebase on main before opening a PR, PR small enough to review properly with a description of what and why and how tested, CI green before requesting review, merge after approval. Then the reasoning: small branches reduce conflicts, rebase-before-PR resolves conflicts on my own time rather than the reviewer's, and never rebasing shared branches because it rewrites history under collaborators.</p>
+<p><em>Weak answer:</em> Listing commands without the reasoning or the shared-branch rule.</p>
+<p><strong>2. Merge or rebase?</strong></p>
+<p><em>Strong outline:</em> Both, for different jobs. Rebase my own feature branch onto main before a PR for a linear, reviewable history. Merge the finished feature into main to preserve that it was a unit of work. Never rebase anything others have pulled, because rebase creates new commits with new hashes and rewrites history under them. Mention <code>pull --rebase</code> to avoid noise merge commits.</p>
+<p><em>Weak answer:</em> "Rebase keeps history clean." True and dangerous without the constraint.</p>
+<p><strong>3. Your code passes locally and fails in CI. How do you approach it?</strong></p>
+<p><em>Strong outline:</em> CI is right and my machine is lying; the question is what is different. Fresh clone into a temp directory with a clean virtualenv reproduces most of these in a minute. Then the candidates in order: uncommitted or gitignored files the tests need, unpinned dependencies resolving differently, environment variables set in my shell, test order dependence, OS or Python version differences from a matrix build. Fix the cause: if a test needs a data file, generate it in a fixture rather than committing it.</p>
+<p><em>Weak answer:</em> "Re-run CI." Which is a real move for a genuinely flaky pipeline and an admission you have no method otherwise.</p>
+<p><strong>4. What do you look for in a code review?</strong></p>
+<p><em>Strong outline:</em> Correctness first, including edge cases. Then safety: secrets, injection, unvalidated input, PII in logs. Then failure behavior: what happens when the dependency is down and is the error useful. Then tests, judged by whether they cover risky paths rather than by coverage percentage. Then readability and consistency. Style last, and mostly automated. Then the delivery: label severity so blocking issues are distinguishable from nits, and ask rather than assert when unsure.</p>
+<p><em>Weak answer:</em> "Check for bugs and style." No priority order, which is what the question is actually testing.</p>
+<p><strong>5. How do you decide what to test?</strong></p>
+<p><em>Strong outline:</em> Test where a bug is likely and expensive: logic with branches and arithmetic, edge cases, error paths, and anything that has broken before. Do not test getters, third-party behavior, or exact log strings. Many fast unit tests, fewer integration tests, very few end-to-end. For AI pipelines specifically, separate what is assertable, chunking boundaries, parsing, retrieval given a fixed index, from what must be evaluated against a dataset, which is generation quality. Writing a unit test that asserts an LLM's exact output is a test that will fail for reasons unrelated to your change.</p>
+<p><em>Weak answer:</em> "Aim for 80% coverage." Coverage measures execution, not verification; a test with no assertions produces coverage.</p>
+<p><strong>6. Explain idempotency and why it matters for retries.</strong></p>
+<p><em>Strong outline:</em> An idempotent operation has the same effect performed once or many times. GET, PUT and DELETE are idempotent by specification; POST is not. It matters because a timeout leaves you not knowing whether the server processed the request, so retrying a non-idempotent POST may duplicate the effect, charging a card twice or creating two records. The production solution is an idempotency key supplied by the client, recorded by the server, which returns the original result on a repeat.</p>
+<p><em>Weak answer:</em> "It means you can call it multiple times." Definition without the consequence, and the consequence is the question.</p>
+<p><strong>7. Why won't threads speed up my CPU-bound Python?</strong></p>
+<p><em>Strong outline:</em> The GIL allows only one thread to execute Python bytecode at a time, so pure-Python CPU work does not parallelize across threads; use processes. But the GIL is released during I/O and inside C extensions, so threads do help for network and disk work, and NumPy, PyTorch and Rust-based tokenizers genuinely run in parallel across threads. That last point is why an inference server can use a thread pool. Mention that free-threaded CPython is changing this and that you would measure rather than assume.</p>
+<p><em>Weak answer:</em> "Python can't do threads." Wrong, and it misses the C-extension case that matters most in AI work.</p>
+<p><strong>8. You have a regression and no idea which change caused it. What do you do?</strong></p>
+<p><em>Strong outline:</em> Find a commit where it worked and one where it does not, then <code>git bisect</code> between them; binary search finds the culprit in about log2(n) tests, roughly 10 for a thousand commits. Automate it with <code>git bisect run</code> and a test that reproduces the bug. Then read only that commit's diff. Before all that, write a reliable reproduction, because bisect is only as good as the test you give it.</p>
+<p><em>Weak answer:</em> "Look through recent commits." Works for five commits, not five hundred.</p>
+<p><strong>9. How do you make sure your project runs on someone else's machine?</strong></p>
+<p><em>Strong outline:</em> A virtualenv per project so nothing depends on system state. Declared dependencies with ranges in <code>pyproject.toml</code> and exact versions in a committed lockfile, so the tested set is reproducible. CI running on a clean machine as the actual proof, ideally across a Python version matrix. A README with the two commands needed. Docker when the environment includes non-Python dependencies. And pin model versions as well as package versions, because a provider updating a model silently changes behavior and invalidates your evaluation results.</p>
+<p><em>Weak answer:</em> "requirements.txt." Necessary, not sufficient, and does not distinguish declared from locked.</p>
+<p><strong>10. What is the most important engineering practice for a small team with no time?</strong></p>
+<p><em>Strong outline:</em> An opinionated answer is expected here. Version control with small reviewed PRs, because everything else is recoverable from history and review catches problems earliest and cheapest. Second, CI that runs tests on every PR, because it converts "someone should check" into something that happens. Note the tradeoff honestly: a team with no time will under-invest in end-to-end tests and documentation, which is survivable, whereas skipping review and CI is not, because the cost arrives later and larger.</p>
+<p><em>Weak answer:</em> Listing everything as equally important. The question is about prioritization under constraint.</p>
+<h3 id="follow-up-questions-to-expect">Follow-up questions to expect<a class="anchor" href="#follow-up-questions-to-expect" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>After 4: <em>"You are the only engineer. Is review still worth it?"</em> Yes, with modifications: self-review the full diff in the PR interface after a delay, keep a written checklist, and use the linter and type checker as the automated reviewer. The point is a second pass with different attention, and time creates most of that.</li>
+<li>After 5: <em>"How do you test something non-deterministic?"</em> Separate the deterministic parts and unit test them. For the rest, evaluate rather than assert: a fixed dataset, metrics with thresholds, tracked over time, with the test failing on regression beyond a margin rather than on inequality. Seed what can be seeded, and mock the model at the boundary when you are testing your own logic rather than its output.</li>
+</ul>
+<h3 id="60-second-and-5-minute-answers">60-second and 5-minute answers<a class="anchor" href="#60-second-and-5-minute-answers" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Your git workflow and why it is shaped that way</li>
+<li>How you debug a CI-only failure</li>
+<li>What you look for in a code review, in priority order</li>
+<li>Idempotency and retry safety</li>
+</ol>
+<hr />
+<h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
+<p>Solutions in <code>quizzes/02-software-engineering-practice.md</code>.</p>
+<h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>In a scratch repository, make three commits, then use <code>git reset --hard HEAD~3</code>. Recover all three with <code>reflog</code>. Write down what <code>reflog</code> showed, so you trust it next time.</li>
+<li>Create a merge conflict on purpose in two branches, resolve it, and explain in writing which side each marker represented.</li>
+<li>Write a <code>.gitignore</code> for an AI project and justify every line. Any line you cannot justify, delete.</li>
+<li>Take a function with no type hints, add them, run mypy, and fix what it finds. Write down whether it found a real bug.</li>
+<li>Use <code>git bisect</code> on a repository where you deliberately introduced a bug 10 commits back. Count how many steps it took.</li>
+</ol>
+<h3 id="three-realistic-coding-tasks">Three realistic coding tasks<a class="anchor" href="#three-realistic-coding-tasks" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><strong>Full setup.</strong> Take your <code>01a</code> mini-project and give it the example 1 treatment: src layout, pyproject, pre-commit, CI workflow, test suite. Success is a fresh clone running <code>pip install -e ".[dev]" &amp;&amp; pytest</code> with no other instructions.</li>
+<li><strong>Review a PR badly on purpose, then well.</strong> Write a 60-line change with three deliberate problems: a correctness bug, a missing error path, and a style issue. Write two reviews, one that only catches the style issue and one in the section 8 priority order. The contrast is the exercise.</li>
+<li><strong>Retry client with idempotency.</strong> Build an HTTP client that retries only retriable statuses, honors <code>Retry-After</code>, jitters, and sends an idempotency key on POST. Test it against a fake transport with no network. Include tests proving a 400 is not retried and that the same key is reused across retries of one logical operation.</li>
+</ol>
+<h3 id="one-mini-project">One mini-project<a class="anchor" href="#one-mini-project" aria-label="Link to this section">#</a></h3>
+<p><strong>Contribute to your own repository as if to a team.</strong></p>
+<p>Take the <code>01b</code> mini-project and run four changes through a full workflow:</p>
+<ol>
+<li>A feature: add a new output format</li>
+<li>A bug fix: find a real bug, write the failing test first</li>
+<li>A refactor: extract something, with no behavior change and tests proving it</li>
+<li>A dependency upgrade: bump a version, see what breaks</li>
+</ol>
+<p>For each: a branch, small commits with real messages, a PR with a description, CI green, a self-review in the priority order from section 8 left as actual PR comments, then merge.</p>
+<p>Success criterion: the repository's commit history and PR list read as if written by a team. Someone reviewing your GitHub will see this and it is worth more than the code.</p>
+<hr />
+<h2 id="mastery-checklist">Mastery checklist<a class="anchor" href="#mastery-checklist" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>[ ] Explain what a commit contains and why branching is cheap</li>
+<li>[ ] Recover a commit deleted with <code>reset --hard</code>, using <code>reflog</code>, without looking it up</li>
+<li>[ ] State when rebasing is dangerous, and why, in terms of new hashes</li>
+<li>[ ] Choose <code>revert</code> over <code>reset</code> for pushed commits, and explain why</li>
+<li>[ ] Explain what a lockfile gives you that a version range does not</li>
+<li>[ ] Say what a formatter, linter and type checker each do, and name a bug only the linter catches</li>
+<li>[ ] Write a GitHub Actions workflow that lints, type checks and tests</li>
+<li>[ ] Debug a CI-only failure with the fresh-clone technique</li>
+<li>[ ] Review a pull request in the section 8 priority order</li>
+<li>[ ] Give a review comment that distinguishes blocking from nit</li>
+<li>[ ] Use <code>git bisect</code> to find a regression</li>
+<li>[ ] State a falsifiable hypothesis before changing code when debugging</li>
+<li>[ ] Explain idempotency and derive the retriable status allowlist from it</li>
+<li>[ ] Say when to use async, threads and processes, including the C-extension exception</li>
+<li>[ ] Find every file containing a string, excluding gitignored paths, from memory</li>
+<li>[ ] Complete the mini-project, with a history that reads like a team's</li>
+</ul>
+<p>Fewer than thirteen of sixteen means go back. Module 10 assumes all of this and adds deployment on top.</p>
+<hr />
+<h2 id="connections">Connections<a class="anchor" href="#connections" aria-label="Link to this section">#</a></h2>
+<p><strong>Backward:</strong></p>
+<ul>
+<li><code>01b</code> section 7's pytest becomes a testing <em>strategy</em> here: which tests to write, not how.</li>
+<li><code>01b</code> section 8's packaging becomes a reproducible environment with locks and CI.</li>
+<li><code>01b</code> section 9.2's retriable allowlist is derived here from HTTP semantics and idempotency.</li>
+<li><code>01a</code> section 8's "catch what you can handle" is the review criterion "will it fail well".</li>
+</ul>
+<p><strong>Forward:</strong></p>
+<ul>
+<li><code>03-data-and-sql.md</code> uses the CLI tools here for inspecting data files.</li>
+<li><code>07-rag-and-vector-search.md</code> depends on section 9's observability point: a retrieval pipeline you cannot see inside is one you cannot debug.</li>
+<li><code>08-agents-tools-and-mcp.md</code> builds reliability on idempotency from section 11. An agent that retries a non-idempotent tool call causes real damage.</li>
+<li><code>09-local-llm-inference.md</code> uses section 12's concurrency model directly: serving concurrent requests from a local model is the C-extension case.</li>
+<li><code>10-mlops-and-deployment.md</code> is the direct continuation. CI here, CD there; this module's practices are its prerequisites.</li>
+<li><code>13-project-portfolio.md</code> treats the repository hygiene here as evidence. A reviewer looking at your GitHub judges commit history and PR quality before reading any code.</li>
+</ul>
+<hr />
+<h2 id="volatile-claims">Volatile claims<a class="anchor" href="#volatile-claims" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Why it decays</th>
+<th>Re-check against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ruff, mypy, pre-commit config keys and hook revisions</td>
+<td>Ruff especially has renamed config sections between versions</td>
+<td>Current ruff and pre-commit docs</td>
+</tr>
+<tr>
+<td>GitHub Actions versions (<code>checkout@v4</code>, <code>setup-python@v5</code>)</td>
+<td>Bumped periodically</td>
+<td>GitHub Marketplace</td>
+</tr>
+<tr>
+<td>"pip plus a lockfile" as the default</td>
+<td>uv is displacing this quickly</td>
+<td>Current uv docs</td>
+</tr>
+<tr>
+<td>GIL behavior and the threads guidance</td>
+<td>PEP 703 free-threaded builds change it for opt-in code</td>
+<td>Python release notes</td>
+</tr>
+<tr>
+<td><code>git switch</code> and <code>git restore</code> as preferred over <code>checkout</code></td>
+<td>Stable since 2.23, unlikely to change</td>
+<td>Git release notes</td>
+</tr>
+</tbody>
+</table>
+<p>Sections 1 through 3, 6, 8, 9 and 11 are concepts and stable. Sections 4, 5 and 7 are tooling and will drift.</p>
+<p><strong>Next review due:</strong> 2027-03-18, or when you next set up a new project from scratch.</p>
+      <nav class="pager">
+<a class="pager-prev" href="01c-python-dsa.html"><span>Previous</span>01c · Interview DSA</a>
+<a class="pager-next" href="03-data-and-sql.html"><span>Next</span>03 · Data, SQL &amp; Statistics</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
+<li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
+<li class="toc-l2"><a href="#mental-model">Mental model</a></li>
+<li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
+<li class="toc-l3"><a href="#1-git-as-a-model-foundation">1. Git as a model [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#2-branching-merging-rebasing-core">2. Branching, merging, rebasing [CORE]</a></li>
+<li class="toc-l3"><a href="#3-recovering-from-git-mistakes-core">3. Recovering from git mistakes [CORE]</a></li>
+<li class="toc-l3"><a href="#4-environments-and-dependencies-core">4. Environments and dependencies [CORE]</a></li>
+<li class="toc-l3"><a href="#5-linting-formatting-type-checking-foundation">5. Linting, formatting, type checking [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#6-testing-strategy-core">6. Testing strategy [CORE]</a></li>
+<li class="toc-l3"><a href="#7-continuous-integration-core">7. Continuous integration [CORE]</a></li>
+<li class="toc-l3"><a href="#8-code-review-core">8. Code review [CORE]</a></li>
+<li class="toc-l3"><a href="#9-debugging-as-a-method-core">9. Debugging as a method [CORE]</a></li>
+<li class="toc-l3"><a href="#10-the-command-line-foundation">10. The command line [FOUNDATION]</a></li>
+<li class="toc-l3"><a href="#11-http-and-apis-core">11. HTTP and APIs [CORE]</a></li>
+<li class="toc-l3"><a href="#12-concurrency-and-parallelism-depth">12. Concurrency and parallelism [DEPTH]</a></li>
+<li class="toc-l2"><a href="#worked-examples">Worked examples</a></li>
+<li class="toc-l3"><a href="#example-1-a-repository-set-up-from-scratch">Example 1: a repository set up from scratch</a></li>
+<li class="toc-l3"><a href="#example-2-debugging-a-ci-only-failure">Example 2: debugging a CI-only failure</a></li>
+<li class="toc-l3"><a href="#example-3-a-pull-request-reviewed">Example 3: a pull request, reviewed</a></li>
+<li class="toc-l2"><a href="#common-mistakes-and-debugging">Common mistakes and debugging</a></li>
+<li class="toc-l3"><a href="#beginner-mistakes">Beginner mistakes</a></li>
+<li class="toc-l3"><a href="#production-failure-modes">Production failure modes</a></li>
+<li class="toc-l3"><a href="#the-debugging-checklist">The debugging checklist</a></li>
+<li class="toc-l2"><a href="#interview-angle">Interview angle</a></li>
+<li class="toc-l3"><a href="#follow-up-questions-to-expect">Follow-up questions to expect</a></li>
+<li class="toc-l3"><a href="#60-second-and-5-minute-answers">60-second and 5-minute answers</a></li>
+<li class="toc-l2"><a href="#practice-tasks">Practice tasks</a></li>
+<li class="toc-l3"><a href="#five-tiny-exercises">Five tiny exercises</a></li>
+<li class="toc-l3"><a href="#three-realistic-coding-tasks">Three realistic coding tasks</a></li>
+<li class="toc-l3"><a href="#one-mini-project">One mini-project</a></li>
+<li class="toc-l2"><a href="#mastery-checklist">Mastery checklist</a></li>
+<li class="toc-l2"><a href="#connections">Connections</a></li>
+<li class="toc-l2"><a href="#volatile-claims">Volatile claims</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
