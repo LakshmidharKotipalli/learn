@@ -1,5 +1,6 @@
 /* AI Engineer Learning OS — site behaviour
-   Theme toggle, mobile nav, Mermaid rendering, TOC scroll-spy, client-side search. */
+   Theme toggle, mobile nav, Mermaid rendering, TOC scroll-spy, client-side search,
+   reading progress, study state, and copyable code blocks. */
 
 (function () {
   "use strict";
@@ -122,6 +123,213 @@
       observer.observe(document.getElementById(id));
     });
   }
+
+  /* ---------- learning loop ---------- */
+
+  const progressKey = "learning-os-progress-v1";
+  const currentPage = (window.location.pathname.split("/").pop() || "index.html").split("#")[0];
+  const doc = document.querySelector("article.doc");
+  const pageLinks = Array.prototype.slice.call(document.querySelectorAll(".sidebar-nav a"));
+
+  function readProgress() {
+    try { return JSON.parse(store.get(progressKey) || "{}"); } catch (e) { return {}; }
+  }
+
+  let progress = readProgress();
+  const trackedPages = pageLinks
+    .map(function (link) { return link.getAttribute("href").split("#")[0]; })
+    .filter(function (href, i, all) { return href !== "index.html" && all.indexOf(href) === i; });
+
+  function saveProgress() {
+    store.set(progressKey, JSON.stringify(progress));
+  }
+
+  function pageState(href) {
+    return progress[href] || { visited: false, complete: false, scroll: 0, lastOpened: 0 };
+  }
+
+  function titleFor(href) {
+    const link = pageLinks.find(function (item) {
+      return item.getAttribute("href").split("#")[0] === href;
+    });
+    return link ? link.textContent.trim() : "the next lesson";
+  }
+
+  function nextUnfinished() {
+    const ordered = trackedPages.filter(function (href) { return !pageState(href).complete; });
+    return ordered[0] || trackedPages[0] || "00-roadmap.html";
+  }
+
+  function completionCount() {
+    return trackedPages.filter(function (href) { return pageState(href).complete; }).length;
+  }
+
+  function updateProgressUI() {
+    const total = trackedPages.length;
+    const completed = completionCount();
+    const percent = total ? Math.round((completed / total) * 100) : 0;
+    const overall = document.getElementById("overall-progress");
+    const overallBar = document.getElementById("overall-progress-bar");
+    if (overall) overall.textContent = completed + " of " + total + " lessons complete";
+    if (overallBar) overallBar.style.width = percent + "%";
+
+    const current = pageState(currentPage);
+    const studyButton = document.getElementById("study-toggle");
+    const studyStatus = document.getElementById("study-status");
+    if (studyButton) {
+      studyButton.textContent = current.complete ? "Completed ✓" : "Mark as complete";
+      studyButton.setAttribute("aria-pressed", String(current.complete));
+      studyButton.classList.toggle("is-complete", current.complete);
+    }
+    if (studyStatus) studyStatus.textContent = current.complete ? "Saved to your learning history" : "Progress saves in this browser";
+
+    pageLinks.forEach(function (link) {
+      const href = link.getAttribute("href").split("#")[0];
+      const state = pageState(href);
+      link.classList.toggle("is-complete", state.complete);
+      let marker = link.querySelector(".nav-marker");
+      if (!marker) {
+        marker = document.createElement("span");
+        marker.className = "nav-marker";
+        marker.setAttribute("aria-hidden", "true");
+        link.appendChild(marker);
+      }
+      marker.textContent = state.complete ? "✓" : "";
+    });
+
+    document.querySelectorAll(".card[data-page]").forEach(function (card) {
+      const state = pageState(card.dataset.page);
+      card.classList.toggle("is-complete", state.complete);
+      let badge = card.querySelector(".card-status");
+      if (!badge) {
+        badge = document.createElement("span");
+        badge.className = "card-status";
+        card.appendChild(badge);
+      }
+      badge.textContent = state.complete ? "Completed" : state.visited ? "In progress" : "Not started";
+    });
+  }
+
+  function initStudyBar() {
+    if (!doc || currentPage === "index.html" || !trackedPages.includes(currentPage)) return;
+    const activeLink = pageLinks.find(function (link) {
+      return link.getAttribute("href").split("#")[0] === currentPage;
+    });
+    const label = activeLink ? activeLink.textContent.trim() : "Current lesson";
+    const markup = '<section class="study-bar" aria-label="Lesson progress">' +
+      '<div class="study-copy"><strong>' + label + '</strong>' +
+      '<span id="study-status">Progress saves in this browser</span></div>' +
+      '<button class="study-toggle" id="study-toggle" type="button" aria-pressed="false">Mark as complete</button>' +
+      '</section>';
+    doc.insertAdjacentHTML("afterbegin", markup);
+    const state = pageState(currentPage);
+    state.visited = true;
+    state.lastOpened = Date.now();
+    progress[currentPage] = state;
+    saveProgress();
+    document.getElementById("study-toggle").addEventListener("click", function () {
+      const next = pageState(currentPage);
+      next.complete = !next.complete;
+      next.visited = true;
+      next.completedAt = next.complete ? Date.now() : null;
+      progress[currentPage] = next;
+      saveProgress();
+      updateProgressUI();
+    });
+  }
+
+  function initLandingDashboard() {
+    if (!doc || currentPage !== "index.html") return;
+    const hero = doc.querySelector(".hero");
+    if (!hero) return;
+    const next = nextUnfinished();
+    const nextTitle = escapeHtml(titleFor(next));
+    hero.insertAdjacentHTML("afterend",
+      '<section class="learning-dashboard" aria-label="Your learning progress">' +
+      '<div class="dashboard-heading"><div><span class="eyebrow">Your learning path</span>' +
+      '<h2>Keep the momentum</h2><p id="overall-progress">0 lessons complete</p></div>' +
+      '<a class="btn btn-primary" id="continue-learning" href="' + next + '">Continue with ' + nextTitle + ' →</a></div>' +
+      '<div class="overall-track" aria-hidden="true"><span id="overall-progress-bar"></span></div>' +
+      '</section>');
+    document.querySelectorAll(".card").forEach(function (card) {
+      const href = card.getAttribute("href");
+      if (href && trackedPages.includes(href.split("#")[0])) card.dataset.page = href.split("#")[0];
+    });
+  }
+
+  function initReadingProgress() {
+    if (!doc) return;
+    const bar = document.createElement("div");
+    bar.className = "reading-progress";
+    bar.innerHTML = '<span></span>';
+    document.body.appendChild(bar);
+    const fill = bar.firstElementChild;
+    let lastSaved = -1;
+    function update() {
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const percent = Math.min(100, Math.round((window.scrollY / max) * 100));
+      fill.style.width = percent + "%";
+      if (currentPage !== "index.html" && percent >= 25 && percent !== lastSaved) {
+        const state = pageState(currentPage);
+        state.visited = true;
+        state.scroll = percent;
+        progress[currentPage] = state;
+        lastSaved = percent;
+        saveProgress();
+      }
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  function initCopyButtons() {
+    document.querySelectorAll(".doc pre:not(.mermaid)").forEach(function (pre) {
+      if (pre.querySelector(".copy-code")) return;
+      const codeText = pre.innerText || pre.textContent;
+      const button = document.createElement("button");
+      button.className = "copy-code";
+      button.type = "button";
+      button.textContent = "Copy";
+      button.setAttribute("aria-label", "Copy code block");
+      pre.appendChild(button);
+      button.addEventListener("click", function () {
+        const done = function () {
+          button.textContent = "Copied!";
+          button.classList.add("copied");
+          window.setTimeout(function () {
+            button.textContent = "Copy";
+            button.classList.remove("copied");
+          }, 1400);
+        };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(codeText).then(done);
+        } else {
+          const area = document.createElement("textarea");
+          area.value = codeText;
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          try { document.execCommand("copy"); done(); } catch (e) { button.textContent = "Select manually"; }
+          area.remove();
+        }
+      });
+    });
+  }
+
+  initStudyBar();
+  initLandingDashboard();
+  initReadingProgress();
+  initCopyButtons();
+  updateProgressUI();
+
+  window.addEventListener("storage", function (event) {
+    if (event.key === progressKey) {
+      progress = readProgress();
+      updateProgressUI();
+    }
+  });
 
   /* ---------- search ---------- */
 

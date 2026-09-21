@@ -25,7 +25,6 @@
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-
 :root[data-theme="dark"],
 :root[data-theme="auto"] {
   color-scheme: light;
@@ -176,6 +175,41 @@ body {
 .results-empty { padding: 14px 12px; color: var(--fg-muted); font-size: 14px; }
 .results-hint { padding: 8px 12px; border-top: 1px solid var(--border); color: var(--fg-faint); font-size: 12px; }
 
+/* ---------- learning controls ---------- */
+
+.reading-progress {
+  position: fixed; top: 57px; left: 0; z-index: 55;
+  width: 100%; height: 3px; pointer-events: none;
+  background: transparent;
+}
+.reading-progress span {
+  display: block; width: 0; height: 100%;
+  background: var(--accent); transition: width .12s ease;
+}
+.study-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  margin: -8px 0 28px; padding: 12px 14px;
+  background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  border-radius: var(--radius);
+}
+.study-copy { display: grid; gap: 2px; min-width: 0; }
+.study-copy strong { font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.study-copy span { font-size: 12px; color: var(--fg-muted); }
+.study-toggle {
+  flex: none; padding: 8px 12px; border: 1px solid var(--accent);
+  border-radius: 6px; color: var(--accent-fg); background: var(--accent);
+  font: inherit; font-size: 12px; font-weight: 650; cursor: pointer;
+}
+.study-toggle:hover { filter: brightness(1.08); }
+.study-toggle.is-complete { color: var(--accent); background: transparent; }
+.nav-group a { position: relative; padding-right: 30px; }
+.nav-marker {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; display: grid; place-items: center;
+  color: var(--accent); font-size: 12px; font-weight: 800;
+}
+.nav-group a.is-complete:not(.active) { color: var(--fg-muted); }
+
 /* ---------- layout ---------- */
 
 .layout {
@@ -285,7 +319,7 @@ h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor { opacity
   border-radius: 4px; white-space: break-spaces;
 }
 .doc pre {
-  margin: 1.3em 0; padding: 15px 17px;
+  position: relative; margin: 1.3em 0; padding: 15px 17px;
   background: var(--code-bg); border: 1px solid var(--border);
   border-radius: var(--radius); overflow-x: auto;
   font-size: 13.2px; line-height: 1.6;
@@ -293,6 +327,13 @@ h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor { opacity
 .doc pre code { background: none; padding: 0; font-size: inherit; white-space: pre; }
 .highlight { background: none !important; }
 .highlight pre { margin: 1.3em 0; }
+.copy-code {
+  position: absolute; top: 8px; right: 8px; z-index: 1;
+  padding: 4px 8px; border: 1px solid var(--border); border-radius: 5px;
+  color: var(--fg-muted); background: var(--bg); font: inherit; font-size: 11px;
+  cursor: pointer; opacity: .72;
+}
+.copy-code:hover, .copy-code.copied { color: var(--accent); border-color: var(--accent); opacity: 1; }
 
 /* ---------- tables ---------- */
 
@@ -353,6 +394,24 @@ pre.mermaid[data-processed] { text-align: center; }
 .hero-meta { font-size: .85rem; color: var(--fg-faint); margin: 0 0 1.4em; }
 .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
+.learning-dashboard {
+  margin: 24px 0 30px; padding: 18px 20px 16px;
+  background: linear-gradient(135deg, var(--accent-soft), var(--bg-subtle));
+  border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+}
+.dashboard-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; }
+.eyebrow {
+  display: block; margin-bottom: 4px; color: var(--accent);
+  font-size: 11px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase;
+}
+.dashboard-heading h2 { margin: 0 0 2px !important; padding: 0 !important; border: 0 !important; font-size: 1.3rem !important; }
+.dashboard-heading p { margin: 0; color: var(--fg-muted); font-size: 13px; }
+.overall-track {
+  height: 7px; margin-top: 16px; overflow: hidden;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+}
+.overall-track span { display: block; width: 0; height: 100%; background: var(--accent); border-radius: inherit; transition: width .25s ease; }
+
 .doc a.btn, .btn {
   display: inline-block; padding: 9px 17px;
   font-size: 14px; font-weight: 600; text-decoration: none;
@@ -388,11 +447,18 @@ pre.mermaid[data-processed] { text-align: center; }
   transition: border-color .12s, transform .12s;
 }
 .card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.card.is-complete { border-color: color-mix(in srgb, var(--accent) 48%, var(--border)); background: color-mix(in srgb, var(--accent-soft) 36%, var(--bg)); }
 .card h3 {
   margin: 0 0 4px !important; font-size: 14px !important;
   font-weight: 640 !important; color: var(--fg);
 }
 .card p { margin: 0; font-size: 12.8px; line-height: 1.5; color: var(--fg-muted); }
+.card-status {
+  display: inline-block; margin-top: 10px; padding: 2px 7px;
+  border-radius: 999px; background: var(--bg-subtle); color: var(--fg-faint);
+  font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+}
+.card.is-complete .card-status { color: var(--accent); background: var(--accent-soft); }
 
 /* ---------- pager ---------- */
 
@@ -440,6 +506,10 @@ pre.mermaid[data-processed] { text-align: center; }
   .hero h1 { font-size: 1.9rem; }
   .doc h1 { font-size: 1.7rem; }
   .doc h2 { font-size: 1.28rem; }
+  .dashboard-heading { align-items: stretch; flex-direction: column; }
+  .dashboard-heading .btn { align-self: flex-start; }
+  .study-bar { align-items: stretch; flex-direction: column; }
+  .study-toggle { align-self: flex-start; }
   .pager { flex-direction: column; }
   .pager a { max-width: 100%; }
   .pager-next { text-align: left; }
