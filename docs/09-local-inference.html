@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 37 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="09-local-llm-inference">09 Local LLM Inference<a class="anchor" href="#09-local-llm-inference" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> high. This is the fastest-moving module in the repository.</p>
 <p>Two parts. Part 1 is specific to your machines, so the numbers mean something. Part 2 is the hardware-agnostic framework, which is what you take into an interview where you do not know the hardware.</p>
@@ -109,7 +122,7 @@
 </thead>
 <tbody>
 <tr>
-<td>KV cache formula, prefill vs decode, quantization</td>
+<td>Key–value (KV) cache formula, prefill vs decode, quantization</td>
 <td><code>06</code> sections 7, 8</td>
 </tr>
 <tr>
@@ -132,6 +145,56 @@
 </table>
 <p>Section 7 of module <code>06</code> is the hard prerequisite. The whole of Part 1 is that formula applied to your machines.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>4 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>A terminal; llama.cpp is optional for the local experiments</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read memory budget, quantization, runtimes, latency/throughput, serving, and benchmarking. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Estimate whether a model and context fit a machine before downloading it.</li>
+<li>Separate model size, key–value cache, runtime overhead, and bandwidth costs.</li>
+<li>Benchmark latency and throughput using a reproducible workload.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What determines whether a quantized model fits in memory?</li>
+<li>Why does a longer context increase the key–value cache footprint?</li>
+<li>What is the difference between time to first token (TTFT) and generation speed?</li>
+<li>Why can a faster runtime still produce a worse user experience?</li>
+<li>What must a benchmark hold constant to be comparable?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>--version
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -479,6 +542,16 @@
 <li>Scaling means buying machines, not changing a number.</li>
 </ul>
 <p><strong>The honest framing:</strong> local is a good default for privacy-constrained work, for high steady volume, and for anything where you must pin behavior. Hybrid is common and sensible: local for the bulk, hosted for the hard cases.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Why run models locally</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving on.</li>
+</ol>
+</blockquote>
 <h2 id="7-formats-and-quantization-core">7. Formats and quantization [CORE]<a class="anchor" href="#7-formats-and-quantization-core" aria-label="Link to this section">#</a></h2>
 <p><strong>Formats:</strong></p>
 <table>
@@ -519,6 +592,16 @@
 <p><strong>Dynamic quantization</strong> extends this to layer granularity: attention layers and the embedding and output layers are more sensitive than the feed-forward bulk, so give them more bits. A <code>UD-IQ2_XXS</code> is not uniformly 2.06 bits; that is the average.</p>
 <p><strong>Where quality degrades first</strong>, repeated from <code>06</code> section 8 because it is the operationally important part: long-context coherence, then instruction and format following, then code, then rare knowledge, then multi-step reasoning. Short factual accuracy holds up longest, which is exactly why benchmark scores mislead you about quantization.</p>
 <p><strong>The practical rule:</strong> Q4_K_M or better for anything you care about. Below Q3, expect format-following and long-context problems even when short answers look fine. Below Q2, expect a demo rather than a tool. And always prefer a smaller model at higher precision to a larger model at desperate precision, unless you have measured otherwise on your task.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Formats and quantization</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving on.</li>
+</ol>
+</blockquote>
 <h2 id="8-the-memory-budget-core">8. The memory budget [CORE]<a class="anchor" href="#8-the-memory-budget-core" aria-label="Link to this section">#</a></h2>
 <p>Four terms, and people usually account for one:</p>
 <div class="highlight"><pre><span></span><code>total = weights + kv_cache + compute_buffers + framework_overhead
@@ -535,6 +618,16 @@
 <li><strong>On discrete GPUs, VRAM is a hard wall.</strong> Spilling to system RAM over PCIe is an order-of-magnitude slowdown, and a setup that "works" while partially offloaded is often slower than a smaller model that fits.</li>
 <li><strong>Concurrency multiplies the cache, not the weights.</strong> Weights are shared across concurrent sequences; KV cache is per sequence. This is why <code>--parallel 4</code> can exhaust memory that <code>--parallel 1</code> had to spare.</li>
 </ul>
+<blockquote>
+<p><strong>Concept checkpoint — 8. The memory budget</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving on.</li>
+</ol>
+</blockquote>
 <h2 id="9-runtimes-core">9. Runtimes [CORE]<a class="anchor" href="#9-runtimes-core" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -588,6 +681,16 @@
 <p><strong>The distinction that actually decides it:</strong> llama.cpp optimizes single-stream latency on diverse hardware with aggressive quantization. vLLM optimizes aggregate throughput for many concurrent sequences on NVIDIA GPUs. <strong>They are not competitors; they are different products.</strong></p>
 <p>Saying "vLLM is faster than llama.cpp" is wrong in both directions without qualification. For one user on a MacBook, vLLM is not an option. For fifty concurrent users on an A100, llama.cpp will be several times slower in aggregate. The right answer names the workload.</p>
 <p><strong>PagedAttention</strong>, vLLM's central idea, is worth being able to explain: allocate KV cache in fixed-size blocks like operating-system virtual memory pages, rather than one contiguous reservation per sequence sized to the maximum. This eliminates the internal fragmentation that comes from reserving 32k of cache for a sequence that finishes at 400 tokens, which in practice is most of the waste. The result is many more concurrent sequences in the same memory, and it is the main reason vLLM's throughput advantage is as large as it is.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 9. Runtimes</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving on.</li>
+</ol>
+</blockquote>
 <h2 id="10-throughput-and-latency-core">10. Throughput and latency [CORE]<a class="anchor" href="#10-throughput-and-latency-core" aria-label="Link to this section">#</a></h2>
 <p><strong>The metrics, and what each one is for:</strong></p>
 <table>
@@ -636,6 +739,16 @@
 <p><strong>Batching helps aggregate throughput dramatically and does not help TTFT.</strong> One weight read serves every sequence in the batch, so decode throughput scales nearly linearly with batch size until memory runs out. But an individual user's first token does not arrive sooner, and may arrive later if they waited for a batch to form.</p>
 <p><strong>Continuous batching</strong> fills a finished sequence's slot immediately rather than waiting for the whole batch. Under mixed request lengths this is a large improvement, and it is why it is standard in serving frameworks.</p>
 <p><strong>Speculative decoding</strong> is worth knowing by name: a small draft model proposes several tokens, the large model verifies them in one forward pass, and accepted tokens are free. It exploits the fact that verification is parallel while generation is not. Gains depend entirely on acceptance rate, which depends on how well the draft model matches. <code>[VERIFY: implementation support varies by runtime @ current docs]</code></p>
+<blockquote>
+<p><strong>Concept checkpoint — 10. Throughput and latency</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving on.</li>
+</ol>
+</blockquote>
 <h2 id="11-serving-and-networking-core">11. Serving and networking [CORE]<a class="anchor" href="#11-serving-and-networking-core" aria-label="Link to this section">#</a></h2>
 <p><strong>The OpenAI-compatible API is the de facto standard</strong>, which is genuinely useful: your application code does not change when you swap between a local model and a hosted one, and every client library works.</p>
 <div class="highlight"><pre><span></span><code>llama-server<span class="w"> </span><span class="se">\</span>
@@ -666,6 +779,16 @@
 </code></pre></div>
 
 <p><code>[VERIFY: image name and tag @ the llama.cpp repository]</code> Note that GPU passthrough is straightforward for NVIDIA with the container toolkit and <strong>not available for Apple silicon</strong>, since Docker on macOS runs a Linux VM with no Metal access. Containerizing on a Mac gives you CPU-only inference, which is usually not what you want. This surprises people and is a good thing to know before you spend an afternoon on it.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 11. Serving and networking</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving on.</li>
+</ol>
+</blockquote>
 <h2 id="12-benchmarking-core">12. Benchmarking [CORE]<a class="anchor" href="#12-benchmarking-core" aria-label="Link to this section">#</a></h2>
 <p><strong>The rule: never quote a throughput number you did not measure on the hardware you are describing.</strong> This is both an engineering discipline and the thing that makes your interview answers credible.</p>
 <p><strong>What to measure:</strong></p>
@@ -717,13 +840,13 @@ llama-bench<span class="w"> </span>-m<span class="w"> </span>models/model.gguf<s
 </code></pre></div>
 
 <p>A minimal harness against the OpenAI-compatible endpoint, which measures what your application will actually see:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">statistics</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">measure</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;One request. Returns TTFT and decode rate, measured from the stream.&quot;&quot;&quot;</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
     <span class="n">first_token_at</span> <span class="o">=</span> <span class="kc">None</span>
@@ -762,7 +885,7 @@ llama-bench<span class="w"> </span>-m<span class="w"> </span>models/model.gguf<s
     <span class="p">}</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">runs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">runs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
         <span class="n">measure</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>          <span class="c1"># warm-up, discarded</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">runs</span><span class="p">)]</span>
@@ -781,6 +904,16 @@ llama-bench<span class="w"> </span>-m<span class="w"> </span>models/model.gguf<s
 </code></pre></div>
 
 <p>The denominator is where the argument is usually lost. Hardware amortized over three years at 5% utilization is expensive per token; at 60% utilization it is cheap. <strong>Utilization is the whole argument</strong>, and a comparison that ignores it is marketing. Include your own time as an operational cost, because it is real.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 12. Benchmarking</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving on.</li>
+</ol>
+</blockquote>
 <h2 id="13-troubleshooting-core">13. Troubleshooting [CORE]<a class="anchor" href="#13-troubleshooting-core" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -870,6 +1003,16 @@ llama-bench<span class="w"> </span>-m<span class="w"> </span>models/model.gguf<s
 <p><strong>Wrong chat template.</strong> The model produces text that is fluent and subtly wrong: it ignores the system prompt, answers a different question, or continues rather than responding. It looks like a model quality problem and it is a formatting problem. Print the fully rendered prompt, including special tokens, and compare it against the model card. This is the first thing to check whenever a model "seems dumber than it should be".</p>
 <p><strong>Partial GPU offload.</strong> With some layers on CPU and some on GPU, every token crosses the boundary. Throughput can be worse than pure CPU. The startup log tells you how many layers were offloaded; if it is not all of them and you expected it to be, that is your answer.</p>
 <hr />
+<blockquote>
+<p><strong>Concept checkpoint — 13. Troubleshooting</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving on.</li>
+</ol>
+</blockquote>
 <h2 id="worked-example-choosing-a-configuration">Worked example: choosing a configuration<a class="anchor" href="#worked-example-choosing-a-configuration" aria-label="Link to this section">#</a></h2>
 <p>The reasoning to be able to reproduce under interview conditions.</p>
 <p><strong>Scenario.</strong> Private document Q&amp;A over internal policies. Data cannot leave the network. Five concurrent users, prompts around 3,000 tokens because RAG chunks are long, answers around 300 tokens. Available: one machine, 32 GB unified memory.</p>
@@ -897,6 +1040,9 @@ available for weights                  ≈ 12.7 GB
 <p><strong>Step 6: know your fallback.</strong> If quality is insufficient at 14B, the options in order are a better model at the same size, then a higher quant of the same model with a lower context or less concurrency, then the hybrid: local for routine queries, hosted for flagged hard ones, with the privacy boundary explicit and documented.</p>
 <p><strong>Why this is the interview answer.</strong> It names the workload shape, does the arithmetic, makes a tradeoff and justifies it, states what would falsify the reasoning, and has a fallback. A candidate who says "I'd use a 27B, it's better" has answered a different and easier question.</p>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. How do you decide what model fits on a given machine?</strong></p>
 <p><em>Strong outline:</em> Four terms, not one: weights, KV cache, compute buffers, framework overhead, plus 15 to 25% headroom. Weights are params × bits / 8. Cache is 2 × layers × kv_heads × d_head × seq_len × batch × bytes, and the batch term is what catches people when they enable concurrency, since weights are shared across sequences and cache is not. Then the platform ceiling: on unified memory the GPU wired limit is roughly 75% of RAM by default, not the full RAM; on discrete GPUs VRAM is a hard wall and spilling over PCIe is an order-of-magnitude penalty. Give a worked number if there is a whiteboard.</p>
@@ -942,7 +1088,10 @@ available for weights                  ≈ 12.7 GB
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/09-local-inference-practice.md</code>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-09-local-inference.html">09 practice pack</a>.</p>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>For a model you actually run, read <code>n_layer</code>, <code>n_head_kv</code> and <code>n_embd_head_k</code> from the loader output and compute its KV cache per 1,000 tokens. Compare against the file size.</li>
@@ -1071,6 +1220,10 @@ available for weights                  ≈ 12.7 GB
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#1-what-you-are-running">1. What you are running</a></li>

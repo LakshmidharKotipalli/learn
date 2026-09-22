@@ -2,7 +2,7 @@
 
 **Last reviewed:** 2026-09-18 · **Volatility:** medium; the architecture is stable, everything operational around it is not
 
-Every number in this module was computed, not recalled. The attention example is worked by hand and verified against numpy; the KV cache figures come from the formula, evaluated.
+Every number in this module was computed, not recalled. The attention example is worked by hand and verified against numpy; the key–value (KV) cache figures come from the formula, evaluated.
 
 ---
 
@@ -30,6 +30,45 @@ In interviews this module is where depth is tested. "Explain attention" is the w
 For the linear algebra: you need to know that a dot product of two vectors is a single number measuring alignment, and that a matrix multiply is many dot products at once. That is genuinely all.
 
 ---
+
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 5 hours |
+| Setup | Python 3.11+ and NumPy |
+| First pass | Read tokenization, attention, causal masking, inference/KV cache, hallucination, and security. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Trace text through tokens, embeddings, attention, logits, and sampling.
+- Compute the rough memory impact of the key–value (KV) cache and quantization.
+- Explain why prompting alone cannot guarantee truthful or safe output.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. Why does tokenization affect both cost and model behavior?
+2. What do query, key, and value represent in attention?
+3. Why is causal masking needed during generation?
+4. What does the key–value cache save during decoding?
+5. Why is prompt injection an architectural problem rather than only a wording problem?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 -c "import numpy; print(numpy.__version__)"
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
 
 ## Skip-ahead map
 
@@ -98,6 +137,10 @@ flowchart TD
 
 ---
 
+## Running example: document-based support assistant
+
+The support assistant turns a user question and retrieved evidence into tokens, processes them through attention, and generates an answer one token at a time. Each architectural choice has a latency, cost, and quality consequence.
+
 ## Core concepts
 
 ### 1. Tokenization [CORE]
@@ -122,6 +165,15 @@ Common words get one token. Rare words split into pieces. `"tokenization"` might
 
 **The practical rule:** when a model fails at something that seems trivially easy, ask whether the task is about characters. If so, it is a tokenization problem, and the fix is to do that part in code rather than to prompt harder.
 
+
+> **Concept checkpoint — 1. Tokenization**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 2. Embeddings and position [FOUNDATION]
 
 **Token embeddings.** Each vocabulary id indexes into a learned matrix of shape (vocab_size, d_model), giving a dense vector. These are learned during pretraining, and their geometry is what makes the vectors in module 07 meaningful.
@@ -137,6 +189,15 @@ Approaches:
 - **RoPE (rotary).** Rotates query and key vectors by an angle proportional to position, so the dot product between two positions depends on their *relative* distance. Dominant in current models, because relative position is what matters for language and because it extends to longer contexts more gracefully.
 
 **Why you should care about RoPE specifically:** context-length extension techniques work by manipulating RoPE's frequency scaling. When you see a model advertised with an extended context, that is usually what happened, and it usually degrades quality at the extended range compared to a model trained there natively. `[VERIFY: context extension methods and their quality cost @ current papers]`
+
+
+> **Concept checkpoint — 2. Embeddings and position**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 3. Attention, worked by hand [CORE]
 
@@ -275,6 +336,15 @@ softmax([3.1, 0.6, 0.3]) = [0.875, 0.072, 0.053]     informative
 
 A saturated softmax has near-zero gradient everywhere, so the model cannot learn. **The scaling is a training-stability fix, not an accuracy trick**, which is the answer to "why √d_k".
 
+
+> **Concept checkpoint — 3. Attention, worked by hand**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 4. Multi-head attention and masking [CORE]
 
 **Multi-head.** Rather than one attention operation over the full `d_model`, split into `h` heads each of size `d_model / h`, run attention independently in each, concatenate, project.
@@ -291,6 +361,15 @@ This is the whole reason training can be parallel while generation is sequential
 
 **Grouped-query attention (GQA)** matters operationally. Standard multi-head gives every head its own K and V. GQA shares one K/V pair across a group of query heads. Quality cost is small; KV cache memory drops by the grouping factor, which section 7 quantifies as 4x for a typical configuration. Nearly every current model of serving interest uses it.
 
+
+> **Concept checkpoint — 4. Multi-head attention and masking**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 5. Architecture families [FOUNDATION]
 
 | Family | Attention | Trained to | Good at | Examples |
@@ -304,6 +383,15 @@ This is the whole reason training can be parallel while generation is sequential
 Concretely: the reranker in module 07 is an encoder. Using a large decoder-only model to rerank is enormously more expensive for worse latency and usually no better quality. Knowing when a 100M-parameter encoder beats a 70B decoder is a genuine engineering signal.
 
 Decoder-only dominates generation because it is simpler to scale and one objective, next-token prediction, turns out to subsume most tasks when the model is large enough.
+
+
+> **Concept checkpoint — 5. Architecture families**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 6. Training stages [CORE]
 
@@ -329,6 +417,15 @@ Four stages, each fixing something the previous one cannot.
 This table is the same decision as module 07 section 1, from the training side.
 
 **Why fine-tuning for facts is specifically wrong:** the facts land in weights with no provenance, no update path short of retraining, no way to cite a source, and no way to delete something on request. RAG gives you all four. This is worth stating crisply, because "just fine-tune it on our docs" is a common and expensive instinct.
+
+
+> **Concept checkpoint — 6. Training stages**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 7. Inference: KV cache, batching, sampling [CORE]
 
@@ -405,6 +502,15 @@ The model outputs logits, one score per vocabulary token. Sampling turns them in
 
 **Temperature 0 is not deterministic in practice.** The sampling is, but floating-point reduction order varies with batch composition and hardware scheduling, so results can differ between identical calls. Anyone who has built a regression test asserting exact model output has learned this. Assert on properties, not on strings.
 
+
+> **Concept checkpoint — 7. Inference: KV cache, batching, sampling**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 8. Quantization [CORE]
 
 Storing weights in fewer bits than the 16 they were trained in.
@@ -439,6 +545,15 @@ A quantized model that scores well on short factual benchmarks can still be noti
 
 **The KV cache can be quantized too**, separately from the weights, which matters at long context where the cache dominates. Quality cost is generally higher than for weights.
 
+
+> **Concept checkpoint — 8. Quantization**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 9. Hallucination [CORE]
 
 **What it is, mechanically.** The model produces a distribution over next tokens and samples from it. Nothing in that process checks anything against the world. A fluent falsehood and a fluent truth are produced by identical machinery, and the model's confidence reflects the training distribution's statistics, not the claim's accuracy.
@@ -460,6 +575,15 @@ This is the answer to "how do you stop hallucination", and the honest one: **you
 
 **What does not work, and is commonly attempted:** asking the model to rate its own confidence; asking "are you sure"; temperature 0, which makes the model deterministic and not correct; telling it to only use reliable information.
 
+
+> **Concept checkpoint — 9. Hallucination**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 10. Tools and structured output [CORE]
 
 **Structured output.** You need JSON matching a schema. Three approaches, increasing in reliability:
@@ -477,6 +601,15 @@ Even with constrained decoding, validate with Pydantic at the boundary (`01b` se
 **The thing to be clear about: the model does not execute anything.** It produces text saying a function should be called with certain arguments. Everything after that is your code, and therefore your responsibility, including authorization, validation and rate limiting. Candidates who describe the model as "using tools" without this distinction reveal they have not built one.
 
 **Quality of tool use depends mostly on the descriptions.** The parameter descriptions are what the model reads to decide what to pass. Vague descriptions produce wrong arguments, and the fix is almost always better descriptions rather than a better model. Module 08 covers this in depth.
+
+
+> **Concept checkpoint — 10. Tools and structured output**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 11. Evaluation [CORE]
 
@@ -506,6 +639,15 @@ Even with constrained decoding, validate with Pydantic at the boundary (`01b` se
 
 **Regression testing is the form this takes in engineering.** Your evaluation set runs in CI on every change to a prompt, a model version, or a retrieval parameter. Assert no worse than baseline minus a margin, never exact equality, for the determinism reason in section 7.
 
+
+> **Concept checkpoint — 11. Evaluation**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 12. Security: prompt injection [CORE]
 
 **The architecture is the vulnerability.** The model receives one token sequence. Your system prompt, the user's message, and any retrieved or tool-returned content all arrive as tokens in that sequence. There is no privileged channel. Instructions and data are the same substance.
@@ -532,6 +674,15 @@ So any text that reaches the context can attempt to act as an instruction. That 
 Module 08 goes further, because injection plus tool access is where this becomes serious.
 
 ---
+
+
+> **Concept checkpoint — 12. Security: prompt injection**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ## Worked examples
 
@@ -723,6 +874,8 @@ So the levers differ by symptom. High TTFT means a long prompt, so retrieve fewe
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 **1. Explain self-attention.**
@@ -802,7 +955,9 @@ So the levers differ by symptom. High TTFT means a long prompt, so retrieve fewe
 
 ## Practice tasks
 
-Solutions in `quizzes/06-transformers-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [06 practice pack](quizzes/06-transformers-practice.md).
 
 ### Five tiny exercises
 

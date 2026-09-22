@@ -28,6 +28,45 @@ If that prints 3.11 or higher, you are ready. `[VERIFY: current stable Python ve
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 3–4 hours |
+| Setup | Python 3.11+ and a terminal |
+| First pass | Read sections 1, 2, 5, 6, 7, 8, and 9, then the first worked example. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Explain names, objects, identity, mutability, and truthiness.
+- Choose collections and control-flow tools using a complexity argument.
+- Write defensive file and structured-data loaders that fail usefully.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. Why does assigning one list to two names create an alias rather than a copy?
+2. When should you use `is` instead of `==`?
+3. What is the expected complexity of membership testing in a set versus a list?
+4. Why is a mutable default argument dangerous?
+5. What should a loader do when one input row is malformed?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 --version
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 Self-selection, not a test. If you can do the named task without looking anything up, skim that section and move on.
@@ -134,6 +173,15 @@ On Python 3.11 that prints:
 
 **Why this matters practically.** Python is slower than compiled languages because of this loop, which is exactly why every performance-sensitive library you will use (NumPy, PyTorch, the tokenizers in every LLM stack) pushes the actual work into compiled C or Rust. When you write `for token in tokens: total += embedding[token]` in Python and it is slow, the fix is usually to express it as one array operation rather than to optimize the loop.
 
+
+> **Concept checkpoint — 1. How Python executes code**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 2. Names, objects, and identity [FOUNDATION]
 
 Three distinct questions you can ask about two names:
@@ -219,6 +267,15 @@ print(deep["scores"])       # [1, 2, 3]
 
 This is the single most common source of silent data corruption in data pipelines. You "copy" a config dict, modify the copy, and mutate the original because the copy was one level deep.
 
+
+> **Concept checkpoint — 2. Names, objects, and identity**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 3. Types, conversion, and truthiness [FOUNDATION]
 
 Python is **dynamically typed** (a name can point at any type, and the type is checked when you use it) and **strongly typed** (it will not silently convert between unrelated types).
@@ -275,6 +332,15 @@ The caller passes `threshold=0` meaning "no threshold", and gets `0.5`. `not 0` 
 ```
 
 Use `is None` when you mean "was not provided". Use `not x` only when you genuinely mean "empty or zero or absent, all the same".
+
+
+> **Concept checkpoint — 3. Types, conversion, and truthiness**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 4. Strings [FOUNDATION]
 
@@ -353,6 +419,15 @@ UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 3: ordinal 
 ```
 
 You will meet this exact error the first time you ingest a document produced on a Windows machine. The fix is usually `encoding="utf-8"` explicitly, or `errors="replace"` when you would rather have a mangled character than a crash.
+
+
+> **Concept checkpoint — 4. Strings**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 5. Control flow [FOUNDATION]
 
@@ -523,6 +598,15 @@ chunks = [c for c in chunks if not c.is_empty]
 
 This is the same lesson as section 2 from a different angle: prefer producing new objects over mutating shared ones.
 
+
+> **Concept checkpoint — 5. Control flow**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 6. Collections and their tradeoffs [CORE]
 
 Four built-in collections. Choosing the wrong one is the most common cause of accidentally quadratic code.
@@ -629,6 +713,15 @@ Slicing a list returns a **new shallow list**. This is the cheapest correct way 
 copy_of_items = items[:]
 ```
 
+
+> **Concept checkpoint — 6. Collections and their tradeoffs**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 7. Functions [CORE]
 
 ```python
@@ -732,6 +825,15 @@ print(data)   # []
 
 A function receives labels on the caller's objects. Rebinding a parameter is invisible outside. Mutating the object is not.
 
+
+> **Concept checkpoint — 7. Functions**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 8. Exceptions and defensive programming [CORE]
 
 The governing principle: **catch what you can handle, let everything else crash.** A crash with a traceback is a good outcome. A silently wrong number that reaches a report is not.
@@ -794,6 +896,15 @@ def chunk_document(text, size, overlap):
 ```
 
 Include the actual values in the message. `"invalid overlap"` sends you looking; `"overlap (512) must be smaller than size (512)"` tells you.
+
+
+> **Concept checkpoint — 8. Exceptions and defensive programming**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 9. Files, paths, and structured data [CORE]
 
@@ -946,6 +1057,15 @@ Use `os.environ[...]` for things your program cannot run without. Failing at sta
 Never put a key in source code. Not in a file you plan to gitignore, not "temporarily". Keys committed to git stay in the history after you delete them.
 
 ---
+
+
+> **Concept checkpoint — 9. Files, paths, and structured data**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ## Worked examples
 
@@ -1174,6 +1294,8 @@ These are the ones that cost real time, because none of them raise an exception.
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 Ten questions, roughly ordered by difficulty.
@@ -1265,7 +1387,9 @@ Record yourself. The gap between "I understand this" and "I can say this clearly
 
 ## Practice tasks
 
-No solutions here. They live in `quizzes/01a-python-core-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+No solutions here. They live in the [01a practice pack](quizzes/01a-python-core-practice.md).
 
 ### Five tiny exercises
 

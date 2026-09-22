@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 35 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="11-ai-system-design">11 AI System Design<a class="anchor" href="#11-ai-system-design" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low for the method, medium for the component landscape</p>
 <p>Every number in the walkthroughs was computed, so you can check the arithmetic and substitute your own assumptions.</p>
@@ -135,6 +148,56 @@
 </table>
 <p>This module assumes all of them. It is consolidation, not new material, which is why it comes last.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>4 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Modules 07–10 completed and a calculator or scratchpad</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read the answer framework, requirements, capacity estimation, patterns, evaluation, and security. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Turn an underspecified AI problem into requirements and measurable constraints.</li>
+<li>Estimate capacity, choose components, and state tradeoffs in order.</li>
+<li>Design evaluation, safety, reliability, and cost into the first answer.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What requirement should you clarify before drawing a system diagram?</li>
+<li>Which traffic and payload numbers drive capacity estimates?</li>
+<li>What makes a component choice reversible?</li>
+<li>How would you know the design is failing after launch?</li>
+<li>Where should human approval or permission boundaries appear?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>--version
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -203,6 +266,8 @@
 <p>Interviewers are listening for the reasons. "I would use a vector database" is a box. "I would use a vector database rather than a linear scan because we have 20 million chunks, which at 1024 dimensions is 76 GB, so exhaustive search per query is not viable, and I accept losing a few percent of recall which I would measure" is a decision.</p>
 <p><strong>Where the analogy breaks down.</strong> "A sequence of decisions" implies you can proceed linearly. You cannot: capacity estimates change your component choices, which change your cost, which changes the requirements you negotiate. The real process loops, and <strong>saying so out loud is a strength.</strong> "That cost estimate changes my answer on the model tier, let me revise" is what a senior engineer sounds like.</p>
 <hr />
+<h2 id="running-example-document-based-support-assistant">Running example: document-based support assistant<a class="anchor" href="#running-example-document-based-support-assistant" aria-label="Link to this section">#</a></h2>
+<p>The support assistant is the running design problem: define requirements, estimate traffic and context, choose retrieval and model components, then design evaluation, security, reliability, and cost controls.</p>
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-the-answer-framework-core">1. The answer framework [CORE]<a class="anchor" href="#1-the-answer-framework-core" aria-label="Link to this section">#</a></h3>
 <p>A repeatable structure for 45 minutes. Say the structure out loud at the start; it signals you have done this before and it stops you rambling.</p>
@@ -253,6 +318,16 @@
 <p><strong>Do the arithmetic visibly.</strong> Not "that will be a lot of tokens" but "80,000 queries a day at 3,050 tokens each is 244 million tokens a day". The number is less important than showing you can produce one.</p>
 <p><strong>State tradeoffs as tradeoffs.</strong> Every decision costs something. A candidate who presents only benefits sounds like they have not built it.</p>
 <p><strong>Leave time for phases 5 and 6.</strong> Many candidates spend 40 minutes on the diagram and never reach failure modes or evaluation, which is where senior signal lives.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. The answer framework</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-requirements-core">2. Requirements [CORE]<a class="anchor" href="#2-requirements-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The five questions to ask before anything else:</strong></p>
 <ol>
@@ -304,6 +379,16 @@
 </table>
 <p><strong>Define success measurably</strong>, and this is the answer most candidates skip: "90% of questions answered with a correct citation, p95 under 3 seconds, no cross-tenant leakage, under $X per month". Without it you cannot evaluate the design you are about to propose.</p>
 <p><strong>Negotiate scope explicitly.</strong> "I will design for text documents and treat images and audio as out of scope, is that reasonable?" A system design question is always too large for the time available, and choosing what to exclude is part of the skill.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. Requirements</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-capacity-estimation-core">3. Capacity estimation [CORE]<a class="anchor" href="#3-capacity-estimation-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Show the arithmetic.</strong> The goal is not precision; it is demonstrating that you reason quantitatively and that your design is sized to something.</p>
 <p><strong>The chain to work through:</strong></p>
@@ -464,6 +549,16 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Capacity estimation</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-component-vocabulary-foundation">4. Component vocabulary [FOUNDATION]<a class="anchor" href="#4-component-vocabulary-foundation" aria-label="Link to this section">#</a></h3>
 <table>
 <thead>
@@ -534,6 +629,16 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 <p><strong>The two most commonly omitted from candidate diagrams</strong>, and noticing them is a signal:</p>
 <p><strong>The relational database.</strong> People draw a vector store and forget that chunk metadata, permissions, document provenance, ingestion state and audit logs all need somewhere structured to live. Module 03 section 11 and module 07 section 11: without it, you cannot filter by permission, honor a deletion request, or monitor ingestion lag.</p>
 <p><strong>The ingestion pipeline.</strong> Candidates draw the query path and skip how documents get in. That pipeline is where most quality problems originate (module 07 section 2), and it needs scheduling, incremental updates, failure handling and monitoring of its own.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Component vocabulary</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-patterns-core">5. Patterns [CORE]<a class="anchor" href="#5-patterns-core" aria-label="Link to this section">#</a></h3>
 <table>
 <thead>
@@ -588,6 +693,16 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 </table>
 <p><strong>The pattern-level decision most often got wrong: using RAG where semantic search is enough.</strong> If the user wants to find the document, return the documents. Generation adds latency, cost and a hallucination surface to a problem that a ranked list already solves. Saying this in an interview is a strong signal.</p>
 <p><strong>The second: generation where retrieval failed.</strong> No architecture recovers from bad retrieval, so retrieval quality is where the design effort belongs.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Patterns</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="6-reliability-and-scale-core">6. Reliability and scale [CORE]<a class="anchor" href="#6-reliability-and-scale-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Say where your design fails first.</strong> Interviewers ask this and it separates people who have operated systems from people who have drawn them.</p>
 <p>For a typical RAG system, in order:</p>
@@ -601,6 +716,16 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 <p><strong>Backpressure</strong>, from module 10 section 11, is the concept to name. An unbounded queue converts a partial outage into a total one. A bounded queue rejecting with <code>429</code> keeps the system up and tells the truth about capacity.</p>
 <p><strong>Multi-region</strong> only if the requirements demand it. It multiplies complexity: index replication, consistency, cross-region cost. Say "I would not do this unless availability or data residency requires it" rather than adding it for completeness.</p>
 <p><strong>Idempotency</strong> on anything that writes, per module 02 section 11, because clients will retry.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Reliability and scale</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="7-evaluation-and-quality-core">7. Evaluation and quality [CORE]<a class="anchor" href="#7-evaluation-and-quality-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Reach this phase.</strong> Many candidates never do, and it is where senior signal is concentrated.</p>
 <p>The answer is module 07 section 9, compressed:</p>
@@ -613,11 +738,31 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 <li>Sampled offline scoring for quality itself</li>
 </ul>
 <p><strong>The sentence that lands:</strong> <em>"I would build the evaluation set before the retriever, because otherwise every subsequent decision is a guess."</em></p>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Evaluation and quality</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="8-security-and-privacy-core">8. Security and privacy [CORE]<a class="anchor" href="#8-security-and-privacy-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Tenant isolation</strong> is the highest-severity bug class. Design choices: tenant id from the authenticated session and never the request body; filtering at the data layer rather than application code; separate indexes per tenant when the count is small, which is correct by construction; and a test that specifically attempts cross-tenant access.</p>
 <p><strong>Permission-aware retrieval</strong>, from module 07 section 6: never post-filter as the primary mechanism, because it under-returns silently and the result count can leak existence. Permissions evaluated at query time against current state, never baked in at ingestion.</p>
 <p><strong>Prompt injection</strong>, from module 08 section 11: state the lethal trifecta, private data plus untrusted content plus external communication, and say which leg you are breaking. Usually egress.</p>
 <p><strong>PII and retention:</strong> know what reaches the provider, what is logged, what the retention policy is, and that a deletion request must reach the document, its chunks, its vectors and any cached embeddings.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 8. Security and privacy</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="9-cost-core">9. Cost [CORE]<a class="anchor" href="#9-cost-core" aria-label="Link to this section">#</a></h3>
 <p>From module 10 section 13, with the arithmetic from section 3.</p>
 <p><strong>The levers, ordered by return:</strong></p>
@@ -653,6 +798,16 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 </table>
 <p><strong>The governing rule:</strong> require an evaluation-set improvement to justify any context increase, or "let's pass more chunks" happens repeatedly and multiplies the bill for an unmeasured quality change.</p>
 <hr />
+<blockquote>
+<p><strong>Concept checkpoint — 9. Cost</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h2 id="walkthrough-1-enterprise-rag-assistant">Walkthrough 1: Enterprise RAG assistant<a class="anchor" href="#walkthrough-1-enterprise-rag-assistant" aria-label="Link to this section">#</a></h2>
 <p><strong>Prompt:</strong> <em>"Design an internal assistant that answers employee questions from company documents."</em></p>
 <h3 id="requirements">Requirements<a class="anchor" href="#requirements" aria-label="Link to this section">#</a></h3>
@@ -663,7 +818,7 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 <p>From section 3: <strong>80,000 queries/day, 2.78 average QPS, 8.3 peak, 244M tokens/day, ~$29k/month on a mid tier, 20M chunks at 76 GB float32 or 19 GB int8.</strong></p>
 <p><strong>The two decisions that fall straight out of the arithmetic:</strong> int8 quantized vectors, because 19 GB fits in memory and 76 GB does not; and model routing, because the 12x tier gap is larger than any other lever available.</p>
 <h3 id="design">Design<a class="anchor" href="#design" aria-label="Link to this section">#</a></h3>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. SharePoint, Confluence leads to Ingestion pipeline; Ingestion pipeline leads to Object storage: raw documents; Ingestion pipeline leads to Vector index, int8, 19 GB; Ingestion pipeline leads to BM25 index; Ingestion pipeline leads to Postgres: chunk metadata, permissions, audit; Employee leads to API gateway: auth, rate limit; Application service leads to Semantic cache; Semantic cache leads to Query rewrite, conversational; Complexity router leads to Hybrid retrieval; Complexity router leads to Hybrid retrieval; Hybrid retrieval leads to Vector index, int8, 19 GB; Hybrid retrieval leads to BM25 index; Postgres: chunk metadata, permissions, audit leads to Hybrid retrieval; Hybrid retrieval leads to Cross-encoder reranker; Cross-encoder reranker leads to Small model; Cross-encoder reranker leads to Mid-tier model; Small model leads to Citation validator; Mid-tier model leads to Citation validator; Citation validator leads to Employee.">flowchart TD
     U[&quot;Employee&quot;]
     GW[&quot;API gateway: auth, rate limit&quot;]
     APP[&quot;Application service&quot;]
@@ -703,7 +858,7 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
     SMALL --&gt; VAL
     LARGE --&gt; VAL
     VAL --&gt; U
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. SharePoint, Confluence leads to Ingestion pipeline; Ingestion pipeline leads to Object storage: raw documents; Ingestion pipeline leads to Vector index, int8, 19 GB; Ingestion pipeline leads to BM25 index; Ingestion pipeline leads to Postgres: chunk metadata, permissions, audit; Employee leads to API gateway: auth, rate limit; Application service leads to Semantic cache; Semantic cache leads to Query rewrite, conversational; Complexity router leads to Hybrid retrieval; Complexity router leads to Hybrid retrieval; Hybrid retrieval leads to Vector index, int8, 19 GB; Hybrid retrieval leads to BM25 index; Postgres: chunk metadata, permissions, audit leads to Hybrid retrieval; Hybrid retrieval leads to Cross-encoder reranker; Cross-encoder reranker leads to Small model; Cross-encoder reranker leads to Mid-tier model; Small model leads to Citation validator; Mid-tier model leads to Citation validator; Citation validator leads to Employee.</p></details></div>
 <h3 id="data-flow">Data flow<a class="anchor" href="#data-flow" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>Authenticate; derive the user's permission set from the session, never the request.</li>
@@ -735,7 +890,7 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 <p>Success: measurable learning gain on spaced-repetition performance, not engagement time, which is a metric that rewards the wrong thing.</p>
 <h3 id="the-design-point-that-matters">The design point that matters<a class="anchor" href="#the-design-point-that-matters" aria-label="Link to this section">#</a></h3>
 <p><strong>Most of this system is not the LLM.</strong> The learner model, which concepts are mastered, which are due for review, which prerequisites are missing, is a relational database and the spaced-repetition scheduling from <code>tracker/progress-log.md</code>. The model generates explanations and questions; it does not decide what to teach.</p>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Learner leads to Application; Application leads to Learner model: Postgres; Learner model: Postgres leads to Spaced-repetition scheduler; Curriculum content + user notes leads to Retrieval; Retrieval leads to Generation: explain, quiz, grade; Learner leads to Rubric-based grading.">flowchart TD
     U[&quot;Learner&quot;]
     APP[&quot;Application&quot;]
     LM[&quot;Learner model: Postgres&quot;]
@@ -752,7 +907,7 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
     CONTENT --&gt; RET
     RET --&gt; GEN --&gt; U
     U --&gt;|&quot;answers&quot;| RUBRIC --&gt; LM
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Learner leads to Application; Application leads to Learner model: Postgres; Learner model: Postgres leads to Spaced-repetition scheduler; Curriculum content + user notes leads to Retrieval; Retrieval leads to Generation: explain, quiz, grade; Learner leads to Rubric-based grading.</p></details></div>
 <p><strong>Why this shape.</strong> Putting scheduling in the model means it is non-deterministic, unauditable and expensive. Putting it in a database makes it correct, cheap, explainable to the user, and testable. <strong>Use the model for what only it can do</strong>, which is generating an explanation adapted to what the learner just got wrong.</p>
 <h3 id="capacity-briefly">Capacity, briefly<a class="anchor" href="#capacity-briefly" aria-label="Link to this section">#</a></h3>
 <p>30,000 weekly active × 20 interactions ≈ 600,000 interactions/week ≈ 86,000/day. Explanations are longer outputs than RAG answers, perhaps 600 tokens, and prompts are shorter. Roughly comparable token volume to walkthrough 1.</p>
@@ -768,7 +923,7 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
 <p>The constraint drives everything. Single user or small team, documents on the local machine, no network calls with document content, and the user's hardware is whatever they have.</p>
 <p>Success: useful answers within the hardware budget, with honest degradation when the hardware cannot support the request.</p>
 <h3 id="the-design">The design<a class="anchor" href="#the-design" aria-label="Link to this section">#</a></h3>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Filesystem watcher leads to Parser; Parser leads to SQLite: metadata, state; User leads to Local application; Local vector index leads to Local LLM, llama-server; Local application leads to Auth reverse proxy.">flowchart TD
     U[&quot;User&quot;]
     APP[&quot;Local application&quot;]
     WATCH[&quot;Filesystem watcher&quot;]
@@ -785,7 +940,7 @@ At 8.3 QPS peak × 6.2s = 52 concurrent streams needed
     U --&gt; APP --&gt; IDX
     IDX --&gt; GEN --&gt; U
     APP --&gt; PROXY --&gt; LAN
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Filesystem watcher leads to Parser; Parser leads to SQLite: metadata, state; User leads to Local application; Local vector index leads to Local LLM, llama-server; Local application leads to Auth reverse proxy.</p></details></div>
 <h3 id="the-memory-budget-is-the-design">The memory budget is the design<a class="anchor" href="#the-memory-budget-is-the-design" aria-label="Link to this section">#</a></h3>
 <p>This is module 09 applied. On a 32 GB machine with a 75% GPU wired limit:</p>
 <div class="highlight"><pre><span></span><code>usable                             ≈ 24 GB
@@ -837,7 +992,7 @@ available for the generator        ≈ 15.5 GB
 <h3 id="the-first-move-and-the-answer">The first move, and the answer<a class="anchor" href="#the-first-move-and-the-answer" aria-label="Link to this section">#</a></h3>
 <p><strong>Most of this should not be an agent.</strong> Module 08 section 1: "where is my order" is a workflow, look up the order then look up shipping. "Why was I charged twice" is an investigation whose path depends on what each lookup reveals.</p>
 <p><strong>So: a classifier routes to a workflow for the common cases and an agent for investigations.</strong> Saying this first is the strongest move available on this question, because the reflexive answer is to make everything an agent.</p>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Customer leads to Intent classifier, small model; Intent classifier, small model leads to Deterministic workflow; Intent classifier, small model leads to Bounded agent; Deterministic workflow leads to Tool registry, allowlist; Bounded agent leads to Tool registry, allowlist; Tool registry, allowlist leads to Policy gate; Policy gate leads to Human confirmation; Policy gate leads to Escalation queue; Policy gate leads to Audit log; Bounded agent leads to Escalation queue; Escalation queue leads to Customer.">flowchart TD
     U[&quot;Customer&quot;]
     CLS[&quot;Intent classifier, small model&quot;]
     WF[&quot;Deterministic workflow&quot;]
@@ -859,7 +1014,7 @@ available for the generator        ≈ 15.5 GB
     GATE --&gt;|&quot;routine&quot;| AUDIT
     AG --&gt;|&quot;cannot resolve&quot;| ESC
     ESC --&gt; U
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Customer leads to Intent classifier, small model; Intent classifier, small model leads to Deterministic workflow; Intent classifier, small model leads to Bounded agent; Deterministic workflow leads to Tool registry, allowlist; Bounded agent leads to Tool registry, allowlist; Tool registry, allowlist leads to Policy gate; Policy gate leads to Human confirmation; Policy gate leads to Escalation queue; Policy gate leads to Audit log; Bounded agent leads to Escalation queue; Escalation queue leads to Customer.</p></details></div>
 <h3 id="tools-with-blast-radius-stated">Tools, with blast radius stated<a class="anchor" href="#tools-with-blast-radius-stated" aria-label="Link to this section">#</a></h3>
 <table>
 <thead>
@@ -976,6 +1131,9 @@ agent:     3,000 × 4 calls × ~4,000 avg    =  48.0M tokens/day
 </tbody>
 </table>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. Design a document Q&amp;A system for 50,000 employees.</strong></p>
 <p><em>Strong outline:</em> Walkthrough 1, structured. Clarify first, five questions. Then arithmetic out loud: 80,000 queries a day, 2.8 QPS average, 8 to 14 at peak, 244 million tokens a day, roughly $29k/month mid-tier, 20M chunks at 76 GB float32 or 19 GB int8. Let the arithmetic drive two decisions visibly: quantize the vectors because that is the difference between fitting in memory and not, and route by complexity because the model tier gap is about 12x. Then the design, with permissions as an indexed filter at query time. Then failure modes in order, leading with ingestion stalling silently. Then evaluation, built before the retriever.</p>
@@ -1016,6 +1174,10 @@ agent:     3,000 × 4 calls × ~4,000 avg    =  48.0M tokens/day
 <p>Practise all four walkthroughs at both lengths, aloud and timed. The 60-second version of walkthrough 1 is written out above; write your own for the other three.</p>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
+<p>Solutions and delayed practice are in the <a href="quiz-11-system-design.html">11 practice pack</a>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>Estimate tokens per day and monthly cost for a product you use, stating every assumption.</li>
@@ -1104,8 +1266,13 @@ agent:     3,000 × 4 calls × ~4,000 avg    =  48.0M tokens/day
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
+<li class="toc-l2"><a href="#running-example-document-based-support-assistant">Running example: document-based support assistant</a></li>
 <li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
 <li class="toc-l3"><a href="#1-the-answer-framework-core">1. The answer framework [CORE]</a></li>
 <li class="toc-l3"><a href="#2-requirements-core">2. Requirements [CORE]</a></li>

@@ -22,7 +22,7 @@ The commercial reasons are real too: privacy for regulated data, cost at volume,
 
 | You need | From |
 |---|---|
-| KV cache formula, prefill vs decode, quantization | `06` sections 7, 8 |
+| Key–value (KV) cache formula, prefill vs decode, quantization | `06` sections 7, 8 |
 | Batching and continuous batching concepts | `06` section 7 |
 | Docker, APIs, reverse proxies | `02` sections 4, 11 |
 | Concurrency, and why C extensions release the GIL | `02` section 12 |
@@ -31,6 +31,45 @@ The commercial reasons are real too: privacy for regulated data, cost at volume,
 Section 7 of module `06` is the hard prerequisite. The whole of Part 1 is that formula applied to your machines.
 
 ---
+
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 4 hours |
+| Setup | A terminal; llama.cpp is optional for the local experiments |
+| First pass | Read memory budget, quantization, runtimes, latency/throughput, serving, and benchmarking. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Estimate whether a model and context fit a machine before downloading it.
+- Separate model size, key–value cache, runtime overhead, and bandwidth costs.
+- Benchmark latency and throughput using a reproducible workload.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What determines whether a quantized model fits in memory?
+2. Why does a longer context increase the key–value cache footprint?
+3. What is the difference between time to first token (TTFT) and generation speed?
+4. Why can a faster runtime still produce a worse user experience?
+5. What must a benchmark hold constant to be comparable?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 --version
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
 
 ## Skip-ahead map
 
@@ -201,6 +240,15 @@ Raising it past roughly 85% invites swapping, which is much worse than a smaller
 
 **The honest framing:** local is a good default for privacy-constrained work, for high steady volume, and for anything where you must pin behavior. Hybrid is common and sensible: local for the bulk, hosted for the hard cases.
 
+
+> **Concept checkpoint — 6. Why run models locally**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving on.
+
 ## 7. Formats and quantization [CORE]
 
 **Formats:**
@@ -228,6 +276,15 @@ Raising it past roughly 85% invites swapping, which is much worse than a smaller
 
 **The practical rule:** Q4_K_M or better for anything you care about. Below Q3, expect format-following and long-context problems even when short answers look fine. Below Q2, expect a demo rather than a tool. And always prefer a smaller model at higher precision to a larger model at desperate precision, unless you have measured otherwise on your task.
 
+
+> **Concept checkpoint — 7. Formats and quantization**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving on.
+
 ## 8. The memory budget [CORE]
 
 Four terms, and people usually account for one:
@@ -251,6 +308,15 @@ total = weights + kv_cache + compute_buffers + framework_overhead
 - **On discrete GPUs, VRAM is a hard wall.** Spilling to system RAM over PCIe is an order-of-magnitude slowdown, and a setup that "works" while partially offloaded is often slower than a smaller model that fits.
 - **Concurrency multiplies the cache, not the weights.** Weights are shared across concurrent sequences; KV cache is per sequence. This is why `--parallel 4` can exhaust memory that `--parallel 1` had to spare.
 
+
+> **Concept checkpoint — 8. The memory budget**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving on.
+
 ## 9. Runtimes [CORE]
 
 | Runtime | Shape | Wins when | Loses when |
@@ -269,6 +335,15 @@ total = weights + kv_cache + compute_buffers + framework_overhead
 Saying "vLLM is faster than llama.cpp" is wrong in both directions without qualification. For one user on a MacBook, vLLM is not an option. For fifty concurrent users on an A100, llama.cpp will be several times slower in aggregate. The right answer names the workload.
 
 **PagedAttention**, vLLM's central idea, is worth being able to explain: allocate KV cache in fixed-size blocks like operating-system virtual memory pages, rather than one contiguous reservation per sequence sized to the maximum. This eliminates the internal fragmentation that comes from reserving 32k of cache for a sequence that finishes at 400 tokens, which in practice is most of the waste. The result is many more concurrent sequences in the same memory, and it is the main reason vLLM's throughput advantage is as large as it is.
+
+
+> **Concept checkpoint — 9. Runtimes**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving on.
 
 ## 10. Throughput and latency [CORE]
 
@@ -296,6 +371,15 @@ Saying "vLLM is faster than llama.cpp" is wrong in both directions without quali
 **Continuous batching** fills a finished sequence's slot immediately rather than waiting for the whole batch. Under mixed request lengths this is a large improvement, and it is why it is standard in serving frameworks.
 
 **Speculative decoding** is worth knowing by name: a small draft model proposes several tokens, the large model verifies them in one forward pass, and accepted tokens are free. It exploits the fact that verification is parallel while generation is not. Gains depend entirely on acceptance rate, which depends on how well the draft model matches. `[VERIFY: implementation support varies by runtime @ current docs]`
+
+
+> **Concept checkpoint — 10. Throughput and latency**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving on.
 
 ## 11. Serving and networking [CORE]
 
@@ -340,6 +424,15 @@ ENTRYPOINT ["/llama-server", "-m", "/models/model.gguf", \
 ```
 
 `[VERIFY: image name and tag @ the llama.cpp repository]` Note that GPU passthrough is straightforward for NVIDIA with the container toolkit and **not available for Apple silicon**, since Docker on macOS runs a Linux VM with no Metal access. Containerizing on a Mac gives you CPU-only inference, which is usually not what you want. This surprises people and is a good thing to know before you spend an afternoon on it.
+
+
+> **Concept checkpoint — 11. Serving and networking**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving on.
 
 ## 12. Benchmarking [CORE]
 
@@ -444,6 +537,15 @@ local cost per token = (hardware amortized + power) / tokens actually generated
 
 The denominator is where the argument is usually lost. Hardware amortized over three years at 5% utilization is expensive per token; at 60% utilization it is cheap. **Utilization is the whole argument**, and a comparison that ignores it is marketing. Include your own time as an operational cost, because it is real.
 
+
+> **Concept checkpoint — 12. Benchmarking**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving on.
+
 ## 13. Troubleshooting [CORE]
 
 | Symptom | Likely cause | Diagnostic | Fix |
@@ -468,6 +570,15 @@ The denominator is where the argument is usually lost. Hardware amortized over t
 **Partial GPU offload.** With some layers on CPU and some on GPU, every token crosses the boundary. Throughput can be worse than pure CPU. The startup log tells you how many layers were offloaded; if it is not all of them and you expected it to be, that is your answer.
 
 ---
+
+
+> **Concept checkpoint — 13. Troubleshooting**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving on.
 
 ## Worked example: choosing a configuration
 
@@ -511,6 +622,8 @@ Behind an authenticating reverse proxy, on a Tailscale network.
 **Why this is the interview answer.** It names the workload shape, does the arithmetic, makes a tradeoff and justifies it, states what would falsify the reasoning, and has a fallback. A candidate who says "I'd use a 27B, it's better" has answered a different and easier question.
 
 ---
+
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
 
 ## Interview angle
 
@@ -590,7 +703,9 @@ Behind an authenticating reverse proxy, on a Tailscale network.
 
 ## Practice tasks
 
-Solutions in `quizzes/09-local-inference-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [09 practice pack](quizzes/09-local-inference-practice.md).
 
 ### Five tiny exercises
 

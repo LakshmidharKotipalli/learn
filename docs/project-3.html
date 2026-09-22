@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 10 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="project-3-agent-trajectory-evaluation">Project 3: Agent Trajectory Evaluation<a class="anchor" href="#project-3-agent-trajectory-evaluation" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium</p>
 <p>Deliberately contrarian: you build a harness that <strong>evaluates</strong> agent behavior rather than another demo agent. The agent exists to be measured.</p>
@@ -189,7 +202,7 @@
 </ul>
 <hr />
 <h2 id="architecture">Architecture<a class="anchor" href="#architecture" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. cases.jsonl, written first leads to Harness runner; Agent under test leads to Trace: steps, args, observations, stop reason; cases.jsonl, written first leads to Trajectory scorer; Trajectory scorer leads to Run report, committed; Adversarial cases:&lt;br/&gt;timeout, malformed,&lt;br/&gt;injection, unanswerable leads to cases.jsonl, written first.">flowchart TD
     CASES[&quot;cases.jsonl, written first&quot;]
     RUNNER[&quot;Harness runner&quot;]
     AGENT[&quot;Agent under test&quot;]
@@ -206,7 +219,7 @@
 
     ADV[&quot;Adversarial cases:&lt;br/&gt;timeout, malformed,&lt;br/&gt;injection, unanswerable&quot;]
     ADV --&gt; CASES
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. cases.jsonl, written first leads to Harness runner; Agent under test leads to Trace: steps, args, observations, stop reason; cases.jsonl, written first leads to Trajectory scorer; Trajectory scorer leads to Run report, committed; Adversarial cases:&lt;br/&gt;timeout, malformed,&lt;br/&gt;injection, unanswerable leads to cases.jsonl, written first.</p></details></div>
 <h3 id="folder-structure">Folder structure<a class="anchor" href="#folder-structure" aria-label="Link to this section">#</a></h3>
 <div class="highlight"><pre><span></span><code>agent-eval/
 ├── pyproject.toml
@@ -316,7 +329,7 @@
 <h3 id="milestone-2-the-agent-and-the-registry">Milestone 2: the agent and the registry<a class="anchor" href="#milestone-2-the-agent-and-the-registry" aria-label="Link to this section">#</a></h3>
 <p>Module 08 sections 3 and 4, built plainly. Typed tools, validation at the boundary, four stopping conditions with distinguishable reasons.</p>
 <p><strong><code>flaky_service</code> must fail deterministically under a seed</strong>, or your harness is not reproducible:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">flaky_service</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">FlakyArgs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">flaky_service</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">FlakyArgs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Fails 30% of the time. Seeded, so runs are reproducible.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.3</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TimeoutError</span><span class="p">(</span><span class="s2">&quot;flaky_service timed out after 5s&quot;</span><span class="p">)</span>
@@ -326,10 +339,10 @@
 <p>A harness whose results change between runs cannot detect a regression.</p>
 <h3 id="milestone-3-the-trace">Milestone 3: the trace<a class="anchor" href="#milestone-3-the-trace" aria-label="Link to this section">#</a></h3>
 <p>Everything the scorer needs, recorded as it happens:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">StopReason</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">StopReason</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
     <span class="n">ANSWERED</span> <span class="o">=</span> <span class="s2">&quot;answered&quot;</span>
     <span class="n">STEP_LIMIT</span> <span class="o">=</span> <span class="s2">&quot;step_limit&quot;</span>
     <span class="n">BUDGET_EXCEEDED</span> <span class="o">=</span> <span class="s2">&quot;budget_exceeded&quot;</span>
@@ -339,7 +352,7 @@
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Step</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Step</span><span class="p">:</span>
     <span class="n">index</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">args</span><span class="p">:</span> <span class="nb">dict</span>
@@ -352,7 +365,7 @@
 
 
 <span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Trace</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Trace</span><span class="p">:</span>
     <span class="n">case_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Step</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
     <span class="n">stop_reason</span><span class="p">:</span> <span class="n">StopReason</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -364,7 +377,7 @@
 <h3 id="milestone-4-the-scorer">Milestone 4: the scorer<a class="anchor" href="#milestone-4-the-scorer" aria-label="Link to this section">#</a></h3>
 <p>Module 08 section 10, extended:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Score</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Score</span><span class="p">:</span>
     <span class="n">case_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">category</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">called_required</span><span class="p">:</span> <span class="nb">bool</span>
@@ -377,7 +390,7 @@
     <span class="n">cost</span><span class="p">:</span> <span class="nb">float</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">passed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">passed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">core</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">called_required</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">correct_order</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_forbidden</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">all_args_valid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminated_correctly</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recovered_from_failure</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -385,7 +398,7 @@
         <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">core</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">TrajectoryCase</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">Trace</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Score</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">TrajectoryCase</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">Trace</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Score</span><span class="p">:</span>
     <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">tool</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">steps</span><span class="p">]</span>
 
     <span class="n">called</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">t</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">case</span><span class="o">.</span><span class="n">expected_tools</span><span class="p">)</span>

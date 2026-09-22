@@ -1,4 +1,4 @@
-# 08 Agents, Tools, and MCP
+# 08 Agents, Tools, and Model Context Protocol (MCP)
 
 **Last reviewed:** 2026-09-18 · **Volatility:** high. The highest-churn module here after 09.
 
@@ -30,6 +30,45 @@ Module `02` section 11's idempotency material is load-bearing. An agent that ret
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 5 hours |
+| Setup | Python 3.11+ and Pydantic 2 |
+| First pass | Read workflow versus agent, tool schemas, the loop, reliability, evaluation, and security. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Choose a deterministic workflow before reaching for an agent.
+- Design validated tools, bounded loops, state, retries, and human approval.
+- Evaluate trajectories and contain prompt injection at tool boundaries.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What uncertainty requires an agent rather than a fixed workflow?
+2. What must a tool schema validate before execution?
+3. What stops an agent loop safely?
+4. Which failures should be retried, and which should be surfaced?
+5. How can untrusted tool output influence the next model action?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 -c "import pydantic; print(pydantic.__version__)"
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -39,9 +78,9 @@ Module `02` section 11's idempotency material is load-bearing. An agent that ret
 | 3. Tool schemas and validation | [CORE] | ...say why descriptions matter more than the model |
 | 4. The agent loop, and stopping | [CORE] | ...name four stopping conditions |
 | 5. State, memory, human-in-the-loop | [CORE] | ...say what must be checkpointed and why |
-| 6. Multi-agent, and when not to | [DEPTH] | ...say when one agent is strictly better |
+| 6. Multi-agent, and when not to | [DEPTH · DEEP DIVE] | ...say when one agent is strictly better |
 | 7. MCP | [CORE] | ...describe host, client and server, and build one |
-| 8. Frameworks | [DEPTH] | ...separate framework knowledge from durable concepts |
+| 8. Frameworks | [DEPTH · DEEP DIVE] | ...separate framework knowledge from durable concepts |
 | 9. Reliability | [CORE] | ...say why retrying a tool call can be dangerous |
 | 10. Evaluating trajectories | [CORE] | ...say why final-answer accuracy is insufficient |
 | 11. Security | [CORE] | ...explain the lethal trifecta |
@@ -89,6 +128,10 @@ The dotted path is the security model. Tool output re-enters the context as toke
 
 ---
 
+## Running example: document-based support assistant
+
+The support assistant may look up a ticket, ask for missing information, or escalate to a person. The example makes it clear which steps are deterministic workflow and which genuinely need an agent.
+
 ## Core concepts
 
 ### 1. What an agent is, and is not [CORE]
@@ -110,6 +153,15 @@ The dotted path is the security model. Tool output re-enters the context as toke
 - **Debugging.** A failure is somewhere in a variable-length trace, and the cause is often a tool description three steps back.
 - **Cost.** Every step is a full model call with the growing context. A five-step agent costs far more than five times a single call, because context accumulates.
 - **Stopping.** Left alone, agents loop, retry the same failing call, or declare success without doing anything.
+
+
+> **Concept checkpoint — 1. What an agent is, and is not**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 2. The spectrum from prompt to agent [CORE]
 
@@ -134,6 +186,15 @@ The decision table, which is what an interview wants:
 **The last row is the honest agent case.** The investigation path depends on what each lookup reveals. You cannot draw the flowchart because there are hundreds of possible paths.
 
 **Start one rung lower than you think.** Most systems described as agents work better as workflows, and the workflow version is a good baseline to measure the agent against. If the agent does not beat it, you have your answer.
+
+
+> **Concept checkpoint — 2. The spectrum from prompt to agent**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 3. Tool schemas and validation [CORE]
 
@@ -252,6 +313,15 @@ Say when **not** to use a tool, as well as when to. "Use this only when the user
 
 **Keep the tool count small.** Beyond roughly ten to twenty tools, selection accuracy degrades noticeably. Group related operations into one tool with a mode parameter, or route to a subset first. `[UNVERIFIED: the threshold is model-dependent; measure with your own tool set]`
 
+
+> **Concept checkpoint — 3. Tool schemas and validation**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 4. The agent loop, and stopping [CORE]
 
 ```python
@@ -308,6 +378,15 @@ def looping(trace, window=3):
 
 **ReAct**, conceptually: interleave reasoning with acting, so the model articulates why before each call. Whether the stated reasoning reflects the actual computation is genuinely uncertain, and it is useful anyway, because it gives you something readable in the trace and tends to improve tool selection. Treat it as a useful pattern rather than as insight into the model.
 
+
+> **Concept checkpoint — 4. The agent loop, and stopping**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 5. State, memory, and human-in-the-loop [CORE]
 
 **Context is the agent's working memory, and it grows every step.** Each observation is appended, so a ten-step agent's last call may carry an enormous prompt. This drives cost, latency and eventually context exhaustion (module 06's failure mode).
@@ -327,7 +406,16 @@ Mark it in the tool definition, as `consequential=True` above, so it is a proper
 
 **The confirmation must show what will happen**, not that something will. "Send an email?" is useless; the recipient, subject and body is a decision the human can actually make. A confirmation people cannot evaluate gets clicked through, which is worse than no confirmation because it manufactures the appearance of oversight.
 
-### 6. Multi-agent, and when not to [DEPTH]
+
+> **Concept checkpoint — 5. State, memory, and human-in-the-loop**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 6. Multi-agent, and when not to [DEPTH · DEEP DIVE]
 
 Several specialized agents, coordinating.
 
@@ -411,7 +499,16 @@ if __name__ == "__main__":
 
 **Aggregate permissions.** Five individually reasonable servers can combine into something dangerous: one reads your files, another makes network requests. Neither is a problem alone.
 
-### 8. Frameworks [DEPTH]
+
+> **Concept checkpoint — 7. MCP**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 8. Frameworks [DEPTH · DEEP DIVE]
 
 **LangChain** provides abstractions over models, tools, retrievers and chains. **LangGraph** models an agent as a state graph with explicit nodes and edges, which makes control flow visible and checkpointable.
 
@@ -458,6 +555,15 @@ For non-idempotent tools, use an idempotency key generated per logical operation
 **Rate limits.** An agent can generate calls far faster than a human. Limit per run and per tool.
 
 **Graceful degradation.** Decide in advance what a partial result looks like. "I checked the order system and the payment system but could not reach shipping, so here is what I found" is a good outcome. Silently omitting the shipping check is not.
+
+
+> **Concept checkpoint — 9. Reliability**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 10. Evaluating trajectories [CORE]
 
@@ -535,6 +641,15 @@ t3     True   True  False False False      4  False
 
 **Build adversarial cases deliberately**, which is what makes the evaluation worth anything: a tool that times out, a tool returning malformed data, a tool whose output contains an injection attempt, an unanswerable request, and a request that should be refused.
 
+
+> **Concept checkpoint — 10. Evaluating trajectories**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 11. Security [CORE]
 
 **The lethal trifecta**, which is the framing worth carrying into an interview. Serious risk requires three things together:
@@ -569,6 +684,15 @@ Any two are usually survivable. All three means an attacker who controls the unt
 **Excessive permissions are the most common real problem.** A tool with broad database write access because it was easier than scoping it. A file tool that can read any path. A shell tool "for flexibility". The question to ask of every tool: *if an attacker controlled its arguments, what is the worst outcome?* That is the actual blast radius, because with injection they might.
 
 ---
+
+
+> **Concept checkpoint — 11. Security**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ## Worked example: designing a support agent safely
 
@@ -640,6 +764,8 @@ The reasoning to reproduce under interview conditions.
 6. **Check what the model actually saw**, including tool descriptions and truncation.
 
 ---
+
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
 
 ## Interview angle
 
@@ -719,7 +845,9 @@ The reasoning to reproduce under interview conditions.
 
 ## Practice tasks
 
-Solutions in `quizzes/08-agents-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [08 practice pack](quizzes/08-agents-practice.md).
 
 ### Five tiny exercises
 

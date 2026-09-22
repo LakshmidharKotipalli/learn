@@ -30,6 +30,45 @@ No prior SQL assumed.
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 5 hours |
+| Setup | Python 3.11+, SQLite, and the terminal |
+| First pass | Read the schema, SELECT/GROUP BY, joins, aggregation traps, statistics, and experimentation. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Write joins and aggregations that preserve the population you intended to measure.
+- Use indexes, query plans, and pandas/SQL boundaries appropriately.
+- Design an experiment whose data and metric answer the decision at hand.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What rows does a LEFT JOIN preserve that an INNER JOIN removes?
+2. Why can a one-to-many join inflate a sum?
+3. What is the difference between WHERE and HAVING?
+4. When does an index help, and when can it be ignored?
+5. What makes an evaluation metric useful for a product decision?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 -c "import sqlite3; print(sqlite3.sqlite_version)"
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -41,10 +80,10 @@ No prior SQL assumed.
 | 5. Aggregation traps | [CORE] | ...name three ways a GROUP BY quietly lies |
 | 6. Window functions | [CORE] | ...rank rows within a group without a self-join |
 | 7. Indexes and query plans | [CORE] | ...read EXPLAIN QUERY PLAN and say why an index was ignored |
-| 8. pandas versus SQL | [DEPTH] | ...say which wins for which job |
+| 8. pandas versus SQL | [DEPTH · DEEP DIVE] | ...say which wins for which job |
 | 9. Statistics you actually need | [CORE] | ...say what a p-value is not |
 | 10. Experimentation | [CORE] | ...estimate a sample size and say why it is so large |
-| 11. Vector data alongside relational | [DEPTH] | ...say why chunk metadata belongs in a database |
+| 11. Vector data alongside relational | [DEPTH · DEEP DIVE] | ...say why chunk metadata belongs in a database |
 
 ---
 
@@ -59,6 +98,10 @@ The declarative part is the other half. You describe the shape of the answer; th
 **Where the analogy breaks down.** "Describe what you want" suggests the database will find a good plan. It usually does, and it can be defeated: by a function applied to an indexed column, by statistics that are out of date, by a query so convoluted the planner cannot see through it. Declarative does not mean you can stop thinking about execution, which is why section 7 exists.
 
 ---
+
+## Running example: document-based support assistant
+
+The support assistant stores documents, chunks, user questions, retrieved evidence, and answer evaluations in relational tables. Your queries should preserve the population you are trying to measure.
 
 ## Core concepts
 
@@ -79,6 +122,15 @@ The declarative part is the other half. You describe the shape of the answer; th
 **When to denormalize deliberately.** Joining is not free, and for read-heavy analytics duplicating a column to avoid a join at query time can be the right call. The rule is that denormalization is a decision with a stated reason, not a default. If you cannot say which query it speeds up and by how much, you have not denormalized, you have made a mistake.
 
 **What the constraints buy you in practice.** In an ingestion pipeline, `UNIQUE (doc_id, position)` means a re-run cannot silently create duplicate chunks. Without it you discover the duplicates weeks later, in module 07, as near-identical results crowding your top-k.
+
+
+> **Concept checkpoint — 1. The relational model**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 2. The schema [FOUNDATION]
 
@@ -144,6 +196,15 @@ con.executescript(open("schema.sql").read())
 con.executescript(open("seed.sql").read())
 ```
 
+
+> **Concept checkpoint — 2. The schema**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 3. SELECT through GROUP BY [FOUNDATION]
 
 **The clauses, in the order the database evaluates them**, which is not the order you write them:
@@ -187,6 +248,15 @@ query_id  text                          mean_score  top_score  n_retrieved
 ```
 
 Read that as an operational question: which queries had weak retrieval overall? Query 1 has a strong top hit at 0.91 but a weak third at 0.55, dragging the mean down. That is the divergence between MRR and mean score from module 07, visible in SQL.
+
+
+> **Concept checkpoint — 3. SELECT through GROUP BY**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 4. Joins [CORE]
 
@@ -305,6 +375,15 @@ Looks fine, and the LEFT JOIN has become an INNER JOIN. Rows with no feedback ha
 
 Documents (5) joined to chunks (11) yields 11 rows, because each chunk matches exactly one document. Now imagine summing `documents.page_count` over that join: every document's page count is counted once per chunk, so the Employee Handbook's 120 pages is counted three times. **Aggregating a left-table column after a fan-out join is the most common way to produce a confidently wrong number**, and it never raises an error.
 
+
+> **Concept checkpoint — 4. Joins**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 5. Aggregation traps [CORE]
 
 **NULLs are skipped by aggregates, and `COUNT(*)` is not.**
@@ -384,6 +463,15 @@ Without `DISTINCT`, `handbook` would report 5 documents rather than 2, because t
 2. A fan-out join is double-counting a left-table column.
 3. NULLs are silently excluded from the aggregate but not from `COUNT(*)`.
 
+
+> **Concept checkpoint — 5. Aggregation traps**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 6. Window functions [CORE]
 
 Aggregates collapse rows. Window functions compute across a set of rows **while keeping every row**.
@@ -450,6 +538,15 @@ user_id  query_id  asked_at          prev_asked
 The gap between `asked_at` and `prev_asked` is how you detect follow-up questions, which is exactly the signal module 07 section 7 needs for conversational query rewriting. Five minutes is a follow-up; thirty is a new session.
 
 **Why this matters beyond convenience.** The pre-window-function way to do this is a correlated subquery or a self-join, both of which are slower and much harder to read. Knowing window functions is a genuine dividing line between people who write SQL and people who learned `SELECT *`.
+
+
+> **Concept checkpoint — 6. Window functions**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 7. Indexes and query plans [CORE]
 
@@ -534,7 +631,16 @@ for q in queries:
 
 A thousand queries means 1,001 round trips. Each is fast; the total is not. Fetch once and group in Python, or use a join. This is the most common performance bug in ORM-backed applications, and you find it by counting queries per request, not by reading code.
 
-### 8. pandas versus SQL [DEPTH]
+
+> **Concept checkpoint — 7. Indexes and query plans**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 8. pandas versus SQL [DEPTH · DEEP DIVE]
 
 Both manipulate tables. They win at different things.
 
@@ -621,6 +727,15 @@ Lower than the independent case, because the tests are correlated through the sh
 
 **Correlation and causation**, stated usefully rather than as a slogan. Two variables can correlate because A causes B, B causes A, a third thing causes both, or by chance. Only a randomized intervention distinguishes them. In RAG work this surfaces constantly: queries with low retrieval scores also get more thumbs-down, and that could be bad retrieval causing dissatisfaction, or hard questions causing both.
 
+
+> **Concept checkpoint — 9. Statistics you actually need**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 10. Experimentation [CORE]
 
 **The A/B test in one paragraph.** Randomly assign users to control or treatment, measure one pre-declared metric, and compare. Randomization is what buys you causality; everything else is bookkeeping.
@@ -658,7 +773,16 @@ This table is the answer to "can we A/B test this?" for most small products: wit
 
 *Latency is a confound.* A change that improves quality and adds 400ms may reduce engagement anyway. Measure both, and be explicit that you are trading them.
 
-### 11. Vector data alongside relational [DEPTH]
+
+> **Concept checkpoint — 10. Experimentation**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 11. Vector data alongside relational [DEPTH · DEEP DIVE]
 
 The bridge to module 07.
 
@@ -804,6 +928,8 @@ Empty is what you want. Non-empty means your reranker's output and your stored o
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 **1. What does an INNER JOIN hide, and when does that matter?**
@@ -882,7 +1008,9 @@ Empty is what you want. Non-empty means your reranker's output and your stored o
 
 ## Practice tasks
 
-Solutions in `quizzes/03-data-sql-practice.md`. All 25 exercises run against the section 2 schema.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [03 practice pack](quizzes/03-data-sql-practice.md). All 25 exercises run against the section 2 schema.
 
 ### Twenty-five SQL exercises
 

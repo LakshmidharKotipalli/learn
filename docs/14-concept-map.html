@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 10 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="14-concept-map">14 Concept Map<a class="anchor" href="#14-concept-map" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low</p>
 <p>The consolidation file. Not a glossary of 200 terms, for the reason given in the review of the original prompt library: a generated glossary is a weak learning artifact you will not read, and terms learned in context inside a module stick far better.</p>
@@ -96,7 +109,7 @@
 <p>Use it in two places. At week 24, to consolidate. And in the 48 hours before an interview, as the one file to skim.</p>
 <hr />
 <h2 id="1-the-whole-repository-in-one-diagram">1. The whole repository in one diagram<a class="anchor" href="#1-the-whole-repository-in-one-diagram" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. 01a-c Python leads to 02 Software engineering; 01a-c Python leads to 03 Data, SQL, statistics; 02 Software engineering leads to 10 MLOps and deployment; 03 Data, SQL, statistics leads to 04 Classical ML; 04 Classical ML leads to 05 Deep learning; 05 Deep learning leads to 06 Transformers and LLMs; 06 Transformers and LLMs leads to 07 RAG and retrieval; 06 Transformers and LLMs leads to 08 Agents, tools, MCP; 06 Transformers and LLMs leads to 09 Local inference; 07 RAG and retrieval leads to 08 Agents, tools, MCP; 02 Software engineering leads to 09 Local inference; 07 RAG and retrieval leads to 10 MLOps and deployment; 08 Agents, tools, MCP leads to 10 MLOps and deployment; 09 Local inference leads to 10 MLOps and deployment; 10 MLOps and deployment leads to 11 System design; 04 Classical ML leads to 11 System design; 03 Data, SQL, statistics leads to 11 System design.">flowchart TD
     PY[&quot;01a-c Python&quot;]
     SWE[&quot;02 Software engineering&quot;]
     DATA[&quot;03 Data, SQL, statistics&quot;]
@@ -126,7 +139,7 @@
     OPS --&gt;|&quot;production constraints&quot;| SD
     ML --&gt;|&quot;metrics, thresholds, drift&quot;| SD
     DATA --&gt;|&quot;capacity arithmetic&quot;| SD
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. 01a-c Python leads to 02 Software engineering; 01a-c Python leads to 03 Data, SQL, statistics; 02 Software engineering leads to 10 MLOps and deployment; 03 Data, SQL, statistics leads to 04 Classical ML; 04 Classical ML leads to 05 Deep learning; 05 Deep learning leads to 06 Transformers and LLMs; 06 Transformers and LLMs leads to 07 RAG and retrieval; 06 Transformers and LLMs leads to 08 Agents, tools, MCP; 06 Transformers and LLMs leads to 09 Local inference; 07 RAG and retrieval leads to 08 Agents, tools, MCP; 02 Software engineering leads to 09 Local inference; 07 RAG and retrieval leads to 10 MLOps and deployment; 08 Agents, tools, MCP leads to 10 MLOps and deployment; 09 Local inference leads to 10 MLOps and deployment; 10 MLOps and deployment leads to 11 System design; 04 Classical ML leads to 11 System design; 03 Data, SQL, statistics leads to 11 System design.</p></details></div>
 <hr />
 <h2 id="2-the-six-ideas-that-appear-everywhere">2. The six ideas that appear everywhere<a class="anchor" href="#2-the-six-ideas-that-appear-everywhere" aria-label="Link to this section">#</a></h2>
 <p>If you internalize nothing else, internalize these. Each recurs in four or more modules under different names, and recognizing the recurrence is what makes cross-cutting interview questions easy.</p>
@@ -321,7 +334,7 @@
 <h2 id="3-cross-module-chains">3. Cross-module chains<a class="anchor" href="#3-cross-module-chains" aria-label="Link to this section">#</a></h2>
 <p>Four chains that appear as interview questions. Being able to walk one is worth more than knowing all its parts separately.</p>
 <h3 id="chain-a-from-a-wrong-answer-to-its-cause">Chain A: from a wrong answer to its cause<a class="anchor" href="#chain-a-from-a-wrong-answer-to-its-cause" aria-label="Link to this section">#</a></h3>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart LR
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. User: the answer is wrong leads to 07 §10: was the chunk retrieved?; 07 §10: was the chunk retrieved? leads to 07 §10: was it in the prompt?; 07 §10: was it in the prompt? leads to 06 §9: generation problem; 07 §10: was it in the prompt? leads to H; 07 §10: was the chunk retrieved? leads to 07 §3: chunking problem; 07 §3: chunking problem leads to 07 §2: ingestion problem; 07 §2: ingestion problem leads to 03 §4: the join hid it.">flowchart LR
     A[&quot;User: the answer is wrong&quot;]
     B[&quot;07 §10: was the chunk retrieved?&quot;]
     C[&quot;07 §10: was it in the prompt?&quot;]
@@ -337,7 +350,7 @@
     B --&gt;|&quot;not ranked&quot;| E
     E --&gt;|&quot;not in index&quot;| F
     F --&gt;|&quot;your dashboard said fine&quot;| G
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. User: the answer is wrong leads to 07 §10: was the chunk retrieved?; 07 §10: was the chunk retrieved? leads to 07 §10: was it in the prompt?; 07 §10: was it in the prompt? leads to 06 §9: generation problem; 07 §10: was it in the prompt? leads to H; 07 §10: was the chunk retrieved? leads to 07 §3: chunking problem; 07 §3: chunking problem leads to 07 §2: ingestion problem; 07 §2: ingestion problem leads to 03 §4: the join hid it.</p></details></div>
 <p><strong>Modules touched:</strong> 07, 06, 03, 02. This is <code>12b</code> X1 and X16.</p>
 <h3 id="chain-b-from-context-length-to-your-bill">Chain B: from context length to your bill<a class="anchor" href="#chain-b-from-context-length-to-your-bill" aria-label="Link to this section">#</a></h3>
 <div class="highlight"><pre><span></span><code>06 §7: KV cache = 2 × layers × kv_heads × d_head × seq_len × batch × bytes

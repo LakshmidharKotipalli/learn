@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 22 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="01c-python-interview-data-structures-and-algorithms">01c Python Interview Data Structures and Algorithms<a class="anchor" href="#01c-python-interview-data-structures-and-algorithms" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low</p>
 <p>Part 3 of 3. <code>01a</code> covered the language, <code>01b</code> covered organizing code. This covers the patterns that appear in live coding rounds.</p>
@@ -131,6 +144,56 @@
 </tbody>
 </table>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>4 hours per week as a parallel practice block</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Python 3.11+ and a terminal</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read complexity, hashing, two pointers, sliding window, stacks/queues, and binary search. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Recognize the common interview patterns instead of memorizing solutions.</li>
+<li>State time and space complexity before coding.</li>
+<li>Explain tradeoffs and test edge cases aloud under time pressure.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What does O(n) mean for both input size and memory?</li>
+<li>When does a set turn a nested search into a linear scan?</li>
+<li>What invariant does a sliding window maintain?</li>
+<li>When is a queue preferable to a stack?</li>
+<li>What must be true before binary search is valid?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>--version
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -183,12 +246,12 @@
 </tr>
 <tr>
 <td>9. Heaps</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...say why top-k uses a min-heap</td>
 </tr>
 <tr>
 <td>10. Dynamic programming</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...identify overlapping subproblems</td>
 </tr>
 <tr>
@@ -275,10 +338,20 @@
 
 <p>The slice is the one people miss. Building a substring inside a nested loop adds a factor.</p>
 <p><strong>Amortized means averaged over many operations.</strong> <code>list.append</code> occasionally reallocates and copies, but averaged over n appends it is O(1) each. Say "amortized" when you mean it; interviewers notice.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. Complexity, practically</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-hashing-core">2. Hashing [CORE]<a class="anchor" href="#2-hashing-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The signal:</strong> "have I seen this before", "count occurrences", "find a pair that sums to", "group by".</p>
 <p><strong>The core move:</strong> replace a nested loop with one pass and a dict.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">two_sum</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">two_sum</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Indices of two numbers summing to target. One pass.&quot;&quot;&quot;</span>
     <span class="n">seen</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>                <span class="c1"># value -&gt; index</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
@@ -291,7 +364,7 @@
 
 <p>The insight: instead of asking "is there another number that pairs with this one", which requires a scan, ask "have I already seen the number that would pair with this one", which is a lookup.</p>
 <p><strong>The variants you will meet:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
 
 <span class="n">Counter</span><span class="p">(</span><span class="n">items</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                 <span class="c1"># frequency</span>
 <span class="n">groups</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
@@ -305,9 +378,19 @@
 </code></pre></div>
 
 <p><strong>The trap:</strong> dict keys must be hashable, so a list cannot be a key. Convert to a tuple. <code>01a</code> section 6.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. Hashing</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-two-pointers-core">3. Two pointers [CORE]<a class="anchor" href="#3-two-pointers-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The signal:</strong> the input is sorted, or the answer involves a pair or a range, or you are comparing from both ends.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">has_pair_with_sum</span><span class="p">(</span><span class="n">sorted_nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">has_pair_with_sum</span><span class="p">(</span><span class="n">sorted_nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Requires sorted input. O(n) instead of O(n²).&quot;&quot;&quot;</span>
     <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorted_nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
@@ -323,7 +406,7 @@
 
 <p><strong>Why it works and what it requires:</strong> sortedness means moving a pointer changes the sum in a known direction, so you never need to backtrack. Without sortedness this pattern does not apply, and that is the first thing to check.</p>
 <p><strong>The same-direction variant</strong>, for in-place filtering:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Sorted input. Returns the length of the deduplicated prefix.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
@@ -336,10 +419,20 @@
 </code></pre></div>
 
 <p>A read pointer and a write pointer. This is the pattern behind most in-place array manipulation.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Two pointers</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-sliding-window-core">4. Sliding window [CORE]<a class="anchor" href="#4-sliding-window-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The signal:</strong> "longest", "shortest", "maximum sum" over a <strong>contiguous</strong> subarray or substring.</p>
 <p><strong>Fixed size</strong>, when the window length is given:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">max_sum_of_k</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">max_sum_of_k</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> exceeds length </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">window</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nums</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
@@ -352,7 +445,7 @@
 
 <p>The reuse is the point: each step does constant work instead of re-summing k elements.</p>
 <p><strong>Variable size</strong>, the template worth memorizing:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">longest_substring_without_repeats</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">longest_substring_without_repeats</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">last_seen</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span>
@@ -365,9 +458,19 @@
 </code></pre></div>
 
 <p><strong>The structure of every variable window:</strong> expand the right edge in a loop, shrink the left edge while a condition is violated, record the answer. The <code>last_seen[ch] &gt;= start</code> check is the subtle part; without it a character seen before the current window start would incorrectly shrink it.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Sliding window</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-stack-and-queue-core">5. Stack and queue [CORE]<a class="anchor" href="#5-stack-and-queue-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Stack signal:</strong> matching pairs, nesting, "most recent", undo, parsing.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_balanced</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_balanced</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="n">pairs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;)&quot;</span><span class="p">:</span> <span class="s2">&quot;(&quot;</span><span class="p">,</span> <span class="s2">&quot;]&quot;</span><span class="p">:</span> <span class="s2">&quot;[&quot;</span><span class="p">,</span> <span class="s2">&quot;}&quot;</span><span class="p">:</span> <span class="s2">&quot;{&quot;</span><span class="p">}</span>
     <span class="n">stack</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
@@ -381,7 +484,7 @@
 
 <p><code>return not stack</code> is the part people forget: <code>"((("</code> never fails a check and is still unbalanced.</p>
 <p><strong>Monotonic stack</strong>, for "next greater element" style problems:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">next_greater</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">next_greater</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;For each element, the next larger one to its right, or -1.&quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
     <span class="n">stack</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>                    <span class="c1"># indices, values decreasing</span>
@@ -394,7 +497,7 @@
 
 <p>Each index is pushed and popped at most once, so it is O(n) despite the nested <code>while</code>. Recognizing that is worth saying out loud.</p>
 <p><strong>Queue: use <code>deque</code>, never a list.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 
 <span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>          <span class="c1"># O(1)</span>
@@ -402,10 +505,20 @@
 </code></pre></div>
 
 <p><code>list.pop(0)</code> in a BFS loop makes it quadratic and is a common silent mistake.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Stack and queue</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="6-binary-search-core">6. Binary search [CORE]<a class="anchor" href="#6-binary-search-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The signal:</strong> sorted input, or a monotonic predicate, or "find the boundary".</p>
 <p><strong>The template that avoids off-by-one errors:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">lower_bound</span><span class="p">(</span><span class="n">sorted_nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">lower_bound</span><span class="p">(</span><span class="n">sorted_nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Index of the first element &gt;= target. len(nums) if none.&quot;&quot;&quot;</span>
     <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorted_nums</span><span class="p">)</span>             <span class="c1"># hi is exclusive</span>
     <span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
@@ -419,7 +532,7 @@
 
 <p><strong>Use this one form for everything.</strong> Half-open interval, <code>while lo &lt; hi</code>, <code>hi = mid</code> not <code>mid - 1</code>. It terminates correctly and returns an insertion point, which answers "find it", "find the first one at least X" and "find the boundary" with one template.</p>
 <p><strong>In real code, use the standard library:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bisect</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">bisect</span>
 
 <span class="n">bisect</span><span class="o">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>      <span class="c1"># == lower_bound above</span>
 <span class="n">bisect</span><span class="o">.</span><span class="n">insort</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>           <span class="c1"># insert maintaining order</span>
@@ -427,18 +540,28 @@
 
 <p><strong>The generalization that surprises people:</strong> binary search works on any monotonic predicate, not just sorted arrays. "Find the smallest capacity that lets you finish in D days" is a binary search over answers, with a feasibility check as the predicate. Recognizing that is a strong signal.</p>
 <p><strong>Note <code>(lo + hi) // 2</code> does not overflow in Python</strong>, since integers are arbitrary precision. In C or Java you write <code>lo + (hi - lo) // 2</code>. Mention it if asked; do not add it unprompted, since it is noise in Python.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Binary search</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="7-recursion-and-trees-core">7. Recursion and trees [CORE]<a class="anchor" href="#7-recursion-and-trees-core" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
 
 <span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
     <span class="n">val</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">left</span><span class="p">:</span> <span class="s2">&quot;Node | None&quot;</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">right</span><span class="p">:</span> <span class="s2">&quot;Node | None&quot;</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">depth</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">depth</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>              <span class="c1"># base case first, always</span>
         <span class="k">return</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">depth</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">),</span> <span class="n">depth</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">))</span>
@@ -446,24 +569,24 @@
 
 <p><strong>Every recursion: base case first, then the recursive case, then trust it.</strong> The commonest bug is a missing or wrong base case.</p>
 <p><strong>The three DFS orders</strong>, and what each is for:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">inorder</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>           <span class="c1"># left, self, right  -&gt; sorted, for a BST</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">inorder</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>           <span class="c1"># left, self, right  -&gt; sorted, for a BST</span>
     <span class="k">if</span> <span class="n">node</span><span class="p">:</span>
         <span class="n">inorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">out</span><span class="p">);</span> <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">);</span> <span class="n">inorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">preorder</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>          <span class="c1"># self, left, right  -&gt; copying, serializing</span>
+<span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>          <span class="c1"># self, left, right  -&gt; copying, serializing</span>
     <span class="k">if</span> <span class="n">node</span><span class="p">:</span>
         <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">);</span> <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">out</span><span class="p">);</span> <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">postorder</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>         <span class="c1"># left, right, self  -&gt; deleting, computing from children</span>
+<span class="k">def</span> <span class="nf">postorder</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>         <span class="c1"># left, right, self  -&gt; deleting, computing from children</span>
     <span class="k">if</span> <span class="n">node</span><span class="p">:</span>
         <span class="n">postorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">out</span><span class="p">);</span> <span class="n">postorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">out</span><span class="p">);</span> <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
 </code></pre></div>
 
 <p><strong>BFS, level by level:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">level_order</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Node</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="k">def</span> <span class="nf">level_order</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Node</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
     <span class="n">levels</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">deque</span><span class="p">([</span><span class="n">root</span><span class="p">])</span>
@@ -482,11 +605,21 @@
 
 <p><code>for _ in range(len(q))</code> taken before the loop is the trick that separates levels. Reading <code>len(q)</code> inside the loop would include the children you just added.</p>
 <p><strong>Python's recursion limit is 1000 by default.</strong> A deep tree or a long linked list will hit it. Say so, and convert to an iterative version with an explicit stack if depth could be large. This is a Python-specific point worth raising unprompted.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Recursion and trees</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="8-graphs-core">8. Graphs [CORE]<a class="anchor" href="#8-graphs-core" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">deque</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">deque</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">build_graph</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="k">def</span> <span class="nf">build_graph</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
         <span class="n">g</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
@@ -494,7 +627,7 @@
     <span class="k">return</span> <span class="n">g</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">bfs_shortest_path</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">goal</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">bfs_shortest_path</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">goal</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Fewest edges. BFS, because it explores by distance.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="n">goal</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
@@ -511,7 +644,7 @@
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">dfs_iterative</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">dfs_iterative</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reachability. Iterative, so no recursion limit.&quot;&quot;&quot;</span>
     <span class="n">seen</span><span class="p">,</span> <span class="n">stack</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(),</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
     <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
@@ -548,12 +681,22 @@
 </table>
 <p><strong>BFS finds the shortest path because it explores in order of distance.</strong> DFS can find <em>a</em> path and it will not generally be shortest. That single sentence is the answer.</p>
 <p><strong>Mark nodes seen when you enqueue, not when you dequeue.</strong> Otherwise a node reachable by several edges is enqueued multiple times, which is a correctness problem for counting and a performance problem always.</p>
-<h3 id="9-heaps-depth">9. Heaps [DEPTH]<a class="anchor" href="#9-heaps-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 8. Graphs</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="9-heaps-depth-deep-dive">9. Heaps [DEPTH · DEEP DIVE]<a class="anchor" href="#9-heaps-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p><strong>The signal:</strong> "top k", "k largest", "median of a stream", "merge sorted lists".</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">heapq</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">heapq</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">top_k_largest</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">top_k_largest</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A MIN-heap of size k. The smallest of the k largest sits on top.&quot;&quot;&quot;</span>
     <span class="n">heap</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
@@ -568,14 +711,14 @@
 <p>O(n log k) rather than O(n log n) for sorting everything, which matters when k is small and n is large. <code>heapq.nlargest(k, nums)</code> does this for you.</p>
 <p><strong><code>heapq</code> is a min-heap only.</strong> For a max-heap, negate the values and negate back on the way out.</p>
 <p><strong>Where this appears in real work:</strong> module <code>07</code>'s top-k retrieval is exactly this problem, and it is why <code>numpy.argsort</code> versus a partial selection matters at scale.</p>
-<h3 id="10-dynamic-programming-depth">10. Dynamic programming [DEPTH]<a class="anchor" href="#10-dynamic-programming-depth" aria-label="Link to this section">#</a></h3>
+<h3 id="10-dynamic-programming-depth-deep-dive">10. Dynamic programming [DEPTH · DEEP DIVE]<a class="anchor" href="#10-dynamic-programming-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p><strong>The signal:</strong> overlapping subproblems plus optimal substructure. In practice: "how many ways", "minimum cost to", and a naive recursion that recomputes the same thing.</p>
 <p><strong>Memoization is the easy entry</strong>, and usually enough for an interview:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">functools</span>
 
 
 <span class="nd">@functools</span><span class="o">.</span><span class="n">cache</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">n</span>
     <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
@@ -583,7 +726,7 @@
 
 <p><code>@functools.cache</code> turns exponential into linear with one line. Note the <code>01b</code> section 4 caveat: arguments must be hashable, and an unbounded cache on a long-running process is a leak.</p>
 <p><strong>Bottom-up</strong>, when you want to control space:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">climb_stairs</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">climb_stairs</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Ways to climb n steps taking 1 or 2 at a time. O(1) space.&quot;&quot;&quot;</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
@@ -655,6 +798,16 @@
 
 <p>The tuple form is clearer and does not depend on stability.</p>
 <hr />
+<blockquote>
+<p><strong>Concept checkpoint — 11. Python-specific pitfalls</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h2 id="worked-example-recognizing-the-pattern">Worked example: recognizing the pattern<a class="anchor" href="#worked-example-recognizing-the-pattern" aria-label="Link to this section">#</a></h2>
 <p>The skill being tested is recognition, so practise on the statement rather than the solution.</p>
 <table>
@@ -759,6 +912,9 @@
 </tbody>
 </table>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. Why is your solution O(n) rather than O(n²)?</strong></p>
 <p><em>Strong:</em> name the operation and its cost. "The nested version checks membership against a list, which scans, so n items times an n-element scan is quadratic. Using a set makes each check constant on average, so one pass over n items is linear. The cost is O(n) extra memory, which is the trade."</p>
@@ -772,6 +928,10 @@
 <p><em>Strong:</em> complexity intuition, constantly. Give the real example: deduplicating documents against an index of already-embedded ids, where a list membership test inside a loop was 2.5 billion comparisons and a set made it linear, measured at roughly 2,700x on one dataset. Top-k retrieval is a heap problem. The rest of the patterns show up rarely, and recognizing an accidentally quadratic pipeline shows up constantly.</p>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
+<p>Solutions and delayed practice are in the <a href="quiz-01c-python-dsa.html">01c practice pack</a>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
 <p><strong>The method matters more than the problem count.</strong></p>
 <ol>
 <li><strong>Pattern recognition drills.</strong> Read 20 problem statements, say the pattern aloud and why, check. Do not solve them. Twenty minutes, and it builds the thing being tested.</li>
@@ -849,6 +1009,10 @@
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters-and-how-much">Why this matters, and how much</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
@@ -860,8 +1024,8 @@
 <li class="toc-l3"><a href="#6-binary-search-core">6. Binary search [CORE]</a></li>
 <li class="toc-l3"><a href="#7-recursion-and-trees-core">7. Recursion and trees [CORE]</a></li>
 <li class="toc-l3"><a href="#8-graphs-core">8. Graphs [CORE]</a></li>
-<li class="toc-l3"><a href="#9-heaps-depth">9. Heaps [DEPTH]</a></li>
-<li class="toc-l3"><a href="#10-dynamic-programming-depth">10. Dynamic programming [DEPTH]</a></li>
+<li class="toc-l3"><a href="#9-heaps-depth-deep-dive">9. Heaps [DEPTH · DEEP DIVE]</a></li>
+<li class="toc-l3"><a href="#10-dynamic-programming-depth-deep-dive">10. Dynamic programming [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l3"><a href="#11-python-specific-pitfalls-core">11. Python-specific pitfalls [CORE]</a></li>
 <li class="toc-l2"><a href="#worked-example-recognizing-the-pattern">Worked example: recognizing the pattern</a></li>
 <li class="toc-l2"><a href="#how-to-behave-in-a-live-coding-round">How to behave in a live coding round</a></li>

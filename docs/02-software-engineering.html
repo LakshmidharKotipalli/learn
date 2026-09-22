@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 45 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="02-software-engineering-foundations">02 Software Engineering Foundations<a class="anchor" href="#02-software-engineering-foundations" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low, except tooling specifics in section 4</p>
 <hr />
@@ -131,6 +144,56 @@
 </table>
 <p>You do not need <code>01c</code>. This module and DSA practice are independent.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>4 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Git, Python 3.11+, a terminal, and a GitHub account</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read Git as a model, testing strategy, CI, debugging, HTTP/APIs, and the command line. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Reason about commits, branches, tests, CI, and code review as one delivery system.</li>
+<li>Debug from evidence instead of changing code at random.</li>
+<li>Explain HTTP, APIs, and concurrency in practical engineering terms.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What does a Git commit point to, and why does that matter for recovery?</li>
+<li>Which test belongs at the unit, integration, and end-to-end levels?</li>
+<li>What evidence distinguishes an application bug from a CI-only environment bug?</li>
+<li>What is the difference between an HTTP client error and a server error?</li>
+<li>Why does concurrency help I/O-bound work but not automatically CPU-bound work?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>--version<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python3<span class="w"> </span>--version
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -198,7 +261,7 @@
 </tr>
 <tr>
 <td>12. Concurrency and parallelism</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...say why threads do not speed up CPU-bound Python</td>
 </tr>
 </tbody>
@@ -212,7 +275,7 @@
 <p><strong>Where the analogy breaks down.</strong> It makes these practices sound purely defensive, and the good ones are not. Good tests let you refactor aggressively because you will find out immediately if you broke something. Good CI lets you merge on a Friday. The practices buy confidence to move faster, and treating them as pure overhead is exactly why people skip them and then move slowly.</p>
 <hr />
 <h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Working tree, your files leads to Index, the staging area; Index, the staging area leads to Repository, the commit graph; Repository, the commit graph leads to Remote, GitHub; Remote, GitHub leads to Repository, the commit graph; Repository, the commit graph leads to Working tree, your files; Remote, GitHub leads to Pull request; Pull request leads to CI: lint, types, tests; Pull request leads to Human review; CI: lint, types, tests leads to main branch; Human review leads to main branch; main branch leads to PROD.">flowchart TD
     WT[&quot;Working tree, your files&quot;]
     IDX[&quot;Index, the staging area&quot;]
     REPO[&quot;Repository, the commit graph&quot;]
@@ -235,7 +298,7 @@
     CI --&gt;|&quot;must pass&quot;| MAIN
     REV --&gt;|&quot;must approve&quot;| MAIN
     MAIN --&gt;|&quot;deploy&quot;| PROD[&quot;Production&quot;]
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Working tree, your files leads to Index, the staging area; Index, the staging area leads to Repository, the commit graph; Repository, the commit graph leads to Remote, GitHub; Remote, GitHub leads to Repository, the commit graph; Repository, the commit graph leads to Working tree, your files; Remote, GitHub leads to Pull request; Pull request leads to CI: lint, types, tests; Pull request leads to Human review; CI: lint, types, tests leads to main branch; Human review leads to main branch; main branch leads to PROD.</p></details></div>
 <hr />
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-git-as-a-model-foundation">1. Git as a model [FOUNDATION]<a class="anchor" href="#1-git-as-a-model-foundation" aria-label="Link to this section">#</a></h3>
@@ -312,6 +375,16 @@ models/
 </code></pre></div>
 
 <p>Two of these are load-bearing. <code>.env</code> keeps secrets out of history, and once a secret is committed it is in the history permanently even after you delete it, so the only real remedy is rotating the key. Model weights and data files are the other: a single <code>.gguf</code> can be tens of gigabytes, git stores every version forever, and a repository with a committed model is effectively unclonable. Use Git LFS or, better, keep artifacts out of git entirely.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. Git as a model</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-branching-merging-rebasing-core">2. Branching, merging, rebasing [CORE]<a class="anchor" href="#2-branching-merging-rebasing-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Merge</strong> creates a new commit with two parents, preserving exactly what happened.</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>main
@@ -372,6 +445,16 @@ git<span class="w"> </span>rebase<span class="w"> </span>main
 </code></pre></div>
 
 <p>This replays your local commits on top of the remote's, avoiding the "Merge branch 'main' of github.com..." commits that clutter history with no information.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. Branching, merging, rebasing</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-recovering-from-git-mistakes-core">3. Recovering from git mistakes [CORE]<a class="anchor" href="#3-recovering-from-git-mistakes-core" aria-label="Link to this section">#</a></h3>
 <p>Worth its own section, because fear of git is mostly fear of losing work, and once you know the recovery moves the fear goes.</p>
 <p><strong>The most important thing to know: committed work is almost never lost.</strong> Git keeps a log of everywhere <code>HEAD</code> has been, for about 90 days.</p>
@@ -440,6 +523,16 @@ git<span class="w"> </span>rebase<span class="w"> </span>main
 </table>
 <p><strong><code>reset</code> versus <code>revert</code>.</strong> <code>reset</code> rewrites history and is for local work. <code>revert</code> adds a new commit that undoes an old one, preserving history, and is the only safe choice for anything pushed. Resetting a pushed branch and force-pushing breaks everyone who has pulled it.</p>
 <p><strong>The one thing that does lose work:</strong> uncommitted changes destroyed by <code>git reset --hard</code> or <code>git checkout .</code>. Those were never in git, so git cannot help. This is the argument for committing often, even messy commits, since you can clean them up later with interactive rebase.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Recovering from git mistakes</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-environments-and-dependencies-core">4. Environments and dependencies [CORE]<a class="anchor" href="#4-environments-and-dependencies-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The problem.</strong> Your code imports <code>httpx</code>. Which version? If the answer is "whatever was installed", your code works today and breaks on a colleague's machine, in CI, or next Tuesday when a maintainer ships a breaking change.</p>
 <p><strong>A virtual environment per project</strong>, always:</p>
@@ -496,6 +589,16 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </tbody>
 </table>
 <p>That last row is the AI-specific one. A pipeline pinned to <code>gpt-4</code> or <code>latest</code> silently changes behavior when the provider updates it, and your evaluation results from last month become meaningless. Pin the model string, record it in your evaluation output, and treat a model change like a dependency upgrade.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Environments and dependencies</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-linting-formatting-type-checking-foundation">5. Linting, formatting, type checking [FOUNDATION]<a class="anchor" href="#5-linting-formatting-type-checking-foundation" aria-label="Link to this section">#</a></h3>
 <p>Three different jobs, often confused:</p>
 <table>
@@ -552,6 +655,16 @@ mypy<span class="w"> </span>src/
 </code></pre></div>
 
 <p><code>[VERIFY: hook revisions @ the pre-commit hook repositories]</code> Two of these hooks earn their place immediately in AI work: <code>check-added-large-files</code> stops you committing a model checkpoint, and <code>detect-private-key</code> stops a category of credential leak.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Linting, formatting, type checking</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="6-testing-strategy-core">6. Testing strategy [CORE]<a class="anchor" href="#6-testing-strategy-core" aria-label="Link to this section">#</a></h3>
 <p><code>01b</code> covered writing tests. This is about deciding which to write.</p>
 <p><strong>The levels, and what each actually catches:</strong></p>
@@ -630,13 +743,23 @@ mypy<span class="w"> </span>src/
 </table>
 <p>The right-hand column is not untestable, it is <em>evaluated</em> rather than asserted: measured against a dataset, tracked over time, with thresholds. That is module 07's evaluation material, and conflating the two is a common mistake. Do not write a unit test asserting an LLM returns a specific string; it will pass today and fail next week for reasons unrelated to your code.</p>
 <p><strong>Test naming.</strong> The name is read far more often than the body, usually in a CI failure at speed:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_chunk_overlap_repeats_trailing_content</span><span class="p">():</span> <span class="o">...</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_loader_raises_when_all_rows_malformed</span><span class="p">():</span> <span class="o">...</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_retry_does_not_retry_client_errors</span><span class="p">():</span> <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_chunk_overlap_repeats_trailing_content</span><span class="p">():</span> <span class="o">...</span>
+<span class="k">def</span> <span class="nf">test_loader_raises_when_all_rows_malformed</span><span class="p">():</span> <span class="o">...</span>
+<span class="k">def</span> <span class="nf">test_retry_does_not_retry_client_errors</span><span class="p">():</span> <span class="o">...</span>
 </code></pre></div>
 
 <p>Each says what is being tested and what the expected behavior is. <code>test_chunking_2</code> says nothing.</p>
 <p><strong>Flaky tests are worse than no tests.</strong> A test that fails 1 in 20 runs trains everyone to re-run CI instead of reading the failure, which means real failures get re-run too. Fix it or delete it. The usual causes: time dependence, network calls, shared state between tests, and dictionary or set ordering assumptions.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Testing strategy</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="7-continuous-integration-core">7. Continuous integration [CORE]<a class="anchor" href="#7-continuous-integration-core" aria-label="Link to this section">#</a></h3>
 <p>CI runs your checks on every push, on a machine that is not yours. That last part is the point: it is the first honest answer to "does this work anywhere else".</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># .github/workflows/ci.yml</span>
@@ -685,6 +808,16 @@ mypy<span class="w"> </span>src/
 <p><em>Never let main go red.</em> A broken main blocks everyone. Require CI to pass before merge, as a branch protection rule, not as a social convention.</p>
 <p><em>Secrets go in repository secrets</em>, referenced as <code>${{ secrets.NAME }}</code>, never in the YAML. And be aware that workflows from forked pull requests should not receive secrets, because a PR can modify the workflow that reads them.</p>
 <p><strong>CD is deployment on top of this</strong>, and belongs in module 10. The prerequisite is that CI is trustworthy: nobody should automatically deploy the output of a test suite they do not believe.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Continuous integration</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="8-code-review-core">8. Code review [CORE]<a class="anchor" href="#8-code-review-core" aria-label="Link to this section">#</a></h3>
 <p><strong>What to look for, in priority order.</strong> The order matters, because a review that opens with naming nitpicks and never reaches the logic is worse than no review.</p>
 <ol>
@@ -715,6 +848,16 @@ nit: `cs` could be `chunk_size`
 <li><strong>Green before requesting review.</strong> Do not make a human find what CI would have.</li>
 </ul>
 <p><strong>Reviewing your own work solo</strong>, because you may not have a team right now. Open the PR against your own repo, leave it for at least an hour, then read the full diff in GitHub's interface rather than in your editor. The different presentation and the delay reproduce a surprising amount of the value. Keep a written checklist, the seven points above, and actually run down it.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 8. Code review</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="9-debugging-as-a-method-core">9. Debugging as a method [CORE]<a class="anchor" href="#9-debugging-as-a-method-core" aria-label="Link to this section">#</a></h3>
 <p>Most people debug by changing things until the symptom goes away. That works often enough to be a habit and it fails exactly when the problem is hard.</p>
 <p><strong>The method:</strong></p>
@@ -778,6 +921,16 @@ git<span class="w"> </span>bisect<span class="w"> </span>reset
 </tbody>
 </table>
 <p><strong>The AI-specific debugging problem</strong> is that pipelines fail silently and probabilistically. A retriever returning poor chunks does not raise. The technique is to make each stage observable: log what was retrieved with scores, log the assembled prompt, log the raw model output before parsing. Most "the model is bad" reports turn out to be a retrieval or prompt-assembly problem that was invisible because nobody logged the intermediate stage. Build that visibility in from the start; module 07 treats it as a first-class concern.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 9. Debugging as a method</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="10-the-command-line-foundation">10. The command line [FOUNDATION]<a class="anchor" href="#10-the-command-line-foundation" aria-label="Link to this section">#</a></h3>
 <p>The commands that carry most of the weight.</p>
 <p><strong>Navigating and finding:</strong></p>
@@ -819,6 +972,16 @@ env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<
 </code></pre></div>
 
 <p><code>which python3</code> after activating a virtualenv, to confirm it points inside <code>.venv</code>, resolves a large share of "it says the package isn't installed but I installed it".</p>
+<blockquote>
+<p><strong>Concept checkpoint — 10. The command line</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="11-http-and-apis-core">11. HTTP and APIs [CORE]<a class="anchor" href="#11-http-and-apis-core" aria-label="Link to this section">#</a></h3>
 <p>Everything you build talks HTTP: model providers, vector databases, your own service.</p>
 <p><strong>A request:</strong></p>
@@ -954,7 +1117,17 @@ POST   /v1/search              search (POST because the query is a body, not a p
 </code></pre></div>
 
 <p>Version from the first day. <code>/v1/</code> costs nothing now and is nearly impossible to retrofit once clients exist.</p>
-<h3 id="12-concurrency-and-parallelism-depth">12. Concurrency and parallelism [DEPTH]<a class="anchor" href="#12-concurrency-and-parallelism-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 11. HTTP and APIs</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="12-concurrency-and-parallelism-depth-deep-dive">12. Concurrency and parallelism [DEPTH · DEEP DIVE]<a class="anchor" href="#12-concurrency-and-parallelism-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p>Included because it determines how you serve models, and because the question is common.</p>
 <p><strong>They are different things.</strong> Concurrency is dealing with many things at once, by interleaving. Parallelism is doing many things at once, on multiple cores. Concurrency is a structure; parallelism is an execution property.</p>
 <p><strong>The GIL.</strong> CPython's Global Interpreter Lock means only one thread executes Python bytecode at a time. Consequences:</p>
@@ -988,10 +1161,10 @@ POST   /v1/search              search (POST because the query is a body, not a p
 <p><code>[VERIFY: free-threaded CPython, PEP 703, is progressing and changes this picture @ current Python release notes]</code> The optional no-GIL build changes the first two rows for code that opts in. Know it exists; the guidance above still describes what you will deploy.</p>
 <p><strong>Choosing:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># I/O-bound: many API calls. See 01b section 9.7.</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fetch_all</span><span class="p">(</span><span class="n">urls</span><span class="p">):</span> <span class="o">...</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">fetch_all</span><span class="p">(</span><span class="n">urls</span><span class="p">):</span> <span class="o">...</span>
 
 <span class="c1"># CPU-bound: parse 10,000 PDFs</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
     <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">parse_pdf</span><span class="p">,</span> <span class="n">paths</span><span class="p">))</span>
 
@@ -1080,13 +1253,13 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p><em>Find the cause.</em> <code>data/</code> is gitignored, which is correct, and the test reads from it, which is not.</p>
 <p><em>Fix the cause, not the symptom.</em> Do not commit the data file. Make the test generate what it needs:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">sample_log</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sample_log</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;sample.csv&quot;</span>
     <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-01-01,python,45</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">path</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_summarize_reads_a_log</span><span class="p">(</span><span class="n">sample_log</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_summarize_reads_a_log</span><span class="p">(</span><span class="n">sample_log</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">summarize</span><span class="p">(</span><span class="n">sample_log</span><span class="p">)[</span><span class="s2">&quot;total_minutes&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">45</span>
 </code></pre></div>
 
@@ -1095,7 +1268,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p><strong>The transferable lesson.</strong> "Fresh clone into a temporary directory" reproduces most CI-only failures in under a minute, because the difference is almost always something present locally and not committed: a data file, a <code>.env</code>, an installed package, an environment variable. Reach for it before reading the CI logs a fourth time.</p>
 <h3 id="example-3-a-pull-request-reviewed">Example 3: a pull request, reviewed<a class="anchor" href="#example-3-a-pull-request-reviewed" aria-label="Link to this section">#</a></h3>
 <p>The diff, which looks reasonable:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">embedding</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">]</span>
@@ -1130,7 +1303,7 @@ nit: type hints would help here, `-&gt; list[str]` in particular, since the
 <div class="highlight"><pre><span></span><code><span class="n">DEFAULT_SCORE_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.7</span>   <span class="c1"># measured on eval-set-v2, see docs/retrieval-tuning.md</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
     <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">min_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_SCORE_THRESHOLD</span><span class="p">,</span>
@@ -1143,7 +1316,7 @@ nit: type hints would help here, `-&gt; list[str]` in particular, since the
         <span class="n">embedding</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">top_k</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># over-fetch to survive filtering</span>
     <span class="k">except</span> <span class="p">(</span><span class="n">EmbeddingError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">RetrievalError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;search failed for query </span><span class="si">{</span><span class="n">query</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+        <span class="k">raise</span> <span class="n">RetrievalError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;search failed for query </span><span class="si">{</span><span class="n">query</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
     <span class="n">kept</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="n">min_score</span><span class="p">][:</span><span class="n">top_k</span><span class="p">]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">kept</span> <span class="ow">and</span> <span class="n">results</span><span class="p">:</span>
@@ -1234,6 +1407,9 @@ nit: type hints would help here, `-&gt; list[str]` in particular, since the
 </ol>
 <p>Point 6 catches more than its share: editing one file and running another, or an installed copy shadowing your source.</p>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. Walk me through your git workflow.</strong></p>
 <p><em>Strong outline:</em> Branch per change from an up-to-date main, small focused commits with imperative messages explaining why, rebase on main before opening a PR, PR small enough to review properly with a description of what and why and how tested, CI green before requesting review, merge after approval. Then the reasoning: small branches reduce conflicts, rebase-before-PR resolves conflicts on my own time rather than the reviewer's, and never rebasing shared branches because it rewrites history under collaborators.</p>
@@ -1279,7 +1455,10 @@ nit: type hints would help here, `-&gt; list[str]` in particular, since the
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/02-software-engineering-practice.md</code>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-02-software-engineering.html">02 practice pack</a>.</p>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>In a scratch repository, make three commits, then use <code>git reset --hard HEAD~3</code>. Recover all three with <code>reflog</code>. Write down what <code>reflog</code> showed, so you trust it next time.</li>
@@ -1393,6 +1572,10 @@ nit: type hints would help here, `-&gt; list[str]` in particular, since the
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#concept-map">Concept map</a></li>
@@ -1408,7 +1591,7 @@ nit: type hints would help here, `-&gt; list[str]` in particular, since the
 <li class="toc-l3"><a href="#9-debugging-as-a-method-core">9. Debugging as a method [CORE]</a></li>
 <li class="toc-l3"><a href="#10-the-command-line-foundation">10. The command line [FOUNDATION]</a></li>
 <li class="toc-l3"><a href="#11-http-and-apis-core">11. HTTP and APIs [CORE]</a></li>
-<li class="toc-l3"><a href="#12-concurrency-and-parallelism-depth">12. Concurrency and parallelism [DEPTH]</a></li>
+<li class="toc-l3"><a href="#12-concurrency-and-parallelism-depth-deep-dive">12. Concurrency and parallelism [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l2"><a href="#worked-examples">Worked examples</a></li>
 <li class="toc-l3"><a href="#example-1-a-repository-set-up-from-scratch">Example 1: a repository set up from scratch</a></li>
 <li class="toc-l3"><a href="#example-2-debugging-a-ci-only-failure">Example 2: debugging a CI-only failure</a></li>

@@ -135,25 +135,20 @@ The dotted edge is the LLM-first fast path. It reaches the material you probably
 |---|---|
 | [`tracker/progress-log.md`](tracker/progress-log.md) | Mastery status, spaced repetition, mock scores, STAR bank. **The only review schedule.** |
 | [`tracker/weekly-plan.md`](tracker/weekly-plan.md) | The weekly working template, derived from the roadmap |
-| [`quizzes/01a-python-core-practice.md`](quizzes/01a-python-core-practice.md) | Flashcards, MCQs, debugging scenarios, Anki export |
+| [`quizzes/01a-python-core-practice.md`](quizzes/01a-python-core-practice.md) | Worked example: flashcards, MCQs, debugging scenarios, Anki export |
+| [`quizzes/01b-python-patterns-practice.md`](quizzes/01b-python-patterns-practice.md) through [`quizzes/11-system-design-practice.md`](quizzes/11-system-design-practice.md) | Delayed retrieval, prediction, debugging, explanation, and implementation practice for every technical module |
 
 ### A note on the practice packs
 
-**Only `01a`'s practice pack is included.** Every module references one in
-`quizzes/`, and the rest do not exist yet. This is deliberate rather than an
-oversight.
+Every technical module now has a practice pack. Work it **at least one day
+after** the first reading: the questions are deliberately delayed so that you
+practice retrieval rather than recognition. Each pack includes retrieval,
+prediction, debugging, explanation, and an implementation task with a rubric.
 
-A practice pack is worth building **when you finish the module**, not before,
-for two reasons. Generated ahead of time it is material you skim rather than
-work. And the questions worth having are partly the ones *you* got wrong,
-which you cannot know in advance.
-
-`01a`'s pack is the worked example of the format: 40 flashcards in collapsible
-blocks, 20 multiple-choice with every wrong option explained, 15 short answer,
-10 debugging scenarios keyed on symptoms, 5 interview questions, a scoring
-guide that maps to tracker statuses, and an Anki CSV export. Use it as the
-template and generate the others as you go, adding the items you personally
-missed.
+`01a`'s pack remains the most extensive worked example, including flashcards,
+multiple-choice questions, short answers, debugging scenarios, interview
+questions, implementation exercises, a scoring guide, and an Anki export. Add
+your own misses to the relevant pack as you study.
 
 ---
 
@@ -230,7 +225,11 @@ A Markdown table cannot notify you, so the tracker includes an Anki CSV export s
 | `## Mastery checklist` | Observable tasks, not topics. The exit condition. |
 | `## Connections` | Explicit links backward and forward, by filename and section |
 
-**Every module has the same structure**, so once you have read one you know where to find things in all of them.
+**Every technical module has the same reader loop**, so once you have read one
+you know where to find things in all of them: a learner guide and diagnostic,
+concept checkpoints that ask you to define/predict/vary/apply, a Build section,
+an optional Interview section, a mastery checklist, connections, and volatile
+claims.
 
 ---
 
@@ -322,7 +321,7 @@ Diagrams stay within the GitHub-safe subset: `flowchart TD`, quoted labels conta
 - Your own failure notes into the relevant module's debugging section
 - Interview questions you were actually asked, into `12b`
 - Numbers you measured, into the modules that assert them
-- Practice packs for modules that do not have one yet
+- Personal misses and failure notes into the relevant practice pack
 
 **The one thing not to add: more modules.** The scope here already exceeds what most people finish. Depth in what exists beats breadth.
 

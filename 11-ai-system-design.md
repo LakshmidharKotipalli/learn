@@ -31,6 +31,45 @@ This module assumes all of them. It is consolidation, not new material, which is
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 4 hours |
+| Setup | Modules 07–10 completed and a calculator or scratchpad |
+| First pass | Read the answer framework, requirements, capacity estimation, patterns, evaluation, and security. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Turn an underspecified AI problem into requirements and measurable constraints.
+- Estimate capacity, choose components, and state tradeoffs in order.
+- Design evaluation, safety, reliability, and cost into the first answer.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What requirement should you clarify before drawing a system diagram?
+2. Which traffic and payload numbers drive capacity estimates?
+3. What makes a component choice reversible?
+4. How would you know the design is failing after launch?
+5. Where should human approval or permission boundaries appear?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 --version
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -57,6 +96,10 @@ Interviewers are listening for the reasons. "I would use a vector database" is a
 **Where the analogy breaks down.** "A sequence of decisions" implies you can proceed linearly. You cannot: capacity estimates change your component choices, which change your cost, which changes the requirements you negotiate. The real process loops, and **saying so out loud is a strength.** "That cost estimate changes my answer on the model tier, let me revise" is what a senior engineer sounds like.
 
 ---
+
+## Running example: document-based support assistant
+
+The support assistant is the running design problem: define requirements, estimate traffic and context, choose retrieval and model components, then design evaluation, security, reliability, and cost controls.
 
 ## Core concepts
 
@@ -85,6 +128,15 @@ A repeatable structure for 45 minutes. Say the structure out loud at the start; 
 
 **Leave time for phases 5 and 6.** Many candidates spend 40 minutes on the diagram and never reach failure modes or evaluation, which is where senior signal lives.
 
+
+> **Concept checkpoint — 1. The answer framework**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 2. Requirements [CORE]
 
 **The five questions to ask before anything else:**
@@ -112,6 +164,15 @@ A repeatable structure for 45 minutes. Say the structure out loud at the start; 
 **Define success measurably**, and this is the answer most candidates skip: "90% of questions answered with a correct citation, p95 under 3 seconds, no cross-tenant leakage, under $X per month". Without it you cannot evaluate the design you are about to propose.
 
 **Negotiate scope explicitly.** "I will design for text documents and treat images and audio as out of scope, is that reasonable?" A system design question is always too large for the time available, and choosing what to exclude is part of the skill.
+
+
+> **Concept checkpoint — 2. Requirements**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 3. Capacity estimation [CORE]
 
@@ -206,6 +267,15 @@ If you are self-hosting, 52 concurrent streams is your capacity requirement, and
 | Peak-to-average ratio | 3-5x |
 | float32 vector, 1024-dim | 4 KB |
 
+
+> **Concept checkpoint — 3. Capacity estimation**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 4. Component vocabulary [FOUNDATION]
 
 | Component | Does | Chosen by |
@@ -228,6 +298,15 @@ If you are self-hosting, 52 concurrent streams is your capacity requirement, and
 
 **The ingestion pipeline.** Candidates draw the query path and skip how documents get in. That pipeline is where most quality problems originate (module 07 section 2), and it needs scheduling, incremental updates, failure handling and monitoring of its own.
 
+
+> **Concept checkpoint — 4. Component vocabulary**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 5. Patterns [CORE]
 
 | Problem | Shape | Key decisions |
@@ -244,6 +323,15 @@ If you are self-hosting, 52 concurrent streams is your capacity requirement, and
 **The pattern-level decision most often got wrong: using RAG where semantic search is enough.** If the user wants to find the document, return the documents. Generation adds latency, cost and a hallucination surface to a problem that a ranked list already solves. Saying this in an interview is a strong signal.
 
 **The second: generation where retrieval failed.** No architecture recovers from bad retrieval, so retrieval quality is where the design effort belongs.
+
+
+> **Concept checkpoint — 5. Patterns**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 6. Reliability and scale [CORE]
 
@@ -263,6 +351,15 @@ For a typical RAG system, in order:
 
 **Idempotency** on anything that writes, per module 02 section 11, because clients will retry.
 
+
+> **Concept checkpoint — 6. Reliability and scale**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 7. Evaluation and quality [CORE]
 
 **Reach this phase.** Many candidates never do, and it is where senior signal is concentrated.
@@ -278,6 +375,15 @@ The answer is module 07 section 9, compressed:
 
 **The sentence that lands:** *"I would build the evaluation set before the retriever, because otherwise every subsequent decision is a guess."*
 
+
+> **Concept checkpoint — 7. Evaluation and quality**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 8. Security and privacy [CORE]
 
 **Tenant isolation** is the highest-severity bug class. Design choices: tenant id from the authenticated session and never the request body; filtering at the data layer rather than application code; separate indexes per tenant when the count is small, which is correct by construction; and a test that specifically attempts cross-tenant access.
@@ -287,6 +393,15 @@ The answer is module 07 section 9, compressed:
 **Prompt injection**, from module 08 section 11: state the lethal trifecta, private data plus untrusted content plus external communication, and say which leg you are breaking. Usually egress.
 
 **PII and retention:** know what reaches the provider, what is logged, what the retention policy is, and that a deletion request must reach the document, its chunks, its vectors and any cached embeddings.
+
+
+> **Concept checkpoint — 8. Security and privacy**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 9. Cost [CORE]
 
@@ -305,6 +420,15 @@ From module 10 section 13, with the arithmetic from section 3.
 **The governing rule:** require an evaluation-set improvement to justify any context increase, or "let's pass more chunks" happens repeatedly and multiplies the bill for an unmeasured quality change.
 
 ---
+
+
+> **Concept checkpoint — 9. Cost**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ## Walkthrough 1: Enterprise RAG assistant
 
@@ -612,6 +736,8 @@ Operationally: escalation rate, which rising means the agent is degrading and fa
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 **1. Design a document Q&A system for 50,000 employees.**
@@ -686,6 +812,10 @@ Practise all four walkthroughs at both lengths, aloud and timed. The 60-second v
 ---
 
 ## Practice tasks
+
+Solutions and delayed practice are in the [11 practice pack](quizzes/11-system-design-practice.md).
+
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
 
 ### Five tiny exercises
 

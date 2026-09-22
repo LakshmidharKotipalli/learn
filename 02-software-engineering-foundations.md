@@ -30,6 +30,45 @@ You do not need `01c`. This module and DSA practice are independent.
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 4 hours |
+| Setup | Git, Python 3.11+, a terminal, and a GitHub account |
+| First pass | Read Git as a model, testing strategy, CI, debugging, HTTP/APIs, and the command line. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Reason about commits, branches, tests, CI, and code review as one delivery system.
+- Debug from evidence instead of changing code at random.
+- Explain HTTP, APIs, and concurrency in practical engineering terms.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What does a Git commit point to, and why does that matter for recovery?
+2. Which test belongs at the unit, integration, and end-to-end levels?
+3. What evidence distinguishes an application bug from a CI-only environment bug?
+4. What is the difference between an HTTP client error and a server error?
+5. Why does concurrency help I/O-bound work but not automatically CPU-bound work?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+git --version && python3 --version
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -45,7 +84,7 @@ You do not need `01c`. This module and DSA practice are independent.
 | 9. Debugging as a method | [CORE] | ...describe how you isolate a bug without guessing |
 | 10. The command line | [FOUNDATION] | ...find every file containing a string, excluding a directory |
 | 11. HTTP and APIs | [CORE] | ...explain idempotency and which methods have it |
-| 12. Concurrency and parallelism | [DEPTH] | ...say why threads do not speed up CPU-bound Python |
+| 12. Concurrency and parallelism | [DEPTH · DEEP DIVE] | ...say why threads do not speed up CPU-bound Python |
 
 ---
 
@@ -166,6 +205,15 @@ models/
 
 Two of these are load-bearing. `.env` keeps secrets out of history, and once a secret is committed it is in the history permanently even after you delete it, so the only real remedy is rotating the key. Model weights and data files are the other: a single `.gguf` can be tens of gigabytes, git stores every version forever, and a repository with a committed model is effectively unclonable. Use Git LFS or, better, keep artifacts out of git entirely.
 
+
+> **Concept checkpoint — 1. Git as a model**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 2. Branching, merging, rebasing [CORE]
 
 **Merge** creates a new commit with two parents, preserving exactly what happened.
@@ -224,6 +272,15 @@ git config --global pull.rebase true
 
 This replays your local commits on top of the remote's, avoiding the "Merge branch 'main' of github.com..." commits that clutter history with no information.
 
+
+> **Concept checkpoint — 2. Branching, merging, rebasing**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 3. Recovering from git mistakes [CORE]
 
 Worth its own section, because fear of git is mostly fear of losing work, and once you know the recovery moves the fear goes.
@@ -264,6 +321,15 @@ git reset --hard 9b2e4f1        # back to where you were
 **`reset` versus `revert`.** `reset` rewrites history and is for local work. `revert` adds a new commit that undoes an old one, preserving history, and is the only safe choice for anything pushed. Resetting a pushed branch and force-pushing breaks everyone who has pulled it.
 
 **The one thing that does lose work:** uncommitted changes destroyed by `git reset --hard` or `git checkout .`. Those were never in git, so git cannot help. This is the argument for committing often, even messy commits, since you can clean them up later with interactive rebase.
+
+
+> **Concept checkpoint — 3. Recovering from git mistakes**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 4. Environments and dependencies [CORE]
 
@@ -317,6 +383,15 @@ pip install -r requirements.lock      # exact reproduction
 
 That last row is the AI-specific one. A pipeline pinned to `gpt-4` or `latest` silently changes behavior when the provider updates it, and your evaluation results from last month become meaningless. Pin the model string, record it in your evaluation output, and treat a model change like a dependency upgrade.
 
+
+> **Concept checkpoint — 4. Environments and dependencies**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 5. Linting, formatting, type checking [FOUNDATION]
 
 Three different jobs, often confused:
@@ -366,6 +441,15 @@ pip install pre-commit && pre-commit install
 
 `[VERIFY: hook revisions @ the pre-commit hook repositories]` Two of these hooks earn their place immediately in AI work: `check-added-large-files` stops you committing a model checkpoint, and `detect-private-key` stops a category of credential leak.
 
+
+> **Concept checkpoint — 5. Linting, formatting, type checking**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 6. Testing strategy [CORE]
 
 `01b` covered writing tests. This is about deciding which to write.
@@ -407,6 +491,15 @@ def test_retry_does_not_retry_client_errors(): ...
 Each says what is being tested and what the expected behavior is. `test_chunking_2` says nothing.
 
 **Flaky tests are worse than no tests.** A test that fails 1 in 20 runs trains everyone to re-run CI instead of reading the failure, which means real failures get re-run too. Fix it or delete it. The usual causes: time dependence, network calls, shared state between tests, and dictionary or set ordering assumptions.
+
+
+> **Concept checkpoint — 6. Testing strategy**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 7. Continuous integration [CORE]
 
@@ -466,6 +559,15 @@ jobs:
 
 **CD is deployment on top of this**, and belongs in module 10. The prerequisite is that CI is trustworthy: nobody should automatically deploy the output of a test suite they do not believe.
 
+
+> **Concept checkpoint — 7. Continuous integration**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 8. Code review [CORE]
 
 **What to look for, in priority order.** The order matters, because a review that opens with naming nitpicks and never reaches the logic is worse than no review.
@@ -503,6 +605,15 @@ Review your own PR before requesting review. You will find a third of the issues
 - **Green before requesting review.** Do not make a human find what CI would have.
 
 **Reviewing your own work solo**, because you may not have a team right now. Open the PR against your own repo, leave it for at least an hour, then read the full diff in GitHub's interface rather than in your editor. The different presentation and the delay reproduce a surprising amount of the value. Keep a written checklist, the seven points above, and actually run down it.
+
+
+> **Concept checkpoint — 8. Code review**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 9. Debugging as a method [CORE]
 
@@ -545,6 +656,15 @@ Finds the exact commit that introduced a bug in about log2(n) steps: roughly 10 
 | `tracemalloc` | "Memory grows", to find allocation sites |
 
 **The AI-specific debugging problem** is that pipelines fail silently and probabilistically. A retriever returning poor chunks does not raise. The technique is to make each stage observable: log what was retrieved with scores, log the assembled prompt, log the raw model output before parsing. Most "the model is bad" reports turn out to be a retrieval or prompt-assembly problem that was invisible because nobody logged the intermediate stage. Build that visibility in from the start; module 07 treats it as a first-class concern.
+
+
+> **Concept checkpoint — 9. Debugging as a method**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 10. The command line [FOUNDATION]
 
@@ -601,6 +721,15 @@ env | grep APP_
 ```
 
 `which python3` after activating a virtualenv, to confirm it points inside `.venv`, resolves a large share of "it says the package isn't installed but I installed it".
+
+
+> **Concept checkpoint — 10. The command line**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 11. HTTP and APIs [CORE]
 
@@ -665,7 +794,16 @@ POST   /v1/search              search (POST because the query is a body, not a p
 
 Version from the first day. `/v1/` costs nothing now and is nearly impossible to retrofit once clients exist.
 
-### 12. Concurrency and parallelism [DEPTH]
+
+> **Concept checkpoint — 11. HTTP and APIs**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 12. Concurrency and parallelism [DEPTH · DEEP DIVE]
 
 Included because it determines how you serve models, and because the question is common.
 
@@ -936,6 +1074,8 @@ Point 6 catches more than its share: editing one file and running another, or an
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 **1. Walk me through your git workflow.**
@@ -1014,7 +1154,9 @@ Point 6 catches more than its share: editing one file and running another, or an
 
 ## Practice tasks
 
-Solutions in `quizzes/02-software-engineering-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [02 practice pack](quizzes/02-software-engineering-practice.md).
 
 ### Five tiny exercises
 

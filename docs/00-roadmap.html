@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 19 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="00-north-star-roadmap">00 North Star Roadmap<a class="anchor" href="#00-north-star-roadmap" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium (phases 6 to 9 date fastest)</p>
 <p>This file is the single source of truth for scheduling. No other file in this repository defines its own plan. <code>tracker/weekly-plan.md</code> derives from the 24-week plan below. <code>tracker/progress-log.md</code> owns review intervals only.</p>
@@ -141,7 +154,7 @@
 <p><strong>Two phases will be partly stale by the time you finish.</strong> Phases 8 and 9, agents and local inference, move faster than any written curriculum. Treat those modules as scaffolding plus a list of things to verify, never as a reference.</p>
 <hr />
 <h2 id="3-phase-dependency-graph">3. Phase dependency graph<a class="anchor" href="#3-phase-dependency-graph" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. P1 Python foundations leads to P2 Software engineering; P1 Python foundations leads to P3 Data, SQL, statistics; P2 Software engineering leads to P10 MLOps and deployment; P3 Data, SQL, statistics leads to P4 Classical ML; P4 Classical ML leads to P5 Deep learning; P5 Deep learning leads to P6 Transformers and LLMs; P6 Transformers and LLMs leads to P7 RAG and retrieval; P6 Transformers and LLMs leads to P8 Agents, tools, MCP; P6 Transformers and LLMs leads to P9 Local inference and serving; P7 RAG and retrieval leads to P8 Agents, tools, MCP; P2 Software engineering leads to P9 Local inference and serving; P7 RAG and retrieval leads to P10 MLOps and deployment; P8 Agents, tools, MCP leads to P10 MLOps and deployment; P9 Local inference and serving leads to P10 MLOps and deployment; P10 MLOps and deployment leads to P11 System design and interviews; P7 RAG and retrieval leads to P11 System design and interviews; P8 Agents, tools, MCP leads to P11 System design and interviews; P1 Python foundations leads to P6 Transformers and LLMs.">flowchart TD
     P1[&quot;P1 Python foundations&quot;]
     P2[&quot;P2 Software engineering&quot;]
     P3[&quot;P3 Data, SQL, statistics&quot;]
@@ -173,7 +186,7 @@
     P8 --&gt; P11
 
     P1 -.-&gt;|&quot;fast path, skips P4 and P5&quot;| P6
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. P1 Python foundations leads to P2 Software engineering; P1 Python foundations leads to P3 Data, SQL, statistics; P2 Software engineering leads to P10 MLOps and deployment; P3 Data, SQL, statistics leads to P4 Classical ML; P4 Classical ML leads to P5 Deep learning; P5 Deep learning leads to P6 Transformers and LLMs; P6 Transformers and LLMs leads to P7 RAG and retrieval; P6 Transformers and LLMs leads to P8 Agents, tools, MCP; P6 Transformers and LLMs leads to P9 Local inference and serving; P7 RAG and retrieval leads to P8 Agents, tools, MCP; P2 Software engineering leads to P9 Local inference and serving; P7 RAG and retrieval leads to P10 MLOps and deployment; P8 Agents, tools, MCP leads to P10 MLOps and deployment; P9 Local inference and serving leads to P10 MLOps and deployment; P10 MLOps and deployment leads to P11 System design and interviews; P7 RAG and retrieval leads to P11 System design and interviews; P8 Agents, tools, MCP leads to P11 System design and interviews; P1 Python foundations leads to P6 Transformers and LLMs.</p></details></div>
 <p>The dotted edge is the fast path discussed in section 6. It is a real shortcut with a real cost, not a shorter route to the same place.</p>
 <hr />
 <h2 id="4-the-eleven-phases">4. The eleven phases<a class="anchor" href="#4-the-eleven-phases" aria-label="Link to this section">#</a></h2>

@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html" class="active">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 37 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="practice-pack-01a-python-core">Practice Pack: 01a Python Core<a class="anchor" href="#practice-pack-01a-python-core" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low</p>
 <p>Active recall for <code>01a-python-core.md</code>. Do not read this alongside the module. Work the module first, wait at least a day, then come here.</p>
@@ -415,7 +428,7 @@ The default depends on the operating system, so code that works on your machine 
 </details>
 
 <p><strong>M4.</strong> What is the output?</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="p">[]):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">target</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">target</span>
 
@@ -790,7 +803,7 @@ First establish how runtime scales by running at 1k, 10k and 100k: linear-but-sl
 <p><strong>D1.</strong> Every config produced by this function ends up with all the sources.</p>
 <div class="highlight"><pre><span></span><code><span class="n">DEFAULTS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">[]}</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">make</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">DEFAULTS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cfg</span>
@@ -805,7 +818,7 @@ Best fix is to make the shared default immutable so the mistake cannot happen:
 
 <div class="highlight"><pre><span></span><code><span class="n">DEFAULTS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">()}</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">make</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">DEFAULTS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">],</span> <span class="n">source</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">cfg</span>
@@ -835,7 +848,7 @@ Now it raises instead of computing a wrong number. Then fix the real problem, wh
 </details>
 
 <p><strong>D3.</strong> A long-running API server's memory grows all day and results occasionally contain another user's data.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">summarize</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
 </code></pre></div>
@@ -845,7 +858,7 @@ Now it raises instead of computing a wrong number. Then fix the real problem, wh
 The mutable default is shared across every call for the process lifetime. It grows without bound, and because it is shared, one user's summary includes other users' text. Both a memory leak and a data-isolation bug from one character.
 
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">history</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">history</span><span class="p">)</span> <span class="k">if</span> <span class="n">history</span> <span class="k">else</span> <span class="p">[]</span>
     <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">summarize</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
@@ -877,7 +890,7 @@ And structurally: checkpoint progress so a failure at document 400,000 does not 
 </details>
 
 <p><strong>D5.</strong> A deduplication function returns the right answer and takes 40 minutes.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dedupe</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">dedupe</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">already_indexed</span><span class="p">]</span>
 </code></pre></div>
 
@@ -886,7 +899,7 @@ And structurally: checkpoint progress so a failure at document 400,000 does not 
 `already_indexed` is a list. Each `not in` scans it. With 50,000 indexed and 50,000 incoming, that is up to 2.5 billion comparisons.
 
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dedupe</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">dedupe</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
     <span class="n">indexed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">already_indexed</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed</span><span class="p">]</span>
 </code></pre></div>
@@ -897,7 +910,7 @@ Measured on one machine, this was roughly 2,700x faster. Always `assert` the out
 </details>
 
 <p><strong>D6.</strong> A function that strips whitespace appears to do nothing.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
         <span class="n">r</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">records</span>
@@ -908,7 +921,7 @@ Measured on one machine, this was roughly 2,700x faster. Always `assert` the out
 `.strip()` returns a new string; strings are immutable and nothing was assigned.
 
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
         <span class="n">r</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">records</span>
@@ -919,7 +932,7 @@ Measured on one machine, this was roughly 2,700x faster. Always `assert` the out
 Better still, do not mutate the caller's data:
 
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[{</span><span class="o">**</span><span class="n">r</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()}</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">]</span>
 </code></pre></div>
 
@@ -954,7 +967,7 @@ Removing during iteration shifts subsequent elements down past the loop's positi
 One `nan` in `scores`, probably from a failed parse or a division by zero upstream, poisons the sum. Every comparison with `nan` is `False`, including `>`, `<` and `==`, so the branch silently never runs.
 
 
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
 
 <span class="n">valid</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scores</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
@@ -979,7 +992,7 @@ Validate on ingestion rather than after aggregation, and never let a silent `nan
 Titles containing commas. `"1,Hello, World,web"` splits into four parts and raises `ValueError: too many values to unpack`, or worse, silently misaligns when a quoted field happens to split into exactly three.
 
 
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">csv</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;docs.csv&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
@@ -1101,11 +1114,11 @@ Where it matters: `if value == None` versus `is None` when a class overrides `__
 <h2 id="7-solutions-to-the-modules-practice-tasks">7. Solutions to the module's practice tasks<a class="anchor" href="#7-solutions-to-the-modules-practice-tasks" aria-label="Link to this section">#</a></h2>
 <h3 id="tiny-exercises">Tiny exercises<a class="anchor" href="#tiny-exercises" aria-label="Link to this section">#</a></h3>
 <p><strong>1. Dict keyed by id, two versions.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">index_by_id_last_wins</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">index_by_id_last_wins</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
     <span class="k">return</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">}</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">index_by_id_strict</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">index_by_id_strict</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
     <span class="n">out</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
@@ -1133,7 +1146,7 @@ Where it matters: `if value == None` versus `is None` when a class overrides `__
 
 <p>The comprehension is clearer and crashes on bad data. The loop is longer and tells you which field was wrong. Use the comprehension for data you control, the loop for data you do not.</p>
 <p><strong>3. <code>is_nan</code> without <code>math</code>.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_nan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_nan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">x</span>
 </code></pre></div>
 
@@ -1149,12 +1162,12 @@ Where it matters: `if value == None` versus `is None` when a class overrides `__
 
 <p><code>b</code> is independent. <code>c</code> and <code>a</code> are one object, so <code>c.append(5)</code> shows up in both.</p>
 <p><strong>5. Top ten words.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">top_words</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+<span class="k">def</span> <span class="nf">top_words</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[a-z&#39;]+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -1327,7 +1340,7 @@ Where it matters: `if value == None` versus `is None` when a class overrides `__
 <p><strong>Next review due:</strong> 3 days after your first attempt, then per the interval ladder.</p>
       <nav class="pager">
 <a class="pager-prev" href="tracker-weekly-plan.html"><span>Previous</span>Weekly Plan</a>
-<a class="pager-next" href="meta-review.html"><span>Next</span>Prompt Library Review</a>
+<a class="pager-next" href="quiz-01b-python-patterns.html"><span>Next</span>01b Practice Pack</a>
 </nav>
     </article>
   </main>

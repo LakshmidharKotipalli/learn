@@ -30,6 +30,45 @@ Part 3 of 3. `01a` covered the language, `01b` covered organizing code. This cov
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 4 hours per week as a parallel practice block |
+| Setup | Python 3.11+ and a terminal |
+| First pass | Read complexity, hashing, two pointers, sliding window, stacks/queues, and binary search. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Recognize the common interview patterns instead of memorizing solutions.
+- State time and space complexity before coding.
+- Explain tradeoffs and test edge cases aloud under time pressure.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What does O(n) mean for both input size and memory?
+2. When does a set turn a nested search into a linear scan?
+3. What invariant does a sliding window maintain?
+4. When is a queue preferable to a stack?
+5. What must be true before binary search is valid?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 --version
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -42,8 +81,8 @@ Part 3 of 3. `01a` covered the language, `01b` covered organizing code. This cov
 | 6. Binary search | [CORE] | ...write it without an off-by-one |
 | 7. Recursion and trees | [CORE] | ...write both DFS and BFS from memory |
 | 8. Graphs | [CORE] | ...say when BFS beats DFS |
-| 9. Heaps | [DEPTH] | ...say why top-k uses a min-heap |
-| 10. Dynamic programming | [DEPTH] | ...identify overlapping subproblems |
+| 9. Heaps | [DEPTH · DEEP DIVE] | ...say why top-k uses a min-heap |
+| 10. Dynamic programming | [DEPTH · DEEP DIVE] | ...identify overlapping subproblems |
 | 11. Python-specific pitfalls | [CORE] | ...name three that only bite in Python |
 
 ---
@@ -91,6 +130,15 @@ The slice is the one people miss. Building a substring inside a nested loop adds
 
 **Amortized means averaged over many operations.** `list.append` occasionally reallocates and copies, but averaged over n appends it is O(1) each. Say "amortized" when you mean it; interviewers notice.
 
+
+> **Concept checkpoint — 1. Complexity, practically**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 2. Hashing [CORE]
 
 **The signal:** "have I seen this before", "count occurrences", "find a pair that sums to", "group by".
@@ -128,6 +176,15 @@ for word in words:
 ```
 
 **The trap:** dict keys must be hashable, so a list cannot be a key. Convert to a tuple. `01a` section 6.
+
+
+> **Concept checkpoint — 2. Hashing**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 3. Two pointers [CORE]
 
@@ -167,6 +224,15 @@ def remove_duplicates(nums: list[int]) -> int:
 
 A read pointer and a write pointer. This is the pattern behind most in-place array manipulation.
 
+
+> **Concept checkpoint — 3. Two pointers**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 4. Sliding window [CORE]
 
 **The signal:** "longest", "shortest", "maximum sum" over a **contiguous** subarray or substring.
@@ -203,6 +269,15 @@ def longest_substring_without_repeats(s: str) -> int:
 ```
 
 **The structure of every variable window:** expand the right edge in a loop, shrink the left edge while a condition is violated, record the answer. The `last_seen[ch] >= start` check is the subtle part; without it a character seen before the current window start would incorrectly shrink it.
+
+
+> **Concept checkpoint — 4. Sliding window**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 5. Stack and queue [CORE]
 
@@ -251,6 +326,15 @@ q.popleft()          # O(1)   -- list.pop(0) is O(n)
 
 `list.pop(0)` in a BFS loop makes it quadratic and is a common silent mistake.
 
+
+> **Concept checkpoint — 5. Stack and queue**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 6. Binary search [CORE]
 
 **The signal:** sorted input, or a monotonic predicate, or "find the boundary".
@@ -284,6 +368,15 @@ bisect.insort(nums, x)           # insert maintaining order
 **The generalization that surprises people:** binary search works on any monotonic predicate, not just sorted arrays. "Find the smallest capacity that lets you finish in D days" is a binary search over answers, with a feasibility check as the predicate. Recognizing that is a strong signal.
 
 **Note `(lo + hi) // 2` does not overflow in Python**, since integers are arbitrary precision. In C or Java you write `lo + (hi - lo) // 2`. Mention it if asked; do not add it unprompted, since it is noise in Python.
+
+
+> **Concept checkpoint — 6. Binary search**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 7. Recursion and trees [CORE]
 
@@ -349,6 +442,15 @@ def level_order(root: Node | None) -> list[list[int]]:
 
 **Python's recursion limit is 1000 by default.** A deep tree or a long linked list will hit it. Say so, and convert to an iterative version with an explicit stack if depth could be large. This is a Python-specific point worth raising unprompted.
 
+
+> **Concept checkpoint — 7. Recursion and trees**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 8. Graphs [CORE]
 
 ```python
@@ -404,7 +506,16 @@ def dfs_iterative(graph, start) -> set:
 
 **Mark nodes seen when you enqueue, not when you dequeue.** Otherwise a node reachable by several edges is enqueued multiple times, which is a correctness problem for counting and a performance problem always.
 
-### 9. Heaps [DEPTH]
+
+> **Concept checkpoint — 8. Graphs**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 9. Heaps [DEPTH · DEEP DIVE]
 
 **The signal:** "top k", "k largest", "median of a stream", "merge sorted lists".
 
@@ -431,7 +542,7 @@ O(n log k) rather than O(n log n) for sorting everything, which matters when k i
 
 **Where this appears in real work:** module `07`'s top-k retrieval is exactly this problem, and it is why `numpy.argsort` versus a partial selection matters at scale.
 
-### 10. Dynamic programming [DEPTH]
+### 10. Dynamic programming [DEPTH · DEEP DIVE]
 
 **The signal:** overlapping subproblems plus optimal substructure. In practice: "how many ways", "minimum cost to", and a naive recursion that recomputes the same thing.
 
@@ -497,6 +608,15 @@ The tuple form is clearer and does not depend on stability.
 
 ---
 
+
+> **Concept checkpoint — 11. Python-specific pitfalls**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ## Worked example: recognizing the pattern
 
 The skill being tested is recognition, so practise on the statement rather than the solution.
@@ -548,6 +668,8 @@ From `12a` section 5, applied here.
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 **1. Why is your solution O(n) rather than O(n²)?**
@@ -573,6 +695,10 @@ From `12a` section 5, applied here.
 ---
 
 ## Practice tasks
+
+Solutions and delayed practice are in the [01c practice pack](quizzes/01c-python-dsa-practice.md).
+
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
 
 **The method matters more than the problem count.**
 

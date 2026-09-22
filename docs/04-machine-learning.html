@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 41 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="04-classical-machine-learning">04 Classical Machine Learning<a class="anchor" href="#04-classical-machine-learning" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low. The material here has been stable for a decade.</p>
 <p>Every number in this module was produced by running the code, on scikit-learn 1.8.0. The leakage demonstration in particular is worth running yourself, because reading about it does not produce the same reaction as watching a model score 0.845 AUC on pure noise.</p>
@@ -127,6 +140,56 @@
 </table>
 <p>Module <code>03</code> section 9 is the hard prerequisite. Most "the model is wrong" problems are statistics problems.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>4 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Python 3.11+ and scikit-learn 1.8+</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read problem framing, leakage, metrics, thresholds, calibration, and pipelines. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Frame a modeling problem around a decision, not an algorithm.</li>
+<li>Detect leakage and select metrics, thresholds, and calibration deliberately.</li>
+<li>Build an honest pipeline and explain what drift would invalidate it.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What information must be unavailable at prediction time?</li>
+<li>Why can a random train/test split leak information?</li>
+<li>When is recall more important than precision?</li>
+<li>What does calibration tell you that accuracy does not?</li>
+<li>What would you monitor after deploying a model?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import sklearn; print(sklearn.__version__)&quot;</span>
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -169,12 +232,12 @@
 </tr>
 <tr>
 <td>7. Other algorithms</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...say when kNN is a reasonable production choice</td>
 </tr>
 <tr>
 <td>8. Unsupervised</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...say why k-means needs scaled features</td>
 </tr>
 <tr>
@@ -218,7 +281,7 @@
 <p><strong>Where the analogy breaks down.</strong> "Compression of training data" suggests the goal is faithfulness to the data, and it is not. A model that reproduces the training data perfectly is the worst possible model. The goal is faithfulness to the <em>process that generated</em> the data, and the training set is only a sample of that process. This is the distinction that makes overfitting make sense.</p>
 <hr />
 <h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Problem framing leads to Choose a metric; Data, and its quality leads to Train / validation / test; Train / validation / test leads to Fit a model; Leakage, the thing that invalidates everything leads to Train / validation / test; Leakage, the thing that invalidates everything leads to Fit a model; Fit a model leads to Choose a metric; Choose a metric leads to Choose a threshold; Choose a threshold leads to Calibration; Calibration leads to Production; Production leads to Drift; Drift leads to Fit a model.">flowchart TD
     PROB[&quot;Problem framing&quot;]
     DATA[&quot;Data, and its quality&quot;]
     SPLIT[&quot;Train / validation / test&quot;]
@@ -241,9 +304,11 @@
     CAL --&gt; PROD
     PROD --&gt; DRIFT
     DRIFT --&gt;|&quot;invalidates&quot;| FIT
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Problem framing leads to Choose a metric; Data, and its quality leads to Train / validation / test; Train / validation / test leads to Fit a model; Leakage, the thing that invalidates everything leads to Train / validation / test; Leakage, the thing that invalidates everything leads to Fit a model; Fit a model leads to Choose a metric; Choose a metric leads to Choose a threshold; Choose a threshold leads to Calibration; Calibration leads to Production; Production leads to Drift; Drift leads to Fit a model.</p></details></div>
 <p>The dotted arrows are the ones that produce the confident wrong answers.</p>
 <hr />
+<h2 id="running-example-document-based-support-assistant">Running example: document-based support assistant<a class="anchor" href="#running-example-document-based-support-assistant" aria-label="Link to this section">#</a></h2>
+<p>The support assistant may use a classifier or reranker to decide whether retrieved evidence is sufficient. Leakage, threshold choice, calibration, and drift determine whether that decision can be trusted.</p>
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-problem-framing-foundation">1. Problem framing [FOUNDATION]<a class="anchor" href="#1-problem-framing-foundation" aria-label="Link to this section">#</a></h3>
 <p>Getting this wrong makes everything downstream irrelevant.</p>
@@ -301,6 +366,16 @@
 <p><strong>The most common framing mistake: treating a ranking problem as classification.</strong> If you can only act on the top 20 flagged items per day, you do not need to classify everything; you need the best 20 at the top. The metric is then ranking quality, not accuracy, and this is exactly module 07's situation, where retrieval is ranking and treating it as classification would make no sense.</p>
 <p><strong>The second most common: framing something as ML that is not.</strong> If the rule is "flag anything over $10,000 from a new account", write the rule. A model adds a training pipeline, a monitoring burden and an unexplainable decision, to approximate two lines of code. "We tried a rule first and it was not good enough" is a strong opening in an interview; "we went straight to ML" is not.</p>
 <p><strong>Define success before modeling.</strong> Not "high accuracy", but what decision is made with the output, what an error costs in each direction, and what the current non-ML baseline achieves. Without those you cannot pick a metric in section 9 or a threshold in section 10.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. Problem framing</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-splitting-and-leakage-core">2. Splitting and leakage [CORE]<a class="anchor" href="#2-splitting-and-leakage-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The splits, and what each is for:</strong></p>
 <table>
@@ -395,6 +470,16 @@ true answer: 0.5 (there is no signal)
 </table>
 <p><strong>Group leakage in AI work specifically:</strong> chunks from the same document in both your training and evaluation sets. They share vocabulary and phrasing, so performance is inflated. This is exactly module 07's "eval questions generated from the chunks" problem, and it is why project 2 tracks a <code>real_user</code> slice separately.</p>
 <p><strong>The diagnostic that catches most of it:</strong> a result substantially better than you expected is a bug report, not a success. Investigate before celebrating. Cross-validated AUC of 0.99 on a hard problem means leakage until proven otherwise.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. Splitting and leakage</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-data-quality-and-imbalance-core">3. Data quality and imbalance [CORE]<a class="anchor" href="#3-data-quality-and-imbalance-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Missing values.</strong> The question is always <em>why</em> it is missing:</p>
 <table>
@@ -437,12 +522,32 @@ true answer: 0.5 (there is no signal)
 <li><strong>Resampling</strong>, last, and re-calibrate afterwards.</li>
 </ol>
 <p><strong>Label quality</strong> is the underrated one. If two human annotators disagree 15% of the time, no model will exceed roughly 85% agreement with either of them, and your test set contains that same 15% noise. <strong>Measure inter-annotator agreement before blaming the model.</strong> A model that appears stuck at 84% may be at the ceiling.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Data quality and imbalance</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-linear-and-logistic-regression-foundation">4. Linear and logistic regression [FOUNDATION]<a class="anchor" href="#4-linear-and-logistic-regression-foundation" aria-label="Link to this section">#</a></h3>
 <p><strong>Linear regression</strong> predicts a number as a weighted sum of features, fit by minimizing squared error. Worth knowing because it is the base case for everything, it is genuinely interpretable, and it is a baseline you should always beat before claiming anything complicated is necessary.</p>
 <p><strong>Logistic regression</strong> predicts a probability. It computes the same weighted sum and passes it through the logistic function to squash it into (0, 1), then fits by maximizing the likelihood of the observed labels.</p>
 <p><strong>What the coefficients mean</strong>, which is the interview question. A coefficient is the change in <strong>log-odds</strong> per unit change in the feature, holding others constant. Exponentiate it to get an odds ratio: a coefficient of 0.7 means <code>e^0.7 ≈ 2.0</code>, so a one-unit increase doubles the odds.</p>
 <p>Two caveats that matter. "Holding others constant" is meaningless when features are correlated, which they usually are. And the coefficient's magnitude depends on the feature's scale, so you cannot compare coefficients for importance unless the features were standardized.</p>
 <p><strong>Why logistic regression remains a strong default:</strong> it is fast, it produces well-calibrated probabilities out of the box (section 11), it is interpretable enough to explain to a regulator, and it has one hyperparameter that matters. Beat it before moving on, and often you will not.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Linear and logistic regression</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-regularization-and-bias-variance-core">5. Regularization and bias-variance [CORE]<a class="anchor" href="#5-regularization-and-bias-variance-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The decomposition.</strong> A model's error has three parts:</p>
 <ul>
@@ -512,6 +617,16 @@ true answer: 0.5 (there is no signal)
 </table>
 <p><strong>The geometric intuition for why L1 zeroes things out:</strong> the L1 constraint region is a diamond with corners on the axes, and the optimum tends to land on a corner, where one coordinate is exactly zero. The L2 region is a circle with no corners, so coordinates shrink toward zero without reaching it. This is a good whiteboard answer.</p>
 <p><strong>Regularization requires scaled features.</strong> The penalty is on coefficient magnitude, and an unscaled feature measured in thousands gets a tiny coefficient that the penalty ignores, while one measured in units gets crushed. Scale first, inside the pipeline.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Regularization and bias-variance</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="6-trees-forests-and-boosting-core">6. Trees, forests, and boosting [CORE]<a class="anchor" href="#6-trees-forests-and-boosting-core" aria-label="Link to this section">#</a></h3>
 <p><strong>A decision tree</strong> splits the data repeatedly on feature thresholds, choosing each split to maximize purity. Interpretable, handles non-linearity and interactions for free, needs no scaling. Alone, it overfits badly; a deep enough tree memorizes the training set.</p>
 <p><strong>Random forest</strong> trains many trees, each on a bootstrap sample of rows and a random subset of features at each split, then averages them. The randomness decorrelates the trees so their errors cancel. Robust, few hyperparameters that matter, hard to overfit badly, a very good default.</p>
@@ -562,12 +677,22 @@ true answer: 0.5 (there is no signal)
 <p>On tabular data with heterogeneous features, which is most business data, boosted trees usually win, train in minutes rather than hours, need far less tuning, and handle missing values and mixed types without preprocessing. Neural networks win where there is structure to exploit, images, text, audio, sequences, and where you have a lot of data.</p>
 <p>The honest version for an AI engineer: <strong>if it is a table, start with LightGBM.</strong> Reaching for a neural network on tabular data is usually a preference rather than a decision. <code>[VERIFY: this has been the consistent finding in tabular benchmark literature, and the gap narrows periodically @ current comparisons]</code></p>
 <p><strong>Feature importance from trees is misleading</strong> in two specific ways worth knowing. Default impurity-based importance is biased toward high-cardinality features, because they offer more split points. And with correlated features, importance is split arbitrarily between them, so a genuinely important feature can appear unimportant because its correlated twin absorbed the credit. Prefer permutation importance, and be careful about causal claims either way.</p>
-<h3 id="7-other-algorithms-depth">7. Other algorithms [DEPTH]<a class="anchor" href="#7-other-algorithms-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Trees, forests, and boosting</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="7-other-algorithms-depth-deep-dive">7. Other algorithms [DEPTH · DEEP DIVE]<a class="anchor" href="#7-other-algorithms-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p><strong>k-nearest neighbours.</strong> Predict by the majority of the k closest training points. No training, all the cost at prediction. Needs scaled features and degrades badly in high dimensions, where distances concentrate and everything becomes roughly equidistant.</p>
 <p>Worth knowing because it is the conceptual ancestor of vector search: module 07's dense retrieval <em>is</em> kNN, with an approximate index making it fast enough to be practical.</p>
 <p><strong>Naive Bayes.</strong> Applies Bayes' rule assuming features are independent given the class. The assumption is almost always false and it works anyway, especially on text. Extremely fast, a reasonable baseline for text classification.</p>
 <p><strong>Support vector machines.</strong> Find the boundary with the widest margin between classes. The kernel trick allows non-linear boundaries without explicitly computing high-dimensional features. Elegant, scales poorly beyond tens of thousands of samples, and largely displaced by boosting for tabular work. Know the margin concept.</p>
-<h3 id="8-unsupervised-learning-depth">8. Unsupervised learning [DEPTH]<a class="anchor" href="#8-unsupervised-learning-depth" aria-label="Link to this section">#</a></h3>
+<h3 id="8-unsupervised-learning-depth-deep-dive">8. Unsupervised learning [DEPTH · DEEP DIVE]<a class="anchor" href="#8-unsupervised-learning-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p><strong>k-means</strong> partitions data into k clusters by iteratively assigning points to the nearest centroid and recomputing centroids. Fast and widely used.</p>
 <p><strong>Three things that catch people.</strong> You must choose k, and the elbow method is a heuristic rather than an answer. It assumes roughly spherical, similarly sized clusters, and fails on elongated ones. And <strong>it requires scaled features</strong>, because it uses Euclidean distance, so an unscaled feature with a large range dominates the clustering entirely.</p>
 <p><strong>PCA</strong> finds the orthogonal directions of greatest variance and projects onto the first few. Used for compression, visualization and decorrelation. Also requires scaling, and the components are linear combinations of features, so they are usually not interpretable. Note that variance is not the same as usefulness: a low-variance direction can carry the signal you care about.</p>
@@ -659,6 +784,16 @@ baseline PR-AUC (random) = 0.0142
 <p>The same model, the same predictions. 0.82 sounds strong; 0.39 sounds weak. <strong>PR-AUC is the honest one on imbalanced data</strong>, because ROC's false positive rate divides by the huge negative count, so a large absolute number of false positives barely moves it. PR-AUC's precision divides by the flagged count, so false positives hurt visibly.</p>
 <p>Note the baseline: random guessing gets PR-AUC 0.0142, the positive rate. So 0.3889 is 27 times better than random, which is genuinely good. <strong>Always report the baseline alongside PR-AUC</strong>, because unlike ROC-AUC its floor is not 0.5.</p>
 <p><strong>For regression:</strong> MAE for the average error in original units, robust to outliers. RMSE penalizes large errors more, in original units. R² is the fraction of variance explained, and it is unitless, which makes it easy to report and hard to interpret. Prefer MAE or RMSE when talking to people who have to act on the number.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 9. Metrics</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="10-thresholds-and-business-metrics-core">10. Thresholds and business metrics [CORE]<a class="anchor" href="#10-thresholds-and-business-metrics-core" aria-label="Link to this section">#</a></h3>
 <p><strong>A classifier does not output a class. It outputs a score, and you choose a cutoff.</strong> The default 0.5 is a convention with no claim to correctness.</p>
 <p><strong>Choose the threshold from costs.</strong> Suppose a false negative, a missed fraudulent transaction, costs $500, and a false positive, an unnecessary review, costs $5. Then a false negative is 100 times worse, and from the table in section 9:</p>
@@ -708,6 +843,16 @@ baseline PR-AUC (random) = 0.0142
 <p>This is the single most useful thing in the module. Bring costs to the decision, not metric names.</p>
 <p><strong>The other constraint that sets thresholds: capacity.</strong> If your review team handles 50 cases a day, set the threshold so roughly 50 cases clear it, and then the relevant metric is precision at that operating point. This is the <strong>precision@k</strong> framing, and it is module 07's situation exactly, where you pass 5 chunks and so recall@5 is what binds.</p>
 <p><strong>Choose the threshold on validation data, never on test.</strong> It is a hyperparameter, and tuning it on your test set contaminates your final estimate.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 10. Thresholds and business metrics</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="11-calibration-core">11. Calibration [CORE]<a class="anchor" href="#11-calibration-core" aria-label="Link to this section">#</a></h3>
 <p><strong>A calibrated model's probabilities mean what they say:</strong> of the cases it scores 0.7, about 70% should be positive.</p>
 <p><strong>This matters whenever the number is used for anything other than ranking:</strong> expected-value calculations, combining model output with other evidence, showing confidence to a user, setting a threshold from costs as in section 10.</p>
@@ -736,12 +881,22 @@ RF + isotonic        Brier = 0.00788  AUC = 0.8225
 </ul>
 <p><strong>Fixes:</strong> Platt scaling fits a logistic regression to the model's outputs, which works well and assumes a sigmoid shape. Isotonic regression fits any monotonic mapping, which is more flexible and needs more data. Both must be fit on <strong>held-out data</strong>; calibrating on the training set is leakage.</p>
 <p>Note above that isotonic calibration improved Brier from 0.00837 to 0.00788 and also improved AUC slightly, though calibration generally does not change ranking, so treat a small AUC change as noise.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 11. Calibration</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="12-pipelines-and-tuning-core">12. Pipelines and tuning [CORE]<a class="anchor" href="#12-pipelines-and-tuning-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Every transform goes inside the pipeline.</strong> This is not a style preference; it is what makes cross-validation honest, as section 2 demonstrated.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
 
 <span class="n">numeric</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
     <span class="p">(</span><span class="s2">&quot;impute&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)),</span>
@@ -790,6 +945,16 @@ RF + isotonic        Brier = 0.00788  AUC = 0.8225
 <p><strong>Nested cross-validation</strong> when you need an unbiased estimate after tuning: an inner loop selects hyperparameters, an outer loop estimates performance. Expensive, and the honest answer when someone asks "is that score after tuning?"</p>
 <p><strong>Always establish a baseline first</strong>, in this order: the constant predictor, a simple rule, logistic regression, then anything complicated. A gradient boosting model that beats logistic regression by 0.4% on AUC has not earned its operational cost, and you cannot know that without the comparison.</p>
 <p><strong>Reproducibility:</strong> set seeds, pin library versions, record the data snapshot. A result you cannot reproduce is not a result. This is <code>02</code> section 4's lockfile argument applied to models.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 12. Pipelines and tuning</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="13-drift-and-monitoring-core">13. Drift and monitoring [CORE]<a class="anchor" href="#13-drift-and-monitoring-core" aria-label="Link to this section">#</a></h3>
 <p>A model degrades in production for reasons unrelated to your code.</p>
 <table>
@@ -839,6 +1004,16 @@ RF + isotonic        Brier = 0.00788  AUC = 0.8225
 </ol>
 <p><strong>The connection to AI systems</strong> is direct. A RAG system has all four kinds. Data drift is users asking about new topics. Concept drift is documents changing so previously correct answers become wrong. Upstream change is the embedding model version moving. Module 07's freshness monitoring is drift monitoring with a different name.</p>
 <hr />
+<blockquote>
+<p><strong>Concept checkpoint — 13. Drift and monitoring</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h2 id="worked-example-an-honest-evaluation-end-to-end">Worked example: an honest evaluation, end to end<a class="anchor" href="#worked-example-an-honest-evaluation-end-to-end" aria-label="Link to this section">#</a></h2>
 <p>The shape of a real evaluation, in the order you should do it.</p>
 <p><strong>Step 1: baseline first.</strong> Constant predictor: accuracy 0.9858, recall 0.0. Now you know what "98.6% accurate" means, and no result can be misread as impressive on that axis.</p>
@@ -927,6 +1102,9 @@ PR-AUC  = 0.3889   (random baseline 0.0142, so 27x better than chance)
 <li><strong>Inspect the highest-confidence errors.</strong> They usually reveal a labeling problem or a leak.</li>
 </ol>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. What is data leakage and how do you prevent it?</strong></p>
 <p><em>Strong outline:</em> Any way information from outside the training fold reaches the model. Lead with the demonstration: 200 samples of pure noise, 2,000 random features, random labels, so the true AUC is 0.5. Selecting the top 20 features on all the data and then cross-validating gives 0.845 with a standard deviation of only 0.063. The cross-validation was real; the number is fabricated, because selection saw the validation labels. Then the four routes: preprocessing fit before splitting, target leakage from features that are consequences of the outcome, temporal leakage from random splits on time-ordered data, and group leakage from the same entity in both sets. Prevention: everything inside a <code>Pipeline</code>, split by time and by group, and ask of every feature whether you would have it at prediction time. Finish with the diagnostic: a result much better than expected is a bug report.</p>
@@ -972,7 +1150,10 @@ PR-AUC  = 0.3889   (random baseline 0.0142, so 27x better than chance)
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/04-machine-learning-practice.md</code>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-04-machine-learning.html">04 practice pack</a>.</p>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>Reproduce the leakage demonstration. Then make it worse: scale before splitting as well, and see how high you can push AUC on pure noise.</li>
@@ -1086,9 +1267,14 @@ PR-AUC  = 0.3889   (random baseline 0.0142, so 27x better than chance)
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#running-example-document-based-support-assistant">Running example: document-based support assistant</a></li>
 <li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
 <li class="toc-l3"><a href="#1-problem-framing-foundation">1. Problem framing [FOUNDATION]</a></li>
 <li class="toc-l3"><a href="#2-splitting-and-leakage-core">2. Splitting and leakage [CORE]</a></li>
@@ -1096,8 +1282,8 @@ PR-AUC  = 0.3889   (random baseline 0.0142, so 27x better than chance)
 <li class="toc-l3"><a href="#4-linear-and-logistic-regression-foundation">4. Linear and logistic regression [FOUNDATION]</a></li>
 <li class="toc-l3"><a href="#5-regularization-and-bias-variance-core">5. Regularization and bias-variance [CORE]</a></li>
 <li class="toc-l3"><a href="#6-trees-forests-and-boosting-core">6. Trees, forests, and boosting [CORE]</a></li>
-<li class="toc-l3"><a href="#7-other-algorithms-depth">7. Other algorithms [DEPTH]</a></li>
-<li class="toc-l3"><a href="#8-unsupervised-learning-depth">8. Unsupervised learning [DEPTH]</a></li>
+<li class="toc-l3"><a href="#7-other-algorithms-depth-deep-dive">7. Other algorithms [DEPTH · DEEP DIVE]</a></li>
+<li class="toc-l3"><a href="#8-unsupervised-learning-depth-deep-dive">8. Unsupervised learning [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l3"><a href="#9-metrics-core">9. Metrics [CORE]</a></li>
 <li class="toc-l3"><a href="#10-thresholds-and-business-metrics-core">10. Thresholds and business metrics [CORE]</a></li>
 <li class="toc-l3"><a href="#11-calibration-core">11. Calibration [CORE]</a></li>
