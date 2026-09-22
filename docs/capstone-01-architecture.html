@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 9 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="careeratlas-architecture">CareerAtlas: Architecture<a class="anchor" href="#careeratlas-architecture" aria-label="Link to this section">#</a></h1>
 <p><strong>Capstone 2 of 5</strong> · Last reviewed: 2026-09-18</p>
 <p>Design decisions with the alternative rejected and why, per <code>11</code> section 1. This is the document <code>11</code>'s mini-project asks for.</p>
@@ -127,7 +140,7 @@
 <p><strong>The most consequential: the corpus is small.</strong> A few thousand chunks means a numpy matrix multiply per query is a few milliseconds. This removes an entire category of infrastructure, and saying so is the first architectural decision.</p>
 <hr />
 <h2 id="system-diagram">System diagram<a class="anchor" href="#system-diagram" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Notes, PDFs, docs leads to Ingestion: hash, parse, chunk, embed; Ingestion: hash, parse, chunk, embed leads to BM25 index, in memory; Ingestion: hash, parse, chunk, embed leads to SQLite: chunks, concepts, mastery, reviews, grades, runs; Streamlit leads to FastAPI service; FastAPI service leads to Hybrid retrieval, RRF; Vector matrix, numpy, in memory leads to Hybrid retrieval, RRF; BM25 index, in memory leads to Hybrid retrieval, RRF; Hybrid retrieval, RRF leads to Cross-encoder reranker; SQLite: chunks, concepts, mastery, reviews, grades, runs leads to Prompt assembly, token budget; FastAPI service leads to Review scheduler, pure functions; FastAPI service leads to Rubric grader; FastAPI service leads to Gap analysis; Hybrid retrieval, RRF leads to Gap analysis; Evaluation harness leads to Hybrid retrieval, RRF; Evaluation harness leads to Citation validator; Evaluation harness leads to Rubric grader.">flowchart TD
     FILES[&quot;Notes, PDFs, docs&quot;]
     WATCH[&quot;Ingestion: hash, parse, chunk, embed&quot;]
     EMB[&quot;Embedding model&quot;]
@@ -170,7 +183,7 @@
     EVAL -.-&gt;|&quot;recall, MRR, nDCG&quot;| RET
     EVAL -.-&gt;|&quot;refusal, citation validity&quot;| VAL
     EVAL -.-&gt;|&quot;grading consistency&quot;| GRADE
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Notes, PDFs, docs leads to Ingestion: hash, parse, chunk, embed; Ingestion: hash, parse, chunk, embed leads to BM25 index, in memory; Ingestion: hash, parse, chunk, embed leads to SQLite: chunks, concepts, mastery, reviews, grades, runs; Streamlit leads to FastAPI service; FastAPI service leads to Hybrid retrieval, RRF; Vector matrix, numpy, in memory leads to Hybrid retrieval, RRF; BM25 index, in memory leads to Hybrid retrieval, RRF; Hybrid retrieval, RRF leads to Cross-encoder reranker; SQLite: chunks, concepts, mastery, reviews, grades, runs leads to Prompt assembly, token budget; FastAPI service leads to Review scheduler, pure functions; FastAPI service leads to Rubric grader; FastAPI service leads to Gap analysis; Hybrid retrieval, RRF leads to Gap analysis; Evaluation harness leads to Hybrid retrieval, RRF; Evaluation harness leads to Citation validator; Evaluation harness leads to Rubric grader.</p></details></div>
 <hr />
 <h2 id="technology-decisions">Technology decisions<a class="anchor" href="#technology-decisions" aria-label="Link to this section">#</a></h2>
 <p>Each with the alternative rejected, per <code>11</code> section 1.</p>
@@ -322,13 +335,13 @@ POST /v1/gaps                     compare a job description against the corpus
 </code></pre></div>
 
 <p><strong>Request and response for the core endpoint:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AskRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">AskRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">question</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
     <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="n">concept_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>          <span class="c1"># scopes retrieval when practising</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Citation</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Citation</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span>                            <span class="c1"># &quot;S1&quot;</span>
     <span class="n">chunk_id</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">doc_path</span><span class="p">:</span> <span class="nb">str</span>
@@ -337,7 +350,7 @@ POST /v1/gaps                     compare a job description against the corpus
     <span class="n">excerpt</span><span class="p">:</span> <span class="nb">str</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">AskResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AskResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="n">refused</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">refusal_reason</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>             <span class="c1"># &quot;no sources above threshold&quot;</span>

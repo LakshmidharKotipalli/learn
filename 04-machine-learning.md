@@ -29,6 +29,45 @@ Module `03` section 9 is the hard prerequisite. Most "the model is wrong" proble
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 4 hours |
+| Setup | Python 3.11+ and scikit-learn 1.8+ |
+| First pass | Read problem framing, leakage, metrics, thresholds, calibration, and pipelines. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Frame a modeling problem around a decision, not an algorithm.
+- Detect leakage and select metrics, thresholds, and calibration deliberately.
+- Build an honest pipeline and explain what drift would invalidate it.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What information must be unavailable at prediction time?
+2. Why can a random train/test split leak information?
+3. When is recall more important than precision?
+4. What does calibration tell you that accuracy does not?
+5. What would you monitor after deploying a model?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 -c "import sklearn; print(sklearn.__version__)"
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -39,8 +78,8 @@ Module `03` section 9 is the hard prerequisite. Most "the model is wrong" proble
 | 4. Linear and logistic regression | [FOUNDATION] | ...say what logistic regression's coefficients actually mean |
 | 5. Regularization and bias-variance | [CORE] | ...point at bias and variance in a learning curve |
 | 6. Trees, forests, boosting | [CORE] | ...say when a boosted tree beats a neural network |
-| 7. Other algorithms | [DEPTH] | ...say when kNN is a reasonable production choice |
-| 8. Unsupervised | [DEPTH] | ...say why k-means needs scaled features |
+| 7. Other algorithms | [DEPTH · DEEP DIVE] | ...say when kNN is a reasonable production choice |
+| 8. Unsupervised | [DEPTH · DEEP DIVE] | ...say why k-means needs scaled features |
 | 9. Metrics | [CORE] | ...say why accuracy at 1% positives is meaningless |
 | 10. Thresholds and business metrics | [CORE] | ...convert a cost matrix into a threshold |
 | 11. Calibration | [CORE] | ...say what "0.7" should mean and how you check |
@@ -97,6 +136,10 @@ The dotted arrows are the ones that produce the confident wrong answers.
 
 ---
 
+## Running example: document-based support assistant
+
+The support assistant may use a classifier or reranker to decide whether retrieved evidence is sufficient. Leakage, threshold choice, calibration, and drift determine whether that decision can be trusted.
+
 ## Core concepts
 
 ### 1. Problem framing [FOUNDATION]
@@ -119,6 +162,15 @@ Getting this wrong makes everything downstream irrelevant.
 **The second most common: framing something as ML that is not.** If the rule is "flag anything over $10,000 from a new account", write the rule. A model adds a training pipeline, a monitoring burden and an unexplainable decision, to approximate two lines of code. "We tried a rule first and it was not good enough" is a strong opening in an interview; "we went straight to ML" is not.
 
 **Define success before modeling.** Not "high accuracy", but what decision is made with the output, what an error costs in each direction, and what the current non-ML baseline achieves. Without those you cannot pick a metric in section 9 or a threshold in section 10.
+
+
+> **Concept checkpoint — 1. Problem framing**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 2. Splitting and leakage [CORE]
 
@@ -185,6 +237,15 @@ Note the standard deviation, 0.063, which is small enough to look like a stable 
 
 **The diagnostic that catches most of it:** a result substantially better than you expected is a bug report, not a success. Investigate before celebrating. Cross-validated AUC of 0.99 on a hard problem means leakage until proven otherwise.
 
+
+> **Concept checkpoint — 2. Splitting and leakage**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 3. Data quality and imbalance [CORE]
 
 **Missing values.** The question is always *why* it is missing:
@@ -215,6 +276,15 @@ Income missing because high earners decline to answer is the third kind. Imputin
 
 **Label quality** is the underrated one. If two human annotators disagree 15% of the time, no model will exceed roughly 85% agreement with either of them, and your test set contains that same 15% noise. **Measure inter-annotator agreement before blaming the model.** A model that appears stuck at 84% may be at the ceiling.
 
+
+> **Concept checkpoint — 3. Data quality and imbalance**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 4. Linear and logistic regression [FOUNDATION]
 
 **Linear regression** predicts a number as a weighted sum of features, fit by minimizing squared error. Worth knowing because it is the base case for everything, it is genuinely interpretable, and it is a baseline you should always beat before claiming anything complicated is necessary.
@@ -226,6 +296,15 @@ Income missing because high earners decline to answer is the third kind. Imputin
 Two caveats that matter. "Holding others constant" is meaningless when features are correlated, which they usually are. And the coefficient's magnitude depends on the feature's scale, so you cannot compare coefficients for importance unless the features were standardized.
 
 **Why logistic regression remains a strong default:** it is fast, it produces well-calibrated probabilities out of the box (section 11), it is interpretable enough to explain to a regulator, and it has one hyperparameter that matters. Beat it before moving on, and often you will not.
+
+
+> **Concept checkpoint — 4. Linear and logistic regression**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 5. Regularization and bias-variance [CORE]
 
@@ -258,6 +337,15 @@ You trade bias against variance. More capacity means less bias, more variance.
 
 **Regularization requires scaled features.** The penalty is on coefficient magnitude, and an unscaled feature measured in thousands gets a tiny coefficient that the penalty ignores, while one measured in units gets crushed. Scale first, inside the pipeline.
 
+
+> **Concept checkpoint — 5. Regularization and bias-variance**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 6. Trees, forests, and boosting [CORE]
 
 **A decision tree** splits the data repeatedly on feature thresholds, choosing each split to maximize purity. Interpretable, handles non-linearity and interactions for free, needs no scaling. Alone, it overfits badly; a deep enough tree memorizes the training set.
@@ -285,7 +373,16 @@ The honest version for an AI engineer: **if it is a table, start with LightGBM.*
 
 **Feature importance from trees is misleading** in two specific ways worth knowing. Default impurity-based importance is biased toward high-cardinality features, because they offer more split points. And with correlated features, importance is split arbitrarily between them, so a genuinely important feature can appear unimportant because its correlated twin absorbed the credit. Prefer permutation importance, and be careful about causal claims either way.
 
-### 7. Other algorithms [DEPTH]
+
+> **Concept checkpoint — 6. Trees, forests, and boosting**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 7. Other algorithms [DEPTH · DEEP DIVE]
 
 **k-nearest neighbours.** Predict by the majority of the k closest training points. No training, all the cost at prediction. Needs scaled features and degrades badly in high dimensions, where distances concentrate and everything becomes roughly equidistant.
 
@@ -295,7 +392,7 @@ Worth knowing because it is the conceptual ancestor of vector search: module 07'
 
 **Support vector machines.** Find the boundary with the widest margin between classes. The kernel trick allows non-linear boundaries without explicitly computing high-dimensional features. Elegant, scales poorly beyond tens of thousands of samples, and largely displaced by boosting for tabular work. Know the margin concept.
 
-### 8. Unsupervised learning [DEPTH]
+### 8. Unsupervised learning [DEPTH · DEEP DIVE]
 
 **k-means** partitions data into k clusters by iteratively assigning points to the nearest centroid and recomputing centroids. Fast and widely used.
 
@@ -366,6 +463,15 @@ Note the baseline: random guessing gets PR-AUC 0.0142, the positive rate. So 0.3
 
 **For regression:** MAE for the average error in original units, robust to outliers. RMSE penalizes large errors more, in original units. R² is the fraction of variance explained, and it is unitless, which makes it easy to report and hard to interpret. Prefer MAE or RMSE when talking to people who have to act on the number.
 
+
+> **Concept checkpoint — 9. Metrics**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 10. Thresholds and business metrics [CORE]
 
 **A classifier does not output a class. It outputs a score, and you choose a cutoff.** The default 0.5 is a convention with no claim to correctness.
@@ -387,6 +493,15 @@ This is the single most useful thing in the module. Bring costs to the decision,
 **The other constraint that sets thresholds: capacity.** If your review team handles 50 cases a day, set the threshold so roughly 50 cases clear it, and then the relevant metric is precision at that operating point. This is the **precision@k** framing, and it is module 07's situation exactly, where you pass 5 chunks and so recall@5 is what binds.
 
 **Choose the threshold on validation data, never on test.** It is a hyperparameter, and tuning it on your test set contaminates your final estimate.
+
+
+> **Concept checkpoint — 10. Thresholds and business metrics**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 11. Calibration [CORE]
 
@@ -426,6 +541,15 @@ RF + isotonic        Brier = 0.00788  AUC = 0.8225
 **Fixes:** Platt scaling fits a logistic regression to the model's outputs, which works well and assumes a sigmoid shape. Isotonic regression fits any monotonic mapping, which is more flexible and needs more data. Both must be fit on **held-out data**; calibrating on the training set is leakage.
 
 Note above that isotonic calibration improved Brier from 0.00837 to 0.00788 and also improved AUC slightly, though calibration generally does not change ranking, so treat a small AUC change as noise.
+
+
+> **Concept checkpoint — 11. Calibration**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 12. Pipelines and tuning [CORE]
 
@@ -473,6 +597,15 @@ model = Pipeline([
 
 **Reproducibility:** set seeds, pin library versions, record the data snapshot. A result you cannot reproduce is not a result. This is `02` section 4's lockfile argument applied to models.
 
+
+> **Concept checkpoint — 12. Pipelines and tuning**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 13. Drift and monitoring [CORE]
 
 A model degrades in production for reasons unrelated to your code.
@@ -497,6 +630,15 @@ A model degrades in production for reasons unrelated to your code.
 **The connection to AI systems** is direct. A RAG system has all four kinds. Data drift is users asking about new topics. Concept drift is documents changing so previously correct answers become wrong. Upstream change is the embedding model version moving. Module 07's freshness monitoring is drift monitoring with a different name.
 
 ---
+
+
+> **Concept checkpoint — 13. Drift and monitoring**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ## Worked example: an honest evaluation, end to end
 
@@ -569,6 +711,8 @@ PR-AUC  = 0.3889   (random baseline 0.0142, so 27x better than chance)
 7. **Inspect the highest-confidence errors.** They usually reveal a labeling problem or a leak.
 
 ---
+
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
 
 ## Interview angle
 
@@ -648,7 +792,9 @@ PR-AUC  = 0.3889   (random baseline 0.0142, so 27x better than chance)
 
 ## Practice tasks
 
-Solutions in `quizzes/04-machine-learning-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [04 practice pack](quizzes/04-machine-learning-practice.md).
 
 ### Five tiny exercises
 

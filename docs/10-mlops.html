@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 40 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="10-mlops-and-deployment">10 MLOps and Deployment<a class="anchor" href="#10-mlops-and-deployment" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium. Concepts stable, tooling churns.</p>
 <hr />
@@ -138,6 +151,56 @@
 </table>
 <p>Module <code>02</code> is the hard prerequisite. This module is that one plus deployment.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>5 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Git, Docker, Python 3.11+, and a terminal</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read lifecycle, versioning, service design, observability, evaluation gates, rollback, and cost. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Describe the path from versioned code and data to a monitored service.</li>
+<li>Choose observability signals, release gates, rollback points, and scaling tactics.</li>
+<li>Include quality, safety, latency, and cost in an AI deployment decision.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What must be versioned to reproduce an AI result?</li>
+<li>What is the difference between a log, metric, and trace?</li>
+<li>What quality check should block a deployment?</li>
+<li>When is rollback safer than a hot fix?</li>
+<li>Which cost driver would you measure first for an LLM service?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>--version<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python3<span class="w"> </span>--version
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -223,7 +286,7 @@
 <p><strong>Where the analogy breaks down.</strong> Reversibility is not universal, and knowing where it stops is the important part. You cannot un-send an email, un-charge a card, or un-delete a document once the retention window has passed. Data migrations are often one-way. <strong>Design so that the irreversible parts are few, explicit and gated</strong>, which is module 08's human-in-the-loop argument applied to infrastructure.</p>
 <hr />
 <h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Code, in git leads to CI: lint, types, tests, eval gate; Production leads to Observability: logs, metrics, traces; Alerts on service-level objective (SLO) burn leads to Rollback; Observability: logs, metrics, traces leads to Code, in git; Feature flag leads to Production.">flowchart TD
     CODE[&quot;Code, in git&quot;]
     CI[&quot;CI: lint, types, tests, eval gate&quot;]
     ART[&quot;Versioned artifact: image, model, index&quot;]
@@ -232,7 +295,7 @@
     PROD[&quot;Production&quot;]
 
     OBS[&quot;Observability: logs, metrics, traces&quot;]
-    ALERT[&quot;Alerts on SLO burn&quot;]
+    ALERT[&quot;Alerts on service-level objective (SLO) burn&quot;]
     RB[&quot;Rollback&quot;]
 
     CODE --&gt; CI --&gt; ART --&gt; STAGE --&gt; CANARY --&gt; PROD
@@ -242,8 +305,10 @@
 
     FLAG[&quot;Feature flag&quot;]
     FLAG -.-&gt;|&quot;disable without deploying&quot;| PROD
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Code, in git leads to CI: lint, types, tests, eval gate; Production leads to Observability: logs, metrics, traces; Alerts on service-level objective (SLO) burn leads to Rollback; Observability: logs, metrics, traces leads to Code, in git; Feature flag leads to Production.</p></details></div>
 <hr />
+<h2 id="running-example-document-based-support-assistant">Running example: document-based support assistant<a class="anchor" href="#running-example-document-based-support-assistant" aria-label="Link to this section">#</a></h2>
+<p>The support assistant becomes a service with versioned prompts and retrieval data, quality gates, latency and cost monitoring, and a rollback path when a release regresses.</p>
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-the-lifecycle-foundation">1. The lifecycle [FOUNDATION]<a class="anchor" href="#1-the-lifecycle-foundation" aria-label="Link to this section">#</a></h3>
 <table>
@@ -299,6 +364,16 @@
 </table>
 <p><strong>The loop, not the line, is the point.</strong> Monitoring feeds back into development, which is why section 8 exists. A system deployed and never observed is a system you have stopped developing.</p>
 <p><strong>For LLM applications the stages differ in one important way:</strong> there is often no training step, but there is always a <em>configuration</em> whose changes are as consequential as a model retrain. Chunk size, top-k, prompt text, model version. These need versioning, evaluation and rollback exactly as a model does, and teams that treat prompts as content rather than as code discover this the hard way.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. The lifecycle</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-versioning-everything-core">2. Versioning everything [CORE]<a class="anchor" href="#2-versioning-everything-core" aria-label="Link to this section">#</a></h3>
 <p>Code in git is table stakes. The question is what else.</p>
 <table>
@@ -357,6 +432,16 @@
 <p><strong>Model version aliases.</strong> Calling a stable alias means the provider can change the model beneath you. Your evaluation results silently expire. Pin the explicit version, log it with every request, and treat a change as a deployment.</p>
 <p><strong>The index and its embedding model.</strong> Module 07's warning: vectors from different models are not comparable. Put the model name and version in the index identifier, assert on it at query time, and you convert a silent quality collapse into a loud startup failure.</p>
 <p><strong>Experiment tracking</strong> records what you tried: parameters, metrics, artifacts, the code commit. The discipline matters more than the tool. Minimum viable version is the JSON run reports from projects 2 and 3, committed. <code>[VERIFY: tracking tools change @ current options]</code></p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. Versioning everything</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-containers-core">3. Containers [CORE]<a class="anchor" href="#3-containers-core" aria-label="Link to this section">#</a></h3>
 <p><strong>What a container guarantees:</strong> the same filesystem, the same installed packages, the same entrypoint, on any machine with a compatible kernel.</p>
 <p><strong>What it does not guarantee:</strong> the same hardware, the same GPU drivers, the same network, the same environment variables, the same data, the same clock, or the same available memory. "It works in the container" is a much weaker claim than people treat it as, and most remaining "works here, not there" bugs live in that list.</p>
@@ -387,27 +472,37 @@
 <p><strong>A healthcheck</strong>, so the orchestrator knows the difference between "the process is running" and "the service works". They are not the same, and a hung process that still holds its port will otherwise receive traffic forever.</p>
 <p><strong>Layer ordering matters</strong> for build speed: copy the lockfile and install before copying source, so a source change does not invalidate the dependency layer.</p>
 <p><strong>GPU containers</strong> need the host's driver stack exposed, via the NVIDIA container toolkit on Linux. Module 09's note applies: there is no Metal passthrough on macOS, so a container on a Mac is CPU-only.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Containers</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-service-design-core">4. Service design [CORE]<a class="anchor" href="#4-service-design-core" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">asynccontextmanager</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">asynccontextmanager</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Request</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">AskRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AskRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">question</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
     <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="n">conversation_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Source</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Source</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">chunk_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">score</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">heading_path</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="n">excerpt</span><span class="p">:</span> <span class="nb">str</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">AskResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AskResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="n">sources</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Source</span><span class="p">]</span>
     <span class="n">refused</span><span class="p">:</span> <span class="nb">bool</span>
@@ -416,7 +511,7 @@
 
 
 <span class="nd">@asynccontextmanager</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
     <span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="k">await</span> <span class="n">build_retriever</span><span class="p">()</span>     <span class="c1"># expensive, once</span>
     <span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">embed_model</span> <span class="o">==</span> <span class="n">settings</span><span class="o">.</span><span class="n">embed_model</span><span class="p">,</span> <span class="s2">&quot;index/model mismatch&quot;</span>
     <span class="k">yield</span>
@@ -427,19 +522,19 @@
 
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">health</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">}</span>
 
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/ready&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ready</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">is_ready</span><span class="p">():</span>
         <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">503</span><span class="p">,</span> <span class="s2">&quot;retriever not ready&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ready&quot;</span><span class="p">}</span>
 
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/v1/ask&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">AskResponse</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ask</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">AskRequest</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">current_user</span><span class="p">)):</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">ask</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">AskRequest</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">current_user</span><span class="p">)):</span>
     <span class="o">...</span>
 </code></pre></div>
 
@@ -454,6 +549,16 @@
 <p><strong>Idempotency for anything that writes.</strong> <code>02</code> section 11. An <code>Idempotency-Key</code> header, recorded server side, returning the original result on a repeat.</p>
 <p><strong>Rate limiting per API key</strong>, not per IP, since one key behind a NAT is many IPs and vice versa. Return <code>429</code> with <code>Retry-After</code>, which is what <code>01b</code> section 9.2's client is looking for.</p>
 <p><strong>Streaming</strong> for user-facing generation, because perceived latency is dominated by time to first token. Note that streaming complicates error handling: once you have started streaming a 200 response, you cannot change the status code, so validation must happen before the first byte.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Service design</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-cloud-provider-neutral-foundation">5. Cloud, provider-neutral [FOUNDATION]<a class="anchor" href="#5-cloud-provider-neutral-foundation" aria-label="Link to this section">#</a></h3>
 <p>The translation table, so you can follow any conversation:</p>
 <table>
@@ -533,6 +638,16 @@
 <p><strong>Object storage for artifacts</strong>, not a container image. Models and indexes are large and change on a different cadence than code. Baking a 6 GB model into an image makes every deploy a 6 GB push.</p>
 <p><strong>Managed databases</strong>, always, unless you have a specific reason. Backups, failover and patching are solved problems you should not re-solve.</p>
 <p><strong>Egress cost is the surprise.</strong> Data leaving a cloud is expensive, and cross-region traffic is a line item people discover in month three.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Cloud, provider-neutral</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="6-deployment-patterns-core">6. Deployment patterns [CORE]<a class="anchor" href="#6-deployment-patterns-core" aria-label="Link to this section">#</a></h3>
 <table>
 <thead>
@@ -577,6 +692,16 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 </code></pre></div>
 
 <p>Anything over roughly 30 seconds should be async. Holding an HTTP connection open for five minutes wastes a worker, breaks through proxies with their own timeouts, and gives the client no way to recover from a disconnect.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Deployment patterns</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="7-observability-core">7. Observability [CORE]<a class="anchor" href="#7-observability-core" aria-label="Link to this section">#</a></h3>
 <p>Three signals answering different questions:</p>
 <table>
@@ -658,9 +783,19 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 </tbody>
 </table>
 <p><strong>Why never the mean:</strong> a mean latency of 200ms is compatible with 95% of requests at 50ms and 5% at 3 seconds. The mean hides exactly the users who are suffering. Always percentiles.</p>
-<p><strong>SLIs and SLOs</strong>, which is how you decide what to alert on. An SLI is a measurement: the fraction of requests served under 2 seconds. An SLO is a target: 99% over 30 days. The error budget is what remains: 1% of requests may be slow.</p>
+<p><strong>Service-level indicators (SLIs) and service-level objectives (SLOs)</strong> are how you decide what to alert on. An SLI is a measurement: the fraction of requests served under 2 seconds. An SLO is a target: 99% over 30 days. The error budget is what remains: 1% of requests may be slow.</p>
 <p><strong>Alert on error budget burn rate</strong>, not on individual failures. A single 500 at 3am is not an incident; spending a week's budget in an hour is. This distinction is what makes on-call sustainable, and it is a strong signal in an interview.</p>
 <p><strong>What to alert on</strong> (few, actionable, urgent) versus <strong>what to dashboard</strong> (everything else). An alert that fires and is ignored is worse than no alert, because it trains people to ignore the next one.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Observability</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="8-llm-specific-monitoring-core">8. LLM-specific monitoring [CORE]<a class="anchor" href="#8-llm-specific-monitoring-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Standard APM gives you latency, throughput and errors. None of those move when quality collapses.</strong> This section is the differentiator.</p>
 <table>
@@ -744,6 +879,16 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 </ol>
 <p><strong>Quality itself needs sampling plus offline evaluation.</strong> You cannot compute faithfulness on every request in real time affordably. Sample a small fraction, score asynchronously, and run the full evaluation set on a schedule. The online metrics above are leading indicators; the evaluation set is the measurement.</p>
 <p><strong>User feedback is signal with a bias.</strong> Thumbs-down is rarer than dissatisfaction and skews toward users who bother. Use it to find examples worth reading, not as a quality metric.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 8. LLM-specific monitoring</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="9-evaluation-as-a-deployment-gate-core">9. Evaluation as a deployment gate [CORE]<a class="anchor" href="#9-evaluation-as-a-deployment-gate-core" aria-label="Link to this section">#</a></h3>
 <p>Projects 2 and 3 built evaluation harnesses. In production they become gates.</p>
 <div class="highlight"><pre><span></span><code><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retrieval evaluation gate</span>
@@ -755,7 +900,7 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <span class="w">            </span><span class="no">--out eval/results/ci-${{ github.sha }}.json</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
     <span class="n">report</span> <span class="o">=</span> <span class="n">run_retrieval_eval</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">&quot;ci&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{},</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">recall</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()[</span><span class="s2">&quot;recall&quot;</span><span class="p">]</span>
     <span class="n">failing</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">case_id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">recall</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
@@ -770,10 +915,20 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <p><strong>The failure message names the broken cases.</strong> "0.69 &lt; 0.71" sends someone hunting. A list of case ids sends them to the fix.</p>
 <p><strong>It runs on prompt and config changes too</strong>, not only on code. A prompt edit is a behavior change and must clear the same gate. This is section 2's argument, enforced.</p>
 <p><strong>What to gate on:</strong> retrieval metrics, refusal correctness, citation validity, cost per request, and p95 latency. <strong>What not to gate on:</strong> an LLM-judge quality score as an absolute threshold, since the judge drifts and you will end up disabling the gate.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 9. Evaluation as a deployment gate</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="10-security-and-secrets-core">10. Security and secrets [CORE]<a class="anchor" href="#10-security-and-secrets-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Where a secret must never be:</strong> source code, a container image, a log line, an error message, a URL, a client-side bundle, or a git history. That last one is permanent: once committed, rotate the key, because deletion does not remove it from history.</p>
 <p><strong>Where it should be:</strong> a secrets manager, injected as an environment variable or a mounted file at runtime, with rotation and an access audit trail.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">env_prefix</span><span class="o">=</span><span class="s2">&quot;APP_&quot;</span><span class="p">)</span>
 
     <span class="n">api_key</span><span class="p">:</span> <span class="n">SecretStr</span>                        <span class="c1"># repr() will not leak it</span>
@@ -792,6 +947,16 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <p><strong>Tenant isolation.</strong> The highest-severity bug class in a multi-tenant AI system is returning one tenant's data to another. Defenses: tenant id from the authenticated session and never from the request body, filtering at the data layer rather than in application code, and a test that specifically attempts cross-tenant access. Write that test; it is the one nobody writes.</p>
 <p><strong>PII.</strong> Know what is in your prompts, because prompts reach your provider and your logs. Redact before logging. Know your provider's retention policy. A deletion request must reach the document, its chunks, its vectors and any cached embeddings; the cache is the part that gets forgotten.</p>
 <p><strong>Prompt injection at the infrastructure level</strong>, from module 08 section 11: least privilege on every tool, an egress allowlist so the third leg of the trifecta is broken, and alerting on forbidden-tool attempts.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 10. Security and secrets</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="11-scaling-and-reliability-core">11. Scaling and reliability [CORE]<a class="anchor" href="#11-scaling-and-reliability-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Scale the bottleneck, and find it before scaling anything.</strong> For LLM applications the bottleneck is usually the model provider's rate limit or your own inference capacity, not your web tier. Adding API replicas in front of a saturated model does nothing except queue faster.</p>
 <p><strong>Load testing</strong> must use realistic prompt lengths. Testing with 50-token prompts and serving 3,000-token RAG prompts measures nothing useful, because prefill cost scales with prompt length (<code>06</code> section 7).</p>
@@ -800,6 +965,16 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <p><strong>Circuit breakers</strong> stop calling a failing dependency, fail fast, and periodically test recovery. Without one, every request waits for a timeout against a dead service and your thread pool fills with doomed work.</p>
 <p><strong>Graceful degradation</strong>, with the options named in advance: serve from cache, fall back to a smaller model, return retrieval results without generation, or return a clear error. Decide before the incident, because 3am is not when to design this.</p>
 <p><strong>Timeouts everywhere</strong>, and they must decrease as you go deeper. If your API times out at 30 seconds, the model call must be shorter, or the outer timeout fires while inner work continues, leaking resources.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 11. Scaling and reliability</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="12-rollback-and-release-core">12. Rollback and release [CORE]<a class="anchor" href="#12-rollback-and-release-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Define the rollback trigger before you deploy.</strong> Not "if it looks bad" but "if the error rate exceeds 2% for 5 minutes, or p95 exceeds 4 seconds, or refusal rate moves more than 10 points, roll back". Written down, agreed, ideally automated.</p>
 <table>
@@ -837,6 +1012,16 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <p><strong>Canary needs enough traffic to be meaningful.</strong> At 1% of a hundred requests a day, you learn nothing before you promote. <code>03</code> section 10's sample-size arithmetic applies: know how long your canary must run to detect the regression you care about, and if the answer is three weeks, canary is not your safety mechanism and the rollback trigger is.</p>
 <p><strong>Database migrations are the asymmetry.</strong> Deploys roll back; schema changes often do not. Use expand-and-contract: add the new column, deploy code that writes both, backfill, deploy code that reads the new one, and only then remove the old. Each step is individually reversible.</p>
 <p><strong>Practise the rollback.</strong> A rollback procedure nobody has executed is a hypothesis. Do it deliberately, in working hours, before you need it at 3am.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 12. Rollback and release</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="13-cost-core">13. Cost [CORE]<a class="anchor" href="#13-cost-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Attribute cost per request, per endpoint and per tenant</strong>, or you cannot act on it.</p>
 <div class="highlight"><pre><span></span><code><span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">prompt_tokens</span> <span class="o">*</span> <span class="n">PROMPT_PRICE</span> <span class="o">+</span> <span class="n">completion_tokens</span> <span class="o">*</span> <span class="n">COMPLETION_PRICE</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1_000_000</span>
@@ -883,6 +1068,16 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <p><strong>The governing rule: require an evaluation-set improvement to justify a context increase.</strong> Otherwise "let's pass more chunks" happens repeatedly and quadruples the bill for a quality change nobody measured.</p>
 <p><strong>Budget alerts on the derivative, not just the level.</strong> A cost that doubled overnight matters before it reaches the monthly cap, and a cap alert arrives after the money is spent.</p>
 <hr />
+<blockquote>
+<p><strong>Concept checkpoint — 13. Cost</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h2 id="worked-example-a-deployment-checklist">Worked example: a deployment checklist<a class="anchor" href="#worked-example-a-deployment-checklist" aria-label="Link to this section">#</a></h2>
 <p>Run this before shipping. Every item exists because skipping it caused an incident somewhere.</p>
 <h3 id="before-the-first-deploy">Before the first deploy<a class="anchor" href="#before-the-first-deploy" aria-label="Link to this section">#</a></h3>
@@ -1002,6 +1197,9 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <li><strong>Correlate quality metrics with deploys and config changes</strong>, in that order.</li>
 </ol>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. Walk me through deploying an LLM application.</strong></p>
 <p><em>Strong outline:</em> Artifact first: multi-stage image built from a committed lockfile, non-root, tagged with the commit SHA, model and index in object storage rather than baked in. Config from environment, validated at startup, secrets from a secrets manager, model version pinned explicitly rather than an alias. Service: versioned path, validation with size limits, separate health and readiness, auth on every endpoint, rate limits, timeouts decreasing with depth. Then the AI-specific parts: an evaluation gate in CI that also runs on prompt and config changes, the LLM monitoring in section 8 since standard APM will not tell you quality degraded, and feature flags on model version, prompt and retrieval config so each is reversible in seconds. Finish with the rollback trigger defined before deploying, and practised.</p>
@@ -1047,7 +1245,10 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/10-mlops-practice.md</code>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-10-mlops.html">10 practice pack</a>.</p>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>Take an existing Dockerfile and apply every section 3 improvement. Measure the image size before and after.</li>
@@ -1164,9 +1365,14 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#running-example-document-based-support-assistant">Running example: document-based support assistant</a></li>
 <li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
 <li class="toc-l3"><a href="#1-the-lifecycle-foundation">1. The lifecycle [FOUNDATION]</a></li>
 <li class="toc-l3"><a href="#2-versioning-everything-core">2. Versioning everything [CORE]</a></li>

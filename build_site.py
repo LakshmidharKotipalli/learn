@@ -109,6 +109,30 @@ NAV: list[Page] = [
          "The weekly working template, derived from the roadmap."),
     Page(Path("quizzes/01a-python-core-practice.md"), "quiz-01a-python-core.html", "01a Practice Pack", "Trackers",
          "Flashcards, MCQs, debugging scenarios, Anki export."),
+    Page(Path("quizzes/01b-python-patterns-practice.md"), "quiz-01b-python-patterns.html", "01b Practice Pack", "Trackers",
+         "Retrieval, prediction, debugging, explanation, and implementation practice."),
+    Page(Path("quizzes/01c-python-dsa-practice.md"), "quiz-01c-python-dsa.html", "01c Practice Pack", "Trackers",
+         "Pattern recognition, prediction, debugging, and coding practice."),
+    Page(Path("quizzes/02-software-engineering-practice.md"), "quiz-02-software-engineering.html", "02 Practice Pack", "Trackers",
+         "Git, testing, CI, debugging, HTTP, and concurrency practice."),
+    Page(Path("quizzes/03-data-sql-practice.md"), "quiz-03-data-sql.html", "03 Practice Pack", "Trackers",
+         "Joins, aggregation, metrics, experimentation, and SQL practice."),
+    Page(Path("quizzes/04-machine-learning-practice.md"), "quiz-04-machine-learning.html", "04 Practice Pack", "Trackers",
+         "Leakage, metrics, thresholds, calibration, and drift practice."),
+    Page(Path("quizzes/05-deep-learning-practice.md"), "quiz-05-deep-learning.html", "05 Practice Pack", "Trackers",
+         "Forward passes, gradients, learning curves, and diagnosis practice."),
+    Page(Path("quizzes/06-transformers-practice.md"), "quiz-06-transformers.html", "06 Practice Pack", "Trackers",
+         "Tokenization, attention, inference, evaluation, and security practice."),
+    Page(Path("quizzes/07-rag-practice.md"), "quiz-07-rag.html", "07 Practice Pack", "Trackers",
+         "Chunking, retrieval, grounding, evaluation, and failure diagnosis practice."),
+    Page(Path("quizzes/08-agents-practice.md"), "quiz-08-agents.html", "08 Practice Pack", "Trackers",
+         "Workflows, tools, stopping, reliability, evaluation, and security practice."),
+    Page(Path("quizzes/09-local-inference-practice.md"), "quiz-09-local-inference.html", "09 Practice Pack", "Trackers",
+         "Memory, quantization, latency, throughput, and benchmarking practice."),
+    Page(Path("quizzes/10-mlops-practice.md"), "quiz-10-mlops.html", "10 Practice Pack", "Trackers",
+         "Versioning, observability, evaluation gates, rollback, and cost practice."),
+    Page(Path("quizzes/11-system-design-practice.md"), "quiz-11-system-design.html", "11 Practice Pack", "Trackers",
+         "Requirements, capacity, tradeoffs, evaluation, security, and cost practice."),
 
     Page(Path("meta/prompt-library-review.md"), "meta-review.html", "Prompt Library Review", "Meta",
          "The critique of the original prompt library this curriculum was built from."),
@@ -145,6 +169,28 @@ SRC_TO_OUT.update({
 MERMAID_RE = re.compile(r"```mermaid\n(.*?)```", re.S)
 
 
+def mermaid_description(source: str) -> str:
+    """Create a short text equivalent for Mermaid diagrams."""
+    labels: dict[str, str] = {}
+    for match in re.finditer(r'^\s*([A-Za-z]\w*)\[(?:"([^"]+)"|([^\]]+))\]', source, re.M):
+        labels[match.group(1)] = (match.group(2) or match.group(3)).strip()
+
+    edges = []
+    edge_re = re.compile(
+        r'^\s*([A-Za-z]\w*)\s+(?:-->|-.->|--o|--x|==>|---)\s*'
+        r'(?:\|[^|]*\|\s*)?([A-Za-z]\w*)',
+        re.M,
+    )
+    for left, right in edge_re.findall(source):
+        edges.append(f"{labels.get(left, left)} leads to {labels.get(right, right)}")
+
+    if edges:
+        return "Flow diagram. " + "; ".join(edges) + "."
+    if labels:
+        return "Diagram containing: " + ", ".join(labels.values()) + "."
+    return "Concept diagram; read the surrounding text for the relationships shown."
+
+
 def extract_mermaid(text: str) -> tuple[str, list[str]]:
     """Pull mermaid blocks out before markdown conversion, leaving placeholders."""
     blocks: list[str] = []
@@ -159,9 +205,14 @@ def extract_mermaid(text: str) -> tuple[str, list[str]]:
 def restore_mermaid(html_text: str, blocks: list[str]) -> str:
     for i, src in enumerate(blocks):
         placeholder = f"MERMAIDPLACEHOLDER{i}ENDPLACEHOLDER"
+        description = html.escape(mermaid_description(src))
         div = (
             '<div class="mermaid-wrap">'
-            f'<pre class="mermaid">{html.escape(src)}</pre>'
+            f'<pre class="mermaid" aria-label="{description}">{html.escape(src)}</pre>'
+            '<details class="diagram-description">'
+            '<summary>Diagram description</summary>'
+            f'<p>{description}</p>'
+            '</details>'
             '</div>'
         )
         html_text = html_text.replace(f"<p>{placeholder}</p>", div)
@@ -260,6 +311,29 @@ def render_toc(toc: list[tuple[int, str, str]]) -> str:
             '<h4>On this page</h4><ul>' + "\n".join(items) + "</ul></div></aside>")
 
 
+def validate_internal_links() -> None:
+    """Fail the build when a Markdown link points at a missing local file."""
+    missing: list[str] = []
+    for source in ROOT.rglob("*.md"):
+        if "docs" in source.relative_to(ROOT).parts:
+            continue
+        text = source.read_text(encoding="utf-8")
+        for match in re.finditer(r"\[[^\]]+\]\(([^)]+)\)", text):
+            href = match.group(1).strip()
+            if href.startswith(("#", "http://", "https://", "mailto:", "data:")):
+                continue
+            target = href.split("#", 1)[0]
+            if not target:
+                continue
+            candidate = (source.parent / target).resolve()
+            if not candidate.exists():
+                missing.append(f"{source.relative_to(ROOT)} -> {href}")
+
+    if missing:
+        details = "\n".join(f"  - {item}" for item in missing)
+        raise SystemExit("broken local Markdown links:\n" + details)
+
+
 def prev_next(page: Page) -> str:
     idx = NAV.index(page)
     prev = NAV[idx - 1] if idx > 0 else None
@@ -316,6 +390,7 @@ TEMPLATE = """<!DOCTYPE html>
 
   <main id="content">
     <article class="doc">
+      {meta}
       {content}
       {pager}
     </article>
@@ -334,11 +409,18 @@ TEMPLATE = """<!DOCTYPE html>
 def build_page(page: Page) -> dict:
     md_text = (ROOT / page.src).read_text(encoding="utf-8")
     content, toc = convert(md_text)
+    word_count = len(re.findall(r"\b[\w'-]+\b", md_text))
+    reading_minutes = max(1, round(word_count / 220))
+    meta = (
+        f'<p class="doc-meta">Approx. {reading_minutes} min first read '
+        '<span aria-hidden="true">·</span> Learn → Build → Interview</p>'
+    )
 
     out_html = TEMPLATE.format(
         title=html.escape(page.title),
         site=html.escape(SITE_TITLE),
         blurb=html.escape(page.blurb or SITE_TAGLINE),
+        meta=meta,
         nav=render_nav(page.out),
         content=content,
         pager=prev_next(page),
@@ -434,6 +516,7 @@ def write_syntax_css() -> None:
 
 
 def main() -> None:
+    validate_internal_links()
     OUT.mkdir(parents=True, exist_ok=True)
     ASSETS.mkdir(parents=True, exist_ok=True)
 

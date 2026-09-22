@@ -36,6 +36,45 @@ Mathematically: you need the chain rule. If `y` depends on `u` and `u` depends o
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 5 hours |
+| Setup | Python 3.11+ and PyTorch 2.0+ |
+| First pass | Read forward pass/loss, backpropagation, optimizers, learning curves, and diagnosis. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Trace a forward pass, loss, gradient, and parameter update.
+- Diagnose learning curves, vanishing gradients, and optimization failures.
+- Explain when transfer learning or fine-tuning is the sensible choice.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What does a loss function measure during training?
+2. What direction does gradient descent move a parameter?
+3. What does it mean when training loss falls but validation loss rises?
+4. How can a learning rate be too high or too low?
+5. Why can normalization or residual connections help optimization?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 -c "import torch; print(torch.__version__)"
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -97,6 +136,10 @@ flowchart TD
 
 ---
 
+## Running example: document-based support assistant
+
+The support assistant can use a learned embedding or reranking model. The forward pass, loss, gradients, and learning curves explain how you would diagnose a fine-tuning run.
+
 ## Core concepts
 
 ### 1. What a network is [FOUNDATION]
@@ -108,6 +151,15 @@ A layer computes `z = Wx + b`, a matrix multiply plus an offset. Then an activat
 The nonlinearity breaks that collapse, and then depth lets the network build representations: early layers learn simple features, later layers combine them into complex ones. That compositional structure is what "deep" means.
 
 **Width versus depth.** A wide enough single hidden layer can approximate any continuous function, which sounds like depth is unnecessary. In practice depth is dramatically more parameter-efficient for the structured functions that appear in real problems, because composition reuses features rather than enumerating cases.
+
+
+> **Concept checkpoint — 1. What a network is**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 2. Forward pass and loss [FOUNDATION]
 
@@ -124,6 +176,15 @@ L  = loss(a2, y)
 That is the whole thing. Everything after is about adjusting `W1, b1, W2, b2`.
 
 **The loss must be differentiable**, because training needs its gradient. This is why accuracy is not a loss function: it is a step function, so its gradient is zero almost everywhere and tells you nothing about which direction to move. You train on a differentiable surrogate such as cross-entropy and *evaluate* on accuracy or whatever module `04` section 9 says the decision needs.
+
+
+> **Concept checkpoint — 2. Forward pass and loss**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 3. Backpropagation by hand [CORE]
 
@@ -188,6 +249,15 @@ ALL GRADIENTS MATCH
 
 **Notice the gradient magnitudes.** `dL/dW2` is around 0.03; `dL/dW1` is around 0.004, roughly ten times smaller after one layer. Two layers, ten-fold shrinkage. Section 9 shows what happens at twelve layers.
 
+
+> **Concept checkpoint — 3. Backpropagation by hand**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 4. Gradient descent and optimizers [CORE]
 
 The update rule: `parameter ← parameter − learning_rate × gradient`.
@@ -205,6 +275,15 @@ The update rule: `parameter ← parameter − learning_rate × gradient`.
 **What to use:** Adam or AdamW, learning rate around 1e-3, and only investigate further if training misbehaves. `[UNVERIFIED: this is a convention, not a measurement; the right value depends on architecture and scale]` SGD with momentum and a tuned schedule sometimes generalizes slightly better on vision tasks, which is a detail worth knowing and not worth starting with.
 
 **AdamW** decouples weight decay from the gradient update. In plain Adam, weight decay gets scaled by the per-parameter learning rate, which weakens it inconsistently. AdamW applies it directly and is the correct default for transformers.
+
+
+> **Concept checkpoint — 4. Gradient descent and optimizers**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 5. Learning rate, batch size, epochs [CORE]
 
@@ -239,6 +318,15 @@ The noise in small-batch training is not purely a cost: it helps escape sharp mi
 
 **Epochs** are passes over the data. The right number is "until validation loss stops improving", which is what early stopping automates.
 
+
+> **Concept checkpoint — 5. Learning rate, batch size, epochs**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 6. Initialization and normalization [CORE]
 
 **Initialization is not arbitrary.** All zeros means every unit in a layer computes the same thing and receives the same gradient forever, so the layer has one effective unit. Too large and activations explode through depth; too small and they vanish.
@@ -250,6 +338,15 @@ The noise in small-batch training is not purely a cost: it helps escape sharp mi
 **Layer normalization** normalizes across features within each sample instead. Independent of batch size, identical at training and inference, and therefore the choice for transformers and anything with variable-length sequences.
 
 **Which and why:** batch norm for convolutional vision models, layer norm for transformers. If a model behaves differently in `eval()` mode than in `train()`, batch norm's running statistics are the first suspect, along with dropout.
+
+
+> **Concept checkpoint — 6. Initialization and normalization**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 7. Activations [FOUNDATION]
 
@@ -265,6 +362,15 @@ The noise in small-batch training is not purely a cost: it helps escape sharp mi
 **Why ReLU displaced sigmoid**, which is the interview question. Sigmoid's derivative is `σ(1-σ)`, with a maximum of 0.25 at the centre and near zero at either extreme. Every layer multiplies the backward signal by that derivative, so a deep sigmoid network multiplies by numbers at most 0.25 repeatedly, and the gradient vanishes exponentially with depth. ReLU's derivative is exactly 1 for positive inputs, so the signal passes through undiminished.
 
 **Dying ReLU:** a unit whose input is always negative outputs zero, so its gradient is zero and it never recovers. Leaky ReLU and GELU avoid this by having a nonzero slope for negative inputs. It is mostly a problem with a too-high learning rate.
+
+
+> **Concept checkpoint — 7. Activations**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 8. Losses [FOUNDATION]
 
@@ -282,6 +388,15 @@ The noise in small-batch training is not purely a cost: it helps escape sharp mi
 **`BCEWithLogitsLoss` beats `Sigmoid` then `BCELoss`** for numerical stability. Computing the sigmoid and then its logarithm separately loses precision, and can produce `inf` or `NaN` for confident predictions. The combined version uses the log-sum-exp trick internally, exactly as in module 06 section 3's softmax. Same principle, different place. Always use the combined form.
 
 **Contrastive and triplet losses** matter directly for AI engineering: they are how the embedding models in module 07 are trained. Pull similar pairs together, push dissimilar ones apart. Fine-tuning an embedding model on your own domain means training with one of these.
+
+
+> **Concept checkpoint — 8. Losses**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 9. Vanishing and exploding gradients [CORE]
 
@@ -311,6 +426,15 @@ Tanh is eight orders of magnitude better and ReLU seven, and both still shrink s
 
 **Residual connections are the one that made very deep networks possible.** A layer computing `x + f(x)` rather than `f(x)` means the gradient flows through the `x` term unchanged, no matter what `f` does. The gradient has a direct route to every earlier layer. Every transformer is built from residual blocks for exactly this reason, and this is the answer to "how do modern networks get to be 100 layers deep".
 
+
+> **Concept checkpoint — 9. Vanishing and exploding gradients**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 10. Regularization [CORE]
 
 | Technique | Mechanism |
@@ -335,6 +459,15 @@ Weight decay raised the training loss from 0.0000 to 0.1227, which looks like ma
 
 **Early stopping needs patience.** Validation loss is noisy, so stopping at the first uptick stops too early. Wait N epochs without improvement, and keep the best checkpoint rather than the last.
 
+
+> **Concept checkpoint — 10. Regularization**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 11. Architectures [FOUNDATION]
 
 **CNNs** apply small learned filters across an input, sharing weights across positions. This encodes two assumptions: locality, meaning nearby pixels are related, and translation invariance, meaning a feature means the same thing anywhere. Both are true for images and mostly false for tabular data, which is why CNNs dominate vision and do not help on a spreadsheet.
@@ -352,6 +485,15 @@ Weight decay raised the training loss from 0.0000 to 0.1227, which looks like ma
 The first row is the practical one: transformers could be trained on far more data with the same hardware, and scale turned out to matter enormously. The second is the representational one. Both are true and the parallelism argument is the one people underweight.
 
 The cost is that attention is quadratic in sequence length, which is why context windows are expensive and why module 06 section 7's KV cache exists.
+
+
+> **Concept checkpoint — 11. Architectures**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 12. PyTorch [CORE]
 
@@ -418,6 +560,15 @@ Save the optimizer state too, or resuming restarts Adam's moment estimates from 
 
 **Mixed precision** computes in 16-bit while keeping a 32-bit copy of the weights. Roughly halves memory and speeds up training on modern hardware. This is module 06 section 8's quantization idea applied to training rather than inference.
 
+
+> **Concept checkpoint — 12. PyTorch**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 13. Diagnosing a training run [CORE]
 
 **The single most useful skill in this module.** Measured examples, all on the same data with one variable changed:
@@ -451,6 +602,15 @@ Save the optimizer state too, or resuming restarts Adam's moment estimates from 
 5. Is validation *below* training? A bug, usually dropout still active during validation, or a leak, exactly as in `04` section 5.
 6. Does it look healthy and still perform badly in production? Module `04` section 2. Leakage.
 
+
+> **Concept checkpoint — 13. Diagnosing a training run**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 14. Transfer learning and fine-tuning [CORE]
 
 **Take a model trained on a large general task, adapt it to your specific one.** The pretrained model has learned representations that transfer, so you need far less data.
@@ -473,6 +633,15 @@ Save the optimizer state too, or resuming restarts Adam's moment estimates from 
 Fine-tune for *behavior*: a consistent output format, a domain style, a fixed taxonomy. And for AI engineering specifically, the most common genuinely useful case is **fine-tuning an embedding model or reranker on your own domain**, using the contrastive losses from section 8, which can meaningfully improve module 07's retrieval.
 
 ---
+
+
+> **Concept checkpoint — 14. Transfer learning and fine-tuning**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ## Worked example: three broken runs, diagnosed
 
@@ -549,6 +718,8 @@ def run(label, hidden=64, lr=1e-2, epochs=200, n_train=None, wd=0.0):
 5. **Seed everything** before concluding a change helped.
 
 ---
+
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
 
 ## Interview angle
 
@@ -628,7 +799,9 @@ def run(label, hidden=64, lr=1e-2, epochs=200, n_train=None, wd=0.0):
 
 ## Practice tasks
 
-Solutions in `quizzes/05-deep-learning-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [05 practice pack](quizzes/05-deep-learning-practice.md).
 
 ### Five tiny exercises
 

@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 14 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="project-2-grounded-answers-over-messy-documents">Project 2: Grounded Answers Over Messy Documents<a class="anchor" href="#project-2-grounded-answers-over-messy-documents" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> medium</p>
 <p>Your second portfolio project, and the one that will carry most of your interview conversations.</p>
@@ -183,7 +196,7 @@
 <p>The local-only constraint pairs naturally with your existing llama.cpp setup and makes the project genuinely yours rather than a wrapper around someone's API.</p>
 <hr />
 <h2 id="architecture">Architecture<a class="anchor" href="#architecture" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Source documents leads to Parser, structure preserved; Chunker leads to Embedder, batched and cached; Chunker leads to BM25 index; Chunker leads to Document store, parent lookup; Query leads to Rewrite against history; Vector index leads to Dense + sparse retrieval; BM25 index leads to Dense + sparse retrieval; Dense + sparse retrieval leads to RRF fusion; Document store, parent lookup leads to Prompt assembly, token budget; Evaluation harness leads to RRF fusion; Evaluation harness leads to Cross-encoder rerank; Evaluation harness leads to Cited answer, or refusal.">flowchart TD
     SRC[&quot;Source documents&quot;]
     PARSE[&quot;Parser, structure preserved&quot;]
     CHUNK[&quot;Chunker&quot;]
@@ -218,7 +231,7 @@
     EVAL -.-&gt;|&quot;recall, MRR, nDCG&quot;| FUSE
     EVAL -.-&gt;|&quot;recall, MRR, nDCG&quot;| RR
     EVAL -.-&gt;|&quot;faithfulness, refusal&quot;| ANS
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Source documents leads to Parser, structure preserved; Chunker leads to Embedder, batched and cached; Chunker leads to BM25 index; Chunker leads to Document store, parent lookup; Query leads to Rewrite against history; Vector index leads to Dense + sparse retrieval; BM25 index leads to Dense + sparse retrieval; Dense + sparse retrieval leads to RRF fusion; Document store, parent lookup leads to Prompt assembly, token budget; Evaluation harness leads to RRF fusion; Evaluation harness leads to Cross-encoder rerank; Evaluation harness leads to Cited answer, or refusal.</p></details></div>
 <p>The dotted lines are the point of the project. Evaluation attaches at three places, so when a number moves you know which stage moved it.</p>
 <h3 id="folder-structure">Folder structure<a class="anchor" href="#folder-structure" aria-label="Link to this section">#</a></h3>
 <div class="highlight"><pre><span></span><code>grounded-answers/
@@ -393,21 +406,21 @@
 <h2 id="the-evaluation-harness">The evaluation harness<a class="anchor" href="#the-evaluation-harness" aria-label="Link to this section">#</a></h2>
 <p>The core of the project. This is what you build in milestone 1.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Run the eval set against a retrieval pipeline and produce a comparable report.&quot;&quot;&quot;</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">statistics</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">grounded.evaluate.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mrr</span><span class="p">,</span> <span class="n">ndcg_at_k</span><span class="p">,</span> <span class="n">recall_at_k</span>
+<span class="kn">from</span> <span class="nn">grounded.evaluate.metrics</span> <span class="kn">import</span> <span class="n">mrr</span><span class="p">,</span> <span class="n">ndcg_at_k</span><span class="p">,</span> <span class="n">recall_at_k</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">EvalCase</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">EvalCase</span><span class="p">:</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">question</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">relevant_chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
@@ -418,7 +431,7 @@
 
 
 <span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">CaseResult</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">CaseResult</span><span class="p">:</span>
     <span class="n">case_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">category</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
@@ -432,13 +445,13 @@
 
 
 <span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">RunReport</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">RunReport</span><span class="p">:</span>
     <span class="n">run_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span>
     <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">cases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CaseResult</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="n">cases</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cases</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">key</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cases</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{}</span>
@@ -451,11 +464,11 @@
         <span class="p">}</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Retriever</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">Retriever</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">load_eval_set</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvalCase</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">load_eval_set</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvalCase</span><span class="p">]:</span>
     <span class="n">cases</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -464,13 +477,13 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">cases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EvalCase</span><span class="p">(</span><span class="o">**</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)))</span>
         <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">line_no</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">line_no</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">cases</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no cases&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cases</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">run_retrieval_eval</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">run_retrieval_eval</span><span class="p">(</span>
     <span class="n">cases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvalCase</span><span class="p">],</span> <span class="n">retriever</span><span class="p">:</span> <span class="n">Retriever</span><span class="p">,</span> <span class="n">run_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RunReport</span><span class="p">:</span>
     <span class="n">report</span> <span class="o">=</span> <span class="n">RunReport</span><span class="p">(</span>
@@ -503,7 +516,7 @@
     <span class="k">return</span> <span class="n">report</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">write_report</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">RunReport</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">write_report</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">RunReport</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
     <span class="n">directory</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">.json&quot;</span>
 
@@ -533,7 +546,7 @@
 <span class="n">TOLERANCE</span> <span class="o">=</span> <span class="mf">0.02</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
     <span class="n">report</span> <span class="o">=</span> <span class="n">run_retrieval_eval</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">&quot;ci&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{},</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">recall</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()[</span><span class="s2">&quot;recall&quot;</span><span class="p">]</span>
     <span class="k">assert</span> <span class="n">recall</span> <span class="o">&gt;=</span> <span class="n">BASELINE_RECALL</span> <span class="o">-</span> <span class="n">TOLERANCE</span><span class="p">,</span> <span class="p">(</span>

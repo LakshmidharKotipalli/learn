@@ -33,6 +33,45 @@ Closures in particular. Decorators in section 4 are closures with syntax, and if
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 4 hours |
+| Setup | Python 3.11+, pytest, and a terminal |
+| First pass | Read sections 1, 3, 6, 7, and 9, then Worked example 1. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Choose composition, inheritance, generators, and context managers deliberately.
+- Use type hints, validation, logging, and tests at useful boundaries.
+- Refactor an LLM-oriented script into code another engineer can change safely.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. When is composition clearer than inheritance?
+2. What does `yield` preserve between calls?
+3. When does a decorator run, and what must it return?
+4. What belongs at a Pydantic boundary rather than deep inside business logic?
+5. What makes a test independent and repeatable?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 --version
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -45,7 +84,7 @@ Closures in particular. Decorators in section 4 are closures with syntax, and if
 | 6. Type hints | [CORE] | ...say what mypy checks that Python does not |
 | 7. Testing with pytest | [CORE] | ...write a parametrized test with a fixture |
 | 8. Logging, packaging, organization | [CORE] | ...explain why `print` is wrong in a library |
-| 9. Applied patterns | [DEPTH] | ...write retry-with-backoff that does not retry a 400 |
+| 9. Applied patterns | [DEPTH · DEEP DIVE] | ...write retry-with-backoff that does not retry a 400 |
 
 Section 9 is the one to read even if you skip everything else.
 
@@ -157,6 +196,15 @@ class Chunk:
 
 The good news is that section 2 makes most of this unnecessary.
 
+
+> **Concept checkpoint — 1. Classes and instances**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 2. Composition, inheritance, and dataclasses [CORE]
 
 **Dataclasses first, because they remove most of the boilerplate above.**
@@ -249,6 +297,15 @@ class Reranker(Protocol):
 
 Any class with a matching `rank` method satisfies `Reranker`. No inheritance, no import, no registration. This is Python's structural typing, and it is how you express "anything that behaves like this" without forcing a base class on code you do not own. Type checkers verify it; at runtime nothing happens, which is the point.
 
+
+> **Concept checkpoint — 2. Composition, inheritance, and dataclasses**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 3. Iterators and generators [CORE]
 
 **The iterator protocol** is what `for` actually uses. An iterable has `__iter__` returning an iterator; an iterator has `__next__` returning the next value or raising `StopIteration`.
@@ -318,6 +375,15 @@ def batched(iterable, n):
 ```
 
 `batched` is worth typing out because you will need it constantly: embedding APIs take batches, and sending one document per request is slow and expensive. The `:=` walrus operator assigns and tests in one expression; here it means "take the next batch, and stop when it comes back empty".
+
+
+> **Concept checkpoint — 3. Iterators and generators**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 4. Decorators [CORE]
 
@@ -414,6 +480,15 @@ class Config:
 
 `@classmethod` for alternative constructors, which is its dominant use. `@staticmethod` for functions that belong to the class conceptually but touch no state, and be aware that a module-level function is often the better answer.
 
+
+> **Concept checkpoint — 4. Decorators**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 5. Context managers [CORE]
 
 `with` guarantees cleanup. You met it for files in `01a`; this is how to write your own.
@@ -478,6 +553,15 @@ with suppress(FileNotFoundError):
 
 Clearer than `try/except/pass`, and unlike a bare except it names exactly what you are ignoring.
 
+
+> **Concept checkpoint — 5. Context managers**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 6. Type hints [CORE]
 
 **Python does not check types at runtime.** Hints are annotations that tools read. This is the single most important fact about them:
@@ -521,6 +605,15 @@ mypy src/
 ```
 
 Start permissive and tighten. Adding `--strict` to an existing untyped codebase produces hundreds of errors and teaches you to ignore them, which is worse than not running it.
+
+
+> **Concept checkpoint — 6. Type hints**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 7. Testing with pytest [CORE]
 
@@ -602,6 +695,15 @@ def test_search_returns_matches(sample_chunks):
 **The highest-value habit:** when you fix a bug, write the test that would have caught it, before the fix. It fails, you fix, it passes. This is how a test suite becomes a record of everything that has ever gone wrong, which is the version that actually prevents regressions.
 
 **Coverage tells you what was executed, not what was verified.** A test that calls a function and asserts nothing produces coverage. Treat it as a tool for finding untested regions, never as a target to hit.
+
+
+> **Concept checkpoint — 7. Testing with pytest**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 8. Logging, packaging, and organization [CORE]
 
@@ -720,7 +822,16 @@ __all__ = ["chunk_text", "Retriever"]
 
 Keep it thin. Import side effects in `__init__.py` make your package slow to import and hard to test.
 
-### 9. Applied patterns for AI and LLM code [DEPTH]
+
+> **Concept checkpoint — 8. Logging, packaging, and organization**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 9. Applied patterns for AI and LLM code [DEPTH · DEEP DIVE]
 
 The rest of this file is background. This section is the part you will use every week.
 
@@ -1208,6 +1319,8 @@ Now `ChunkConfig(chunk_size="512")` coerces to the integer 512, and `chunk_size=
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 **1. When would you use composition instead of inheritance?**
@@ -1288,7 +1401,9 @@ Write and time both versions for each:
 
 ## Practice tasks
 
-Solutions in `quizzes/01b-python-patterns-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [01b practice pack](quizzes/01b-python-patterns-practice.md).
 
 ### Five tiny exercises
 

@@ -30,6 +30,45 @@ Module `02` is the hard prerequisite. This module is that one plus deployment.
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 5 hours |
+| Setup | Git, Docker, Python 3.11+, and a terminal |
+| First pass | Read lifecycle, versioning, service design, observability, evaluation gates, rollback, and cost. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Describe the path from versioned code and data to a monitored service.
+- Choose observability signals, release gates, rollback points, and scaling tactics.
+- Include quality, safety, latency, and cost in an AI deployment decision.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. What must be versioned to reproduce an AI result?
+2. What is the difference between a log, metric, and trace?
+3. What quality check should block a deployment?
+4. When is rollback safer than a hot fix?
+5. Which cost driver would you measure first for an LLM service?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+docker --version && python3 --version
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -74,7 +113,7 @@ flowchart TD
     PROD["Production"]
 
     OBS["Observability: logs, metrics, traces"]
-    ALERT["Alerts on SLO burn"]
+    ALERT["Alerts on service-level objective (SLO) burn"]
     RB["Rollback"]
 
     CODE --> CI --> ART --> STAGE --> CANARY --> PROD
@@ -87,6 +126,10 @@ flowchart TD
 ```
 
 ---
+
+## Running example: document-based support assistant
+
+The support assistant becomes a service with versioned prompts and retrieval data, quality gates, latency and cost monitoring, and a rollback path when a release regresses.
 
 ## Core concepts
 
@@ -106,6 +149,15 @@ flowchart TD
 **The loop, not the line, is the point.** Monitoring feeds back into development, which is why section 8 exists. A system deployed and never observed is a system you have stopped developing.
 
 **For LLM applications the stages differ in one important way:** there is often no training step, but there is always a *configuration* whose changes are as consequential as a model retrain. Chunk size, top-k, prompt text, model version. These need versioning, evaluation and rollback exactly as a model does, and teams that treat prompts as content rather than as code discover this the hard way.
+
+
+> **Concept checkpoint — 1. The lifecycle**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 2. Versioning everything [CORE]
 
@@ -131,6 +183,15 @@ Code in git is table stakes. The question is what else.
 **The index and its embedding model.** Module 07's warning: vectors from different models are not comparable. Put the model name and version in the index identifier, assert on it at query time, and you convert a silent quality collapse into a loud startup failure.
 
 **Experiment tracking** records what you tried: parameters, metrics, artifacts, the code commit. The discipline matters more than the tool. Minimum viable version is the JSON run reports from projects 2 and 3, committed. `[VERIFY: tracking tools change @ current options]`
+
+
+> **Concept checkpoint — 2. Versioning everything**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 3. Containers [CORE]
 
@@ -173,6 +234,15 @@ CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]
 **Layer ordering matters** for build speed: copy the lockfile and install before copying source, so a source change does not invalidate the dependency layer.
 
 **GPU containers** need the host's driver stack exposed, via the NVIDIA container toolkit on Linux. Module 09's note applies: there is no Metal passthrough on macOS, so a container on a Mac is CPU-only.
+
+
+> **Concept checkpoint — 3. Containers**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 4. Service design [CORE]
 
@@ -254,6 +324,15 @@ async def ask(req: AskRequest, request: Request, user=Depends(current_user)):
 
 **Streaming** for user-facing generation, because perceived latency is dominated by time to first token. Note that streaming complicates error handling: once you have started streaming a 200 response, you cannot change the status code, so validation must happen before the first byte.
 
+
+> **Concept checkpoint — 4. Service design**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 5. Cloud, provider-neutral [FOUNDATION]
 
 The translation table, so you can follow any conversation:
@@ -281,6 +360,15 @@ The translation table, so you can follow any conversation:
 
 **Egress cost is the surprise.** Data leaving a cloud is expensive, and cross-region traffic is a line item people discover in month three.
 
+
+> **Concept checkpoint — 5. Cloud, provider-neutral**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 6. Deployment patterns [CORE]
 
 | Pattern | Shape | Use when |
@@ -301,6 +389,15 @@ GET  /v1/jobs/{id} → 200 {"status": "running" | "done" | "failed", "result": .
 ```
 
 Anything over roughly 30 seconds should be async. Holding an HTTP connection open for five minutes wastes a worker, breaks through proxies with their own timeouts, and gives the client no way to recover from a disconnect.
+
+
+> **Concept checkpoint — 6. Deployment patterns**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 7. Observability [CORE]
 
@@ -348,11 +445,20 @@ A string log is greppable. A structured log is queryable, which is the differenc
 
 **Why never the mean:** a mean latency of 200ms is compatible with 95% of requests at 50ms and 5% at 3 seconds. The mean hides exactly the users who are suffering. Always percentiles.
 
-**SLIs and SLOs**, which is how you decide what to alert on. An SLI is a measurement: the fraction of requests served under 2 seconds. An SLO is a target: 99% over 30 days. The error budget is what remains: 1% of requests may be slow.
+**Service-level indicators (SLIs) and service-level objectives (SLOs)** are how you decide what to alert on. An SLI is a measurement: the fraction of requests served under 2 seconds. An SLO is a target: 99% over 30 days. The error budget is what remains: 1% of requests may be slow.
 
 **Alert on error budget burn rate**, not on individual failures. A single 500 at 3am is not an incident; spending a week's budget in an hour is. This distinction is what makes on-call sustainable, and it is a strong signal in an interview.
 
 **What to alert on** (few, actionable, urgent) versus **what to dashboard** (everything else). An alert that fires and is ignored is worse than no alert, because it trains people to ignore the next one.
+
+
+> **Concept checkpoint — 7. Observability**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 8. LLM-specific monitoring [CORE]
 
@@ -384,6 +490,15 @@ A string log is greppable. A structured log is queryable, which is the differenc
 **Quality itself needs sampling plus offline evaluation.** You cannot compute faithfulness on every request in real time affordably. Sample a small fraction, score asynchronously, and run the full evaluation set on a schedule. The online metrics above are leading indicators; the evaluation set is the measurement.
 
 **User feedback is signal with a bias.** Thumbs-down is rarer than dissatisfaction and skews toward users who bother. Use it to find examples worth reading, not as a quality metric.
+
+
+> **Concept checkpoint — 8. LLM-specific monitoring**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 9. Evaluation as a deployment gate [CORE]
 
@@ -420,6 +535,15 @@ def test_retrieval_has_not_regressed(eval_cases, retriever):
 
 **What to gate on:** retrieval metrics, refusal correctness, citation validity, cost per request, and p95 latency. **What not to gate on:** an LLM-judge quality score as an absolute threshold, since the judge drifts and you will end up disabling the gate.
 
+
+> **Concept checkpoint — 9. Evaluation as a deployment gate**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 10. Security and secrets [CORE]
 
 **Where a secret must never be:** source code, a container image, a log line, an error message, a URL, a client-side bundle, or a git history. That last one is permanent: once committed, rotate the key, because deletion does not remove it from history.
@@ -450,6 +574,15 @@ class Settings(BaseSettings):
 
 **Prompt injection at the infrastructure level**, from module 08 section 11: least privilege on every tool, an egress allowlist so the third leg of the trifecta is broken, and alerting on forbidden-tool attempts.
 
+
+> **Concept checkpoint — 10. Security and secrets**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 11. Scaling and reliability [CORE]
 
 **Scale the bottleneck, and find it before scaling anything.** For LLM applications the bottleneck is usually the model provider's rate limit or your own inference capacity, not your web tier. Adding API replicas in front of a saturated model does nothing except queue faster.
@@ -465,6 +598,15 @@ A bounded queue that rejects with `429` when full is a better system: some clien
 **Graceful degradation**, with the options named in advance: serve from cache, fall back to a smaller model, return retrieval results without generation, or return a clear error. Decide before the incident, because 3am is not when to design this.
 
 **Timeouts everywhere**, and they must decrease as you go deeper. If your API times out at 30 seconds, the model call must be shorter, or the outer timeout fires while inner work continues, leaking resources.
+
+
+> **Concept checkpoint — 11. Scaling and reliability**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 12. Rollback and release [CORE]
 
@@ -484,6 +626,15 @@ A bounded queue that rejects with `429` when full is a better system: some clien
 **Database migrations are the asymmetry.** Deploys roll back; schema changes often do not. Use expand-and-contract: add the new column, deploy code that writes both, backfill, deploy code that reads the new one, and only then remove the old. Each step is individually reversible.
 
 **Practise the rollback.** A rollback procedure nobody has executed is a hypothesis. Do it deliberately, in working hours, before you need it at 3am.
+
+
+> **Concept checkpoint — 12. Rollback and release**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 13. Cost [CORE]
 
@@ -514,6 +665,15 @@ logger.info("request_cost", extra={"trace_id": trace_id, "tenant": tenant, "cost
 **Budget alerts on the derivative, not just the level.** A cost that doubled overnight matters before it reaches the monthly cap, and a cap alert arrives after the money is spent.
 
 ---
+
+
+> **Concept checkpoint — 13. Cost**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ## Worked example: a deployment checklist
 
@@ -616,6 +776,8 @@ Run this before shipping. Every item exists because skipping it caused an incide
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 **1. Walk me through deploying an LLM application.**
@@ -694,7 +856,9 @@ Run this before shipping. Every item exists because skipping it caused an incide
 
 ## Practice tasks
 
-Solutions in `quizzes/10-mlops-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [10 practice pack](quizzes/10-mlops-practice.md).
 
 ### Five tiny exercises
 

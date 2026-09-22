@@ -35,6 +35,45 @@ The single most common failure in RAG interviews: a candidate who built a RAG ap
 
 ---
 
+## How to use this module
+
+This page has three modes. **Learn** is the first pass through the concepts. **Build** is the practice task and project work. **Interview** is the optional articulation layer; do it after you can solve the examples.
+
+### Learning guide
+
+| Item | Guidance |
+|---|---|
+| Estimated first pass | 6 hours |
+| Setup | Python 3.11+, NumPy, and the terminal |
+| First pass | Read when RAG is wrong, chunking, embeddings, hybrid search, grounding, and evaluation. Treat `[DEPTH · DEEP DIVE]` sections as optional until the core path is comfortable. |
+| Priority | `[FOUNDATION]` and `[CORE]` are the first pass; `[DEPTH · DEEP DIVE]` is the second pass. `[MUST]`/`[SHOULD]`/`[NICE]` apply to interview priority. |
+
+By the end of the first pass you should be able to:
+
+- Decide when RAG is the wrong tool and when retrieval is appropriate.
+- Design ingestion, chunking, filtering, hybrid retrieval, and reranking choices.
+- Diagnose retrieval and answer failures with metrics rather than intuition.
+
+### Five-minute diagnostic
+
+Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.
+
+1. When would a database query or fine-tuning be better than RAG?
+2. What information can be lost when a document is chunked badly?
+3. What does recall@k measure?
+4. Why combine lexical and vector retrieval?
+5. How do you distinguish a retrieval failure from a generation failure?
+
+### Run the examples
+
+Start by checking the local prerequisite:
+
+```bash
+python3 -c "import numpy; print(numpy.__version__)"
+```
+
+Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.
+
 ## Skip-ahead map
 
 | Section | Level | Skip if you can... |
@@ -43,13 +82,13 @@ The single most common failure in RAG interviews: a candidate who built a RAG ap
 | 2. Ingestion and parsing | [CORE] | ...name three document formats that silently corrupt text |
 | 3. Chunking | [CORE] | ...explain why a bigger chunk is not simply better |
 | 4. Embeddings and similarity | [FOUNDATION] | ...say why cosine and dot product differ, and when |
-| 5. Vector indexes and ANN | [CORE] | ...explain what recall you give up for speed, and how to measure it |
-| 6. Metadata filtering | [DEPTH] | ...say why filtering plus ANN is harder than filtering plus a scan |
+| 5. Vector indexes and approximate nearest-neighbor (ANN) search | [CORE] | ...explain what recall you give up for speed, and how to measure it |
+| 6. Metadata filtering | [DEPTH · DEEP DIVE] | ...say why filtering plus ANN is harder than filtering plus a scan |
 | 7. Hybrid search and reranking | [CORE] | ...explain why RRF fuses rankings rather than scores |
 | 8. Prompt construction and grounding | [CORE] | ...say how you make a model admit it does not know |
 | 9. Evaluation | [CORE] | ...build a 30-pair eval set and say what recall@k misses |
 | 10. Failure taxonomy | [CORE] | ...given "the answer is wrong", name your first three checks |
-| 11. Security and operations | [DEPTH] | ...describe a permission-aware retrieval design |
+| 11. Security and operations | [DEPTH · DEEP DIVE] | ...describe a permission-aware retrieval design |
 
 ---
 
@@ -106,6 +145,10 @@ The dotted lines matter. Evaluation attaches at two points, retrieval and genera
 
 ---
 
+## Running example: document-based support assistant
+
+The support assistant ingests policy documents, retrieves evidence for a question, and produces a grounded answer. Every step exposes a different failure mode that the evaluation set should isolate.
+
 ## Core concepts
 
 ### 1. When RAG is the wrong answer [CORE]
@@ -135,6 +178,15 @@ Four techniques for making a model produce output it otherwise would not. They s
 **Using RAG when the corpus fits in the context.** If the entire knowledge base is 30,000 tokens and your context window is 200,000, retrieval adds latency, complexity and a failure mode in exchange for nothing. Put it all in the prompt. `[VERIFY: context window sizes and pricing change constantly @ current provider docs]` The crossover point moves; the reasoning does not. Cost and latency scale with context, so "it fits" and "it is worth putting in" are different questions once you are at volume.
 
 **They are not exclusive.** A production system is usually RAG plus tools plus a carefully engineered prompt, and occasionally a fine-tuned model for one narrow step such as query classification.
+
+
+> **Concept checkpoint — 1. When RAG is the wrong answer**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 2. Ingestion and parsing [CORE]
 
@@ -181,6 +233,15 @@ class ParsedDocument:
 - Duplicate content hash means you already have it.
 
 Log these and review the outliers by hand before building anything else. An hour reading twenty extracted documents will teach you more than a week of tuning.
+
+
+> **Concept checkpoint — 2. Ingestion and parsing**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 3. Chunking [CORE]
 
@@ -240,6 +301,15 @@ class Chunk:
 
 Note `text` and `embed_text` differing. With contextual retrieval you embed an augmented version but show the model and the user the original. Conflating them means your citations contain generated text, which is a subtle correctness problem.
 
+
+> **Concept checkpoint — 3. Chunking**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 4. Embeddings and similarity [FOUNDATION]
 
 An embedding maps text to a fixed-length vector such that similar meanings land near each other. Module `06` covers how the model produces one; here is what you need to use them correctly.
@@ -277,6 +347,15 @@ Each of these is a reason for section 7.
 
 **The operational rule that bites people: changing the embedding model means re-embedding everything.** Vectors from different models are not comparable, not even approximately. Version your index, include the model name in your cache key as in `01b` section 9.5, and plan a migration path before you need one. A team that discovers this mid-incident has a bad week.
 
+
+> **Concept checkpoint — 4. Embeddings and similarity**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 5. Vector indexes and approximate search [CORE]
 
 **Exact search is a linear scan.** Compute similarity against every vector, sort, take top-k. With normalized vectors this is one matrix multiply. For fewer than roughly 100,000 vectors on a modern machine this is genuinely fine, and reaching for a vector database before you need one is a common source of unnecessary complexity.
@@ -301,7 +380,16 @@ Each of these is a reason for section 7.
 
 **Deletion is the operational trap.** Graph indexes do not remove nodes cleanly; most implementations mark them deleted and filter at query time, which means deleted content still occupies memory and degrades the graph until a rebuild. If your product has a "delete my document" requirement, or a GDPR obligation, find out how your index handles deletion **before** you choose it, not after. This is both a real engineering concern and a question that distinguishes candidates who have run a system from those who have built one.
 
-### 6. Metadata filtering [DEPTH]
+
+> **Concept checkpoint — 5. Vector indexes and approximate search**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 6. Metadata filtering [DEPTH · DEEP DIVE]
 
 You want "chunks about parental leave, from the 2026 handbook, that this user may see". The last two are filters.
 
@@ -387,6 +475,15 @@ Each list contributes `1/(k + rank)`. Something ranked highly by both retrievers
 
 Every rewrite adds latency and a failure mode. Add them because your evaluation set showed a specific problem, not because they are in a blog post.
 
+
+> **Concept checkpoint — 7. Hybrid search and reranking**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
 ### 8. Prompt construction and grounding [CORE]
 
 You have five good chunks. The remaining failure is the model ignoring them.
@@ -426,6 +523,15 @@ Question: {question}
 **Conflict handling.** Real corpora contain a 2024 policy and a 2026 policy. Without instruction, the model silently picks one. Telling it to surface the conflict converts a wrong answer into a useful one.
 
 **Grounding is not guaranteed by prompting.** This is the honest part, and worth saying in an interview. The model can still produce a claim not supported by any source. The mitigations are an automated faithfulness check (section 9), showing users the sources so they can verify, and abstaining when retrieval scores are all below a threshold. Structural mitigation beats prompt wording.
+
+
+> **Concept checkpoint — 8. Prompt construction and grounding**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 9. Evaluation [CORE]
 
@@ -478,7 +584,7 @@ def ndcg_at_k(retrieved: list[str], relevant: set[str], k: int) -> float:
 
 Verified behavior on hand-checkable cases:
 
-| Case | recall@5 | MRR | nDCG@5 |
+| Case | recall@5 | mean reciprocal rank (MRR) | normalized discounted cumulative gain (nDCG)@5 |
 |---|---|---|---|
 | One relevant item, at rank 3 | 1.00 | 0.333 | 0.500 |
 | Two relevant, at ranks 1 and 4 | 1.00 | 1.000 | 0.877 |
@@ -525,6 +631,15 @@ Note the tolerance. Asserting on exact equality for a stochastic system produces
 Run it in CI on every change to chunking, embedding, retrieval, or prompts. Store the per-case results so a regression tells you *which* questions broke, not just that the mean moved.
 
 **Always compare against a baseline.** The naive version, fixed-size chunks and dense-only retrieval, measured once. Every improvement is then a number against a reference rather than a feeling. When you tell an interviewer "reranking improved recall@5 from 0.71 to 0.84 on my 40-question eval set", you have said something no amount of architecture description can match.
+
+
+> **Concept checkpoint — 9. Evaluation**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
 
 ### 10. Failure taxonomy [CORE]
 
@@ -580,7 +695,16 @@ flowchart TD
 
 **Walking down this tree requires logging you must build in advance:** the rewritten query, the retrieved chunk ids with scores from each retriever, the post-rerank order, and the final assembled prompt. Without those you are guessing. This is `02` section 9's observability point, and it is the difference between debugging in an hour and debugging in a week.
 
-### 11. Security and operations [DEPTH]
+
+> **Concept checkpoint — 10. Failure taxonomy**
+>
+> 1. **Define:** explain the idea in one sentence without repeating the heading.
+> 2. **Predict:** before rerunning the smallest example above, state the output or result.
+> 3. **Vary:** change one input, parameter, or assumption and explain what should change.
+> 4. **Challenge:** name one common misconception or failure mode.
+> 5. **Apply:** complete the smallest practice task before moving to the next concept.
+
+### 11. Security and operations [DEPTH · DEEP DIVE]
 
 **Permission-aware retrieval.** The requirement: a user must never see a chunk from a document they cannot access. The naive approach, retrieve then filter, leaks through the back door: even filtered, the number of results and the latency can reveal that matching content exists. More practically, post-filtering under-returns for restricted users, so they get worse answers with no explanation.
 
@@ -804,6 +928,8 @@ Every branch of the decision tree needs one of these fields. Building this befor
 
 ---
 
+> **Interview mode (optional on the first pass):** return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.
+
 ## Interview angle
 
 **1. When would you not use RAG?**
@@ -885,7 +1011,9 @@ Then say what you would *not* do: start by tuning the prompt or swapping the emb
 
 ## Practice tasks
 
-Solutions in `quizzes/07-rag-practice.md`.
+> **Build mode:** attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.
+
+Solutions and delayed practice are in the [07 practice pack](quizzes/07-rag-practice.md).
 
 ### Five tiny exercises
 

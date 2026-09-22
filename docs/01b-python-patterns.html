@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 46 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="01b-python-patterns-and-oop">01b Python Patterns and OOP<a class="anchor" href="#01b-python-patterns-and-oop" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low, except the applied patterns in section 9</p>
 <p>Part 2 of 3. <code>01a</code> covered the execution model through files and structured data. This file covers the constructs you use to organize code, and the patterns that appear in every LLM application you will write. <code>01c</code> covers interview data structures and algorithms.</p>
@@ -136,6 +149,56 @@
 </table>
 <p>Closures in particular. Decorators in section 4 are closures with syntax, and if closures are shaky, decorators will feel like magic instead of like a mechanism.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>4 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Python 3.11+, pytest, and a terminal</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read sections 1, 3, 6, 7, and 9, then Worked example 1. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Choose composition, inheritance, generators, and context managers deliberately.</li>
+<li>Use type hints, validation, logging, and tests at useful boundaries.</li>
+<li>Refactor an LLM-oriented script into code another engineer can change safely.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>When is composition clearer than inheritance?</li>
+<li>What does <code>yield</code> preserve between calls?</li>
+<li>When does a decorator run, and what must it return?</li>
+<li>What belongs at a Pydantic boundary rather than deep inside business logic?</li>
+<li>What makes a test independent and repeatable?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>--version
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -188,7 +251,7 @@
 </tr>
 <tr>
 <td>9. Applied patterns</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...write retry-with-backoff that does not retry a 400</td>
 </tr>
 </tbody>
@@ -203,7 +266,7 @@
 <p><strong>Where the analogy breaks down.</strong> "A class bundles data and behavior" makes classes sound universally good, and they are not. A class with one method and no state is a function with extra ceremony. A class hierarchy five levels deep is harder to follow than the duplication it removed. The genuine decision in section 2 is when <em>not</em> to reach for a class, which is more often than most codebases suggest.</p>
 <hr />
 <h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Functions are objects leads to Closures capture enclosing names; Closures capture enclosing names leads to Decorators; Decorators leads to APPLIED; Classes bundle state and behavior leads to Dataclasses; Dataclasses leads to Pydantic validation; Type hints leads to Pydantic validation; Type hints leads to pytest; The iterator protocol leads to Generators; Generators leads to APPLIED; Context managers leads to APPLIED; Classes bundle state and behavior leads to Context managers.">flowchart TD
     FN[&quot;Functions are objects&quot;]
     CL[&quot;Closures capture enclosing names&quot;]
     DEC[&quot;Decorators&quot;]
@@ -227,25 +290,25 @@
     GEN --&gt;|&quot;lazy, constant memory&quot;| APPLIED
     CM --&gt;|&quot;guaranteed cleanup&quot;| APPLIED
     CLS --&gt;|&quot;__enter__ and __exit__&quot;| CM
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Functions are objects leads to Closures capture enclosing names; Closures capture enclosing names leads to Decorators; Decorators leads to APPLIED; Classes bundle state and behavior leads to Dataclasses; Dataclasses leads to Pydantic validation; Type hints leads to Pydantic validation; Type hints leads to pytest; The iterator protocol leads to Generators; Generators leads to APPLIED; Context managers leads to APPLIED; Classes bundle state and behavior leads to Context managers.</p></details></div>
 <hr />
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-classes-and-instances-foundation">1. Classes and instances [FOUNDATION]<a class="anchor" href="#1-classes-and-instances-foundation" aria-label="Link to this section">#</a></h3>
 <p>A class defines what its instances know and what they can do.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Retriever</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Retriever</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Holds an index and searches it.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">top_k</span> <span class="o">=</span> <span class="n">top_k</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_query_count</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_query_count</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_k</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">query_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">query_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_count</span>
 </code></pre></div>
 
@@ -254,35 +317,45 @@
 <p><strong>The underscore convention.</strong> <code>_query_count</code> signals "internal, do not touch from outside". Python does not enforce this. A single underscore is a message to humans, and that is genuinely all it is. A double underscore prefix triggers name mangling, which exists to avoid collisions in inheritance, not to provide privacy. Use a single underscore; you will almost never want the double.</p>
 <p><strong><code>@property</code> turns a method into an attribute access.</strong> <code>retriever.query_count</code> looks like a field and runs code. Use it for computed values and read-only access. Do not use it for anything expensive, because callers reasonably assume attribute access is cheap, and a property that makes a network call is a trap.</p>
 <p><strong>The methods worth knowing early:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Chunk</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Chunk(source=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="si">!r}</span><span class="s2">, len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Chunk</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">NotImplemented</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">))</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div>
 
 <p><code>__repr__</code> is the highest-value method on this list by a wide margin. Without it, debugging shows you <code>&lt;__main__.Chunk object at 0x7f8b1c0d5f40&gt;</code>, which tells you nothing. With it, every print, every traceback and every debugger view is readable. Write <code>__repr__</code> on every class you define; the <code>!r</code> in the f-string calls <code>repr</code> on the field, which quotes strings and makes whitespace visible.</p>
 <p><code>__eq__</code> and <code>__hash__</code> travel together. If you define <code>__eq__</code> without <code>__hash__</code>, Python sets <code>__hash__</code> to <code>None</code> and your objects can no longer go in a set or be dict keys. Two objects that compare equal must hash equal, or dictionaries break in ways that are extremely hard to diagnose. Returning <code>NotImplemented</code> (not <code>False</code>) for an unknown type lets Python try the reflected operation, which is the correct protocol.</p>
 <p>The good news is that section 2 makes most of this unnecessary.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. Classes and instances</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-composition-inheritance-and-dataclasses-core">2. Composition, inheritance, and dataclasses [CORE]<a class="anchor" href="#2-composition-inheritance-and-dataclasses-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Dataclasses first, because they remove most of the boilerplate above.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 
 <span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Chunk</span><span class="p">:</span>
     <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -301,17 +374,17 @@
 <p>A rare case of a language catching the bug for you. <code>default_factory</code> is called once per instance, producing a fresh dict each time.</p>
 <p><strong>Useful variants:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>          <span class="c1"># immutable, and hashable, so it can be a dict key</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">DocumentId</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">DocumentId</span><span class="p">:</span>
     <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">page</span><span class="p">:</span> <span class="nb">int</span>
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>           <span class="c1"># generates &lt;, &lt;=, &gt;, &gt;= from field order</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Score</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Score</span><span class="p">:</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>           <span class="c1"># lower memory, faster attribute access, no dynamic attributes</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Embedding</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Embedding</span><span class="p">:</span>
     <span class="n">vector</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
     <span class="n">model</span><span class="p">:</span> <span class="nb">str</span>
 </code></pre></div>
@@ -322,23 +395,23 @@
 <p>Inheritance says "is a". Composition says "has a". When you are unsure, you want composition.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code><span class="c1"># Inheritance, used correctly: a genuine is-a relationship with shared behavior</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Retriever</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+<span class="k">class</span> <span class="nc">Retriever</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">DenseRetriever</span><span class="p">(</span><span class="n">Retriever</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">DenseRetriever</span><span class="p">(</span><span class="n">Retriever</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="o">...</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">BM25Retriever</span><span class="p">(</span><span class="n">Retriever</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">BM25Retriever</span><span class="p">(</span><span class="n">Retriever</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span> <span class="o">...</span>
 
 <span class="c1"># Composition: the hybrid HAS retrievers, it is not one of them</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">HybridRetriever</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dense</span><span class="p">,</span> <span class="n">sparse</span><span class="p">,</span> <span class="n">reranker</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">HybridRetriever</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dense</span><span class="p">,</span> <span class="n">sparse</span><span class="p">,</span> <span class="n">reranker</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dense</span> <span class="o">=</span> <span class="n">dense</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span> <span class="o">=</span> <span class="n">sparse</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reranker</span> <span class="o">=</span> <span class="n">reranker</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
         <span class="n">candidates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dense</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reranker</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">candidates</span><span class="p">)</span>
 </code></pre></div>
@@ -346,18 +419,28 @@
 <p><strong>Why composition usually wins.</strong> Inheritance couples the subclass to the parent's internals permanently. Change the parent and every subclass may break, including ones you have forgotten about. Composition lets you swap a component without touching anything else, and it makes testing trivial, because you pass in a fake reranker instead of subclassing your way around one.</p>
 <p>The specific smell: if you find yourself inheriting to reuse one method, or overriding a parent method to do something unrelated to what the parent did, you wanted composition.</p>
 <p><strong>Protocols, for when you want the interface without the hierarchy:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Reranker</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">rank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">]:</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">Reranker</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">]:</span> <span class="o">...</span>
 </code></pre></div>
 
 <p>Any class with a matching <code>rank</code> method satisfies <code>Reranker</code>. No inheritance, no import, no registration. This is Python's structural typing, and it is how you express "anything that behaves like this" without forcing a base class on code you do not own. Type checkers verify it; at runtime nothing happens, which is the point.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. Composition, inheritance, and dataclasses</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-iterators-and-generators-core">3. Iterators and generators [CORE]<a class="anchor" href="#3-iterators-and-generators-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The iterator protocol</strong> is what <code>for</code> actually uses. An iterable has <code>__iter__</code> returning an iterator; an iterator has <code>__next__</code> returning the next value or raising <code>StopIteration</code>.</p>
 <p>You rarely implement this by hand, because generators do it for you.</p>
 <p><strong>A generator is a function containing <code>yield</code>.</strong> Calling it does not run the body; it returns a generator object. The body runs one <code>yield</code> at a time, pausing and resuming.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">chunk_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">chunk_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield overlapping chunks without building the whole list.&quot;&quot;&quot;</span>
     <span class="n">step</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">overlap</span>
     <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="n">step</span><span class="p">):</span>
@@ -387,18 +470,18 @@
 </code></pre></div>
 
 <p><strong><code>yield from</code></strong> delegates to another iterable:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">all_chunks</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">all_chunks</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
         <span class="k">yield from</span> <span class="n">chunk_text</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">)</span>
 </code></pre></div>
 
 <p><strong><code>itertools</code>, the three that earn their keep:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">chain</span><span class="p">,</span> <span class="n">groupby</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">chain</span><span class="p">,</span> <span class="n">groupby</span>
 
 <span class="n">first_ten</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">generator</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>        <span class="c1"># take n without consuming the rest</span>
 <span class="n">everything</span> <span class="o">=</span> <span class="n">chain</span><span class="p">(</span><span class="n">list_a</span><span class="p">,</span> <span class="n">list_b</span><span class="p">)</span>             <span class="c1"># iterate several iterables as one</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">batched</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">batched</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield lists of at most n items. Python 3.12 has itertools.batched.&quot;&quot;&quot;</span>
     <span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">batch</span> <span class="o">:=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">n</span><span class="p">)):</span>
@@ -406,15 +489,25 @@
 </code></pre></div>
 
 <p><code>batched</code> is worth typing out because you will need it constantly: embedding APIs take batches, and sending one document per request is slow and expensive. The <code>:=</code> walrus operator assigns and tests in one expression; here it means "take the next batch, and stop when it comes back empty".</p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Iterators and generators</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-decorators-core">4. Decorators [CORE]<a class="anchor" href="#4-decorators-core" aria-label="Link to this section">#</a></h3>
 <p>A decorator is a function that takes a function and returns a replacement.</p>
 <p><strong>Building one from scratch</strong>, because the syntax makes sense only once you have seen the mechanism:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">timed</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">timed</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -424,7 +517,7 @@
     <span class="k">return</span> <span class="n">wrapper</span>
 
 <span class="nd">@timed</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">embed_batch</span><span class="p">(</span><span class="n">texts</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">embed_batch</span><span class="p">(</span><span class="n">texts</span><span class="p">):</span>
     <span class="o">...</span>
 </code></pre></div>
 
@@ -438,10 +531,10 @@
 </ul>
 <p><strong><code>functools.wraps</code> is not optional.</strong> Without it, the wrapper's name, docstring and signature replace the original's. Your tracebacks say <code>wrapper</code>, <code>help()</code> shows nothing useful, and any tool that inspects signatures (FastAPI, pytest, Pydantic) breaks. It is one line and forgetting it causes confusing bugs much later.</p>
 <p><strong>A decorator with arguments needs one more layer:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">last_error</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
                 <span class="k">try</span><span class="p">:</span>
@@ -455,7 +548,7 @@
     <span class="k">return</span> <span class="n">decorator</span>
 
 <span class="nd">@retry</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">call_api</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">call_api</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
     <span class="o">...</span>
 </code></pre></div>
 
@@ -463,35 +556,45 @@
 <p>Note this version is deliberately naive. Section 9 has the one you should actually use, and the difference is the interview answer.</p>
 <p><strong><code>functools.lru_cache</code></strong>, the decorator you will use most:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">embed_query</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">embed_query</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
     <span class="o">...</span>
 </code></pre></div>
 
 <p>Caveats that matter. Arguments must be hashable, so no lists or dicts. The cache holds references, so it keeps its entries alive, and an unbounded <code>maxsize=None</code> on a long-running service is a memory leak with good manners. And caching a function whose result depends on anything other than its arguments, such as the current time or a database, will serve stale results forever.</p>
 <p><strong><code>@staticmethod</code> and <code>@classmethod</code>:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
     <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Alternative constructor. cls is the class, so subclasses get the right type.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()))</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">validate_overlap</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">validate_overlap</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Related to the class, uses no instance or class state.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">overlap</span> <span class="o">&lt;</span> <span class="n">size</span>
 </code></pre></div>
 
 <p><code>@classmethod</code> for alternative constructors, which is its dominant use. <code>@staticmethod</code> for functions that belong to the class conceptually but touch no state, and be aware that a module-level function is often the better answer.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Decorators</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-context-managers-core">5. Context managers [CORE]<a class="anchor" href="#5-context-managers-core" aria-label="Link to this section">#</a></h3>
 <p><code>with</code> guarantees cleanup. You met it for files in <code>01a</code>; this is how to write your own.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 
 <span class="nd">@contextmanager</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">yield</span>
@@ -505,7 +608,7 @@
 <p>Everything before <code>yield</code> is setup, everything after is teardown, and <code>finally</code> is what makes it a guarantee rather than a hope. Without <code>finally</code>, an exception inside the block skips your cleanup entirely.</p>
 <p><strong>Yielding a value:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nd">@contextmanager</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">temporary_index</span><span class="p">(</span><span class="n">chunks</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">temporary_index</span><span class="p">(</span><span class="n">chunks</span><span class="p">):</span>
     <span class="n">index</span> <span class="o">=</span> <span class="n">build_index</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">yield</span> <span class="n">index</span>
@@ -517,12 +620,12 @@
 </code></pre></div>
 
 <p><strong>The class form</strong>, which you should recognize even if you write the decorator form:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Timer</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Timer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
         <span class="k">return</span> <span class="kc">False</span>     <span class="c1"># False propagates the exception; True swallows it</span>
 </code></pre></div>
@@ -530,16 +633,26 @@
 <p>Returning <code>True</code> from <code>__exit__</code> suppresses the exception. This is almost always wrong and is worth knowing mostly so you recognize it when a library does it to you.</p>
 <p><strong>Where you will actually use this:</strong> database connections and transactions, temporary directories, acquiring a lock, opening a model and freeing its memory, patching config during a test. Anything with a matching "undo" step.</p>
 <p><code>contextlib.suppress</code> is the readable form of a deliberate ignore:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">suppress</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">suppress</span>
 
 <span class="k">with</span> <span class="n">suppress</span><span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">):</span>
     <span class="n">cache_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </code></pre></div>
 
 <p>Clearer than <code>try/except/pass</code>, and unlike a bare except it names exactly what you are ignoring.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Context managers</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="6-type-hints-core">6. Type hints [CORE]<a class="anchor" href="#6-type-hints-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Python does not check types at runtime.</strong> Hints are annotations that tools read. This is the single most important fact about them:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">embed</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
     <span class="o">...</span>
 
 <span class="n">embed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>     <span class="c1"># runs; no error from Python itself</span>
@@ -547,9 +660,9 @@
 
 <p>A type checker (mypy, pyright) flags it before you run. The interpreter does not care. People expect hints to validate, and when they need runtime validation the answer is Pydantic, in section 9.</p>
 <p><strong>The syntax you need:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Protocol</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Protocol</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
     <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">filters</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -568,23 +681,33 @@ mypy<span class="w"> </span>src/
 </code></pre></div>
 
 <p>Start permissive and tighten. Adding <code>--strict</code> to an existing untyped codebase produces hundreds of errors and teaches you to ignore them, which is worse than not running it.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Type hints</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="7-testing-with-pytest-core">7. Testing with pytest [CORE]<a class="anchor" href="#7-testing-with-pytest-core" aria-label="Link to this section">#</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># tests/test_chunking.py</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mypackage.chunking</span><span class="w"> </span><span class="kn">import</span> <span class="n">chunk_text</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">mypackage.chunking</span> <span class="kn">import</span> <span class="n">chunk_text</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_chunks_cover_the_whole_text</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">test_chunks_cover_the_whole_text</span><span class="p">():</span>
     <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">(</span><span class="s2">&quot;abcdefghij&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
     <span class="k">assert</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;abcdefghij&quot;</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_overlap_repeats_content</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">test_overlap_repeats_content</span><span class="p">():</span>
     <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">(</span><span class="s2">&quot;abcdefghij&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
     <span class="k">assert</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="o">==</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_overlap_must_be_smaller_than_size</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">test_overlap_must_be_smaller_than_size</span><span class="p">():</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;overlap&quot;</span><span class="p">):</span>
         <span class="nb">list</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </code></pre></div>
@@ -600,28 +723,28 @@ mypy<span class="w"> </span>src/
         <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">],</span>
 <span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_chunk_counts</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">,</span> <span class="n">expected_count</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_chunk_counts</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">,</span> <span class="n">expected_count</span><span class="p">):</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">)))</span> <span class="o">==</span> <span class="n">expected_count</span>
 </code></pre></div>
 
 <p>Four separate tests with four separate names in the output. When one fails you know which case.</p>
 <p><strong>Fixtures</strong>, for shared setup:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">sample_chunks</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">sample_chunks</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">[</span>
         <span class="n">Chunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;python is a language&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">),</span>
         <span class="n">Chunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;attention is all you need&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">),</span>
     <span class="p">]</span>
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">temp_index</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">temp_index</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;tmp_path is a built-in fixture giving a fresh directory per test.&quot;&quot;&quot;</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;index.json&quot;</span>
     <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">path</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_search_returns_matches</span><span class="p">(</span><span class="n">sample_chunks</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_search_returns_matches</span><span class="p">(</span><span class="n">sample_chunks</span><span class="p">):</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">search</span><span class="p">(</span><span class="n">sample_chunks</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
 </code></pre></div>
 
@@ -659,13 +782,23 @@ mypy<span class="w"> </span>src/
 </table>
 <p><strong>The highest-value habit:</strong> when you fix a bug, write the test that would have caught it, before the fix. It fails, you fix, it passes. This is how a test suite becomes a record of everything that has ever gone wrong, which is the version that actually prevents regressions.</p>
 <p><strong>Coverage tells you what was executed, not what was verified.</strong> A test that calls a function and asserts nothing produces coverage. Treat it as a tool for finding untested regions, never as a target to hit.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Testing with pytest</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="8-logging-packaging-and-organization-core">8. Logging, packaging, and organization [CORE]<a class="anchor" href="#8-logging-packaging-and-organization-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Logging, not printing.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">ingest</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">ingest</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ingesting </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="o">...</span>
@@ -768,60 +901,70 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p><strong>When to split a module.</strong> Not by line count. Split when a file has two distinct reasons to change, or when you find yourself scrolling past one concern to reach another. <code>retrieval.py</code> holding search and reranking is fine. <code>utils.py</code> holding eleven unrelated functions is a sign you have been avoiding the naming decision.</p>
 <p><code>__init__.py</code> exists to mark the package and to define its public surface:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># src/mypackage/__init__.py</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mypackage.chunking</span><span class="w"> </span><span class="kn">import</span> <span class="n">chunk_text</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mypackage.retrieval</span><span class="w"> </span><span class="kn">import</span> <span class="n">Retriever</span>
+<span class="kn">from</span> <span class="nn">mypackage.chunking</span> <span class="kn">import</span> <span class="n">chunk_text</span>
+<span class="kn">from</span> <span class="nn">mypackage.retrieval</span> <span class="kn">import</span> <span class="n">Retriever</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chunk_text&quot;</span><span class="p">,</span> <span class="s2">&quot;Retriever&quot;</span><span class="p">]</span>
 </code></pre></div>
 
 <p>Keep it thin. Import side effects in <code>__init__.py</code> make your package slow to import and hard to test.</p>
-<h3 id="9-applied-patterns-for-ai-and-llm-code-depth">9. Applied patterns for AI and LLM code [DEPTH]<a class="anchor" href="#9-applied-patterns-for-ai-and-llm-code-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 8. Logging, packaging, and organization</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="9-applied-patterns-for-ai-and-llm-code-depth-deep-dive">9. Applied patterns for AI and LLM code [DEPTH · DEEP DIVE]<a class="anchor" href="#9-applied-patterns-for-ai-and-llm-code-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p>The rest of this file is background. This section is the part you will use every week.</p>
 <p>For each pattern: the naive version, what broke, and the version that survives.</p>
 <h4 id="91-calling-an-http-api">9.1 Calling an HTTP API<a class="anchor" href="#91-calling-an-http-api" aria-label="Link to this section">#</a></h4>
 <p><strong>Naive:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">embed</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">})</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;embedding&quot;</span><span class="p">]</span>
 </code></pre></div>
 
 <p><strong>What breaks.</strong> No timeout, so a hung connection hangs your process forever, and the default is no timeout at all. No status check, so a 429 or 500 returns an HTML error page and you get a <code>KeyError: 'data'</code> that tells you nothing about what went wrong. A new connection per call, throwing away TLS handshakes.</p>
 <p><strong>Better:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">httpx</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingClient</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">EmbeddingClient</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span>
             <span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span>
             <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
             <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+    <span class="k">def</span> <span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/embeddings&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">texts</span><span class="p">})</span>
         <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;embedding&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">]]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div>
 
 <p>A reused client pools connections. An explicit timeout. <code>raise_for_status()</code> turns a bad response into an exception at the point of failure. It takes a list, so batching is natural. And it is a context manager, so the connection pool is closed.</p>
 <h4 id="92-retries-with-backoff">9.2 Retries with backoff<a class="anchor" href="#92-retries-with-backoff" aria-label="Link to this section">#</a></h4>
 <p>The naive decorator in section 4 has three bugs, and naming them is a good interview answer.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
 
 <span class="n">RETRIABLE_STATUS</span> <span class="o">=</span> <span class="p">{</span><span class="mi">408</span><span class="p">,</span> <span class="mi">429</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">503</span><span class="p">,</span> <span class="mi">504</span><span class="p">}</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">call_with_retry</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">base_delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="mf">30.0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">call_with_retry</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">base_delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="mf">30.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Retry only what is worth retrying, with exponential backoff and jitter.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">attempts</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -860,16 +1003,16 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </ol>
 <h4 id="93-validating-with-pydantic">9.3 Validating with Pydantic<a class="anchor" href="#93-validating-with-pydantic" aria-label="Link to this section">#</a></h4>
 <p>Type hints do not validate. Pydantic does, using the same syntax.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">ValidationError</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">ValidationError</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">RetrievalConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RetrievalConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">8192</span><span class="p">)</span>
     <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;bge-large-en-v1.5&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">model_post_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">__context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">model_post_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">__context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overlap </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">overlap</span><span class="si">}</span><span class="s2"> must be &lt; chunk_size </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -882,14 +1025,14 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 
 <p>Validation happens at construction, so bad config fails at startup rather than in the middle of an ingestion run.</p>
 <p><strong>The place this matters most in LLM work: parsing model output.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ExtractedInvoice</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ExtractedInvoice</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">invoice_number</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">total</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">line_items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">extract</span><span class="p">(</span><span class="n">response_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedInvoice</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="n">response_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedInvoice</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">ExtractedInvoice</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">response_text</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -900,7 +1043,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p>A language model will eventually return a total as <code>"$1,240.00"</code>, or omit a field, or emit prose before the JSON. Parsing with <code>json.loads</code> and indexing gives you a <code>KeyError</code> three functions away from the cause. Validating at the boundary gives you a precise error at the point of entry, and a place to put the retry.</p>
 <p><code>[VERIFY: Pydantic v2 API, model_validate_json and model_post_init @ current Pydantic docs]</code> v1 used different method names, and much of the code you will find online is v1. Every example in this section was run against Pydantic 2.13.3 and httpx 0.28.1.</p>
 <h4 id="94-batching">9.4 Batching<a class="anchor" href="#94-batching" aria-label="Link to this section">#</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">embed_all</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">EmbeddingClient</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">embed_all</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">EmbeddingClient</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
     <span class="n">vectors</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">batched</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
         <span class="n">vectors</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">call_with_retry</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">batch</span><span class="p">)))</span>
@@ -910,24 +1053,24 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p>One request per document means one round trip per document. Batching amortizes that, and most providers price and rate limit per request as well as per token.</p>
 <p><strong>Choosing the batch size is empirical, not theoretical.</strong> Too small wastes round trips; too large risks a token limit, a timeout, or losing the whole batch to one bad item. Start at 32 or 64, measure, and adjust. Note the failure-granularity tradeoff: with batch size 256, one malformed document fails 256 documents.</p>
 <h4 id="95-caching">9.5 Caching<a class="anchor" href="#95-caching" aria-label="Link to this section">#</a></h4>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingCache</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">EmbeddingCache</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Disk cache keyed by content hash. Survives restarts, unlike lru_cache.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="n">directory</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">payload</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">::</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="s2">.json&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -937,7 +1080,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;corrupt cache entry </span><span class="si">%s</span><span class="s2">, ignoring&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vector</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vector</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="s2">.json&quot;</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.tmp&quot;</span><span class="p">)</span>
         <span class="n">tmp</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span>
@@ -946,10 +1089,10 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 
 <p>Three decisions worth naming. <strong>The model is part of the key</strong>, because the same text embedded with a different model is a different vector, and a cache that ignores this returns silently wrong results after you switch models. <strong>A corrupt entry is a miss, not a crash</strong>, because a cache should never be able to take down the thing it is accelerating. <strong>Writes are atomic</strong> via write-then-rename, so an interrupted process cannot leave a truncated file that parses as valid JSON.</p>
 <h4 id="96-configuration">9.6 Configuration<a class="anchor" href="#96-configuration" aria-label="Link to this section">#</a></h4>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">SettingsConfigDict</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic_settings</span> <span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">SettingsConfigDict</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">env_prefix</span><span class="o">=</span><span class="s2">&quot;APP_&quot;</span><span class="p">,</span> <span class="n">env_file</span><span class="o">=</span><span class="s2">&quot;.env&quot;</span><span class="p">)</span>
 
     <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>                                  <span class="c1"># required; no default, so startup fails without it</span>
@@ -965,15 +1108,15 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p><code>.env</code> goes in <code>.gitignore</code>. Commit a <code>.env.example</code> listing the names with dummy values, so someone cloning the repo knows what to set.</p>
 <h4 id="97-async-briefly">9.7 Async, briefly<a class="anchor" href="#97-async-briefly" aria-label="Link to this section">#</a></h4>
 <p>Use async when you are waiting on many network calls at once. It does not make CPU-bound work faster.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
 
 
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">embed_many</span><span class="p">(</span><span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">concurrency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">embed_many</span><span class="p">(</span><span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">concurrency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
     <span class="n">limiter</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="n">concurrency</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">30.0</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">one</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">one</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
             <span class="k">async</span> <span class="k">with</span> <span class="n">limiter</span><span class="p">:</span>
                 <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">})</span>
                 <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
@@ -988,7 +1131,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <h2 id="worked-examples">Worked examples<a class="anchor" href="#worked-examples" aria-label="Link to this section">#</a></h2>
 <h3 id="example-1-refactoring-a-script-into-a-testable-module">Example 1: refactoring a script into a testable module<a class="anchor" href="#example-1-refactoring-a-script-into-a-testable-module" aria-label="Link to this section">#</a></h3>
 <p><strong>Before</strong>, which is what a working script looks like before anyone has to maintain it:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">requests</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">requests</span>
 
 <span class="n">docs</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;docs.json&quot;</span><span class="p">))</span>
 <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1004,17 +1147,17 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p>It works. Every concern is welded to every other: you cannot test chunking without a network, cannot change the embedding backend without editing the loop, cannot process a different input without editing the file, and a failure on document 900 loses all previous work.</p>
 <p><strong>After:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># src/ingest/chunking.py</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Chunk</span><span class="p">:</span>
     <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">index</span><span class="p">:</span> <span class="nb">int</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">chunk_document</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">chunk_document</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield overlapping chunks. Pure: no I/O, trivially testable.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;size must be positive, got </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1029,17 +1172,17 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="c1"># src/ingest/pipeline.py</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Embedder</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">Embedder</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span> <span class="o">...</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">embed_chunks</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="n">embedder</span><span class="p">:</span> <span class="n">Embedder</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">embed_chunks</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="n">embedder</span><span class="p">:</span> <span class="n">Embedder</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Embed chunks in batches. Survives a bad batch; reports what was lost.&quot;&quot;&quot;</span>
     <span class="n">results</span><span class="p">,</span> <span class="n">failed</span> <span class="o">=</span> <span class="p">[],</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">batched</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
@@ -1057,20 +1200,20 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="c1"># tests/test_chunking.py</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_chunks_are_contiguous_without_overlap</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">test_chunks_are_contiguous_without_overlap</span><span class="p">():</span>
     <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunk_document</span><span class="p">(</span><span class="s2">&quot;abcdefghij&quot;</span><span class="p">,</span> <span class="s2">&quot;d1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
     <span class="k">assert</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;abcde&quot;</span><span class="p">,</span> <span class="s2">&quot;fghij&quot;</span><span class="p">]</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_rejects_overlap_equal_to_size</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">test_rejects_overlap_equal_to_size</span><span class="p">():</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;overlap&quot;</span><span class="p">):</span>
         <span class="nb">list</span><span class="p">(</span><span class="n">chunk_document</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;d1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_embed_chunks_survives_a_failing_batch</span><span class="p">(</span><span class="n">caplog</span><span class="p">):</span>
-    <span class="k">class</span><span class="w"> </span><span class="nc">Flaky</span><span class="p">:</span>
-        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">calls</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_embed_chunks_survives_a_failing_batch</span><span class="p">(</span><span class="n">caplog</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Flaky</span><span class="p">:</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">calls</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">def</span> <span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">calls</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calls</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;boom&quot;</span><span class="p">)</span>
@@ -1086,23 +1229,23 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p>The <code>caplog</code> fixture is built into pytest and captures log output, which is how you test that a failure was reported rather than swallowed.</p>
 <h3 id="example-2-a-decorator-you-would-actually-ship">Example 2: a decorator you would actually ship<a class="anchor" href="#example-2-a-decorator-you-would-actually-ship" aria-label="Link to this section">#</a></h3>
 <p>Combining sections 4 and 9 into something with real behavior.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TypeVar</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TypeVar</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">instrumented</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">slow_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">instrumented</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">slow_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Log duration and failures. Warn when a call exceeds slow_threshold seconds.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>
         <span class="n">label</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span>
 
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
             <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1122,7 +1265,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 
 
 <span class="nd">@instrumented</span><span class="p">(</span><span class="s2">&quot;retrieval.search&quot;</span><span class="p">,</span> <span class="n">slow_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="o">...</span>
 </code></pre></div>
 
@@ -1135,23 +1278,23 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="c1"># 2. Dataclass. The right default for internal structures.</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">ChunkConfig</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">ChunkConfig</span><span class="p">:</span>
     <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span>
     <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overlap </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">overlap</span><span class="si">}</span><span class="s2"> &gt;= chunk_size </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Typos become <code>AttributeError</code> at the point of use, the editor autocompletes fields, and <code>frozen=True</code> means nothing downstream can mutate it. Note that type hints still do not check: <code>ChunkConfig(chunk_size="512")</code> constructs happily and fails later during arithmetic.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 3. Pydantic. For anything crossing a trust boundary.</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">ChunkConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ChunkConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">8192</span><span class="p">)</span>
     <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
@@ -1234,6 +1377,9 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <li><strong>Pydantic rejecting valid-looking input:</strong> print <code>e.errors()</code>, not <code>str(e)</code>. It gives you the field path, the rule that failed, and the value received.</li>
 </ol>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. When would you use composition instead of inheritance?</strong></p>
 <p><em>Strong outline:</em> Inheritance for a genuine is-a relationship with shared behavior; composition for has-a, which is most cases. Composition keeps components swappable and makes testing trivial because you inject a fake instead of subclassing. Inheritance couples the subclass to the parent's internals permanently. Give the concrete smell: inheriting to reuse one method, or overriding a parent method to do something unrelated. Mention Protocols as the way to get an interface contract without a hierarchy.</p>
@@ -1280,7 +1426,10 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/01b-python-patterns-practice.md</code>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-01b-python-patterns.html">01b practice pack</a>.</p>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>Write a <code>@dataclass(frozen=True)</code> for a search result with a document id, score and snippet. Add a <code>__post_init__</code> that rejects scores outside <code>[0, 1]</code>. Then show what <code>dataclasses.replace</code> does and why you need it.</li>
@@ -1398,6 +1547,10 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#concept-map">Concept map</a></li>
@@ -1410,7 +1563,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <li class="toc-l3"><a href="#6-type-hints-core">6. Type hints [CORE]</a></li>
 <li class="toc-l3"><a href="#7-testing-with-pytest-core">7. Testing with pytest [CORE]</a></li>
 <li class="toc-l3"><a href="#8-logging-packaging-and-organization-core">8. Logging, packaging, and organization [CORE]</a></li>
-<li class="toc-l3"><a href="#9-applied-patterns-for-ai-and-llm-code-depth">9. Applied patterns for AI and LLM code [DEPTH]</a></li>
+<li class="toc-l3"><a href="#9-applied-patterns-for-ai-and-llm-code-depth-deep-dive">9. Applied patterns for AI and LLM code [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l2"><a href="#worked-examples">Worked examples</a></li>
 <li class="toc-l3"><a href="#example-1-refactoring-a-script-into-a-testable-module">Example 1: refactoring a script into a testable module</a></li>
 <li class="toc-l3"><a href="#example-2-a-decorator-you-would-actually-ship">Example 2: a decorator you would actually ship</a></li>

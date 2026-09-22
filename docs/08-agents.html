@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,7 +101,8 @@
 
   <main id="content">
     <article class="doc">
-      <h1 id="08-agents-tools-and-mcp">08 Agents, Tools, and MCP<a class="anchor" href="#08-agents-tools-and-mcp" aria-label="Link to this section">#</a></h1>
+      <p class="doc-meta">Approx. 38 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
+      <h1 id="08-agents-tools-and-model-context-protocol-mcp">08 Agents, Tools, and Model Context Protocol (MCP)<a class="anchor" href="#08-agents-tools-and-model-context-protocol-mcp" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> high. The highest-churn module here after 09.</p>
 <p>All code was executed. The tool registry and trajectory evaluator both run as shown, against Pydantic 2.13.</p>
 <hr />
@@ -131,6 +144,56 @@
 </table>
 <p>Module <code>02</code> section 11's idempotency material is load-bearing. An agent that retries a non-idempotent tool call causes real damage.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>5 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Python 3.11+ and Pydantic 2</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read workflow versus agent, tool schemas, the loop, reliability, evaluation, and security. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Choose a deterministic workflow before reaching for an agent.</li>
+<li>Design validated tools, bounded loops, state, retries, and human approval.</li>
+<li>Evaluate trajectories and contain prompt injection at tool boundaries.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What uncertainty requires an agent rather than a fixed workflow?</li>
+<li>What must a tool schema validate before execution?</li>
+<li>What stops an agent loop safely?</li>
+<li>Which failures should be retried, and which should be surfaced?</li>
+<li>How can untrusted tool output influence the next model action?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import pydantic; print(pydantic.__version__)&quot;</span>
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -168,7 +231,7 @@
 </tr>
 <tr>
 <td>6. Multi-agent, and when not to</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...say when one agent is strictly better</td>
 </tr>
 <tr>
@@ -178,7 +241,7 @@
 </tr>
 <tr>
 <td>8. Frameworks</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...separate framework knowledge from durable concepts</td>
 </tr>
 <tr>
@@ -205,7 +268,7 @@
 <p><strong>Where the analogy breaks down.</strong> "The model chooses" suggests deliberation, and the model is producing a likely continuation given the context. It does not know what its tools do beyond your descriptions, it does not know it is in a loop, and it has no representation of a plan that persists between steps beyond what is in the context. Treating it as an agent with intentions leads to debugging by persuasion rather than by engineering, and to systems that fail in ways nobody predicted because nobody modelled the actual mechanism.</p>
 <hr />
 <h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. User goal leads to Model call with tool schemas; Policy gate: allowed? consequential? leads to Human confirmation; Policy gate: allowed? consequential? leads to Execute the tool; Policy gate: allowed? consequential? leads to Stopping check; Execute the tool leads to Observation appended to context; Stopping check leads to Model call with tool schemas; Stopping check leads to Final answer; Observation appended to context leads to Tool output is untrusted input; Tool output is untrusted input leads to Policy gate: allowed? consequential?.">flowchart TD
     GOAL[&quot;User goal&quot;]
     MODEL[&quot;Model call with tool schemas&quot;]
     PARSE[&quot;Parse and validate the requested call&quot;]
@@ -227,9 +290,11 @@
     UNTRUSTED[&quot;Tool output is untrusted input&quot;]
     OBS -.-&gt;|&quot;injection enters here&quot;| UNTRUSTED
     UNTRUSTED -.-&gt;|&quot;must not grant privilege&quot;| GATE
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. User goal leads to Model call with tool schemas; Policy gate: allowed? consequential? leads to Human confirmation; Policy gate: allowed? consequential? leads to Execute the tool; Policy gate: allowed? consequential? leads to Stopping check; Execute the tool leads to Observation appended to context; Stopping check leads to Model call with tool schemas; Stopping check leads to Final answer; Observation appended to context leads to Tool output is untrusted input; Tool output is untrusted input leads to Policy gate: allowed? consequential?.</p></details></div>
 <p>The dotted path is the security model. Tool output re-enters the context as tokens, so anything it says can influence the next decision.</p>
 <hr />
+<h2 id="running-example-document-based-support-assistant">Running example: document-based support assistant<a class="anchor" href="#running-example-document-based-support-assistant" aria-label="Link to this section">#</a></h2>
+<p>The support assistant may look up a ticket, ask for missing information, or escalate to a person. The example makes it clear which steps are deterministic workflow and which genuinely need an agent.</p>
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-what-an-agent-is-and-is-not-core">1. What an agent is, and is not [CORE]<a class="anchor" href="#1-what-an-agent-is-and-is-not-core" aria-label="Link to this section">#</a></h3>
 <p><strong>An agent is a system where a model decides the control flow.</strong> That is the whole definition. If the sequence of steps is fixed and the model only fills in content, it is a workflow, however many model calls it makes.</p>
@@ -267,6 +332,16 @@
 <li><strong>Cost.</strong> Every step is a full model call with the growing context. A five-step agent costs far more than five times a single call, because context accumulates.</li>
 <li><strong>Stopping.</strong> Left alone, agents loop, retry the same failing call, or declare success without doing anything.</li>
 </ul>
+<blockquote>
+<p><strong>Concept checkpoint — 1. What an agent is, and is not</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-the-spectrum-from-prompt-to-agent-core">2. The spectrum from prompt to agent [CORE]<a class="anchor" href="#2-the-spectrum-from-prompt-to-agent-core" aria-label="Link to this section">#</a></h3>
 <p>The decision table, which is what an interview wants:</p>
 <table>
@@ -339,27 +414,37 @@
 </table>
 <p><strong>The last row is the honest agent case.</strong> The investigation path depends on what each lookup reveals. You cannot draw the flowchart because there are hundreds of possible paths.</p>
 <p><strong>Start one rung lower than you think.</strong> Most systems described as agents work better as workflows, and the workflow version is a good baseline to measure the agent against. If the agent does not beat it, you have your answer.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. The spectrum from prompt to agent</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-tool-schemas-and-validation-core">3. Tool schemas and validation [CORE]<a class="anchor" href="#3-tool-schemas-and-validation-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The model never executes anything.</strong> It emits a structured request: a tool name and arguments. Your code decides whether to honor it. Everything about authorization, validation and rate limiting is on your side of that line, and candidates who blur it reveal they have not built one.</p>
 <p><strong>Defining tools with Pydantic</strong>, which gives you the schema and the validation from one definition:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">SearchDocs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SearchDocs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Search the internal document corpus. Use for questions about company policy.&quot;&quot;&quot;</span>
 
     <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Natural-language search query. Not a keyword list.&quot;</span><span class="p">)</span>
     <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;How many chunks to return.&quot;</span><span class="p">)</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">GetExchangeRate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">GetExchangeRate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the current exchange rate between two currencies.&quot;&quot;&quot;</span>
 
     <span class="n">base</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ISO 4217 code, e.g. USD&quot;</span><span class="p">)</span>
     <span class="n">quote</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ISO 4217 code, e.g. EUR&quot;</span><span class="p">)</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">SendEmail</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SendEmail</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Send an email. CONSEQUENTIAL: requires human confirmation.&quot;&quot;&quot;</span>
 
     <span class="n">to</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Recipient address&quot;</span><span class="p">)</span>
@@ -389,18 +474,18 @@
 </code></pre></div>
 
 <p><strong>The registry, with validation as a hard boundary:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ToolError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ToolError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A tool call that must not be executed.&quot;&quot;&quot;</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Registry</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Registry</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tool</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="n">Tool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="n">Tool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">tool</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="p">{</span>
                 <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
@@ -410,7 +495,7 @@
             <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="p">]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">raw_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">raw_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">tool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">tool</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ToolError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unknown tool </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">; available: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -420,7 +505,7 @@
             <span class="n">first</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">errors</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">raise</span> <span class="n">ToolError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;invalid arguments for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">first</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">first</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+            <span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
         <span class="k">return</span> <span class="n">tool</span><span class="o">.</span><span class="n">fn</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 </code></pre></div>
 
@@ -458,8 +543,18 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 </table>
 <p>Say when <strong>not</strong> to use a tool, as well as when to. "Use this only when the user asks about a specific order id" prevents far more misuse than any amount of general instruction.</p>
 <p><strong>Keep the tool count small.</strong> Beyond roughly ten to twenty tools, selection accuracy degrades noticeably. Group related operations into one tool with a mode parameter, or route to a subset first. <code>[UNVERIFIED: the threshold is model-dependent; measure with your own tool set]</code></p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Tool schemas and validation</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-the-agent-loop-and-stopping-core">4. The agent loop, and stopping [CORE]<a class="anchor" href="#4-the-agent-loop-and-stopping-core" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">goal</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry</span><span class="p">:</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">max_cost</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.50</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">goal</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry</span><span class="p">:</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">max_cost</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.50</span><span class="p">):</span>
     <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">goal</span><span class="p">}]</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">spent</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -516,7 +611,7 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 </tbody>
 </table>
 <p><strong>Loop detection deserves its own mechanism</strong>, because it is the most common real failure. The model calls a tool, gets an error or an unhelpful result, and calls it again identically. A step limit eventually stops this after wasting eight calls; detecting an exact repeat stops it after two.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">looping</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">looping</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Same tool with identical arguments, repeated.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">window</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -526,6 +621,16 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 
 <p><strong>Every stop must be distinguishable.</strong> <code>stopped="step_limit"</code> and <code>stopped="answered"</code> are completely different outcomes and must never be conflated. An agent that hits the step limit and returns whatever text it last produced, presented as an answer, is how systems confidently report nonsense.</p>
 <p><strong>ReAct</strong>, conceptually: interleave reasoning with acting, so the model articulates why before each call. Whether the stated reasoning reflects the actual computation is genuinely uncertain, and it is useful anyway, because it gives you something readable in the trace and tends to improve tool selection. Treat it as a useful pattern rather than as insight into the model.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. The agent loop, and stopping</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-state-memory-and-human-in-the-loop-core">5. State, memory, and human-in-the-loop [CORE]<a class="anchor" href="#5-state-memory-and-human-in-the-loop-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Context is the agent's working memory, and it grows every step.</strong> Each observation is appended, so a ten-step agent's last call may carry an enormous prompt. This drives cost, latency and eventually context exhaustion (module 06's failure mode).</p>
 <p>Management strategies: summarize old steps, keep only the last N observations in full, store large results externally and pass a reference, and drop observations the model has already used.</p>
@@ -539,7 +644,17 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 </ul>
 <p>Mark it in the tool definition, as <code>consequential=True</code> above, so it is a property of the tool rather than a rule someone has to remember.</p>
 <p><strong>The confirmation must show what will happen</strong>, not that something will. "Send an email?" is useless; the recipient, subject and body is a decision the human can actually make. A confirmation people cannot evaluate gets clicked through, which is worse than no confirmation because it manufactures the appearance of oversight.</p>
-<h3 id="6-multi-agent-and-when-not-to-depth">6. Multi-agent, and when not to [DEPTH]<a class="anchor" href="#6-multi-agent-and-when-not-to-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 5. State, memory, and human-in-the-loop</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="6-multi-agent-and-when-not-to-depth-deep-dive">6. Multi-agent, and when not to [DEPTH · DEEP DIVE]<a class="anchor" href="#6-multi-agent-and-when-not-to-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p>Several specialized agents, coordinating.</p>
 <p><strong>The genuine benefits:</strong> separate context windows, so each agent sees only what it needs; specialization, with different tools and prompts per role; and parallelism when subtasks are independent.</p>
 <p><strong>The costs, which are consistently underweighted:</strong></p>
@@ -610,13 +725,13 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 </table>
 <p>The distinction matters for security: tools are model-driven and therefore the attack surface; resources are application-driven and safer.</p>
 <p><strong>A minimal server:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mcp.server.fastmcp</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastMCP</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mcp.server.fastmcp</span> <span class="kn">import</span> <span class="n">FastMCP</span>
 
 <span class="n">mcp</span> <span class="o">=</span> <span class="n">FastMCP</span><span class="p">(</span><span class="s2">&quot;docs&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@mcp</span><span class="o">.</span><span class="n">tool</span><span class="p">()</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">search_docs</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">search_docs</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Search the internal document corpus.</span>
 
 <span class="sd">    Args:</span>
@@ -627,7 +742,7 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 
 
 <span class="nd">@mcp</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s2">&quot;docs://</span><span class="si">{doc_id}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_document</span><span class="p">(</span><span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">get_document</span><span class="p">(</span><span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the full text of one document.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">store</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">doc_id</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 
@@ -643,7 +758,17 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 <p><strong>Tool descriptions are part of the prompt.</strong> A malicious server can put instructions in a tool description, which reach the model as trusted-looking text. This is prompt injection through a supply chain, and it is specific to the protocol.</p>
 <p><strong>Confused deputy.</strong> The server acts with its own credentials. If it exposes a tool that takes a resource path, and does not check that the <em>requesting user</em> may access that path, the model can be induced to read anything the server can. Authorization belongs in the server, per request, never inferred from the model's request.</p>
 <p><strong>Aggregate permissions.</strong> Five individually reasonable servers can combine into something dangerous: one reads your files, another makes network requests. Neither is a problem alone.</p>
-<h3 id="8-frameworks-depth">8. Frameworks [DEPTH]<a class="anchor" href="#8-frameworks-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 7. MCP</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="8-frameworks-depth-deep-dive">8. Frameworks [DEPTH · DEEP DIVE]<a class="anchor" href="#8-frameworks-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p><strong>LangChain</strong> provides abstractions over models, tools, retrievers and chains. <strong>LangGraph</strong> models an agent as a state graph with explicit nodes and edges, which makes control flow visible and checkpointable.</p>
 <p><strong>The honest assessment.</strong> LangGraph's graph model is genuinely useful: it makes the loop explicit rather than implicit, gives you checkpointing and human-in-the-loop as first-class features, and makes the control flow reviewable. That is real value.</p>
 <p><strong>And what matters in an interview is the concepts underneath.</strong> Being fluent in LangGraph and unable to explain retries, idempotency, circuit breakers or trajectory evaluation is a recognizable and penalized pattern. The framework is a means of expressing things you should be able to describe without it.</p>
@@ -683,7 +808,7 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 <p>An agent multiplies every dependency's unreliability by the number of steps.</p>
 <p><strong>Retries, and the trap.</strong> Module <code>02</code> section 11: retry only what is idempotent. An agent retrying a timed-out <code>send_email</code> may send twice. The timeout means you do not know whether it succeeded, so the tool definition must say whether it is safe to retry:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Tool</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Tool</span><span class="p">:</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">schema</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]</span>
     <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span>
@@ -697,11 +822,21 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 <p><strong>Fallbacks with care.</strong> Falling back to a smaller model on failure means the agent continues with different capabilities, which can be worse than failing. Log which model produced each step, or a post-mortem is impossible.</p>
 <p><strong>Rate limits.</strong> An agent can generate calls far faster than a human. Limit per run and per tool.</p>
 <p><strong>Graceful degradation.</strong> Decide in advance what a partial result looks like. "I checked the order system and the payment system but could not reach shipping, so here is what I found" is a good outcome. Silently omitting the shipping check is not.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 9. Reliability</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="10-evaluating-trajectories-core">10. Evaluating trajectories [CORE]<a class="anchor" href="#10-evaluating-trajectories-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Final-answer accuracy is insufficient</strong>, and this is the section's whole argument. An agent can reach the right answer by the wrong route: calling a tool it should not have, taking eleven steps instead of two, or getting lucky after a failure. It can also produce a plausible wrong answer through a perfectly reasonable path. You need to evaluate the <em>path</em>.</p>
 <p><strong>A trajectory evaluation harness:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">TrajectoryCase</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">TrajectoryCase</span><span class="p">:</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">goal</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">expected_tools</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>                          <span class="c1"># required, in this relative order</span>
@@ -710,7 +845,7 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
 
 
 <span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">TrajectoryResult</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">TrajectoryResult</span><span class="p">:</span>
     <span class="n">case_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">called_required</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">correct_order</span><span class="p">:</span> <span class="nb">bool</span>
@@ -720,12 +855,12 @@ reject: invalid arguments for get_rate: (&#39;base&#39;,) String should have at 
     <span class="n">step_count</span><span class="p">:</span> <span class="nb">int</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">passed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">passed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">called_required</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">correct_order</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_forbidden</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">all_args_valid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminated</span><span class="p">])</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">TrajectoryCase</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Step</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">TrajectoryResult</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">TrajectoryCase</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Step</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">TrajectoryResult</span><span class="p">:</span>
     <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">tool</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">]</span>
     <span class="n">called</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">t</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">case</span><span class="o">.</span><span class="n">expected_tools</span><span class="p">)</span>
 
@@ -787,6 +922,16 @@ t3     True   True  False False False      4  False
 </tbody>
 </table>
 <p><strong>Build adversarial cases deliberately</strong>, which is what makes the evaluation worth anything: a tool that times out, a tool returning malformed data, a tool whose output contains an injection attempt, an unanswerable request, and a request that should be refused.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 10. Evaluating trajectories</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="11-security-core">11. Security [CORE]<a class="anchor" href="#11-security-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The lethal trifecta</strong>, which is the framing worth carrying into an interview. Serious risk requires three things together:</p>
 <ol>
@@ -844,6 +989,16 @@ t3     True   True  False False False      4  False
 <p><strong>What does not work:</strong> instructing the model to ignore injected instructions. It is more tokens competing on equal terms with the injected text. It raises the bar and closes nothing, and claiming otherwise in an interview signals you have not tried to break your own system.</p>
 <p><strong>Excessive permissions are the most common real problem.</strong> A tool with broad database write access because it was easier than scoping it. A file tool that can read any path. A shell tool "for flexibility". The question to ask of every tool: <em>if an attacker controlled its arguments, what is the worst outcome?</em> That is the actual blast radius, because with injection they might.</p>
 <hr />
+<blockquote>
+<p><strong>Concept checkpoint — 11. Security</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h2 id="worked-example-designing-a-support-agent-safely">Worked example: designing a support agent safely<a class="anchor" href="#worked-example-designing-a-support-agent-safely" aria-label="Link to this section">#</a></h2>
 <p>The reasoning to reproduce under interview conditions.</p>
 <p><strong>Requirement:</strong> answer customer questions about their orders, look up order status, check shipping, and escalate to a human when needed.</p>
@@ -969,6 +1124,9 @@ t3     True   True  False False False      4  False
 <li><strong>Check what the model actually saw</strong>, including tool descriptions and truncation.</li>
 </ol>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. When should something be an agent?</strong></p>
 <p><em>Strong outline:</em> Only when the model decides the control flow. The test: can you draw the flowchart in advance? If yes, build the flowchart, because it is cheaper, faster, testable and debuggable. An agent earns its complexity only when the required steps genuinely depend on what is discovered along the way. Then name what agents are bad at: predictability, so testing and cost forecasting get much harder; debugging, since a failure is somewhere in a variable-length trace; cost, because context accumulates so five steps cost far more than five single calls; and stopping. Give a placement example: "answer questions about our policies" is RAG, "investigate why this order failed" is genuinely an agent because you do not know which system to check until you check one.</p>
@@ -1014,7 +1172,10 @@ t3     True   True  False False False      4  False
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/08-agents-practice.md</code>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-08-agents.html">08 practice pack</a>.</p>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>Take four real problems and place each on the section 2 spectrum, writing one sentence of justification for each.</li>
@@ -1120,18 +1281,23 @@ t3     True   True  False False False      4  False
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#running-example-document-based-support-assistant">Running example: document-based support assistant</a></li>
 <li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
 <li class="toc-l3"><a href="#1-what-an-agent-is-and-is-not-core">1. What an agent is, and is not [CORE]</a></li>
 <li class="toc-l3"><a href="#2-the-spectrum-from-prompt-to-agent-core">2. The spectrum from prompt to agent [CORE]</a></li>
 <li class="toc-l3"><a href="#3-tool-schemas-and-validation-core">3. Tool schemas and validation [CORE]</a></li>
 <li class="toc-l3"><a href="#4-the-agent-loop-and-stopping-core">4. The agent loop, and stopping [CORE]</a></li>
 <li class="toc-l3"><a href="#5-state-memory-and-human-in-the-loop-core">5. State, memory, and human-in-the-loop [CORE]</a></li>
-<li class="toc-l3"><a href="#6-multi-agent-and-when-not-to-depth">6. Multi-agent, and when not to [DEPTH]</a></li>
+<li class="toc-l3"><a href="#6-multi-agent-and-when-not-to-depth-deep-dive">6. Multi-agent, and when not to [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l3"><a href="#7-mcp-core">7. MCP [CORE]</a></li>
-<li class="toc-l3"><a href="#8-frameworks-depth">8. Frameworks [DEPTH]</a></li>
+<li class="toc-l3"><a href="#8-frameworks-depth-deep-dive">8. Frameworks [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l3"><a href="#9-reliability-core">9. Reliability [CORE]</a></li>
 <li class="toc-l3"><a href="#10-evaluating-trajectories-core">10. Evaluating trajectories [CORE]</a></li>
 <li class="toc-l3"><a href="#11-security-core">11. Security [CORE]</a></li>

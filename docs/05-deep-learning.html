@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 39 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="05-deep-learning">05 Deep Learning<a class="anchor" href="#05-deep-learning" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low for fundamentals, medium for tooling</p>
 <p>Every number here was produced by running the code, on PyTorch 2.14 and scikit-learn 1.8. The backpropagation example is worked by hand and then checked against autograd; the gradients match to floating-point precision.</p>
@@ -134,6 +147,56 @@
 <p>Module <code>04</code> is a hard prerequisite. Every diagnostic here is that module's diagnostic applied to a different model family.</p>
 <p>Mathematically: you need the chain rule. If <code>y</code> depends on <code>u</code> and <code>u</code> depends on <code>x</code>, then <code>dy/dx = dy/du × du/dx</code>. That is the whole of backpropagation.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>5 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Python 3.11+ and PyTorch 2.0+</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read forward pass/loss, backpropagation, optimizers, learning curves, and diagnosis. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Trace a forward pass, loss, gradient, and parameter update.</li>
+<li>Diagnose learning curves, vanishing gradients, and optimization failures.</li>
+<li>Explain when transfer learning or fine-tuning is the sensible choice.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What does a loss function measure during training?</li>
+<li>What direction does gradient descent move a parameter?</li>
+<li>What does it mean when training loss falls but validation loss rises?</li>
+<li>How can a learning rate be too high or too low?</li>
+<li>Why can normalization or residual connections help optimization?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import torch; print(torch.__version__)&quot;</span>
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -223,7 +286,7 @@
 <p><strong>Where the analogy breaks down.</strong> "Which way should each number move" suggests a search over a landscape with a bottom you are trying to reach. In high dimensions the picture is different: local minima are rarely the problem, saddle points and flat regions are, and the surprising empirical fact is that many different minima give similar performance. Training is less like descending into a valley and more like drifting through a vast, mostly-flat space until you land somewhere good enough.</p>
 <hr />
 <h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Input x leads to z1 = W1 x + b1; Loss leads to delta2 = dL/dz2; delta2 = dL/dz2 leads to dL/dW2 = delta2 a1^T; delta2 = dL/dz2 leads to delta1 = dL/dz1; delta1 = dL/dz1 leads to dL/dW1 = delta1 x^T; dL/dW2 = delta2 a1^T leads to Optimizer step; dL/dW1 = delta1 x^T leads to Optimizer step; Optimizer step leads to z1 = W1 x + b1.">flowchart TD
     X[&quot;Input x&quot;]
     Z1[&quot;z1 = W1 x + b1&quot;]
     A1[&quot;a1 = activation(z1)&quot;]
@@ -246,14 +309,26 @@
     GW2 --&gt; UPD
     GW1 --&gt; UPD
     UPD --&gt;|&quot;next iteration&quot;| Z1
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Input x leads to z1 = W1 x + b1; Loss leads to delta2 = dL/dz2; delta2 = dL/dz2 leads to dL/dW2 = delta2 a1^T; delta2 = dL/dz2 leads to delta1 = dL/dz1; delta1 = dL/dz1 leads to dL/dW1 = delta1 x^T; dL/dW2 = delta2 a1^T leads to Optimizer step; dL/dW1 = delta1 x^T leads to Optimizer step; Optimizer step leads to z1 = W1 x + b1.</p></details></div>
 <hr />
+<h2 id="running-example-document-based-support-assistant">Running example: document-based support assistant<a class="anchor" href="#running-example-document-based-support-assistant" aria-label="Link to this section">#</a></h2>
+<p>The support assistant can use a learned embedding or reranking model. The forward pass, loss, gradients, and learning curves explain how you would diagnose a fine-tuning run.</p>
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-what-a-network-is-foundation">1. What a network is [FOUNDATION]<a class="anchor" href="#1-what-a-network-is-foundation" aria-label="Link to this section">#</a></h3>
 <p>A layer computes <code>z = Wx + b</code>, a matrix multiply plus an offset. Then an activation function applies a nonlinearity elementwise.</p>
 <p><strong>Why the nonlinearity is the entire point.</strong> Stack two linear layers and you get <code>W₂(W₁x + b₁) + b₂</code>, which simplifies to <code>(W₂W₁)x + (W₂b₁ + b₂)</code>, a single linear transformation. <strong>Without nonlinearity, a hundred layers have exactly the same expressive power as one.</strong> Depth buys you nothing at all.</p>
 <p>The nonlinearity breaks that collapse, and then depth lets the network build representations: early layers learn simple features, later layers combine them into complex ones. That compositional structure is what "deep" means.</p>
 <p><strong>Width versus depth.</strong> A wide enough single hidden layer can approximate any continuous function, which sounds like depth is unnecessary. In practice depth is dramatically more parameter-efficient for the structured functions that appear in real problems, because composition reuses features rather than enumerating cases.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. What a network is</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-forward-pass-and-loss-foundation">2. Forward pass and loss [FOUNDATION]<a class="anchor" href="#2-forward-pass-and-loss-foundation" aria-label="Link to this section">#</a></h3>
 <p>The forward pass for a 2-layer network:</p>
 <div class="highlight"><pre><span></span><code>z1 = W1 x + b1
@@ -265,6 +340,16 @@ L  = loss(a2, y)
 
 <p>That is the whole thing. Everything after is about adjusting <code>W1, b1, W2, b2</code>.</p>
 <p><strong>The loss must be differentiable</strong>, because training needs its gradient. This is why accuracy is not a loss function: it is a step function, so its gradient is zero almost everywhere and tells you nothing about which direction to move. You train on a differentiable surrogate such as cross-entropy and <em>evaluate</em> on accuracy or whatever module <code>04</code> section 9 says the decision needs.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. Forward pass and loss</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-backpropagation-by-hand-core">3. Backpropagation by hand [CORE]<a class="anchor" href="#3-backpropagation-by-hand-core" aria-label="Link to this section">#</a></h3>
 <p>Work it once with real numbers and it stops being mysterious.</p>
 <p><strong>The network:</strong> 2 inputs, 2 hidden units with sigmoid, 1 output with sigmoid, squared-error loss.</p>
@@ -313,6 +398,16 @@ ALL GRADIENTS MATCH
 <p><strong><code>delta</code> is the reusable quantity.</strong> Once you have <code>delta</code> for a layer, the weight gradient is <code>delta · (that layer's input)ᵀ</code>, always. This is why backpropagation is efficient: you compute each <code>delta</code> once and reuse it, rather than recomputing paths for every parameter.</p>
 <p><strong>Backward propagation of error is literally <code>Wᵀ delta</code>.</strong> The same weights that carried activations forward carry error backward, transposed. That symmetry is the algorithm.</p>
 <p><strong>Notice the gradient magnitudes.</strong> <code>dL/dW2</code> is around 0.03; <code>dL/dW1</code> is around 0.004, roughly ten times smaller after one layer. Two layers, ten-fold shrinkage. Section 9 shows what happens at twelve layers.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Backpropagation by hand</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-gradient-descent-and-optimizers-core">4. Gradient descent and optimizers [CORE]<a class="anchor" href="#4-gradient-descent-and-optimizers-core" aria-label="Link to this section">#</a></h3>
 <p>The update rule: <code>parameter ← parameter − learning_rate × gradient</code>.</p>
 <table>
@@ -345,6 +440,16 @@ ALL GRADIENTS MATCH
 <p><strong>Adam</strong> combines momentum with per-parameter learning rates scaled by a running estimate of each gradient's magnitude. Parameters with consistently small gradients get larger effective steps. It works well out of the box, which is why it is the default.</p>
 <p><strong>What to use:</strong> Adam or AdamW, learning rate around 1e-3, and only investigate further if training misbehaves. <code>[UNVERIFIED: this is a convention, not a measurement; the right value depends on architecture and scale]</code> SGD with momentum and a tuned schedule sometimes generalizes slightly better on vision tasks, which is a detail worth knowing and not worth starting with.</p>
 <p><strong>AdamW</strong> decouples weight decay from the gradient update. In plain Adam, weight decay gets scaled by the per-parameter learning rate, which weakens it inconsistently. AdamW applies it directly and is the correct default for transformers.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Gradient descent and optimizers</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-learning-rate-batch-size-epochs-core">5. Learning rate, batch size, epochs [CORE]<a class="anchor" href="#5-learning-rate-batch-size-epochs-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Learning rate is the hyperparameter that matters most.</strong></p>
 <table>
@@ -401,12 +506,32 @@ lr far too high (5.0)   train=0.0000  val=29492.0723
 </table>
 <p>The noise in small-batch training is not purely a cost: it helps escape sharp minima and often generalizes slightly better. <strong>The common rule: when you increase batch size, increase the learning rate roughly proportionally</strong>, since you are averaging over more samples and the gradient estimate is correspondingly more reliable. <code>[VERIFY: the linear scaling rule holds over a range and breaks down at extremes @ current literature]</code></p>
 <p><strong>Epochs</strong> are passes over the data. The right number is "until validation loss stops improving", which is what early stopping automates.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Learning rate, batch size, epochs</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="6-initialization-and-normalization-core">6. Initialization and normalization [CORE]<a class="anchor" href="#6-initialization-and-normalization-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Initialization is not arbitrary.</strong> All zeros means every unit in a layer computes the same thing and receives the same gradient forever, so the layer has one effective unit. Too large and activations explode through depth; too small and they vanish.</p>
 <p><strong>Xavier/Glorot</strong> scales the initial weights by the number of inputs and outputs, keeping activation variance roughly constant through the network for sigmoid and tanh. <strong>He initialization</strong> does the same for ReLU, which zeroes half its inputs and therefore needs a factor-of-two larger scale to compensate. Frameworks default to something reasonable; knowing why it matters is the point.</p>
 <p><strong>Batch normalization</strong> normalizes each feature across the batch, then applies a learned scale and shift. It stabilizes training, allows higher learning rates, and acts as a mild regularizer through batch noise. Its problems: behavior differs between training and inference, since inference uses running statistics, and it is unreliable with very small batches.</p>
 <p><strong>Layer normalization</strong> normalizes across features within each sample instead. Independent of batch size, identical at training and inference, and therefore the choice for transformers and anything with variable-length sequences.</p>
 <p><strong>Which and why:</strong> batch norm for convolutional vision models, layer norm for transformers. If a model behaves differently in <code>eval()</code> mode than in <code>train()</code>, batch norm's running statistics are the first suspect, along with dropout.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Initialization and normalization</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="7-activations-foundation">7. Activations [FOUNDATION]<a class="anchor" href="#7-activations-foundation" aria-label="Link to this section">#</a></h3>
 <table>
 <thead>
@@ -451,6 +576,16 @@ lr far too high (5.0)   train=0.0000  val=29492.0723
 </table>
 <p><strong>Why ReLU displaced sigmoid</strong>, which is the interview question. Sigmoid's derivative is <code>σ(1-σ)</code>, with a maximum of 0.25 at the centre and near zero at either extreme. Every layer multiplies the backward signal by that derivative, so a deep sigmoid network multiplies by numbers at most 0.25 repeatedly, and the gradient vanishes exponentially with depth. ReLU's derivative is exactly 1 for positive inputs, so the signal passes through undiminished.</p>
 <p><strong>Dying ReLU:</strong> a unit whose input is always negative outputs zero, so its gradient is zero and it never recovers. Leaky ReLU and GELU avoid this by having a nonzero slope for negative inputs. It is mostly a problem with a too-high learning rate.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Activations</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="8-losses-foundation">8. Losses [FOUNDATION]<a class="anchor" href="#8-losses-foundation" aria-label="Link to this section">#</a></h3>
 <table>
 <thead>
@@ -489,6 +624,16 @@ lr far too high (5.0)   train=0.0000  val=29492.0723
 <p><strong>Why cross-entropy rather than MSE for classification.</strong> MSE combined with a sigmoid produces a gradient that includes the sigmoid's derivative, which is near zero when the model is confidently wrong. So the more wrong it is, the less it learns. Cross-entropy's gradient with a sigmoid output simplifies to <code>(prediction − target)</code>, which is large exactly when the model is badly wrong. That cancellation is why the pairing is standard.</p>
 <p><strong><code>BCEWithLogitsLoss</code> beats <code>Sigmoid</code> then <code>BCELoss</code></strong> for numerical stability. Computing the sigmoid and then its logarithm separately loses precision, and can produce <code>inf</code> or <code>NaN</code> for confident predictions. The combined version uses the log-sum-exp trick internally, exactly as in module 06 section 3's softmax. Same principle, different place. Always use the combined form.</p>
 <p><strong>Contrastive and triplet losses</strong> matter directly for AI engineering: they are how the embedding models in module 07 are trained. Pull similar pairs together, push dissimilar ones apart. Fine-tuning an embedding model on your own domain means training with one of these.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 8. Losses</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="9-vanishing-and-exploding-gradients-core">9. Vanishing and exploding gradients [CORE]<a class="anchor" href="#9-vanishing-and-exploding-gradients-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Measured.</strong> Twelve-layer networks, 64 units wide, gradient magnitude at each layer after one backward pass:</p>
 <table>
@@ -560,6 +705,16 @@ lr far too high (5.0)   train=0.0000  val=29492.0723
 </tbody>
 </table>
 <p><strong>Residual connections are the one that made very deep networks possible.</strong> A layer computing <code>x + f(x)</code> rather than <code>f(x)</code> means the gradient flows through the <code>x</code> term unchanged, no matter what <code>f</code> does. The gradient has a direct route to every earlier layer. Every transformer is built from residual blocks for exactly this reason, and this is the answer to "how do modern networks get to be 100 layers deep".</p>
+<blockquote>
+<p><strong>Concept checkpoint — 9. Vanishing and exploding gradients</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="10-regularization-core">10. Regularization [CORE]<a class="anchor" href="#10-regularization-core" aria-label="Link to this section">#</a></h3>
 <table>
 <thead>
@@ -603,6 +758,16 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 <p>Weight decay raised the training loss from 0.0000 to 0.1227, which looks like making the model worse, and cut validation loss from 1.70 to 0.29, a six-fold improvement. <strong>That is regularization in one table: fit the training data deliberately worse to generalize better.</strong></p>
 <p><strong>Dropout is only active during training.</strong> <code>model.eval()</code> disables it. Forgetting to call <code>eval()</code> before validation is a classic bug that makes validation metrics noisy and pessimistic, and it is why the training loop in section 12 calls <code>train()</code> and <code>eval()</code> explicitly.</p>
 <p><strong>Early stopping needs patience.</strong> Validation loss is noisy, so stopping at the first uptick stops too early. Wait N epochs without improvement, and keep the best checkpoint rather than the last.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 10. Regularization</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="11-architectures-foundation">11. Architectures [FOUNDATION]<a class="anchor" href="#11-architectures-foundation" aria-label="Link to this section">#</a></h3>
 <p><strong>CNNs</strong> apply small learned filters across an input, sharing weights across positions. This encodes two assumptions: locality, meaning nearby pixels are related, and translation invariance, meaning a feature means the same thing anywhere. Both are true for images and mostly false for tabular data, which is why CNNs dominate vision and do not help on a spreadsheet.</p>
 <p><strong>RNNs</strong> process sequences one step at a time, carrying a hidden state. <strong>LSTMs and GRUs</strong> add gates that control what is remembered and forgotten, which mitigates vanishing gradients over time steps.</p>
@@ -631,6 +796,16 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 </table>
 <p>The first row is the practical one: transformers could be trained on far more data with the same hardware, and scale turned out to matter enormously. The second is the representational one. Both are true and the parallelism argument is the one people underweight.</p>
 <p>The cost is that attention is quadratic in sequence length, which is why context windows are expensive and why module 06 section 7's KV cache exists.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 11. Architectures</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="12-pytorch-core">12. PyTorch [CORE]<a class="anchor" href="#12-pytorch-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Tensors and autograd.</strong> A tensor with <code>requires_grad=True</code> records the operations applied to it, building a graph; <code>.backward()</code> walks it in reverse and accumulates gradients into <code>.grad</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -640,8 +815,8 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 </code></pre></div>
 
 <p><strong>The training loop</strong>, which you should be able to write from memory:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
@@ -680,6 +855,16 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 <p>Save the optimizer state too, or resuming restarts Adam's moment estimates from zero and your training visibly stumbles.</p>
 <p><strong>Device handling:</strong> model and data must be on the same device. <code>RuntimeError: Expected all tensors to be on the same device</code> is the most common PyTorch error and always means one <code>.to(device)</code> is missing.</p>
 <p><strong>Mixed precision</strong> computes in 16-bit while keeping a 32-bit copy of the weights. Roughly halves memory and speeds up training on modern hardware. This is module 06 section 8's quantization idea applied to training rather than inference.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 12. PyTorch</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="13-diagnosing-a-training-run-core">13. Diagnosing a training run [CORE]<a class="anchor" href="#13-diagnosing-a-training-run-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The single most useful skill in this module.</strong> Measured examples, all on the same data with one variable changed:</p>
 <table>
@@ -739,6 +924,16 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 <li>Is validation <em>below</em> training? A bug, usually dropout still active during validation, or a leak, exactly as in <code>04</code> section 5.</li>
 <li>Does it look healthy and still perform badly in production? Module <code>04</code> section 2. Leakage.</li>
 </ol>
+<blockquote>
+<p><strong>Concept checkpoint — 13. Diagnosing a training run</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="14-transfer-learning-and-fine-tuning-core">14. Transfer learning and fine-tuning [CORE]<a class="anchor" href="#14-transfer-learning-and-fine-tuning-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Take a model trained on a large general task, adapt it to your specific one.</strong> The pretrained model has learned representations that transfer, so you need far less data.</p>
 <table>
@@ -781,9 +976,19 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 </ul>
 <p>Fine-tune for <em>behavior</em>: a consistent output format, a domain style, a fixed taxonomy. And for AI engineering specifically, the most common genuinely useful case is <strong>fine-tuning an embedding model or reranker on your own domain</strong>, using the contrastive losses from section 8, which can meaningfully improve module 07's retrieval.</p>
 <hr />
+<blockquote>
+<p><strong>Concept checkpoint — 14. Transfer learning and fine-tuning</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h2 id="worked-example-three-broken-runs-diagnosed">Worked example: three broken runs, diagnosed<a class="anchor" href="#worked-example-three-broken-runs-diagnosed" aria-label="Link to this section">#</a></h2>
 <p>The exercise that builds the skill. One network, one dataset, one variable changed each time.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">hidden</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_train</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">hidden</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_train</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">xt</span><span class="p">,</span> <span class="n">yt</span> <span class="o">=</span> <span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">ytr</span><span class="p">)</span> <span class="k">if</span> <span class="n">n_train</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">Xtr</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">ytr</span><span class="p">[:</span><span class="n">n_train</span><span class="p">])</span>
     <span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">hidden</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
@@ -885,6 +1090,9 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 <li><strong>Seed everything</strong> before concluding a change helped.</li>
 </ol>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. Explain backpropagation.</strong></p>
 <p><em>Strong outline:</em> It is the chain rule applied in reverse through the network, reusing intermediates so all gradients cost about one forward pass rather than one pass per parameter. Walk the 2-layer example: <code>delta2 = (a2 − y) × a2(1 − a2)</code>, then <code>dL/dW2 = delta2 · a1ᵀ</code>, then propagate with <code>W2ᵀ delta2</code> times this layer's activation slope to get <code>delta1</code>, then <code>dL/dW1 = delta1 · xᵀ</code>. The structural insight is that <code>delta</code> is the reusable quantity and the weight gradient is always <code>delta</code> times that layer's input transposed. Note the symmetry: the same weights that carried activations forward carry error backward, transposed.</p>
@@ -930,7 +1138,10 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/05-deep-learning-practice.md</code>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-05-deep-learning.html">05 practice pack</a>.</p>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>Do the section 3 backprop by hand on paper with different numbers, then verify against autograd. Do not skip the paper step.</li>
@@ -1046,9 +1257,14 @@ high variance + weight decay (1e-1)  train=0.1227  val=0.2905  gap=+0.1678
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#running-example-document-based-support-assistant">Running example: document-based support assistant</a></li>
 <li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
 <li class="toc-l3"><a href="#1-what-a-network-is-foundation">1. What a network is [FOUNDATION]</a></li>
 <li class="toc-l3"><a href="#2-forward-pass-and-loss-foundation">2. Forward pass and loss [FOUNDATION]</a></li>

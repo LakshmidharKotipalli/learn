@@ -279,6 +279,10 @@ main { min-width: 0; padding: 34px 44px 90px; }
 }
 .doc h3 { font-size: 1.15rem; margin: 1.9em 0 .6em; font-weight: 640; }
 .doc h4 { font-size: 1rem; margin: 1.6em 0 .5em; font-weight: 640; color: var(--fg-muted); }
+.doc-meta {
+  margin: -1.1em 0 2.2em; color: var(--fg-faint); font-size: 13px;
+  letter-spacing: .01em;
+}
 
 .anchor {
   margin-left: .35em; color: var(--border-strong);
@@ -382,6 +386,8 @@ pre.mermaid {
 }
 pre.mermaid[data-processed] { text-align: center; }
 .mermaid-wrap svg { max-width: 100%; height: auto; }
+.diagram-description { margin-top: 12px !important; text-align: left; }
+.diagram-description summary { font-size: 12px; }
 
 /* ---------- landing page ---------- */
 
@@ -528,4 +534,3 @@ pre.mermaid[data-processed] { text-align: center; }
   .doc { max-width: none; }
   .doc pre, .doc table { break-inside: avoid; }
 }
-

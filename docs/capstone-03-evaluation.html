@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 10 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="careeratlas-evaluation-and-safety">CareerAtlas: Evaluation and Safety<a class="anchor" href="#careeratlas-evaluation-and-safety" aria-label="Link to this section">#</a></h1>
 <p><strong>Capstone 4 of 5</strong> · Last reviewed: 2026-09-18</p>
 <p>Four things to evaluate, each needing a different method: retrieval, grounding, grading, and gap analysis. Then the safety analysis.</p>
@@ -129,7 +142,7 @@
 <hr />
 <h2 id="2-grounding-evaluation">2. Grounding evaluation<a class="anchor" href="#2-grounding-evaluation" aria-label="Link to this section">#</a></h2>
 <p><strong>Citation validity: exact, automated, and should be 100%.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_citations</span><span class="p">(</span><span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">validate_citations</span><span class="p">(</span><span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Every [Sn] marker must resolve to a chunk that was actually retrieved.&quot;&quot;&quot;</span>
     <span class="n">cited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[S(\d+)\]&quot;</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
     <span class="n">available</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">retrieved</span><span class="p">))}</span>
@@ -167,7 +180,7 @@
 <p><strong>The hardest component, and the one the PRD makes an honesty requirement.</strong></p>
 <h3 id="consistency">Consistency<a class="anchor" href="#consistency" aria-label="Link to this section">#</a></h3>
 <p>The cheapest and most informative measurement. Grade the same 20 answers twice, at temperature 0, and compare.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">measure_consistency</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">StoredAnswer</span><span class="p">],</span> <span class="n">grader</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">measure_consistency</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">StoredAnswer</span><span class="p">],</span> <span class="n">grader</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Same answer, graded twice. Disagreement means the grade is noise.&quot;&quot;&quot;</span>
     <span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">grader</span><span class="o">.</span><span class="n">grade</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">grader</span><span class="o">.</span><span class="n">grade</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">answers</span><span class="p">]</span>
     <span class="n">exact</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">pairs</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">score</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>

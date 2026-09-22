@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 56 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="07-rag-and-vector-search">07 RAG and Vector Search<a class="anchor" href="#07-rag-and-vector-search" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> high for tooling, low for the engineering principles</p>
 <p>The highest-value module in this curriculum for the roles you are targeting. Spend more time here, not less.</p>
@@ -137,6 +150,56 @@
 </table>
 <p><strong>If you are on the LLM-first fast path</strong>, you can read this before <code>06</code>. Retrieval is mostly a data and search problem, and having watched a retriever fail makes the transformer material easier to care about. You will need to take the embedding vector on faith for one module, which is a fair trade.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>6 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Python 3.11+, NumPy, and the terminal</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read when RAG is wrong, chunking, embeddings, hybrid search, grounding, and evaluation. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Decide when RAG is the wrong tool and when retrieval is appropriate.</li>
+<li>Design ingestion, chunking, filtering, hybrid retrieval, and reranking choices.</li>
+<li>Diagnose retrieval and answer failures with metrics rather than intuition.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>When would a database query or fine-tuning be better than RAG?</li>
+<li>What information can be lost when a document is chunked badly?</li>
+<li>What does recall@k measure?</li>
+<li>Why combine lexical and vector retrieval?</li>
+<li>How do you distinguish a retrieval failure from a generation failure?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import numpy; print(numpy.__version__)&quot;</span>
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -168,13 +231,13 @@
 <td>...say why cosine and dot product differ, and when</td>
 </tr>
 <tr>
-<td>5. Vector indexes and ANN</td>
+<td>5. Vector indexes and approximate nearest-neighbor (ANN) search</td>
 <td>[CORE]</td>
 <td>...explain what recall you give up for speed, and how to measure it</td>
 </tr>
 <tr>
 <td>6. Metadata filtering</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...say why filtering plus ANN is harder than filtering plus a scan</td>
 </tr>
 <tr>
@@ -199,7 +262,7 @@
 </tr>
 <tr>
 <td>11. Security and operations</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...describe a permission-aware retrieval design</td>
 </tr>
 </tbody>
@@ -212,7 +275,7 @@
 <p><strong>Where the analogy breaks down.</strong> A search engine returns a ranked list to a human, who is good at ignoring bad results. A language model is not. It will confidently synthesize an answer from a chunk that is topically similar and factually irrelevant, and it will do so fluently. A search engine's precision problem is a mild annoyance; a RAG system's precision problem produces confident falsehoods. This is why reranking and thresholds matter more here than in classical search.</p>
 <hr />
 <h2 id="concept-map">Concept map<a class="anchor" href="#concept-map" aria-label="Link to this section">#</a></h2>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Source documents leads to Parse, extract text plus structure; Chunk leads to Lexical index, BM25; User query leads to Query rewriting; Query rewriting leads to Dense retrieval; Query rewriting leads to Sparse retrieval; Vector index leads to Dense retrieval; Lexical index, BM25 leads to Sparse retrieval; Fuse, RRF leads to Cross-encoder rerank; Evaluation set leads to Fuse, RRF; Evaluation set leads to Cited answer, or refusal.">flowchart TD
     DOCS[&quot;Source documents&quot;]
     PARSE[&quot;Parse, extract text plus structure&quot;]
     CHUNK[&quot;Chunk&quot;]
@@ -244,9 +307,11 @@
     EVAL[&quot;Evaluation set&quot;]
     EVAL -.-&gt;|&quot;measures&quot;| FUSE
     EVAL -.-&gt;|&quot;measures&quot;| ANS
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Source documents leads to Parse, extract text plus structure; Chunk leads to Lexical index, BM25; User query leads to Query rewriting; Query rewriting leads to Dense retrieval; Query rewriting leads to Sparse retrieval; Vector index leads to Dense retrieval; Lexical index, BM25 leads to Sparse retrieval; Fuse, RRF leads to Cross-encoder rerank; Evaluation set leads to Fuse, RRF; Evaluation set leads to Cited answer, or refusal.</p></details></div>
 <p>The dotted lines matter. Evaluation attaches at two points, retrieval and generation, and measuring only the end is how teams spend weeks tuning prompts to fix a retrieval bug.</p>
 <hr />
+<h2 id="running-example-document-based-support-assistant">Running example: document-based support assistant<a class="anchor" href="#running-example-document-based-support-assistant" aria-label="Link to this section">#</a></h2>
+<p>The support assistant ingests policy documents, retrieves evidence for a question, and produces a grounded answer. Every step exposes a different failure mode that the evaluation set should isolate.</p>
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-when-rag-is-the-wrong-answer-core">1. When RAG is the wrong answer [CORE]<a class="anchor" href="#1-when-rag-is-the-wrong-answer-core" aria-label="Link to this section">#</a></h3>
 <p>Four techniques for making a model produce output it otherwise would not. They solve different problems and the most common architectural mistake is reaching for RAG when you needed one of the others.</p>
@@ -298,6 +363,16 @@
 <p><strong>Using fine-tuning for facts.</strong> Fine-tuning on your documentation bakes a snapshot into the weights. It changes, and now you have a model confidently stating last quarter's policy with no way to update it short of retraining. Fine-tuning teaches behavior; RAG supplies facts.</p>
 <p><strong>Using RAG when the corpus fits in the context.</strong> If the entire knowledge base is 30,000 tokens and your context window is 200,000, retrieval adds latency, complexity and a failure mode in exchange for nothing. Put it all in the prompt. <code>[VERIFY: context window sizes and pricing change constantly @ current provider docs]</code> The crossover point moves; the reasoning does not. Cost and latency scale with context, so "it fits" and "it is worth putting in" are different questions once you are at volume.</p>
 <p><strong>They are not exclusive.</strong> A production system is usually RAG plus tools plus a carefully engineered prompt, and occasionally a fine-tuned model for one narrow step such as query classification.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. When RAG is the wrong answer</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-ingestion-and-parsing-core">2. Ingestion and parsing [CORE]<a class="anchor" href="#2-ingestion-and-parsing-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The unglamorous truth: this stage determines your ceiling.</strong> No amount of reranking recovers from text extracted in the wrong reading order. Teams consistently under-invest here and then spend months tuning retrieval against corrupted input.</p>
 <p><strong>What breaks, by format:</strong></p>
@@ -360,7 +435,7 @@
 <p><strong>The DOCX tracked-changes case deserves emphasis.</strong> Naive extraction of a <code>.docx</code> with unaccepted revisions yields both the deleted and the inserted text, indistinguishable. A policy document where "employees may not" was changed to "employees may" retrieves as both. This is a correctness bug that no amount of retrieval tuning fixes, and it is invisible until someone notices the system contradicting itself.</p>
 <p><strong>Preserve structure, not just text.</strong> The single highest-leverage ingestion decision. A chunk that knows it came from "Employee Handbook &gt; Section 4: Leave &gt; 4.2 Parental Leave" is dramatically more useful than the same text floating free, because that path can go into the embedded text, into the metadata for filtering, and into the citation.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">ParsedDocument</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">ParsedDocument</span><span class="p">:</span>
     <span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Section</span><span class="p">]</span>          <span class="c1"># heading path preserved</span>
@@ -380,6 +455,16 @@
 <li>Duplicate content hash means you already have it.</li>
 </ul>
 <p>Log these and review the outliers by hand before building anything else. An hour reading twenty extracted documents will teach you more than a week of tuning.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 2. Ingestion and parsing</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-chunking-core">3. Chunking [CORE]<a class="anchor" href="#3-chunking-core" aria-label="Link to this section">#</a></h3>
 <p><strong>What chunking actually is:</strong> deciding the unit of retrieval. Not "splitting text", but answering "what is the smallest piece of this corpus that is a complete answer to something".</p>
 <p><strong>The fundamental tension:</strong></p>
@@ -425,7 +510,7 @@
 <p><strong>Choosing.</strong> Start with structure-aware splitting at roughly 300 to 500 tokens with 10 to 15% overlap, add parent-child if precision is the problem, add contextual retrieval if orphans are the problem. Then measure. <code>[UNVERIFIED: these starting numbers are a reasonable default, not a result. Your corpus decides. Sweep chunk size against recall@10 on your own eval set, which takes an afternoon and is the most informative afternoon in the project.]</code></p>
 <p><strong>Metadata to attach to every chunk</strong>, because retrofitting is painful:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Chunk</span><span class="p">:</span>
     <span class="n">chunk_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">parent_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>            <span class="c1"># for small-to-big</span>
@@ -441,6 +526,16 @@
 </code></pre></div>
 
 <p>Note <code>text</code> and <code>embed_text</code> differing. With contextual retrieval you embed an augmented version but show the model and the user the original. Conflating them means your citations contain generated text, which is a subtle correctness problem.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. Chunking</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-embeddings-and-similarity-foundation">4. Embeddings and similarity [FOUNDATION]<a class="anchor" href="#4-embeddings-and-similarity-foundation" aria-label="Link to this section">#</a></h3>
 <p>An embedding maps text to a fixed-length vector such that similar meanings land near each other. Module <code>06</code> covers how the model produces one; here is what you need to use them correctly.</p>
 <p><strong>The similarity metrics:</strong></p>
@@ -475,7 +570,7 @@
 </tbody>
 </table>
 <p><strong>The practical rule:</strong> normalize your vectors once at ingestion, then all three give the same ranking and dot product is fastest. If you do not normalize, cosine and dot product rank differently, and dot product will favor longer texts because their vectors tend to be longer. Most embedding APIs return normalized vectors; <strong>check rather than assume</strong>, because a mismatch between what your index expects and what your model produces is a silent quality bug.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">cosine_scores</span><span class="p">(</span><span class="n">query_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">cosine_scores</span><span class="p">(</span><span class="n">query_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">query_vec</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">query_vec</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
     <span class="n">m</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">m</span> <span class="o">@</span> <span class="n">q</span>
@@ -493,6 +588,16 @@
 <p>Each of these is a reason for section 7.</p>
 <p><strong>Choosing a model.</strong> Dimension (bigger is not automatically better, and costs memory linearly), maximum input length, whether it was trained for asymmetric search (short query against long document) or symmetric similarity, and domain fit. <code>[VERIFY: current model rankings @ the MTEB leaderboard, and treat leaderboard position as a weak signal, since benchmark performance frequently does not transfer to your corpus]</code></p>
 <p><strong>The operational rule that bites people: changing the embedding model means re-embedding everything.</strong> Vectors from different models are not comparable, not even approximately. Version your index, include the model name in your cache key as in <code>01b</code> section 9.5, and plan a migration path before you need one. A team that discovers this mid-incident has a bad week.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Embeddings and similarity</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-vector-indexes-and-approximate-search-core">5. Vector indexes and approximate search [CORE]<a class="anchor" href="#5-vector-indexes-and-approximate-search-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Exact search is a linear scan.</strong> Compute similarity against every vector, sort, take top-k. With normalized vectors this is one matrix multiply. For fewer than roughly 100,000 vectors on a modern machine this is genuinely fine, and reaching for a vector database before you need one is a common source of unnecessary complexity.</p>
 <p><code>[UNVERIFIED: the 100k figure is a rough order of magnitude. Measure on your hardware with your dimension; it is a one-line benchmark.]</code></p>
@@ -543,7 +648,17 @@
 </table>
 <p><strong>HNSW's tuning parameters</strong>, because they come up: <code>M</code> (edges per node, higher means better recall and more memory), <code>ef_construction</code> (build-time search breadth, higher means better index and slower build), <code>ef_search</code> (query-time breadth, higher means better recall and slower queries). <code>ef_search</code> is the runtime knob, and it is the one to sweep against your recall measurement.</p>
 <p><strong>Deletion is the operational trap.</strong> Graph indexes do not remove nodes cleanly; most implementations mark them deleted and filter at query time, which means deleted content still occupies memory and degrades the graph until a rebuild. If your product has a "delete my document" requirement, or a GDPR obligation, find out how your index handles deletion <strong>before</strong> you choose it, not after. This is both a real engineering concern and a question that distinguishes candidates who have run a system from those who have built one.</p>
-<h3 id="6-metadata-filtering-depth">6. Metadata filtering [DEPTH]<a class="anchor" href="#6-metadata-filtering-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Vector indexes and approximate search</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="6-metadata-filtering-depth-deep-dive">6. Metadata filtering [DEPTH · DEEP DIVE]<a class="anchor" href="#6-metadata-filtering-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p>You want "chunks about parental leave, from the 2026 handbook, that this user may see". The last two are filters.</p>
 <p><strong>Three strategies, and none is free:</strong></p>
 <p><strong>Pre-filter.</strong> Restrict the candidate set, then search within it. Correct by construction. But ANN indexes are built over the whole vector space, and you cannot simply walk a subset of an HNSW graph: the greedy traversal relies on nodes you just excluded, so connectivity breaks and recall collapses. For a highly selective filter this degenerates toward a linear scan over the subset, which is fine when the subset is small.</p>
@@ -554,10 +669,10 @@
 <h3 id="7-hybrid-search-and-reranking-core">7. Hybrid search and reranking [CORE]<a class="anchor" href="#7-hybrid-search-and-reranking-core" aria-label="Link to this section">#</a></h3>
 <p>Section 4 listed what embeddings fail at. Every item is something lexical search handles well, which is why hybrid is close to mandatory in production.</p>
 <p><strong>BM25</strong>, the lexical workhorse. Scores a document by the query terms it contains, weighting rare terms higher (inverse document frequency) and saturating on repetition, with a length normalization so long documents do not win by accident.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BM25</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BM25</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Lexical scoring. Exact terms, rare terms weighted higher.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">],</span> <span class="n">k1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">],</span> <span class="n">k1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chunks</span> <span class="o">=</span> <span class="n">chunks</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">k1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">k1</span><span class="p">,</span> <span class="n">b</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenize</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span>
@@ -570,7 +685,7 @@
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">docs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">idf</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">c</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">docs</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
             <span class="n">idf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">idf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
@@ -588,7 +703,7 @@
 <p><code>k1</code> controls term-frequency saturation, <code>b</code> controls length normalization. The defaults 1.5 and 0.75 are the standard starting point and rarely need changing.</p>
 <p><strong>Fusing the two rankings.</strong> You cannot add a BM25 score to a cosine score: different scales, different distributions, not comparable. Normalizing them is possible and fragile, since the normalization depends on the score distribution of that particular query.</p>
 <p><strong>Reciprocal rank fusion</strong> sidesteps this by using ranks rather than scores:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rrf</span><span class="p">(</span><span class="n">rankings</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">rrf</span><span class="p">(</span><span class="n">rankings</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reciprocal rank fusion. Combines rankings without comparable scores.&quot;&quot;&quot;</span>
     <span class="n">fused</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">ranking</span> <span class="ow">in</span> <span class="n">rankings</span><span class="p">:</span>
@@ -608,6 +723,16 @@
 <li><strong>HyDE.</strong> Generate a hypothetical answer, embed that, and search with it, on the theory that a fake answer is closer in embedding space to a real answer than a question is. Sometimes helps, adds a model call of latency, and is worth measuring rather than adopting.</li>
 </ul>
 <p>Every rewrite adds latency and a failure mode. Add them because your evaluation set showed a specific problem, not because they are in a blog post.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Hybrid search and reranking</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="8-prompt-construction-and-grounding-core">8. Prompt construction and grounding [CORE]<a class="anchor" href="#8-prompt-construction-and-grounding-core" aria-label="Link to this section">#</a></h3>
 <p>You have five good chunks. The remaining failure is the model ignoring them.</p>
 <p><strong>A prompt structure that works:</strong></p>
@@ -637,6 +762,16 @@ Question: {question}
 <p><strong>Metadata in the source block.</strong> The heading path and the update date let the model reason about recency and conflicts, and give the user context for the citation.</p>
 <p><strong>Conflict handling.</strong> Real corpora contain a 2024 policy and a 2026 policy. Without instruction, the model silently picks one. Telling it to surface the conflict converts a wrong answer into a useful one.</p>
 <p><strong>Grounding is not guaranteed by prompting.</strong> This is the honest part, and worth saying in an interview. The model can still produce a claim not supported by any source. The mitigations are an automated faithfulness check (section 9), showing users the sources so they can verify, and abstaining when retrieval scores are all below a threshold. Structural mitigation beats prompt wording.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 8. Prompt construction and grounding</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="9-evaluation-core">9. Evaluation [CORE]<a class="anchor" href="#9-evaluation-core" aria-label="Link to this section">#</a></h3>
 <p><strong>This section is the one that separates people who built a RAG demo from people who built a RAG system.</strong> If you skip everything else, do this.</p>
 <p><strong>You cannot improve what you cannot measure</strong>, and without an evaluation set every change is a guess. Teams without one spend months tuning prompts, shipping changes that feel better, and occasionally making things worse without noticing.</p>
@@ -653,20 +788,20 @@ Question: {question}
 <p><strong>Generating questions with a model is a reasonable shortcut with a specific bias:</strong> the questions come out phrased like the chunk they were generated from, so retrieval looks better than it is. If you do it, review and rewrite every question in your own words, and keep the real-user questions as a separate, more honest slice.</p>
 <p><strong>At least 20% of your set should be unanswerable.</strong> This is the part everyone skips. Without negative cases you cannot measure whether the system refuses appropriately, and a system that answers everything is a system that hallucinates on everything it does not know.</p>
 <h4 id="retrieval-metrics">Retrieval metrics<a class="anchor" href="#retrieval-metrics" aria-label="Link to this section">#</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">recall_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">recall_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">relevant</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">0.0</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">retrieved</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">relevant</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevant</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">mrr</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">mrr</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">cid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">cid</span> <span class="ow">in</span> <span class="n">relevant</span><span class="p">:</span>
             <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">rank</span>
     <span class="k">return</span> <span class="mf">0.0</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">ndcg_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">ndcg_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">dcg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
         <span class="mf">1.0</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">cid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">retrieved</span><span class="p">[:</span><span class="n">k</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -682,8 +817,8 @@ Question: {question}
 <tr>
 <th>Case</th>
 <th>recall@5</th>
-<th>MRR</th>
-<th>nDCG@5</th>
+<th>mean reciprocal rank (MRR)</th>
+<th>normalized discounted cumulative gain (nDCG)@5</th>
 </tr>
 </thead>
 <tbody>
@@ -752,7 +887,7 @@ Question: {question}
 <p><strong>On LLM-as-judge:</strong> useful and imperfect. Judges favor longer answers, favor their own model family's style, and drift when the judge model is updated. Mitigations: pin the judge model version, calibrate against a few dozen human labels, and use it for relative comparisons between system versions rather than as an absolute score. Never report a judge score as if it were ground truth.</p>
 <h4 id="the-regression-suite">The regression suite<a class="anchor" href="#the-regression-suite" aria-label="Link to this section">#</a></h4>
 <p>Once you have an evaluation set, it becomes a test suite:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_retrieval_recall_has_not_regressed</span><span class="p">(</span><span class="n">eval_set</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_retrieval_recall_has_not_regressed</span><span class="p">(</span><span class="n">eval_set</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
     <span class="n">recalls</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">recall_at_k</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">retriever</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">case</span><span class="o">.</span><span class="n">question</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)],</span> <span class="n">case</span><span class="o">.</span><span class="n">relevant</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">eval_set</span>
@@ -766,6 +901,16 @@ Question: {question}
 <p>Note the tolerance. Asserting on exact equality for a stochastic system produces a flaky test, and <code>02</code> section 6 explains why a flaky test is worse than no test. Assert on "no worse than baseline minus a margin".</p>
 <p>Run it in CI on every change to chunking, embedding, retrieval, or prompts. Store the per-case results so a regression tells you <em>which</em> questions broke, not just that the mean moved.</p>
 <p><strong>Always compare against a baseline.</strong> The naive version, fixed-size chunks and dense-only retrieval, measured once. Every improvement is then a number against a reference rather than a feeling. When you tell an interviewer "reranking improved recall@5 from 0.71 to 0.84 on my 40-question eval set", you have said something no amount of architecture description can match.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 9. Evaluation</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="10-failure-taxonomy-core">10. Failure taxonomy [CORE]<a class="anchor" href="#10-failure-taxonomy-core" aria-label="Link to this section">#</a></h3>
 <p>Organized by the symptom you observe, because that is how these arrive.</p>
 <table>
@@ -865,7 +1010,7 @@ Question: {question}
 </tbody>
 </table>
 <p><strong>The decision tree for "the answer is wrong", which is the interview answer:</strong></p>
-<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+<div class="mermaid-wrap"><pre class="mermaid" aria-label="Flow diagram. Answer is wrong leads to Q1; Q1 leads to Q2; Q2 leads to Generation problem:&lt;br/&gt;prompt structure, ordering, model; Q2 leads to Assembly bug:&lt;br/&gt;truncation, dedup, filter dropping them; Q1 leads to Q3; Q3 leads to Ranking problem:&lt;br/&gt;add reranking, hybrid, query rewriting; Q3 leads to Q4; Q4 leads to Chunking or embedding problem:&lt;br/&gt;the chunk exists but is not findable; Q4 leads to Q5; Q5 leads to Ingestion problem:&lt;br/&gt;parsing failed or the document was skipped; Q5 leads to Not a retrieval problem:&lt;br/&gt;the system should refuse.">flowchart TD
     START[&quot;Answer is wrong&quot;]
     Q1{&quot;Are the correct chunks&lt;br/&gt;in the retrieved set?&quot;}
     Q2{&quot;Are they in the&lt;br/&gt;assembled prompt?&quot;}
@@ -891,9 +1036,19 @@ Question: {question}
     Q4 --&gt;|no| Q5
     Q5 --&gt;|yes| INGEST
     Q5 --&gt;|no| SCOPE
-</pre></div>
+</pre><details class="diagram-description"><summary>Diagram description</summary><p>Flow diagram. Answer is wrong leads to Q1; Q1 leads to Q2; Q2 leads to Generation problem:&lt;br/&gt;prompt structure, ordering, model; Q2 leads to Assembly bug:&lt;br/&gt;truncation, dedup, filter dropping them; Q1 leads to Q3; Q3 leads to Ranking problem:&lt;br/&gt;add reranking, hybrid, query rewriting; Q3 leads to Q4; Q4 leads to Chunking or embedding problem:&lt;br/&gt;the chunk exists but is not findable; Q4 leads to Q5; Q5 leads to Ingestion problem:&lt;br/&gt;parsing failed or the document was skipped; Q5 leads to Not a retrieval problem:&lt;br/&gt;the system should refuse.</p></details></div>
 <p><strong>Walking down this tree requires logging you must build in advance:</strong> the rewritten query, the retrieved chunk ids with scores from each retriever, the post-rerank order, and the final assembled prompt. Without those you are guessing. This is <code>02</code> section 9's observability point, and it is the difference between debugging in an hour and debugging in a week.</p>
-<h3 id="11-security-and-operations-depth">11. Security and operations [DEPTH]<a class="anchor" href="#11-security-and-operations-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 10. Failure taxonomy</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="11-security-and-operations-depth-deep-dive">11. Security and operations [DEPTH · DEEP DIVE]<a class="anchor" href="#11-security-and-operations-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p><strong>Permission-aware retrieval.</strong> The requirement: a user must never see a chunk from a document they cannot access. The naive approach, retrieve then filter, leaks through the back door: even filtered, the number of results and the latency can reveal that matching content exists. More practically, post-filtering under-returns for restricted users, so they get worse answers with no explanation.</p>
 <p>The workable designs:</p>
 <ul>
@@ -920,24 +1075,24 @@ Question: {question}
 <h3 id="example-1-hybrid-retrieval-end-to-end">Example 1: hybrid retrieval end to end<a class="anchor" href="#example-1-hybrid-retrieval-end-to-end" aria-label="Link to this section">#</a></h3>
 <p>Runnable, numpy only. The mechanics of BM25, dense retrieval, RRF fusion and metrics without any external service. Swap the random matrix for real embeddings and the structure is unchanged.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Minimal hybrid retrieval: BM25 + dense, fused with RRF. numpy only.&quot;&quot;&quot;</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Chunk</span><span class="p">:</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[a-z0-9]+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
 
 
@@ -947,7 +1102,7 @@ Question: {question}
 <span class="c1"># recall_at_k, mrr, ndcg_at_k as shown in section 9</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">top_k_indices</span><span class="p">(</span><span class="n">scores</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">top_k_indices</span><span class="p">(</span><span class="n">scores</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">scores</span><span class="p">)[:</span><span class="n">k</span><span class="p">])</span>
 
 
@@ -1132,6 +1287,9 @@ recall@3=1.00 mrr=1.00 ndcg@3=1.00
 
 <p>Every branch of the decision tree needs one of these fields. Building this before you need it is the difference between an hour and a week.</p>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. When would you not use RAG?</strong></p>
 <p><em>Strong outline:</em> When the answer needs an action or a live value, use tools; RAG over a nightly snapshot reports stale inventory as fact. When the problem is behavior rather than knowledge, consistent formatting, house style, a fixed taxonomy, use fine-tuning or better prompting. When the corpus fits comfortably in the context window, retrieval adds latency, complexity and a failure mode for nothing, though cost at volume can still argue for it. And name the two specific anti-patterns: fine-tuning on documentation, which bakes a snapshot into weights you cannot update, and using RAG to supply format examples, which is few-shot prompting done expensively.</p>
@@ -1179,7 +1337,10 @@ recall@3=1.00 mrr=1.00 ndcg@3=1.00
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/07-rag-practice.md</code>.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-07-rag.html">07 practice pack</a>.</p>
 <h3 id="five-tiny-exercises">Five tiny exercises<a class="anchor" href="#five-tiny-exercises" aria-label="Link to this section">#</a></h3>
 <ol>
 <li>Implement cosine similarity two ways, with and without normalization, on unnormalized vectors. Construct a case where they rank differently, and explain which is right.</li>
@@ -1312,21 +1473,26 @@ recall@3=1.00 mrr=1.00 ndcg@3=1.00
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
 <li class="toc-l2"><a href="#concept-map">Concept map</a></li>
+<li class="toc-l2"><a href="#running-example-document-based-support-assistant">Running example: document-based support assistant</a></li>
 <li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
 <li class="toc-l3"><a href="#1-when-rag-is-the-wrong-answer-core">1. When RAG is the wrong answer [CORE]</a></li>
 <li class="toc-l3"><a href="#2-ingestion-and-parsing-core">2. Ingestion and parsing [CORE]</a></li>
 <li class="toc-l3"><a href="#3-chunking-core">3. Chunking [CORE]</a></li>
 <li class="toc-l3"><a href="#4-embeddings-and-similarity-foundation">4. Embeddings and similarity [FOUNDATION]</a></li>
 <li class="toc-l3"><a href="#5-vector-indexes-and-approximate-search-core">5. Vector indexes and approximate search [CORE]</a></li>
-<li class="toc-l3"><a href="#6-metadata-filtering-depth">6. Metadata filtering [DEPTH]</a></li>
+<li class="toc-l3"><a href="#6-metadata-filtering-depth-deep-dive">6. Metadata filtering [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l3"><a href="#7-hybrid-search-and-reranking-core">7. Hybrid search and reranking [CORE]</a></li>
 <li class="toc-l3"><a href="#8-prompt-construction-and-grounding-core">8. Prompt construction and grounding [CORE]</a></li>
 <li class="toc-l3"><a href="#9-evaluation-core">9. Evaluation [CORE]</a></li>
 <li class="toc-l3"><a href="#10-failure-taxonomy-core">10. Failure taxonomy [CORE]</a></li>
-<li class="toc-l3"><a href="#11-security-and-operations-depth">11. Security and operations [DEPTH]</a></li>
+<li class="toc-l3"><a href="#11-security-and-operations-depth-deep-dive">11. Security and operations [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l2"><a href="#worked-examples">Worked examples</a></li>
 <li class="toc-l3"><a href="#example-1-hybrid-retrieval-end-to-end">Example 1: hybrid retrieval end to end</a></li>
 <li class="toc-l3"><a href="#example-2-reading-the-metrics-table">Example 2: reading the metrics table</a></li>

@@ -79,6 +79,18 @@
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
 <li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
@@ -89,6 +101,7 @@
 
   <main id="content">
     <article class="doc">
+      <p class="doc-meta">Approx. 42 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
       <h1 id="03-data-sql-and-statistics">03 Data, SQL, and Statistics<a class="anchor" href="#03-data-sql-and-statistics" aria-label="Link to this section">#</a></h1>
 <p><strong>Last reviewed:</strong> 2026-09-18 · <strong>Volatility:</strong> low. SQL and statistics barely move.</p>
 <p>Every query in this module was executed against a real SQLite database, and every output shown is the actual result. Every statistical claim was verified by simulation. The schema is defined once in section 2 and reused throughout, so you can run everything yourself.</p>
@@ -124,6 +137,56 @@
 </table>
 <p>No prior SQL assumed.</p>
 <hr />
+<h2 id="how-to-use-this-module">How to use this module<a class="anchor" href="#how-to-use-this-module" aria-label="Link to this section">#</a></h2>
+<p>This page has three modes. <strong>Learn</strong> is the first pass through the concepts. <strong>Build</strong> is the practice task and project work. <strong>Interview</strong> is the optional articulation layer; do it after you can solve the examples.</p>
+<h3 id="learning-guide">Learning guide<a class="anchor" href="#learning-guide" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estimated first pass</td>
+<td>5 hours</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Python 3.11+, SQLite, and the terminal</td>
+</tr>
+<tr>
+<td>First pass</td>
+<td>Read the schema, SELECT/GROUP BY, joins, aggregation traps, statistics, and experimentation. Treat <code>[DEPTH · DEEP DIVE]</code> sections as optional until the core path is comfortable.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><code>[FOUNDATION]</code> and <code>[CORE]</code> are the first pass; <code>[DEPTH · DEEP DIVE]</code> is the second pass. <code>[MUST]</code>/<code>[SHOULD]</code>/<code>[NICE]</code> apply to interview priority.</td>
+</tr>
+</tbody>
+</table>
+<p>By the end of the first pass you should be able to:</p>
+<ul>
+<li>Write joins and aggregations that preserve the population you intended to measure.</li>
+<li>Use indexes, query plans, and pandas/SQL boundaries appropriately.</li>
+<li>Design an experiment whose data and metric answer the decision at hand.</li>
+</ul>
+<h3 id="five-minute-diagnostic">Five-minute diagnostic<a class="anchor" href="#five-minute-diagnostic" aria-label="Link to this section">#</a></h3>
+<p>Answer these without searching. If two or more answers are uncertain, read the first-pass path in order instead of skipping ahead.</p>
+<ol>
+<li>What rows does a LEFT JOIN preserve that an INNER JOIN removes?</li>
+<li>Why can a one-to-many join inflate a sum?</li>
+<li>What is the difference between WHERE and HAVING?</li>
+<li>When does an index help, and when can it be ignored?</li>
+<li>What makes an evaluation metric useful for a product decision?</li>
+</ol>
+<h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
+<p>Start by checking the local prerequisite:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import sqlite3; print(sqlite3.sqlite_version)&quot;</span>
+</code></pre></div>
+
+<p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
 <h2 id="skip-ahead-map">Skip-ahead map<a class="anchor" href="#skip-ahead-map" aria-label="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -171,7 +234,7 @@
 </tr>
 <tr>
 <td>8. pandas versus SQL</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...say which wins for which job</td>
 </tr>
 <tr>
@@ -186,7 +249,7 @@
 </tr>
 <tr>
 <td>11. Vector data alongside relational</td>
-<td>[DEPTH]</td>
+<td>[DEPTH · DEEP DIVE]</td>
 <td>...say why chunk metadata belongs in a database</td>
 </tr>
 </tbody>
@@ -198,6 +261,8 @@
 <p>The declarative part is the other half. You describe the shape of the answer; the query planner decides how to compute it. This is why an index can make a query a thousand times faster with no change to the query, and why a small rewrite can make the planner give up entirely.</p>
 <p><strong>Where the analogy breaks down.</strong> "Describe what you want" suggests the database will find a good plan. It usually does, and it can be defeated: by a function applied to an indexed column, by statistics that are out of date, by a query so convoluted the planner cannot see through it. Declarative does not mean you can stop thinking about execution, which is why section 7 exists.</p>
 <hr />
+<h2 id="running-example-document-based-support-assistant">Running example: document-based support assistant<a class="anchor" href="#running-example-document-based-support-assistant" aria-label="Link to this section">#</a></h2>
+<p>The support assistant stores documents, chunks, user questions, retrieved evidence, and answer evaluations in relational tables. Your queries should preserve the population you are trying to measure.</p>
 <h2 id="core-concepts">Core concepts<a class="anchor" href="#core-concepts" aria-label="Link to this section">#</a></h2>
 <h3 id="1-the-relational-model-foundation">1. The relational model [FOUNDATION]<a class="anchor" href="#1-the-relational-model-foundation" aria-label="Link to this section">#</a></h3>
 <p><strong>A table is a set of rows with a fixed set of typed columns.</strong> The vocabulary:</p>
@@ -234,6 +299,16 @@
 <p><strong>Normalization</strong>, briefly, because the principle matters more than the forms: store each fact once. If a document's title appears in a hundred chunk rows, a rename means a hundred updates and any one you miss is a contradiction. Put the title in <code>documents</code> and reference it.</p>
 <p><strong>When to denormalize deliberately.</strong> Joining is not free, and for read-heavy analytics duplicating a column to avoid a join at query time can be the right call. The rule is that denormalization is a decision with a stated reason, not a default. If you cannot say which query it speeds up and by how much, you have not denormalized, you have made a mistake.</p>
 <p><strong>What the constraints buy you in practice.</strong> In an ingestion pipeline, <code>UNIQUE (doc_id, position)</code> means a re-run cannot silently create duplicate chunks. Without it you discover the duplicates weeks later, in module 07, as near-identical results crowding your top-k.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 1. The relational model</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="2-the-schema-foundation">2. The schema [FOUNDATION]<a class="anchor" href="#2-the-schema-foundation" aria-label="Link to this section">#</a></h3>
 <p>Everything below runs against this. It models a RAG system's operational data, so the queries are ones you would actually write.</p>
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sources</span><span class="w"> </span><span class="p">(</span>
@@ -286,13 +361,23 @@
 <li><strong>Queries 2 and 4 were refused, so they have no retrievals.</strong> Refusal is not failure; it is the correct behavior on an unanswerable question, and it has to survive your joins.</li>
 </ul>
 <p>Running it yourself:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
 <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;schema.sql&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;seed.sql&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Concept checkpoint — 2. The schema</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="3-select-through-group-by-foundation">3. SELECT through GROUP BY [FOUNDATION]<a class="anchor" href="#3-select-through-group-by-foundation" aria-label="Link to this section">#</a></h3>
 <p><strong>The clauses, in the order the database evaluates them</strong>, which is not the order you write them:</p>
 <div class="highlight"><pre><span></span><code>FROM      → which tables
@@ -327,6 +412,16 @@ LIMIT     → truncate
 </code></pre></div>
 
 <p>Read that as an operational question: which queries had weak retrieval overall? Query 1 has a strong top hit at 0.91 but a weak third at 0.55, dragging the mean down. That is the divergence between MRR and mean score from module 07, visible in SQL.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 3. SELECT through GROUP BY</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="4-joins-core">4. Joins [CORE]<a class="anchor" href="#4-joins-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The types, and what each is for:</strong></p>
 <table>
@@ -443,6 +538,16 @@ parental leave notice period  0
 <li>Joining on a non-unique column: <strong>fan-out</strong>. One left row becomes as many rows as it matches.</li>
 </ul>
 <p>Documents (5) joined to chunks (11) yields 11 rows, because each chunk matches exactly one document. Now imagine summing <code>documents.page_count</code> over that join: every document's page count is counted once per chunk, so the Employee Handbook's 120 pages is counted three times. <strong>Aggregating a left-table column after a fan-out join is the most common way to produce a confidently wrong number</strong>, and it never raises an error.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 4. Joins</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="5-aggregation-traps-core">5. Aggregation traps [CORE]<a class="anchor" href="#5-aggregation-traps-core" aria-label="Link to this section">#</a></h3>
 <p><strong>NULLs are skipped by aggregates, and <code>COUNT(*)</code> is not.</strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">page_count</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_pages</span><span class="p">,</span>
@@ -506,6 +611,16 @@ contracts  1     0       None
 <li>A fan-out join is double-counting a left-table column.</li>
 <li>NULLs are silently excluded from the aggregate but not from <code>COUNT(*)</code>.</li>
 </ol>
+<blockquote>
+<p><strong>Concept checkpoint — 5. Aggregation traps</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="6-window-functions-core">6. Window functions [CORE]<a class="anchor" href="#6-window-functions-core" aria-label="Link to this section">#</a></h3>
 <p>Aggregates collapse rows. Window functions compute across a set of rows <strong>while keeping every row</strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">query_id</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">chunk_id</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">score</span><span class="p">,</span>
@@ -587,6 +702,16 @@ contracts  1     0       None
 
 <p>The gap between <code>asked_at</code> and <code>prev_asked</code> is how you detect follow-up questions, which is exactly the signal module 07 section 7 needs for conversational query rewriting. Five minutes is a follow-up; thirty is a new session.</p>
 <p><strong>Why this matters beyond convenience.</strong> The pre-window-function way to do this is a correlated subquery or a self-join, both of which are slower and much harder to read. Knowing window functions is a genuine dividing line between people who write SQL and people who learned <code>SELECT *</code>.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 6. Window functions</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="7-indexes-and-query-plans-core">7. Indexes and query plans [CORE]<a class="anchor" href="#7-indexes-and-query-plans-core" aria-label="Link to this section">#</a></h3>
 <p><strong><code>EXPLAIN QUERY PLAN</code> tells you what the database will actually do.</strong> Read it before optimizing anything.</p>
 <p>Without an index:</p>
@@ -681,7 +806,17 @@ SELECT q.text, r.score FROM queries q JOIN retrievals r ON r.query_id = q.query_
 </code></pre></div>
 
 <p>A thousand queries means 1,001 round trips. Each is fast; the total is not. Fetch once and group in Python, or use a join. This is the most common performance bug in ORM-backed applications, and you find it by counting queries per request, not by reading code.</p>
-<h3 id="8-pandas-versus-sql-depth">8. pandas versus SQL [DEPTH]<a class="anchor" href="#8-pandas-versus-sql-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 7. Indexes and query plans</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="8-pandas-versus-sql-depth-deep-dive">8. pandas versus SQL [DEPTH · DEEP DIVE]<a class="anchor" href="#8-pandas-versus-sql-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p>Both manipulate tables. They win at different things.</p>
 <table>
 <thead>
@@ -783,6 +918,16 @@ fraction p&lt;0.01: 0.0107   (expected 0.01)
 
 <p>Lower than the independent case, because the tests are correlated through the shared control: if the control sample happens to sit near the true mean, all twenty comparisons are less likely to be extreme. Still 44%, still bad, and the practical lesson is unchanged. <strong>Decide what you are testing before you look</strong>, and correct for the number of comparisons if you must run many.</p>
 <p><strong>Correlation and causation</strong>, stated usefully rather than as a slogan. Two variables can correlate because A causes B, B causes A, a third thing causes both, or by chance. Only a randomized intervention distinguishes them. In RAG work this surfaces constantly: queries with low retrieval scores also get more thumbs-down, and that could be bad retrieval causing dissatisfaction, or hard questions causing both.</p>
+<blockquote>
+<p><strong>Concept checkpoint — 9. Statistics you actually need</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
 <h3 id="10-experimentation-core">10. Experimentation [CORE]<a class="anchor" href="#10-experimentation-core" aria-label="Link to this section">#</a></h3>
 <p><strong>The A/B test in one paragraph.</strong> Randomly assign users to control or treatment, measure one pre-declared metric, and compare. Randomization is what buys you causality; everything else is bookkeeping.</p>
 <p><strong>Sample size, computed.</strong> For a two-proportion test at α = 0.05 and 80% power:</p>
@@ -863,7 +1008,17 @@ fraction p&lt;0.01: 0.0107   (expected 0.01)
 <p><em>Offline gains do not transfer.</em> Recall@5 improving does not mean users are happier. Both measurements are needed, and offline evaluation is the fast loop that decides what is worth testing online.</p>
 <p><em>The metric is often not obvious.</em> Thumbs-up rate is biased toward users who bother to click. Task completion is better and harder to instrument. Decide before you run.</p>
 <p><em>Latency is a confound.</em> A change that improves quality and adds 400ms may reduce engagement anyway. Measure both, and be explicit that you are trading them.</p>
-<h3 id="11-vector-data-alongside-relational-depth">11. Vector data alongside relational [DEPTH]<a class="anchor" href="#11-vector-data-alongside-relational-depth" aria-label="Link to this section">#</a></h3>
+<blockquote>
+<p><strong>Concept checkpoint — 10. Experimentation</strong></p>
+<ol>
+<li><strong>Define:</strong> explain the idea in one sentence without repeating the heading.</li>
+<li><strong>Predict:</strong> before rerunning the smallest example above, state the output or result.</li>
+<li><strong>Vary:</strong> change one input, parameter, or assumption and explain what should change.</li>
+<li><strong>Challenge:</strong> name one common misconception or failure mode.</li>
+<li><strong>Apply:</strong> complete the smallest practice task before moving to the next concept.</li>
+</ol>
+</blockquote>
+<h3 id="11-vector-data-alongside-relational-depth-deep-dive">11. Vector data alongside relational [DEPTH · DEEP DIVE]<a class="anchor" href="#11-vector-data-alongside-relational-depth-deep-dive" aria-label="Link to this section">#</a></h3>
 <p>The bridge to module 07.</p>
 <p><strong>Vectors live in an index; everything else about a chunk belongs in a database.</strong> Chunk id, document id, heading path, token count, permissions, timestamps, content hash. This is not incidental: it is what makes filtering, deletion, freshness monitoring and debugging possible.</p>
 <p>The join key is the chunk id. Your vector index returns ids and scores; your database turns those into text, provenance and permissions.</p>
@@ -1015,6 +1170,9 @@ fraction p&lt;0.01: 0.0107   (expected 0.01)
 <li><strong>Compare against a known total.</strong> If documents number 5, any grouping over documents should account for 5.</li>
 </ol>
 <hr />
+<blockquote>
+<p><strong>Interview mode (optional on the first pass):</strong> return here after the Learn and Build work. Practice the 60-second answer only after you can explain the mechanism and complete the example.</p>
+</blockquote>
 <h2 id="interview-angle">Interview angle<a class="anchor" href="#interview-angle" aria-label="Link to this section">#</a></h2>
 <p><strong>1. What does an INNER JOIN hide, and when does that matter?</strong></p>
 <p><em>Strong outline:</em> It drops rows with no match on either side, silently and without error. Give the concrete case: joining documents to chunks with an INNER JOIN makes documents whose parsing failed disappear entirely, so a pipeline health dashboard shows everything working. Fix is to LEFT JOIN from the table that should be complete, and for finding absences specifically, an anti-join with <code>WHERE right.id IS NULL</code>. Then the trap that follows: after a LEFT JOIN, <code>COUNT(*)</code> returns 1 for a non-matching row because the join produced a row of nulls, so you must <code>COUNT</code> a column from the right-hand table.</p>
@@ -1060,7 +1218,10 @@ fraction p&lt;0.01: 0.0107   (expected 0.01)
 </ol>
 <hr />
 <h2 id="practice-tasks">Practice tasks<a class="anchor" href="#practice-tasks" aria-label="Link to this section">#</a></h2>
-<p>Solutions in <code>quizzes/03-data-sql-practice.md</code>. All 25 exercises run against the section 2 schema.</p>
+<blockquote>
+<p><strong>Build mode:</strong> attempt the smallest exercise without looking at the solution, then complete the module project as the exit condition.</p>
+</blockquote>
+<p>Solutions and delayed practice are in the <a href="quiz-03-data-sql.html">03 practice pack</a>. All 25 exercises run against the section 2 schema.</p>
 <h3 id="twenty-five-sql-exercises">Twenty-five SQL exercises<a class="anchor" href="#twenty-five-sql-exercises" aria-label="Link to this section">#</a></h3>
 <p><strong>Foundations (1-6)</strong></p>
 <ol>
@@ -1204,8 +1365,13 @@ fraction p&lt;0.01: 0.0107   (expected 0.01)
 
   <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#why-this-matters">Why this matters</a></li>
 <li class="toc-l2"><a href="#prerequisites">Prerequisites</a></li>
+<li class="toc-l2"><a href="#how-to-use-this-module">How to use this module</a></li>
+<li class="toc-l3"><a href="#learning-guide">Learning guide</a></li>
+<li class="toc-l3"><a href="#five-minute-diagnostic">Five-minute diagnostic</a></li>
+<li class="toc-l3"><a href="#run-the-examples">Run the examples</a></li>
 <li class="toc-l2"><a href="#skip-ahead-map">Skip-ahead map</a></li>
 <li class="toc-l2"><a href="#mental-model">Mental model</a></li>
+<li class="toc-l2"><a href="#running-example-document-based-support-assistant">Running example: document-based support assistant</a></li>
 <li class="toc-l2"><a href="#core-concepts">Core concepts</a></li>
 <li class="toc-l3"><a href="#1-the-relational-model-foundation">1. The relational model [FOUNDATION]</a></li>
 <li class="toc-l3"><a href="#2-the-schema-foundation">2. The schema [FOUNDATION]</a></li>
@@ -1214,10 +1380,10 @@ fraction p&lt;0.01: 0.0107   (expected 0.01)
 <li class="toc-l3"><a href="#5-aggregation-traps-core">5. Aggregation traps [CORE]</a></li>
 <li class="toc-l3"><a href="#6-window-functions-core">6. Window functions [CORE]</a></li>
 <li class="toc-l3"><a href="#7-indexes-and-query-plans-core">7. Indexes and query plans [CORE]</a></li>
-<li class="toc-l3"><a href="#8-pandas-versus-sql-depth">8. pandas versus SQL [DEPTH]</a></li>
+<li class="toc-l3"><a href="#8-pandas-versus-sql-depth-deep-dive">8. pandas versus SQL [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l3"><a href="#9-statistics-you-actually-need-core">9. Statistics you actually need [CORE]</a></li>
 <li class="toc-l3"><a href="#10-experimentation-core">10. Experimentation [CORE]</a></li>
-<li class="toc-l3"><a href="#11-vector-data-alongside-relational-depth">11. Vector data alongside relational [DEPTH]</a></li>
+<li class="toc-l3"><a href="#11-vector-data-alongside-relational-depth-deep-dive">11. Vector data alongside relational [DEPTH · DEEP DIVE]</a></li>
 <li class="toc-l2"><a href="#worked-example-an-ingestion-health-check">Worked example: an ingestion health check</a></li>
 <li class="toc-l2"><a href="#common-mistakes-and-debugging">Common mistakes and debugging</a></li>
 <li class="toc-l3"><a href="#beginner-mistakes">Beginner mistakes</a></li>
