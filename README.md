@@ -268,6 +268,15 @@ in the sidebar, the search index and the previous/next pager.
 Mermaid is vendored (`docs/assets/mermaid.min.js`, 3.5 MB) rather than loaded
 from a CDN, so the site works with no network.
 
+### Reference hub
+
+[`docs/hub/`](docs/hub/index.html) holds the standalone deep-dive guides that
+used to live in the separate Pages repo: LLMs, LangChain, LangGraph, RAG,
+agents and MCP, vision-language models, Claude Code, Docker, Kubernetes, and an
+LLM benchmark guide. Each page is self-contained HTML with inline CSS and JS,
+so it needs no build step; add a card for a new page to the `PAGES` array in
+`docs/hub/index.html`.
+
 ## Rendering the diagrams
 
 Mermaid diagrams render natively on GitHub, and in the HTML site above. All
