@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Benchmark Reference Guide</title>
+<style>
+:root{--bg:#0d1117;--bg2:#161b22;--bgc:#1c2128;--bgch:#21262d;--border:#30363d;--t1:#e6edf3;--t2:#8b949e;--tm:#6e7681;--blue:#58a6ff;--purple:#bc8cff;--green:#3fb950;--yellow:#d29922;--red:#f85149}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+nav{position:fixed;top:0;width:100%;background:rgba(13,17,23,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:1000;height:58px;display:flex;align-items:center;padding:0 1.5rem;gap:2rem}
+.nav-brand{font-size:1rem;font-weight:700;color:var(--blue);white-space:nowrap}
+.nav-links{display:flex;gap:1.2rem;list-style:none;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--t2);text-decoration:none;font-size:.8rem;transition:color .15s;white-space:nowrap}
+.nav-links a:hover{color:var(--t1)}
+.hero{padding:96px 2rem 56px;text-align:center;background:radial-gradient(ellipse 80% 50% at 50% 0%,#1a2744 0%,var(--bg) 65%)}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;background:linear-gradient(135deg,#58a6ff,#bc8cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.75rem}
+.hero p{color:var(--t2);font-size:1.1rem;max-width:580px;margin:0 auto 1.75rem}
+.swrap{position:relative;max-width:580px;margin:0 auto}
+.swrap svg{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--tm);pointer-events:none}
+#search{width:100%;padding:.85rem 1rem .85rem 2.8rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;color:var(--t1);font-size:.95rem;outline:none;transition:border-color .2s}
+#search:focus{border-color:var(--blue)}#search::placeholder{color:var(--tm)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:1rem;max-width:700px;margin-left:auto;margin-right:auto}
+.chip{padding:.28rem .75rem;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--t2);font-size:.78rem;cursor:pointer;transition:all .15s;user-select:none}
+.chip:hover,.chip.on{border-color:var(--blue);color:var(--blue);background:rgba(88,166,255,.1)}
+.stats{display:flex;gap:2.5rem;justify-content:center;padding:1.25rem 2rem;background:var(--bg2);flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.stat .v{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat .l{font-size:.75rem;color:var(--tm);text-align:center}
+#fbanner{display:none;max-width:1380px;margin:1rem auto 0;padding:.6rem 1.5rem;background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.25);border-radius:8px;font-size:.85rem;color:var(--blue);align-items:center;gap:.5rem}
+#fbanner.on{display:flex}
+#fbanner button{margin-left:auto;background:none;border:none;color:var(--blue);cursor:pointer;font-size:1rem;padding:.1rem .3rem;border-radius:4px}
+main{max-width:1380px;margin:0 auto;padding:1.5rem}
+.cat-sec{margin-bottom:2.5rem}
+.cat-hdr{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;padding-bottom:.6rem;position:relative}
+.cat-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.cat-icon{font-size:1.3rem}.cat-title{font-size:1.25rem;font-weight:700;color:var(--t1)}
+.cat-cnt{margin-left:auto;font-size:.75rem;color:var(--tm);background:var(--bg2);padding:.15rem .5rem;border-radius:8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:1.1rem}
+.card{background:var(--bgc);border:1px solid var(--border);border-radius:12px;padding:1.35rem;transition:transform .2s,box-shadow .2s,border-color .2s,background .2s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple));opacity:0;transition:opacity .2s}
+.card:hover{transform:translateY(-3px);border-color:#3d444d;box-shadow:0 8px 28px rgba(0,0,0,.45);background:var(--bgch)}
+.card:hover::before{opacity:1}
+.card.hl{border-color:var(--blue)!important;box-shadow:0 0 0 1px var(--blue),0 0 24px rgba(88,166,255,.25),0 0 48px rgba(88,166,255,.1)!important;animation:glow 2.2s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 1px var(--blue),0 0 24px rgba(88,166,255,.25)}50%{box-shadow:0 0 0 1px var(--blue),0 0 36px rgba(88,166,255,.45)}}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;gap:.5rem}
+.card-name{font-size:1.1rem;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.yr{font-size:.68rem;color:var(--tm);background:var(--bg2);padding:.1rem .4rem;border-radius:4px;font-weight:400}
+.sig{font-size:.72rem;padding:.2rem .55rem;border-radius:14px;font-weight:600;white-space:nowrap;flex-shrink:0}
+.sig-a{background:rgba(63,185,80,.12);color:var(--green);border:1px solid rgba(63,185,80,.28)}
+.sig-g{background:rgba(210,153,34,.12);color:var(--yellow);border:1px solid rgba(210,153,34,.28)}
+.sig-s{background:rgba(248,81,73,.12);color:var(--red);border:1px solid rgba(248,81,73,.28)}
+.card-sum{color:var(--t2);font-size:.875rem;margin-bottom:.9rem;line-height:1.55}
+.card-meta{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin-bottom:.85rem}
+.tag{padding:.18rem .55rem;border-radius:5px;font-size:.72rem;background:var(--bg2);color:var(--tm);border:1px solid var(--border)}
+.dif{padding:.18rem .55rem;border-radius:5px;font-size:.72rem;font-weight:600;margin-left:auto}
+.dif-g{background:rgba(88,166,255,.1);color:var(--blue);border:1px solid rgba(88,166,255,.2)}
+.dif-r{background:rgba(188,140,255,.1);color:var(--purple);border:1px solid rgba(188,140,255,.2)}
+.dif-e{background:rgba(248,81,73,.1);color:#ff7b72;border:1px solid rgba(248,81,73,.2)}
+.uti-btn{background:none;border:1px solid var(--border);color:var(--t2);font-size:.78rem;padding:.3rem .65rem;border-radius:6px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:.35rem}
+.uti-btn:hover{border-color:var(--blue);color:var(--blue)}
+.uti-body{display:none;margin-top:.55rem;padding:.7rem .85rem;background:rgba(88,166,255,.04);border:1px solid rgba(88,166,255,.13);border-radius:8px;font-size:.83rem;color:var(--t2);line-height:1.55}
+.uti-body.on{display:block}
+.sota{margin-top:.45rem;padding-top:.45rem;border-top:1px solid rgba(88,166,255,.13);font-size:.78rem;color:var(--tm)}
+.sota strong{color:var(--blue)}
+#matcher{padding:2.5rem 1.5rem;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#matcher h2{text-align:center;font-size:1.7rem;font-weight:700;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.4rem}
+.sub{text-align:center;color:var(--t2);margin-bottom:1.75rem;font-size:.9rem}
+.uc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.9rem;max-width:1100px;margin:0 auto}
+.uc-tile{background:var(--bgc);border:1px solid var(--border);border-radius:10px;padding:1.1rem;text-align:center;cursor:pointer;transition:all .2s}
+.uc-tile:hover{border-color:var(--blue);transform:translateY(-2px)}
+.uc-tile.on{border-color:var(--blue);background:rgba(88,166,255,.09)}
+.ti{font-size:1.8rem;margin-bottom:.35rem}.tn{font-size:.88rem;font-weight:600}
+.td{font-size:.73rem;color:var(--tm);margin-top:.2rem}
+#lookup{max-width:1380px;margin:0 auto;padding:2rem 1.5rem}
+.lk-title{font-size:1.35rem;font-weight:700;margin-bottom:1.25rem}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+thead th{padding:.7rem 1rem;text-align:left;background:var(--bg2);color:var(--t2);border-bottom:1px solid var(--border);font-weight:600;white-space:nowrap}
+tbody td{padding:.7rem 1rem;border-bottom:1px solid var(--border);color:var(--t2);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:rgba(255,255,255,.02)}
+tbody td:first-child{color:var(--t1);font-weight:600;white-space:nowrap}
+.pill{display:inline-block;padding:.15rem .5rem;border-radius:4px;font-size:.73rem;background:rgba(88,166,255,.1);color:var(--blue);border:1px solid rgba(88,166,255,.2);margin:.1rem;cursor:pointer;transition:background .15s}
+.pill:hover{background:rgba(88,166,255,.22)}
+.avoid-txt{color:var(--tm);font-size:.78rem}
+footer{text-align:center;padding:2rem;color:var(--tm);font-size:.78rem;border-top:1px solid var(--border)}
+footer p+p{margin-top:.4rem}
+#stbtn{position:fixed;bottom:1.75rem;right:1.75rem;background:var(--blue);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;transition:all .2s;z-index:999;box-shadow:0 4px 14px rgba(88,166,255,.4)}
+#stbtn:hover{background:#79b8ff;transform:scale(1.1)}#stbtn.on{display:flex}
+.nores{text-align:center;padding:4rem 2rem;color:var(--tm);display:none}
+.nores.on{display:block}
+.nores button{background:none;border:none;color:var(--blue);cursor:pointer;font-size:.95rem;text-decoration:underline}
+.cat-reasoning .card::before{background:linear-gradient(90deg,#58a6ff,#79c0ff)}
+.cat-math .card::before{background:linear-gradient(90deg,#bc8cff,#d2a8ff)}
+.cat-coding .card::before{background:linear-gradient(90deg,#3fb950,#7ee787)}
+.cat-agentic .card::before{background:linear-gradient(90deg,#db6d28,#ffa657)}
+.cat-instruction .card::before{background:linear-gradient(90deg,#d29922,#e3b341)}
+.cat-chat .card::before{background:linear-gradient(90deg,#ec6547,#ffa198)}
+.cat-longcontext .card::before{background:linear-gradient(90deg,#1f6feb,#58a6ff)}
+.cat-multimodal .card::before{background:linear-gradient(90deg,#a371f7,#bc8cff)}
+.cat-safety .card::before{background:linear-gradient(90deg,#f85149,#ff7b72)}
+@media(max-width:720px){.nav-links{display:none}.cards{grid-template-columns:1fr}main,#lookup{padding:1rem}.hero{padding:80px 1rem 40px}.uc-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">&#9889; LLM Benchmark Guide</div>
+  <ul class="nav-links">
+    <li><a href="#reasoning">Reasoning</a></li><li><a href="#math">Math</a></li>
+    <li><a href="#coding">Coding</a></li><li><a href="#agentic">Agentic</a></li>
+    <li><a href="#instruction">Instruction</a></li><li><a href="#chat">Chat Quality</a></li>
+    <li><a href="#longcontext">Long Context</a></li><li><a href="#multimodal">Multimodal</a></li>
+    <li><a href="#safety">Safety</a></li><li><a href="#matcher">Use-Case Matcher</a></li>
+    <li><a href="#lookup">Quick Lookup</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <h1>LLM Benchmark Reference Guide</h1>
+  <p>A practitioner&#8217;s reference for evaluating large language models &#8212; cut through the noise and pick the right benchmark for your use case.</p>
+  <div class="swrap">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <input id="search" type="text" placeholder="Search benchmarks by name, tag, or description&#8230;" autocomplete="off">
+  </div>
+  <div class="chips" id="chips">
+    <span class="chip on" data-f="all">All</span>
+    <span class="chip" data-f="active">&#x1F7E2; Active</span>
+    <span class="chip" data-f="aging">&#x1F7E1; Aging</span>
+    <span class="chip" data-f="saturated">&#x1F534; Saturated</span>
+    <span class="chip" data-f="reasoning">Reasoning</span>
+    <span class="chip" data-f="math">Math</span>
+    <span class="chip" data-f="coding">Coding</span>
+    <span class="chip" data-f="agentic">Agentic</span>
+    <span class="chip" data-f="multimodal">Multimodal</span>
+    <span class="chip" data-f="safety">Safety</span>
+    <span class="chip" data-f="expert">Expert Level</span>
+    <span class="chip" data-f="graduate">Graduate Level</span>
+  </div>
+</section>
+<div class="stats" id="stats"></div>
+<div id="fbanner"><span id="fbtxt"></span><button onclick="clearAll()">&#x2715; Clear filter</button></div>
+<main id="main"></main>
+<div class="nores" id="nores">No benchmarks match your filters. <button onclick="clearAll()">Clear filters</button></div>
+<section id="matcher">
+  <h2>What Are You Building?</h2>
+  <p class="sub">Click a use-case to highlight the most relevant benchmarks above</p>
+  <div class="uc-grid" id="uc-grid"></div>
+</section>
+<section id="lookup">
+  <div class="lk-title">&#x1F4CB; Quick Lookup &#8212; Use Case &#8594; Benchmark Map</div>
+  <div class="tbl-wrap"><table id="lktable"></table></div>
+</section>
+<footer>
+  <p>LLM Benchmark Reference Guide &#183; Updated April 2026 &#183; Written for engineers and researchers</p>
+  <p>Signal strength reflects community consensus at publish date. Scores shift rapidly &#8212; verify against primary sources and live leaderboards.</p>
+</footer>
+<button id="stbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+<script>
+var CATS=[
+  {id:'reasoning',label:'Reasoning & General Intelligence',icon:'🧠',cls:'cat-reasoning'},
+  {id:'math',label:'Math',icon:'🔢',cls:'cat-math'},
+  {id:'coding',label:'Coding',icon:'💻',cls:'cat-coding'},
+  {id:'agentic',label:'Agentic / Tool Use',icon:'🤖',cls:'cat-agentic'},
+  {id:'instruction',label:'Instruction Following',icon:'📋',cls:'cat-instruction'},
+  {id:'chat',label:'Human Preference / Chat Quality',icon:'💬',cls:'cat-chat'},
+  {id:'longcontext',label:'Long Context',icon:'📄',cls:'cat-longcontext'},
+  {id:'multimodal',label:'Multimodal / Vision',icon:'👁️',cls:'cat-multimodal'},
+  {id:'safety',label:'Safety & Alignment',icon:'🛡️',cls:'cat-safety'}
+];
+var BM=[
+  {id:'gpqa',cat:'reasoning',name:'GPQA Diamond',year:2023,sig:'active',
+   sum:'PhD-level multiple-choice questions in physics, chemistry, and biology, validated by domain experts and deliberately resistant to web search.',
+   uti:'The gold standard for hard scientific reasoning. Questions are crafted so non-experts cannot answer correctly even with internet access. A model that scores well here genuinely understands the underlying science, not surface patterns. Essential for comparing frontier models on knowledge-grounded reasoning.',
+   sota:'o3, Gemini 2.5 Pro: ~75-85%. Human PhDs (out-of-domain): ~65%. Strong differentiator.',
+   metrics:'448 questions, multiple-choice accuracy (%)',tags:['Reasoning','Science','Multiple-Choice'],dif:'Expert'},
+  {id:'mmlu-pro',cat:'reasoning',name:'MMLU-Pro',year:2024,sig:'active',
+   sum:'A harder revision of MMLU with 10-choice questions, more reasoning-intensive problems, and reduced reliance on pattern matching across 57 subject areas.',
+   uti:'Use when you need broad knowledge coverage that still separates top models. The shift to 10 choices and harder questions drops scores 10-15 pp versus MMLU. Good for general-purpose assistants where MMLU has become uninformative.',
+   sota:'GPT-4o, Claude 3.5 Sonnet: ~75-82%. Strong spread across tiers.',
+   metrics:'12,000 questions, 10-choice accuracy (%)',tags:['Reasoning','Knowledge','Multi-Subject'],dif:'Graduate'},
+  {id:'mmlu',cat:'reasoning',name:'MMLU',year:2020,sig:'saturated',
+   sum:'Massive Multitask Language Understanding: 14,000+ four-choice questions across 57 subjects from elementary to professional level.',
+   uti:'Do not use to compare frontier models - top models exceed 90% and differences fall within noise. Still valid for sub-7B open-source models, fine-tune regressions, or reproducing older comparisons. Treat scores above 88% as essentially equivalent.',
+   sota:'Multiple frontier models exceed 90%. Saturated - no meaningful signal at the top.',
+   metrics:'14,042 questions, 4-choice accuracy (%)',tags:['Reasoning','Knowledge','Multi-Subject'],dif:'General'},
+  {id:'arc',cat:'reasoning',name:'ARC-Challenge',year:2018,sig:'saturated',
+   sum:'Elementary-to-middle-school science questions selected to defeat simple retrieval and pattern-matching approaches.',
+   uti:'Only meaningful for sub-7B models or sanity-checking fine-tunes. Frontier models exceed 97%, providing no differentiation at the top. Retain for regression testing on smaller models or historical comparisons.',
+   sota:'GPT-4 class: >97%. Saturated for frontier models.',
+   metrics:'~1,172 questions, accuracy (%)',tags:['Reasoning','Science','Multiple-Choice'],dif:'General'},
+  {id:'bbh',cat:'reasoning',name:'BIG-Bench Hard (BBH)',year:2022,sig:'aging',
+   sum:'23 hand-selected BIG-Bench tasks that originally defeated language models: logical deduction, causal judgment, formal fallacies, word sorting, and more.',
+   uti:'Good for reasoning breadth across diverse task types. Still differentiates mid-tier models (under 70B). Frontier models score 88-93%, limiting headroom, but subtasks like formal fallacies and object tracking remain informative.',
+   sota:'Frontier models: ~89-93%. Mid-tier: ~70-85%. Aging at the top.',
+   metrics:'6,511 examples across 23 tasks, accuracy (%)',tags:['Reasoning','Logic','Diverse-Tasks'],dif:'Graduate'},
+  {id:'drop',cat:'reasoning',name:'DROP',year:2019,sig:'aging',
+   sum:'Discrete Reasoning Over Paragraphs: reading comprehension requiring counting, sorting, date arithmetic, and multi-span extraction over document passages.',
+   uti:'Tests compositional numerical reasoning grounded in natural language. Relevant for RAG pipelines requiring precise document arithmetic. Frontier models saturate the standard version. Use to validate that fine-tuned models retain numeric grounding.',
+   sota:'Frontier models: >90% F1. Aging for top-tier comparisons.',
+   metrics:'~96,000 examples, F1 score',tags:['Reasoning','Reading Comprehension','Math'],dif:'General'},
+  {id:'hellaswag',cat:'reasoning',name:'HellaSwag',year:2019,sig:'saturated',
+   sum:'Commonsense natural language inference: choose the correct sentence continuation from 4 adversarially filtered options.',
+   uti:'Solely useful for sub-7B models or verifying basic commonsense ability. Frontier models reliably hit 95%+, making it useless for top-tier comparisons. Necessary check for new base model releases but not for benchmarking frontier systems.',
+   sota:'GPT-4 class: ~97%. Effectively saturated.',
+   metrics:'~70,000 examples, accuracy (%)',tags:['Reasoning','Commonsense','NLI'],dif:'General'},
+  {id:'aime',cat:'math',name:'AIME 2024/2025',year:2025,sig:'active',
+   sum:'American Invitational Mathematics Examination: 15 competition math problems per year requiring multi-step proof-style reasoning with exact integer answers (0-999).',
+   uti:'Gold standard for hard mathematical reasoning with minimal contamination risk. Top human competitors average ~6/15. Use to separate reasoning models from general chat models on pure mathematical problem solving.',
+   sota:'o3: ~86% (AIME 2024). Gemini 2.5 Pro: ~75-80%. Strong signal for math frontier.',
+   metrics:'15 problems, exact integer answers, accuracy (%)',tags:['Math','Competition','Reasoning'],dif:'Expert'},
+  {id:'math500',cat:'math',name:'MATH-500',year:2021,sig:'active',
+   sum:'500-problem representative subset spanning algebra, counting, geometry, number theory, and calculus at AMC/AIME competition difficulty.',
+   uti:'More tractable than AIME for mid-to-top-tier comparisons, providing meaningful spread between models scoring 60% and 95%. Faster to evaluate than the full 12,500-problem MATH suite while maintaining representativeness.',
+   sota:'o3, Claude 3.5 Sonnet: ~88-96%. Strong differentiation across tiers.',
+   metrics:'500 problems, symbolic answer accuracy (%)',tags:['Math','Competition','Problem Solving'],dif:'Graduate'},
+  {id:'gsm8k',cat:'math',name:'GSM8K',year:2021,sig:'saturated',
+   sum:'8,500 grade school math word problems requiring 2-8 step arithmetic reasoning, the benchmark that popularized chain-of-thought evaluation.',
+   uti:'Do not use for frontier comparisons - top models score 95-99%. Still relevant for validating sub-7B models or checking that a fine-tune has not regressed on basic arithmetic. Use MATH-500 or AIME for any serious evaluation.',
+   sota:'GPT-4o, Claude 3.5: ~99%. Effectively saturated.',
+   metrics:'8,500 problems, exact answer accuracy (%)',tags:['Math','Word Problems','Arithmetic'],dif:'General'},
+  {id:'olympiad',cat:'math',name:'OlympiadBench',year:2024,sig:'active',
+   sum:'Bilingual (EN/ZH) IMO/IPhO-difficulty problems in math and physics emphasizing proof-level algebraic manipulation and physical reasoning.',
+   uti:'Harder than MATH-500 and less contamination-prone due to bilingual sourcing. Excellent for comparing reasoning models and cross-checking with Chinese academic benchmarks. Covers math and physics simultaneously.',
+   sota:'o3, Gemini 2.5 Pro: ~50-65%. Strong differentiator at the frontier.',
+   metrics:'~8,952 problems, accuracy (%)',tags:['Math','Physics','Competition','Bilingual'],dif:'Expert'},
+  {id:'swebench',cat:'coding',name:'SWE-bench Verified',year:2023,sig:'active',
+   sum:'500 real GitHub issues from popular Python repos: the model must produce a patch that passes the existing test suite, testing full-repo comprehension and bug reasoning.',
+   uti:'The definitive benchmark for coding agents. The Verified subset has been manually confirmed by OpenAI for correct labeling. Tests the complete software engineering loop: reading large codebases, reasoning about bugs, writing correct patches. Requires a scaffolding agent, not raw completions.',
+   sota:'Claude Sonnet 3.7, o3 variants: ~55-65%. Strong real-world validity.',
+   metrics:'500 verified issues, % resolved (patch passes test suite)',tags:['Coding','Agentic','Bug Fixing','Python'],dif:'Expert'},
+  {id:'humaneval',cat:'coding',name:'HumanEval / HumanEval+',year:2021,sig:'aging',
+   sum:'164 Python function synthesis tasks from docstrings. HumanEval+ (EvalPlus) adds 80x more test cases per problem to eliminate solutions that pass minimal tests by luck.',
+   uti:'Always use HumanEval+ over the original - pass@1 drops 5-10 pp with stricter tests, filtering spurious solutions. Good for regression testing. For new evaluations, prefer LiveCodeBench due to contamination concerns.',
+   sota:'HumanEval+: ~85-93% pass@1 (frontier models). Aging - contamination risk.',
+   metrics:'164 problems, pass@1 (%)',tags:['Coding','Python','Function Synthesis'],dif:'General'},
+  {id:'lcb',cat:'coding',name:'LiveCodeBench',year:2024,sig:'active',
+   sum:'Continuously updated coding evaluation sourced from post-cutoff Codeforces, LeetCode, and AtCoder contests, minimizing training contamination by construction.',
+   uti:'Best choice for contamination-free coding evaluation. Problems are pulled from competitions post-dating model training cutoffs and are refreshed regularly. Covers easy/medium/hard tiers and maps directly to competitive programming ability.',
+   sota:'o3, Claude 3.5: ~55-70% (varies by difficulty tier). Live leaderboard available.',
+   metrics:'Rolling contest problems, pass@1 (%)',tags:['Coding','Competitive Programming','Anti-Contamination'],dif:'Graduate'},
+  {id:'mbpp',cat:'coding',name:'MBPP / MBPP+',year:2021,sig:'aging',
+   sum:'374 crowdsourced beginner-to-intermediate Python problems. MBPP+ (EvalPlus variant) adds denser test cases for more robust evaluation.',
+   uti:'Lightweight regression test for basic Python generation. Not suitable for differentiating frontier models (>90% pass rates). Use MBPP+ rather than the original. Meaningful only for models under 13B parameters or quick smoke tests on fine-tuned checkpoints.',
+   sota:'Frontier models: >90% pass@1 on MBPP+. Aging.',
+   metrics:'374 problems, pass@1 (%)',tags:['Coding','Python','Basic'],dif:'General'},
+  {id:'apps',cat:'coding',name:'APPS',year:2021,sig:'aging',
+   sum:'10,000 Python programming problems from competitive coding sites across introductory, interview, and competition difficulty tiers.',
+   uti:'Useful for evaluating coding ability across a wider difficulty range than HumanEval. Interview tier is particularly relevant for SE assistants. Competition tier remains challenging even for frontier models, but contamination is a concern for older problems.',
+   sota:'Frontier models: ~55-80% (interview tier); <35% (competition tier).',
+   metrics:'10,000 problems, test-case pass rate (%)',tags:['Coding','Python','Multi-Difficulty'],dif:'Graduate'},
+  {id:'bfcl',cat:'agentic',name:'BFCL (Berkeley Function Calling)',year:2024,sig:'active',
+   sum:'Comprehensive function/API calling benchmark covering single-call, parallel, nested, and multi-turn tool use across multiple programming languages.',
+   uti:'Essential for any system that dispatches tools or APIs. Covers AST-based verification, executable function calls, and multi-step tool chains. Regularly updated with new scenarios. The canonical leaderboard for tool-use capability.',
+   sota:'GPT-4o, Claude 3.5 Sonnet: ~85-92% overall. Live leaderboard at gorilla.cs.berkeley.edu.',
+   metrics:'2,000+ function call scenarios, accuracy (%)',tags:['Agentic','Tool Use','Function Calling','API'],dif:'Graduate'},
+  {id:'agentbench',cat:'agentic',name:'AgentBench',year:2023,sig:'active',
+   sum:'Multi-environment agent evaluation across OS terminal, databases, web browsing, code, card games, and lateral thinking puzzles, testing sequential decision-making.',
+   uti:'Use when evaluating agents that must operate across multiple environments. Covers the breadth of real-world agent scenarios better than any single-domain benchmark. Most models score well on some environments and fail on others - diagnose per-environment weaknesses.',
+   sota:'GPT-4 class: ~4.2-5.1 avg (out of 8 environments). Still actively maintained.',
+   metrics:'8 environments, 1,091 tasks, weighted average score',tags:['Agentic','Multi-Environment','Planning'],dif:'Expert'},
+  {id:'taubench',cat:'agentic',name:'tau-bench',year:2024,sig:'active',
+   sum:'Customer service agent evaluation: the model follows domain-specific policies, calls tools correctly, and interacts with a simulated user across multi-turn dialogues.',
+   uti:'Best choice for evaluating enterprise agents in customer service or workflow automation. Uniquely tests policy adherence alongside task completion - critical for production where helpful-but-off-policy is a failure mode. Airline and retail domains included.',
+   sota:'Claude 3.5 Sonnet, GPT-4o: ~50-70% pass rate. Hard due to strict policy grading.',
+   metrics:'~300 tasks, pass rate (%) under strict policy grading',tags:['Agentic','Customer Service','Policy Following','Multi-Turn'],dif:'Expert'},
+  {id:'webarena',cat:'agentic',name:'WebArena',year:2023,sig:'active',
+   sum:'Browser-based web agent benchmark with realistic tasks on live web environments: GitLab management, Reddit browsing, e-commerce checkout, and OpenStreetMap navigation.',
+   uti:'Use when building or evaluating web browsing agents or RPA systems. Tasks require multi-step navigation, form filling, and cross-page reasoning. Still wide open - strong differentiation between model families.',
+   sota:'Best agents: ~35-52% task completion. Substantial headroom remains.',
+   metrics:'812 tasks, task success rate (%)',tags:['Agentic','Web Browsing','GUI','Multi-Step'],dif:'Expert'},
+  {id:'ifeval',cat:'instruction',name:'IFEval',year:2023,sig:'active',
+   sum:'541 prompts with verifiable, programmatically-checkable constraints: exact word counts, forbidden words, required formats, specific capitalization, keyword inclusion, and JSON structure.',
+   uti:'Essential for testing reliable format and constraint adherence. Scoring is objective and automated (not model-judged), avoiding judge model bias entirely. Use for fine-tune validation and any deployment requiring strict output format contracts.',
+   sota:'GPT-4o, Claude 3.5 Sonnet: ~87-93% prompt accuracy.',
+   metrics:'541 prompts, prompt-level and instruction-level accuracy (%)',tags:['Instruction Following','Formatting','Objective'],dif:'General'},
+  {id:'mtbench',cat:'instruction',name:'MT-Bench',year:2023,sig:'aging',
+   sum:'80 high-quality multi-turn questions across 8 domains (writing, roleplay, reasoning, math, coding, extraction, STEM, humanities) evaluated by GPT-4 as judge.',
+   uti:'Use for evaluating multi-turn coherence with a small, auditable question set. Aging because top models score near the judge\'s ceiling (~9.3-9.6/10) and GPT-4-as-judge can no longer reliably distinguish models exceeding its own capability.',
+   sota:'Best models: ~9.3-9.6/10. Limited differentiation at the frontier.',
+   metrics:'80 questions (2-turn), GPT-4 judge score (1-10)',tags:['Instruction Following','Multi-Turn','LLM-as-Judge'],dif:'General'},
+  {id:'wildbench',cat:'instruction',name:'WildBench',year:2024,sig:'active',
+   sum:'Real user prompts collected from production deployments, evaluated with LLM-as-judge on hard, multi-part tasks that reflect the actual long tail of user requests.',
+   uti:'Better reflects real deployment distribution than MT-Bench. Prompts come from genuine users submitting complex, messy instructions. Particularly valuable for general-purpose assistant deployments where prompt diversity matters.',
+   sota:'Dynamic leaderboard. Regularly updated at WildBench GitHub.',
+   metrics:'~1,024 real-world tasks, WB-Score (LLM judge)',tags:['Instruction Following','Real-World','LLM-as-Judge'],dif:'General'},
+  {id:'arena',cat:'chat',name:'Chatbot Arena (LMSYS)',year:2023,sig:'active',
+   sum:'Elo-based human preference ranking via millions of blind side-by-side model comparisons on open-ended prompts - the closest proxy to real-world user satisfaction.',
+   uti:'The most reliable signal for how a model performs in a deployed chat product. Rankings aggregate human preference across diverse prompt types, capturing holistic quality: helpfulness, safety, writing, and reasoning combined. Cannot be gamed by benchmark-specific tuning.',
+   sota:'Dynamic leaderboard at lmsys.org. GPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Pro near top.',
+   metrics:'Bradley-Terry Elo from human pairwise comparisons',tags:['Human Preference','Chat','Elo Ranking','Real-World'],dif:'General'},
+  {id:'alpaca',cat:'chat',name:'AlpacaEval 2.0',year:2023,sig:'aging',
+   sum:'Automated win-rate against GPT-4-Turbo using GPT-4 as judge on 805 diverse single-turn instructions. Length-controlled (LC) variant partially corrects for verbosity bias.',
+   uti:'Fast, cheap proxy for instruction-following quality relative to GPT-4-Turbo. Always use the LC variant to reduce verbosity gaming. Useful for quick iteration; complement with human preference evaluation (Chatbot Arena) before shipping.',
+   sota:'Models >90% LC win-rate approach GPT-4-Turbo quality. Aging - use as screening only.',
+   metrics:'805 instructions, LC win rate (%) vs GPT-4-Turbo',tags:['Human Preference','Instruction Following','LLM-as-Judge'],dif:'General'},
+  {id:'ruler',cat:'longcontext',name:'RULER / NIAH',year:2024,sig:'active',
+   sum:'Needle-in-a-Haystack and its RULER extension: tests recall, multi-key retrieval, chained lookups, and aggregation tasks at context lengths from 4K to 128K+ tokens.',
+   uti:'Fundamental test before any long-context deployment. RULER extends NIAH with harder variants that expose models passing simple recall but failing multi-hop retrieval. Run before deploying RAG systems, document analysis pipelines, or any context window above 32K tokens.',
+   sota:'Frontier models: ~95-99% at 32K; drops to 60-90% at 128K+. Wide spread at long lengths.',
+   metrics:'Accuracy (%) at 4K / 8K / 16K / 32K / 64K / 128K context lengths',tags:['Long Context','Retrieval','RAG','Multi-Hop'],dif:'General'},
+  {id:'longbench',cat:'longcontext',name:'LongBench v2',year:2023,sig:'active',
+   sum:'Bilingual (EN/ZH) long-context benchmark with 21 task types: single-doc QA, multi-doc QA, summarization, few-shot learning, and code completion up to 128K tokens.',
+   uti:'More task-diverse than NIAH alone. LongBench v2 extends to 128K. Covers summarization, cross-document reasoning, and in-context learning. Good for document intelligence products and multilingual long-context pipelines.',
+   sota:'Claude 3.5, GPT-4o: ~60-75% average. Varies widely by subtask.',
+   metrics:'4,750 examples, F1 / ROUGE / accuracy per subtask',tags:['Long Context','Bilingual','QA','Summarization'],dif:'Graduate'},
+  {id:'scrolls',cat:'longcontext',name:'SCROLLS',year:2022,sig:'aging',
+   sum:'Standardized comparison over long language sequences: QA and summarization over books, scientific papers, meeting transcripts, and legal contracts.',
+   uti:'Good for domain-specific long-form evaluation: contract analysis, scientific paper summarization, meeting transcript QA. More realistic than synthetic NIAH but less updated than LongBench v2. Use for legal or scientific document format coverage.',
+   sota:'Frontier models strong on most subtasks. Somewhat aging but domain coverage remains valuable.',
+   metrics:'7 datasets, ROUGE / F1 per subtask',tags:['Long Context','Summarization','QA','Documents'],dif:'Graduate'},
+  {id:'mmmu',cat:'multimodal',name:'MMMU',year:2023,sig:'active',
+   sum:'11,500 graduate-level multimodal questions requiring visual perception plus domain knowledge across 30 subjects: engineering, medicine, art, science, and humanities.',
+   uti:'The MMLU equivalent for vision-language models. Questions require synthesizing image content with deep subject knowledge, ruling out models that only handle simple visual recognition. Use when selecting a VLM for scientific document processing or professional applications.',
+   sota:'GPT-4o, Gemini 2.5 Pro: ~70-80%. Human expert: ~88%. Good headroom remains.',
+   metrics:'11,500 questions, accuracy (%)',tags:['Multimodal','Vision','Knowledge','Multi-Subject'],dif:'Graduate'},
+  {id:'docvqa',cat:'multimodal',name:'DocVQA',year:2020,sig:'aging',
+   sum:'Visual QA on scanned document images: forms, letters, tables, and reports requiring OCR-level text reading combined with comprehension of document structure.',
+   uti:'Still relevant for document AI pipelines (invoice processing, form extraction, scanned records). Frontier VLMs now exceed 92% ANLS, so use for evaluating smaller or specialized document-processing models. Add InfographicVQA for harder cases.',
+   sota:'GPT-4V, Gemini 2.5: ~92-96% ANLS. Aging at the frontier.',
+   metrics:'~50,000 QA pairs on 12,767 document images, ANLS score',tags:['Multimodal','Document Understanding','OCR','VQA'],dif:'General'},
+  {id:'chartqa',cat:'multimodal',name:'ChartQA',year:2022,sig:'active',
+   sum:'Questions on bar, line, pie, and scatter charts requiring visual data extraction, comparison, and multi-step numerical reasoning.',
+   uti:'Critical if building a data analytics assistant, BI integration, or any product processing visualizations. Combines visual parsing with arithmetic. Human-authored questions are significantly harder than machine-generated ones. Models still fall short on complex reasoning variants.',
+   sota:'GPT-4o, Gemini 2.5 Pro: ~85-92%. Human: ~80% (chart ambiguity makes this counterintuitive).',
+   metrics:'~4,800 QA pairs, relaxed accuracy (%)',tags:['Multimodal','Charts','Reasoning','Vision'],dif:'Graduate'},
+  {id:'mathvista',cat:'multimodal',name:'MathVista',year:2023,sig:'active',
+   sum:'Mathematical reasoning over visual contexts: geometry diagrams, function plots, statistical charts, and visual puzzles requiring both image parsing and mathematical reasoning.',
+   uti:'Best benchmark for evaluating multimodal mathematical ability. If building a STEM tutoring assistant, engineering documentation tool, or scientific notebook integration, MathVista reliably tests whether the model reasons over visual math rather than just reading text.',
+   sota:'Gemini 2.5 Pro, GPT-4o: ~65-78%. Human: ~60.3% (counterintuitive - complex reasoning required).',
+   metrics:'6,141 examples, accuracy (%)',tags:['Multimodal','Math','Reasoning','Vision'],dif:'Expert'},
+  {id:'truthfulqa',cat:'safety',name:'TruthfulQA',year:2021,sig:'aging',
+   sum:'817 questions targeting common human misconceptions, testing whether models produce truthful answers or parrot false beliefs.',
+   uti:'Still useful for checking basic factual honesty and sycophancy resistance in fine-tuned models. However, RLHF tuning for TruthfulQA is well-understood, so high scores may reflect benchmark-specific optimization. Supplement with SimpleQA for more robust factuality testing.',
+   sota:'RLHF-tuned models: ~85-90%. Raw base models score much lower. Aging.',
+   metrics:'817 questions, % truthful + informative (judge model)',tags:['Safety','Hallucination','Factuality','Sycophancy'],dif:'General'},
+  {id:'bbq',cat:'safety',name:'BBQ / WinoBias',year:2022,sig:'active',
+   sum:'BBQ tests social bias across 9 protected attributes (race, gender, age, religion, etc.) using ambiguous-context QA; WinoBias evaluates gender stereotyping in coreference resolution.',
+   uti:'Essential for any production deployment serving diverse populations, especially in hiring, healthcare, legal, or finance contexts. BBQ distinguishes bias in ambiguous vs. disambiguated contexts - the ambiguous version is far more revealing. Run both before any external deployment.',
+   sota:'Frontier models: ~90-97% on disambiguated; ambiguous contexts reveal clear residual bias.',
+   metrics:'BBQ: 58,492 QA pairs, bias score; WinoBias: 3,160 sentences, coreference accuracy',tags:['Safety','Bias','Fairness','Social'],dif:'General'},
+  {id:'simpleqa',cat:'safety',name:'SimpleQA',year:2024,sig:'active',
+   sum:'Short, unambiguous factual questions with a single verifiable correct answer, designed to measure raw factual accuracy and confident hallucination patterns.',
+   uti:'Use to audit factual accuracy independent of reasoning steps. SimpleQA deliberately removes multi-hop complexity, measuring knowledge fidelity in isolation. Results are often surprising - models confidently hallucinate on well-defined facts at higher rates than expected.',
+   sota:'Best models: ~40-65% exact match. Harder than it looks - confident hallucination is common.',
+   metrics:'~4,326 questions, exact match accuracy (%)',tags:['Safety','Factuality','Calibration','Hallucination'],dif:'General'},
+  {id:'xstest',cat:'safety',name:'XSTest',year:2023,sig:'active',
+   sum:'Exaggerated safety test: 250 benign prompts superficially resembling harmful requests paired with 200 genuinely harmful ones, exposing over-refusal behaviors.',
+   uti:'Essential complement to harm benchmarks. Models over-aligned for safety often fail benign requests through superficial pattern-matching (e.g., refusing "how to kill a background process"). Use alongside harm benchmarks to calibrate refusal threshold - both under-refusal and over-refusal are failures.',
+   sota:'Most frontier models pass >92%, but fine-tuned and smaller models commonly over-refuse.',
+   metrics:'250 safe + 200 unsafe prompts, refusal rate (%) and precision/recall',tags:['Safety','Over-Refusal','Alignment','Calibration'],dif:'General'}
+];
+var UCS=[
+  {id:'coding-agent',icon:'⚙️',name:'Coding Agent',desc:'AI writing & debugging code',bms:['swebench','lcb','humaneval','bfcl','apps']},
+  {id:'rag',icon:'🔍',name:'RAG Pipeline',desc:'Retrieval-augmented generation',bms:['ruler','longbench','drop','scrolls','ifeval']},
+  {id:'doc-intel',icon:'📄',name:'Document Intelligence',desc:'Parsing & reasoning over documents',bms:['docvqa','chartqa','longbench','ruler','scrolls','drop']},
+  {id:'chat-app',icon:'💬',name:'Chat Assistant',desc:'General-purpose conversational AI',bms:['arena','mtbench','wildbench','ifeval','alpaca','mmlu-pro']},
+  {id:'math-sci',icon:'🔬',name:'Math / Science',desc:'STEM reasoning & problem solving',bms:['gpqa','aime','math500','olympiad','mathvista','mmlu-pro']},
+  {id:'on-prem',icon:'🏠',name:'On-Prem / Small Model',desc:'Sub-70B, local inference',bms:['mmlu','arc','gsm8k','mbpp','hellaswag','bbh']},
+  {id:'vision',icon:'🖼️',name:'Vision / Multimodal',desc:'Image + text processing',bms:['mmmu','chartqa','docvqa','mathvista']},
+  {id:'enterprise-agent',icon:'🏢',name:'Enterprise Agent',desc:'Workflow automation & tool use',bms:['taubench','bfcl','agentbench','webarena','ifeval','wildbench']},
+  {id:'safety-audit',icon:'🛡️',name:'Safety Audit',desc:'Alignment, bias & hallucination',bms:['bbq','simpleqa','xstest','truthfulqa','gpqa']},
+  {id:'frontier',icon:'🚀',name:'Frontier Evaluation',desc:'Comparing top-tier models only',bms:['gpqa','aime','swebench','lcb','mmmu','arena','bfcl','taubench']}
+];
+var LOOKUP=[
+  {uc:'Compare frontier models',top:['gpqa','aime','swebench','arena','mmmu'],avoid:['MMLU (saturated)','GSM8K (saturated)','HellaSwag (saturated)']},
+  {uc:'Evaluate coding ability',top:['swebench','lcb','humaneval','bfcl','apps'],avoid:['MBPP (too easy for frontier)','HumanEval vanilla']},
+  {uc:'Build a chat product',top:['arena','wildbench','mtbench','alpaca','ifeval'],avoid:[]},
+  {uc:'Long document analysis',top:['ruler','longbench','scrolls','docvqa'],avoid:[]},
+  {uc:'Agentic / Tool use',top:['bfcl','swebench','taubench','agentbench','webarena'],avoid:[]},
+  {uc:'Vision / Multimodal product',top:['mmmu','chartqa','docvqa','mathvista'],avoid:[]},
+  {uc:'Safety & alignment audit',top:['bbq','simpleqa','xstest','truthfulqa'],avoid:[]},
+  {uc:'Math / Science assistant',top:['gpqa','aime','math500','olympiad','mmmu'],avoid:['GSM8K (saturated)']},
+  {uc:'Small / open-source models',top:['mmlu','arc','gsm8k','hellaswag','mbpp'],avoid:['GPQA Diamond (too hard)','AIME (too hard)']},
+  {uc:'Instruction / format testing',top:['ifeval','mtbench','wildbench'],avoid:[]}
+];
+var curFilter='all',curSearch='',selUC=null,hlCards=[];
+function bmName(id){var b=BM.find(function(x){return x.id===id});return b?b.name:id}
+function sigBadge(s){
+  if(s==='active') return '<span class="sig sig-a">🟢 Active<\/span>';
+  if(s==='aging')  return '<span class="sig sig-g">🟡 Aging<\/span>';
+  return '<span class="sig sig-s">🔴 Saturated<\/span>';
+}
+function difBadge(d){
+  var c=d==='Expert'?'dif-e':d==='Graduate'?'dif-r':'dif-g';
+  return '<span class="dif '+c+'">'+d+'<\/span>';
+}
+function matchesBm(b){
+  if(curFilter==='all') return true;
+  if(curFilter==='active'||curFilter==='aging'||curFilter==='saturated') return b.sig===curFilter;
+  if(b.cat===curFilter) return true;
+  if(b.tags.some(function(t){return t.toLowerCase()===curFilter})) return true;
+  if(b.dif.toLowerCase()===curFilter.replace(' level','')) return true;
+  return false;
+}
+function matchesSearch(b){
+  if(!curSearch) return true;
+  var q=curSearch.toLowerCase();
+  return b.name.toLowerCase().indexOf(q)>=0||b.sum.toLowerCase().indexOf(q)>=0||
+    b.tags.some(function(t){return t.toLowerCase().indexOf(q)>=0})||b.uti.toLowerCase().indexOf(q)>=0;
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function cardHtml(b){
+  var tags=b.tags.map(function(t){return '<span class="tag">'+esc(t)+'<\/span>'}).join('');
+  return '<div class="card" id="c-'+b.id+'">'+
+    '<div class="card-top"><div class="card-name">'+esc(b.name)+' <span class="yr">'+b.year+'<\/span><\/div>'+sigBadge(b.sig)+'<\/div>'+
+    '<p class="card-sum">'+esc(b.sum)+'<\/p>'+
+    '<div class="card-meta">'+tags+difBadge(b.dif)+'<\/div>'+
+    '<button class="uti-btn" onclick="toggleUti(this)"><span>▶<\/span> Use This If…<\/button>'+
+    '<div class="uti-body">'+esc(b.uti)+'<div class="sota"><strong>SOTA \/ Context:<\/strong> '+esc(b.sota)+'<br><strong>Metric:<\/strong> '+esc(b.metrics)+'<\/div><\/div>'+
+  '<\/div>';
+}
+function renderAll(){
+  var main=document.getElementById('main');
+  var nores=document.getElementById('nores');
+  var html='',total=0;
+  CATS.forEach(function(cat){
+    var bms=BM.filter(function(b){return b.cat===cat.id&&matchesBm(b)&&matchesSearch(b)});
+    if(!bms.length) return;
+    total+=bms.length;
+    html+='<section class="cat-sec '+cat.cls+'" id="'+cat.id+'">'+
+      '<div class="cat-hdr"><span class="cat-icon">'+cat.icon+'<\/span><span class="cat-title">'+cat.label+'<\/span><span class="cat-cnt">'+bms.length+'<\/span><\/div>'+
+      '<div class="cards">'+bms.map(cardHtml).join('')+'<\/div><\/section>';
+  });
+  main.textContent='';
+  main.insertAdjacentHTML('afterbegin',html);
+  nores.classList.toggle('on',total===0);
+  document.getElementById('stotal').textContent=total;
+  hlCards.forEach(function(id){var el=document.getElementById('c-'+id);if(el)el.classList.add('hl')});
+}
+function renderStats(){
+  var a=BM.filter(function(b){return b.sig==='active'}).length;
+  var g=BM.filter(function(b){return b.sig==='aging'}).length;
+  var s=BM.filter(function(b){return b.sig==='saturated'}).length;
+  var el=document.getElementById('stats');
+  el.textContent='';
+  el.insertAdjacentHTML('afterbegin',
+    '<div class="stat"><div class="v" id="stotal">'+BM.length+'<\/div><div class="l">Benchmarks<\/div><\/div>'+
+    '<div class="stat"><div class="v">'+CATS.length+'<\/div><div class="l">Categories<\/div><\/div>'+
+    '<div class="stat"><div class="v">'+a+'<\/div><div class="l">🟢 Active<\/div><\/div>'+
+    '<div class="stat"><div class="v">'+g+'<\/div><div class="l">🟡 Aging<\/div><\/div>'+
+    '<div class="stat"><div class="v">'+s+'<\/div><div class="l">🔴 Saturated<\/div><\/div>');
+}
+function renderUC(){
+  var html=UCS.map(function(u){
+    return '<div class="uc-tile" id="t-'+u.id+'" onclick="pickUC(\''+u.id+'\')">'+
+      '<div class="ti">'+u.icon+'<\/div><div class="tn">'+esc(u.name)+'<\/div><div class="td">'+esc(u.desc)+'<\/div><\/div>';
+  }).join('');
+  var el=document.getElementById('uc-grid');
+  el.textContent='';el.insertAdjacentHTML('afterbegin',html);
+}
+function renderLookup(){
+  var html='<thead><tr><th>Use Case<\/th><th>Top Benchmarks<\/th><th>Avoid \/ Note<\/th><\/tr><\/thead><tbody>';
+  LOOKUP.forEach(function(r){
+    var pills=r.top.map(function(id){return '<span class="pill" onclick="jumpTo(\''+id+'\')">'+esc(bmName(id))+'<\/span>'}).join('');
+    var av=r.avoid.length?r.avoid.map(function(x){return '<span class="avoid-txt">'+esc(x)+'<\/span>'}).join('<br>'):'<span class="avoid-txt">—<\/span>';
+    html+='<tr><td>'+esc(r.uc)+'<\/td><td>'+pills+'<\/td><td>'+av+'<\/td><\/tr>';
+  });
+  html+='<\/tbody>';
+  var el=document.getElementById('lktable');
+  el.textContent='';el.insertAdjacentHTML('afterbegin',html);
+}
+function toggleUti(btn){
+  var body=btn.nextElementSibling;
+  var open=body.classList.toggle('on');
+  btn.querySelector('span').textContent=open?'▼':'▶';
+}
+function clearHighlights(){
+  hlCards.forEach(function(id){var el=document.getElementById('c-'+id);if(el)el.classList.remove('hl')});hlCards=[];
+}
+function showBanner(txt){document.getElementById('fbtxt').textContent=txt;document.getElementById('fbanner').classList.add('on')}
+function pickUC(id){
+  if(selUC===id){clearAll();return}
+  selUC=id;clearHighlights();
+  curFilter='all';curSearch='';
+  document.getElementById('search').value='';
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on')});
+  document.querySelector('[data-f="all"]').classList.add('on');
+  renderAll();
+  var uc=UCS.find(function(u){return u.id===id});
+  hlCards=uc.bms.slice();
+  hlCards.forEach(function(bid){var el=document.getElementById('c-'+bid);if(el)el.classList.add('hl')});
+  document.querySelectorAll('.uc-tile').forEach(function(t){t.classList.remove('on')});
+  document.getElementById('t-'+id).classList.add('on');
+  showBanner(uc.icon+' '+uc.name+' — '+uc.bms.length+' relevant benchmarks highlighted');
+  setTimeout(function(){var first=document.getElementById('c-'+uc.bms[0]);if(first)first.scrollIntoView({behavior:'smooth',block:'center'})},80);
+}
+function clearAll(){
+  curFilter='all';curSearch='';selUC=null;clearHighlights();
+  document.getElementById('search').value='';
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on')});
+  document.querySelector('[data-f="all"]').classList.add('on');
+  document.querySelectorAll('.uc-tile').forEach(function(t){t.classList.remove('on')});
+  document.getElementById('fbanner').classList.remove('on');renderAll();
+}
+function jumpTo(id){
+  clearAll();
+  setTimeout(function(){
+    var el=document.getElementById('c-'+id);if(!el)return;
+    el.classList.add('hl');el.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(function(){el.classList.remove('hl')},3500);
+  },80);
+}
+document.getElementById('chips').addEventListener('click',function(e){
+  var chip=e.target.closest('.chip');if(!chip)return;
+  curFilter=chip.dataset.f;selUC=null;clearHighlights();
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on')});chip.classList.add('on');
+  document.querySelectorAll('.uc-tile').forEach(function(t){t.classList.remove('on')});
+  if(curFilter==='all')document.getElementById('fbanner').classList.remove('on');
+  else showBanner('Filtered: '+chip.textContent);
+  renderAll();
+});
+document.getElementById('search').addEventListener('input',function(e){
+  curSearch=e.target.value.trim();clearHighlights();selUC=null;
+  document.querySelectorAll('.uc-tile').forEach(function(t){t.classList.remove('on')});
+  if(curSearch)showBanner('Search: "'+curSearch+'"');
+  else if(curFilter==='all')document.getElementById('fbanner').classList.remove('on');
+  renderAll();
+});
+window.addEventListener('scroll',function(){document.getElementById('stbtn').classList.toggle('on',window.scrollY>600)});
+renderStats();renderAll();renderUC();renderLookup();
+</script>
+</body>
+</html>

@@ -1,0 +1,2785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Mastery — Complete Guide</title>
+  <meta name="description" content="Best practices for AI-assisted software engineering">
+  <style>
+/* ═══════════════════════════════════════════
+   CLAUDE CODE MASTERY — Shared Design System
+   Theme: Luxury Dark Editorial with Gold Accents
+   ═══════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-card: #1a1a28;
+    --bg-card-hover: #22223a;
+    --accent: #d4a853;
+    --accent-dim: rgba(212, 168, 83, .15);
+    --accent-glow: rgba(212, 168, 83, .3);
+    --text-primary: #e8e4dd;
+    --text-secondary: #9a968e;
+    --text-muted: #6a665e;
+    --border: rgba(212, 168, 83, .12);
+    --border-hover: rgba(212, 168, 83, .3);
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --info: #60a5fa;
+    --danger: #f87171;
+    --radius: 12px;
+    --radius-lg: 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px
+}
+
+body {
+    font-family: 'Satoshi', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--bg-primary)
+}
+
+::-webkit-scrollbar {
+    width: 6px
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary)
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-dim);
+    border-radius: 3px
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity .3s
+}
+
+a:hover {
+    opacity: .8
+}
+
+/* NOISE OVERLAY */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: .03;
+    z-index: 9999;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")
+}
+
+/* PAGE HEADER (sub-pages) */
+.page-header {
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    pointer-events: none;
+    opacity: .5
+}
+
+.page-header .breadcrumb {
+    font-size: .75rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .1em
+}
+
+.page-header .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none
+}
+
+.page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    margin-bottom: .8rem;
+    line-height: 1.2
+}
+
+.page-header h1 .gold {
+    background: linear-gradient(135deg, var(--accent), #f0d68a, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text
+}
+
+.page-header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin: 0 auto
+}
+
+/* NAVIGATION BAR */
+.nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 15, .9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: .7rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.nav-bar .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none
+}
+
+.nav-bar .logo span {
+    color: var(--text-primary)
+}
+
+.nav-links {
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+    overflow-x: auto
+}
+
+.nav-links a {
+    padding: .35rem .7rem;
+    border-radius: 8px;
+    font-size: .7rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all .3s;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    font-weight: 500
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent);
+    background: var(--accent-dim)
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem
+}
+
+/* SECTIONS */
+section {
+    padding: 4rem 0
+}
+
+.section-label {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: var(--accent);
+    margin-bottom: .5rem;
+    font-weight: 600
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2
+}
+
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    max-width: 700px
+}
+
+/* CARDS */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: all .4s;
+    position: relative;
+    overflow: hidden
+}
+
+.card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .3)
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity .4s
+}
+
+.card:hover::before {
+    opacity: 1
+}
+
+.card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    background: var(--accent-dim);
+    border: 1px solid var(--border)
+}
+
+.card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: .6rem;
+    font-weight: 600
+}
+
+.card p,
+.card li {
+    color: var(--text-secondary);
+    font-size: .9rem;
+    line-height: 1.6
+}
+
+.card ul {
+    list-style: none;
+    margin-top: .8rem
+}
+
+.card li {
+    padding: .35rem 0;
+    padding-left: 1.2rem;
+    position: relative
+}
+
+.card li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700
+}
+
+/* LINK CARDS (for index hub) */
+.link-card {
+    text-decoration: none;
+    color: inherit;
+    display: block
+}
+
+.link-card .card {
+    cursor: pointer
+}
+
+.link-card .card h3 {
+    color: var(--text-primary)
+}
+
+.link-card .card-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-dim);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    line-height: 1
+}
+
+/* CODE BLOCKS */
+.code-block {
+    background: #0d0d14;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    position: relative
+}
+
+.code-block::before {
+    content: attr(data-label);
+    position: absolute;
+    top: .6rem;
+    right: .8rem;
+    font-size: .6rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .1em
+}
+
+code,
+.code-block code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .82rem;
+    color: #e0d4b8;
+    line-height: 1.8
+}
+
+.code-inline {
+    background: rgba(212, 168, 83, .1);
+    padding: .15rem .45rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .8rem;
+    color: var(--accent);
+    border: 1px solid rgba(212, 168, 83, .15)
+}
+
+.code-comment {
+    color: #6a665e
+}
+
+/* WORKFLOW STEPS */
+.workflow {
+    counter-reset: step
+}
+
+.step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    transition: all .3s
+}
+
+.step:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover)
+}
+
+.step-num {
+    counter-increment: step;
+    min-width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--border);
+    flex-shrink: 0
+}
+
+.step-num::before {
+    content: counter(step)
+}
+
+.step-content h4 {
+    font-size: 1.05rem;
+    margin-bottom: .4rem;
+    font-weight: 600
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    font-size: .88rem
+}
+
+/* COMMAND TABLE */
+.cmd-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: .85rem
+}
+
+.cmd-table th {
+    text-align: left;
+    padding: .8rem 1rem;
+    border-bottom: 2px solid var(--accent-dim);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .1em
+}
+
+.cmd-table td {
+    padding: .7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary)
+}
+
+.cmd-table tr:hover td {
+    background: rgba(212, 168, 83, .03)
+}
+
+.cmd-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    white-space: nowrap;
+    font-size: .8rem
+}
+
+/* TIP BOXES */
+.tip-box {
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    margin: 1.5rem 0;
+    border-left: 3px solid
+}
+
+.tip-box.gold {
+    background: rgba(212, 168, 83, .06);
+    border-color: var(--accent)
+}
+
+.tip-box.blue {
+    background: rgba(96, 165, 250, .06);
+    border-color: var(--info)
+}
+
+.tip-box.green {
+    background: rgba(74, 222, 128, .06);
+    border-color: var(--success)
+}
+
+.tip-box.red {
+    background: rgba(248, 113, 113, .06);
+    border-color: var(--danger)
+}
+
+.tip-label {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-weight: 700;
+    margin-bottom: .4rem
+}
+
+.tip-box.gold .tip-label {
+    color: var(--accent)
+}
+
+.tip-box.blue .tip-label {
+    color: var(--info)
+}
+
+.tip-box.green .tip-label {
+    color: var(--success)
+}
+
+.tip-box.red .tip-label {
+    color: var(--danger)
+}
+
+.tip-box p {
+    font-size: .88rem;
+    color: var(--text-secondary)
+}
+
+/* ACCORDION */
+.accordion {
+    margin: 1.5rem 0
+}
+
+.acc-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: .6rem;
+    overflow: hidden;
+    background: var(--bg-card)
+}
+
+.acc-header {
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: .95rem;
+    transition: background .3s
+}
+
+.acc-header:hover {
+    background: var(--bg-card-hover)
+}
+
+.acc-header::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: var(--accent);
+    transition: transform .3s;
+    font-weight: 300
+}
+
+.acc-item.open .acc-header::after {
+    transform: rotate(45deg)
+}
+
+.acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease
+}
+
+.acc-item.open .acc-body {
+    max-height: 2000px
+}
+
+.acc-inner {
+    padding: 0 1.5rem 1.5rem
+}
+
+.acc-inner p,
+.acc-inner li {
+    color: var(--text-secondary);
+    font-size: .88rem;
+    line-height: 1.7
+}
+
+.acc-inner ul {
+    list-style: none;
+    margin: .5rem 0
+}
+
+.acc-inner li {
+    padding: .3rem 0;
+    padding-left: 1.2rem;
+    position: relative
+}
+
+.acc-inner li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent)
+}
+
+/* PILLS */
+.pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin: 1rem 0
+}
+
+.pill {
+    padding: .4rem 1rem;
+    border-radius: 50px;
+    font-size: .75rem;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    transition: all .3s
+}
+
+.pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim)
+}
+
+/* COMPARISON */
+.compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0
+}
+
+.compare-col {
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border)
+}
+
+.compare-col.bad {
+    border-color: rgba(248, 113, 113, .2);
+    background: rgba(248, 113, 113, .03)
+}
+
+.compare-col.good {
+    border-color: rgba(74, 222, 128, .2);
+    background: rgba(74, 222, 128, .03)
+}
+
+.compare-col h4 {
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 1rem;
+    font-weight: 700
+}
+
+.compare-col.bad h4 {
+    color: var(--danger)
+}
+
+.compare-col.good h4 {
+    color: var(--success)
+}
+
+.compare-col p,
+.compare-col code {
+    font-size: .85rem;
+    color: var(--text-secondary)
+}
+
+/* TIMELINE */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-dim), transparent)
+}
+
+.tl-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem
+}
+
+.tl-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: .5rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent)
+}
+
+.tl-item h4 {
+    font-size: 1rem;
+    margin-bottom: .3rem
+}
+
+.tl-item p {
+    color: var(--text-secondary);
+    font-size: .85rem
+}
+
+/* PAGE NAV (prev/next) */
+.page-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border)
+}
+
+.page-nav a {
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: all .3s;
+    flex: 1;
+    max-width: 48%
+}
+
+.page-nav a:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    color: var(--text-primary)
+}
+
+.page-nav a .nav-dir {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: .3rem
+}
+
+.page-nav a .nav-title {
+    font-weight: 600;
+    font-size: .9rem
+}
+
+.page-nav a.next {
+    text-align: right;
+    margin-left: auto
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: .8rem
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+    .compare-grid {
+        grid-template-columns: 1fr
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr
+    }
+
+    .nav-links {
+        display: none
+    }
+
+    section {
+        padding: 3rem 0
+    }
+
+    .step {
+        flex-direction: column;
+        gap: 1rem
+    }
+
+    .page-nav {
+        flex-direction: column
+    }
+
+    .page-nav a {
+        max-width: 100%
+    }
+}
+
+/* ANIMATIONS */
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all .7s ease
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0)
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+:root { --primary: #A855F7; --primary-dark: #A855F7; }
+
+/* ── Combined-page layout ── */
+:root { --sidebar-w: 260px; }
+html { scroll-behavior: smooth; }
+body { display: flex; min-height: 100vh; overflow-x: hidden; }
+.sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: var(--bg-secondary, #161B22);
+    border-right: 1px solid var(--border, #30363d);
+    overflow-y: auto; z-index: 100;
+    display: flex; flex-direction: column;
+    padding: 0 0 2rem;
+    scrollbar-width: thin;
+}
+.sidebar-brand {
+    padding: 20px 20px 16px;
+    font-weight: 800; font-size: 0.95rem;
+    color: var(--text, #C9D1D9);
+    border-bottom: 1px solid var(--border, #30363d);
+    position: sticky; top: 0;
+    background: var(--bg-secondary, #161B22);
+    z-index: 1;
+}
+.sidebar-brand .back-link {
+    display: block; font-size: 0.72rem; font-weight: 500;
+    color: var(--text-muted, #8b949e);
+    text-decoration: none; margin-bottom: 6px;
+    letter-spacing: 0.05em;
+}
+.sidebar-brand .back-link:hover { color: var(--primary, #8B5CF6); }
+.sidebar-brand .topic-name {
+    font-size: 1rem; font-weight: 800;
+    color: var(--text, #C9D1D9);
+}
+.sidebar-nav { list-style: none; padding: 8px 0; margin: 0; }
+.sidebar-nav li a {
+    display: block; padding: 7px 20px;
+    font-size: 0.8rem; color: var(--text-muted, #8b949e);
+    text-decoration: none; line-height: 1.4;
+    transition: color 0.15s, background 0.15s;
+    border-left: 2px solid transparent;
+}
+.sidebar-nav li a:hover {
+    color: var(--text, #C9D1D9);
+    background: rgba(139,92,246,0.06);
+}
+.sidebar-nav li a.active {
+    color: var(--primary, #8B5CF6);
+    border-left-color: var(--primary, #8B5CF6);
+    background: rgba(139,92,246,0.08);
+    font-weight: 600;
+}
+.sidebar-nav .sec-num {
+    display: inline-block; width: 18px;
+    font-size: 0.7rem; color: var(--text-muted, #8b949e);
+    margin-right: 6px; font-variant-numeric: tabular-nums;
+}
+.page-content {
+    margin-left: var(--sidebar-w);
+    flex: 1; min-width: 0;
+}
+.topic-section {
+    padding: 48px 0 64px;
+    border-bottom: 1px solid var(--border, #30363d);
+}
+.topic-section:last-child { border-bottom: none; }
+#progress-bar {
+    position: fixed; top: 0; left: var(--sidebar-w);
+    height: 3px; background: var(--primary, #8B5CF6);
+    width: 0%; z-index: 200; transition: width 0.1s linear;
+}
+@media (max-width: 900px) {
+    :root { --sidebar-w: 0px; }
+    .sidebar { transform: translateX(-260px); transition: transform 0.25s; }
+    .sidebar.open { transform: translateX(0); width: 260px; }
+    .menu-toggle {
+        display: flex; position: fixed; top: 12px; left: 12px;
+        z-index: 300; background: var(--bg-secondary, #161B22);
+        border: 1px solid var(--border, #30363d); border-radius: 8px;
+        padding: 8px 10px; cursor: pointer; color: var(--text, #C9D1D9);
+        font-size: 1.1rem; align-items: center; gap: 6px;
+    }
+}
+@media (min-width: 901px) { .menu-toggle { display: none; } }
+
+
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+
+<nav class="sidebar" aria-label="Section navigation">
+  <div class="sidebar-brand">
+    <a href="index.html" class="back-link">← Back to Hub</a>
+    <div class="topic-name">⚡ Claude Code Mastery</div>
+  </div>
+  <ul class="sidebar-nav"><li><a href="#section-1"><span class="sec-num">1.</span>Overview</a></li>
+<li><a href="#section-2"><span class="sec-num">2.</span>Getting Started</a></li>
+<li><a href="#section-3"><span class="sec-num">3.</span>Golden Workflow</a></li>
+<li><a href="#section-4"><span class="sec-num">4.</span>Claude Md</a></li>
+<li><a href="#section-5"><span class="sec-num">5.</span>Prompting</a></li>
+<li><a href="#section-6"><span class="sec-num">6.</span>Context</a></li>
+<li><a href="#section-7"><span class="sec-num">7.</span>Extending</a></li>
+<li><a href="#section-8"><span class="sec-num">8.</span>Automation</a></li>
+<li><a href="#section-9"><span class="sec-num">9.</span>Multi Agent</a></li>
+<li><a href="#section-10"><span class="sec-num">10.</span>Commands</a></li>
+<li><a href="#section-11"><span class="sec-num">11.</span>Anti Patterns</a></li>
+<li><a href="#section-12"><span class="sec-num">12.</span>Community</a></li></ul>
+</nav>
+<div class="page-content">
+<section id="section-1" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>What Is <span class="gold">Claude Code</span>?</h1>
+<p>An agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your
+            development tools.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Core Concept</div>
+<h2 class="section-title">Not Autocomplete — An Agent</h2>
+<p class="section-subtitle">Claude Code doesn't just suggest completions. It thinks through problems, explores
+            codebases, plans changes, executes solutions, runs tests, and iterates — all autonomously within a single
+            conversation.</p>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">🖥️</div>
+<h3>Terminal-Native Power</h3>
+<p>Claude Code lives where developers live. It operates directly in your terminal with full access to
+                    your tools, filesystem, and shell — no context switching needed. It's built to be your pair
+                    programmer in the environment you already use.</p>
+</div>
+<div class="card">
+<div class="card-icon">🧠</div>
+<h3>Agentic Architecture</h3>
+<p>Powered by an agentic loop: Claude reads context, decides which tool to use, executes it, observes
+                    results, and repeats until the task is done. It can chain dozens of actions — reading files, running
+                    commands, editing code — all without manual intervention.</p>
+</div>
+<div class="card">
+<div class="card-icon">🔌</div>
+<h3>Available Everywhere</h3>
+<p>Use Claude Code in your Terminal, VS Code, Cursor, JetBrains IDEs, the Desktop App, on the Web
+                    (claude.ai/code), via iOS, through GitHub Actions, GitLab CI/CD, Slack, and even Chrome.</p>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Capabilities</div>
+<h2 class="section-title">What You Can Do</h2>
+<div class="card-grid">
+<div class="card">
+<h3>Build Features &amp; Fix Bugs</h3>
+<p>Describe what you want, and Claude explores the codebase, identifies the right files, implements
+                    changes, writes tests, and verifies everything works.</p>
+</div>
+<div class="card">
+<h3>Automate Git Workflow</h3>
+<p>Create commits with descriptive messages, open pull requests, handle code reviews, and even respond
+                    to PR comments — all through natural language.</p>
+<div class="code-block"><code>claude "commit my changes with a descriptive message"</code></div>
+</div>
+<div class="card">
+<h3>Write &amp; Run Tests</h3>
+<p>Find untested code, generate test scaffolding, add edge cases, run the suite, and fix any failures —
+                    all in one prompt.</p>
+<div class="code-block">
+<code>claude "write tests for the auth module, run them, and fix any failures"</code></div>
+</div>
+<div class="card">
+<h3>Connect External Tools (MCP)</h3>
+<p>Use the Model Context Protocol to connect Claude to databases, monitoring tools, issue trackers,
+                    documentation sites, and any API.</p>
+</div>
+<div class="card">
+<h3>Run Agent Teams</h3>
+<p>Coordinate multiple Claude instances working in parallel — one writes code, another reviews, a third
+                    writes tests. Experimental agent teams with a lead coordinator.</p>
+</div>
+<div class="card">
+<h3>Pipe, Script &amp; Automate</h3>
+<p>Use Claude as a Unix utility: pipe in logs, diff outputs, or file lists. Process them headlessly and
+                    chain into your existing command-line workflows.</p>
+<div class="code-block">
+<code>git diff main --name-only | claude -p "review these changed files for security issues"</code>
+</div>
+</div>
+</div>
+<div class="section-label" style="margin-top:3rem">Ecosystem</div>
+<h2 class="section-title">Use Claude Code Everywhere</h2>
+<div class="pill-grid" style="margin-top:1rem">
+<span class="pill">Terminal</span><span class="pill">VS Code</span><span class="pill">JetBrains</span><span class="pill">Desktop App</span><span class="pill">Web (claude.ai/code)</span><span class="pill">iOS
+                App</span><span class="pill">GitHub Actions</span><span class="pill">GitLab CI/CD</span><span class="pill">Slack</span><span class="pill">Chrome Extension</span><span class="pill">Agent SDK</span>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+
+<script>/* components-patch */
+
+(function(){
+  'use strict';
+
+  /* ── Accordion ────────────────────────────────── */
+  document.querySelectorAll('.accordion-header').forEach(function(hdr){
+    hdr.style.cursor = 'pointer';
+    hdr.addEventListener('click', function(){
+      var item = this.closest('.accordion-item') || this.parentElement;
+      var wasActive = item.classList.contains('active');
+      // collapse all in same container
+      var parent = item.parentElement;
+      if(parent){
+        parent.querySelectorAll('.accordion-item').forEach(function(i){ i.classList.remove('active'); });
+      }
+      if(!wasActive) item.classList.add('active');
+    });
+  });
+
+  /* ── Tabs ─────────────────────────────────────── */
+  document.querySelectorAll('.tab-button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var tabId = this.getAttribute('data-tab');
+      var container = this.closest('.tabs-container, .tab-wrapper, section, .topic-section') || document;
+      container.querySelectorAll('.tab-button').forEach(function(b){ b.classList.remove('active'); });
+      container.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); });
+      this.classList.add('active');
+      var content = document.getElementById(tabId);
+      if(content) content.classList.add('active');
+    });
+  });
+
+  /* ── Scroll-reveal (level, step, phase cards) ── */
+  if('IntersectionObserver' in window){
+    var revealObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+
+    /* Only animate .level and .step — NOT .card or .section to avoid
+       hiding large visible areas in the combined single-page layout */
+    document.querySelectorAll('.level, .step, .phase').forEach(function(el){
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      revealObs.observe(el);
+    });
+  }
+
+  /* ── Copy buttons on <pre><code> blocks ───────── */
+  document.querySelectorAll('pre').forEach(function(pre){
+    if(pre.querySelector('.copy-button')) return; // already added
+    var btn = document.createElement('button');
+    btn.className = 'copy-button';
+    btn.textContent = 'Copy';
+    btn.setAttribute('aria-label', 'Copy code');
+    btn.style.cssText = [
+      'position:absolute','top:8px','right:8px',
+      'background:rgba(255,255,255,0.08)','border:1px solid rgba(255,255,255,0.15)',
+      'color:#c9d1d9','font-size:0.72rem','padding:3px 10px',
+      'border-radius:5px','cursor:pointer','font-family:monospace',
+      'transition:background 0.15s'
+    ].join(';');
+    btn.addEventListener('mouseenter', function(){ this.style.background='rgba(255,255,255,0.15)'; });
+    btn.addEventListener('mouseleave', function(){ this.style.background='rgba(255,255,255,0.08)'; });
+    if(getComputedStyle(pre).position === 'static') pre.style.position = 'relative';
+    pre.appendChild(btn);
+    btn.addEventListener('click', function(){
+      var code = pre.querySelector('code');
+      var text = code ? code.textContent : pre.textContent;
+      navigator.clipboard.writeText(text).then(function(){
+        btn.textContent = 'Copied!';
+        setTimeout(function(){ btn.textContent = 'Copy'; }, 2000);
+      }).catch(function(){
+        btn.textContent = 'Error';
+        setTimeout(function(){ btn.textContent = 'Copy'; }, 2000);
+      });
+    });
+  });
+
+  /* ── Details/summary polyfill for older browsers ─ */
+  document.querySelectorAll('details').forEach(function(d){
+    var summary = d.querySelector('summary');
+    if(!summary) return;
+    summary.style.cursor = 'pointer';
+  });
+
+})();
+
+</script>
+</body>
+</section>
+<section id="section-2" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Getting Started in <span class="gold">60 Seconds</span></h1>
+<p>Install and start using Claude Code immediately on any platform.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Installation</div>
+<h2 class="section-title">Choose Your Platform</h2>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">🍎</div>
+<h3>macOS / Linux</h3>
+<div class="code-block" data-label="terminal">
+<code>curl -fsSL https://claude.ai/install.sh | bash</code></div>
+<p style="margin-top:.8rem">Or via Homebrew:</p>
+<div class="code-block"><code>brew install --cask claude-code
+<span class="code-comment"># Upgrade later with:</span>
+brew upgrade claude-code</code></div>
+</div>
+<div class="card">
+<div class="card-icon">🪟</div>
+<h3>Windows</h3>
+<div class="code-block" data-label="powershell"><code>irm https://claude.ai/install.ps1 | iex</code>
+</div>
+<p style="margin-top:.8rem">Or via WinGet:</p>
+<div class="code-block"><code>winget install Anthropic.ClaudeCode
+<span class="code-comment"># Upgrade later with:</span>
+winget upgrade Anthropic.ClaudeCode</code></div>
+</div>
+<div class="card">
+<div class="card-icon">💻</div>
+<h3>VS Code / Cursor</h3>
+<p>Open Extensions (<span class="code-inline">Cmd+Shift+X</span> / <span class="code-inline">Ctrl+Shift+X</span>)</p>
+<p>Search for <span class="code-inline">anthropic.claude-code</span></p>
+<p>Install and activate via <span class="code-inline">Cmd+Shift+P</span> / <span class="code-inline">Ctrl+Shift+P</span></p>
+</div>
+<div class="card">
+<div class="card-icon">🖥️</div>
+<h3>Desktop App</h3>
+<p>Download from <a href="https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect" target="_blank">macOS (Intel &amp; Apple Silicon)</a> or <a href="https://claude.ai/api/desktop/win32/x64/exe/latest/redirect" target="_blank">Windows
+                        (x64)</a>. Requires a paid Claude subscription.</p>
+</div>
+<div class="card">
+<div class="card-icon">🌐</div>
+<h3>Web</h3>
+<p>Go to <a href="https://claude.ai/code" target="_blank">claude.ai/code</a> — run Claude Code on
+                    Anthropic's cloud infrastructure in isolated VMs. No local installation needed.</p>
+</div>
+<div class="card">
+<div class="card-icon">🔧</div>
+<h3>JetBrains</h3>
+<p>Install the <a href="https://plugins.jetbrains.com/plugin/27310-claude-code-beta-" target="_blank">Claude Code plugin</a> from the JetBrains Marketplace. Works with IntelliJ,
+                    PyCharm, WebStorm, and all JetBrains IDEs.</p>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">First Session</div>
+<h2 class="section-title">Your First 5 Minutes</h2>
+<div class="workflow">
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>Navigate &amp; Launch</h4>
+<div class="code-block"><code>cd your-project
+claude</code></div>
+</div>
+</div>
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>Initialize Project Memory</h4>
+<p>Create a CLAUDE.md that gives Claude persistent memory of your project:</p>
+<div class="code-block"><code>&gt; /init</code></div>
+</div>
+</div>
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>Explore Your Codebase</h4>
+<div class="code-block"><code>&gt; give me an overview of this codebase
+&gt; explain the main architecture patterns used here
+&gt; how is authentication handled?</code></div>
+</div>
+</div>
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>Make Your First Change</h4>
+<div class="code-block"><code>&gt; add input validation to the user registration endpoint. 
+  write tests and run them to verify.</code></div>
+</div>
+</div>
+</div>
+<div class="tip-box gold">
+<div class="tip-label">💡 Pro Tip</div>
+<p>Run <span class="code-inline">/init</span> in every new project. It's the single most impactful setup
+                step. Claude will analyze your project structure and generate a tailored CLAUDE.md with conventions,
+                commands, and patterns.</p>
+</div>
+<div class="tip-box blue">
+<div class="tip-label">🔑 Authentication</div>
+<p>You'll need a <a href="https://claude.com/pricing" target="_blank">Claude subscription</a> (Pro, Team, or
+                Enterprise) or an <a href="https://console.anthropic.com/" target="_blank">Anthropic Console</a> API
+                key. Third-party providers like AWS Bedrock and Google Vertex AI are also supported.</p>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-3" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>The <span class="gold">Golden Workflow</span></h1>
+<p>Explore → Plan → Implement → Commit. The four-phase approach Anthropic engineers use internally for maximum
+            effectiveness.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">The Framework</div>
+<h2 class="section-title">Four Phases of Effective Development</h2>
+<p class="section-subtitle">This is how Anthropic's own engineers work with Claude Code. Don't skip phases —
+            each one builds on the previous.</p>
+<div class="workflow">
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>1. Explore — Understand Before Changing</h4>
+<p>Ask Claude to read and understand the existing code before making any changes. Let it map
+                        dependencies, trace execution flows, and identify relevant patterns.</p>
+<div class="code-block" data-label="explore"><code>read /src/auth and understand how we handle sessions and login.
+also look at how we manage environment variables for secrets.</code></div>
+<div class="tip-box blue">
+<p>Point Claude to specific directories. Be precise about what you want it to understand. Don't
+                            just say "look at the project."</p>
+</div>
+</div>
+</div>
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>2. Plan — Think Before Acting</h4>
+<p>Use <strong>Plan Mode</strong> (<span class="code-inline">Shift+Tab</span> twice or <span class="code-inline">Ctrl+G</span>) to prevent Claude from writing code. Get a structured
+                        implementation plan and review it carefully.</p>
+<div class="code-block" data-label="plan"><code>I want to add Google OAuth. What files need to change? 
+What's the session flow? Create a plan.</code></div>
+<div class="tip-box gold">
+<div class="tip-label">Why Plan Mode Matters</div>
+<p>In Plan Mode, Claude can only read files and use the AskUserQuestion tool — it can't edit or
+                            run anything. This forces deep analysis without the risk of premature implementation. Review
+                            the plan, refine it, <em>then</em> let Claude execute.</p>
+</div>
+</div>
+</div>
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>3. Implement — Execute with Verification</h4>
+<p>After approving the plan, let Claude implement. <strong>Always tell it to write tests and verify
+                            its work.</strong> This is the single highest-leverage instruction you can give.</p>
+<div class="code-block" data-label="implement"><code>implement the OAuth flow from your plan. write tests for the 
+callback handler, run the test suite and fix any failures.</code></div>
+</div>
+</div>
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>4. Commit — Ship with Context</h4>
+<p>Let Claude create meaningful commits and PRs that include full context about what changed and
+                        why.</p>
+<div class="code-block" data-label="commit">
+<code>commit with a descriptive message and open a PR</code></div>
+</div>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Critical Principle</div>
+<h2 class="section-title">Verification Is Everything</h2>
+<div class="tip-box green" style="font-size:1rem;padding:2rem">
+<div class="tip-label" style="font-size:.8rem">✅ The #1 Best Practice</div>
+<p style="font-size:1rem;line-height:1.8"><strong>"The single highest-leverage thing you can do is give
+                    Claude a way to verify its own work."</strong><br/><br/>Include tests, expected outputs, or screenshot
+                comparisons. When Claude can check itself, performance improves dramatically. If you can't verify it,
+                don't ship it.<br/><br/><em>— Anthropic Official Best Practices</em></p>
+</div>
+<h3 style="margin-top:2rem;font-family:'Playfair Display',serif">Verification Strategies</h3>
+<div class="card-grid" style="margin-top:1rem">
+<div class="card">
+<h3>Unit Tests</h3>
+<p>"Write tests, run them, and fix any failures" — the most reliable verification loop.</p>
+</div>
+<div class="card">
+<h3>Type Checking</h3>
+<p>Tell Claude to run <span class="code-inline">npm run typecheck</span> or <span class="code-inline">mypy</span> after changes. Add this to your CLAUDE.md.</p>
+</div>
+<div class="card">
+<h3>Linting</h3>
+<p>Run <span class="code-inline">npm run lint</span> or equivalent. Claude will fix issues automatically
+                    if instructed.</p>
+</div>
+<div class="card">
+<h3>Screenshots</h3>
+<p>For frontend work, use the Chrome extension or paste images to let Claude compare visual output
+                    against designs.</p>
+</div>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/best-practices" target="_blank">Source: Anthropic Best Practices</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-4" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1><span class="gold">CLAUDE.md</span> — Your Project's AI Memory</h1>
+<p>The most critical configuration file for Claude Code. It gives Claude persistent context about your project
+            across every session.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Why It Matters</div>
+<h2 class="section-title">The Impact of CLAUDE.md</h2>
+<div class="compare-grid">
+<div class="compare-col bad">
+<h4>❌ Without CLAUDE.md</h4>
+<p>Claude guesses your conventions. Uses wrong import styles. Doesn't know your test commands. Can't
+                    find your project structure. You repeat yourself every session. Wrong patterns. Wrong tools.</p>
+</div>
+<div class="compare-col good">
+<h4>✅ With CLAUDE.md</h4>
+<p>Claude follows your patterns from the first prompt. Uses correct styles, tools, and commands.
+                    Understands your architecture. Carries context across sessions. Consistent quality.</p>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Template</div>
+<h2 class="section-title">What to Include</h2>
+<div class="code-block" data-label="example CLAUDE.md" style="margin-top:1rem">
+<code><span style="color:var(--accent)"># Code Style</span>
+- Use ES modules (import/export), not CommonJS (require)
+- Destructure imports when possible
+- Use TypeScript strict mode
+- Prefer functional components over class components
+- Use kebab-case for file names
+
+<span style="color:var(--accent)"># Workflow</span>
+- Run `npm run typecheck` after making a series of code changes
+- Prefer running single tests, not the whole suite, for performance
+- Use `npm run lint:fix` before committing
+- Always run `npm test -- --related` for changed files
+
+<span style="color:var(--accent)"># Architecture</span>
+See @README.md for project overview and @package.json for available npm commands.
+
+<span style="color:var(--accent)"># Key Patterns</span>
+- API routes live in /src/api/routes/
+- Database models use Prisma in /prisma/schema.prisma
+- Auth middleware is in /src/middleware/auth.ts
+- Error handling follows /src/utils/errors.ts patterns
+
+<span style="color:var(--accent)"># Additional Instructions</span>
+- Git workflow: @docs/git-instructions.md
+- API conventions: @docs/api-conventions.md
+- Personal overrides: @~/.claude/my-project-instructions.md
+
+<span style="color:var(--accent)"># Compaction Rules</span>
+When compacting, always preserve:
+- The full list of modified files
+- Any test commands used
+- Key architectural decisions made</code>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Configuration</div>
+<h2 class="section-title">Hierarchical Locations</h2>
+<p class="section-subtitle">Claude reads CLAUDE.md files from multiple locations, with more specific ones taking
+            precedence.</p>
+<table class="cmd-table">
+<thead>
+<tr>
+<th>Location</th>
+<th>Scope</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~/.claude/CLAUDE.md</td>
+<td>Global — all projects</td>
+<td>Personal preferences, universal conventions, preferred tools</td>
+</tr>
+<tr>
+<td>./CLAUDE.md</td>
+<td>Project root</td>
+<td>Team conventions — check into git to share with team</td>
+</tr>
+<tr>
+<td>./CLAUDE.local.md</td>
+<td>Project (personal)</td>
+<td>Your personal overrides — add to .gitignore</td>
+</tr>
+<tr>
+<td>./src/CLAUDE.md</td>
+<td>Subdirectory</td>
+<td>Module-specific guidance — great for monorepos</td>
+</tr>
+<tr>
+<td>../CLAUDE.md</td>
+<td>Parent directory</td>
+<td>Monorepo root conventions shared by sub-projects</td>
+</tr>
+</tbody>
+</table>
+<div class="tip-box gold" style="margin-top:1.5rem">
+<div class="tip-label">💡 @ Imports</div>
+<p>Use <span class="code-inline">@path/to/file</span> syntax to import additional instruction files. This
+                keeps your main CLAUDE.md lean while referencing detailed docs: <br/><span class="code-inline">See
+                    @README.md for project overview and @package.json for available npm commands.</span></p>
+</div>
+<div class="tip-box red" style="margin-top:1rem">
+<div class="tip-label">⚠️ Common Mistake: Over-Specification</div>
+<p>If your CLAUDE.md is too long, Claude ignores important rules lost in the noise. <strong>Ruthlessly
+                    prune.</strong> If Claude already does something correctly without the instruction, delete it.
+                Convert repetitive rules to hooks instead. Keep it focused on what Claude can't infer on its own.</p>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Advanced</div>
+<h2 class="section-title">Dynamic CLAUDE.md with Hooks</h2>
+<p class="section-subtitle">Use session hooks to inject dynamic context (recent commits, CI status, environment
+            variables) into CLAUDE.md at session startup.</p>
+<div class="code-block" data-label="dynamic context hook"><code><span class="code-comment"># In a UserPromptSubmit hook, inject recent git context:</span>
+echo "Recent commits: $(git log --oneline -5)" &gt;&gt; /tmp/claude-context.md
+<span class="code-comment"># Claude reads this dynamically each session</span></code></div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/best-practices" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-5" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Prompting <span class="gold">Like a Pro</span></h1>
+<p>Specific, rich, contextual prompts are the difference between average and extraordinary results.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Good vs Bad</div>
+<h2 class="section-title">Specificity Changes Everything</h2>
+<div class="compare-grid">
+<div class="compare-col bad">
+<h4>❌ Vague Prompt</h4>
+<div class="code-block"><code>"what would you improve in this file?"</code></div>
+<p style="margin-top:.5rem">No file specified. No scope. No criteria. Claude has to guess everything.
+                </p>
+</div>
+<div class="compare-col good">
+<h4>✅ Specific Prompt</h4>
+<div class="code-block"><code>"refactor the calculateTax function in
+@src/billing/tax.ts to handle EU VAT
+rules. Add unit tests covering zero-rate,
+standard-rate, and reverse-charge 
+scenarios. Run the tests and fix failures."</code></div>
+<p style="margin-top:.5rem">Exact file, clear task, specific test cases, verification built in.</p>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Techniques</div>
+<h2 class="section-title">Context Injection Methods</h2>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">@</div>
+<h3>@ File References</h3>
+<p>Reference files with <span class="code-inline">@</span> instead of describing where code lives.
+                    Claude reads the file contents before responding.</p>
+<div class="code-block"><code>refactor @src/auth/oauth.ts
+following the patterns in @src/auth/saml.ts</code></div>
+</div>
+<div class="card">
+<div class="card-icon">|</div>
+<h3>Pipe In Data</h3>
+<p>Send file contents, logs, error outputs, and diffs directly into Claude's input.</p>
+<div class="code-block"><code><span class="code-comment"># Pipe error logs</span>
+cat error.log | claude "explain this error"
+
+<span class="code-comment"># Pipe git diffs</span>
+git diff main | claude -p "review this"
+
+<span class="code-comment"># Pipe file lists</span>
+find . -name "*.ts" | claude "which files handle auth?"</code></div>
+</div>
+<div class="card">
+<div class="card-icon">🖼️</div>
+<h3>Images</h3>
+<p>Copy/paste or drag-and-drop images directly into the prompt. Perfect for UI bugs, design mockups, and
+                    error screenshots.</p>
+<div class="code-block"><code>[paste screenshot]
+Fix the layout to match this design.
+The button should be right-aligned.</code></div>
+</div>
+<div class="card">
+<div class="card-icon">🌐</div>
+<h3>URLs</h3>
+<p>Give URLs for documentation and API references. Use <span class="code-inline">/permissions</span> to
+                    allowlist frequently-used domains for automatic access.</p>
+</div>
+<div class="card">
+<div class="card-icon">🔍</div>
+<h3>Let Claude Fetch Context</h3>
+<p>Instead of providing everything upfront, tell Claude to pull context itself using Bash commands, MCP
+                    tools, or by reading files.</p>
+<div class="code-block"><code>Find all files that import from the 
+billing module and understand how they
+use the calculateTax function.</code></div>
+</div>
+<div class="card">
+<div class="card-icon">🎯</div>
+<h3>Codebase Questions</h3>
+<p>Ask Claude to understand code without changing it. Great for onboarding and knowledge transfer.</p>
+<div class="code-block"><code>How does logging work?
+What does async move { ... } do on line 134?
+Why does this code call foo() instead of bar()?</code></div>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Advanced Technique</div>
+<h2 class="section-title">Let Claude Interview You</h2>
+<p class="section-subtitle">For complex features where you haven't thought through all the details, let Claude
+            ask the hard questions.</p>
+<div class="code-block" data-label="interview prompt" style="margin-top:1rem">
+<code>I want to build [brief description]. Interview me in detail 
+using the AskUserQuestion tool. Ask about technical implementation, 
+UI/UX, edge cases, concerns, and tradeoffs. Don't ask obvious 
+questions — dig into the hard parts I might not have considered. 
+Keep interviewing until we've covered everything, then write a 
+complete spec to SPEC.md.</code>
+</div>
+<div class="tip-box blue" style="margin-top:1.5rem">
+<div class="tip-label">🧠 Why This Works</div>
+<p>Developers often start coding before thinking through edge cases. The interview technique forces you to
+                consider authentication flows, error handling, race conditions, and UX decisions <em>before</em> any
+                code is written. The resulting spec becomes a better prompt for implementation.</p>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/best-practices" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-6" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Context <span class="gold">Management</span></h1>
+<p>The hidden superpower that separates power users from beginners. Claude's performance degrades when its
+            context fills with irrelevant information.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Core Strategies</div>
+<h2 class="section-title">Keep Context Clean &amp; Focused</h2>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">🧹</div>
+<h3>/clear — Reset Between Tasks</h3>
+<p>Use <span class="code-inline">/clear</span> between unrelated tasks. This fully resets the context
+                    window. Long sessions with mixed context significantly reduce Claude's performance.</p>
+<div class="code-block"><code><span class="code-comment"># After finishing one task:</span>
+/clear
+<span class="code-comment"># Now start a completely new task</span></code></div>
+</div>
+<div class="card">
+<div class="card-icon">📦</div>
+<h3>/compact — Compress Context</h3>
+<p>When auto-compaction triggers, Claude summarizes what matters most. For more control, run it manually
+                    with focus instructions:</p>
+<div class="code-block"><code>/compact Focus on the API changes
+/compact Keep the migration plan and all file paths
+/compact Preserve test commands and architectural decisions</code></div>
+</div>
+<div class="card">
+<div class="card-icon">⏪</div>
+<h3>Rewind — Checkpoint Restore</h3>
+<p>Press <span class="code-inline">Esc + Esc</span> or run <span class="code-inline">/rewind</span> to
+                    open the rewind menu:</p>
+<ul>
+<li>Restore previous conversation and code state</li>
+<li>Summarize from a selected message forward</li>
+<li>Keep earlier context intact while compressing recent messages</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-icon">🔍</div>
+<h3>Subagents for Investigation</h3>
+<p>Heavy research tasks can fill your main context. Offload them to subagents that search, explore, and
+                    report back without polluting your primary window.</p>
+<div class="code-block"><code>use subagents to investigate how our auth
+system handles token refresh, and whether we
+have any existing OAuth utilities I should reuse</code></div>
+</div>
+<div class="card">
+<div class="card-icon">✋</div>
+<h3>Esc — Course-Correct Early</h3>
+<p>Press <span class="code-inline">Esc</span> to stop Claude mid-action. Context is preserved, so you
+                    can redirect immediately. Don't let Claude go far down the wrong path.</p>
+</div>
+<div class="card">
+<div class="card-icon">↩️</div>
+<h3>Resume Sessions</h3>
+<p>Resume previous work without losing context. Name sessions with <span class="code-inline">/rename</span> for easy retrieval.</p>
+<div class="code-block"><code>claude --continue  <span class="code-comment"># Most recent</span>
+claude --resume    <span class="code-comment"># Pick from list</span></code></div>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Reference</div>
+<h2 class="section-title">Context Actions Quick Reference</h2>
+<table class="cmd-table">
+<thead>
+<tr>
+<th>Action</th>
+<th>How</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Esc</td>
+<td>Stop mid-action, preserve context</td>
+<td>Claude is heading the wrong direction</td>
+</tr>
+<tr>
+<td>Esc + Esc</td>
+<td>Open rewind/checkpoint menu</td>
+<td>Restore previous state or selective summarize</td>
+</tr>
+<tr>
+<td>/clear</td>
+<td>Full context reset</td>
+<td>Between completely unrelated tasks</td>
+</tr>
+<tr>
+<td>/compact [focus]</td>
+<td>Compress with instructions</td>
+<td>Context getting large, auto-compaction not enough</td>
+</tr>
+<tr>
+<td>/rewind</td>
+<td>Menu to restore checkpoints</td>
+<td>Undo failed approaches or bad paths</td>
+</tr>
+<tr>
+<td>"Undo that"</td>
+<td>Tell Claude to revert</td>
+<td>Quick rollback of recent code changes</td>
+</tr>
+<tr>
+<td>--continue</td>
+<td>Resume latest session</td>
+<td>Continue where you left off</td>
+</tr>
+<tr>
+<td>--resume</td>
+<td>Pick from sessions list</td>
+<td>Resume a specific named conversation</td>
+</tr>
+<tr>
+<td>/rename [name]</td>
+<td>Name current session</td>
+<td>Create bookmarks for long-running work</td>
+</tr>
+</tbody>
+</table>
+<div class="tip-box gold" style="margin-top:2rem">
+<div class="tip-label">🧠 Pro Tip: Compaction Rules in CLAUDE.md</div>
+<p>Add instructions to your CLAUDE.md like: <em>"When compacting, always preserve the full list of modified
+                    files and any test commands."</em> This ensures critical context survives auto-summarization, so you
+                never lose track of what's been changed.</p>
+</div>
+<div class="tip-box blue" style="margin-top:1rem">
+<div class="tip-label">📝 Handoff Documents</div>
+<p>For long-running projects, before <span class="code-inline">/clear</span>, ask Claude: <em>"Write a
+                    handoff document summarizing all work, decisions, remaining tasks, and files changed."</em> Start
+                the new session with that summary as input. Community-proven technique for preserving context across
+                fresh sessions.</p>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/best-practices" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-7" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Extending <span class="gold">Claude Code</span></h1>
+<p>Skills, Hooks, MCP Servers, Custom Subagents, and Plugins — unlock Claude's full potential with the
+            extensibility system.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Extension System</div>
+<h2 class="section-title">Five Ways to Extend</h2>
+<div class="accordion">
+<div class="acc-item open">
+<div class="acc-header">🎯 Skills — Reusable Slash Commands</div>
+<div class="acc-body">
+<div class="acc-inner">
+<p>Skills are <span class="code-inline">SKILL.md</span> files in <span class="code-inline">.claude/skills/</span> that define reusable workflows invoked via
+                            <span class="code-inline">/slash-commands</span>. They're the most accessible way to extend
+                            Claude Code.</p>
+<h4 style="margin-top:1rem;margin-bottom:.5rem">Example: Fix GitHub Issues</h4>
+<div class="code-block" data-label=".claude/skills/fix-issue/SKILL.md"><code>---
+name: fix-issue
+description: Fix a GitHub issue
+disable-model-invocation: true
+---
+Analyze and fix the GitHub issue: $ARGUMENTS.
+1. Use `gh issue view` to get the issue details
+2. Understand the problem described in the issue
+3. Search the codebase for relevant files
+4. Implement the necessary changes to fix the issue
+5. Write and run tests to verify the fix
+6. Ensure code passes linting and type checking
+7. Create a descriptive commit message
+8. Push and create a PR</code></div>
+<p>Usage: <span class="code-inline">/fix-issue 1234</span></p>
+<h4 style="margin-top:1.5rem;margin-bottom:.5rem">Example: API Conventions</h4>
+<div class="code-block" data-label=".claude/skills/api-conventions/SKILL.md"><code>---
+name: api-conventions
+description: REST API design conventions for our services
+---
+# API Conventions
+- Use kebab-case for URL paths
+- Use camelCase for JSON properties
+- Always include pagination for list endpoints
+- Version APIs in the URL path (/v1/, /v2/)</code></div>
+<div class="tip-box gold" style="margin-top:1rem">
+<div class="tip-label">Key Concepts</div>
+<p>• Skills are loaded on-demand to minimize token usage<br/>
+                                • Use <span class="code-inline">$ARGUMENTS</span> to accept arguments from the slash
+                                command<br/>
+                                • Set <span class="code-inline">disable-model-invocation: true</span> for deterministic
+                                scripts that don't need AI reasoning<br/>
+                                • Can include scripts/, examples/, and resources/ subdirectories</p>
+</div>
+</div>
+</div>
+</div>
+<div class="acc-item">
+<div class="acc-header">⚡ Hooks — Automated Event Triggers</div>
+<div class="acc-body">
+<div class="acc-inner">
+<p>Shell scripts that run automatically when specific events occur during a session. Configure
+                            via <span class="code-inline">/hooks</span> command or directly in <span class="code-inline">.claude/settings.json</span>.</p>
+<h4 style="margin-top:1rem;margin-bottom:.5rem">Hook Events</h4>
+<table class="cmd-table">
+<thead>
+<tr>
+<th>Event</th>
+<th>When It Fires</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PreToolUse</td>
+<td>Before Claude executes a tool</td>
+<td>Validation, security blocks</td>
+</tr>
+<tr>
+<td>PostToolUse</td>
+<td>After tool execution completes</td>
+<td>Auto-formatting, logging</td>
+</tr>
+<tr>
+<td>UserPromptSubmit</td>
+<td>Before Claude processes your prompt</td>
+<td>Inject dynamic context</td>
+</tr>
+<tr>
+<td>Notification</td>
+<td>When Claude needs your input</td>
+<td>Desktop alerts, sounds</td>
+</tr>
+</tbody>
+</table>
+<h4 style="margin-top:1rem;margin-bottom:.5rem">Desktop Notification Hook (macOS)</h4>
+<div class="code-block">
+<code>osascript -e 'display notification "Claude Code needs your attention" with title "Claude Code"'</code>
+</div>
+<div class="tip-box blue" style="margin-top:1rem">
+<p><strong>Security:</strong> Hooks can block dangerous commands or modifications to
+                                sensitive files. They provide a deterministic control layer over Claude's behavior.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="acc-item">
+<div class="acc-header">🔌 MCP Servers — External System Connections</div>
+<div class="acc-body">
+<div class="acc-inner">
+<p>The Model Context Protocol connects Claude to external systems — databases, APIs, monitoring
+                            tools, issue trackers, documentation sites.</p>
+<div class="code-block" data-label="add MCP server"><code>claude mcp add</code></div>
+<h4 style="margin-top:1rem;margin-bottom:.5rem">What MCP Enables</h4>
+<ul>
+<li>Query your production database directly</li>
+<li>Fetch Sentry error details and stack traces</li>
+<li>Read and search Notion/Confluence documentation</li>
+<li>Interact with Jira/Linear issues</li>
+<li>Browse documentation sites</li>
+<li>Access any API through custom MCP servers</li>
+</ul>
+<p style="margin-top:.8rem">MCP is an open-source standard — any tool can expose an MCP
+                            interface for Claude to use.</p>
+</div>
+</div>
+</div>
+<div class="acc-item">
+<div class="acc-header">🤖 Custom Subagents — Specialized AI Workers</div>
+<div class="acc-body">
+<div class="acc-inner">
+<p>Create purpose-specific agents in <span class="code-inline">.claude/agents/</span>. Each
+                            subagent has its own system prompt, tool access, and can even use different models (e.g.,
+                            Opus for deep review).</p>
+<div class="code-block" data-label=".claude/agents/security-reviewer.md"><code>---
+name: security-reviewer
+description: Reviews code for security vulnerabilities
+tools: Read, Grep, Glob, Bash
+model: opus
+---
+You are a senior security engineer. Review code for:
+- Injection vulnerabilities (SQL, XSS, command injection)
+- Authentication and authorization flaws
+- Secrets or credentials in code
+- Insecure data handling
+Provide specific line references and suggested fixes.</code></div>
+<h4 style="margin-top:1rem;margin-bottom:.5rem">Key Benefits</h4>
+<ul>
+<li><strong>Isolated context:</strong> Subagent work doesn't pollute your main conversation
+                            </li>
+<li><strong>Specialized prompts:</strong> Each agent focuses on one expertise area</li>
+<li><strong>Tool restriction:</strong> Limit what each agent can access for safety</li>
+<li><strong>Model selection:</strong> Use Opus for deep analysis, Sonnet for speed</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="acc-item">
+<div class="acc-header">🧩 Plugins — Community Extensions</div>
+<div class="acc-body">
+<div class="acc-inner">
+<p>Install community-built plugins with <span class="code-inline">/plugin</span>. Plugins bundle
+                            skills, subagents, hooks, and resources into shareable packages.</p>
+<ul>
+<li><strong>Code Intelligence Plugin:</strong> Adds precise "go to definition" and "find
+                                references" navigation for your programming language</li>
+<li><strong>Frontend Design Plugin:</strong> Enhances UI/UX code generation with design
+                                system knowledge</li>
+<li>Browse and discover plugins from the community marketplace</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Decision Guide</div>
+<h2 class="section-title">Which Extension to Use?</h2>
+<table class="cmd-table">
+<thead>
+<tr>
+<th>Need</th>
+<th>Use</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reusable workflow</td>
+<td>Skill</td>
+<td>Slash command invocation, filesystem-based</td>
+</tr>
+<tr>
+<td>Auto-run on events</td>
+<td>Hook</td>
+<td>Deterministic, no AI reasoning needed</td>
+</tr>
+<tr>
+<td>External data access</td>
+<td>MCP Server</td>
+<td>Standard protocol for tool connection</td>
+</tr>
+<tr>
+<td>Specialized AI task</td>
+<td>Subagent</td>
+<td>Isolated context, custom system prompt</td>
+</tr>
+<tr>
+<td>Shareable package</td>
+<td>Plugin</td>
+<td>Bundles multiple extensions together</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/best-practices" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-8" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Automation &amp; <span class="gold">CI/CD</span></h1>
+<p>Run Claude headlessly in scripts, CI/CD pipelines, and batch operations at scale.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Headless Mode</div>
+<h2 class="section-title">claude -p — Non-Interactive Execution</h2>
+<p class="section-subtitle">Process prompts without an interactive session. Perfect for scripting and
+            automation.</p>
+<div class="code-block" data-label="headless examples"><code><span class="code-comment"># One-off queries</span>
+claude -p "Explain what this project does"
+
+<span class="code-comment"># Structured JSON output for scripts</span>
+claude -p "List all API endpoints" --output-format json
+
+<span class="code-comment"># Streaming for real-time processing</span>
+claude -p "Analyze this log file" --output-format stream-json
+
+<span class="code-comment"># Plain text output (default)</span>
+claude -p "Summarize recent changes" --output-format text</code></div>
+</section>
+<section class="container reveal">
+<div class="section-label">Batch Operations</div>
+<h2 class="section-title">Fan Out Across Files</h2>
+<div class="workflow">
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>Generate a Task List</h4>
+<div class="code-block"><code>list all 2,000 Python files that need migrating</code></div>
+</div>
+</div>
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>Write a Script to Loop</h4>
+<div class="code-block"><code>for file in $(cat files.txt); do
+  claude -p "Migrate $file from React to Vue. Return OK or FAIL." \
+    --allowedTools "Edit,Bash(git commit *)"
+done</code></div>
+</div>
+</div>
+<div class="step">
+<div class="step-num"></div>
+<div class="step-content">
+<h4>Test on a Few, Then Scale</h4>
+<p>Use <span class="code-inline">--allowedTools</span> to scope permissions. Use <span class="code-inline">--verbose</span> for debugging during testing phase.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">CI/CD Integration</div>
+<h2 class="section-title">GitHub Actions &amp; GitLab</h2>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">🐙</div>
+<h3>GitHub Actions</h3>
+<p>An official Claude Code GitHub Action brings AI automation to your workflows:</p>
+<ul>
+<li>Auto-review PRs for bugs, style, and security</li>
+<li>Generate test scaffolds for changed files</li>
+<li>Implement features from issue descriptions</li>
+<li>Respond to <span class="code-inline">@claude</span> mentions in PRs and issues</li>
+<li>Create detailed changelogs from commits</li>
+</ul>
+<div class="tip-box blue" style="margin-top:.8rem">
+<p>Store your Anthropic API key as a repository secret. Trigger workflows on <span class="code-inline">pull_request</span> events or <span class="code-inline">@claude</span>
+                        mentions.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-icon">🦊</div>
+<h3>GitLab CI/CD</h3>
+<p>Integrate Claude Code into GitLab pipelines for AI-powered merge request assistance:</p>
+<ul>
+<li>Auto-propose merge requests from issue descriptions</li>
+<li>Respond to <span class="code-inline">@claude</span> in MR comments</li>
+<li>Run automated code review on diffs</li>
+<li>Generate documentation for changed code</li>
+</ul>
+<div class="tip-box blue" style="margin-top:.8rem">
+<p>Store the Anthropic API key as a masked, protected CI/CD variable. Use event-driven triggers for
+                        MR and issue comments.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Unix Utility</div>
+<h2 class="section-title">Pipe, Chain &amp; Integrate</h2>
+<p class="section-subtitle">Use Claude as a standard Unix utility in your existing command-line workflows.</p>
+<div class="code-block" data-label="piping examples"><code><span class="code-comment"># Monitor logs for anomalies</span>
+tail -f app.log | claude -p "Slack me if you see any anomalies"
+
+<span class="code-comment"># Automate translations in CI</span>
+claude -p "translate new strings into French and raise a PR for review"
+
+<span class="code-comment"># Security review changed files</span>
+git diff main --name-only | claude -p "review these changed files for security issues"
+
+<span class="code-comment"># Chain with other commands</span>
+claude -p "your prompt" --output-format json | jq '.result' | your_command
+
+<span class="code-comment"># Code review as verification step</span>
+claude -p "Review @src/auth.ts for injection vulnerabilities. Output 'PASS' or 'FAIL: reason'"</code></div>
+<div class="tip-box gold" style="margin-top:1.5rem">
+<div class="tip-label">🔒 Safe Autonomous Mode</div>
+<p>For fully autonomous operation, <span class="code-inline">--dangerously-skip-permissions</span> bypasses
+                all prompts. <strong>Only use inside sandboxed environments</strong> (Docker containers, CI runners).
+                Prefer <span class="code-inline">/sandbox</span> for OS-level isolation that restricts filesystem and
+                network access while allowing freedom within those boundaries.</p>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/best-practices" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-9" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Multi-Agent <span class="gold">Development</span></h1>
+<p>Run multiple Claude sessions simultaneously. Worktrees, agent teams, parallel sessions, and cross-device
+            workflows.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Parallel Sessions</div>
+<h2 class="section-title">Git Worktrees — Isolated Parallel Work</h2>
+<p class="section-subtitle">Each Claude session gets its own isolated git worktree — no merge conflicts between
+            parallel agents working on the same project.</p>
+<div class="code-block" data-label="worktree commands"><code><span class="code-comment"># Start Claude in a named worktree</span>
+<span class="code-comment"># Creates .claude/worktrees/feature-auth/ with a new branch</span>
+claude --worktree feature-auth
+
+<span class="code-comment"># Start another session in a separate worktree</span>
+claude --worktree bugfix-123
+
+<span class="code-comment"># Auto-generate a worktree name</span>
+claude --worktree
+<span class="code-comment"># Creates something like "bright-running-fox"</span></code></div>
+<div class="card-grid" style="margin-top:2rem">
+<div class="card">
+<h3>How It Works</h3>
+<ul>
+<li>Each worktree lives in <span class="code-inline">&lt;repo&gt;/.claude/worktrees/&lt;name&gt;</span></li>
+<li>A new branch <span class="code-inline">worktree-&lt;name&gt;</span> is created automatically
+                    </li>
+<li>Full filesystem isolation — no conflicts between sessions</li>
+<li>Cleanup available for completed worktrees</li>
+</ul>
+</div>
+<div class="card">
+<h3>Use Cases</h3>
+<ul>
+<li>Work on a feature while a bug fix runs in parallel</li>
+<li>Test Opus vs Sonnet on the same problem simultaneously</li>
+<li>Run code review in one session while implementing in another</li>
+<li>Explore alternative implementation strategies concurrently</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Experimental</div>
+<h2 class="section-title">Agent Teams</h2>
+<p class="section-subtitle">Coordinate multiple Claude instances with shared tasks, messaging, and a team lead.
+            One agent writes code, another reviews, a third writes tests.</p>
+<div class="tip-box blue">
+<div class="tip-label">🏗️ Code Review Pattern (Manual)</div>
+<p>
+<strong>Session A:</strong> "Implement a rate limiter for our API endpoints"<br/>
+<strong>Session B:</strong> "Review the rate limiter implementation in @src/middleware/rateLimiter.ts.
+                Look for edge cases, race conditions, and consistency with our existing middleware patterns."<br/>
+<strong>Session A:</strong> "Here's the review feedback: [Session B output]. Address these issues."
+            </p>
+</div>
+<div class="card-grid" style="margin-top:1.5rem">
+<div class="card">
+<div class="card-icon">🖥️</div>
+<h3>Desktop App Sessions</h3>
+<p>Manage multiple local sessions visually. Each session gets its own isolated worktree. See diffs and
+                    changes in a graphical interface.</p>
+</div>
+<div class="card">
+<div class="card-icon">🌐</div>
+<h3>Claude Code on the Web</h3>
+<p>Run on Anthropic's secure cloud infrastructure in isolated VMs. No local resources consumed. Start
+                    tasks from anywhere.</p>
+</div>
+<div class="card">
+<div class="card-icon">🤖</div>
+<h3>Agent Teams (Experimental)</h3>
+<p>Automated coordination of multiple sessions with shared tasks, inter-agent messaging, and a team lead
+                    that manages the overall plan.</p>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Cross-Device</div>
+<h2 class="section-title">Work From Anywhere</h2>
+<div class="timeline">
+<div class="tl-item">
+<h4>/teleport — Web/iOS → Terminal</h4>
+<p>Start a long-running task on the <strong>web</strong> (claude.ai/code) or <strong>iOS app</strong>,
+                    then pull it into your terminal with <span class="code-inline">/teleport</span> when you're back at
+                    your desk.</p>
+</div>
+<div class="tl-item">
+<h4>/desktop — Terminal → Desktop App</h4>
+<p>Hand off a terminal session to the <strong>Desktop app</strong> with <span class="code-inline">/desktop</span> for visual diff review, graphical file comparisons, and a
+                    richer editing experience.</p>
+</div>
+<div class="tl-item">
+<h4>@Claude in Slack</h4>
+<p>Mention <span class="code-inline">@Claude</span> in Slack with a bug report or feature request.
+                    Claude can investigate, implement a fix, and create a pull request — all triggered from team chat.
+                </p>
+</div>
+<div class="tl-item">
+<h4>Chrome Extension</h4>
+<p>Use the Claude Code Chrome extension for browser-based interactions, visual comparison, and
+                    web-page-context tasks.</p>
+</div>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/common-workflows" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-10" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Commands <span class="gold">Reference</span></h1>
+<p>Complete reference for slash commands, keyboard shortcuts, and CLI flags.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Slash Commands</div>
+<h2 class="section-title">In-Session Commands</h2>
+<table class="cmd-table">
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/init</td>
+<td>Generate a CLAUDE.md for your project with conventions, commands, and patterns</td>
+</tr>
+<tr>
+<td>/clear</td>
+<td>Reset context completely — use between unrelated tasks</td>
+</tr>
+<tr>
+<td>/compact [instructions]</td>
+<td>Compress context with optional focus guidance (e.g., /compact Focus on API changes)</td>
+</tr>
+<tr>
+<td>/rewind</td>
+<td>Open checkpoint menu to restore previous conversation and code state</td>
+</tr>
+<tr>
+<td>/permissions</td>
+<td>Configure tool allowlists and domain access for URLs</td>
+</tr>
+<tr>
+<td>/sandbox</td>
+<td>Enable OS-level isolation — restricts filesystem and network access</td>
+</tr>
+<tr>
+<td>/hooks</td>
+<td>Configure automated event triggers (PreToolUse, PostToolUse, etc.)</td>
+</tr>
+<tr>
+<td>/agents</td>
+<td>View and manage available subagents</td>
+</tr>
+<tr>
+<td>/plugin</td>
+<td>Install community plugins</td>
+</tr>
+<tr>
+<td>/rename [name]</td>
+<td>Name your session for easy resuming (e.g., /rename "oauth-migration")</td>
+</tr>
+<tr>
+<td>/teleport</td>
+<td>Move a session from web/iOS to your terminal</td>
+</tr>
+<tr>
+<td>/desktop</td>
+<td>Hand off current session to the Desktop app for visual review</td>
+</tr>
+<tr>
+<td>/insights</td>
+<td>Usage reports — patterns, friction points, and suggested improvements</td>
+</tr>
+<tr>
+<td>/commit-push-pr</td>
+<td>Commit changes, push, and create a pull request in one step</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="container reveal">
+<div class="section-label">Keyboard Shortcuts</div>
+<h2 class="section-title">Keyboard Controls</h2>
+<table class="cmd-table">
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Esc</td>
+<td>Stop Claude mid-action (context preserved, redirect immediately)</td>
+</tr>
+<tr>
+<td>Esc + Esc</td>
+<td>Open rewind menu — restore checkpoints or summarize from a point</td>
+</tr>
+<tr>
+<td>Shift+Tab</td>
+<td>Toggle Auto-accept mode — let Claude work autonomously</td>
+</tr>
+<tr>
+<td>Ctrl+G / Shift+Tab×2</td>
+<td>Toggle Plan Mode — read-only analysis, no code changes</td>
+</tr>
+<tr>
+<td>Cmd+Shift+X</td>
+<td>Open VS Code Extensions panel (for installation)</td>
+</tr>
+<tr>
+<td>Cmd+Shift+P</td>
+<td>Open VS Code Command Palette (to activate Claude Code)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="container reveal">
+<div class="section-label">CLI Flags</div>
+<h2 class="section-title">Command-Line Options</h2>
+<table class="cmd-table">
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>claude -p "prompt"</td>
+<td>Headless mode — process prompt and exit</td>
+</tr>
+<tr>
+<td>--output-format json</td>
+<td>JSON output for scripting (also: text, stream-json)</td>
+</tr>
+<tr>
+<td>--continue</td>
+<td>Resume the most recent conversation</td>
+</tr>
+<tr>
+<td>--resume</td>
+<td>Select from recent conversations to resume</td>
+</tr>
+<tr>
+<td>--worktree [name]</td>
+<td>Start in an isolated git worktree (auto-name if no name given)</td>
+</tr>
+<tr>
+<td>--from-pr &lt;number&gt;</td>
+<td>Start a session pre-loaded with a PR's context</td>
+</tr>
+<tr>
+<td>--allowedTools "..."</td>
+<td>Restrict tools Claude can use (e.g., "Edit,Bash(git commit *)")</td>
+</tr>
+<tr>
+<td>--dangerously-skip-permissions</td>
+<td>Skip all permission prompts (sandbox only!)</td>
+</tr>
+<tr>
+<td>--verbose</td>
+<td>Show detailed output for debugging</td>
+</tr>
+<tr>
+<td>claude mcp add</td>
+<td>Add an MCP server connection</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="container reveal">
+<div class="section-label">Quick Prompts</div>
+<h2 class="section-title">Common One-Liners</h2>
+<div class="code-block" data-label="productivity one-liners"><code><span class="code-comment"># Explore a codebase</span>
+claude "give me an overview of this codebase"
+claude "trace the login process from front-end to database"
+
+<span class="code-comment"># Bug fixing</span>
+claude "I'm seeing an error when I run npm test"
+claude "suggest a few ways to fix the @ts-ignore in user.ts"
+
+<span class="code-comment"># Tests</span>
+claude "find functions in NotificationsService.swift not covered by tests"
+claude "write tests for the auth module, run them, fix failures"
+
+<span class="code-comment"># Refactoring</span>
+claude "refactor utils.js to use ES2024 features, maintain same behavior"
+claude "find deprecated API usage in our codebase"
+
+<span class="code-comment"># Documentation</span>
+claude "add JSDoc comments to undocumented functions in auth.js"
+
+<span class="code-comment"># Git</span>
+claude "commit with a descriptive message and open a PR"
+claude "summarize the changes I've made to the authentication module"</code></div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/common-workflows" target="_blank">Source: Anthropic Docs</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-11" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Anti-Patterns &amp; <span class="gold">Pitfalls</span></h1>
+<p>Five common failure patterns that derail productivity — and how to fix them. Directly from Anthropic's
+            official best practices.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Failure Patterns</div>
+<h2 class="section-title">Avoid These Traps</h2>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">🍳</div>
+<h3>The Kitchen Sink Session</h3>
+<p><strong>What happens:</strong> You start with one task, ask Claude something unrelated, then go back
+                    to the first task. The context fills with irrelevant information, and Claude's performance degrades.
+                </p>
+<div class="tip-box green" style="margin-top:1rem">
+<div class="tip-label">✅ Fix</div>
+<p>Use <span class="code-inline">/clear</span> between unrelated tasks. Every single time. If you
+                        need to context-switch, clear first.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-icon">🔄</div>
+<h3>Correcting Over and Over</h3>
+<p><strong>What happens:</strong> Claude does something wrong, you correct it, it's still wrong, you
+                    correct again. The context becomes polluted with failed approaches, making each attempt worse.</p>
+<div class="tip-box green" style="margin-top:1rem">
+<div class="tip-label">✅ Fix</div>
+<p>After <strong>two failed corrections</strong>, stop. Run <span class="code-inline">/clear</span>
+                        and write a better initial prompt that incorporates what you learned from the failures. A fresh
+                        start with a better prompt beats repeated corrections.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-icon">📜</div>
+<h3>The Over-Specified CLAUDE.md</h3>
+<p><strong>What happens:</strong> Your CLAUDE.md grows to hundreds of lines. Important rules get buried
+                    in noise. Claude ignores critical instructions because they're lost in the volume.</p>
+<div class="tip-box green" style="margin-top:1rem">
+<div class="tip-label">✅ Fix</div>
+<p><strong>Ruthlessly prune.</strong> If Claude already does something correctly without the
+                        instruction, delete it. Convert repetitive patterns to hooks. Keep CLAUDE.md focused on what
+                        Claude can't infer on its own.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-icon">👁️</div>
+<h3>The Trust-Then-Verify Gap</h3>
+<p><strong>What happens:</strong> Claude produces a plausible-looking implementation that doesn't handle
+                    edge cases. You trust it because it looks right, but it breaks in production.</p>
+<div class="tip-box green" style="margin-top:1rem">
+<div class="tip-label">✅ Fix</div>
+<p>Always provide verification. Tell Claude to write tests, run them, and fix failures. If you can't
+                        verify the output (no tests, no type checking, no screenshots), <strong>don't ship it</strong>.
+                    </p>
+</div>
+</div>
+<div class="card">
+<div class="card-icon">🌊</div>
+<h3>The Infinite Exploration</h3>
+<p><strong>What happens:</strong> You ask Claude to "investigate" or "look into" something without
+                    scoping it. Claude reads hundreds of files, filling the context window with exploration data.</p>
+<div class="tip-box green" style="margin-top:1rem">
+<div class="tip-label">✅ Fix</div>
+<p>Scope investigations narrowly: "Look at /src/auth to understand token refresh" (not "investigate
+                        our auth system"). For broad research, use <strong>subagents</strong> so exploration doesn't
+                        consume your main context.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Develop Your Intuition</div>
+<h2 class="section-title">When to Intervene</h2>
+<p class="section-subtitle">Experience is learning when to let Claude run versus when to course-correct. Here
+            are signals to watch for.</p>
+<div class="card-grid">
+<div class="card">
+<h3>🟢 Let Claude Continue When...</h3>
+<ul>
+<li>It's following your plan methodically</li>
+<li>It's running tests and fixing failures iteratively</li>
+<li>The file changes align with your expectations</li>
+<li>It's asking clarifying questions instead of guessing</li>
+</ul>
+</div>
+<div class="card">
+<h3>🔴 Intervene When...</h3>
+<ul>
+<li>It's reading dozens of unrelated files</li>
+<li>It's rewriting something that already works</li>
+<li>It's ignoring your architectural constraints</li>
+<li>The same error has been corrected twice</li>
+<li>It's generating boilerplate you didn't ask for</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p>Claude Code Mastery Guide · <a href="https://docs.anthropic.com/en/docs/claude-code/best-practices" target="_blank">Source: Anthropic Best Practices</a></p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+<section id="section-12" class="topic-section">
+<body>
+
+<div class="page-header">
+
+<h1>Community <span class="gold">Wisdom</span></h1>
+<p>Battle-tested patterns from developers, Anthropic engineers, and the broader community. Productivity
+            multipliers you won't find in the docs.</p>
+</div>
+<section class="container reveal">
+<div class="section-label">Mindset</div>
+<h2 class="section-title">How the Best Developers Use Claude Code</h2>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">🎯</div>
+<h3>Treat It Like a Fast Junior Engineer</h3>
+<p>Claude is incredibly capable but needs clear direction. Don't assume it knows your context. Provide
+                    specific instructions, give it custom tools and commands, and course-correct early — before it goes
+                    far down the wrong path.</p>
+</div>
+<div class="card">
+<div class="card-icon">⚡</div>
+<h3>Auto-Accept for Prototyping</h3>
+<p>Use <span class="code-inline">Shift+Tab</span> to enable auto-accept mode for rapid prototyping. Give
+                    Claude abstract problems and let it generate 80% solutions autonomously. Then refine the last 20%
+                    manually. This is how Anthropic engineers prototype internally.</p>
+</div>
+<div class="card">
+<div class="card-icon">📝</div>
+<h3>Write Handoff Documents</h3>
+<p>Before clearing context on a long project, ask Claude to write a handoff document summarizing all
+                    work, decisions, remaining tasks, and files changed. Start your next session with this summary. This
+                    bridges the gap between sessions.</p>
+</div>
+<div class="card">
+<div class="card-icon">🧪</div>
+<h3>Test-Driven with Claude</h3>
+<p>Two powerful patterns: (1) Write tests first, then implement to pass them. (2) Run two sessions — one
+                    writes tests, another writes code. Both build verification directly into the development flow.</p>
+</div>
+<div class="card">
+<div class="card-icon">🔧</div>
+<h3>Give Claude Your CLI Tools</h3>
+<p>Claude excels when it can use your existing tools. Make sure <span class="code-inline">gh</span>,
+                    <span class="code-inline">aws</span>, <span class="code-inline">gcloud</span>, <span class="code-inline">sentry-cli</span>, <span class="code-inline">kubectl</span> are installed.
+                    Tell Claude: <em>"Use 'foo-tool --help' to learn about the tool, then use it to solve X."</em></p>
+</div>
+<div class="card">
+<div class="card-icon">📊</div>
+<h3>Monitor Token Usage</h3>
+<p>Use <span class="code-inline">/insights</span> to analyze your coding patterns and identify friction
+                    points. Tools like <span class="code-inline">ccusage</span> track token costs. More thinking =
+                    higher costs, so be strategic about when to use extended thinking.</p>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Multipliers</div>
+<h2 class="section-title">Productivity Multipliers</h2>
+<div class="timeline">
+<div class="tl-item">
+<h4>Install the VS Code Extension</h4>
+<p>Claude reads IDE diagnostics (type errors, syntax issues) in real-time, enabling continuous
+                    self-correction as it codes. This dramatically reduces the edit-check-fix cycle.</p>
+</div>
+<div class="tl-item">
+<h4>Name Your Sessions</h4>
+<p>Use <span class="code-inline">/rename "oauth-migration"</span> so you can easily find and resume
+                    complex multi-step work. Sessions named <span class="code-inline">"debugging-memory-leak"</span> are
+                    instantly findable with <span class="code-inline">--resume</span>.</p>
+</div>
+<div class="tl-item">
+<h4>Set Up Desktop Notifications</h4>
+<p>Configure <span class="code-inline">/hooks</span> → Notification to ping you when Claude needs input.
+                    Switch to other work while Claude crunches through a long task, and come back when needed.</p>
+</div>
+<div class="tl-item">
+<h4>Use Extended Thinking</h4>
+<p>For complex architectural decisions, enable thinking mode. Use keywords like "ultrathink" or "think
+                    deeply" before your prompt. Claude reasons more thoroughly about tradeoffs before acting.</p>
+</div>
+<div class="tl-item">
+<h4>Create Project-Specific Skills</h4>
+<p>Automate your most common workflows: deploy scripts, PR templates, migration patterns, test
+                    scaffolding — all as <span class="code-inline">/slash-commands</span>. Build once, reuse forever.
+                </p>
+</div>
+<div class="tl-item">
+<h4>Use Git Bisect for Bug Hunting</h4>
+<p>Tell Claude to run <span class="code-inline">git bisect</span> to find the exact commit that
+                    introduced a bug. It handles the binary search and testing automatically.</p>
+</div>
+<div class="tl-item">
+<h4>Commit Frequently</h4>
+<p>Commit before letting Claude make big changes. This gives you an instant rollback point if things go
+                    wrong. Git commits are your safety net for autonomous coding.</p>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Industry Trends</div>
+<h2 class="section-title">The Shifting Developer Role (2025–2026)</h2>
+<div class="card-grid">
+<div class="card">
+<h3>From Writing to Coordinating</h3>
+<p>Engineers are increasingly shifting from writing code to <strong>coordinating AI agents</strong> that
+                    write code. The expertise focus moves to architecture, system design, and strategic decisions rather
+                    than line-by-line implementation.</p>
+</div>
+<div class="card">
+<h3>50% Average Productivity Gain</h3>
+<p>Anthropic's internal data shows engineers using Claude Code experience a significant productivity
+                    boost. Usage in work at Anthropic has increased to 59%, with average productivity gains of 50%
+                    across various development tasks.</p>
+</div>
+<div class="card">
+<h3>Beyond Developer Tools</h3>
+<p>By 2026, Claude Code is moving beyond pure development. Teams use it for business automation, data
+                    analysis, document processing, and customer service — becoming accessible to non-technical users
+                    through the Desktop App and web interface.</p>
+</div>
+</div>
+</section>
+<section class="container reveal">
+<div class="section-label">Resources</div>
+<h2 class="section-title">Keep Learning</h2>
+<div class="card-grid">
+<div class="card">
+<h3>📚 Official Documentation</h3>
+<ul>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code
+                            Overview</a></li>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code/best-practices" target="_blank">Best
+                            Practices Guide</a></li>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code/common-workflows" target="_blank">Common
+                            Workflows</a></li>
+<li><a href="https://code.claude.com" target="_blank">code.claude.com — Demos &amp; Pricing</a></li>
+</ul>
+</div>
+<div class="card">
+<h3>🌐 Community</h3>
+<ul>
+<li><a href="https://www.reddit.com/r/ClaudeAI/" target="_blank">r/ClaudeAI on Reddit</a></li>
+<li><a href="https://www.reddit.com/r/ClaudeCode/" target="_blank">r/ClaudeCode on Reddit</a></li>
+<li><a href="https://x.com/AnthropicAI" target="_blank">@AnthropicAI on X</a></li>
+<li><a href="https://www.anthropic.com/engineering" target="_blank">Anthropic Engineering Blog</a>
+</li>
+</ul>
+</div>
+<div class="card">
+<h3>🎓 Courses &amp; Learning</h3>
+<ul>
+<li><a href="https://www.anthropic.com/learn" target="_blank">Official Anthropic Courses</a></li>
+<li><a href="https://www.deeplearning.ai" target="_blank">DeepLearning.AI Claude Courses</a></li>
+<li><a href="https://claude.ai/code" target="_blank">Claude Code on the Web</a></li>
+</ul>
+</div>
+</div>
+<div class="tip-box gold" style="margin-top:2rem;text-align:center;padding:2rem">
+<div class="tip-label" style="font-size:.85rem">🎯 The Meta-Lesson</div>
+<p style="font-size:1rem;line-height:1.8"><strong>The developers who get the most out of Claude Code aren't
+                    the ones who prompt the most — they're the ones who set up the best systems.</strong> CLAUDE.md,
+                skills, hooks, subagents, and verification loops create an environment where Claude consistently
+                delivers great results, without needing perfect prompts every time.</p>
+</div>
+</section>
+<section class="container">
+
+</section>
+<footer>
+<p style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--text-primary);margin-bottom:.5rem">
+            Claude Code Mastery Guide</p>
+<p>Researched from <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Anthropic
+                Official Docs</a>, community insights from Reddit, X, Hacker News, and battle-tested workflows from
+            engineers using Claude Code daily.</p>
+<p style="margin-top:.5rem">Last updated: February 2026</p>
+</footer>
+<script src="js/components.js"></script>
+</body>
+</section>
+</div>
+<script>
+(function(){
+  var links = document.querySelectorAll('.sidebar-nav a');
+  var sections = Array.from(links).map(function(a){
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+
+  var bar = document.getElementById('progress-bar');
+  var active = null;
+
+  function update(){
+    var scrolled = window.scrollY;
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if(bar) bar.style.width = (total > 0 ? (scrolled/total*100) : 0) + '%';
+
+    var cur = null;
+    sections.forEach(function(s){
+      if(s.getBoundingClientRect().top <= 80) cur = s;
+    });
+    if(cur !== active){
+      active = cur;
+      links.forEach(function(a){
+        a.classList.toggle('active', cur && a.getAttribute('href') === '#'+cur.id);
+      });
+    }
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+
+  // mobile menu toggle
+  var toggle = document.querySelector('.menu-toggle');
+  var sidebar = document.querySelector('.sidebar');
+  if(toggle && sidebar){
+    toggle.addEventListener('click', function(){
+      sidebar.classList.toggle('open');
+    });
+  }
+})();
+</script>
+</body>
+</html>

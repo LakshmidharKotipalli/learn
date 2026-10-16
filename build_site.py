@@ -233,7 +233,9 @@ def rewrite_links(html_text: str) -> str:
             return f'href="{target}{anchor}"'
         return m.group(0)
 
-    return re.sub(r'href="([^"]+\.md(?:#[^"]*)?)"', repl, html_text)
+    html_text = re.sub(r'href="([^"]+\.md(?:#[^"]*)?)"', repl, html_text)
+    # Links written relative to the repo root (docs/...) resolve inside docs/ on the site.
+    return re.sub(r'href="docs/([^"]*)"', lambda m: f'href="{m.group(1) or "./"}"', html_text)
 
 
 def slugify(text: str) -> str:
