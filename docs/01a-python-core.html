@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html" class="active">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -232,8 +249,8 @@
 <p><strong>Python variables are name tags, not boxes.</strong></p>
 <p>Most people arrive with a mental model from spreadsheets or from languages like C: a variable is a container, and assignment puts a value inside it. Python does not work this way, and almost every confusing Python bug traces back to this mismatch.</p>
 <p>In Python, values are objects that live somewhere in memory. A name is a label you stick onto an object. Assignment moves the label. It does not copy the object.</p>
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>   <span class="c1"># create a list object, stick the label &quot;a&quot; on it</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>           <span class="c1"># stick a second label &quot;b&quot; on the SAME object</span>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>   <span class="c1"># create a list object, stick the label "a" on it</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>           <span class="c1"># stick a second label "b" on the SAME object</span>
 <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>     <span class="c1"># modify that one object</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>        <span class="c1"># [1, 2, 3, 4]</span>
 </code></pre></div>
@@ -270,9 +287,9 @@
 <p><strong>Execution.</strong> The interpreter walks the bytecode instruction by instruction, maintaining a stack of values.</p>
 <p><strong>Object management.</strong> Every value is an object with a type, an identity, and a reference count. When the count reaches zero, the memory is reclaimed.</p>
 <p>You can look at the bytecode directly, which is occasionally useful for settling an argument:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">dis</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">dis</span>
 
-<span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 
 <span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">add_one</span><span class="p">)</span>
@@ -338,8 +355,8 @@
 </code></pre></div>
 
 <p><strong>The rule for <code>is</code>:</strong> use it only for <code>None</code>, <code>True</code> and <code>False</code>. Everywhere else, use <code>==</code>. Writing <code>if x is 0</code> or <code>if name is "hello"</code> appears to work in small scripts because of an interpreter optimization called interning, and then fails unpredictably on larger values. This is a classic interview trap:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;256&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">256</span><span class="p">)</span>   <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;257&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">257</span><span class="p">)</span>   <span class="c1"># False</span>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">"256"</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">256</span><span class="p">)</span>   <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">"257"</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">257</span><span class="p">)</span>   <span class="c1"># False</span>
 </code></pre></div>
 
 <p>CPython pre-creates and reuses the integer objects from -5 to 256, so every <code>256</code> is literally the same object. 257 gets a fresh object each time it is constructed, so identity fails while <code>==</code> still succeeds.</p>
@@ -407,18 +424,18 @@
 
 <p>The tuple is unchanged in the sense that it still points at the same two objects. One of those objects changed. This is also why <code>t</code> cannot be used as a dictionary key: hashing it fails because the list inside is unhashable.</p>
 <p><strong>Copying, and why shallow is the default.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">copy</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
-<span class="n">original</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;scores&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;run-1&quot;</span><span class="p">}</span>
+<span class="n">original</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"scores"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"run-1"</span><span class="p">}</span>
 
 <span class="n">alias</span> <span class="o">=</span> <span class="n">original</span>                      <span class="c1"># not a copy at all</span>
 <span class="n">shallow</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>             <span class="c1"># new dict, SAME inner list</span>
 <span class="n">deep</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>        <span class="c1"># new dict, new inner list</span>
 
-<span class="n">shallow</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+<span class="n">shallow</span><span class="p">[</span><span class="s2">"scores"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">original</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">])</span>   <span class="c1"># [1, 2, 3, 99]   surprise</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">deep</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">])</span>       <span class="c1"># [1, 2, 3]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">original</span><span class="p">[</span><span class="s2">"scores"</span><span class="p">])</span>   <span class="c1"># [1, 2, 3, 99]   surprise</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deep</span><span class="p">[</span><span class="s2">"scores"</span><span class="p">])</span>       <span class="c1"># [1, 2, 3]</span>
 </code></pre></div>
 
 <p>This is the single most common source of silent data corruption in data pipelines. You "copy" a config dict, modify the copy, and mutate the original because the copy was one level deep.</p>
@@ -434,33 +451,33 @@
 </blockquote>
 <h3 id="3-types-conversion-and-truthiness-foundation">3. Types, conversion, and truthiness [FOUNDATION]<a class="anchor" href="#3-types-conversion-and-truthiness-foundation" aria-label="Link to this section">#</a></h3>
 <p>Python is <strong>dynamically typed</strong> (a name can point at any type, and the type is checked when you use it) and <strong>strongly typed</strong> (it will not silently convert between unrelated types).</p>
-<div class="highlight"><pre><span></span><code><span class="s2">&quot;3&quot;</span> <span class="o">+</span> <span class="mi">4</span>
+<div class="highlight"><pre><span></span><code><span class="s2">"3"</span> <span class="o">+</span> <span class="mi">4</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code>TypeError: can only concatenate str (not &quot;int&quot;) to str
+<div class="highlight"><pre><span></span><code>TypeError: can only concatenate str (not "int") to str
 </code></pre></div>
 
 <p>That error is Python being strongly typed. JavaScript would produce <code>"34"</code>. Python refuses, which is a feature.</p>
 <p><strong>Conversion is explicit and can fail:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;42&quot;</span><span class="p">)</span>        <span class="c1"># 42</span>
-<span class="nb">int</span><span class="p">(</span><span class="s2">&quot;42.0&quot;</span><span class="p">)</span>      <span class="c1"># ValueError: invalid literal for int() with base 10: &#39;42.0&#39;</span>
-<span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;42.0&quot;</span><span class="p">))</span>  <span class="c1"># 42</span>
-<span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>     <span class="c1"># nan, a valid float that equals nothing, not even itself</span>
+<div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="s2">"42"</span><span class="p">)</span>        <span class="c1"># 42</span>
+<span class="nb">int</span><span class="p">(</span><span class="s2">"42.0"</span><span class="p">)</span>      <span class="c1"># ValueError: invalid literal for int() with base 10: '42.0'</span>
+<span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s2">"42.0"</span><span class="p">))</span>  <span class="c1"># 42</span>
+<span class="nb">float</span><span class="p">(</span><span class="s2">"nan"</span><span class="p">)</span>     <span class="c1"># nan, a valid float that equals nothing, not even itself</span>
 </code></pre></div>
 
 <p>That last one bites in data work. <code>float("nan") == float("nan")</code> is <code>False</code>. Use <code>math.isnan()</code>.</p>
 <p><strong>Truthiness.</strong> Every object is either truthy or falsy in a boolean context. The falsy ones are worth memorizing, because the list is short and the consequences are large:</p>
-<div class="highlight"><pre><span></span><code>False, None, 0, 0.0, &quot;&quot;, [], {}, set(), ()
+<div class="highlight"><pre><span></span><code>False, None, 0, 0.0, "", [], {}, set(), ()
 </code></pre></div>
 
 <p>Everything else is truthy. Including <code>"0"</code>, <code>"False"</code>, <code>[0]</code>, and <code>{"": None}</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">))</span>     <span class="c1"># True, non-empty string</span>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="s2">"0"</span><span class="p">))</span>     <span class="c1"># True, non-empty string</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">([]))</span>      <span class="c1"># False, empty list</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">([[]]))</span>    <span class="c1"># True, a list containing one thing</span>
 </code></pre></div>
 
 <p><strong>The trap this creates:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">threshold</span><span class="p">:</span>              <span class="c1"># BUG</span>
         <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
     <span class="o">...</span>
@@ -485,26 +502,26 @@
 <h3 id="4-strings-foundation">4. Strings [FOUNDATION]<a class="anchor" href="#4-strings-foundation" aria-label="Link to this section">#</a></h3>
 <p>Strings are immutable sequences of Unicode characters.</p>
 <p><strong>Formatting: use f-strings.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;qwen&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="s2">"qwen"</span>
 <span class="n">tokens</span> <span class="o">=</span> <span class="mi">1_432</span>
 <span class="n">cost</span> <span class="o">=</span> <span class="mf">0.00341</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">tokens</span><span class="si">}</span><span class="s2"> tokens&quot;</span><span class="p">)</span>                 <span class="c1"># qwen: 1432 tokens</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">tokens</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> tokens&quot;</span><span class="p">)</span>               <span class="c1"># qwen: 1,432 tokens</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cost $</span><span class="si">{</span><span class="n">cost</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>                        <span class="c1"># cost $0.0034</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tokens</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">cost</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>                      <span class="c1"># tokens=1432, cost=0.00341</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">tokens</span><span class="si">}</span><span class="s2"> tokens"</span><span class="p">)</span>                 <span class="c1"># qwen: 1432 tokens</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">tokens</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> tokens"</span><span class="p">)</span>               <span class="c1"># qwen: 1,432 tokens</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost $</span><span class="si">{</span><span class="n">cost</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>                        <span class="c1"># cost $0.0034</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tokens</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">cost</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>                      <span class="c1"># tokens=1432, cost=0.00341</span>
 </code></pre></div>
 
 <p>That last form, with the <code>=</code>, prints the expression and its value. It is the fastest debugging tool in the language and it replaces most <code>print("tokens:", tokens)</code> calls.</p>
 <p><strong>Useful operations, the ones you will actually reach for:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;  Chunk 3: retrieval failed  &quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">"  Chunk 3: retrieval failed  "</span>
 
-<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>                    <span class="c1"># &#39;Chunk 3: retrieval failed&#39;</span>
-<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>            <span class="c1"># &#39;chunk 3: retrieval failed&#39;</span>
-<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>        <span class="c1"># [&#39;Chunk 3&#39;, &#39;retrieval failed&#39;]</span>
-<span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>       <span class="c1"># &#39;a|b|c&#39;</span>
-<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Chunk&quot;</span><span class="p">)</span>  <span class="c1"># True</span>
-<span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;failed&quot;</span><span class="p">,</span> <span class="s2">&quot;ok&quot;</span><span class="p">)</span>    <span class="c1"># returns a NEW string</span>
+<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>                    <span class="c1"># 'Chunk 3: retrieval failed'</span>
+<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>            <span class="c1"># 'chunk 3: retrieval failed'</span>
+<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">": "</span><span class="p">)</span>        <span class="c1"># ['Chunk 3', 'retrieval failed']</span>
+<span class="s2">"|"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>       <span class="c1"># 'a|b|c'</span>
+<span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"Chunk"</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"failed"</span><span class="p">,</span> <span class="s2">"ok"</span><span class="p">)</span>    <span class="c1"># returns a NEW string</span>
 </code></pre></div>
 
 <p>Every one of these returns a new string. None of them modify <code>text</code>. Forgetting this produces:</p>
@@ -515,30 +532,30 @@
 
 <p><strong>Immutability has a performance consequence.</strong> Building a string in a loop with <code>+=</code> creates a new string every iteration, which is quadratic:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Slow for large n</span>
-<span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">out</span> <span class="o">=</span> <span class="s2">""</span>
 <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
     <span class="n">out</span> <span class="o">+=</span> <span class="n">chunk</span>
 
 <span class="c1"># Fast, linear</span>
-<span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
 </code></pre></div>
 
 <p>For a few dozen items the difference is irrelevant. For the document chunks in an ingestion pipeline it is not.</p>
 <p><strong>Bytes versus strings.</strong> A <code>str</code> is text. A <code>bytes</code> object is raw data. Files, network responses and tokenizer internals deal in bytes.</p>
-<div class="highlight"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;café&quot;</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="s2">"café"</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>    <span class="c1"># 4 characters</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>    <span class="c1"># 5 bytes, é takes two</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>         <span class="c1"># b&#39;caf\xc3\xa9&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>   <span class="c1"># &#39;café&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>         <span class="c1"># b'caf\xc3\xa9'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span>   <span class="c1"># 'café'</span>
 </code></pre></div>
 
 <p><code>str.encode()</code> goes to bytes. <code>bytes.decode()</code> comes back. The classic failure is decoding with the wrong codec:</p>
-<div class="highlight"><pre><span></span><code><span class="n">b</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">b</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"ascii"</span><span class="p">)</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xc3 in position 3: ordinal not in range(128)
+<div class="highlight"><pre><span></span><code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 3: ordinal not in range(128)
 </code></pre></div>
 
 <p>You will meet this exact error the first time you ingest a document produced on a Windows machine. The fix is usually <code>encoding="utf-8"</code> explicitly, or <code>errors="replace"</code> when you would rather have a mangled character than a crash.</p>
@@ -556,15 +573,15 @@
 <p>Conditionals and loops are the least interesting part of Python and the place where beginner code is most recognizable as beginner code. The mechanics take five minutes. The idioms are what matter.</p>
 <p><strong>Conditionals.</strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mf">0.9</span><span class="p">:</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;high&quot;</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">"high"</span>
 <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;medium&quot;</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">"medium"</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;low&quot;</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">"low"</span>
 </code></pre></div>
 
 <p>The ternary form, for when a conditional is producing one value:</p>
-<div class="highlight"><pre><span></span><code><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;high&quot;</span> <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mf">0.9</span> <span class="k">else</span> <span class="s2">&quot;low&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">label</span> <span class="o">=</span> <span class="s2">"high"</span> <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mf">0.9</span> <span class="k">else</span> <span class="s2">"low"</span>
 </code></pre></div>
 
 <p>Use it for a single simple choice. Nesting ternaries is a readability crime; use a real <code>if</code> block.</p>
@@ -580,10 +597,10 @@
 
 <p>When you genuinely need the index, <code>enumerate</code> gives you both:</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chunks</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>   <span class="c1"># count from 1, for humans</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">line_no</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">line_no</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 
 <p>That <code>start=1</code> is why the loader in example 3 reports line numbers matching your text editor.</p>
@@ -618,7 +635,7 @@
         <span class="n">result</span> <span class="o">=</span> <span class="n">chunk</span>
         <span class="k">break</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no chunk from source </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"no chunk from source </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 
 <p>A loop's <code>else</code> runs only if the loop finished without hitting <code>break</code>. It reads strangely at first and it removes the <code>found = False</code> flag variable that otherwise appears in this pattern. Worth knowing because you will meet it, and worth using sparingly because many readers will not know it.</p>
@@ -844,22 +861,22 @@
 </code></pre></div>
 
 <p><strong>Dictionaries.</strong> The workhorse. Keys must be hashable, which in practice means immutable.</p>
-<div class="highlight"><pre><span></span><code><span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="mf">0.81</span><span class="p">,</span> <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="mf">0.64</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"precision"</span><span class="p">:</span> <span class="mf">0.81</span><span class="p">,</span> <span class="s2">"recall"</span><span class="p">:</span> <span class="mf">0.64</span><span class="p">}</span>
 
-<span class="n">scores</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.71</span>                   <span class="c1"># add or overwrite</span>
-<span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;mrr&quot;</span><span class="p">)</span>                     <span class="c1"># None, no error</span>
-<span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;mrr&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>                <span class="c1"># 0.0, a default</span>
-<span class="n">scores</span><span class="p">[</span><span class="s2">&quot;mrr&quot;</span><span class="p">]</span>                         <span class="c1"># KeyError: &#39;mrr&#39;</span>
+<span class="n">scores</span><span class="p">[</span><span class="s2">"f1"</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.71</span>                   <span class="c1"># add or overwrite</span>
+<span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"mrr"</span><span class="p">)</span>                     <span class="c1"># None, no error</span>
+<span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"mrr"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>                <span class="c1"># 0.0, a default</span>
+<span class="n">scores</span><span class="p">[</span><span class="s2">"mrr"</span><span class="p">]</span>                         <span class="c1"># KeyError: 'mrr'</span>
 
 <span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="s2">&quot;precision&quot;</span> <span class="ow">in</span> <span class="n">scores</span>                 <span class="c1"># True, checks KEYS not values</span>
+<span class="s2">"precision"</span> <span class="ow">in</span> <span class="n">scores</span>                 <span class="c1"># True, checks KEYS not values</span>
 </code></pre></div>
 
 <p><code>.get()</code> versus <code>[]</code> is a real decision, not a style preference. Use <code>[]</code> when a missing key means your program is wrong and should stop. Use <code>.get()</code> with a default when a missing key is expected. Reaching for <code>.get()</code> everywhere hides bugs; reaching for <code>[]</code> everywhere produces crashes on ordinary input.</p>
 <p><strong>Two patterns worth knowing now:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
 
 <span class="c1"># Grouping without checking whether the key exists first</span>
 <span class="n">by_source</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
@@ -904,16 +921,16 @@
 </ol>
 </blockquote>
 <h3 id="7-functions-core">7. Functions [CORE]<a class="anchor" href="#7-functions-core" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return accuracy at a decision threshold.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return accuracy at a decision threshold."""</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;length mismatch: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"length mismatch: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">correct</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
         <span class="p">(</span><span class="n">p</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">correct</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2"> correct&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">correct</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2"> correct"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">correct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
 </code></pre></div>
 
@@ -924,17 +941,17 @@
 <li>Raising early on bad input beats returning a wrong number.</li>
 </ul>
 <p><strong>The mutable default argument trap.</strong> This is asked in interviews constantly and it catches people who have written Python for years.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">collected</span><span class="o">=</span><span class="p">[]):</span>    <span class="c1"># BUG</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">collected</span><span class="o">=</span><span class="p">[]):</span>    <span class="c1"># BUG</span>
     <span class="n">collected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">collected</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">add_chunk</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>   <span class="c1"># [&#39;a&#39;]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">add_chunk</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>   <span class="c1"># [&#39;a&#39;, &#39;b&#39;]   expected [&#39;b&#39;]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">add_chunk</span><span class="p">(</span><span class="s2">"a"</span><span class="p">))</span>   <span class="c1"># ['a']</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">add_chunk</span><span class="p">(</span><span class="s2">"b"</span><span class="p">))</span>   <span class="c1"># ['a', 'b']   expected ['b']</span>
 </code></pre></div>
 
 <p>The default value is evaluated <strong>once</strong>, when the <code>def</code> statement runs, not on each call. Every call without an explicit argument shares one list.</p>
 <p>The fix:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">collected</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">collected</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">collected</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">collected</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">collected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
@@ -944,17 +961,17 @@
 <p><strong>Scope.</strong> Python resolves names local, then enclosing, then global, then built-in. Assignment inside a function creates a local name unless you say otherwise:</p>
 <div class="highlight"><pre><span></span><code><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="k">def</span> <span class="nf">increment</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">increment</span><span class="p">():</span>
     <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>      <span class="c1"># UnboundLocalError</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code>UnboundLocalError: cannot access local variable &#39;count&#39; where it is not associated with a value
+<div class="highlight"><pre><span></span><code>UnboundLocalError: cannot access local variable 'count' where it is not associated with a value
 </code></pre></div>
 
 <p>Because <code>count</code> is assigned inside the function, Python treats it as local throughout the function, including on the right-hand side where it does not yet exist. <code>global count</code> fixes it, and needing <code>global</code> is usually a sign the function should take an argument and return a value instead.</p>
 <p><strong>Closures.</strong> A function defined inside another function captures the enclosing names.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">make_threshold_filter</span><span class="p">(</span><span class="n">threshold</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">keep</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">make_threshold_filter</span><span class="p">(</span><span class="n">threshold</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">keep</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="n">threshold</span>
     <span class="k">return</span> <span class="n">keep</span>
 
@@ -972,10 +989,10 @@
 
 <p>Assigning a lambda to a name (<code>f = lambda x: x + 1</code>) is worse than <code>def</code> in every respect, including the traceback you get when it fails.</p>
 <p><strong>Arguments are passed by assignment.</strong> This follows from section 2 and explains a common surprise:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>          <span class="c1"># rebinds the LOCAL name, caller unaffected</span>
 
-<span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
     <span class="n">scores</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>       <span class="c1"># mutates the shared object, caller affected</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -999,12 +1016,12 @@
 <h3 id="8-exceptions-and-defensive-programming-core">8. Exceptions and defensive programming [CORE]<a class="anchor" href="#8-exceptions-and-defensive-programming-core" aria-label="Link to this section">#</a></h3>
 <p>The governing principle: <strong>catch what you can handle, let everything else crash.</strong> A crash with a traceback is a good outcome. A silently wrong number that reaches a report is not.</p>
 <div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">DEFAULT_CONFIG</span>          <span class="c1"># a real recovery</span>
 <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;config at </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is not valid JSON: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"config at </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is not valid JSON: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
 </code></pre></div>
 
 <p>Two different strategies in one block. A missing file has a sensible fallback. Malformed JSON does not, so it is re-raised with more context. <code>from e</code> preserves the original traceback, which you will want at 2am.</p>
@@ -1016,12 +1033,12 @@
 </code></pre></div>
 
 <p>A bare <code>except:</code> catches <code>KeyboardInterrupt</code> and <code>SystemExit</code>, so your process ignores Ctrl-C. It catches typos in your own code, so a <code>NameError</code> becomes a silent <code>None</code>. And it discards the information that would tell you what went wrong. If you must catch broadly, catch <code>Exception</code> and log it:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;pipeline failed for </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"pipeline failed for </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div>
 
@@ -1038,9 +1055,9 @@
 </code></pre></div>
 
 <p><strong>Raise your own.</strong> Failing early with a clear message is cheaper than debugging a wrong result:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">chunk_document</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">chunk_document</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">overlap</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">overlap</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overlap (</span><span class="si">{</span><span class="n">overlap</span><span class="si">}</span><span class="s2">) must be smaller than size (</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"overlap (</span><span class="si">{</span><span class="n">overlap</span><span class="si">}</span><span class="s2">) must be smaller than size (</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
     <span class="o">...</span>
 </code></pre></div>
 
@@ -1057,42 +1074,42 @@
 </blockquote>
 <h3 id="9-files-paths-and-structured-data-core">9. Files, paths, and structured data [CORE]<a class="anchor" href="#9-files-paths-and-structured-data-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Paths: use <code>pathlib</code>, not string concatenation.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span>
-<span class="n">file</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="s2">&quot;documents.csv&quot;</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"raw"</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="s2">"documents.csv"</span>
 
 <span class="n">file</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
-<span class="n">file</span><span class="o">.</span><span class="n">suffix</span>          <span class="c1"># &#39;.csv&#39;</span>
-<span class="n">file</span><span class="o">.</span><span class="n">stem</span>            <span class="c1"># &#39;documents&#39;</span>
+<span class="n">file</span><span class="o">.</span><span class="n">suffix</span>          <span class="c1"># '.csv'</span>
+<span class="n">file</span><span class="o">.</span><span class="n">stem</span>            <span class="c1"># 'documents'</span>
 <span class="n">data_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.csv&quot;</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"*.csv"</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </code></pre></div>
 
 <p>The <code>/</code> operator joins path segments correctly on every platform. String concatenation with <code>"/"</code> breaks on Windows and produces <code>data//raw</code> when a trailing slash sneaks in.</p>
 <p><strong>Files: always use <code>with</code>.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </code></pre></div>
 
 <p><code>with</code> closes the file even if an exception is raised inside the block. Always pass <code>encoding="utf-8"</code> explicitly. The default depends on the operating system, so code that works on your machine fails on a colleague's with a <code>UnicodeDecodeError</code>.</p>
 <p>For large files, iterate rather than reading everything into memory:</p>
-<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>              <span class="c1"># one line at a time</span>
-        <span class="n">process</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">))</span>
 </code></pre></div>
 
 <p><strong>JSON.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="c1"># Read</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.json&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"config.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>        <span class="c1"># load, from a file object</span>
 
 <span class="c1"># Write</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;out.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"out.json"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># From and to strings</span>
@@ -1103,7 +1120,7 @@
 <p><code>load</code>/<code>dump</code> take file objects. <code>loads</code>/<code>dumps</code> take strings. The <code>s</code> stands for string, and mixing them up is a rite of passage.</p>
 <p><code>ensure_ascii=False</code> keeps non-English text readable in the output file rather than escaping it to <code>é</code>.</p>
 <p>JSON cannot represent everything Python can. Tuples become lists. Dictionary keys become strings. <code>datetime</code> and <code>set</code> fail outright:</p>
-<div class="highlight"><pre><span></span><code><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;seen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}})</span>
+<div class="highlight"><pre><span></span><code><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">"seen"</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}})</span>
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code>TypeError: Object of type set is not JSON serializable
@@ -1111,67 +1128,67 @@
 
 <p>Convert before serializing: <code>list(my_set)</code>, <code>dt.isoformat()</code>.</p>
 <p><strong>JSON Lines</strong>, one JSON object per line, is the right format for logs and datasets. It streams, appends, and survives a truncated file:</p>
-<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;eval.jsonl&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"eval.jsonl"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;eval.jsonl&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"eval.jsonl"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">records</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
 </code></pre></div>
 
 <p><strong>CSV.</strong> Use the <code>csv</code> module, never <code>line.split(",")</code>. A single quoted comma inside a field breaks the naive version silently.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">csv</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;documents.csv&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"documents.csv"</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"source"</span><span class="p">])</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;out.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">])</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"out.csv"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="p">[</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"score"</span><span class="p">])</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
 </code></pre></div>
 
 <p><code>newline=""</code> is required, not optional. Without it you get blank lines between rows on some platforms.</p>
 <p><strong>Failing loudly on bad rows</strong>, which is the point of doing this by hand rather than with pandas:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 
-<span class="k">def</span> <span class="nf">load_scores</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read id,score rows. Skip malformed rows loudly, raise if the file is unusable.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_scores</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Read id,score rows. Skip malformed rows loudly, raise if the file is unusable."""</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">skipped</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is empty&quot;</span><span class="p">)</span>
-        <span class="n">missing</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">}</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is empty"</span><span class="p">)</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"score"</span><span class="p">}</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> missing columns: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> missing columns: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">])})</span>
+                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">"id"</span><span class="p">],</span> <span class="s2">"score"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"score"</span><span class="p">])})</span>
             <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
                 <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;line </span><span class="si">%d</span><span class="s2">: bad score </span><span class="si">%r</span><span class="s2">, skipped&quot;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">))</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"line </span><span class="si">%d</span><span class="s2">: bad score </span><span class="si">%r</span><span class="s2">, skipped"</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"score"</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">skipped</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;skipped </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2"> rows in </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"skipped </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2"> rows in </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> produced no usable rows&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> produced no usable rows"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">rows</span>
 </code></pre></div>
 
 <p>Note the choices: header validated before the loop, <code>start=2</code> so the line number matches what a text editor shows, bad rows logged with their content, and an empty result treated as an error rather than returned as an empty list. A function that silently returns <code>[]</code> when a file is malformed will cost you an afternoon.</p>
 <p><strong>Environment variables</strong>, for anything secret:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>        <span class="c1"># KeyError if absent, usually correct</span>
-<span class="n">log_level</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;LOG_LEVEL&quot;</span><span class="p">,</span> <span class="s2">&quot;INFO&quot;</span><span class="p">)</span>  <span class="c1"># optional with a default</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"OPENAI_API_KEY"</span><span class="p">]</span>        <span class="c1"># KeyError if absent, usually correct</span>
+<span class="n">log_level</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"LOG_LEVEL"</span><span class="p">,</span> <span class="s2">"INFO"</span><span class="p">)</span>  <span class="c1"># optional with a default</span>
 </code></pre></div>
 
 <p>Use <code>os.environ[...]</code> for things your program cannot run without. Failing at startup with <code>KeyError: 'OPENAI_API_KEY'</code> is better than failing at request time with a confusing authentication error.</p>
@@ -1190,48 +1207,48 @@
 <h2 id="worked-examples">Worked examples<a class="anchor" href="#worked-examples" aria-label="Link to this section">#</a></h2>
 <h3 id="example-1-aliasing-from-confusion-to-understanding">Example 1: aliasing, from confusion to understanding<a class="anchor" href="#example-1-aliasing-from-confusion-to-understanding" aria-label="Link to this section">#</a></h3>
 <p><strong>The bug, as it appears in real code:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">DEFAULT_CONFIG</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+<div class="highlight"><pre><span></span><code><span class="n">DEFAULT_CONFIG</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"chunk_size"</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[]}</span>
 
-<span class="k">def</span> <span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">DEFAULT_CONFIG</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="n">config</span><span class="p">[</span><span class="s2">"sources"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">config</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="n">make_config</span><span class="p">(</span><span class="s2">&quot;docs&quot;</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">make_config</span><span class="p">(</span><span class="s2">&quot;wiki&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">make_config</span><span class="p">(</span><span class="s2">"docs"</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">make_config</span><span class="p">(</span><span class="s2">"wiki"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {&#39;chunk_size&#39;: 512, &#39;sources&#39;: [&#39;docs&#39;, &#39;wiki&#39;]}</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>   <span class="c1"># {&#39;chunk_size&#39;: 512, &#39;sources&#39;: [&#39;docs&#39;, &#39;wiki&#39;]}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {'chunk_size': 512, 'sources': ['docs', 'wiki']}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>   <span class="c1"># {'chunk_size': 512, 'sources': ['docs', 'wiki']}</span>
 </code></pre></div>
 
 <p>Both configs list both sources, and <code>DEFAULT_CONFIG</code> has been corrupted permanently.</p>
 <p><strong>Line by line.</strong> <code>.copy()</code> creates a new dictionary. That new dictionary contains the same two values: the integer <code>512</code> and the <em>same list object</em>. Copying one level deep copied the reference to the list, not the list. <code>config["sources"].append(...)</code> reaches through the copy into the shared list.</p>
 <p><strong>Three fixes, with the tradeoff for each:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">copy</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
 <span class="c1"># 1. Deep copy. Simple, correct, slowest.</span>
 <span class="n">config</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_CONFIG</span><span class="p">)</span>
 
 <span class="c1"># 2. Build fresh each time. Fastest and clearest for small configs.</span>
-<span class="k">def</span> <span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">source</span><span class="p">]}</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"chunk_size"</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[</span><span class="n">source</span><span class="p">]}</span>
 
 <span class="c1"># 3. Make the default immutable so the bug cannot happen.</span>
-<span class="n">DEFAULT_CONFIG</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">()}</span>
-<span class="k">def</span> <span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+<span class="n">DEFAULT_CONFIG</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"chunk_size"</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">"sources"</span><span class="p">:</span> <span class="p">()}</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_config</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">DEFAULT_CONFIG</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">],</span> <span class="n">source</span><span class="p">]</span>
+    <span class="n">config</span><span class="p">[</span><span class="s2">"sources"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">config</span><span class="p">[</span><span class="s2">"sources"</span><span class="p">],</span> <span class="n">source</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">config</span>
 </code></pre></div>
 
 <p>Option 3 is worth noticing. Making shared state immutable turns a silent bug into a <code>AttributeError: 'tuple' object has no attribute 'append'</code> at the moment of the mistake. Preferring immutable defaults is a habit that prevents a whole class of bug.</p>
 <h3 id="example-2-making-a-slow-pipeline-fast-without-changing-what-it-does">Example 2: making a slow pipeline fast without changing what it does<a class="anchor" href="#example-2-making-a-slow-pipeline-fast-without-changing-what-it-does" aria-label="Link to this section">#</a></h3>
 <p><strong>The slow version:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">deduplicate</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;already_indexed is a list of ids already in the vector store.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">deduplicate</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""already_indexed is a list of ids already in the vector store."""</span>
     <span class="n">new_docs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">doc</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">already_indexed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">doc</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">already_indexed</span><span class="p">:</span>
             <span class="n">new_docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">new_docs</span>
 </code></pre></div>
@@ -1239,58 +1256,58 @@
 <p>With 50,000 indexed ids and 50,000 incoming documents this performs up to 2.5 billion comparisons.</p>
 <p><strong>The diagnosis.</strong> <code>in</code> on a list scans the list. <code>in</code> on a set hashes once. The loop itself is fine; the data structure is wrong.</p>
 <p><strong>The fast version:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">deduplicate</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">deduplicate</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
     <span class="n">indexed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">already_indexed</span><span class="p">)</span>          <span class="c1"># O(n) once</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">doc</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span> <span class="k">if</span> <span class="n">doc</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed</span><span class="p">]</span>   <span class="c1"># O(1) each</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">doc</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span> <span class="k">if</span> <span class="n">doc</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed</span><span class="p">]</span>   <span class="c1"># O(1) each</span>
 </code></pre></div>
 
 <p>Building the set costs one pass. Every subsequent lookup is constant. Same inputs, same outputs, several orders of magnitude faster on real data.</p>
 <p><strong>The measurement, because you should never claim this without checking:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="n">indexed_list</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;doc-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50_000</span><span class="p">)]</span>
-<span class="n">docs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;doc-</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">99_999</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20_000</span><span class="p">)]</span>
+<span class="n">indexed_list</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"doc-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50_000</span><span class="p">)]</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"doc-</span><span class="si">{</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">99_999</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">}</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20_000</span><span class="p">)]</span>
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="n">slow</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed_list</span><span class="p">]</span>
+<span class="n">slow</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed_list</span><span class="p">]</span>
 <span class="n">slow_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
 
 <span class="n">indexed_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">indexed_list</span><span class="p">)</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="n">fast</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed_set</span><span class="p">]</span>
+<span class="n">fast</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed_set</span><span class="p">]</span>
 <span class="n">fast_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
 
-<span class="k">assert</span> <span class="n">slow</span> <span class="o">==</span> <span class="n">fast</span><span class="p">,</span> <span class="s2">&quot;results must match&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;list: </span><span class="si">{</span><span class="n">slow_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s   set: </span><span class="si">{</span><span class="n">fast_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s   speedup: </span><span class="si">{</span><span class="n">slow_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fast_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">slow</span> <span class="o">==</span> <span class="n">fast</span><span class="p">,</span> <span class="s2">"results must match"</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"list: </span><span class="si">{</span><span class="n">slow_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s   set: </span><span class="si">{</span><span class="n">fast_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s   speedup: </span><span class="si">{</span><span class="n">slow_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fast_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
 </code></pre></div>
 
 <p><code>[UNVERIFIED: the speedup you observe depends on your machine and data]</code> Run it. The <code>assert</code> matters as much as the timing: a performance fix that changes the output is not a fix.</p>
 <h3 id="example-3-a-small-complete-defensive-loader">Example 3: a small, complete, defensive loader<a class="anchor" href="#example-3-a-small-complete-defensive-loader" aria-label="Link to this section">#</a></h3>
 <p>Combining everything above into something you would actually ship. This is the shape of code that survives contact with real data.</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Load evaluation records from JSONL, validating as we go.&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight"><pre><span></span><code><span class="sd">"""Load evaluation records from JSONL, validating as we go."""</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"</span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="n">REQUIRED</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">,</span> <span class="s2">&quot;expected&quot;</span><span class="p">,</span> <span class="s2">&quot;source_id&quot;</span><span class="p">}</span>
+<span class="n">REQUIRED</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"question"</span><span class="p">,</span> <span class="s2">"expected"</span><span class="p">,</span> <span class="s2">"source_id"</span><span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">load_eval_set</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a JSONL evaluation set.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_eval_set</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Read a JSONL evaluation set.</span>
 
 <span class="sd">    Raises ValueError if the file is missing, empty, or has no valid records.</span>
 <span class="sd">    Logs and skips individual malformed records.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;evaluation set not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"evaluation set not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">records</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">skipped</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
@@ -1299,18 +1316,18 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">record</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;line </span><span class="si">%d</span><span class="s2">: invalid JSON (</span><span class="si">%s</span><span class="s2">), skipped&quot;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"line </span><span class="si">%d</span><span class="s2">: invalid JSON (</span><span class="si">%s</span><span class="s2">), skipped"</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
                 <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">continue</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;line </span><span class="si">%d</span><span class="s2">: expected an object, got </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"line </span><span class="si">%d</span><span class="s2">: expected an object, got </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
                 <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">continue</span>
 
             <span class="n">missing</span> <span class="o">=</span> <span class="n">REQUIRED</span> <span class="o">-</span> <span class="n">record</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;line </span><span class="si">%d</span><span class="s2">: missing keys </span><span class="si">%s</span><span class="s2">, skipped&quot;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">missing</span><span class="p">))</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"line </span><span class="si">%d</span><span class="s2">: missing keys </span><span class="si">%s</span><span class="s2">, skipped"</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">missing</span><span class="p">))</span>
                 <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">continue</span>
 
@@ -1318,26 +1335,26 @@
 
     <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span> <span class="o">+</span> <span class="n">skipped</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">records</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no valid records out of </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> lines&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no valid records out of </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> lines"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">skipped</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: kept </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2"> records&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">),</span> <span class="n">total</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">: kept </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2"> records"</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">),</span> <span class="n">total</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: loaded </span><span class="si">%d</span><span class="s2"> records&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">: loaded </span><span class="si">%d</span><span class="s2"> records"</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">records</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">sample</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;sample_eval.jsonl&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"sample_eval.jsonl"</span><span class="p">)</span>
     <span class="n">sample</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
-        <span class="s1">&#39;{&quot;question&quot;: &quot;what is RAG?&quot;, &quot;expected&quot;: &quot;retrieval augmented generation&quot;, &quot;source_id&quot;: &quot;d1&quot;}</span><span class="se">\n</span><span class="s1">&#39;</span>
-        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;{not json}</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s1">&#39;{&quot;question&quot;: &quot;incomplete&quot;}</span><span class="se">\n</span><span class="s1">&#39;</span>
-        <span class="s1">&#39;{&quot;question&quot;: &quot;what is a KV cache?&quot;, &quot;expected&quot;: &quot;cached attention keys and values&quot;, &quot;source_id&quot;: &quot;d2&quot;}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+        <span class="s1">'{"question": "what is RAG?", "expected": "retrieval augmented generation", "source_id": "d1"}</span><span class="se">\n</span><span class="s1">'</span>
+        <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"{not json}</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s1">'{"question": "incomplete"}</span><span class="se">\n</span><span class="s1">'</span>
+        <span class="s1">'{"question": "what is a KV cache?", "expected": "cached attention keys and values", "source_id": "d2"}</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">load_eval_set</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"question"</span><span class="p">])</span>
     <span class="n">sample</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </code></pre></div>
 
@@ -1431,7 +1448,7 @@
 <p><em>Strong outline:</em> A list has no structure to exploit, so membership is a linear scan, O(n). A set is a hash table: the value is hashed to a bucket and only that bucket is checked, O(1) on average. The cost is that set elements must be hashable and order is not preserved. Mention the average qualifier, since adversarial hash collisions degrade it.</p>
 <p><em>Weak answer:</em> "Sets are faster." Correct and content-free.</p>
 <p><strong>4. What does this print, and why?</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">acc</span><span class="o">=</span><span class="p">[]):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">acc</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">acc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">acc</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
@@ -1579,7 +1596,7 @@
 <p>Everything else here is language semantics and has been stable for a decade.</p>
 <p><strong>Next review due:</strong> 2027-09-18, or when you upgrade major Python versions.</p>
       <nav class="pager">
-<a class="pager-prev" href="00-roadmap.html"><span>Previous</span>00 · Roadmap</a>
+<a class="pager-prev" href="study-guide.html"><span>Previous</span>Interview Study Guide</a>
 <a class="pager-next" href="01b-python-patterns.html"><span>Next</span>01b · Python Patterns &amp; OOP</a>
 </nav>
     </article>

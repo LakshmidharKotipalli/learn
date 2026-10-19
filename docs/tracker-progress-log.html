@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html" class="active">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -1804,7 +1821,7 @@
 <p>A Markdown table cannot notify you. It is an audit trail, not a scheduler. Use Anki, or any SM-2 implementation, for the actual scheduling, and keep this file as the record of status and evidence.</p>
 <h3 id="column-specification">Column specification<a class="anchor" href="#column-specification" aria-label="Link to this section">#</a></h3>
 <p>Export a CSV with no header row, comma-separated, quoted fields, UTF-8:</p>
-<div class="highlight"><pre><span></span><code>&quot;Front&quot;,&quot;Back&quot;,&quot;Tags&quot;
+<div class="highlight"><pre><span></span><code>"Front","Back","Tags"
 </code></pre></div>
 
 <table>
@@ -1830,10 +1847,10 @@
 </tbody>
 </table>
 <h3 id="example-rows">Example rows<a class="anchor" href="#example-rows" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code>&quot;Why is `x in my_list` O(n) but `x in my_set` O(1)?&quot;,&quot;A list has no structure to exploit, so membership is a linear scan. A set hashes the value to a bucket and checks only that bucket. Average case; adversarial collisions degrade it.&quot;,&quot;phase01 python must&quot;
-&quot;What resets a spaced-repetition interval?&quot;,&quot;A failed review, all the way to 1 day, not back one step.&quot;,&quot;meta&quot;
-&quot;In RAG, the answer is wrong but the retrieved chunks are correct. Where is the bug?&quot;,&quot;Generation, not retrieval: prompt construction, context ordering, or the model ignoring provided context. Check the prompt actually contains the chunks before blaming the model.&quot;,&quot;phase07 rag must&quot;
-&quot;What does the KV cache store, and why does it dominate memory at long context?&quot;,&quot;Previously computed attention keys and values per layer per token, so they are not recomputed each step. It grows linearly with sequence length and batch size.&quot;,&quot;phase06 llm must&quot;
+<div class="highlight"><pre><span></span><code>"Why is `x in my_list` O(n) but `x in my_set` O(1)?","A list has no structure to exploit, so membership is a linear scan. A set hashes the value to a bucket and checks only that bucket. Average case; adversarial collisions degrade it.","phase01 python must"
+"What resets a spaced-repetition interval?","A failed review, all the way to 1 day, not back one step.","meta"
+"In RAG, the answer is wrong but the retrieved chunks are correct. Where is the bug?","Generation, not retrieval: prompt construction, context ordering, or the model ignoring provided context. Check the prompt actually contains the chunks before blaming the model.","phase07 rag must"
+"What does the KV cache store, and why does it dominate memory at long context?","Previously computed attention keys and values per layer per token, so they are not recomputed each step. It grows linearly with sequence length and batch size.","phase06 llm must"
 </code></pre></div>
 
 <h3 id="generating-cards">Generating cards<a class="anchor" href="#generating-cards" aria-label="Link to this section">#</a></h3>
@@ -1914,7 +1931,7 @@
 alternative you rejected&gt;
 
 **Result:** &lt;outcome, with a number if you have one, honestly stated if you
-do not. &quot;We did not measure it&quot; is an acceptable and credible answer.&gt;
+do not. "We did not measure it" is an acceptable and credible answer.&gt;
 
 **If they push:** &lt;the follow-up you expect, and your answer&gt;
 
@@ -1981,13 +1998,13 @@ and having no answer reads as having learned nothing&gt;
 <p>Append one block per week. Keep it short enough that you will actually write it.</p>
 <div class="highlight"><pre><span></span><code>## Week &lt;n&gt;, &lt;date&gt;
 
-**Artifact produced:** &lt;link, or &quot;none&quot; and why&gt;
+**Artifact produced:** &lt;link, or "none" and why&gt;
 **Hours actually spent:** &lt;number, honest&gt;
 **Status changes:** &lt;concept: old -&gt; new&gt;
 **Reviews due / completed:** &lt;n / n&gt;
 **Failed reviews:** &lt;which concepts, and your read on why&gt;
-**Blocked on:** &lt;specific, or &quot;nothing&quot;&gt;
-**Next week&#39;s one priority:** &lt;one thing, not a list&gt;
+**Blocked on:** &lt;specific, or "nothing"&gt;
+**Next week's one priority:** &lt;one thing, not a list&gt;
 </code></pre></div>
 
 <p><strong>The two fields that matter most</strong> are hours actually spent and reviews completed versus due. Everything else is easy to write optimistically. Those two are countable, and after four weeks they tell you whether the plan you chose matches the life you have. If hours are consistently below plan, re-cut the schedule using the compression rules in <code>00-north-star-roadmap.md</code> section 7. Do not keep a plan you are failing and call it motivation.</p>

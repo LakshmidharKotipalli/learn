@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -342,7 +359,7 @@ git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </sp
 git<span class="w"> </span>diff<span class="w">                         </span><span class="c1"># what changed but is not staged</span>
 git<span class="w"> </span>add<span class="w"> </span>src/chunking.py
 git<span class="w"> </span>diff<span class="w"> </span>--staged<span class="w">                </span><span class="c1"># what will be committed</span>
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add overlap validation to chunker&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add overlap validation to chunker"</span>
 git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>feature/chunking
 </code></pre></div>
 
@@ -538,13 +555,13 @@ git<span class="w"> </span>rebase<span class="w"> </span>main
 <p><strong>A virtual environment per project</strong>, always:</p>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
 <span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[dev]"</span>
 </code></pre></div>
 
 <p>Installing into the system Python eventually produces two projects needing incompatible versions of the same library, with no way out.</p>
 <p><strong>Declared versus locked dependencies</strong>, which is the distinction people miss:</p>
 <p><em>Declared</em> dependencies are what your code needs, with ranges, in <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&gt;=0.27,&lt;1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pydantic&gt;=2.0,&lt;3.0&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"httpx&gt;=0.27,&lt;1.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pydantic&gt;=2.0,&lt;3.0"</span><span class="p">]</span>
 </code></pre></div>
 
 <p><em>Locked</em> dependencies are the exact versions of everything, including transitive dependencies you never named:</p>
@@ -743,9 +760,9 @@ mypy<span class="w"> </span>src/
 </table>
 <p>The right-hand column is not untestable, it is <em>evaluated</em> rather than asserted: measured against a dataset, tracked over time, with thresholds. That is module 07's evaluation material, and conflating the two is a common mistake. Do not write a unit test asserting an LLM returns a specific string; it will pass today and fail next week for reasons unrelated to your code.</p>
 <p><strong>Test naming.</strong> The name is read far more often than the body, usually in a CI failure at speed:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_chunk_overlap_repeats_trailing_content</span><span class="p">():</span> <span class="o">...</span>
-<span class="k">def</span> <span class="nf">test_loader_raises_when_all_rows_malformed</span><span class="p">():</span> <span class="o">...</span>
-<span class="k">def</span> <span class="nf">test_retry_does_not_retry_client_errors</span><span class="p">():</span> <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_chunk_overlap_repeats_trailing_content</span><span class="p">():</span> <span class="o">...</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_loader_raises_when_all_rows_malformed</span><span class="p">():</span> <span class="o">...</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_retry_does_not_retry_client_errors</span><span class="p">():</span> <span class="o">...</span>
 </code></pre></div>
 
 <p>Each says what is being tested and what the expected behavior is. <code>test_chunking_2</code> says nothing.</p>
@@ -775,7 +792,7 @@ mypy<span class="w"> </span>src/
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"3.11"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"3.12"</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
@@ -786,7 +803,7 @@ mypy<span class="w"> </span>src/
 <span class="w">          </span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
 
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -e &quot;.[dev]&quot;</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -e ".[dev]"</span>
 
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lint</span>
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff check .</span>
@@ -935,22 +952,22 @@ git<span class="w"> </span>bisect<span class="w"> </span>reset
 <p>The commands that carry most of the weight.</p>
 <p><strong>Navigating and finding:</strong></p>
 <div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lah<span class="w">                              </span><span class="c1"># long, all, human-readable sizes</span>
-find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.gguf&quot;</span><span class="w"> </span>-size<span class="w"> </span>+1G<span class="w">      </span><span class="c1"># large model files</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">"*.gguf"</span><span class="w"> </span>-size<span class="w"> </span>+1G<span class="w">      </span><span class="c1"># large model files</span>
 du<span class="w"> </span>-sh<span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-h<span class="w">                   </span><span class="c1"># what is taking up space</span>
-tree<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span><span class="w"> </span>-I<span class="w"> </span><span class="s1">&#39;__pycache__|.venv&#39;</span><span class="w">     </span><span class="c1"># structure, two levels</span>
+tree<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span><span class="w"> </span>-I<span class="w"> </span><span class="s1">'__pycache__|.venv'</span><span class="w">     </span><span class="c1"># structure, two levels</span>
 </code></pre></div>
 
 <p><strong>Searching, with ripgrep, which is worth installing:</strong></p>
-<div class="highlight"><pre><span></span><code>rg<span class="w"> </span><span class="s2">&quot;chunk_size&quot;</span><span class="w">                      </span><span class="c1"># respects .gitignore automatically</span>
-rg<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;todo|fixme&quot;</span><span class="w">                   </span><span class="c1"># case-insensitive alternation</span>
-rg<span class="w"> </span>-t<span class="w"> </span>py<span class="w"> </span><span class="s2">&quot;def embed&quot;</span><span class="w">                 </span><span class="c1"># Python files only</span>
-rg<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="w">               </span><span class="c1"># filenames only; run this before every push</span>
-rg<span class="w"> </span>-C<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="s2">&quot;raise ValueError&quot;</span><span class="w">           </span><span class="c1"># three lines of context</span>
+<div class="highlight"><pre><span></span><code>rg<span class="w"> </span><span class="s2">"chunk_size"</span><span class="w">                      </span><span class="c1"># respects .gitignore automatically</span>
+rg<span class="w"> </span>-i<span class="w"> </span><span class="s2">"todo|fixme"</span><span class="w">                   </span><span class="c1"># case-insensitive alternation</span>
+rg<span class="w"> </span>-t<span class="w"> </span>py<span class="w"> </span><span class="s2">"def embed"</span><span class="w">                 </span><span class="c1"># Python files only</span>
+rg<span class="w"> </span>-l<span class="w"> </span><span class="s2">"OPENAI_API_KEY"</span><span class="w">               </span><span class="c1"># filenames only; run this before every push</span>
+rg<span class="w"> </span>-C<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="s2">"raise ValueError"</span><span class="w">           </span><span class="c1"># three lines of context</span>
 </code></pre></div>
 
 <p>That fourth one is a habit worth forming. Grepping your own repository for key-shaped strings before pushing catches the leak that <code>detect-private-key</code> misses.</p>
 <p><strong>Pipes and inspection:</strong></p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>eval.jsonl<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.score&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5<span class="w">      </span><span class="c1"># five highest scores</span>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>eval.jsonl<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">'.score'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5<span class="w">      </span><span class="c1"># five highest scores</span>
 wc<span class="w"> </span>-l<span class="w"> </span>data/*.csv<span class="w">                                      </span><span class="c1"># line counts</span>
 head<span class="w"> </span>-3<span class="w"> </span>big.csv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tail<span class="w"> </span>-3<span class="w"> </span>big.csv<span class="w">                    </span><span class="c1"># both ends</span>
 ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>llama-server<span class="w">                            </span><span class="c1"># is it running</span>
@@ -965,7 +982,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>ingest.log<span class="w">
 
 <p><code>2&gt;&amp;1</code> sends stderr to the same place as stdout. Without it, your tracebacks go to the terminal and vanish while your log file looks clean, which is a genuinely confusing failure.</p>
 <p><strong>Environment:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">APP_API_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="w">     </span><span class="c1"># this session only</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">APP_API_KEY</span><span class="o">=</span><span class="s2">"..."</span><span class="w">     </span><span class="c1"># this session only</span>
 <span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
 which<span class="w"> </span>python3<span class="w">                </span><span class="c1"># which one is actually running</span>
 env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>APP_
@@ -990,7 +1007,7 @@ Host: api.example.com
 Authorization: Bearer sk-...
 Content-Type: application/json
 
-{&quot;input&quot;: [&quot;hello&quot;], &quot;model&quot;: &quot;text-embedding-3-small&quot;}
+{"input": ["hello"], "model": "text-embedding-3-small"}
 </code></pre></div>
 
 <p>Method, path, headers, body. That is all.</p>
@@ -1161,10 +1178,10 @@ POST   /v1/search              search (POST because the query is a body, not a p
 <p><code>[VERIFY: free-threaded CPython, PEP 703, is progressing and changes this picture @ current Python release notes]</code> The optional no-GIL build changes the first two rows for code that opts in. Know it exists; the guidance above still describes what you will deploy.</p>
 <p><strong>Choosing:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># I/O-bound: many API calls. See 01b section 9.7.</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">fetch_all</span><span class="p">(</span><span class="n">urls</span><span class="p">):</span> <span class="o">...</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fetch_all</span><span class="p">(</span><span class="n">urls</span><span class="p">):</span> <span class="o">...</span>
 
 <span class="c1"># CPU-bound: parse 10,000 PDFs</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
     <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">parse_pdf</span><span class="p">,</span> <span class="n">paths</span><span class="p">))</span>
 
@@ -1186,53 +1203,53 @@ touch<span class="w"> </span>src/analyzer/__init__.py<span class="w"> </span>tes
 
 <div class="highlight"><pre><span></span><code><span class="c1"># pyproject.toml</span>
 <span class="k">[project]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;learning-log-analyzer&quot;</span>
-<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.11&quot;</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"learning-log-analyzer"</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"0.1.0"</span>
+<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&gt;=3.11"</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
 
 <span class="k">[project.optional-dependencies]</span>
-<span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pytest&gt;=8.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pytest-cov&gt;=5.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mypy&gt;=1.10&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ruff&gt;=0.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pre-commit&gt;=3.7&quot;</span><span class="p">]</span>
+<span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"pytest&gt;=8.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pytest-cov&gt;=5.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mypy&gt;=1.10"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ruff&gt;=0.5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pre-commit&gt;=3.7"</span><span class="p">]</span>
 
 <span class="k">[project.scripts]</span>
-<span class="n">analyze</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;analyzer.cli:main&quot;</span>
+<span class="n">analyze</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"analyzer.cli:main"</span>
 
 <span class="k">[build-system]</span>
-<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hatchling&quot;</span><span class="p">]</span>
-<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hatchling.build&quot;</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"hatchling"</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hatchling.build"</span>
 
 <span class="c1"># Required whenever the distribution name differs from the package directory.</span>
-<span class="c1"># Without this, `pip install -e .` fails with &quot;Unable to determine which files</span>
-<span class="c1"># to ship inside the wheel&quot;, because hatchling looks for a directory matching</span>
+<span class="c1"># Without this, `pip install -e .` fails with "Unable to determine which files</span>
+<span class="c1"># to ship inside the wheel", because hatchling looks for a directory matching</span>
 <span class="c1"># the normalized project name (learning_log_analyzer) and finds `analyzer`.</span>
 <span class="k">[tool.hatch.build.targets.wheel]</span>
-<span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src/analyzer&quot;</span><span class="p">]</span>
+<span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"src/analyzer"</span><span class="p">]</span>
 
 <span class="k">[tool.ruff]</span>
 <span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
-<span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;py311&quot;</span>
+<span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"py311"</span>
 
 <span class="k">[tool.ruff.lint]</span>
-<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;UP&quot;</span><span class="p">]</span>
+<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"E"</span><span class="p">,</span><span class="w"> </span><span class="s2">"F"</span><span class="p">,</span><span class="w"> </span><span class="s2">"I"</span><span class="p">,</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"UP"</span><span class="p">]</span>
 
 <span class="k">[tool.mypy]</span>
-<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.11&quot;</span>
+<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"3.11"</span>
 <span class="n">warn_return_any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">warn_unused_ignores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 
 <span class="k">[tool.pytest.ini_options]</span>
-<span class="n">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tests&quot;</span><span class="p">]</span>
-<span class="n">addopts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;-v&quot;</span>
+<span class="n">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"tests"</span><span class="p">]</span>
+<span class="n">addopts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"-v"</span>
 </code></pre></div>
 
 <p>The ruff <code>select</code> list is worth understanding rather than copying: <code>E</code> and <code>F</code> are pycodestyle and pyflakes basics, <code>I</code> sorts imports, <code>B</code> is flake8-bugbear which catches real bug patterns including mutable default arguments, and <code>UP</code> modernizes syntax to your target version. <code>B</code> is the one that earns its place.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;.venv/\n__pycache__/\n*.py[cod]\n.pytest_cache/\n.mypy_cache/\n.ruff_cache/\n.env\n*.log\ndata/\n&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>.gitignore
+<div class="highlight"><pre><span></span><code><span class="nb">printf</span><span class="w"> </span><span class="s1">'.venv/\n__pycache__/\n*.py[cod]\n.pytest_cache/\n.mypy_cache/\n.ruff_cache/\n.env\n*.log\ndata/\n'</span><span class="w"> </span>&gt;<span class="w"> </span>.gitignore
 
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[dev]"</span>
 pre-commit<span class="w"> </span>install
 
 git<span class="w"> </span>add<span class="w"> </span>-A
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initialize project structure and tooling&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Initialize project structure and tooling"</span>
 git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>feature/first-analyzer
 </code></pre></div>
 
@@ -1246,21 +1263,21 @@ git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </sp
 <p><em>Test the hypothesis.</em> Clone into a fresh directory and run the tests there:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>.<span class="w"> </span>/tmp/fresh-clone<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/tmp/fresh-clone
 python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pytest
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[dev]"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pytest
 </code></pre></div>
 
 <p>It fails identically. Hypothesis confirmed in one step, and you now have a local reproduction.</p>
 <p><em>Find the cause.</em> <code>data/</code> is gitignored, which is correct, and the test reads from it, which is not.</p>
 <p><em>Fix the cause, not the symptom.</em> Do not commit the data file. Make the test generate what it needs:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span> <span class="nf">sample_log</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;sample.csv&quot;</span>
-    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-01-01,python,45</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_log</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"sample.csv"</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-01-01,python,45</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">path</span>
 
 
-<span class="k">def</span> <span class="nf">test_summarize_reads_a_log</span><span class="p">(</span><span class="n">sample_log</span><span class="p">):</span>
-    <span class="k">assert</span> <span class="n">summarize</span><span class="p">(</span><span class="n">sample_log</span><span class="p">)[</span><span class="s2">&quot;total_minutes&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">45</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_summarize_reads_a_log</span><span class="p">(</span><span class="n">sample_log</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">summarize</span><span class="p">(</span><span class="n">sample_log</span><span class="p">)[</span><span class="s2">"total_minutes"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">45</span>
 </code></pre></div>
 
 <p><em>Confirm.</em> Tests pass in the fresh clone.</p>
@@ -1268,7 +1285,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p><strong>The transferable lesson.</strong> "Fresh clone into a temporary directory" reproduces most CI-only failures in under a minute, because the difference is almost always something present locally and not committed: a data file, a <code>.env</code>, an installed package, an environment variable. Reach for it before reading the CI logs a fourth time.</p>
 <h3 id="example-3-a-pull-request-reviewed">Example 3: a pull request, reviewed<a class="anchor" href="#example-3-a-pull-request-reviewed" aria-label="Link to this section">#</a></h3>
 <p>The diff, which looks reasonable:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">embedding</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">]</span>
@@ -1303,25 +1320,25 @@ nit: type hints would help here, `-&gt; list[str]` in particular, since the
 <div class="highlight"><pre><span></span><code><span class="n">DEFAULT_SCORE_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.7</span>   <span class="c1"># measured on eval-set-v2, see docs/retrieval-tuning.md</span>
 
 
-<span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span>
     <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">min_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_SCORE_THRESHOLD</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SearchResult</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return up to top_k results scoring at least min_score.</span>
+<span class="w">    </span><span class="sd">"""Return up to top_k results scoring at least min_score.</span>
 
 <span class="sd">    Raises RetrievalError if the index or embedding service is unavailable.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">embedding</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">top_k</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># over-fetch to survive filtering</span>
     <span class="k">except</span> <span class="p">(</span><span class="n">EmbeddingError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">RetrievalError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;search failed for query </span><span class="si">{</span><span class="n">query</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+        <span class="k">raise</span> <span class="n">RetrievalError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"search failed for query </span><span class="si">{</span><span class="n">query</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
 
     <span class="n">kept</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="n">min_score</span><span class="p">][:</span><span class="n">top_k</span><span class="p">]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">kept</span> <span class="ow">and</span> <span class="n">results</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="s2">&quot;all </span><span class="si">%d</span><span class="s2"> results below threshold </span><span class="si">%.2f</span><span class="s2"> (best </span><span class="si">%.3f</span><span class="s2">) for query </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">"all </span><span class="si">%d</span><span class="s2"> results below threshold </span><span class="si">%.2f</span><span class="s2"> (best </span><span class="si">%.3f</span><span class="s2">) for query </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span>
             <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">),</span> <span class="n">min_score</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">kept</span>

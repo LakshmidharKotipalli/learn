@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -774,8 +791,8 @@
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">ghcr.io/ggml-org/llama.cpp:server</span>
 <span class="k">COPY</span><span class="w"> </span>models/model.gguf<span class="w"> </span>/models/model.gguf
 <span class="k">EXPOSE</span><span class="w"> </span><span class="s">8080</span>
-<span class="k">ENTRYPOINT</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;/llama-server&quot;</span>,<span class="w"> </span><span class="s2">&quot;-m&quot;</span>,<span class="w"> </span><span class="s2">&quot;/models/model.gguf&quot;</span>,<span class="w"> </span><span class="se">\</span>
-<span class="w">            </span><span class="s2">&quot;--host&quot;</span>,<span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span>,<span class="w"> </span><span class="s2">&quot;--ctx-size&quot;</span>,<span class="w"> </span><span class="s2">&quot;8192&quot;</span><span class="o">]</span>
+<span class="k">ENTRYPOINT</span><span class="w"> </span><span class="o">[</span><span class="s2">"/llama-server"</span>,<span class="w"> </span><span class="s2">"-m"</span>,<span class="w"> </span><span class="s2">"/models/model.gguf"</span>,<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span><span class="s2">"--host"</span>,<span class="w"> </span><span class="s2">"0.0.0.0"</span>,<span class="w"> </span><span class="s2">"--ctx-size"</span>,<span class="w"> </span><span class="s2">"8192"</span><span class="o">]</span>
 </code></pre></div>
 
 <p><code>[VERIFY: image name and tag @ the llama.cpp repository]</code> Note that GPU passthrough is straightforward for NVIDIA with the container toolkit and <strong>not available for Apple silicon</strong>, since Docker on macOS runs a Linux VM with no Metal access. Containerizing on a Mac gives you CPU-only inference, which is usually not what you want. This surprises people and is a good thing to know before you spend an afternoon on it.</p>
@@ -831,7 +848,7 @@
 <li><strong>Record the environment</strong>: model file and its hash, runtime version, flags, OS, hardware, thermal state.</li>
 <li><strong>Watch for thermal throttling</strong>, especially on laptops. A sustained benchmark on a MacBook will be slower than a short one, and reporting the short one is misleading.</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="c1"># llama.cpp&#39;s own benchmark: prompt processing (pp) and text generation (tg)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># llama.cpp's own benchmark: prompt processing (pp) and text generation (tg)</span>
 llama-bench<span class="w"> </span>-m<span class="w"> </span>models/model.gguf<span class="w"> </span>-p<span class="w"> </span><span class="m">512</span><span class="w"> </span>-n<span class="w"> </span><span class="m">128</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
 
 <span class="c1"># Vary context to see cache pressure</span>
@@ -840,33 +857,33 @@ llama-bench<span class="w"> </span>-m<span class="w"> </span>models/model.gguf<s
 </code></pre></div>
 
 <p>A minimal harness against the OpenAI-compatible endpoint, which measures what your application will actually see:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">statistics</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="kn">import</span> <span class="nn">httpx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
 
 
-<span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;One request. Returns TTFT and decode rate, measured from the stream.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">measure</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""One request. Returns TTFT and decode rate, measured from the stream."""</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
     <span class="n">first_token_at</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">with</span> <span class="n">client</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span>
-        <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/v1/chat/completions&quot;</span><span class="p">,</span>
+        <span class="s2">"POST"</span><span class="p">,</span>
+        <span class="s2">"/v1/chat/completions"</span><span class="p">,</span>
         <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;local&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
-            <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="n">max_tokens</span><span class="p">,</span>
-            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="s2">&quot;stream&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">"model"</span><span class="p">:</span> <span class="s2">"local"</span><span class="p">,</span>
+            <span class="s2">"messages"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+            <span class="s2">"max_tokens"</span><span class="p">:</span> <span class="n">max_tokens</span><span class="p">,</span>
+            <span class="s2">"temperature"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">"stream"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">timeout</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
         <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_lines</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;data: &quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;data: [DONE]&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"data: "</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">"data: [DONE]"</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">first_token_at</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">first_token_at</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
@@ -874,27 +891,27 @@ llama-bench<span class="w"> </span>-m<span class="w"> </span>models/model.gguf<s
 
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">first_token_at</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;no tokens received&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"no tokens received"</span><span class="p">)</span>
 
     <span class="n">decode_seconds</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">first_token_at</span>
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;ttft&quot;</span><span class="p">:</span> <span class="n">first_token_at</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span>
-        <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span>
-        <span class="s2">&quot;tokens&quot;</span><span class="p">:</span> <span class="n">tokens</span><span class="p">,</span>
-        <span class="s2">&quot;tps&quot;</span><span class="p">:</span> <span class="n">tokens</span> <span class="o">/</span> <span class="n">decode_seconds</span> <span class="k">if</span> <span class="n">decode_seconds</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span>
+        <span class="s2">"ttft"</span><span class="p">:</span> <span class="n">first_token_at</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span>
+        <span class="s2">"total"</span><span class="p">:</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span>
+        <span class="s2">"tokens"</span><span class="p">:</span> <span class="n">tokens</span><span class="p">,</span>
+        <span class="s2">"tps"</span><span class="p">:</span> <span class="n">tokens</span> <span class="o">/</span> <span class="n">decode_seconds</span> <span class="k">if</span> <span class="n">decode_seconds</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"nan"</span><span class="p">),</span>
     <span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">runs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">runs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
         <span class="n">measure</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>          <span class="c1"># warm-up, discarded</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">runs</span><span class="p">)]</span>
 
-    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;ttft&quot;</span><span class="p">,</span> <span class="s2">&quot;tps&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"ttft"</span><span class="p">,</span> <span class="s2">"tps"</span><span class="p">):</span>
         <span class="n">values</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">5s</span><span class="si">}</span><span class="s2"> median </span><span class="si">{</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2">  &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;min </span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2">  max </span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">5s</span><span class="si">}</span><span class="s2"> median </span><span class="si">{</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2">  "</span>
+            <span class="sa">f</span><span class="s2">"min </span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2">  max </span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
 </code></pre></div>
 

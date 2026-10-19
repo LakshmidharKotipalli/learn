@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -183,7 +200,7 @@
 </ol>
 <h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
 <p>Start by checking the local prerequisite:</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import sqlite3; print(sqlite3.sqlite_version)&quot;</span>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import sqlite3; print(sqlite3.sqlite_version)"</span>
 </code></pre></div>
 
 <p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
@@ -314,7 +331,7 @@
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sources</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">source_id</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
 <span class="w">    </span><span class="n">name</span><span class="w">        </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
-<span class="w">    </span><span class="n">kind</span><span class="w">        </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">kind</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span><span class="s1">&#39;html&#39;</span><span class="p">,</span><span class="s1">&#39;markdown&#39;</span><span class="p">,</span><span class="s1">&#39;docx&#39;</span><span class="p">))</span>
+<span class="w">    </span><span class="n">kind</span><span class="w">        </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">kind</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'pdf'</span><span class="p">,</span><span class="s1">'html'</span><span class="p">,</span><span class="s1">'markdown'</span><span class="p">,</span><span class="s1">'docx'</span><span class="p">))</span>
 <span class="p">);</span>
 
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="p">(</span>
@@ -361,11 +378,11 @@
 <li><strong>Queries 2 and 4 were refused, so they have no retrievals.</strong> Refusal is not failure; it is the correct behavior on an unanswerable question, and it has to survive your joins.</li>
 </ul>
 <p>Running it yourself:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
 
-<span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
-<span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;schema.sql&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;seed.sql&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">"schema.sql"</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">"seed.sql"</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div>
 
 <blockquote>
@@ -798,10 +815,10 @@ SELECT q.text, r.score FROM queries q JOIN retrievals r ON r.query_id = q.query_
 <p><strong>Composite index ordering matters.</strong> An index on <code>(query_id, rank)</code> serves <code>WHERE query_id = ?</code> and <code>WHERE query_id = ? AND rank = ?</code>, but <strong>not</strong> <code>WHERE rank = ?</code> alone. Leftmost prefix. Getting the column order wrong is a common reason an index appears to do nothing.</p>
 <p><strong>The N+1 problem</strong>, which is an application bug that looks like a database problem:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># N+1: one query, then one more per row</span>
-<span class="n">queries</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM queries&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="n">queries</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM queries"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
     <span class="n">retrievals</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-        <span class="s2">&quot;SELECT * FROM retrievals WHERE query_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="s2">&quot;query_id&quot;</span><span class="p">],)</span>
+        <span class="s2">"SELECT * FROM retrievals WHERE query_id = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="s2">"query_id"</span><span class="p">],)</span>
     <span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 </code></pre></div>
 
@@ -866,16 +883,16 @@ SELECT q.text, r.score FROM queries q JOIN retrievals r ON r.query_id = q.query_
 </table>
 <p><strong>The rule that avoids most trouble: push filtering and aggregation into SQL, then bring the result into pandas.</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Bad: transfer everything, then throw most of it away</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM retrievals&quot;</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;query_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"SELECT * FROM retrievals"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"query_id"</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 <span class="c1"># Good: the database does the work, you transfer the answer</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    SELECT query_id, AVG(score) AS mean_score</span>
 <span class="s2">    FROM retrievals</span>
 <span class="s2">    WHERE score &gt; 0.8</span>
 <span class="s2">    GROUP BY query_id</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
 </code></pre></div>
 
 <p>The first version moves every row over the wire and into memory. On a table of ten million retrieval events this is the difference between a query and an outage.</p>
@@ -908,7 +925,7 @@ fraction p&lt;0.01: 0.0107   (expected 0.01)
 <li>Not a threshold at which something becomes real. p = 0.049 and p = 0.051 are the same evidence.</li>
 </ul>
 <p><strong>Multiple comparisons.</strong> Test twenty useless variants at p &lt; 0.05 and you will find something. Simulated, 20 independent tests with no real effect:</p>
-<div class="highlight"><pre><span></span><code>at least one &#39;significant&#39;: 0.649   theory 1-0.95^20 = 0.642
+<div class="highlight"><pre><span></span><code>at least one 'significant': 0.649   theory 1-0.95^20 = 0.642
 </code></pre></div>
 
 <p><strong>65% of the time you find a "significant" result when nothing is happening.</strong></p>

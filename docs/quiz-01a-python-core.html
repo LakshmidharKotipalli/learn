@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html" class="active">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html" class="active">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -372,9 +389,9 @@ The default depends on the operating system, so code that works on your machine 
 <h2 id="2-multiple-choice">2. Multiple choice<a class="anchor" href="#2-multiple-choice" aria-label="Link to this section">#</a></h2>
 <p>Every option is explained, including the wrong ones. The wrong ones are where the learning is.</p>
 <p><strong>M1.</strong> What does this print?</p>
-<div class="highlight"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+<div class="highlight"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 <span class="n">copy_</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">copy_</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">copy_</span><span class="p">[</span><span class="s2">"a"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
 
@@ -428,7 +445,7 @@ The default depends on the operating system, so code that works on your machine 
 </details>
 
 <p><strong>M4.</strong> What is the output?</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="p">[]):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">target</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">target</span>
 
@@ -496,7 +513,7 @@ The default depends on the operating system, so code that works on your machine 
 </details>
 
 <p><strong>M8.</strong> Result?</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">),</span> <span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="nb">bool</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">bool</span><span class="p">([]))</span>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="s2">"False"</span><span class="p">),</span> <span class="nb">bool</span><span class="p">(</span><span class="s2">""</span><span class="p">),</span> <span class="nb">bool</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">bool</span><span class="p">([]))</span>
 </code></pre></div>
 
 <ul>
@@ -515,9 +532,9 @@ The default depends on the operating system, so code that works on your machine 
 
 <p><strong>M9.</strong> Which fails?</p>
 <div class="highlight"><pre><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">d</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>        <span class="c1"># I</span>
-<span class="n">d</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span>        <span class="c1"># II</span>
-<span class="n">d</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">([</span><span class="mi">1</span><span class="p">])]</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>  <span class="c1"># III</span>
+<span class="n">d</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">"a"</span>        <span class="c1"># I</span>
+<span class="n">d</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">"b"</span>        <span class="c1"># II</span>
+<span class="n">d</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">([</span><span class="mi">1</span><span class="p">])]</span> <span class="o">=</span> <span class="s2">"c"</span>  <span class="c1"># III</span>
 </code></pre></div>
 
 <ul>
@@ -801,11 +818,11 @@ First establish how runtime scales by running at 1k, 10k and 100k: linear-but-sl
 <h2 id="4-debugging-scenarios">4. Debugging scenarios<a class="anchor" href="#4-debugging-scenarios" aria-label="Link to this section">#</a></h2>
 <p>Symptom first. Diagnose before revealing.</p>
 <p><strong>D1.</strong> Every config produced by this function ends up with all the sources.</p>
-<div class="highlight"><pre><span></span><code><span class="n">DEFAULTS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+<div class="highlight"><pre><span></span><code><span class="n">DEFAULTS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"size"</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[]}</span>
 
-<span class="k">def</span> <span class="nf">make</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">DEFAULTS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="p">[</span><span class="s2">"sources"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cfg</span>
 </code></pre></div>
 
@@ -816,11 +833,11 @@ First establish how runtime scales by running at 1k, 10k and 100k: linear-but-sl
 Best fix is to make the shared default immutable so the mistake cannot happen:
 
 
-<div class="highlight"><pre><span></span><code><span class="n">DEFAULTS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">()}</span>
+<div class="highlight"><pre><span></span><code><span class="n">DEFAULTS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"size"</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">"sources"</span><span class="p">:</span> <span class="p">()}</span>
 
-<span class="k">def</span> <span class="nf">make</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">DEFAULTS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">],</span> <span class="n">source</span><span class="p">]</span>
+    <span class="n">cfg</span><span class="p">[</span><span class="s2">"sources"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">cfg</span><span class="p">[</span><span class="s2">"sources"</span><span class="p">],</span> <span class="n">source</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">cfg</span>
 </code></pre></div>
 
@@ -848,7 +865,7 @@ Now it raises instead of computing a wrong number. Then fix the real problem, wh
 </details>
 
 <p><strong>D3.</strong> A long-running API server's memory grows all day and results occasionally contain another user's data.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">summarize</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
 </code></pre></div>
@@ -858,7 +875,7 @@ Now it raises instead of computing a wrong number. Then fix the real problem, wh
 The mutable default is shared across every call for the process lifetime. It grows without bound, and because it is shared, one user's summary includes other users' text. Both a memory leak and a data-isolation bug from one character.
 
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">history</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">history</span><span class="p">)</span> <span class="k">if</span> <span class="n">history</span> <span class="k">else</span> <span class="p">[]</span>
     <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">summarize</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
@@ -878,10 +895,10 @@ Two problems. The encoding, and the fact that eleven hours of work was lost to o
 
 
 <div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is not utf-8, retrying with replacement&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2"> is not utf-8, retrying with replacement"</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"replace"</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -890,8 +907,8 @@ And structurally: checkpoint progress so a failure at document 400,000 does not 
 </details>
 
 <p><strong>D5.</strong> A deduplication function returns the right answer and takes 40 minutes.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">dedupe</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">already_indexed</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dedupe</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">already_indexed</span><span class="p">]</span>
 </code></pre></div>
 
 <details><summary>Diagnosis and fix</summary>
@@ -899,9 +916,9 @@ And structurally: checkpoint progress so a failure at document 400,000 does not 
 `already_indexed` is a list. Each `not in` scans it. With 50,000 indexed and 50,000 incoming, that is up to 2.5 billion comparisons.
 
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">dedupe</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dedupe</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">already_indexed</span><span class="p">):</span>
     <span class="n">indexed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">already_indexed</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexed</span><span class="p">]</span>
 </code></pre></div>
 
 
@@ -910,9 +927,9 @@ Measured on one machine, this was roughly 2,700x faster. Always `assert` the out
 </details>
 
 <p><strong>D6.</strong> A function that strips whitespace appears to do nothing.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
-        <span class="n">r</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">r</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">records</span>
 </code></pre></div>
 
@@ -921,9 +938,9 @@ Measured on one machine, this was roughly 2,700x faster. Always `assert` the out
 `.strip()` returns a new string; strings are immutable and nothing was assigned.
 
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
-        <span class="n">r</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">r</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">records</span>
 </code></pre></div>
 
@@ -932,8 +949,8 @@ Measured on one machine, this was roughly 2,700x faster. Always `assert` the out
 Better still, do not mutate the caller's data:
 
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[{</span><span class="o">**</span><span class="n">r</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()}</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="o">**</span><span class="n">r</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()}</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">]</span>
 </code></pre></div>
 
 
@@ -967,13 +984,13 @@ Removing during iteration shifts subsequent elements down past the loop's positi
 One `nan` in `scores`, probably from a failed parse or a division by zero upstream, poisons the sum. Every comparison with `nan` is `False`, including `>`, `<` and `==`, so the branch silently never runs.
 
 
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
 <span class="n">valid</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scores</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;dropped </span><span class="si">%d</span><span class="s2"> nan scores of </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"dropped </span><span class="si">%d</span><span class="s2"> nan scores of </span><span class="si">%d</span><span class="s2">"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;no valid scores&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"no valid scores"</span><span class="p">)</span>
 <span class="n">mean_score</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span>
 </code></pre></div>
 
@@ -983,8 +1000,8 @@ Validate on ingestion rather than after aggregation, and never let a silent `nan
 </details>
 
 <p><strong>D9.</strong> A CSV loads with the wrong number of columns for some rows and nobody noticed for a month.</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;docs.csv&quot;</span><span class="p">):</span>
-    <span class="n">id_</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">source</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"docs.csv"</span><span class="p">):</span>
+    <span class="n">id_</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">source</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span>
 </code></pre></div>
 
 <details><summary>Diagnosis and fix</summary>
@@ -992,9 +1009,9 @@ Validate on ingestion rather than after aggregation, and never let a silent `nan
 Titles containing commas. `"1,Hello, World,web"` splits into four parts and raises `ValueError: too many values to unpack`, or worse, silently misaligns when a quoted field happens to split into exactly three.
 
 
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">csv</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;docs.csv&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"docs.csv"</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
         <span class="o">...</span>
 </code></pre></div>
@@ -1023,14 +1040,14 @@ Titles containing commas. `"1,Hello, World,web"` splits into four parts and rais
     <span class="k">try</span><span class="p">:</span>
         <span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">embed</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;failed to index </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"failed to index </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="n">failed</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">continue</span>
     <span class="n">processed</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;indexed </span><span class="si">%d</span><span class="s2">, failed </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">processed</span><span class="p">,</span> <span class="n">failed</span><span class="p">,</span> <span class="n">processed</span> <span class="o">+</span> <span class="n">failed</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"indexed </span><span class="si">%d</span><span class="s2">, failed </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2">"</span><span class="p">,</span> <span class="n">processed</span><span class="p">,</span> <span class="n">failed</span><span class="p">,</span> <span class="n">processed</span> <span class="o">+</span> <span class="n">failed</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">failed</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">failed</span><span class="si">}</span><span class="s2"> failures exceeds 5% threshold&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">failed</span><span class="si">}</span><span class="s2"> failures exceeds 5% threshold"</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -1114,39 +1131,39 @@ Where it matters: `if value == None` versus `is None` when a class overrides `__
 <h2 id="7-solutions-to-the-modules-practice-tasks">7. Solutions to the module's practice tasks<a class="anchor" href="#7-solutions-to-the-modules-practice-tasks" aria-label="Link to this section">#</a></h2>
 <h3 id="tiny-exercises">Tiny exercises<a class="anchor" href="#tiny-exercises" aria-label="Link to this section">#</a></h3>
 <p><strong>1. Dict keyed by id, two versions.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">index_by_id_last_wins</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">index_by_id_last_wins</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]:</span> <span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">index_by_id_strict</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">index_by_id_strict</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
     <span class="n">out</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;duplicate id: </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"duplicate id: </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">item</span>
     <span class="k">return</span> <span class="n">out</span>
 </code></pre></div>
 
 <p><strong>Which for an ingestion pipeline?</strong> Strict. A duplicate id means either the source has a data problem or your id derivation is wrong, and both are worth knowing. Last-wins is right when you are deliberately applying updates in order, where the later record is the current one. The wrong move is using last-wins by accident because it is the shorter comprehension.</p>
 <p><strong>2. Comma-separated floats.</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># One comprehension</span>
-<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">raw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">raw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
 
 <span class="c1"># Loop with logging</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">part</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">part</span><span class="p">:</span>
         <span class="k">continue</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">part</span><span class="p">))</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;field </span><span class="si">%d</span><span class="s2">: </span><span class="si">%r</span><span class="s2"> is not a number, skipped&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">part</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"field </span><span class="si">%d</span><span class="s2">: </span><span class="si">%r</span><span class="s2"> is not a number, skipped"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">part</span><span class="p">)</span>
 </code></pre></div>
 
 <p>The comprehension is clearer and crashes on bad data. The loop is longer and tells you which field was wrong. Use the comprehension for data you control, the loop for data you do not.</p>
 <p><strong>3. <code>is_nan</code> without <code>math</code>.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_nan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_nan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">x</span>
 </code></pre></div>
 
@@ -1162,14 +1179,14 @@ Where it matters: `if value == None` versus `is None` when a class overrides `__
 
 <p><code>b</code> is independent. <code>c</code> and <code>a</code> are one object, so <code>c.append(5)</code> shows up in both.</p>
 <p><strong>5. Top ten words.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 
-<span class="k">def</span> <span class="nf">top_words</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[a-z&#39;]+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">top_words</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">"[a-z']+"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </code></pre></div>
 
@@ -1306,26 +1323,26 @@ Where it matters: `if value == None` versus `is None` when a class overrides `__
 <hr />
 <h2 id="9-anki-export">9. Anki export<a class="anchor" href="#9-anki-export" aria-label="Link to this section">#</a></h2>
 <p>Save as <code>anki_01a.csv</code>, no header, and import with comma as the field separator. Columns are Front, Back, Tags.</p>
-<div class="highlight"><pre><span></span><code>&quot;Python: a = [1,2]; b = a; b.append(3). What is a, and why?&quot;,&quot;[1, 2, 3]. Assignment binds a name to an object, it does not copy. One list, two names.&quot;,&quot;phase01 python must&quot;
-&quot;Python: when is `is` correct?&quot;,&quot;Only for None, True, False. Everywhere else ==. Identity for other values depends on interning and constant folding.&quot;,&quot;phase01 python must&quot;
-&quot;Python: list every falsy built-in value&quot;,&quot;False, None, 0, 0.0, empty str, empty list, empty dict, empty set, empty tuple. Everything else is truthy, including &#39;0&#39; and [0].&quot;,&quot;phase01 python must&quot;
-&quot;Python: why is `if not threshold:` a bug for a numeric parameter?&quot;,&quot;not 0 is True, so a deliberate 0 takes the default branch. Use `is None` for absence.&quot;,&quot;phase01 python must&quot;
-&quot;Python: why is `x in my_set` O(1) but `x in my_list` O(n)?&quot;,&quot;A set hashes to a bucket and checks only that bucket. A list has no structure and must scan. Average case.&quot;,&quot;phase01 python must&quot;
-&quot;Python: def f(x, acc=[]) - what breaks?&quot;,&quot;The default is evaluated once at def time, so all calls share one list. In a server this leaks memory and bleeds state between requests.&quot;,&quot;phase01 python must&quot;
-&quot;Python: three things wrong with a bare except:&quot;,&quot;Catches KeyboardInterrupt so Ctrl-C breaks; catches your own typos, making NameError a silent wrong answer; discards diagnostic information.&quot;,&quot;phase01 python must&quot;
-&quot;Python: what does .copy() on a dict copy?&quot;,&quot;One level. The new dict references the same nested objects, so mutating a nested list is visible through both.&quot;,&quot;phase01 python must&quot;
-&quot;Python: what does zip(a, b, strict=True) add?&quot;,&quot;Raises ValueError on length mismatch instead of silently truncating to the shorter. Use it whenever lengths should match.&quot;,&quot;phase01 python should&quot;
-&quot;Python: why does removing from a list while iterating skip elements?&quot;,&quot;Removal shifts later elements down while the loop position advances. No exception for a list; dicts and sets raise RuntimeError.&quot;,&quot;phase01 python should&quot;
-&quot;Python: float(&#39;nan&#39;) == float(&#39;nan&#39;)?&quot;,&quot;False. NaN equals nothing, including itself. Every comparison with it is False, so branches silently never run. Detect with math.isnan.&quot;,&quot;phase01 python should&quot;
-&quot;Python: why is `out += chunk` in a loop quadratic?&quot;,&quot;Strings are immutable, so each += allocates a new string and copies everything so far. Use &#39;&#39;.join(parts).&quot;,&quot;phase01 python should&quot;
-&quot;Python: what does `raise ValueError(...) from e` preserve?&quot;,&quot;The original exception as the cause, so the traceback shows both levels. Without it the underlying detail is lost.&quot;,&quot;phase01 python should&quot;
-&quot;Python: why pass encoding=&#39;utf-8&#39; explicitly to open()?&quot;,&quot;The default is OS-dependent, so code that works locally raises UnicodeDecodeError elsewhere.&quot;,&quot;phase01 python should&quot;
-&quot;Python: loader returns [] when every row is malformed. Why is that wrong?&quot;,&quot;It reports success for a total failure. Zero valid rows from a non-empty file is an error; individual bad rows among good ones are logged and skipped.&quot;,&quot;phase01 python must&quot;
-&quot;Python: bug only affects items after the first and changes with processing order. Suspect what?&quot;,&quot;A shared mutable object: a shallow .copy() or a mutable default argument accumulating state.&quot;,&quot;phase01 python must&quot;
-&quot;Python: idiomatic &#39;first match or None&#39;?&quot;,&quot;next((x for x in items if pred(x)), None). Without the default it raises StopIteration.&quot;,&quot;phase01 python should&quot;
-&quot;Python: why can (1, [2]) not be a dict key?&quot;,&quot;Hashing a tuple hashes its elements, and a list is unhashable. TypeError: unhashable type: &#39;list&#39;.&quot;,&quot;phase01 python should&quot;
-&quot;Python: .get(key) vs [key], how do you choose?&quot;,&quot;[] when a missing key means the program is wrong and should stop. .get(key, default) when absence is expected. .get everywhere hides bugs.&quot;,&quot;phase01 python must&quot;
-&quot;Python: pipeline works on 1k docs, times out on 1M. First step?&quot;,&quot;Measure the scaling shape at 1k/10k/100k. Superlinear points at a nested scan; linear-but-slow is a different problem. Profile before guessing.&quot;,&quot;phase01 python must&quot;
+<div class="highlight"><pre><span></span><code>"Python: a = [1,2]; b = a; b.append(3). What is a, and why?","[1, 2, 3]. Assignment binds a name to an object, it does not copy. One list, two names.","phase01 python must"
+"Python: when is `is` correct?","Only for None, True, False. Everywhere else ==. Identity for other values depends on interning and constant folding.","phase01 python must"
+"Python: list every falsy built-in value","False, None, 0, 0.0, empty str, empty list, empty dict, empty set, empty tuple. Everything else is truthy, including '0' and [0].","phase01 python must"
+"Python: why is `if not threshold:` a bug for a numeric parameter?","not 0 is True, so a deliberate 0 takes the default branch. Use `is None` for absence.","phase01 python must"
+"Python: why is `x in my_set` O(1) but `x in my_list` O(n)?","A set hashes to a bucket and checks only that bucket. A list has no structure and must scan. Average case.","phase01 python must"
+"Python: def f(x, acc=[]) - what breaks?","The default is evaluated once at def time, so all calls share one list. In a server this leaks memory and bleeds state between requests.","phase01 python must"
+"Python: three things wrong with a bare except:","Catches KeyboardInterrupt so Ctrl-C breaks; catches your own typos, making NameError a silent wrong answer; discards diagnostic information.","phase01 python must"
+"Python: what does .copy() on a dict copy?","One level. The new dict references the same nested objects, so mutating a nested list is visible through both.","phase01 python must"
+"Python: what does zip(a, b, strict=True) add?","Raises ValueError on length mismatch instead of silently truncating to the shorter. Use it whenever lengths should match.","phase01 python should"
+"Python: why does removing from a list while iterating skip elements?","Removal shifts later elements down while the loop position advances. No exception for a list; dicts and sets raise RuntimeError.","phase01 python should"
+"Python: float('nan') == float('nan')?","False. NaN equals nothing, including itself. Every comparison with it is False, so branches silently never run. Detect with math.isnan.","phase01 python should"
+"Python: why is `out += chunk` in a loop quadratic?","Strings are immutable, so each += allocates a new string and copies everything so far. Use ''.join(parts).","phase01 python should"
+"Python: what does `raise ValueError(...) from e` preserve?","The original exception as the cause, so the traceback shows both levels. Without it the underlying detail is lost.","phase01 python should"
+"Python: why pass encoding='utf-8' explicitly to open()?","The default is OS-dependent, so code that works locally raises UnicodeDecodeError elsewhere.","phase01 python should"
+"Python: loader returns [] when every row is malformed. Why is that wrong?","It reports success for a total failure. Zero valid rows from a non-empty file is an error; individual bad rows among good ones are logged and skipped.","phase01 python must"
+"Python: bug only affects items after the first and changes with processing order. Suspect what?","A shared mutable object: a shallow .copy() or a mutable default argument accumulating state.","phase01 python must"
+"Python: idiomatic 'first match or None'?","next((x for x in items if pred(x)), None). Without the default it raises StopIteration.","phase01 python should"
+"Python: why can (1, [2]) not be a dict key?","Hashing a tuple hashes its elements, and a list is unhashable. TypeError: unhashable type: 'list'.","phase01 python should"
+"Python: .get(key) vs [key], how do you choose?","[] when a missing key means the program is wrong and should stop. .get(key, default) when absence is expected. .get everywhere hides bugs.","phase01 python must"
+"Python: pipeline works on 1k docs, times out on 1M. First step?","Measure the scaling shape at 1k/10k/100k. Superlinear points at a nested scan; linear-but-slow is a different problem. Profile before guessing.","phase01 python must"
 </code></pre></div>
 
 <p>Twenty cards rather than forty: these are the ones with consequences. Add more from the flashcard section as you hit items you keep missing, and use the rule from <code>tracker/progress-log.md</code> that a card you fail resets to the 1-day interval.</p>
