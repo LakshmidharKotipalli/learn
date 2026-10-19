@@ -256,11 +256,11 @@ A local server is needed because search fetches a JSON index, and most browsers
 block `fetch` from `file://`. Everything else works if you just open
 `docs/index.html` directly.
 
-**On GitHub Pages:** the workflow in `.github/workflows/pages.yml` rebuilds the
-site from the Markdown and deploys it on every push to `main`. One-time setup:
-Settings → Pages → Build and deployment → Source: **GitHub Actions**. The site
-is then at `https://lakshmidharkotipalli.github.io/learn/`. Every push runs
-the build, so a broken link fails before it reaches the site.
+**On GitHub Pages:** Settings → Pages → source `main` / `/docs` (already set
+for this repo). The site is at `https://lakshmidharkotipalli.github.io/learn/`.
+The workflow in `.github/workflows/build-site.yml` rebuilds `docs/` from the Markdown on
+every push and commits the result, so editing a module and pushing is enough.
+`.nojekyll` is already present.
 
 **Rebuilding after you edit a module:**
 

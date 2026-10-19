@@ -1,0 +1,44 @@
+name: Build site
+
+# Rebuilds docs/ from the Markdown on every push and commits the result back,
+# so GitHub Pages (Settings -> Pages -> main /docs) always serves fresh HTML.
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build dependencies
+        run: pip install -r requirements-build.txt
+
+      - name: Build site
+        run: python3 build_site.py
+
+      - name: Commit rebuilt site
+        run: |
+          git add docs
+          if git diff --cached --quiet; then
+            echo "docs/ already up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rebuild site"
+          git push
