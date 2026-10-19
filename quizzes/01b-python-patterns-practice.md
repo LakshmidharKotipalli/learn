@@ -1,5 +1,7 @@
 # Practice Pack: 01b Python Patterns and OOP
 
+**Module:** [01b Python Patterns and OOP](../01b-python-patterns-and-oop.md) · **Next module:** [01c Interview DSA](../01c-python-interview-dsa.md) · **Tracker:** [progress log](../tracker/progress-log.md)
+
 Work this pack at least one day after reading the module. Write your answer before opening each solution; recognition is not retrieval.
 
 ## 1. Retrieval questions
@@ -143,3 +145,10 @@ Do not open the rubric until you have a working attempt.
 - **2 — Learning:** revisit the module's first-pass path and retry the prediction/debugging sections tomorrow.
 - **1 — Not yet:** ask for help or use the worked example, then restart with a smaller task.
 
+---
+
+## Next steps
+
+1. Log your score and the review date in the [progress log](../tracker/progress-log.md).
+2. Revisit the sections of [01b Python Patterns and OOP](../01b-python-patterns-and-oop.md) behind every miss.
+3. Continue to [01c Interview DSA](../01c-python-interview-dsa.md).

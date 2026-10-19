@@ -1,5 +1,7 @@
 # Practice Pack: 01a Python Core
 
+**Module:** [01a Python Core](../01a-python-core.md) · **Next module:** [01b Python Patterns and OOP](../01b-python-patterns-and-oop.md) · **Tracker:** [progress log](../tracker/progress-log.md)
+
 **Last reviewed:** 2026-09-18 · **Volatility:** low
 
 Active recall for `01a-python-core.md`. Do not read this alongside the module. Work the module first, wait at least a day, then come here.
@@ -1286,3 +1288,11 @@ Twenty cards rather than forty: these are the ones with consequences. Add more f
 - `12b-interview-question-bank.md` covers cross-module questions; the interview items here stay within `01a`.
 
 **Next review due:** 3 days after your first attempt, then per the interval ladder.
+
+---
+
+## Next steps
+
+1. Log your score and the review date in the [progress log](../tracker/progress-log.md).
+2. Revisit the sections of [01a Python Core](../01a-python-core.md) behind every miss.
+3. Continue to [01b Python Patterns and OOP](../01b-python-patterns-and-oop.md).

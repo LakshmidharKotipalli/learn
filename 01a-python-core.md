@@ -318,7 +318,7 @@ print(bool([[]]))    # True, a list containing one thing
 **The trap this creates:**
 
 ```python
-def process(items=None, threshold=0):
+def process(items=None, threshold=None):
     if not threshold:              # BUG
         threshold = 0.5
     ...

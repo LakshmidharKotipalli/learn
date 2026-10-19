@@ -367,10 +367,27 @@ def validate_internal_links() -> None:
         raise SystemExit("broken local Markdown links:\n" + details)
 
 
+def study_order() -> list[Page]:
+    """NAV order, except each practice pack follows its module in the pager."""
+    packs = {p.src.name.split("-", 1)[0]: p for p in NAV if p.group == "Practice packs"}
+    order: list[Page] = []
+    for p in NAV:
+        if p.group == "Practice packs":
+            continue
+        order.append(p)
+        key = p.src.name.split("-", 1)[0]
+        if p.src.parent == Path(".") and key in packs:
+            order.append(packs.pop(key))
+    return order + list(packs.values())
+
+
+STUDY_ORDER = study_order()
+
+
 def prev_next(page: Page) -> str:
-    idx = NAV.index(page)
-    prev = NAV[idx - 1] if idx > 0 else None
-    nxt = NAV[idx + 1] if idx < len(NAV) - 1 else None
+    idx = STUDY_ORDER.index(page)
+    prev = STUDY_ORDER[idx - 1] if idx > 0 else None
+    nxt = STUDY_ORDER[idx + 1] if idx < len(STUDY_ORDER) - 1 else None
     parts = ['<nav class="pager">']
     if prev:
         parts.append(f'<a class="pager-prev" href="{prev.out}">'

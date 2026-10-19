@@ -1,5 +1,7 @@
 # Practice Pack: 08 Agents, Tools, and Model Context Protocol
 
+**Module:** [08 Agents, Tools and MCP](../08-agents-tools-and-mcp.md) · **Next module:** [09 Local Inference](../09-local-llm-inference.md) · **Tracker:** [progress log](../tracker/progress-log.md)
+
 Work this pack at least one day after reading the module. Write your answer before opening each solution; recognition is not retrieval.
 
 ## 1. Retrieval questions
@@ -143,3 +145,10 @@ Do not open the rubric until you have a working attempt.
 - **2 — Learning:** revisit the module's first-pass path and retry the prediction/debugging sections tomorrow.
 - **1 — Not yet:** ask for help or use the worked example, then restart with a smaller task.
 
+---
+
+## Next steps
+
+1. Log your score and the review date in the [progress log](../tracker/progress-log.md).
+2. Revisit the sections of [08 Agents, Tools and MCP](../08-agents-tools-and-mcp.md) behind every miss.
+3. Continue to [09 Local Inference](../09-local-llm-inference.md).

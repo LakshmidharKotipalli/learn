@@ -1,5 +1,7 @@
 # Practice Pack: 09 Local LLM Inference
 
+**Module:** [09 Local Inference](../09-local-llm-inference.md) · **Next module:** [10 MLOps and Deployment](../10-mlops-and-deployment.md) · **Tracker:** [progress log](../tracker/progress-log.md)
+
 Work this pack at least one day after reading the module. Write your answer before opening each solution; recognition is not retrieval.
 
 ## 1. Retrieval questions
@@ -143,3 +145,10 @@ Do not open the rubric until you have a working attempt.
 - **2 — Learning:** revisit the module's first-pass path and retry the prediction/debugging sections tomorrow.
 - **1 — Not yet:** ask for help or use the worked example, then restart with a smaller task.
 
+---
+
+## Next steps
+
+1. Log your score and the review date in the [progress log](../tracker/progress-log.md).
+2. Revisit the sections of [09 Local Inference](../09-local-llm-inference.md) behind every miss.
+3. Continue to [10 MLOps and Deployment](../10-mlops-and-deployment.md).

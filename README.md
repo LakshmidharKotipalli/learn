@@ -145,6 +145,8 @@ The dotted edge is the LLM-first fast path. It reaches the material you probably
 
 ### A note on the practice packs
 
+Each pack links back to its module and on to the next one, and on the website the Previous/Next buttons follow the study order: module, its practice pack, then the next module.
+
 Every technical module now has a practice pack. Work it **at least one day
 after** the first reading: the questions are deliberately delayed so that you
 practice retrieval rather than recognition. Each pack includes retrieval,
