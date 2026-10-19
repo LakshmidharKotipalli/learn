@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -460,8 +477,8 @@
 <span class="w">    </span><span class="nv">PYTHONUNBUFFERED</span><span class="o">=</span><span class="m">1</span>
 <span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
 <span class="k">HEALTHCHECK</span><span class="w"> </span>--interval<span class="o">=</span>30s<span class="w"> </span>--timeout<span class="o">=</span>3s<span class="w"> </span>--start-period<span class="o">=</span>20s<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>CMD<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import urllib.request; urllib.request.urlopen(&#39;http://localhost:8000/health&#39;)&quot;</span>
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;src.api:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span><span class="p">]</span>
+<span class="w">  </span>CMD<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"uvicorn"</span><span class="p">,</span><span class="w"> </span><span class="s2">"src.api:app"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--host"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0.0.0.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--port"</span><span class="p">,</span><span class="w"> </span><span class="s2">"8000"</span><span class="p">]</span>
 </code></pre></div>
 
 <p><strong>The decisions worth defending in a review:</strong></p>
@@ -483,26 +500,26 @@
 </ol>
 </blockquote>
 <h3 id="4-service-design-core">4. Service design [CORE]<a class="anchor" href="#4-service-design-core" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">asynccontextmanager</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">asynccontextmanager</span>
 
-<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Request</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 
 
-<span class="k">class</span> <span class="nc">AskRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AskRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">question</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
     <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="n">conversation_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-<span class="k">class</span> <span class="nc">Source</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Source</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">chunk_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">score</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">heading_path</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="n">excerpt</span><span class="p">:</span> <span class="nb">str</span>
 
 
-<span class="k">class</span> <span class="nc">AskResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AskResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="n">sources</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Source</span><span class="p">]</span>
     <span class="n">refused</span><span class="p">:</span> <span class="nb">bool</span>
@@ -511,9 +528,9 @@
 
 
 <span class="nd">@asynccontextmanager</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
     <span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="k">await</span> <span class="n">build_retriever</span><span class="p">()</span>     <span class="c1"># expensive, once</span>
-    <span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">embed_model</span> <span class="o">==</span> <span class="n">settings</span><span class="o">.</span><span class="n">embed_model</span><span class="p">,</span> <span class="s2">&quot;index/model mismatch&quot;</span>
+    <span class="k">assert</span> <span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">embed_model</span> <span class="o">==</span> <span class="n">settings</span><span class="o">.</span><span class="n">embed_model</span><span class="p">,</span> <span class="s2">"index/model mismatch"</span>
     <span class="k">yield</span>
     <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
@@ -521,20 +538,20 @@
 <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">lifespan</span><span class="o">=</span><span class="n">lifespan</span><span class="p">)</span>
 
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">health</span><span class="p">():</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">}</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/health"</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"status"</span><span class="p">:</span> <span class="s2">"ok"</span><span class="p">}</span>
 
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/ready&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/ready"</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ready</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">is_ready</span><span class="p">():</span>
-        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">503</span><span class="p">,</span> <span class="s2">&quot;retriever not ready&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ready&quot;</span><span class="p">}</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">503</span><span class="p">,</span> <span class="s2">"retriever not ready"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"status"</span><span class="p">:</span> <span class="s2">"ready"</span><span class="p">}</span>
 
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/v1/ask&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">AskResponse</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">ask</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">AskRequest</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">current_user</span><span class="p">)):</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/v1/ask"</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">AskResponse</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ask</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">AskRequest</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">current_user</span><span class="p">)):</span>
     <span class="o">...</span>
 </code></pre></div>
 
@@ -687,8 +704,8 @@
 </table>
 <p><strong>When batch beats real-time</strong>, which is underused: if you can predict what will be asked, precompute it. Embedding a corpus is batch. Precomputing summaries for every document is batch. It is cheaper per unit, easier to monitor, trivially retryable, and it removes latency from the user path entirely.</p>
 <p><strong>The async pattern for slow work:</strong></p>
-<div class="highlight"><pre><span></span><code>POST /v1/jobs      → 202 Accepted, {&quot;job_id&quot;: &quot;...&quot;}
-GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done&quot; | &quot;failed&quot;, &quot;result&quot;: ...}
+<div class="highlight"><pre><span></span><code>POST /v1/jobs      → 202 Accepted, {"job_id": "..."}
+GET  /v1/jobs/{id} → 200 {"status": "running" | "done" | "failed", "result": ...}
 </code></pre></div>
 
 <p>Anything over roughly 30 seconds should be async. Holding an HTTP connection open for five minutes wastes a worker, breaks through proxies with their own timeouts, and gives the client no way to recover from a disconnect.</p>
@@ -736,19 +753,19 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 </table>
 <p><strong>Structured logs, not strings:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-    <span class="s2">&quot;ask_completed&quot;</span><span class="p">,</span>
+    <span class="s2">"ask_completed"</span><span class="p">,</span>
     <span class="n">extra</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;trace_id&quot;</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">,</span>
-        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-        <span class="s2">&quot;question_tokens&quot;</span><span class="p">:</span> <span class="n">q_tokens</span><span class="p">,</span>
-        <span class="s2">&quot;retrieved_chunks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">],</span>
-        <span class="s2">&quot;top_score&quot;</span><span class="p">:</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">score</span> <span class="k">if</span> <span class="n">chunks</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="s2">&quot;prompt_tokens&quot;</span><span class="p">:</span> <span class="n">prompt_tokens</span><span class="p">,</span>
-        <span class="s2">&quot;completion_tokens&quot;</span><span class="p">:</span> <span class="n">completion_tokens</span><span class="p">,</span>
-        <span class="s2">&quot;model_version&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">model_version</span><span class="p">,</span>
-        <span class="s2">&quot;refused&quot;</span><span class="p">:</span> <span class="n">refused</span><span class="p">,</span>
-        <span class="s2">&quot;latency_ms&quot;</span><span class="p">:</span> <span class="n">elapsed_ms</span><span class="p">,</span>
-        <span class="s2">&quot;ttft_ms&quot;</span><span class="p">:</span> <span class="n">ttft_ms</span><span class="p">,</span>
+        <span class="s2">"trace_id"</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">,</span>
+        <span class="s2">"user_id"</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s2">"question_tokens"</span><span class="p">:</span> <span class="n">q_tokens</span><span class="p">,</span>
+        <span class="s2">"retrieved_chunks"</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">],</span>
+        <span class="s2">"top_score"</span><span class="p">:</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">score</span> <span class="k">if</span> <span class="n">chunks</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">"prompt_tokens"</span><span class="p">:</span> <span class="n">prompt_tokens</span><span class="p">,</span>
+        <span class="s2">"completion_tokens"</span><span class="p">:</span> <span class="n">completion_tokens</span><span class="p">,</span>
+        <span class="s2">"model_version"</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">model_version</span><span class="p">,</span>
+        <span class="s2">"refused"</span><span class="p">:</span> <span class="n">refused</span><span class="p">,</span>
+        <span class="s2">"latency_ms"</span><span class="p">:</span> <span class="n">elapsed_ms</span><span class="p">,</span>
+        <span class="s2">"ttft_ms"</span><span class="p">:</span> <span class="n">ttft_ms</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -900,13 +917,13 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <span class="w">            </span><span class="no">--out eval/results/ci-${{ github.sha }}.json</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
-    <span class="n">report</span> <span class="o">=</span> <span class="n">run_retrieval_eval</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">&quot;ci&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{},</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">recall</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()[</span><span class="s2">&quot;recall&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">run_retrieval_eval</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">"ci"</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{},</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()[</span><span class="s2">"recall"</span><span class="p">]</span>
     <span class="n">failing</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">case_id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">recall</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
     <span class="k">assert</span> <span class="n">recall</span> <span class="o">&gt;=</span> <span class="n">BASELINE_RECALL</span> <span class="o">-</span> <span class="n">TOLERANCE</span><span class="p">,</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;recall@5 fell to </span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> from baseline </span><span class="si">{</span><span class="n">BASELINE_RECALL</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">. &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;Cases with zero recall: </span><span class="si">{</span><span class="n">failing</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">"recall@5 fell to </span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> from baseline </span><span class="si">{</span><span class="n">BASELINE_RECALL</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">. "</span>
+        <span class="sa">f</span><span class="s2">"Cases with zero recall: </span><span class="si">{</span><span class="n">failing</span><span class="si">}</span><span class="s2">"</span>
     <span class="p">)</span>
 </code></pre></div>
 
@@ -928,8 +945,8 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <h3 id="10-security-and-secrets-core">10. Security and secrets [CORE]<a class="anchor" href="#10-security-and-secrets-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Where a secret must never be:</strong> source code, a container image, a log line, an error message, a URL, a client-side bundle, or a git history. That last one is permanent: once committed, rotate the key, because deletion does not remove it from history.</p>
 <p><strong>Where it should be:</strong> a secrets manager, injected as an environment variable or a mounted file at runtime, with rotation and an access audit trail.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
-    <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">env_prefix</span><span class="o">=</span><span class="s2">&quot;APP_&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">env_prefix</span><span class="o">=</span><span class="s2">"APP_"</span><span class="p">)</span>
 
     <span class="n">api_key</span><span class="p">:</span> <span class="n">SecretStr</span>                        <span class="c1"># repr() will not leak it</span>
     <span class="n">database_url</span><span class="p">:</span> <span class="n">SecretStr</span>
@@ -1025,7 +1042,7 @@ GET  /v1/jobs/{id} → 200 {&quot;status&quot;: &quot;running&quot; | &quot;done
 <h3 id="13-cost-core">13. Cost [CORE]<a class="anchor" href="#13-cost-core" aria-label="Link to this section">#</a></h3>
 <p><strong>Attribute cost per request, per endpoint and per tenant</strong>, or you cannot act on it.</p>
 <div class="highlight"><pre><span></span><code><span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">prompt_tokens</span> <span class="o">*</span> <span class="n">PROMPT_PRICE</span> <span class="o">+</span> <span class="n">completion_tokens</span> <span class="o">*</span> <span class="n">COMPLETION_PRICE</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1_000_000</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;request_cost&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;trace_id&quot;</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">,</span> <span class="s2">&quot;tenant&quot;</span><span class="p">:</span> <span class="n">tenant</span><span class="p">,</span> <span class="s2">&quot;cost_usd&quot;</span><span class="p">:</span> <span class="n">cost</span><span class="p">})</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"request_cost"</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="p">{</span><span class="s2">"trace_id"</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">,</span> <span class="s2">"tenant"</span><span class="p">:</span> <span class="n">tenant</span><span class="p">,</span> <span class="s2">"cost_usd"</span><span class="p">:</span> <span class="n">cost</span><span class="p">})</span>
 </code></pre></div>
 
 <p><code>[VERIFY: prices change; keep them in config, not in code, and version the config]</code></p>

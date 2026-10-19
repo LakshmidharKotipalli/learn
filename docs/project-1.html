@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html" class="active">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -296,78 +313,78 @@
 <h2 id="complete-mvp-source">Complete MVP source<a class="anchor" href="#complete-mvp-source" aria-label="Link to this section">#</a></h2>
 <h3 id="pyprojecttoml"><code>pyproject.toml</code><a class="anchor" href="#pyprojecttoml" aria-label="Link to this section">#</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">[project]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;learning-log-analyzer&quot;</span>
-<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Summarize study logs and flag topics due for spaced-repetition review.&quot;</span>
-<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.11&quot;</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"learning-log-analyzer"</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"0.1.0"</span>
+<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Summarize study logs and flag topics due for spaced-repetition review."</span>
+<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&gt;=3.11"</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
 
 <span class="k">[project.optional-dependencies]</span>
-<span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pytest&gt;=8.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pytest-cov&gt;=5.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mypy&gt;=1.10&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ruff&gt;=0.5&quot;</span><span class="p">]</span>
-<span class="n">dashboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;streamlit&gt;=1.35&quot;</span><span class="p">]</span>
+<span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"pytest&gt;=8.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pytest-cov&gt;=5.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mypy&gt;=1.10"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ruff&gt;=0.5"</span><span class="p">]</span>
+<span class="n">dashboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"streamlit&gt;=1.35"</span><span class="p">]</span>
 
 <span class="k">[project.scripts]</span>
-<span class="n">analyze</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;analyzer.cli:main&quot;</span>
+<span class="n">analyze</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"analyzer.cli:main"</span>
 
 <span class="k">[build-system]</span>
-<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hatchling&quot;</span><span class="p">]</span>
-<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hatchling.build&quot;</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"hatchling"</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hatchling.build"</span>
 
 <span class="c1"># Required: the project name (learning-log-analyzer) does not match the package</span>
 <span class="c1"># directory (analyzer), so hatchling cannot infer what to ship.</span>
 <span class="k">[tool.hatch.build.targets.wheel]</span>
-<span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src/analyzer&quot;</span><span class="p">]</span>
+<span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"src/analyzer"</span><span class="p">]</span>
 
 <span class="k">[tool.ruff]</span>
 <span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
-<span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;py311&quot;</span>
+<span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"py311"</span>
 
 <span class="k">[tool.ruff.lint]</span>
-<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;UP&quot;</span><span class="p">]</span>
+<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"E"</span><span class="p">,</span><span class="w"> </span><span class="s2">"F"</span><span class="p">,</span><span class="w"> </span><span class="s2">"I"</span><span class="p">,</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"UP"</span><span class="p">]</span>
 
 <span class="k">[tool.mypy]</span>
-<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.11&quot;</span>
+<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"3.11"</span>
 <span class="n">warn_return_any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">warn_unused_ignores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 
 <span class="k">[tool.pytest.ini_options]</span>
-<span class="n">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tests&quot;</span><span class="p">]</span>
-<span class="n">addopts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;-v&quot;</span>
+<span class="n">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"tests"</span><span class="p">]</span>
+<span class="n">addopts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"-v"</span>
 </code></pre></div>
 
 <blockquote>
 <p><strong>This broke during writing.</strong> Without the <code>[tool.hatch.build.targets.wheel]</code> block, <code>pip install -e .</code> fails with <em>"Unable to determine which files to ship inside the wheel"</em>, because hatchling looks for a directory matching the normalized project name (<code>learning_log_analyzer</code>) and finds <code>analyzer</code> instead. You will hit this any time the distribution name differs from the import name, which is common. Either add the block or name them the same.</p>
 </blockquote>
 <h3 id="srcanalyzermodelspy"><code>src/analyzer/models.py</code><a class="anchor" href="#srcanalyzermodelspy" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Core data structures. Frozen because nothing downstream should mutate a record.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">"""Core data structures. Frozen because nothing downstream should mutate a record."""</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">LogEntry</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;One study session.&quot;&quot;&quot;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LogEntry</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""One study session."""</span>
 
     <span class="n">date</span><span class="p">:</span> <span class="n">date</span>
     <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">minutes</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">confidence</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 1-5 self-rating, optional</span>
-    <span class="n">notes</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">notes</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
 
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutes</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;minutes must be positive, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">minutes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"minutes must be positive, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">minutes</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">confidence</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;confidence must be 1-5, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"confidence must be 1-5, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;topic must not be empty&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"topic must not be empty"</span><span class="p">)</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">TopicSummary</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopicSummary</span><span class="p">:</span>
     <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">total_minutes</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">session_count</span><span class="p">:</span> <span class="nb">int</span>
@@ -376,12 +393,12 @@
     <span class="n">mean_confidence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">days_since_last_seen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">days_since_last_seen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_seen</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ReviewItem</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ReviewItem</span><span class="p">:</span>
     <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">last_seen</span><span class="p">:</span> <span class="n">date</span>
     <span class="n">days_overdue</span><span class="p">:</span> <span class="nb">int</span>
@@ -389,7 +406,7 @@
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Report</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Report</span><span class="p">:</span>
     <span class="n">total_minutes</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">session_count</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">topics</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
@@ -403,77 +420,77 @@
 <p><strong>Validation in <code>__post_init__</code>, not at the call site.</strong> An invalid <code>LogEntry</code> cannot exist. Every function downstream can assume minutes are positive without checking, and the check lives in exactly one place.</p>
 <p><strong><code>field(default_factory=list)</code>.</strong> The mutable default trap from <code>01a</code> section 7. Writing <code>topics: list = []</code> here raises at class definition time.</p>
 <h3 id="srcanalyzerloadingpy"><code>src/analyzer/loading.py</code><a class="anchor" href="#srcanalyzerloadingpy" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Read study logs from CSV or JSONL. Skip bad rows loudly; never truncate silently.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">"""Read study logs from CSV or JSONL. Skip bad rows loudly; never truncate silently."""</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterator</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">analyzer.models</span> <span class="kn">import</span> <span class="n">LogEntry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyzer.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogEntry</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="n">REQUIRED_COLUMNS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;topic&quot;</span><span class="p">,</span> <span class="s2">&quot;minutes&quot;</span><span class="p">}</span>
+<span class="n">REQUIRED_COLUMNS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"date"</span><span class="p">,</span> <span class="s2">"topic"</span><span class="p">,</span> <span class="s2">"minutes"</span><span class="p">}</span>
 
 
-<span class="k">class</span> <span class="nc">LoadError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The file cannot be used at all, as opposed to one bad row.&quot;&quot;&quot;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LoadError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The file cannot be used at all, as opposed to one bad row."""</span>
 
 
-<span class="k">def</span> <span class="nf">_parse_date</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">date</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">,</span> <span class="s2">&quot;%m/</span><span class="si">%d</span><span class="s2">/%Y&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_parse_date</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">date</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"</span><span class="si">%d</span><span class="s2">/%m/%Y"</span><span class="p">,</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y"</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">fmt</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">continue</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unrecognized date format: </span><span class="si">{</span><span class="n">raw</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"unrecognized date format: </span><span class="si">{</span><span class="n">raw</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_parse_optional_int</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_parse_optional_int</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_row_to_entry</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LogEntry</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_row_to_entry</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LogEntry</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">LogEntry</span><span class="p">(</span>
-        <span class="n">date</span><span class="o">=</span><span class="n">_parse_date</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]),</span>
-        <span class="n">topic</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;topic&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
-        <span class="n">minutes</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;minutes&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()),</span>
-        <span class="n">confidence</span><span class="o">=</span><span class="n">_parse_optional_int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;confidence&quot;</span><span class="p">)),</span>
-        <span class="n">notes</span><span class="o">=</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;notes&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
+        <span class="n">date</span><span class="o">=</span><span class="n">_parse_date</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"date"</span><span class="p">]),</span>
+        <span class="n">topic</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">"topic"</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
+        <span class="n">minutes</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"minutes"</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()),</span>
+        <span class="n">confidence</span><span class="o">=</span><span class="n">_parse_optional_int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"confidence"</span><span class="p">)),</span>
+        <span class="n">notes</span><span class="o">=</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"notes"</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
     <span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">load_csv</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_csv</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
     <span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">skipped</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is empty&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is empty"</span><span class="p">)</span>
         <span class="n">missing</span> <span class="o">=</span> <span class="n">REQUIRED_COLUMNS</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> missing required columns: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> missing required columns: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_row_to_entry</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
             <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> line </span><span class="si">%d</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2"> line </span><span class="si">%d</span><span class="s2">: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">entries</span><span class="p">,</span> <span class="n">skipped</span>
 
 
-<span class="k">def</span> <span class="nf">load_jsonl</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_jsonl</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
     <span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">skipped</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
@@ -481,46 +498,46 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">row</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;expected an object, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"expected an object, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                 <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_row_to_entry</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
             <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">skipped</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> line </span><span class="si">%d</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2"> line </span><span class="si">%d</span><span class="s2">: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">entries</span><span class="p">,</span> <span class="n">skipped</span>
 
 
-<span class="n">LOADERS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;.csv&quot;</span><span class="p">:</span> <span class="n">load_csv</span><span class="p">,</span> <span class="s2">&quot;.jsonl&quot;</span><span class="p">:</span> <span class="n">load_jsonl</span><span class="p">}</span>
+<span class="n">LOADERS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">".csv"</span><span class="p">:</span> <span class="n">load_csv</span><span class="p">,</span> <span class="s2">".jsonl"</span><span class="p">:</span> <span class="n">load_jsonl</span><span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dispatch on suffix. Raises LoadError if the file is unusable.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Dispatch on suffix. Raises LoadError if the file is unusable."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-        <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;file not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"file not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">loader</span> <span class="o">=</span> <span class="n">LOADERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
     <span class="k">if</span> <span class="n">loader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unsupported format </span><span class="si">{</span><span class="n">path</span><span class="o">.</span><span class="n">suffix</span><span class="si">!r}</span><span class="s2">; expected one of </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">LOADERS</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"unsupported format </span><span class="si">{</span><span class="n">path</span><span class="o">.</span><span class="n">suffix</span><span class="si">!r}</span><span class="s2">; expected one of </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">LOADERS</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">entries</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">=</span> <span class="n">loader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">entries</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no usable rows (</span><span class="si">{</span><span class="n">skipped</span><span class="si">}</span><span class="s2"> skipped)&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">LoadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no usable rows (</span><span class="si">{</span><span class="n">skipped</span><span class="si">}</span><span class="s2"> skipped)"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">skipped</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: loaded </span><span class="si">%d</span><span class="s2"> entries, skipped </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">entries</span><span class="p">),</span> <span class="n">skipped</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">: loaded </span><span class="si">%d</span><span class="s2"> entries, skipped </span><span class="si">%d</span><span class="s2">"</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">entries</span><span class="p">),</span> <span class="n">skipped</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: loaded </span><span class="si">%d</span><span class="s2"> entries&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">entries</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">: loaded </span><span class="si">%d</span><span class="s2"> entries"</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">entries</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">entries</span><span class="p">,</span> <span class="n">skipped</span>
 
 
-<span class="k">def</span> <span class="nf">load_many</span><span class="p">(</span><span class="n">paths</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Path</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load several files, tolerating individual file failures.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_many</span><span class="p">(</span><span class="n">paths</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Path</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Load several files, tolerating individual file failures."""</span>
     <span class="n">all_entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">total_skipped</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">entries</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">LoadError</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;skipping </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"skipping </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
             <span class="k">continue</span>
         <span class="n">all_entries</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span>
         <span class="n">total_skipped</span> <span class="o">+=</span> <span class="n">skipped</span>
@@ -530,15 +547,15 @@
 <p><strong>The distinction this module is built around:</strong> a bad row is not a bad file. One malformed line among a thousand should be logged and skipped. A file with no valid rows at all, or missing a required column, is an error, because silently returning an empty list produces a report of zero minutes and no indication anything went wrong. That distinction is the whole design, and it is the first thing to say when someone asks you about this project.</p>
 <p>Note <code>start=2</code> in the CSV loop: row 1 is the header, so line numbers match what a text editor shows. Small detail, and it is the difference between a warning you can act on and one you have to count lines for.</p>
 <h3 id="srcanalyzeranalysispy"><code>src/analyzer/analysis.py</code><a class="anchor" href="#srcanalyzeranalysispy" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Pure analysis. No I/O, so every function here is trivially testable.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">"""Pure analysis. No I/O, so every function here is trivially testable."""</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">statistics</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
 
-<span class="kn">from</span> <span class="nn">analyzer.models</span> <span class="kn">import</span> <span class="n">LogEntry</span><span class="p">,</span> <span class="n">Report</span><span class="p">,</span> <span class="n">ReviewItem</span><span class="p">,</span> <span class="n">TopicSummary</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyzer.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogEntry</span><span class="p">,</span> <span class="n">Report</span><span class="p">,</span> <span class="n">ReviewItem</span><span class="p">,</span> <span class="n">TopicSummary</span>
 
 <span class="c1"># Spaced-repetition ladder from tracker/progress-log.md.</span>
 <span class="n">REVIEW_INTERVALS</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
@@ -547,8 +564,8 @@
 <span class="n">WEAK_MINUTES_THRESHOLD</span> <span class="o">=</span> <span class="mi">60</span>
 
 
-<span class="k">def</span> <span class="nf">summarize_topics</span><span class="p">(</span><span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;One summary per topic, sorted by total time descending.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">summarize_topics</span><span class="p">(</span><span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""One summary per topic, sorted by total time descending."""</span>
     <span class="n">by_topic</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
         <span class="n">by_topic</span><span class="p">[</span><span class="n">entry</span><span class="o">.</span><span class="n">topic</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
@@ -569,8 +586,8 @@
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">find_weak_areas</span><span class="p">(</span><span class="n">summaries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A topic is weak if confidence is low, or if it has had very little time.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_weak_areas</span><span class="p">(</span><span class="n">summaries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""A topic is weak if confidence is low, or if it has had very little time."""</span>
     <span class="n">weak</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">s</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">summaries</span>
@@ -580,14 +597,14 @@
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">))</span>
 
 
-<span class="k">def</span> <span class="nf">next_interval</span><span class="p">(</span><span class="n">session_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Interval for a topic studied session_count times. Caps at the last rung.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">next_interval</span><span class="p">(</span><span class="n">session_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Interval for a topic studied session_count times. Caps at the last rung."""</span>
     <span class="n">index</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">session_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">REVIEW_INTERVALS</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">REVIEW_INTERVALS</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
 
 
-<span class="k">def</span> <span class="nf">due_for_review</span><span class="p">(</span><span class="n">summaries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">],</span> <span class="n">today</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ReviewItem</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Topics whose interval has elapsed. today is injectable so tests are not time-dependent.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">due_for_review</span><span class="p">(</span><span class="n">summaries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopicSummary</span><span class="p">],</span> <span class="n">today</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ReviewItem</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Topics whose interval has elapsed. today is injectable so tests are not time-dependent."""</span>
     <span class="n">today</span> <span class="o">=</span> <span class="n">today</span> <span class="ow">or</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
     <span class="n">due</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">summaries</span><span class="p">:</span>
@@ -605,7 +622,7 @@
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">due</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">days_overdue</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">build_report</span><span class="p">(</span><span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="n">skipped</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">today</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Report</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_report</span><span class="p">(</span><span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="n">skipped</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">today</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Report</span><span class="p">:</span>
     <span class="n">summaries</span> <span class="o">=</span> <span class="n">summarize_topics</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Report</span><span class="p">(</span>
         <span class="n">total_minutes</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">minutes</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">),</span>
@@ -621,133 +638,133 @@
 <p><strong><code>mean_confidence</code> is <code>float | None</code>, not <code>0.0</code>.</strong> "Never rated" and "rated zero" are different facts, and collapsing them means a topic you have not assessed looks like a topic you assessed badly. The <code>None</code> propagates into the formatter as <code>-</code> rather than a misleading number.</p>
 <p><strong>The thresholds are named constants</strong>, not literals buried in a comprehension. The next question anyone asks is "why 60 minutes?", and a named constant is where the answer goes.</p>
 <h3 id="srcanalyzerformattingpy"><code>src/analyzer/formatting.py</code><a class="anchor" href="#srcanalyzerformattingpy" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Output formatters. A Protocol seam so adding a format touches nothing else.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">"""Output formatters. A Protocol seam so adding a format touches nothing else."""</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">asdict</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">asdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
 
-<span class="kn">from</span> <span class="nn">analyzer.models</span> <span class="kn">import</span> <span class="n">Report</span>
-
-
-<span class="k">class</span> <span class="nc">Formatter</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">Report</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyzer.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Report</span>
 
 
-<span class="k">def</span> <span class="nf">_hours</span><span class="p">(</span><span class="n">minutes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">minutes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">60</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">h&quot;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Formatter</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">Report</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
 
 
-<span class="k">class</span> <span class="nc">TableFormatter</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fixed-width table for a terminal. No dependencies.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_hours</span><span class="p">(</span><span class="n">minutes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">minutes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">60</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">h"</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">Report</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TableFormatter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Fixed-width table for a terminal. No dependencies."""</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">Report</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;STUDY LOG REPORT&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">64</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">session_count</span><span class="si">}</span><span class="s2"> sessions, </span><span class="si">{</span><span class="n">_hours</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">)</span><span class="si">}</span><span class="s2"> total&quot;</span><span class="p">,</span>
+            <span class="s2">"STUDY LOG REPORT"</span><span class="p">,</span>
+            <span class="s2">"="</span> <span class="o">*</span> <span class="mi">64</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">session_count</span><span class="si">}</span><span class="s2"> sessions, </span><span class="si">{</span><span class="n">_hours</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">)</span><span class="si">}</span><span class="s2"> total"</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="k">if</span> <span class="n">report</span><span class="o">.</span><span class="n">skipped_rows</span><span class="p">:</span>
-            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;WARNING: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">skipped_rows</span><span class="si">}</span><span class="s2"> rows were skipped as malformed&quot;</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"WARNING: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">skipped_rows</span><span class="si">}</span><span class="s2"> rows were skipped as malformed"</span><span class="p">)</span>
 
-        <span class="n">lines</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;BY TOPIC&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">64</span><span class="p">]</span>
-        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;topic&#39;</span><span class="si">:</span><span class="s2">&lt;24</span><span class="si">}{</span><span class="s1">&#39;time&#39;</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}{</span><span class="s1">&#39;sessions&#39;</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}{</span><span class="s1">&#39;conf&#39;</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}{</span><span class="s1">&#39;last seen&#39;</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">""</span><span class="p">,</span> <span class="s2">"BY TOPIC"</span><span class="p">,</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">64</span><span class="p">]</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'topic'</span><span class="si">:</span><span class="s2">&lt;24</span><span class="si">}{</span><span class="s1">'time'</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}{</span><span class="s1">'sessions'</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}{</span><span class="s1">'conf'</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}{</span><span class="s1">'last seen'</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">topics</span><span class="p">:</span>
-            <span class="n">conf</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;-&quot;</span>
+            <span class="n">conf</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">"-"</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">topic</span><span class="p">[:</span><span class="mi">24</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;24</span><span class="si">}{</span><span class="n">_hours</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">)</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}{</span><span class="n">s</span><span class="o">.</span><span class="n">session_count</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">conf</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}{</span><span class="n">s</span><span class="o">.</span><span class="n">last_seen</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">topic</span><span class="p">[:</span><span class="mi">24</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;24</span><span class="si">}{</span><span class="n">_hours</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">)</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}{</span><span class="n">s</span><span class="o">.</span><span class="n">session_count</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}{</span><span class="n">s</span><span class="o">.</span><span class="n">last_seen</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">report</span><span class="o">.</span><span class="n">weak_areas</span><span class="p">:</span>
-            <span class="n">lines</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;WEAK AREAS&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">64</span><span class="p">]</span>
+            <span class="n">lines</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">""</span><span class="p">,</span> <span class="s2">"WEAK AREAS"</span><span class="p">,</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">64</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">weak_areas</span><span class="p">:</span>
                 <span class="n">reason</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;confidence </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">"confidence </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span>
                     <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">mean_confidence</span> <span class="o">&lt;</span> <span class="mf">3.0</span>
-                    <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;only </span><span class="si">{</span><span class="n">_hours</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">)</span><span class="si">}</span><span class="s2"> invested&quot;</span>
+                    <span class="k">else</span> <span class="sa">f</span><span class="s2">"only </span><span class="si">{</span><span class="n">_hours</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">)</span><span class="si">}</span><span class="s2"> invested"</span>
                 <span class="p">)</span>
-                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">topic</span><span class="si">:</span><span class="s2">&lt;24</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">topic</span><span class="si">:</span><span class="s2">&lt;24</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">report</span><span class="o">.</span><span class="n">due_for_review</span><span class="p">:</span>
-            <span class="n">lines</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;DUE FOR REVIEW&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">64</span><span class="p">]</span>
+            <span class="n">lines</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">""</span><span class="p">,</span> <span class="s2">"DUE FOR REVIEW"</span><span class="p">,</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">64</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">due_for_review</span><span class="p">:</span>
-                <span class="n">overdue</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">days_overdue</span><span class="si">}</span><span class="s2">d overdue&quot;</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">days_overdue</span> <span class="k">else</span> <span class="s2">&quot;due today&quot;</span>
+                <span class="n">overdue</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">days_overdue</span><span class="si">}</span><span class="s2">d overdue"</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">days_overdue</span> <span class="k">else</span> <span class="s2">"due today"</span>
                 <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">topic</span><span class="si">:</span><span class="s2">&lt;24</span><span class="si">}</span><span class="s2"> last seen </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">last_seen</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">}</span><span class="s2"> &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">interval_days</span><span class="si">}</span><span class="s2">d interval, </span><span class="si">{</span><span class="n">overdue</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">topic</span><span class="si">:</span><span class="s2">&lt;24</span><span class="si">}</span><span class="s2"> last seen </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">last_seen</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">}</span><span class="s2"> "</span>
+                    <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">interval_days</span><span class="si">}</span><span class="s2">d interval, </span><span class="si">{</span><span class="n">overdue</span><span class="si">}</span><span class="s2">)"</span>
                 <span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">JsonFormatter</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Machine-readable. Dates become ISO strings; JSON has no date type.&quot;&quot;&quot;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">JsonFormatter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Machine-readable. Dates become ISO strings; JSON has no date type."""</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">Report</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">Report</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;not serializable: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"not serializable: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">asdict</span><span class="p">(</span><span class="n">report</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">encode</span><span class="p">)</span>
 
 
-<span class="n">FORMATTERS</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Formatter</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;table&quot;</span><span class="p">:</span> <span class="n">TableFormatter</span><span class="p">(),</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span> <span class="n">JsonFormatter</span><span class="p">()}</span>
+<span class="n">FORMATTERS</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Formatter</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"table"</span><span class="p">:</span> <span class="n">TableFormatter</span><span class="p">(),</span> <span class="s2">"json"</span><span class="p">:</span> <span class="n">JsonFormatter</span><span class="p">()}</span>
 </code></pre></div>
 
 <p><strong>Why a Protocol rather than a base class.</strong> Adding a Markdown formatter means writing one class with a <code>render</code> method and adding one dictionary entry. No inheritance, no registration, no changes to any existing file. This is the <code>01b</code> section 2 composition argument made concrete, and it is a good thing to point at when asked about extensibility.</p>
 <p><strong><code>render</code> returns a string rather than printing.</strong> Every formatter is then testable by asserting on the returned value, and <code>cli.py</code> decides whether it goes to stdout or a file. A formatter that printed would be untestable and would have made the <code>-o</code> flag awkward.</p>
 <h3 id="srcanalyzerclipy"><code>src/analyzer/cli.py</code><a class="anchor" href="#srcanalyzerclipy" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Command-line entry point. The only place logging is configured.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">"""Command-line entry point. The only place logging is configured."""</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">analyzer.analysis</span> <span class="kn">import</span> <span class="n">build_report</span>
-<span class="kn">from</span> <span class="nn">analyzer.formatting</span> <span class="kn">import</span> <span class="n">FORMATTERS</span>
-<span class="kn">from</span> <span class="nn">analyzer.loading</span> <span class="kn">import</span> <span class="n">LoadError</span><span class="p">,</span> <span class="n">load_many</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyzer.analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_report</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyzer.formatting</span><span class="w"> </span><span class="kn">import</span> <span class="n">FORMATTERS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyzer.loading</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoadError</span><span class="p">,</span> <span class="n">load_many</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">build_parser</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_parser</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">:</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-        <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Summarize study logs and flag topics due for review.&quot;</span><span class="p">,</span>
+        <span class="n">prog</span><span class="o">=</span><span class="s2">"analyze"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Summarize study logs and flag topics due for review."</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;paths&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;CSV or JSONL log files&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"paths"</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">"+"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"CSV or JSONL log files"</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;--format&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">FORMATTERS</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;table&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;output format&quot;</span>
+        <span class="s2">"-f"</span><span class="p">,</span> <span class="s2">"--format"</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">FORMATTERS</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s2">"table"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"output format"</span>
     <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;write to a file instead of stdout&quot;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;show debug logging&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-o"</span><span class="p">,</span> <span class="s2">"--output"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"write to a file instead of stdout"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-v"</span><span class="p">,</span> <span class="s2">"--verbose"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">"store_true"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"show debug logging"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">parser</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">build_parser</span><span class="p">()</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
 
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
         <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-        <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s2">"</span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">entries</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">=</span> <span class="n">load_many</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">))</span>
     <span class="k">except</span> <span class="n">LoadError</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;could not load input&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"could not load input"</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">2</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">entries</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;no usable entries in any input file&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"no usable entries in any input file"</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">2</span>
 
     <span class="n">report</span> <span class="o">=</span> <span class="n">build_report</span><span class="p">(</span><span class="n">entries</span><span class="p">,</span> <span class="n">skipped</span><span class="o">=</span><span class="n">skipped</span><span class="p">)</span>
@@ -755,15 +772,15 @@
 
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">rendered</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;wrote </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">rendered</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"wrote </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">rendered</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">skipped</span> <span class="k">else</span> <span class="mi">0</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </code></pre></div>
 
@@ -776,113 +793,113 @@
 <h2 id="tests">Tests<a class="anchor" href="#tests" aria-label="Link to this section">#</a></h2>
 <p>Full suite: 42 tests, 95% statement coverage. A representative selection with the reasoning.</p>
 <h3 id="testsconftestpy"><code>tests/conftest.py</code><a class="anchor" href="#testsconftestpy" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
 
-<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 
-<span class="kn">from</span> <span class="nn">analyzer.models</span> <span class="kn">import</span> <span class="n">LogEntry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analyzer.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogEntry</span>
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span> <span class="nf">entries</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">entries</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]:</span>
     <span class="k">return</span> <span class="p">[</span>
-        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;rag&quot;</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;attention&quot;</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">"python"</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">"python"</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">"rag"</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">"attention"</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
     <span class="p">]</span>
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span> <span class="nf">csv_file</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;log.csv&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">csv_file</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"log.csv"</span>
     <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
-        <span class="s2">&quot;date,topic,minutes,confidence,notes</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;2026-09-01,python,60,4,ok</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;2026-09-03,rag,90,2,</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+        <span class="s2">"date,topic,minutes,confidence,notes</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"2026-09-01,python,60,4,ok</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"2026-09-03,rag,90,2,</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">path</span>
 </code></pre></div>
 
 <p>The <code>entries</code> fixture is designed, not arbitrary: one topic with two sessions and a rating, one with a low rating, one with no rating at all and very little time. Every branch in <code>find_weak_areas</code> and <code>summarize_topics</code> is reachable from it.</p>
 <h3 id="teststest_loadingpy-the-important-ones"><code>tests/test_loading.py</code>, the important ones<a class="anchor" href="#teststest_loadingpy-the-important-ones" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_skips_bad_rows_but_keeps_good_ones</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;mixed.csv&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_skips_bad_rows_but_keeps_good_ones</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"mixed.csv"</span>
     <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
-        <span class="s2">&quot;date,topic,minutes</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;2026-09-01,python,60</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;not-a-date,python,60</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;2026-09-02,python,-5</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;2026-09-03,rag,45</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+        <span class="s2">"date,topic,minutes</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"2026-09-01,python,60</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"not-a-date,python,60</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"2026-09-02,python,-5</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"2026-09-03,rag,45</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">entries</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
     <span class="k">assert</span> <span class="n">skipped</span> <span class="o">==</span> <span class="mi">2</span>
 
 
-<span class="k">def</span> <span class="nf">test_raises_when_required_column_missing</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;bad.csv&quot;</span>
-    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;date,topic</span><span class="se">\n</span><span class="s2">2026-09-01,python</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">LoadError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;missing required columns&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_raises_when_required_column_missing</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"bad.csv"</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"date,topic</span><span class="se">\n</span><span class="s2">2026-09-01,python</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">LoadError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">"missing required columns"</span><span class="p">):</span>
         <span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">test_raises_when_every_row_is_bad</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;allbad.csv&quot;</span>
-    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;date,topic,minutes</span><span class="se">\n</span><span class="s2">x,y,z</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">LoadError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;no usable rows&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_raises_when_every_row_is_bad</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"allbad.csv"</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"date,topic,minutes</span><span class="se">\n</span><span class="s2">x,y,z</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">LoadError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">"no usable rows"</span><span class="p">):</span>
         <span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">test_jsonl_and_csv_produce_the_same_shape</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">csv_path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;a.csv&quot;</span>
-    <span class="n">csv_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-09-01,python,60</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-    <span class="n">jsonl_path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;a.jsonl&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_jsonl_and_csv_produce_the_same_shape</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"a.csv"</span>
+    <span class="n">csv_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-09-01,python,60</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+    <span class="n">jsonl_path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"a.jsonl"</span>
     <span class="n">jsonl_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
-        <span class="s1">&#39;{&quot;date&quot;: &quot;2026-09-01&quot;, &quot;topic&quot;: &quot;python&quot;, &quot;minutes&quot;: 60}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span>
+        <span class="s1">'{"date": "2026-09-01", "topic": "python", "minutes": 60}</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span>
     <span class="p">)</span>
     <span class="k">assert</span> <span class="n">load</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">load</span><span class="p">(</span><span class="n">jsonl_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">test_logs_a_warning_for_each_skipped_row</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="n">caplog</span><span class="p">):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;w.csv&quot;</span>
-    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-09-01,python,60</span><span class="se">\n</span><span class="s2">bad,x,y</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_logs_a_warning_for_each_skipped_row</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="n">caplog</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"w.csv"</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-09-01,python,60</span><span class="se">\n</span><span class="s2">bad,x,y</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
     <span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="s2">&quot;line 3&quot;</span> <span class="ow">in</span> <span class="n">caplog</span><span class="o">.</span><span class="n">text</span>
+    <span class="k">assert</span> <span class="s2">"line 3"</span> <span class="ow">in</span> <span class="n">caplog</span><span class="o">.</span><span class="n">text</span>
 </code></pre></div>
 
 <p>The last two are the ones that earn their place. <code>test_jsonl_and_csv_produce_the_same_shape</code> catches format divergence, which is exactly the bug that appears when you add a field to one loader and forget the other. <code>test_logs_a_warning_for_each_skipped_row</code> tests that the failure was <em>reported</em>, not just survived, using pytest's built-in <code>caplog</code>. Silently swallowing bad rows would pass every other test in the file.</p>
 <h3 id="teststest_analysispy-the-important-ones"><code>tests/test_analysis.py</code>, the important ones<a class="anchor" href="#teststest_analysispy-the-important-ones" aria-label="Link to this section">#</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
-    <span class="s2">&quot;session_count,expected&quot;</span><span class="p">,</span>
+    <span class="s2">"session_count,expected"</span><span class="p">,</span>
     <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="mi">60</span><span class="p">)],</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_interval_ladder_and_cap</span><span class="p">(</span><span class="n">session_count</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_interval_ladder_and_cap</span><span class="p">(</span><span class="n">session_count</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">next_interval</span><span class="p">(</span><span class="n">session_count</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
 
 
-<span class="k">def</span> <span class="nf">test_review_uses_injected_today_not_the_clock</span><span class="p">(</span><span class="n">entries</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;python: 2 sessions -&gt; 3d interval, last seen 09-02, so due from 09-05.&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_review_uses_injected_today_not_the_clock</span><span class="p">(</span><span class="n">entries</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""python: 2 sessions -&gt; 3d interval, last seen 09-02, so due from 09-05."""</span>
     <span class="n">summaries</span> <span class="o">=</span> <span class="n">summarize_topics</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="s2">&quot;python&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="n">r</span><span class="o">.</span><span class="n">topic</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">due_for_review</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))}</span>
-    <span class="k">assert</span> <span class="s2">&quot;python&quot;</span> <span class="ow">in</span> <span class="p">{</span><span class="n">r</span><span class="o">.</span><span class="n">topic</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">due_for_review</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))}</span>
+    <span class="k">assert</span> <span class="s2">"python"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="n">r</span><span class="o">.</span><span class="n">topic</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">due_for_review</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))}</span>
+    <span class="k">assert</span> <span class="s2">"python"</span> <span class="ow">in</span> <span class="p">{</span><span class="n">r</span><span class="o">.</span><span class="n">topic</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">due_for_review</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))}</span>
 
 
-<span class="k">def</span> <span class="nf">test_days_overdue_counts_from_the_due_date_not_the_last_session</span><span class="p">(</span><span class="n">entries</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_days_overdue_counts_from_the_due_date_not_the_last_session</span><span class="p">(</span><span class="n">entries</span><span class="p">):</span>
     <span class="n">summaries</span> <span class="o">=</span> <span class="n">summarize_topics</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span>
     <span class="n">due</span> <span class="o">=</span> <span class="n">due_for_review</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-    <span class="n">python</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">due</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">topic</span> <span class="o">==</span> <span class="s2">&quot;python&quot;</span><span class="p">)</span>
+    <span class="n">python</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">due</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">topic</span> <span class="o">==</span> <span class="s2">"python"</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">python</span><span class="o">.</span><span class="n">interval_days</span> <span class="o">==</span> <span class="mi">3</span>
     <span class="k">assert</span> <span class="n">python</span><span class="o">.</span><span class="n">days_overdue</span> <span class="o">==</span> <span class="mi">5</span>  <span class="c1"># 8 days elapsed, 3 day interval</span>
 
 
-<span class="k">def</span> <span class="nf">test_topic_matching_is_case_insensitive</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_topic_matching_is_case_insensitive</span><span class="p">():</span>
     <span class="n">entries</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
-        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">"Python"</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">LogEntry</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">topic</span><span class="o">=</span><span class="s2">"python"</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
     <span class="p">]</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">summarize_topics</span><span class="p">(</span><span class="n">entries</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
 </code></pre></div>
@@ -893,25 +910,25 @@
 </blockquote>
 <p><code>test_days_overdue_counts_from_the_due_date_not_the_last_session</code> exists because that is a genuinely easy thing to get wrong, and the name states the invariant so a future reader knows what is being protected.</p>
 <h3 id="teststest_clipy"><code>tests/test_cli.py</code><a class="anchor" href="#teststest_clipy" aria-label="Link to this section">#</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_exit_zero_on_clean_input</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_exit_zero_on_clean_input</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">main</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)])</span> <span class="o">==</span> <span class="mi">0</span>
-    <span class="k">assert</span> <span class="s2">&quot;STUDY LOG REPORT&quot;</span> <span class="ow">in</span> <span class="n">capsys</span><span class="o">.</span><span class="n">readouterr</span><span class="p">()</span><span class="o">.</span><span class="n">out</span>
+    <span class="k">assert</span> <span class="s2">"STUDY LOG REPORT"</span> <span class="ow">in</span> <span class="n">capsys</span><span class="o">.</span><span class="n">readouterr</span><span class="p">()</span><span class="o">.</span><span class="n">out</span>
 
 
-<span class="k">def</span> <span class="nf">test_exit_one_when_rows_were_skipped</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;mixed.csv&quot;</span>
-    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-09-01,python,60</span><span class="se">\n</span><span class="s2">bad,x,y</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_exit_one_when_rows_were_skipped</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"mixed.csv"</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"date,topic,minutes</span><span class="se">\n</span><span class="s2">2026-09-01,python,60</span><span class="se">\n</span><span class="s2">bad,x,y</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">main</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)])</span> <span class="o">==</span> <span class="mi">1</span>
 
 
-<span class="k">def</span> <span class="nf">test_exit_two_when_nothing_loads</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="k">assert</span> <span class="n">main</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;nope.csv&quot;</span><span class="p">)])</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_exit_two_when_nothing_loads</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">main</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"nope.csv"</span><span class="p">)])</span> <span class="o">==</span> <span class="mi">2</span>
 
 
-<span class="k">def</span> <span class="nf">test_writes_json_to_a_file</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;nested&quot;</span> <span class="o">/</span> <span class="s2">&quot;report.json&quot;</span>
-    <span class="k">assert</span> <span class="n">main</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">csv_file</span><span class="p">),</span> <span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">)])</span> <span class="o">==</span> <span class="mi">0</span>
-    <span class="k">assert</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">read_text</span><span class="p">())[</span><span class="s2">&quot;session_count&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_writes_json_to_a_file</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"nested"</span> <span class="o">/</span> <span class="s2">"report.json"</span>
+    <span class="k">assert</span> <span class="n">main</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">csv_file</span><span class="p">),</span> <span class="s2">"-f"</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">,</span> <span class="s2">"-o"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">)])</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">read_text</span><span class="p">())[</span><span class="s2">"session_count"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
 </code></pre></div>
 
 <p>All three exit codes tested, and the JSON output parsed rather than string-matched. <code>test_writes_json_to_a_file</code> writes into a directory that does not exist yet, which is why <code>cli.py</code> calls <code>mkdir(parents=True, exist_ok=True)</code>.</p>
@@ -927,7 +944,7 @@
 <p>Run these in order. This is the exact sequence that validated the code above.</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>&lt;your-repo&gt;<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>learning-log-analyzer
 python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[dev]"</span>
 
 pytest<span class="w"> </span>-q<span class="w">                       </span><span class="c1"># 42 passed</span>
 ruff<span class="w"> </span>check<span class="w"> </span>.<span class="w">                    </span><span class="c1"># All checks passed!</span>
@@ -937,7 +954,7 @@ pytest<span class="w"> </span>--cov<span class="o">=</span>src/analyzer<span cla
 </code></pre></div>
 
 <p>Then the end-to-end check with a deliberately broken file:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>sample.csv<span class="w"> </span><span class="s">&lt;&lt;&#39;CSV&#39;</span>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>sample.csv<span class="w"> </span><span class="s">&lt;&lt;'CSV'</span>
 <span class="s">date,topic,minutes,confidence,notes</span>
 <span class="s">2026-09-01,python basics,45,4,generators clicked</span>
 <span class="s">2026-09-02,python basics,60,4,</span>
@@ -953,7 +970,7 @@ analyze<span class="w"> </span>sample.csv
 </code></pre></div>
 
 <p>Actual output:</p>
-<div class="highlight"><pre><span></span><code>WARNING sample.csv line 7: unrecognized date format: &#39;not-a-date&#39;
+<div class="highlight"><pre><span></span><code>WARNING sample.csv line 7: unrecognized date format: 'not-a-date'
 WARNING sample.csv line 8: minutes must be positive, got -5
 WARNING sample.csv: loaded 6 entries, skipped 2
 STUDY LOG REPORT
@@ -1080,7 +1097,7 @@ review on a 1/3/7/14/30/60 day ladder.
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/<span class="o">[</span>you<span class="o">]</span>/learning-log-analyzer
 <span class="nb">cd</span><span class="w"> </span>learning-log-analyzer
 python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[dev]"</span>
 <span class="sb">```</span>
 
 <span class="gu">## Usage</span>

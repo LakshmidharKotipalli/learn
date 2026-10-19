@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -168,7 +185,7 @@ per month: 600 × 3,000         = 1.8M tokens
 <div class="highlight"><pre><span></span><code><span class="gh"># CareerAtlas</span>
 
 An evidence-grounded learning copilot over my own study notes. Answers
-questions with citations, refuses when the notes don&#39;t cover it, tracks
+questions with citations, refuses when the notes don't cover it, tracks
 concept mastery from evidence, and schedules spaced-repetition review.
 
 Built while working through an AI engineering curriculum. I use it daily.
@@ -176,7 +193,7 @@ Built while working through an AI engineering curriculum. I use it daily.
 <span class="gu">## What it does</span>
 
 <span class="sb">```</span>
-<span class="sb">$ careeratlas ask &quot;what resets a spaced repetition interval?&quot;</span>
+<span class="sb">$ careeratlas ask "what resets a spaced repetition interval?"</span>
 
 <span class="sb">A failed review resets the concept to the 1-day interval, not back one</span>
 <span class="sb">step [S1]. Two consecutive passes at the 60-day interval retire it to</span>
@@ -197,15 +214,15 @@ non-deterministic, unauditable and expensive. The model generates
 explanations and grades free text. It does not decide what is due.
 
 <span class="gs">**No vector database.**</span> [N] chunks at 1,024 dimensions is [N] MB, so an
-exhaustive numpy scan is a few milliseconds. I&#39;d revisit above ~100k
+exhaustive numpy scan is a few milliseconds. I'd revisit above ~100k
 chunks or if I needed concurrent writers.
 
 <span class="gs">**Cites or refuses.**</span> An uncited claim is a bug. A validator checks every
-citation marker against the actually-retrieved set, and it&#39;s enforced at
+citation marker against the actually-retrieved set, and it's enforced at
 100% rather than tracked as a metric.
 
 <span class="gs">**No tools, deliberately.**</span> The system reads and generates; it cannot
-send, fetch or act. My corpus includes documents I didn&#39;t write, so
+send, fetch or act. My corpus includes documents I didn't write, so
 adding a tool would complete the private-data plus untrusted-content plus
 external-communication trifecta and require a much larger control set.
 
@@ -224,7 +241,7 @@ retriever; <span class="sb">`001-baseline.json`</span> predates every other run.
 <span class="k">-</span><span class="w"> </span>Grading consistency is [Z] on a 20-answer sample. [Interpretation.]
 <span class="k">-</span><span class="w"> </span>Gap analysis has no ground truth; precision is [X] on 20 gaps I judged
   myself, which is a small and biased sample.
-<span class="k">-</span><span class="w"> </span>PDF extraction quality caps retrieval quality and I haven&#39;t measured
+<span class="k">-</span><span class="w"> </span>PDF extraction quality caps retrieval quality and I haven't measured
   how much.
 <span class="k">-</span><span class="w"> </span>Notes go to a hosted model by default. A local option exists; see
   <span class="sb">`docs/local-setup.md`</span>.
@@ -234,7 +251,7 @@ retriever; <span class="sb">`001-baseline.json`</span> predates every other run.
 <span class="sb">```bash</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/<span class="o">[</span>you<span class="o">]</span>/careeratlas<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>careeratlas
 python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[dev]"</span>
 cp<span class="w"> </span>.env.example<span class="w"> </span>.env<span class="w">    </span><span class="c1"># add your API key</span>
 careeratlas<span class="w"> </span>ingest<span class="w"> </span>~/notes
 careeratlas<span class="w"> </span>serve
@@ -252,7 +269,7 @@ careeratlas<span class="w"> </span><span class="nb">eval</span><span class="w"> 
 <span class="gu">## Not built, on purpose</span>
 
 No content generation, no fine-tuning, no mobile app, no collaboration,
-no calendar integration. It works with notes I wrote; it doesn&#39;t write
+no calendar integration. It works with notes I wrote; it doesn't write
 them, because a system that generates its own knowledge base and answers
 from it is measuring nothing.
 

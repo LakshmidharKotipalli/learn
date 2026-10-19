@@ -43,6 +43,8 @@ NAV: list[Page] = [
          "What this is, how to study, and the conventions used throughout."),
     Page(Path("00-north-star-roadmap.md"), "00-roadmap.html", "00 · Roadmap", "Start here",
          "The 24-week plan, two orderings, compression rules. The only schedule."),
+    Page(Path("interview-study-guide.md"), "study-guide.html", "Interview Study Guide", "Start here",
+         "Every interview topic mapped to its module, deep dive and practice pack, plus plans by time left."),
 
     Page(Path("01a-python-core.md"), "01a-python-core.html", "01a · Python Core", "Foundations",
          "Execution model, objects, collections, control flow, functions, exceptions, files."),
@@ -107,31 +109,31 @@ NAV: list[Page] = [
          "Mastery status, spaced repetition, mock scores, STAR bank."),
     Page(Path("tracker/weekly-plan.md"), "tracker-weekly-plan.html", "Weekly Plan", "Trackers",
          "The weekly working template, derived from the roadmap."),
-    Page(Path("quizzes/01a-python-core-practice.md"), "quiz-01a-python-core.html", "01a Practice Pack", "Trackers",
+    Page(Path("quizzes/01a-python-core-practice.md"), "quiz-01a-python-core.html", "01a Practice Pack", "Practice packs",
          "Flashcards, MCQs, debugging scenarios, Anki export."),
-    Page(Path("quizzes/01b-python-patterns-practice.md"), "quiz-01b-python-patterns.html", "01b Practice Pack", "Trackers",
+    Page(Path("quizzes/01b-python-patterns-practice.md"), "quiz-01b-python-patterns.html", "01b Practice Pack", "Practice packs",
          "Retrieval, prediction, debugging, explanation, and implementation practice."),
-    Page(Path("quizzes/01c-python-dsa-practice.md"), "quiz-01c-python-dsa.html", "01c Practice Pack", "Trackers",
+    Page(Path("quizzes/01c-python-dsa-practice.md"), "quiz-01c-python-dsa.html", "01c Practice Pack", "Practice packs",
          "Pattern recognition, prediction, debugging, and coding practice."),
-    Page(Path("quizzes/02-software-engineering-practice.md"), "quiz-02-software-engineering.html", "02 Practice Pack", "Trackers",
+    Page(Path("quizzes/02-software-engineering-practice.md"), "quiz-02-software-engineering.html", "02 Practice Pack", "Practice packs",
          "Git, testing, CI, debugging, HTTP, and concurrency practice."),
-    Page(Path("quizzes/03-data-sql-practice.md"), "quiz-03-data-sql.html", "03 Practice Pack", "Trackers",
+    Page(Path("quizzes/03-data-sql-practice.md"), "quiz-03-data-sql.html", "03 Practice Pack", "Practice packs",
          "Joins, aggregation, metrics, experimentation, and SQL practice."),
-    Page(Path("quizzes/04-machine-learning-practice.md"), "quiz-04-machine-learning.html", "04 Practice Pack", "Trackers",
+    Page(Path("quizzes/04-machine-learning-practice.md"), "quiz-04-machine-learning.html", "04 Practice Pack", "Practice packs",
          "Leakage, metrics, thresholds, calibration, and drift practice."),
-    Page(Path("quizzes/05-deep-learning-practice.md"), "quiz-05-deep-learning.html", "05 Practice Pack", "Trackers",
+    Page(Path("quizzes/05-deep-learning-practice.md"), "quiz-05-deep-learning.html", "05 Practice Pack", "Practice packs",
          "Forward passes, gradients, learning curves, and diagnosis practice."),
-    Page(Path("quizzes/06-transformers-practice.md"), "quiz-06-transformers.html", "06 Practice Pack", "Trackers",
+    Page(Path("quizzes/06-transformers-practice.md"), "quiz-06-transformers.html", "06 Practice Pack", "Practice packs",
          "Tokenization, attention, inference, evaluation, and security practice."),
-    Page(Path("quizzes/07-rag-practice.md"), "quiz-07-rag.html", "07 Practice Pack", "Trackers",
+    Page(Path("quizzes/07-rag-practice.md"), "quiz-07-rag.html", "07 Practice Pack", "Practice packs",
          "Chunking, retrieval, grounding, evaluation, and failure diagnosis practice."),
-    Page(Path("quizzes/08-agents-practice.md"), "quiz-08-agents.html", "08 Practice Pack", "Trackers",
+    Page(Path("quizzes/08-agents-practice.md"), "quiz-08-agents.html", "08 Practice Pack", "Practice packs",
          "Workflows, tools, stopping, reliability, evaluation, and security practice."),
-    Page(Path("quizzes/09-local-inference-practice.md"), "quiz-09-local-inference.html", "09 Practice Pack", "Trackers",
+    Page(Path("quizzes/09-local-inference-practice.md"), "quiz-09-local-inference.html", "09 Practice Pack", "Practice packs",
          "Memory, quantization, latency, throughput, and benchmarking practice."),
-    Page(Path("quizzes/10-mlops-practice.md"), "quiz-10-mlops.html", "10 Practice Pack", "Trackers",
+    Page(Path("quizzes/10-mlops-practice.md"), "quiz-10-mlops.html", "10 Practice Pack", "Practice packs",
          "Versioning, observability, evaluation gates, rollback, and cost practice."),
-    Page(Path("quizzes/11-system-design-practice.md"), "quiz-11-system-design.html", "11 Practice Pack", "Trackers",
+    Page(Path("quizzes/11-system-design-practice.md"), "quiz-11-system-design.html", "11 Practice Pack", "Practice packs",
          "Requirements, capacity, tradeoffs, evaluation, security, and cost practice."),
 
     Page(Path("meta/prompt-library-review.md"), "meta-review.html", "Prompt Library Review", "Meta",
@@ -141,25 +143,50 @@ NAV: list[Page] = [
 ]
 
 GROUP_ORDER = ["Start here", "Foundations", "Machine learning", "AI engineering",
-               "Production", "Interview prep", "Projects", "Capstone", "Trackers", "Meta"]
+               "Production", "Interview prep", "Practice packs", "Projects", "Capstone",
+               "Trackers", "Meta"]
+
+HUB_GROUP = "Deep-dive hub"
+
+
+@dataclass(frozen=True)
+class HubPage:
+    out: str           # path relative to docs/
+    title: str
+    blurb: str
+
+
+# Standalone, self-contained pages in docs/hub/. They are not generated from
+# Markdown; the build links them into the sidebar, landing page and search.
+HUB: list[HubPage] = [
+    HubPage("hub/index.html", "Hub home", "Browse and filter every deep-dive guide."),
+    HubPage("hub/large-language-models.html", "Large Language Models",
+            "Transformer architecture, training, scaling laws, deployment."),
+    HubPage("hub/llm-benchmark-guide.html", "LLM Benchmark Guide",
+            "Which benchmarks matter and why."),
+    HubPage("hub/retrieval-augmented-generation.html", "RAG Deep Dive",
+            "Retrieval-augmented generation end to end."),
+    HubPage("hub/langchain.html", "LangChain",
+            "Chains, memory, retrievers for LLM applications."),
+    HubPage("hub/langgraph.html", "LangGraph",
+            "Stateful graph-based agent orchestration."),
+    HubPage("hub/ai-agents-mcp-ecosystem.html", "AI Agents & MCP",
+            "Agents, tools, skills and the Model Context Protocol."),
+    HubPage("hub/vision-language-models.html", "Vision-Language Models",
+            "ViT, CLIP, projection layers, cross-attention."),
+    HubPage("hub/claude-code-mastery.html", "Claude Code Mastery",
+            "Practical workflows: CLAUDE.md, prompting, context, automation."),
+    HubPage("hub/claude-code-ecosystem.html", "Claude Code Ecosystem",
+            "Architecture, sub-agents, memory, skills, and design tradeoffs."),
+    HubPage("hub/docker-ecosystem.html", "Docker",
+            "Images, Compose, multi-stage builds, registries."),
+    HubPage("hub/kubernetes.html", "Kubernetes",
+            "Clusters, pods, services, Helm, GitOps, observability."),
+]
 
 # Map source path -> output html, for rewriting internal links.
 SRC_TO_OUT = {p.src.name: p.out for p in NAV}
 SRC_TO_OUT.update({str(p.src): p.out for p in NAV})
-# Repo-relative forms used inside the documents
-SRC_TO_OUT.update({
-    "tracker/progress-log.md": "tracker-progress-log.html",
-    "tracker/weekly-plan.md": "tracker-weekly-plan.html",
-    "projects/project-1-python-data-tool.md": "project-1.html",
-    "projects/project-2-rag-app.md": "project-2.html",
-    "projects/project-3-agent-evaluation.md": "project-3.html",
-    "quizzes/01a-python-core-practice.md": "quiz-01a-python-core.html",
-    "capstone/00-prd.md": "capstone-00-prd.html",
-    "capstone/01-architecture.md": "capstone-01-architecture.html",
-    "capstone/02-build-plan.md": "capstone-02-build-plan.html",
-    "capstone/03-evaluation.md": "capstone-03-evaluation.html",
-    "capstone/04-interview-narrative.md": "capstone-04-narrative.html",
-})
 
 
 # --------------------------------------------------------------------------
@@ -293,6 +320,10 @@ def render_nav(current: str) -> str:
             cls = ' class="active"' if p.out == current else ""
             parts.append(f'<li><a href="{p.out}"{cls}>{html.escape(p.title)}</a></li>')
         parts.append("</ul></div>")
+    parts.append(f'<div class="nav-group"><h3>{html.escape(HUB_GROUP)}</h3><ul>')
+    for h in HUB:
+        parts.append(f'<li><a class="hub-link" href="{h.out}">{html.escape(h.title)}</a></li>')
+    parts.append("</ul></div>")
     parts.append("</nav>")
     return "\n".join(parts)
 
@@ -466,6 +497,14 @@ def build_index_landing() -> None:
                 f'<p>{html.escape(p.blurb)}</p></a>'
             )
         cards.append("</div>")
+    cards.append(f'<h2 class="cards-heading">{html.escape(HUB_GROUP)}</h2><div class="card-grid">')
+    for h in HUB:
+        cards.append(
+            f'<a class="card" href="{h.out}">'
+            f'<h3>{html.escape(h.title)}</h3>'
+            f'<p>{html.escape(h.blurb)}</p></a>'
+        )
+    cards.append("</div>")
     cards.append("</section>")
 
     hero = f"""<div class="hero">
@@ -474,7 +513,8 @@ def build_index_landing() -> None:
   <p class="hero-meta">13 modules · 4 projects · ~174,000 words · every code example executed</p>
   <div class="hero-actions">
     <a class="btn btn-primary" href="00-roadmap.html">Start with the roadmap</a>
-    <a class="btn" href="01a-python-core.html">Jump to Python Core</a>
+    <a class="btn" href="study-guide.html">Interview study guide</a>
+    <a class="btn" href="hub/index.html">Deep-dive hub</a>
   </div>
 </div>
 {"".join(cards)}
@@ -482,6 +522,40 @@ def build_index_landing() -> None:
 """
     doc = doc.replace('<article class="doc">', f'<article class="doc">{hero}', 1)
     path.write_text(doc, encoding="utf-8")
+
+
+HUB_BACKLINK_MARK = "<!-- learning-os-backlink -->"
+HUB_BACKLINK = (
+    HUB_BACKLINK_MARK
+    + '<a href="../index.html" style="position:fixed;left:16px;bottom:16px;z-index:9999;'
+    'padding:8px 14px;border-radius:999px;background:#1f6feb;color:#fff;'
+    'font:600 13px/1.2 system-ui,sans-serif;text-decoration:none;'
+    'box-shadow:0 4px 14px rgba(0,0,0,.3)">&larr; Learning OS</a>\n'
+)
+
+
+def build_hub() -> list[dict]:
+    """Add a link back to the curriculum on every hub page; return search records."""
+    records = []
+    for h in HUB:
+        path = OUT / h.out
+        if not path.exists():
+            raise SystemExit(f"missing hub page: {path}")
+        doc = path.read_text(encoding="utf-8")
+        if HUB_BACKLINK_MARK not in doc:
+            doc = doc.replace("</body>", HUB_BACKLINK + "</body>", 1)
+            path.write_text(doc, encoding="utf-8")
+
+        headings = [
+            {"a": a, "t": re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", t))).strip()}
+            for a, t in re.findall(r'<h[23][^>]*\bid="([^"]+)"[^>]*>(.*?)</h[23]>', doc, flags=re.S)
+        ]
+        plain = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", doc, flags=re.S)
+        plain = re.sub(r"<[^>]+>", " ", plain)
+        plain = re.sub(r"\s+", " ", html.unescape(plain)).strip()
+        records.append({"t": h.title, "u": h.out, "g": HUB_GROUP, "b": h.blurb,
+                        "h": headings, "c": plain[:60000]})
+    return records
 
 
 def scope_css(block: str, prefix: str) -> str:
@@ -531,6 +605,7 @@ def main() -> None:
         print(f"  built {page.out:38s} <- {page.src}")
 
     build_index_landing()
+    records.extend(build_hub())
 
     (ASSETS / "search-index.json").write_text(
         json.dumps(records, separators=(",", ":")), encoding="utf-8"

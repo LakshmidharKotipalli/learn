@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -196,7 +213,7 @@
 </ol>
 <h3 id="run-the-examples">Run the examples<a class="anchor" href="#run-the-examples" aria-label="Link to this section">#</a></h3>
 <p>Start by checking the local prerequisite:</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import numpy; print(numpy.__version__)&quot;</span>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import numpy; print(numpy.__version__)"</span>
 </code></pre></div>
 
 <p>Expected output is a version string or command version. Run each example before reading its explanation; write down your prediction first.</p>
@@ -435,7 +452,7 @@
 <p><strong>The DOCX tracked-changes case deserves emphasis.</strong> Naive extraction of a <code>.docx</code> with unaccepted revisions yields both the deleted and the inserted text, indistinguishable. A policy document where "employees may not" was changed to "employees may" retrieves as both. This is a correctness bug that no amount of retrieval tuning fixes, and it is invisible until someone notices the system contradicting itself.</p>
 <p><strong>Preserve structure, not just text.</strong> The single highest-leverage ingestion decision. A chunk that knows it came from "Employee Handbook &gt; Section 4: Leave &gt; 4.2 Parental Leave" is dramatically more useful than the same text floating free, because that path can go into the embedded text, into the metadata for filtering, and into the citation.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ParsedDocument</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParsedDocument</span><span class="p">:</span>
     <span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Section</span><span class="p">]</span>          <span class="c1"># heading path preserved</span>
@@ -510,7 +527,7 @@
 <p><strong>Choosing.</strong> Start with structure-aware splitting at roughly 300 to 500 tokens with 10 to 15% overlap, add parent-child if precision is the problem, add contextual retrieval if orphans are the problem. Then measure. <code>[UNVERIFIED: these starting numbers are a reasonable default, not a result. Your corpus decides. Sweep chunk size against recall@10 on your own eval set, which takes an afternoon and is the most informative afternoon in the project.]</code></p>
 <p><strong>Metadata to attach to every chunk</strong>, because retrofitting is painful:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Chunk</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
     <span class="n">chunk_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">parent_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>            <span class="c1"># for small-to-big</span>
@@ -570,7 +587,7 @@
 </tbody>
 </table>
 <p><strong>The practical rule:</strong> normalize your vectors once at ingestion, then all three give the same ranking and dot product is fastest. If you do not normalize, cosine and dot product rank differently, and dot product will favor longer texts because their vectors tend to be longer. Most embedding APIs return normalized vectors; <strong>check rather than assume</strong>, because a mismatch between what your index expects and what your model produces is a silent quality bug.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">cosine_scores</span><span class="p">(</span><span class="n">query_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">cosine_scores</span><span class="p">(</span><span class="n">query_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">query_vec</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">query_vec</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
     <span class="n">m</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">m</span> <span class="o">@</span> <span class="n">q</span>
@@ -669,10 +686,10 @@
 <h3 id="7-hybrid-search-and-reranking-core">7. Hybrid search and reranking [CORE]<a class="anchor" href="#7-hybrid-search-and-reranking-core" aria-label="Link to this section">#</a></h3>
 <p>Section 4 listed what embeddings fail at. Every item is something lexical search handles well, which is why hybrid is close to mandatory in production.</p>
 <p><strong>BM25</strong>, the lexical workhorse. Scores a document by the query terms it contains, weighting rare terms higher (inverse document frequency) and saturating on repetition, with a length normalization so long documents do not win by accident.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BM25</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lexical scoring. Exact terms, rare terms weighted higher.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BM25</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Lexical scoring. Exact terms, rare terms weighted higher."""</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">],</span> <span class="n">k1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">],</span> <span class="n">k1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chunks</span> <span class="o">=</span> <span class="n">chunks</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">k1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">k1</span><span class="p">,</span> <span class="n">b</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenize</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span>
@@ -685,7 +702,7 @@
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">docs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">idf</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">c</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-    <span class="k">def</span> <span class="nf">scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">docs</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
             <span class="n">idf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">idf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
@@ -703,8 +720,8 @@
 <p><code>k1</code> controls term-frequency saturation, <code>b</code> controls length normalization. The defaults 1.5 and 0.75 are the standard starting point and rarely need changing.</p>
 <p><strong>Fusing the two rankings.</strong> You cannot add a BM25 score to a cosine score: different scales, different distributions, not comparable. Normalizing them is possible and fragile, since the normalization depends on the score distribution of that particular query.</p>
 <p><strong>Reciprocal rank fusion</strong> sidesteps this by using ranks rather than scores:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">rrf</span><span class="p">(</span><span class="n">rankings</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reciprocal rank fusion. Combines rankings without comparable scores.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rrf</span><span class="p">(</span><span class="n">rankings</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Reciprocal rank fusion. Combines rankings without comparable scores."""</span>
     <span class="n">fused</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">ranking</span> <span class="ow">in</span> <span class="n">rankings</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ranking</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -741,8 +758,8 @@
 Rules:
 - Use only information in the sources below. Do not use prior knowledge.
 - Cite the source id for every claim, like [S2].
-- If the sources do not contain the answer, say &quot;I don&#39;t have information
-  about that in the available documents.&quot; Do not guess.
+- If the sources do not contain the answer, say "I don't have information
+  about that in the available documents." Do not guess.
 - If sources conflict, say so and cite both.
 
 Sources:
@@ -788,20 +805,20 @@ Question: {question}
 <p><strong>Generating questions with a model is a reasonable shortcut with a specific bias:</strong> the questions come out phrased like the chunk they were generated from, so retrieval looks better than it is. If you do it, review and rewrite every question in your own words, and keep the real-user questions as a separate, more honest slice.</p>
 <p><strong>At least 20% of your set should be unanswerable.</strong> This is the part everyone skips. Without negative cases you cannot measure whether the system refuses appropriately, and a system that answers everything is a system that hallucinates on everything it does not know.</p>
 <h4 id="retrieval-metrics">Retrieval metrics<a class="anchor" href="#retrieval-metrics" aria-label="Link to this section">#</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">recall_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">recall_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">relevant</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">0.0</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">retrieved</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">relevant</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevant</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">mrr</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mrr</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">cid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">cid</span> <span class="ow">in</span> <span class="n">relevant</span><span class="p">:</span>
             <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">rank</span>
     <span class="k">return</span> <span class="mf">0.0</span>
 
 
-<span class="k">def</span> <span class="nf">ndcg_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ndcg_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">relevant</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">dcg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
         <span class="mf">1.0</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">cid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">retrieved</span><span class="p">[:</span><span class="n">k</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -887,14 +904,14 @@ Question: {question}
 <p><strong>On LLM-as-judge:</strong> useful and imperfect. Judges favor longer answers, favor their own model family's style, and drift when the judge model is updated. Mitigations: pin the judge model version, calibrate against a few dozen human labels, and use it for relative comparisons between system versions rather than as an absolute score. Never report a judge score as if it were ground truth.</p>
 <h4 id="the-regression-suite">The regression suite<a class="anchor" href="#the-regression-suite" aria-label="Link to this section">#</a></h4>
 <p>Once you have an evaluation set, it becomes a test suite:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_retrieval_recall_has_not_regressed</span><span class="p">(</span><span class="n">eval_set</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_retrieval_recall_has_not_regressed</span><span class="p">(</span><span class="n">eval_set</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
     <span class="n">recalls</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">recall_at_k</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">retriever</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">case</span><span class="o">.</span><span class="n">question</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)],</span> <span class="n">case</span><span class="o">.</span><span class="n">relevant</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">eval_set</span>
     <span class="p">]</span>
     <span class="n">mean_recall</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">recalls</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">recalls</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">mean_recall</span> <span class="o">&gt;=</span> <span class="n">BASELINE_RECALL</span> <span class="o">-</span> <span class="mf">0.02</span><span class="p">,</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;recall@5 fell to </span><span class="si">{</span><span class="n">mean_recall</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> from baseline </span><span class="si">{</span><span class="n">BASELINE_RECALL</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">"recall@5 fell to </span><span class="si">{</span><span class="n">mean_recall</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> from baseline </span><span class="si">{</span><span class="n">BASELINE_RECALL</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span>
     <span class="p">)</span>
 </code></pre></div>
 
@@ -1074,26 +1091,26 @@ Question: {question}
 <h2 id="worked-examples">Worked examples<a class="anchor" href="#worked-examples" aria-label="Link to this section">#</a></h2>
 <h3 id="example-1-hybrid-retrieval-end-to-end">Example 1: hybrid retrieval end to end<a class="anchor" href="#example-1-hybrid-retrieval-end-to-end" aria-label="Link to this section">#</a></h3>
 <p>Runnable, numpy only. The mechanics of BM25, dense retrieval, RRF fusion and metrics without any external service. Swap the random matrix for real embeddings and the structure is unchanged.</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Minimal hybrid retrieval: BM25 + dense, fused with RRF. numpy only.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<div class="highlight"><pre><span></span><code><span class="sd">"""Minimal hybrid retrieval: BM25 + dense, fused with RRF. numpy only."""</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Chunk</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
 
 
-<span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[a-z0-9]+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">"[a-z0-9]+"</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
 
 
 <span class="c1"># BM25 class as shown in section 7</span>
@@ -1102,44 +1119,44 @@ Question: {question}
 <span class="c1"># recall_at_k, mrr, ndcg_at_k as shown in section 9</span>
 
 
-<span class="k">def</span> <span class="nf">top_k_indices</span><span class="p">(</span><span class="n">scores</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">top_k_indices</span><span class="p">(</span><span class="n">scores</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">scores</span><span class="p">)[:</span><span class="n">k</span><span class="p">])</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">chunks</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">Chunk</span><span class="p">(</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span> <span class="s2">&quot;The KV cache stores previously computed attention keys and values.&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">),</span>
-        <span class="n">Chunk</span><span class="p">(</span><span class="s2">&quot;c2&quot;</span><span class="p">,</span> <span class="s2">&quot;Chunk overlap must be smaller than chunk size or the step is non-positive.&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">),</span>
-        <span class="n">Chunk</span><span class="p">(</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span> <span class="s2">&quot;BM25 weights rare terms higher using inverse document frequency.&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">),</span>
-        <span class="n">Chunk</span><span class="p">(</span><span class="s2">&quot;c4&quot;</span><span class="p">,</span> <span class="s2">&quot;Approximate nearest neighbour search trades recall for speed.&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">),</span>
-        <span class="n">Chunk</span><span class="p">(</span><span class="s2">&quot;c5&quot;</span><span class="p">,</span> <span class="s2">&quot;Cosine similarity measures the angle between two vectors.&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">),</span>
+        <span class="n">Chunk</span><span class="p">(</span><span class="s2">"c1"</span><span class="p">,</span> <span class="s2">"The KV cache stores previously computed attention keys and values."</span><span class="p">,</span> <span class="s2">"notes"</span><span class="p">),</span>
+        <span class="n">Chunk</span><span class="p">(</span><span class="s2">"c2"</span><span class="p">,</span> <span class="s2">"Chunk overlap must be smaller than chunk size or the step is non-positive."</span><span class="p">,</span> <span class="s2">"notes"</span><span class="p">),</span>
+        <span class="n">Chunk</span><span class="p">(</span><span class="s2">"c3"</span><span class="p">,</span> <span class="s2">"BM25 weights rare terms higher using inverse document frequency."</span><span class="p">,</span> <span class="s2">"notes"</span><span class="p">),</span>
+        <span class="n">Chunk</span><span class="p">(</span><span class="s2">"c4"</span><span class="p">,</span> <span class="s2">"Approximate nearest neighbour search trades recall for speed."</span><span class="p">,</span> <span class="s2">"notes"</span><span class="p">),</span>
+        <span class="n">Chunk</span><span class="p">(</span><span class="s2">"c5"</span><span class="p">,</span> <span class="s2">"Cosine similarity measures the angle between two vectors."</span><span class="p">,</span> <span class="s2">"notes"</span><span class="p">),</span>
     <span class="p">]</span>
     <span class="n">bm25</span> <span class="o">=</span> <span class="n">BM25</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
 
-    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;what does the KV cache store&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">"what does the KV cache store"</span>
     <span class="n">lex</span> <span class="o">=</span> <span class="n">bm25</span><span class="o">.</span><span class="n">scores</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BM25 top 3:&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="n">chunks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">lex</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top_k_indices</span><span class="p">(</span><span class="n">lex</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"BM25 top 3:"</span><span class="p">,</span> <span class="p">[(</span><span class="n">chunks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">lex</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top_k_indices</span><span class="p">(</span><span class="n">lex</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
 
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">matrix</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">),</span> <span class="mi">8</span><span class="p">))</span>
     <span class="n">qvec</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>   <span class="c1"># pretend c1 is semantically closest</span>
     <span class="n">dense</span> <span class="o">=</span> <span class="n">cosine_scores</span><span class="p">(</span><span class="n">qvec</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dense top 3:&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="n">chunks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">dense</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top_k_indices</span><span class="p">(</span><span class="n">dense</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Dense top 3:"</span><span class="p">,</span> <span class="p">[(</span><span class="n">chunks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">dense</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top_k_indices</span><span class="p">(</span><span class="n">dense</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
 
     <span class="n">fused</span> <span class="o">=</span> <span class="n">rrf</span><span class="p">([</span><span class="n">top_k_indices</span><span class="p">(</span><span class="n">lex</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">top_k_indices</span><span class="p">(</span><span class="n">dense</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
     <span class="n">ranked</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fused</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="o">-</span><span class="n">fused</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RRF fused:&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="n">chunks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">fused</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ranked</span><span class="p">[:</span><span class="mi">3</span><span class="p">]])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"RRF fused:"</span><span class="p">,</span> <span class="p">[(</span><span class="n">chunks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">fused</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ranked</span><span class="p">[:</span><span class="mi">3</span><span class="p">]])</span>
 
     <span class="n">retrieved</span> <span class="o">=</span> <span class="p">[</span><span class="n">chunks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ranked</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;recall@3=</span><span class="si">{</span><span class="n">recall_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;c1&#39;</span><span class="p">},</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> &quot;</span>
-          <span class="sa">f</span><span class="s2">&quot;mrr=</span><span class="si">{</span><span class="n">mrr</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;c1&#39;</span><span class="p">})</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> &quot;</span>
-          <span class="sa">f</span><span class="s2">&quot;ndcg@3=</span><span class="si">{</span><span class="n">ndcg_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;c1&#39;</span><span class="p">},</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"recall@3=</span><span class="si">{</span><span class="n">recall_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s1">'c1'</span><span class="p">},</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> "</span>
+          <span class="sa">f</span><span class="s2">"mrr=</span><span class="si">{</span><span class="n">mrr</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s1">'c1'</span><span class="p">})</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> "</span>
+          <span class="sa">f</span><span class="s2">"ndcg@3=</span><span class="si">{</span><span class="n">ndcg_at_k</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s1">'c1'</span><span class="p">},</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Actual output:</p>
-<div class="highlight"><pre><span></span><code>BM25 top 3: [(&#39;c1&#39;, np.float64(3.281)), (&#39;c5&#39;, np.float64(0.588)), (&#39;c2&#39;, np.float64(0.452))]
-Dense top 3: [(&#39;c1&#39;, np.float64(0.95)), (&#39;c5&#39;, np.float64(0.869)), (&#39;c3&#39;, np.float64(0.116))]
-RRF fused: [(&#39;c1&#39;, 0.0328), (&#39;c5&#39;, 0.0323), (&#39;c2&#39;, 0.0315)]
+<div class="highlight"><pre><span></span><code>BM25 top 3: [('c1', np.float64(3.281)), ('c5', np.float64(0.588)), ('c2', np.float64(0.452))]
+Dense top 3: [('c1', np.float64(0.95)), ('c5', np.float64(0.869)), ('c3', np.float64(0.116))]
+RRF fused: [('c1', 0.0328), ('c5', 0.0323), ('c2', 0.0315)]
 recall@3=1.00 mrr=1.00 ndcg@3=1.00
 </code></pre></div>
 
@@ -1269,18 +1286,18 @@ recall@3=1.00 mrr=1.00 ndcg@3=1.00
 <h3 id="the-instrumentation-you-need-in-advance">The instrumentation you need in advance<a class="anchor" href="#the-instrumentation-you-need-in-advance" aria-label="Link to this section">#</a></h3>
 <p>Log per request, with a trace id:</p>
 <div class="highlight"><pre><span></span><code><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-    <span class="s2">&quot;retrieval trace&quot;</span><span class="p">,</span>
+    <span class="s2">"retrieval trace"</span><span class="p">,</span>
     <span class="n">extra</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;trace_id&quot;</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">,</span>
-        <span class="s2">&quot;raw_query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
-        <span class="s2">&quot;rewritten_query&quot;</span><span class="p">:</span> <span class="n">rewritten</span><span class="p">,</span>
-        <span class="s2">&quot;dense_top&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dense</span><span class="p">[:</span><span class="mi">10</span><span class="p">]],</span>
-        <span class="s2">&quot;sparse_top&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sparse</span><span class="p">[:</span><span class="mi">10</span><span class="p">]],</span>
-        <span class="s2">&quot;fused_top&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">fused</span><span class="p">[:</span><span class="mi">10</span><span class="p">]],</span>
-        <span class="s2">&quot;reranked_top&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">reranked</span><span class="p">[:</span><span class="mi">5</span><span class="p">]],</span>
-        <span class="s2">&quot;dropped_by_threshold&quot;</span><span class="p">:</span> <span class="n">dropped_ids</span><span class="p">,</span>
-        <span class="s2">&quot;prompt_tokens&quot;</span><span class="p">:</span> <span class="n">token_count</span><span class="p">,</span>
-        <span class="s2">&quot;refused&quot;</span><span class="p">:</span> <span class="n">answer</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">REFUSAL_PREFIX</span><span class="p">),</span>
+        <span class="s2">"trace_id"</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">,</span>
+        <span class="s2">"raw_query"</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+        <span class="s2">"rewritten_query"</span><span class="p">:</span> <span class="n">rewritten</span><span class="p">,</span>
+        <span class="s2">"dense_top"</span><span class="p">:</span> <span class="p">[(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dense</span><span class="p">[:</span><span class="mi">10</span><span class="p">]],</span>
+        <span class="s2">"sparse_top"</span><span class="p">:</span> <span class="p">[(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sparse</span><span class="p">[:</span><span class="mi">10</span><span class="p">]],</span>
+        <span class="s2">"fused_top"</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">fused</span><span class="p">[:</span><span class="mi">10</span><span class="p">]],</span>
+        <span class="s2">"reranked_top"</span><span class="p">:</span> <span class="p">[(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">reranked</span><span class="p">[:</span><span class="mi">5</span><span class="p">]],</span>
+        <span class="s2">"dropped_by_threshold"</span><span class="p">:</span> <span class="n">dropped_ids</span><span class="p">,</span>
+        <span class="s2">"prompt_tokens"</span><span class="p">:</span> <span class="n">token_count</span><span class="p">,</span>
+        <span class="s2">"refused"</span><span class="p">:</span> <span class="n">answer</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">REFUSAL_PREFIX</span><span class="p">),</span>
     <span class="p">},</span>
 <span class="p">)</span>
 </code></pre></div>

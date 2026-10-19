@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html" class="active">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -119,7 +136,7 @@
 
 00-north-star-roadmap.md: complete
 01a-python-core.md: complete
-(list the rest; write &quot;not yet generated&quot; for the others)
+(list the rest; write "not yet generated" for the others)
 
 When you reference another module, reference it by filename and state the
 specific concept you are relying on. If that module does not exist yet,
@@ -170,7 +187,7 @@ say so inline rather than assuming its contents.
 <p>Paste this first in every chat.</p>
 <div class="highlight"><pre><span></span><code>You are my senior AI Engineering mentor, curriculum architect, technical
 interviewer, and learning-material designer. Default to curriculum architect.
-Switch to interviewer only inside &quot;Interview angle&quot; and mock-interview sections.
+Switch to interviewer only inside "Interview angle" and mock-interview sections.
 
 ## My background
 
@@ -195,7 +212,7 @@ software-oriented ML roles.
 ## Your task
 
 Help me build a permanent personal knowledge base called
-&quot;AI Engineer Learning OS.&quot;
+"AI Engineer Learning OS."
 
 No generic motivational advice. Produce detailed, practical, reusable learning
 documents in Markdown.
@@ -348,10 +365,10 @@ defines a schedule; they all derive from this one.
       taking on.
 
 6. Compression rules rather than a second plan: state exactly what to cut to
-   compress 24 weeks into 12 (for example: drop all &quot;nice to know&quot;, halve
+   compress 24 weeks into 12 (for example: drop all "nice to know", halve
    review weeks, merge phases 2 and 3). One rule set, not a new schedule.
 
-7. Mark every topic &quot;must know&quot;, &quot;should know&quot;, or &quot;nice to know&quot;, with the
+7. Mark every topic "must know", "should know", or "nice to know", with the
    role level each maps to.
 
 8. A recovery rule set for weeks I fall behind, and one review week after
@@ -390,7 +407,7 @@ Requirements:
 - Interview questions and exercises per major topic, no solutions inline
 
 End with: a 10-day study plan covering only this file, and a
-&quot;you are ready for 01b when you can...&quot; checklist.
+"you are ready for 01b when you can..." checklist.
 </code></pre></div>
 
 <h3 id="32">3.2<a class="anchor" href="#32" aria-label="Link to this section">#</a></h3>
@@ -673,7 +690,7 @@ Cover:
 
 Include a reference architecture for an agent using retrieval and tools
 safely, a small Python example with typed tool schemas and validation, and a
-decision table for &quot;simple prompt vs RAG vs workflow vs agent.&quot;
+decision table for "simple prompt vs RAG vs workflow vs agent."
 
 Mark all MCP specification details [VERIFY: current MCP spec @ the official
 specification] since this is moving quickly.
@@ -783,8 +800,8 @@ This file owns system design questions. 12b does not duplicate them.
 <h3 id="61-project-1">6.1 Project 1<a class="anchor" href="#61-project-1" aria-label="Link to this section">#</a></h3>
 <div class="highlight"><pre><span></span><code>Produce the complete contents of projects/project-1-python-data-tool.md.
 
-A beginner-friendly but portfolio-quality Python project, &quot;Learning Log
-Analyzer.&quot; It ingests my study notes or CSV logs and produces study-time
+A beginner-friendly but portfolio-quality Python project, "Learning Log
+Analyzer." It ingests my study notes or CSV logs and produces study-time
 summaries, topic coverage, weak-area flags, spaced-repetition review
 reminders, a CLI, JSON and CSV output, unit tests, a clean README, and an
 optional Streamlit dashboard.
@@ -935,11 +952,11 @@ modules, plus anything the modules do not own. Do not restate module
 questions; reference them by module and number.
 
 Include:
-- 20 questions that span modules, for example &quot;walk me from a user typing a
-  question to a cited answer, naming every component and failure point&quot;
+- 20 questions that span modules, for example "walk me from a user typing a
+  question to a cited answer, naming every component and failure point"
 - 15 questions on tradeoff judgment with no single right answer, and what a
   strong answer demonstrates
-- 10 &quot;you have a production problem&quot; diagnostic scenarios
+- 10 "you have a production problem" diagnostic scenarios
 - For each: strong answer outline, weak answer and why it is weak, two
   follow-ups
 
@@ -996,7 +1013,7 @@ decisions. A good question has a plausible wrong answer.
 
 <hr />
 <h2 id="10-readme">10. README<a class="anchor" href="#10-readme" aria-label="Link to this section">#</a></h2>
-<div class="highlight"><pre><span></span><code>Produce the complete contents of README.md for &quot;AI Engineer Learning OS.&quot;
+<div class="highlight"><pre><span></span><code>Produce the complete contents of README.md for "AI Engineer Learning OS."
 
 Cover: the purpose, the roadmap and how to navigate it, the contents of every
 module, the recommended study workflow, how the project path works, how

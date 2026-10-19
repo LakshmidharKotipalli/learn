@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interview Study Guide · AI Engineer Learning OS</title>
+<meta name="description" content="Every interview topic mapped to its module, deep dive and practice pack, plus plans by time left.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/syntax.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
+  <a class="brand" href="index.html">AI Engineer Learning OS</a>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search the curriculum…" autocomplete="off"
+           aria-label="Search" spellcheck="false">
+    <div id="results" class="results" hidden></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<div class="nav-group"><h3>Start here</h3><ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html" class="active">Interview Study Guide</a></li>
+</ul></div>
+<div class="nav-group"><h3>Foundations</h3><ul>
+<li><a href="01a-python-core.html">01a · Python Core</a></li>
+<li><a href="01b-python-patterns.html">01b · Python Patterns &amp; OOP</a></li>
+<li><a href="01c-python-dsa.html">01c · Interview DSA</a></li>
+<li><a href="02-software-engineering.html">02 · Software Engineering</a></li>
+<li><a href="03-data-and-sql.html">03 · Data, SQL &amp; Statistics</a></li>
+</ul></div>
+<div class="nav-group"><h3>Machine learning</h3><ul>
+<li><a href="04-machine-learning.html">04 · Classical ML</a></li>
+<li><a href="05-deep-learning.html">05 · Deep Learning</a></li>
+</ul></div>
+<div class="nav-group"><h3>AI engineering</h3><ul>
+<li><a href="06-transformers.html">06 · Transformers &amp; LLMs</a></li>
+<li><a href="07-rag.html">07 · RAG &amp; Vector Search</a></li>
+<li><a href="08-agents.html">08 · Agents, Tools &amp; MCP</a></li>
+<li><a href="09-local-inference.html">09 · Local Inference</a></li>
+</ul></div>
+<div class="nav-group"><h3>Production</h3><ul>
+<li><a href="10-mlops.html">10 · MLOps &amp; Deployment</a></li>
+<li><a href="11-system-design.html">11 · AI System Design</a></li>
+</ul></div>
+<div class="nav-group"><h3>Interview prep</h3><ul>
+<li><a href="12a-interview-framework.html">12a · Interview Framework</a></li>
+<li><a href="12b-question-bank.html">12b · Question Bank</a></li>
+<li><a href="12c-behavioral.html">12c · Behavioral &amp; Projects</a></li>
+<li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
+<li><a href="14-concept-map.html">14 · Concept Map</a></li>
+</ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
+<div class="nav-group"><h3>Projects</h3><ul>
+<li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
+<li><a href="project-2.html">Project 2 · Grounded Answers</a></li>
+<li><a href="project-3.html">Project 3 · Agent Evaluation</a></li>
+</ul></div>
+<div class="nav-group"><h3>Capstone</h3><ul>
+<li><a href="capstone-00-prd.html">Capstone 1 · Requirements</a></li>
+<li><a href="capstone-01-architecture.html">Capstone 2 · Architecture</a></li>
+<li><a href="capstone-02-build-plan.html">Capstone 3 · Build Plan</a></li>
+<li><a href="capstone-03-evaluation.html">Capstone 4 · Evaluation &amp; Safety</a></li>
+<li><a href="capstone-04-narrative.html">Capstone 5 · Interview Narrative</a></li>
+</ul></div>
+<div class="nav-group"><h3>Trackers</h3><ul>
+<li><a href="tracker-progress-log.html">Progress Log</a></li>
+<li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
+</ul></div>
+<div class="nav-group"><h3>Meta</h3><ul>
+<li><a href="meta-review.html">Prompt Library Review</a></li>
+<li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
+</ul></div>
+</nav>
+  </aside>
+
+  <main id="content">
+    <article class="doc">
+      <p class="doc-meta">Approx. 3 min first read <span aria-hidden="true">·</span> Learn → Build → Interview</p>
+      <h1 id="interview-study-guide">Interview Study Guide<a class="anchor" href="#interview-study-guide" aria-label="Link to this section">#</a></h1>
+<p>One page that tells you what to open, in what order, for every interview topic. Each row links the four things you need: the module that <strong>teaches</strong> it, the hub page that goes <strong>deeper</strong>, the practice pack that <strong>tests</strong> it, and where the <strong>interview questions</strong> live.</p>
+<hr />
+<h2 id="how-to-use-this-site">How to use this site<a class="anchor" href="#how-to-use-this-site" aria-label="Link to this section">#</a></h2>
+<ol>
+<li><strong>Pick a plan</strong> below that matches the time you have.</li>
+<li><strong>Work topic by topic</strong> using the matrix. Read the module, then do its practice pack at least a day later.</li>
+<li><strong>Mark each page complete</strong> with the button at the top of the page. Progress is saved in your browser and shown on the home page and in the sidebar.</li>
+<li><strong>Search</strong> (top bar) covers every module, practice pack and deep-dive page.</li>
+<li><strong>Say answers aloud.</strong> Every module ends with interview questions; explaining is the skill being tested.</li>
+</ol>
+<hr />
+<h2 id="pick-a-plan">Pick a plan<a class="anchor" href="#pick-a-plan" aria-label="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Time left</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>48 hours</strong></td>
+<td><a href="12a-interview-framework.html#7-the-48-hour-checklist">12a section 7, the 48-hour checklist</a>, then <a href="14-concept-map.html#5-the-48-hour-skim">14 section 5, the 48-hour skim</a>. Nothing else.</td>
+</tr>
+<tr>
+<td><strong>2 weeks</strong></td>
+<td>The <strong>Must</strong> rows of the matrix below: module interview sections, then the practice pack, then <a href="12b-question-bank.html">12b</a>. Run one mock from <a href="12a-interview-framework.html#6-mock-interview-schedules">12a section 6</a> per week.</td>
+</tr>
+<tr>
+<td><strong>6 to 8 weeks</strong></td>
+<td>Every row of the matrix in order, one or two topics a week, plus Project 2 or 3. Use the <a href="00-roadmap.html#7-compression-rules">roadmap compression rules</a>.</td>
+</tr>
+<tr>
+<td><strong>24 weeks</strong></td>
+<td>The full <a href="00-roadmap.html">roadmap</a>. This page becomes your revision index.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="topic-matrix">Topic matrix<a class="anchor" href="#topic-matrix" aria-label="Link to this section">#</a></h2>
+<p><strong>Priority:</strong> Must = asked in almost every AI engineering loop. Should = asked often. Nice = differentiator.</p>
+<h3 id="coding-and-engineering">Coding and engineering<a class="anchor" href="#coding-and-engineering" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Priority</th>
+<th>Learn</th>
+<th>Deep dive</th>
+<th>Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python core</td>
+<td>Must</td>
+<td><a href="01a-python-core.html">01a Python Core</a></td>
+<td></td>
+<td><a href="quiz-01a-python-core.html">01a pack</a></td>
+</tr>
+<tr>
+<td>Python patterns, OOP, typing, testing</td>
+<td>Must</td>
+<td><a href="01b-python-patterns.html">01b Patterns and OOP</a></td>
+<td></td>
+<td><a href="quiz-01b-python-patterns.html">01b pack</a></td>
+</tr>
+<tr>
+<td>Data structures and algorithms</td>
+<td>Must</td>
+<td><a href="01c-python-dsa.html">01c Interview DSA</a></td>
+<td></td>
+<td><a href="quiz-01c-python-dsa.html">01c pack</a></td>
+</tr>
+<tr>
+<td>Git, CI, testing, HTTP, concurrency</td>
+<td>Should</td>
+<td><a href="02-software-engineering.html">02 Software Engineering</a></td>
+<td></td>
+<td><a href="quiz-02-software-engineering.html">02 pack</a></td>
+</tr>
+<tr>
+<td>SQL and statistics</td>
+<td>Should</td>
+<td><a href="03-data-and-sql.html">03 Data and SQL</a></td>
+<td></td>
+<td><a href="quiz-03-data-sql.html">03 pack</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="machine-learning">Machine learning<a class="anchor" href="#machine-learning" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Priority</th>
+<th>Learn</th>
+<th>Deep dive</th>
+<th>Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classical ML, metrics, leakage, drift</td>
+<td>Should</td>
+<td><a href="04-machine-learning.html">04 Classical ML</a></td>
+<td></td>
+<td><a href="quiz-04-machine-learning.html">04 pack</a></td>
+</tr>
+<tr>
+<td>Deep learning and training diagnosis</td>
+<td>Should</td>
+<td><a href="05-deep-learning.html">05 Deep Learning</a></td>
+<td></td>
+<td><a href="quiz-05-deep-learning.html">05 pack</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ai-engineering">AI engineering<a class="anchor" href="#ai-engineering" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Priority</th>
+<th>Learn</th>
+<th>Deep dive</th>
+<th>Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transformers and LLMs</td>
+<td>Must</td>
+<td><a href="06-transformers.html">06 Transformers and LLMs</a></td>
+<td><a href="hub/large-language-models.html">Large Language Models</a>, <a href="hub/llm-benchmark-guide.html">LLM Benchmarks</a></td>
+<td><a href="quiz-06-transformers.html">06 pack</a></td>
+</tr>
+<tr>
+<td>Multimodal models</td>
+<td>Nice</td>
+<td><a href="06-transformers.html">06 Transformers and LLMs</a></td>
+<td><a href="hub/vision-language-models.html">Vision-Language Models</a></td>
+<td></td>
+</tr>
+<tr>
+<td>RAG and vector search</td>
+<td>Must</td>
+<td><a href="07-rag.html">07 RAG</a></td>
+<td><a href="hub/retrieval-augmented-generation.html">RAG deep dive</a>, <a href="hub/langchain.html">LangChain</a></td>
+<td><a href="quiz-07-rag.html">07 pack</a></td>
+</tr>
+<tr>
+<td>Agents, tools and MCP</td>
+<td>Must</td>
+<td><a href="08-agents.html">08 Agents</a></td>
+<td><a href="hub/ai-agents-mcp-ecosystem.html">AI Agents and MCP</a>, <a href="hub/langgraph.html">LangGraph</a></td>
+<td><a href="quiz-08-agents.html">08 pack</a></td>
+</tr>
+<tr>
+<td>AI coding assistants</td>
+<td>Nice</td>
+<td></td>
+<td><a href="hub/claude-code-mastery.html">Claude Code Mastery</a>, <a href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Local inference and serving</td>
+<td>Should</td>
+<td><a href="09-local-inference.html">09 Local Inference</a></td>
+<td></td>
+<td><a href="quiz-09-local-inference.html">09 pack</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="production-and-system-design">Production and system design<a class="anchor" href="#production-and-system-design" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Priority</th>
+<th>Learn</th>
+<th>Deep dive</th>
+<th>Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MLOps, deployment, monitoring</td>
+<td>Must</td>
+<td><a href="10-mlops.html">10 MLOps</a></td>
+<td><a href="hub/docker-ecosystem.html">Docker</a>, <a href="hub/kubernetes.html">Kubernetes</a></td>
+<td><a href="quiz-10-mlops.html">10 pack</a></td>
+</tr>
+<tr>
+<td>AI system design</td>
+<td>Must</td>
+<td><a href="11-system-design.html">11 System Design</a></td>
+<td></td>
+<td><a href="quiz-11-system-design.html">11 pack</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-interview-itself">The interview itself<a class="anchor" href="#the-interview-itself" aria-label="Link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Priority</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Answer structure and handling not knowing</td>
+<td>Must</td>
+<td><a href="12a-interview-framework.html">12a Interview Framework</a></td>
+</tr>
+<tr>
+<td>Cross-module questions</td>
+<td>Must</td>
+<td><a href="12b-question-bank.html#part-1-questions-spanning-modules-20">12b Part 1</a></td>
+</tr>
+<tr>
+<td>Tradeoff judgment</td>
+<td>Must</td>
+<td><a href="12b-question-bank.html#part-2-tradeoff-judgment-15">12b Part 2</a></td>
+</tr>
+<tr>
+<td>Production debugging scenarios</td>
+<td>Must</td>
+<td><a href="12b-question-bank.html#part-3-production-diagnostic-scenarios-10">12b Part 3</a></td>
+</tr>
+<tr>
+<td>Behavioral and STAR stories</td>
+<td>Must</td>
+<td><a href="12c-behavioral.html">12c Behavioral and Projects</a></td>
+</tr>
+<tr>
+<td>Talking about your projects</td>
+<td>Must</td>
+<td><a href="13-portfolio.html">13 Portfolio</a>, <a href="capstone-04-narrative.html">Capstone narrative</a></td>
+</tr>
+<tr>
+<td>Final revision</td>
+<td>Must</td>
+<td><a href="14-concept-map.html">14 Concept Map</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="the-revision-loop">The revision loop<a class="anchor" href="#the-revision-loop" aria-label="Link to this section">#</a></h2>
+<p>For each topic, in this order:</p>
+<ol>
+<li><strong>Learn:</strong> read the module, running every example. Predict output before you run it.</li>
+<li><strong>Deep dive:</strong> only if the topic is a Must for your target role, or the module left a gap.</li>
+<li><strong>Practice:</strong> the practice pack, at least one day after reading.</li>
+<li><strong>Explain:</strong> answer the module's interview questions aloud in 60 seconds, recorded.</li>
+<li><strong>Track:</strong> mark the page complete and log the review date in the <a href="tracker-progress-log.html">progress log</a>.</li>
+</ol>
+      <nav class="pager">
+<a class="pager-prev" href="00-roadmap.html"><span>Previous</span>00 · Roadmap</a>
+<a class="pager-next" href="01a-python-core.html"><span>Next</span>01a · Python Core</a>
+</nav>
+    </article>
+  </main>
+
+  <aside class="toc"><div class="toc-inner"><h4>On this page</h4><ul><li class="toc-l2"><a href="#how-to-use-this-site">How to use this site</a></li>
+<li class="toc-l2"><a href="#pick-a-plan">Pick a plan</a></li>
+<li class="toc-l2"><a href="#topic-matrix">Topic matrix</a></li>
+<li class="toc-l3"><a href="#coding-and-engineering">Coding and engineering</a></li>
+<li class="toc-l3"><a href="#machine-learning">Machine learning</a></li>
+<li class="toc-l3"><a href="#ai-engineering">AI engineering</a></li>
+<li class="toc-l3"><a href="#production-and-system-design">Production and system design</a></li>
+<li class="toc-l3"><a href="#the-interview-itself">The interview itself</a></li>
+<li class="toc-l2"><a href="#the-revision-loop">The revision loop</a></li></ul></div></aside>
+</div>
+
+<script src="assets/mermaid.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

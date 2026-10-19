@@ -34,6 +34,7 @@
 <div class="nav-group"><h3>Start here</h3><ul>
 <li><a href="index.html">Overview</a></li>
 <li><a href="00-roadmap.html">00 · Roadmap</a></li>
+<li><a href="study-guide.html">Interview Study Guide</a></li>
 </ul></div>
 <div class="nav-group"><h3>Foundations</h3><ul>
 <li><a href="01a-python-core.html">01a · Python Core</a></li>
@@ -63,6 +64,21 @@
 <li><a href="13-portfolio.html">13 · Portfolio Strategy</a></li>
 <li><a href="14-concept-map.html">14 · Concept Map</a></li>
 </ul></div>
+<div class="nav-group"><h3>Practice packs</h3><ul>
+<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
+<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
+<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
+<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
+<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
+<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
+<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
+<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
+<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
+<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
+<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
+<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
+<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
+</ul></div>
 <div class="nav-group"><h3>Projects</h3><ul>
 <li><a href="project-1.html">Project 1 · Learning Log Analyzer</a></li>
 <li><a href="project-2.html" class="active">Project 2 · Grounded Answers</a></li>
@@ -78,23 +94,24 @@
 <div class="nav-group"><h3>Trackers</h3><ul>
 <li><a href="tracker-progress-log.html">Progress Log</a></li>
 <li><a href="tracker-weekly-plan.html">Weekly Plan</a></li>
-<li><a href="quiz-01a-python-core.html">01a Practice Pack</a></li>
-<li><a href="quiz-01b-python-patterns.html">01b Practice Pack</a></li>
-<li><a href="quiz-01c-python-dsa.html">01c Practice Pack</a></li>
-<li><a href="quiz-02-software-engineering.html">02 Practice Pack</a></li>
-<li><a href="quiz-03-data-sql.html">03 Practice Pack</a></li>
-<li><a href="quiz-04-machine-learning.html">04 Practice Pack</a></li>
-<li><a href="quiz-05-deep-learning.html">05 Practice Pack</a></li>
-<li><a href="quiz-06-transformers.html">06 Practice Pack</a></li>
-<li><a href="quiz-07-rag.html">07 Practice Pack</a></li>
-<li><a href="quiz-08-agents.html">08 Practice Pack</a></li>
-<li><a href="quiz-09-local-inference.html">09 Practice Pack</a></li>
-<li><a href="quiz-10-mlops.html">10 Practice Pack</a></li>
-<li><a href="quiz-11-system-design.html">11 Practice Pack</a></li>
 </ul></div>
 <div class="nav-group"><h3>Meta</h3><ul>
 <li><a href="meta-review.html">Prompt Library Review</a></li>
 <li><a href="meta-prompts-v2.html">Prompt Library v2</a></li>
+</ul></div>
+<div class="nav-group"><h3>Deep-dive hub</h3><ul>
+<li><a class="hub-link" href="hub/index.html">Hub home</a></li>
+<li><a class="hub-link" href="hub/large-language-models.html">Large Language Models</a></li>
+<li><a class="hub-link" href="hub/llm-benchmark-guide.html">LLM Benchmark Guide</a></li>
+<li><a class="hub-link" href="hub/retrieval-augmented-generation.html">RAG Deep Dive</a></li>
+<li><a class="hub-link" href="hub/langchain.html">LangChain</a></li>
+<li><a class="hub-link" href="hub/langgraph.html">LangGraph</a></li>
+<li><a class="hub-link" href="hub/ai-agents-mcp-ecosystem.html">AI Agents &amp; MCP</a></li>
+<li><a class="hub-link" href="hub/vision-language-models.html">Vision-Language Models</a></li>
+<li><a class="hub-link" href="hub/claude-code-mastery.html">Claude Code Mastery</a></li>
+<li><a class="hub-link" href="hub/claude-code-ecosystem.html">Claude Code Ecosystem</a></li>
+<li><a class="hub-link" href="hub/docker-ecosystem.html">Docker</a></li>
+<li><a class="hub-link" href="hub/kubernetes.html">Kubernetes</a></li>
 </ul></div>
 </nav>
   </aside>
@@ -272,10 +289,10 @@
 <h3 id="milestone-1-the-evaluation-set-before-any-retrieval-code">Milestone 1: the evaluation set, before any retrieval code<a class="anchor" href="#milestone-1-the-evaluation-set-before-any-retrieval-code" aria-label="Link to this section">#</a></h3>
 <p><strong>This is the milestone people skip and it is the project.</strong></p>
 <p>Build <code>eval/questions.jsonl</code>, 30 to 50 entries:</p>
-<div class="highlight"><pre><span></span><code>{&quot;id&quot;: &quot;q001&quot;, &quot;question&quot;: &quot;What notice period applies to parental leave?&quot;, &quot;relevant_chunks&quot;: [], &quot;expected_answer&quot;: &quot;30 days&quot;, &quot;answerable&quot;: true, &quot;category&quot;: &quot;single_doc&quot;, &quot;source&quot;: &quot;real_user&quot;}
-{&quot;id&quot;: &quot;q002&quot;, &quot;question&quot;: &quot;How does our parental leave compare to sick leave?&quot;, &quot;relevant_chunks&quot;: [], &quot;expected_answer&quot;: &quot;...&quot;, &quot;answerable&quot;: true, &quot;category&quot;: &quot;multi_doc&quot;, &quot;source&quot;: &quot;authored&quot;}
-{&quot;id&quot;: &quot;q003&quot;, &quot;question&quot;: &quot;What is the policy on sabbaticals?&quot;, &quot;relevant_chunks&quot;: [], &quot;expected_answer&quot;: null, &quot;answerable&quot;: false, &quot;category&quot;: &quot;unanswerable&quot;, &quot;source&quot;: &quot;authored&quot;}
-{&quot;id&quot;: &quot;q004&quot;, &quot;question&quot;: &quot;What does error code ERR_2032 mean?&quot;, &quot;relevant_chunks&quot;: [], &quot;expected_answer&quot;: &quot;...&quot;, &quot;answerable&quot;: true, &quot;category&quot;: &quot;exact_identifier&quot;, &quot;source&quot;: &quot;real_user&quot;}
+<div class="highlight"><pre><span></span><code>{"id": "q001", "question": "What notice period applies to parental leave?", "relevant_chunks": [], "expected_answer": "30 days", "answerable": true, "category": "single_doc", "source": "real_user"}
+{"id": "q002", "question": "How does our parental leave compare to sick leave?", "relevant_chunks": [], "expected_answer": "...", "answerable": true, "category": "multi_doc", "source": "authored"}
+{"id": "q003", "question": "What is the policy on sabbaticals?", "relevant_chunks": [], "expected_answer": null, "answerable": false, "category": "unanswerable", "source": "authored"}
+{"id": "q004", "question": "What does error code ERR_2032 mean?", "relevant_chunks": [], "expected_answer": "...", "answerable": true, "category": "exact_identifier", "source": "real_user"}
 </code></pre></div>
 
 <p><strong>Required composition</strong>, and hold yourself to it:</p>
@@ -330,13 +347,13 @@
 <p><strong>Then measure and commit the numbers:</strong></p>
 <div class="highlight"><pre><span></span><code>eval/results/001-baseline.json
 {
-  &quot;run_id&quot;: &quot;001-baseline&quot;,
-  &quot;config&quot;: {&quot;chunk_size&quot;: 512, &quot;overlap&quot;: 0, &quot;retriever&quot;: &quot;dense&quot;, &quot;top_k&quot;: 5,
-             &quot;embed_model&quot;: &quot;...&quot;, &quot;embed_model_version&quot;: &quot;...&quot;},
-  &quot;retrieval&quot;: {&quot;recall@5&quot;: 0.00, &quot;mrr&quot;: 0.00, &quot;ndcg@5&quot;: 0.00},
-  &quot;by_category&quot;: {&quot;single_doc&quot;: {...}, &quot;unanswerable&quot;: {...}, ...},
-  &quot;by_source&quot;: {&quot;real_user&quot;: {...}, &quot;authored&quot;: {...}},
-  &quot;latency_ms&quot;: {&quot;p50&quot;: 0, &quot;p95&quot;: 0}
+  "run_id": "001-baseline",
+  "config": {"chunk_size": 512, "overlap": 0, "retriever": "dense", "top_k": 5,
+             "embed_model": "...", "embed_model_version": "..."},
+  "retrieval": {"recall@5": 0.00, "mrr": 0.00, "ndcg@5": 0.00},
+  "by_category": {"single_doc": {...}, "unanswerable": {...}, ...},
+  "by_source": {"real_user": {...}, "authored": {...}},
+  "latency_ms": {"p50": 0, "p95": 0}
 }
 </code></pre></div>
 
@@ -405,22 +422,22 @@
 <hr />
 <h2 id="the-evaluation-harness">The evaluation harness<a class="anchor" href="#the-evaluation-harness" aria-label="Link to this section">#</a></h2>
 <p>The core of the project. This is what you build in milestone 1.</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Run the eval set against a retrieval pipeline and produce a comparable report.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<div class="highlight"><pre><span></span><code><span class="sd">"""Run the eval set against a retrieval pipeline and produce a comparable report."""</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">statistics</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
 
-<span class="kn">from</span> <span class="nn">grounded.evaluate.metrics</span> <span class="kn">import</span> <span class="n">mrr</span><span class="p">,</span> <span class="n">ndcg_at_k</span><span class="p">,</span> <span class="n">recall_at_k</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grounded.evaluate.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mrr</span><span class="p">,</span> <span class="n">ndcg_at_k</span><span class="p">,</span> <span class="n">recall_at_k</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">EvalCase</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">EvalCase</span><span class="p">:</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">question</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">relevant_chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
@@ -431,7 +448,7 @@
 
 
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">CaseResult</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CaseResult</span><span class="p">:</span>
     <span class="n">case_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">category</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
@@ -445,45 +462,45 @@
 
 
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">RunReport</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RunReport</span><span class="p">:</span>
     <span class="n">run_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span>
     <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">cases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CaseResult</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="n">cases</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cases</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">key</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cases</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{}</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">cases</span><span class="p">),</span>
-            <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">recall</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
-            <span class="s2">&quot;mrr&quot;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">mrr</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
-            <span class="s2">&quot;ndcg&quot;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ndcg</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
-            <span class="s2">&quot;p50_latency_ms&quot;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">latency_ms</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
+            <span class="s2">"n"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">cases</span><span class="p">),</span>
+            <span class="s2">"recall"</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">recall</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
+            <span class="s2">"mrr"</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">mrr</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
+            <span class="s2">"ndcg"</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">fmean</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ndcg</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
+            <span class="s2">"p50_latency_ms"</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">latency_ms</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">),</span>
         <span class="p">}</span>
 
 
-<span class="k">class</span> <span class="nc">Retriever</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Retriever</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
 
 
-<span class="k">def</span> <span class="nf">load_eval_set</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvalCase</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_eval_set</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvalCase</span><span class="p">]:</span>
     <span class="n">cases</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
             <span class="k">continue</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">cases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EvalCase</span><span class="p">(</span><span class="o">**</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)))</span>
         <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">line_no</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">line_no</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">cases</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no cases&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: no cases"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cases</span>
 
 
-<span class="k">def</span> <span class="nf">run_retrieval_eval</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_retrieval_eval</span><span class="p">(</span>
     <span class="n">cases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvalCase</span><span class="p">],</span> <span class="n">retriever</span><span class="p">:</span> <span class="n">Retriever</span><span class="p">,</span> <span class="n">run_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RunReport</span><span class="p">:</span>
     <span class="n">report</span> <span class="o">=</span> <span class="n">RunReport</span><span class="p">(</span>
@@ -516,23 +533,23 @@
     <span class="k">return</span> <span class="n">report</span>
 
 
-<span class="k">def</span> <span class="nf">write_report</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">RunReport</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_report</span><span class="p">(</span><span class="n">report</span><span class="p">:</span> <span class="n">RunReport</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
     <span class="n">directory</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">.json&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">.json"</span>
 
     <span class="n">categories</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">c</span><span class="o">.</span><span class="n">category</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="p">})</span>
     <span class="n">sources</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">c</span><span class="o">.</span><span class="n">source</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="p">})</span>
 
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;run_id&quot;</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
-        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
-        <span class="s2">&quot;overall&quot;</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(),</span>
-        <span class="s2">&quot;by_category&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">},</span>
-        <span class="s2">&quot;by_source&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">},</span>
-        <span class="s2">&quot;cases&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">asdict</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="p">],</span>
+        <span class="s2">"run_id"</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span>
+        <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+        <span class="s2">"config"</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
+        <span class="s2">"overall"</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(),</span>
+        <span class="s2">"by_category"</span><span class="p">:</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">},</span>
+        <span class="s2">"by_source"</span><span class="p">:</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">},</span>
+        <span class="s2">"cases"</span><span class="p">:</span> <span class="p">[</span><span class="n">asdict</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="p">],</span>
     <span class="p">}</span>
-    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">path</span>
 </code></pre></div>
 
@@ -546,12 +563,12 @@
 <span class="n">TOLERANCE</span> <span class="o">=</span> <span class="mf">0.02</span>
 
 
-<span class="k">def</span> <span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
-    <span class="n">report</span> <span class="o">=</span> <span class="n">run_retrieval_eval</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">&quot;ci&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{},</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">recall</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()[</span><span class="s2">&quot;recall&quot;</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_retrieval_has_not_regressed</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">run_retrieval_eval</span><span class="p">(</span><span class="n">eval_cases</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">"ci"</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{},</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()[</span><span class="s2">"recall"</span><span class="p">]</span>
     <span class="k">assert</span> <span class="n">recall</span> <span class="o">&gt;=</span> <span class="n">BASELINE_RECALL</span> <span class="o">-</span> <span class="n">TOLERANCE</span><span class="p">,</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;recall@5 fell to </span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, baseline </span><span class="si">{</span><span class="n">BASELINE_RECALL</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">. &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;Failing cases: </span><span class="si">{</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">case_id</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">c</span><span class="o">.</span><span class="n">recall</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">"recall@5 fell to </span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, baseline </span><span class="si">{</span><span class="n">BASELINE_RECALL</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">. "</span>
+        <span class="sa">f</span><span class="s2">"Failing cases: </span><span class="si">{</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">case_id</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">report</span><span class="o">.</span><span class="n">cases</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">c</span><span class="o">.</span><span class="n">recall</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
     <span class="p">)</span>
 </code></pre></div>
 
