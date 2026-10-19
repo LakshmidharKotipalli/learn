@@ -49,6 +49,10 @@ A curriculum that takes you from rusty Python to being able to build, evaluate a
 
 **Do not read everything first.** The roadmap's generation order is also a study order, and a module you have not worked through is not an asset.
 
+**Live site:** https://lakshmidharkotipalli.github.io/learn/ (see [Reading it as a website](#reading-it-as-a-website)).
+
+**If you are preparing for an interview:** open [`interview-study-guide.md`](interview-study-guide.md). It maps every topic to its module, deep-dive page and practice pack, with plans for 48 hours, 2 weeks, 6 to 8 weeks and 24 weeks.
+
 **If you are preparing for an interview in under two weeks:** [`12a-interview-framework.md`](12a-interview-framework.md) section 7, then [`14-concept-map.md`](14-concept-map.md) section 5. Nothing else.
 
 ---
@@ -100,6 +104,7 @@ The dotted edge is the LLM-first fast path. It reaches the material you probably
 
 | File | Covers |
 |---|---|
+| [`interview-study-guide.md`](interview-study-guide.md) | Topic matrix: learn, deep dive, practice, interview. Plans by time left. |
 | [`00-north-star-roadmap.md`](00-north-star-roadmap.md) | The 24-week plan, two orderings, compression rules. **The only schedule.** |
 | [`01a-python-core.md`](01a-python-core.md) | Execution model, objects, collections, control flow, functions, exceptions, files |
 | [`01b-python-patterns-and-oop.md`](01b-python-patterns-and-oop.md) | OOP, generators, decorators, typing, pytest, and the applied patterns for LLM code |
@@ -251,8 +256,11 @@ A local server is needed because search fetches a JSON index, and most browsers
 block `fetch` from `file://`. Everything else works if you just open
 `docs/index.html` directly.
 
-**On GitHub Pages:** Settings → Pages → source `main` / `/docs`. Nothing else to
-configure; `.nojekyll` is already present.
+**On GitHub Pages:** the workflow in `.github/workflows/pages.yml` rebuilds the
+site from the Markdown and deploys it on every push to `main`. One-time setup:
+Settings → Pages → Build and deployment → Source: **GitHub Actions**. The site
+is then at `https://lakshmidharkotipalli.github.io/learn/`. Every push runs
+the build, so a broken link fails before it reaches the site.
 
 **Rebuilding after you edit a module:**
 
@@ -273,9 +281,11 @@ from a CDN, so the site works with no network.
 [`docs/hub/`](docs/hub/index.html) holds the standalone deep-dive guides that
 used to live in the separate Pages repo: LLMs, LangChain, LangGraph, RAG,
 agents and MCP, vision-language models, Claude Code, Docker, Kubernetes, and an
-LLM benchmark guide. Each page is self-contained HTML with inline CSS and JS,
-so it needs no build step; add a card for a new page to the `PAGES` array in
-`docs/hub/index.html`.
+LLM benchmark guide. Each page is self-contained HTML with inline CSS and JS.
+The build links every hub page into the main sidebar, the landing page and the
+search index, and adds a "Learning OS" link back to the curriculum. To add a
+page, put it in `docs/hub/`, add it to the `HUB` list in `build_site.py`, and add
+a card to the `PAGES` array in `docs/hub/index.html`.
 
 ## Rendering the diagrams
 

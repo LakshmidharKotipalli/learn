@@ -138,7 +138,10 @@
   let progress = readProgress();
   const trackedPages = pageLinks
     .map(function (link) { return link.getAttribute("href").split("#")[0]; })
-    .filter(function (href, i, all) { return href !== "index.html" && all.indexOf(href) === i; });
+    .filter(function (href, i, all) {
+      // Deep-dive hub pages are references, not lessons, so they are not tracked.
+      return href !== "index.html" && href.indexOf("hub/") !== 0 && all.indexOf(href) === i;
+    });
 
   function saveProgress() {
     store.set(progressKey, JSON.stringify(progress));
